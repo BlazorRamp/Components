@@ -1,0 +1,70 @@
+﻿@page "/client-busy"
+
+
+@rendermode InteractiveWebAssembly
+
+<PageTitle>Client Busy</PageTitle>
+
+<h3>Busy Indicator</h3>
+
+<p><b>Code is running on the: @_location</b></p>
+
+<div style="width:500px; height:350px; border:1px solid; display:flex;justify-content:center;align-items:center;position:relative;">
+    <BusyIndicator AriaStartText="Dummy task started, please wait" AriaEndText="Dummy task completed successfully" ShowIndicator="@_isLoading" BusyText=". . . Loading . . ."
+     OverlayPosition="OverlayPosition.Container" ContentPosition="ContentPosition.Top">
+
+        <input type="text" />
+        <p>Some content</p>
+ 
+ </BusyIndicator>
+
+
+
+</div>
+
+<div style="width:500px; height:350px; border:1px solid; display:flex;justify-content:center;align-items:center;position:relative;">
+    <BusyIndicator AriaEndText="Client Finished" ShowIndicator="@_isLoading2" BusyText=". . . Loading . . ."
+                   OverlayPosition="OverlayPosition.Container" ContentPosition="ContentPosition.Top" OnBusyCompleted="HandleBusyCompleted"/>
+
+    <input type="text" />
+    <p>Some content</p>
+
+</div>
+
+<button class="btn btn-primary" @ref="@ButtonRef" @onclick="StartTask" type="button">Busy Indicator On</button>
+<button class="btn btn-primary" @ref="@ButtonRef2" @onclick="StartTask2" type="button">Busy Indicator On 2</button>
+
+@code {
+    private bool _isLoading = false;
+    private bool _isLoading2 = false;
+
+    private string _location = String.Empty;
+
+    public ElementReference ButtonRef { get; set; }
+    public ElementReference ButtonRef2 { get; set; }
+
+    protected override void OnInitialized()
+
+        => _location = OperatingSystem.IsBrowser() ? "Client" : "Server";
+
+
+    public async Task StartTask()
+    {
+        _isLoading = true;
+        await Task.Delay(1000);
+        _isLoading = false;
+
+    }
+
+    public async Task StartTask2()
+    {
+        _isLoading2 = true;
+        await Task.Delay(1000);
+        _isLoading2 = false;
+    }
+    private async Task HandleBusyCompleted()
+    {
+        //=>  await ButtonRef.FocusAsync();
+    }
+
+}

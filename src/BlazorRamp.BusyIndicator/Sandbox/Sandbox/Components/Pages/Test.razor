@@ -1,0 +1,66 @@
+﻿@page "/test"
+
+@rendermode InteractiveServer
+
+<PageTitle>Modal Busy</PageTitle>
+
+<dialog id="mydialog" style="width:99%; height:99%;">
+
+    <div style="position:relative;">
+        <BusyIndicator AriaStartText="Modal Started" AriaEndText="Modal Finished" ShowIndicator="@_isLoading" OverlayPosition="OverlayPosition.Container" 
+        ContentPosition="ContentPosition.Top" OnBusyCompleted="HandleBusyCompleted" BusyText=". . . Please Wait . . ." IndicatorLabel="Busy One" />
+
+        <p> Some content</p>
+
+        <button @ref="ButtonRef" class="btn-primary btn" type="button" @onclick="ShowSpinner">Open Spinner 1</button>
+
+        <p>lots of text</p>
+
+        <input type="text" />
+    </div>
+
+
+    <div style="position:relative;">
+        <BusyIndicator AriaStartText="Modal Started" AriaEndText="Modal Finished" ShowIndicator="@_isLoading2" OverlayPosition="OverlayPosition.Screen"
+                       ContentPosition="ContentPosition.Top" OnBusyCompleted="HandleBusyCompleted" BusyText=". . . Please Wait . . ." IndicatorLabel="Busy Two" />
+
+        <p> Some content</p>
+
+        <button @ref="ButtonRef2" class="btn-primary btn" type="button" @onclick="ShowSpinner2">Open Spinner 2</button>
+
+        <p>lots of text</p>
+
+        <input type="text" />
+    </div>
+</dialog>
+
+<button commandfor="mydialog" command="show-modal">Open</button>
+
+@code {
+    public bool _isLoading = false;
+    public bool _isLoading2 = false;
+
+
+    public ElementReference ButtonRef { get; set; }
+    public ElementReference ButtonRef2 { get; set; }
+
+    public async Task ShowSpinner()
+    {
+        _isLoading = true;
+        await Task.Delay(2000);
+        _isLoading = false;
+    }
+
+    public async Task ShowSpinner2()
+    {
+        _isLoading2 = true;
+        await Task.Delay(2000);
+        _isLoading2 = false;
+    }
+
+
+    private async Task HandleBusyCompleted()
+    {
+        //await ButtonRef.FocusAsync();
+    }
+}

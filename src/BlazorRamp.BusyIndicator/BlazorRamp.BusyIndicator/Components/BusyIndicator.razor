@@ -1,0 +1,14 @@
+﻿<div @ref="@BusyIndicatorRef" id="@_busyIndicatorID" data-br-component="@GlobalValues.Component_Name" class="@_busyClasses" data-br-style="@_styleAs">
+    <span class="@CoreGlobalValues.CSS_Visually_Hidden_Class" tabindex="-1">@_indicatorLabel</span>
+    <div class="@_busyContentClasses" aria-hidden="true">
+        <div class="@GlobalValues.Busy_Spinner_Class"></div>
+        @if (false == String.IsNullOrWhiteSpace(_busyText))
+        {
+            <div class="@GlobalValues.Busy_Text_Class">
+                @BusyText
+            </div>
+        }
+    </div>
+</div>
+
+@ChildContent

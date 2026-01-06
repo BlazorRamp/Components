@@ -1,0 +1,52 @@
+﻿@page "/server-busy"
+
+
+@rendermode InteractiveServer
+
+<PageTitle>Server Busy</PageTitle>
+<h3>Busy Indicator</h3>
+
+<p><b>Code is running on the: @_location</b></p>
+
+<p>Some Text</p>
+
+
+<div style="width:500px; height:500px; border:1px solid; display:flex;justify-content:center;align-items:center;position:relative;">
+
+    <BusyIndicator AriaStartText="Dummy task started, please wait" AriaEndText="Dummy task completed successfully" ShowIndicator="@_isLoading" BusyText=". . . Loading . . . ."
+                   OverlayPosition="OverlayPosition.Screen" ContentPosition="ContentPosition.Top"  IndicatorLabel="Busy Indicator" />
+
+    <input type="text" />
+    <p>Some content</p>
+
+</div>
+<button class="btn btn-primary" @ref="@ButtonRef" @onclick="StartTask" type="button">Busy Indicator On</button>
+
+
+@code {
+    private bool _isLoading = false;
+
+    private string _location = String.Empty;
+
+    public ElementReference ButtonRef { get; set; } 
+
+    protected override void OnInitialized()
+
+        => _location = OperatingSystem.IsBrowser() ? "Client" : "Server";
+
+
+    public async Task StartTask()
+    {
+        _isLoading = true;
+        await Task.Delay(2000);
+        _isLoading = false;
+    }
+
+    private async Task HandleBusyCompleted()
+    {
+        await ButtonRef.FocusAsync();
+    }
+    
+
+}
+
