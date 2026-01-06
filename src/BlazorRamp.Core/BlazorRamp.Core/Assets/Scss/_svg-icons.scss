@@ -1,0 +1,12 @@
+﻿@mixin megaphone-icon {
+    display: inline-block;
+    background-color: currentColor;
+    mask-image: var(--br-svg-megaphone-icon);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+
+    @media (forced-colors: active) {
+        background-color: CanvasText;
+        color: Canvas;
+    }
+}

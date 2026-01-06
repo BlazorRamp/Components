@@ -1,0 +1,387 @@
+﻿
+@font-face {
+    font-family: "Roboto Flex";
+    src: url("../../wwwroot/assets/css/fonts/Roboto-VariableFont.ttf") format("truetype-variations");
+    font-weight: 100 900;
+    font-stretch: 75% 125%;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: "Roboto Flex";
+    src: url("../../wwwroot/assets/css/fonts/Roboto-Italic-VariableFont.ttf") format("truetype-variations");
+    font-weight: 100 900;
+    font-stretch: 75% 125%;
+    font-style: italic;
+    font-display: swap;
+}
+:root {
+    /*
+        * Base units
+    */
+    /*
+        * spaces for margins and padding
+    */
+    --br-unit-space-0: 0rem;
+    --br-unit-space-1: 0.125rem;
+    --br-unit-space-2: 0.25rem;
+    --br-unit-space-3: 0.5rem;
+    --br-unit-space-4: 0.75rem;
+    --br-unit-space-5: 1rem;
+    /*
+        * Border radidius
+    */
+    --br-unit-radius-0: 0;
+    --br-unit-radius-1: 0.125rem;
+    --br-unit-radius-2: 0.25rem;
+    --br-unit-radius-3: 0.5rem;
+    --br-unit-radius-4: 0.75rem;
+    --br-unit-radius-5: 1rem;
+    --br-unit-radius-6: 1.25rem;
+    --br-unit-radius-7: 1.5rem;
+    --br-unit-radius-8: 1.75rem;
+    --br-unit-radius-9: 2rem;
+    --br-unit-radius-full: 9999px;
+    /*
+        * Border widths
+    */
+    --br-unit-border-0: 0px;
+    --br-unit-border-1: 1px;
+    --br-unit-border-2: 2px;
+    --br-unit-border-3: 3px;
+    --br-unit-border-4: 4px;
+    --br-unit-border-5: 5px;
+    /*
+        * Outlines
+    */
+    --br-unit-outline-0: 0px;
+    --br-unit-outline-1: 1px;
+    --br-unit-outline-2: 2px;
+    --br-unit-outline-3: 3px;
+    --br-unit-outline-4: 4px;
+    --br-unit-outline-5: 5px;
+    --br-unit-outline-offset-0: 0;
+    --br-unit-outline-offset-1: 0.125rem;
+    --br-unit-outline-offset-2: 0.25rem;
+    --br-unit-outline-offset-3: 0.5rem;
+    --br-unit-outline-offset-4: 0.75rem;
+    --br-unit-outline-offset-5: 1rem;
+    /*
+        * Font units
+    */
+    --br-unit-font-size-sm-3: 0.51rem;
+    --br-unit-font-size-sm-2: 0.64rem;
+    --br-unit-font-size-sm-1: 0.8rem;
+    --br-unit-font-size-label: 0.875rem;
+    --br-unit-font-size-1: 1rem;
+    --br-unit-font-size-2: 1.25rem;
+    --br-unit-font-size-3: 1.56rem;
+    --br-unit-font-size-4: 1.95rem;
+    --br-unit-font-size-5: 2.44rem;
+    --br-unit-font-size-6: 3.05rem;
+    --br-unit-font-weight-100: 100;
+    --br-unit-font-weight-200: 200;
+    --br-unit-font-weight-300: 300;
+    --br-unit-font-weight-400: 400;
+    --br-unit-font-weight-500: 500;
+    --br-unit-font-weight-600: 600;
+    --br-unit-font-weight-700: 700;
+    --br-unit-font-family-default: "Roboto Flex", sans-serif;
+    /*
+        * Line heights
+    */
+    --br-unit-line-height-1: 1.5;
+    --br-unit-line-height-2: 1.6;
+    --br-unit-line-height-3: 1.7;
+    --br-unit-line-height-4: 1.8;
+    --br-unit-line-height-5: 1.9;
+    /*
+        * Opacities
+    */
+    --br-unit-opacity-val-0: 0;
+    --br-unit-opacity-val-5: 0.05;
+    --br-unit-opacity-val-10: 0.10;
+    --br-unit-opacity-val-15: 0.15;
+    --br-unit-opacity-val-20: 0.20;
+    --br-unit-opacity-val-25: 0.25;
+    --br-unit-opacity-val-30: 0.30;
+    --br-unit-opacity-val-35: 0.35;
+    --br-unit-opacity-val-40: 0.40;
+    --br-unit-opacity-val-45: 0.45;
+    --br-unit-opacity-val-50: 0.50;
+    --br-unit-opacity-val-55: 0.55;
+    --br-unit-opacity-val-60: 0.60;
+    --br-unit-opacity-val-65: 0.65;
+    --br-unit-opacity-val-70: 0.70;
+    --br-unit-opacity-val-75: 0.75;
+    --br-unit-opacity-val-80: 0.80;
+    --br-unit-opacity-val-85: 0.85;
+    --br-unit-opacity-val-90: 0.90;
+    --br-unit-opacity-val-95: 0.95;
+    --br-unit-opacity-val-100: 1;
+    /*
+        * Base colours
+    */
+    /*
+        * To see all the colour functions working just change the single primary colour value and see the 
+        * other butil from it changes.
+    */
+    --br-unit-colour-neutral-saturation: 10; // this will probably need to be lower for greens, higher for blues
+    --br-unit-colour-primary: hsl(220, 44%, 48%); //hsl(214,77%,55%);
+    /*
+        *
+    */
+    --br-unit-colour-secondary: hsl(from var(--br-unit-colour-primary) calc(h + 10) 15% 60%);
+    --br-unit-colour-accent: hsl(from var(--br-unit-colour-primary) calc(h + 80) 15% 60%);
+    --br-unit-colour-neutral: hsl(from var(--br-unit-colour-primary) h var(--br-unit-colour-neutral-saturation) 70%);
+    --br-unit-colour-success: hsl(100, 35%, 40%);
+    --br-unit-colour-warning: hsl(45, 100%, 50%);
+    --br-unit-colour-danger: hsl(0, 70%, 40%);
+    --br-unit-colour-info: hsl(200, 60%, 40%);
+    /*
+        * Secondary palette
+    */
+    --br-unit-colour-secondary-lighter: hsl(from var(--br-unit-colour-secondary) h s calc((l + (100 - l) * 0.80)));
+    --br-unit-colour-secondary-light: hsl(from var(--br-unit-colour-secondary) h s calc((l + (100 - l) * 0.40)));
+    --br-unit-colour-secondary-dark: hsl(from var(--br-unit-colour-secondary) h s calc(l * 0.80));
+    --br-unit-colour-secondary-darker: hsl(from var(--br-unit-colour-secondary) h s calc(l * 0.40));
+    --br-unit-colour-secondary-text-light: var(--br-unit-colour-secondary-lighter);
+    --br-unit-colour-secondary-text-dark: var(--br-unit-colour-secondary-lighter);
+    /* 
+        * Accent paette
+    */
+    --br-unit-colour-accent-lighter: hsl(from var(--br-unit-colour-accent) h s calc((l + (100 - l) * 0.80)));
+    --br-unit-colour-accent-light: hsl(from var(--br-unit-colour-accent) h s calc((l + (100 - l) * 0.40)));
+    --br-unit-colour-accent-dark: hsl(from var(--br-unit-colour-accent) h s calc(l * 0.80));
+    --br-unit-colour-accent-darker: hsl(from var(--br-unit-colour-accent) h s calc(l * 0.40));
+    --br-unit-colour-accebt-text-light: var(--br-unit-colour-accent-lighter);
+    --br-unit-colour-accebt-text-dark: var(--br-unit-colour-accent-darker);
+    /*
+        * Success palette
+    */
+    --br-unit-colour-success-lighter: hsl(from var(--br-unit-colour-success) h s calc((l + (100 - l) * 0.80)));
+    --br-unit-colour-success-light: hsl(from var(--br-unit-colour-success) h s calc((l + (100 - l) * 0.40)));
+    --br-unit-colour-success-dark: hsl(from var(--br-unit-colour-success) h s calc(l * 0.80));
+    --br-unit-colour-success-darker: hsl(from var(--br-unit-colour-success) h s calc(l * 0.40));
+    --br-unit-colour-success-text-light: var(--br-unit-colour-success-lighter);
+    --br-unit-colour-success-text-dark: var(--br-unit-colour-success-darker);
+    /*
+        * Danger palette
+    */
+    --br-unit-colour-danger-lighter: hsl(from var(--br-unit-colour-danger) h s calc((l + (100 - l) * 0.80)));
+    --br-unit-colour-danger-light: hsl(from var(--br-unit-colour-danger) h s calc((l + (100 - l) * 0.40)));
+    --br-unit-colour-danger-dark: hsl(from var(--br-unit-colour-danger) h s calc(l * 0.80));
+    --br-unit-colour-danger-darker: hsl(from var(--br-unit-colour-danger) h s calc(l * 0.40));
+    --br-unit-colour-danger-text-light: var(--br-unit-colour-danger-lighter);
+    --br-unit-colour-danger-text-dark: var(--br-unit-colour-danger-darker);
+    /*
+        * Info palette
+    */
+    --br-unit-colour-info-lighter: hsl(from var(--br-unit-colour-info) h s calc((l + (100 - l) * 0.80)));
+    --br-unit-colour-info-light: hsl(from var(--br-unit-colour-info) h s calc((l + (100 - l) * 0.40)));
+    --br-unit-colour-info-dark: hsl(from var(--br-unit-colour-info) h s calc(l * 0.80));
+    --br-unit-colour-info-darker: hsl(from var(--br-unit-colour-info) h s calc(l * 0.40));
+    --br-unit-colour-info-text-light: var(--br-unit-colour-info-lighter);
+    --br-unit-colour-info-text-dark: var(--br-unit-colour-info-darker);
+    /*
+        * Warning palette
+    */
+    --br-unit-colour-warning-lighter: hsl(from var(--br-unit-colour-warning) h s calc((l + (100 - l) * 0.80)));
+    --br-unit-colour-warning-light: hsl(from var(--br-unit-colour-warning) h s calc((l + (100 - l) * 0.40)));
+    --br-unit-colour-warning-dark: hsl(from var(--br-unit-colour-warning) h s calc(l * 0.55));
+    --br-unit-colour-warning-darker: hsl(from var(--br-unit-colour-warning) h s calc(l * 0.35));
+    /*
+        * IMPORANT TWEAK NEUTRAL TO SUIT perhaps lighter and more colour for the lower ends and darker and higher end
+    */
+
+    --br-unit-colour-neutral-0: hsl(0, 0%, 100%);
+    --br-unit-colour-neutral-5: hsl(from var(--br-unit-colour-neutral) h calc(var(--br-unit-colour-neutral-saturation) + 8) calc(l + (100 - l) * 0.95));
+    --br-unit-colour-neutral-10: hsl(from var(--br-unit-colour-neutral) h calc(var(--br-unit-colour-neutral-saturation) + 13) calc(l + (100 - l) * 0.85));
+    --br-unit-colour-neutral-20: hsl(from var(--br-unit-colour-neutral) h calc(var(--br-unit-colour-neutral-saturation) + 16) calc(l + (100 - l) * 0.80));
+    --br-unit-colour-neutral-30: hsl(from var(--br-unit-colour-neutral) h s calc(l + (100 - l) * 0.4));
+    --br-unit-colour-neutral-40: hsl(from var(--br-unit-colour-neutral) h s calc(l + (100 - l) * 0.2));
+    --br-unit-colour-neutral-50: var(--br-unit-colour-neutral);
+    --br-unit-colour-neutral-60: hsl(from var(--br-unit-colour-neutral) h s calc(l * 0.5));
+    --br-unit-colour-neutral-70: hsl(from var(--br-unit-colour-neutral) h s calc(l * 0.30));
+    --br-unit-colour-neutral-80: hsl(from var(--br-unit-colour-neutral) h s calc(l * 0.20));
+    --br-unit-colour-neutral-90: hsl(from var(--br-unit-colour-neutral) h s calc(l * 0.15));
+    --br-unit-colour-neutral-100: hsl(0, 0%, 0%);
+    /*
+        * Primary full palette
+    */
+
+    --br-unit-colour-primary-0: hsl(0, 0%, 0%);
+    --br-unit-colour-primary-5: hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.9));
+    --br-unit-colour-primary-10: hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.8));
+    --br-unit-colour-primary-20: hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.6));
+    --br-unit-colour-primary-30: hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.4));
+    --br-unit-colour-primary-40: hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.2));
+    --br-unit-colour-primary-50: var(--br-unit-colour-primary);
+    --br-unit-colour-primary-60: hsl(from var(--br-unit-colour-primary) h s calc(l * 0.8));
+    --br-unit-colour-primary-70: hsl(from var(--br-unit-colour-primary) h s calc(l * 0.6));
+    --br-unit-colour-primary-80: hsl(from var(--br-unit-colour-primary) h s calc(l * 0.4));
+    --br-unit-colour-primary-90: hsl(from var(--br-unit-colour-primary) h s calc(l * 0.2));
+    --br-unit-colour-primary-100: hsl(0, 0%, 100%);
+    --br-unit-colour-primary-text-dark: var(--br-unit-colour-primary-70);
+    --br-unit-colour-primary-text-light: var(--br-unit-colour-primary-10);
+    /*
+        * 
+    */
+    --br-unit-colour-canvas: var(--br-unit-colour-neutral-5);
+    --br-unit-colour-canvas-inverted: var(--br-unit-colour-neutral-90);
+    --br-unit-colour-canvas-text: var(--br-unit-colour-neutral-90);
+    --br-unit-colour-canvas-text-inverted: var(--br-unit-colour-neutral-5);
+    /*
+        * Shadows
+    */
+    --br-unit-box-shadow-1: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    --br-unit-box-shadow-2: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    /*
+        * WCAG
+    */
+    --br-unit-wcag-target-2a: 24px;
+    --br-unit-wcag-target-3a: 48px;
+    --br-unit-wcag-reflow-2a: 320px;
+    /*
+        * States
+    */
+    --br-unit-state-disabled-brightness: 75%;
+    --br-unit-state-hover-opacity: 0.1;
+    --br-unit-state-active-brigthness: 95%;
+    --br-unit-state-active-scale: 0.95;
+    /*
+        * Scroll bars & track styles & misc
+    */
+
+    --br-comp-all-track-colour: var(--br-unit-colour-neutral-30);
+    --br-comp-all-track-active-colour: var(--br-unit-colour-neutral-30);
+    --br-comp-all-track-inactive-colour: var(--br-unit-colour-neutral-30);
+    --br-comp-all-thumb-colour: var(--br-unit-colour-neutral-30);
+    --br-comp-all-focus-indicator-colour: var(--br-unit-colour-primary-70);
+    --br-comp-all-focus-indicator-text: var(--br-unit-colour-primary-5);
+    --br-comp-all-link-current-page-background-colour: var(--br-unit-colour-secondary-lighter);
+    --br-comp-all-link-hover-background-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.15);
+    --br-comp-all-link-active-background-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.3);
+    --br-comp-all-link-focused-background-colour: var(--br-unit-colour-secondary-lighter);
+    --br-comp-all-overlay-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.15);
+    --br-comp-all-border-interactive-colour: var(--br-primary-clr-lighter-20);
+    --br-comp-all-hint-text-brightness: 85%;
+    --br-comp-all-divider-colour: var(--br-unit-colour-neutral-30);
+    --br-comp-all-selection-colour: silver;
+    /*
+        * Outlines
+    */
+    --br-comp-all-outline-style: solid;
+    --br-comp-all-outline-width: var(--br-unit-outline-2);
+    --br-comp-all-outline-offset: var(--br-unit-outline-offset-2);
+    --br-comp-all-outline-colour: var(--br-comp-all-focus-indicator-colour);
+    /*
+        * pane-base styles
+    */
+    --br-comp-all-pane-base-background: var(--br-unit-colour-neutral-10);
+    --br-comp-all-pane-base-border-style: solid;
+    --br-comp-all-pane-base-border-colour: transparent;
+    --br-comp-all-pane-base-border-width: var(--br-unit-border-0);
+    --br-comp-all-pane-base-border-radius: var(--br-unit-radius-3);
+    /*
+        * pane panel styles
+    */
+    --br-comp-all-pane-panel-background: var(--br-unit-colour-neutral-10);
+    --br-comp-all-pane-panel-border-style: solid;
+    --br-comp-all-pane-panel-border-colour: transparent;
+    --br-comp-all-pane-panel-border-width: var(--br-unit-border-0);
+    --br-comp-all-pane-panel-border-radius: var(--br-unit-radius-3);
+    /*
+        * pane surface styles
+    */
+    --br-comp-all-pane-surface-background: var(--br-unit-colour-neutral-20);
+    --br-comp-all-pane-surface-text: inherit;
+    --br-comp-all-pane-surface-font: inherit;
+    --br-comp-all-pane-surface-font-size: inherit;
+    --br-comp-all-pane-surface-font-weight: inherit;
+    --br-comp-all-pane-surface-line-height: inherit;
+    --br-comp-all-pane-surface-border-style: solid;
+    --br-comp-all-pane-surface-border-colour: transparent;
+    --br-comp-all-pane-surface-border-width: var(--br-unit-border-0);
+    --br-comp-all-pane-surface-border-radius: var(--br-unit-radius-3);
+    /*
+        * area header styles
+    */
+    --br-comp-all-area-header-background: transparent;
+    --br-comp-all-area-header-text: var(--br-unit-colour-primary-text-dark);
+    --br-comp-all-area-header-font: inherit;
+    --br-comp-all-area-header-font-size: var(--br-unit-font-size-2);
+    --br-comp-all-area-header-font-weight: inherit;
+    --br-comp-all-area-header-line-height: inherit;
+    --br-comp-all-area-header-border-style: solid;
+    --br-comp-all-area-header-border-colour: transparent;
+    --br-comp-all-area-header-border-width: var(--br-unit-border-0);
+    --br-comp-all-area-header-border-radius: var(--br-unit-radius-3);
+    /*
+        * area content styles
+    */
+    --br-comp-all-area-content-background: var(--br-unit-colour-canvas);
+    --br-comp-all-area-content-text: inherit;
+    --br-comp-all-area-content-font: inherit;
+    --br-comp-all-area-content-font-size: var(--br-unit-font-size-1);
+    --br-comp-all-area-content-font-weight: inherit;
+    --br-comp-all-area-content-line-height: inherit;
+    --br-comp-all-area-content-border-style: solid;
+    --br-comp-all-area-content-border-colour: transparent;
+    --br-comp-all-area-content-border-width: var(--br-unit-border-0);
+    --br-comp-all-area-content-border-radius: var(--br-unit-radius-3);
+    /*
+        * area footer styles
+    */
+    --br-comp-all-area-footer-background: transparent;
+    --br-comp-all-area-footer-text: inherit;
+    --br-comp-all-area-footer-font: inherit;
+    --br-comp-all-area-footer-font-size: var(--br-unit-font-size-1);
+    --br-comp-all-area-footer-font-weight: inherit;
+    --br-comp-all-area-footer-line-height: inherit;
+    --br-comp-all-area-footer-border-style: solid;
+    --br-comp-all-area-footer-border-colour: transparent;
+    --br-comp-all-area-footer-border-width: var(--br-unit-border-0);
+    --br-comp-all-area-footer-border-radius: var(--br-unit-radius-3);
+    /*
+        * Internal buttons
+    */
+    --br-comp-all-button-background: transparent;
+    --br-comp-all-button-text: var(--br-unit-colour-primary-text-dark);
+    --br-comp-all-button-font: inherit;
+    --br-comp-all-button-font-size: var(--br-unit-font-size-label);
+    --br-comp-all-button-font-weight: var(--br-unit-font-weight-400,inherit);
+    --br-comp-all-button-line-height: inherit;
+    --br-comp-all-button-border-style: solid;
+    --br-comp-all-button-border-colour: var(--br-unit-colour-primary-30);
+    --br-comp-all-button-border-width: var(--br-unit-border-1);
+    --br-comp-all-button-border-radius: var(--br-unit-radius-full);
+    --br-comp-all-button-state-hover: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10));
+    --br-comp-all-button-state-active-brigthness: var(--br-unit-state-active-brigthness);
+    --br-comp-all-button-state-active-scale: var(--br-unit-state-active-scale);
+    /*
+        *
+    */
+    /*
+        * SVG icons
+    */
+    --br-svg-hourglass-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23000' d='M6.16 4.6A4.05 4.05 0 0 1 8 7.994c0-1.415.726-2.66 1.825-3.384c.23-.199.426-.395.609-.602L5.56 4.001q.284.32.593.594z'/%3E%3Cpath fill='%23000' d='M11.18 6.06A4.4 4.4 0 0 0 13 2.5V2h1V0H2v2h1v.5a4.39 4.39 0 0 0 1.808 3.551A2.56 2.56 0 0 1 6 7.99a2.76 2.76 0 0 1-1.209 2.003a4.44 4.44 0 0 0-1.79 3.503v.503h-1v2h12v-2h-1v-.5a4.43 4.43 0 0 0-1.769-3.492a2.76 2.76 0 0 1-1.23-1.996a2.55 2.55 0 0 1 1.169-1.946zM9 8a3.7 3.7 0 0 0 1.519 2.763A3.48 3.48 0 0 1 12 13.495V14h-1.77c-.7-.87-1.71-2-2.23-2s-1.53 1.13-2.23 2H4v-.5a3.47 3.47 0 0 1 1.459-2.723a3.7 3.7 0 0 0 1.54-2.766a3.48 3.48 0 0 0-1.498-2.683a3.44 3.44 0 0 1-1.502-2.827v-.5h8v.5a3.43 3.43 0 0 1-1.479 2.813a3.49 3.49 0 0 0-1.521 2.678z'/%3E%3C/svg%3E");
+    --br-svg-quarter-circle-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z' opacity='0.25'/%3E%3Cpath fill='%23000' d='M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z'%3E%3CanimateTransform attributeName='transform' dur='0.75s' repeatCount='indefinite' type='rotate' values='0 12 12;360 12 12'/%3E%3C/path%3E%3C/svg%3E");
+    --br-svg-megaphone-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23000' d='M17.223 7.03c-1.584-3.686-4.132-6.49-5.421-5.967c-2.189.891 1.304 5.164-9.447 9.533c-.929.379-1.164 1.888-.775 2.792c.388.902 1.658 1.801 2.587 1.424c.161-.066.751-.256.751-.256c.663.891 1.357.363 1.604.928l1.158 2.66c.219.502.715.967 1.075.83l2.05-.779c.468-.178.579-.596.436-.924c-.154-.355-.786-.459-.967-.873c-.18-.412-.769-1.738-.938-2.156c-.23-.568.259-1.031.97-1.104c4.894-.512 5.809 2.512 7.475 1.834c1.287-.525 1.025-4.259-.558-7.942m-.551 5.976c-.287.115-2.213-1.402-3.443-4.267c-1.231-2.863-1.076-5.48-.79-5.597c.286-.115 2.165 1.717 3.395 4.58c1.231 2.863 1.124 5.167.838 5.284'/%3E%3C/svg%3E");
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+body {
+    height: 100%;
+    width: 100%;
+    text-rendering: optimizeSpeed;
+    line-height: var(--br-unit-line-height-1);
+    font-family: var(--br-unit-font-family-default);
+    font-weight: var(--br-unit-font-weight-400);
+}

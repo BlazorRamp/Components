@@ -1,0 +1,31 @@
+﻿<div id="@CoreGlobalValues.AH_ID" class="@CoreGlobalValues.AH_Class" data-br-component="@CoreGlobalValues.Component_Name">
+    <div id="@CoreGlobalValues.AH_Components_ID">
+        <dialog id="@CoreGlobalValues.AH_Dialog_ID" class="@CoreGlobalValues.AH_Popover_Class" popover="auto" aria-modal="false"
+                data-br-locale="@_locale" aria-labelledby="@CoreGlobalValues.AH_Title_ID" autofocus>
+           
+            <div class="@CoreGlobalValues.AH_Content_Area_Class">
+                <h2 id="@CoreGlobalValues.AH_Title_ID" class="@CoreGlobalValues.AH_Header_Class">
+                    @_historyTitle
+                </h2>
+                <div id="@CoreGlobalValues.AH_Content_ID" class="@CoreGlobalValues.AH_Content_Class" tabindex="-1">
+                    <ol class="@CoreGlobalValues.AH_Ol_list_Class"></ol>
+                    <p>@_noDataText</p>
+                </div>
+                <div class="@CoreGlobalValues.AH_Footer_Class">
+                    <button id="@CoreGlobalValues.AH_Refresh_Button_ID" type="button" class="@CoreGlobalValues.AH_Button_Class">@_refreshButtonText</button>
+                    <button id="@CoreGlobalValues.AH_Close_Button_ID" type="button" class="@CoreGlobalValues.AH_Button_Class">@_closeButtonText</button>
+                    <button id="@CoreGlobalValues.AH_Clear_Button_ID" type="button" class="@CoreGlobalValues.AH_Button_Class">@_clearButtonText</button>
+                </div>
+            </div>
+        </dialog>
+
+        <button id="@CoreGlobalValues.AH_Trigger_Button_ID" class="@CoreGlobalValues.AH_Trigger_Class" type="button" aria-expanded="false" aria-controls="@CoreGlobalValues.AH_Dialog_ID" aria-haspopup="dialog">
+            <span aria-hidden="true" class="@CoreGlobalValues.AH_Icon_Class"></span>
+            <span>@CoreGlobalValues.AH_Text_For_Trigger_Btn</span>
+        </button>
+
+        <LiveRegion />
+
+     </div>
+</div>
+

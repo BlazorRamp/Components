@@ -1,0 +1,119 @@
+﻿:root {
+    /*
+        * component outline styles
+    */
+    --br-comp-history-box-shadow: var(--br-unit-box-shadow-1);
+    --br-comp-history-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-history-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-history-outline-offset: var(--br-comp-all-outline-offset);
+    --br-comp-history-outline-colour: var(--br-comp-all-outline-colour);
+    /*
+        * pane base styles
+    */
+    --br-comp-history-pane-base-background: var(--br-comp-all-pane-base-background);
+    --br-comp-history-pane-base-border-style: var(--br-comp-all-pane-base-border-style);
+    --br-comp-history-pane-base-border-colour: var(--br-comp-all-pane-base-border-colour);
+    --br-comp-history-pane-base-border-width: var(--br-unit-border-1);
+    --br-comp-history-pane-base-border-radius: var(--br-unit-radius-7);
+    /*
+        * pane panel styles
+    */
+    --br-comp-history-pane-panel-background: var(--br-comp-all-pane-panel-background);
+    --br-comp-history-pane-panel-border-style: var(--br-comp-all-pane-panel-border-style);
+    --br-comp-history-pane-panel-border-colour: var(--br-comp-all-pane-base-border-colour);
+    --br-comp-history-pane-panel-border-width: var(--br-comp-all-pane-base-border-width);
+    --br-comp-history-pane-panel-border-radius: var(--br-unit-radius-7);
+    /*
+        * pane surface styles
+    */
+    --br-comp-history-pane-surface-background: var(--br-comp-all-pane-surface-background);
+    --br-comp-history-pane-surface-text: var(--br-comp-all-pane-surface-text);
+    --br-comp-history-pane-surface-font: var(--br-comp-all-pane-surface-font);
+    --br-comp-history-pane-surface-font-size: var(--br-comp-all-pane-surface-font-size);
+    --br-comp-history-pane-surface-font-weight: var(--br-comp-all-pane-surface-font-weight);
+    --br-comp-history-pane-surface-line-height: var(--br-comp-all-pane-surface-line-height);
+    --br-comp-history-pane-surface-border-style: var(--br-comp-all-pane-surface-border-style);
+    --br-comp-history-pane-surface-border-colour: var(--br-comp-all-pane-surface-border-colour);
+    --br-comp-history-pane-surface-border-width: var(--br-comp-all-pane-surface-border-width);
+    --br-comp-history-pane-surface-border-radius: var(--br-comp-all-pane-surface-border-radius);
+    /*
+        * area header styles
+    */
+    --br-comp-history-area-header-background: var(--br-comp-all-area-header-background);
+    --br-comp-history-area-header-text: var(--br-comp-all-area-header-text);
+    --br-comp-history-area-header-font: var(--br-comp-all-area-header-font);
+    --br-comp-history-area-header-font-size: var(--br-comp-all-area-header-font-size);
+    --br-comp-history-area-header-font-weight: var(--br-comp-all-area-header-font-weight);
+    --br-comp-history-area-header-line-height: var(--br-comp-all-area-header-line-height);
+    --br-comp-history-area-header-border-style: var(--br-comp-all-area-header-border-style);
+    --br-comp-history-area-header-border-colour: var(--br-comp-all-area-header-border-colour);
+    --br-comp-history-area-header-border-width: var(--br-comp-all-area-header-border-width);
+    --br-comp-history-area-header-border-radius: var(--br-comp-all-area-header-border-radius);
+    /*
+        * area content styles
+    */
+    --br-comp-history-area-content-background: var(--br-comp-all-area-content-background);
+    --br-comp-history-area-content-text: var(--br-comp-all-area-content-text);
+    --br-comp-history-area-content-font: var(--br-comp-all-area-content-font);
+    --br-comp-history-area-content-font-size: var(--br-unit-font-size-label);
+    --br-comp-history-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
+    --br-comp-history-area-content-line-height: var(--br-comp-all-area-content-line-height);
+    --br-comp-history-area-content-border-style: var(--br-comp-all-area-content-border-style);
+    --br-comp-history-area-content-border-colour: var(--br-comp-all-area-content-border-colour);
+    --br-comp-history-area-content-border-width: var(--br-unit-border-2);
+    --br-comp-history-area-content-border-radius: var(--br-comp-all-area-content-border-radius);
+    /*
+        * area footer styles
+    */
+    --br-comp-history-area-footer-background: var(--br-comp-all-area-footer-background);
+    --br-comp-history-area-footer-text: var(--br-comp-all-area-footer-text);
+    --br-comp-history-area-footer-font: var(--br-comp-all-area-footer-font);
+    --br-comp-history-area-footer-font-size: var(--br-comp-all-area-footer-font-size);
+    --br-comp-history-area-footer-font-weight: var(--br-comp-all-area-footer-font-weight);
+    --br-comp-history-area-footer-line-height: var(--br-comp-all-area-footer-line-height);
+    --br-comp-history-area-footer-border-style: var(--br-comp-all-area-footer-border-style);
+    --br-comp-history-area-footer-border-colour: var(--br-comp-all-area-footer-border-colour);
+    --br-comp-history-area-footer-border-width: var(--br-comp-all-area-footer-border-width);
+    --br-comp-history-area-footer-border-radius: var(--br-comp-all-area-footer-border-radius);
+    /*
+        * button styles
+    */
+    --br-comp-history-button-background: var(--br-comp-all-button-background);
+    --br-comp-history-button-text: var(--br-comp-all-button-text);
+    --br-comp-history-button-font: var(--br-comp-all-button-font);
+    --br-comp-history-button-font-size: var(--br-comp-all-button-font-size);
+    --br-comp-history-button-font-weight: var(--br-comp-all-button-font-weight);
+    --br-comp-history-button-line-height: var(--br-comp-all-button-line-heigh);
+    --br-comp-history-button-border: var(--br-comp-all-button-borde);
+    --br-comp-history-button-border-style: var(--br-comp-all-button-border-style);
+    --br-comp-history-button-border-colour: var(--br-comp-all-button-border-colour);
+    --br-comp-history-button-border-width: var(--br-comp-all-button-border-width);
+    --br-comp-history-button-border-radius: var(--br-comp-all-button-border-radius);
+    --br-comp-history-button-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-history-button-outline-width: va(--br-comp-all-outline-width);
+    --br-comp-history-button-outline-offset: var(--br-comp-all-outline-offset);
+    --br-comp-history-button-outline-colour: var(--br-comp-all-outline-colour);
+    --br-comp-history-button-state-hover: var(--br-comp-all-button-state-hover);
+    --br-comp-history-button-state-active-brigthness: var(--br-comp-all-button-state-active-brigthness);
+    --br-comp-history-button-state-active-scale: var(--br-comp-all-button-state-active-scale);
+    /*
+        * Trigger styles
+    */
+    --br-comp-history-trigger-pane-surface-background: var(--br-unit-colour-canvas-inverted);
+    --br-comp-history-trigger-pane-surface-text: var(--br-unit-colour-canvas-text-inverted);
+    --br-comp-history-trigger-pane-surface-font: var(--br-comp-all-pane-surface-font);
+    --br-comp-history-trigger-pane-surface-font-size: var(--br-unit-font-size-label);
+    --br-comp-history-trigger-pane-surface-font-weight: var(--br-comp-all-pane-surface-font-weight);
+    --br-comp-history-trigger-pane-surface-line-height: var(--br-comp-all-pane-surface-line-height);
+    --br-comp-history-trigger-pane-surface-border-style: var(--br-comp-all-pane-surface-border-style);
+    --br-comp-history-trigger-pane-surface-border-colour: var(--br-comp-all-pane-surface-border-colour);
+    --br-comp-history-trigger-pane-surface-border-width: var(--br-unit-border-1);
+    --br-comp-history-trigger-pane-surface-border-radius: var(--br-unit-radius-7);
+    --br-comp-history-trigger-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-history-trigger-outline-width: va(--br-comp-all-outline-width);
+    --br-comp-history-trigger-outline-offset: var(--br-comp-all-outline-offset);
+    --br-comp-history-trigger-outline-colour: var(--br-comp-all-outline-colour);
+    --br-comp-history-trigger-state-hover: var(--br-comp-all-button-state-hover);
+    --br-comp-history-trigger-state-active-brigthness: var(--br-comp-all-button-state-active-brigthness);
+    --br-comp-history-trigger-state-active-scale: var(--br-comp-all-button-state-active-scale);
+}

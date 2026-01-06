@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+	<TargetFrameworks>net8.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BuildWebCompiler2022" Version="1.14.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.22" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.9.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="BlazorRamp.BusyIndicator" key="002400000480000094000000060200000024000052534131000400000100010091764439b057aa648d9b6fae0af179aacf637c9e9eb0c53eb2d2480ebc4eadc7ad2cc8ddaca110281c6da8f466eea56e22ce7f6cada84d657f1b2e4a6c5169a03c7e272c3bc7b14930364f0c1a5c5a75a8631dd303454f3569bf32a95db99132838602a24d64b3b92124827682ee19d6df5921a6bc4bd77a999b26c9420337df" />
+		<InternalsVisibleTo Include="BlazorRamp.TestComponent" key="002400000480000094000000060200000024000052534131000400000100010091764439b057aa648d9b6fae0af179aacf637c9e9eb0c53eb2d2480ebc4eadc7ad2cc8ddaca110281c6da8f466eea56e22ce7f6cada84d657f1b2e4a6c5169a03c7e272c3bc7b14930364f0c1a5c5a75a8631dd303454f3569bf32a95db99132838602a24d64b3b92124827682ee19d6df5921a6bc4bd77a999b26c9420337df" />
+		<InternalsVisibleTo Include="BlazorRamp.BusyIndicator.Tests.Unit" key="002400000480000094000000060200000024000052534131000400000100010091764439b057aa648d9b6fae0af179aacf637c9e9eb0c53eb2d2480ebc4eadc7ad2cc8ddaca110281c6da8f466eea56e22ce7f6cada84d657f1b2e4a6c5169a03c7e272c3bc7b14930364f0c1a5c5a75a8631dd303454f3569bf32a95db99132838602a24d64b3b92124827682ee19d6df5921a6bc4bd77a999b26c9420337df" />
+
+		<InternalsVisibleTo Include="BlazorRamp.Core.Tests.Unit" key="002400000480000094000000060200000024000052534131000400000100010091764439b057aa648d9b6fae0af179aacf637c9e9eb0c53eb2d2480ebc4eadc7ad2cc8ddaca110281c6da8f466eea56e22ce7f6cada84d657f1b2e4a6c5169a03c7e272c3bc7b14930364f0c1a5c5a75a8631dd303454f3569bf32a95db99132838602a24d64b3b92124827682ee19d6df5921a6bc4bd77a999b26c9420337df" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+    <Folder Include="wwwroot\assets\js\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+</Project>

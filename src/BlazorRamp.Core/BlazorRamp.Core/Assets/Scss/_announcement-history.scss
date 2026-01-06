@@ -1,0 +1,260 @@
+﻿@use "_svg-icons" as *;
+
+:root {
+
+}
+
+
+
+
+
+/*
+    * needs to be standalone as otherwise when moved its loses style.
+    * Using revert as other styles could effect this like removing padding and margins
+    ^ which would effectivley put the dialog top left instead of centre screen.
+*/
+dialog {
+    all: revert;
+    background-color: var(--br-comp-history-pane-base-background);
+
+    &.br-announcement-history__popover {
+        background-color: var(--br-comp-history-pane-base-background);
+        border-radius: var(--br-comp-history-pane-base-border-radius);
+        border-width: var(--br-comp-history-pane-base-border-width);
+        border-style: var(--br-comp-history-pane-base-border-style);
+        border-color: var(--br-comp-history-pane-base-border-colour);
+        min-width: var(--br-unit-wcag-reflow-2a);
+        max-width: 90vw;
+        overflow: hidden;
+        box-shadow: var(--br-comp-history-box-shadow);
+        padding:0;
+
+        &:focus-visible {
+            outline-offset:var(--br-comp-history-outline-offset);
+            outline-style: var(--br-comp-history-outline-style);
+            outline-width: var(--br-comp-history-outline-width);
+            outline-color: var(--br-comp-history-outline-colour);
+        }
+    }
+}
+
+.br-announcement-history {
+    position: absolute;
+
+    &__content-area {
+        background-color: var(--br-comp-history-pane-surface-background);
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        padding: var(--br-unit-space-5);
+        padding-top: var(--br-unit-space-4);
+        border-radius: var(--br-comp-history-pane-surface-border-radius);
+        min-width: calc(var(--br-unit-wcag-reflow-2a) - var(--br-unit-space-5));
+        max-width: calc(100vw - var(--br-unit-space-5));
+        max-height: 90vh;
+        line-height: var(--br-comp-history-pane-surface-line-height);
+        margin: 0;
+    }
+
+    &__header {
+        padding: 0;
+        margin: 0;
+        border-radius: var(--br-comp-history-area-header-border-radius);
+        border-style: var(--br-comp-history-area-header-border-style);
+        border-color: var(--br-comp-history-area-header-border-colour);
+        border-width: var(--br-comp-history-area-header-border-width);
+        grid-row: 1/2;
+        text-align: center;
+        padding-bottom: var(--br-unit-space-5);
+        font-size: var(--br-comp-history-area-header-font-size);
+        font-weight: var(--br-comp-history-area-header-font-weight);
+        color: var(--br-comp-history-area-header-text);
+    }
+
+    &__content {
+        grid-row: 2/3;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: var(--br-comp-history-area-content-background);
+        color: var(--br-comp-history-area-content-text);
+        padding-block: var(--br-unit-space-5);
+        padding-inline: var(--br-unit-space-3);
+        border-width: var(--br-comp-history-area-content-border-width);
+        border-style: var(--br-comp-history-area-content-border-style);
+        border-color: var(--br-comp-history-area-content-border-colour);
+        border-radius: var(--br-comp-history-area-content-border-radius);
+        font: var(--br-comp-history-area-footer-font);
+        font-size: var(--br-comp-history-area-content-font-size);
+        font-weight: var(--br-comp-history-area-content-font-weight);
+        line-height: var(--br-comp-history-area-content-line-height);
+        white-space: normal;
+        outline: none;
+
+        &:focus-visible {
+            border-color: var(--br-comp-all-focus-indicator-colour);
+        }
+
+        & > p {
+            text-align: center;
+        }
+
+        & > ol.br-announcement-history__numbered-list {
+            margin: 0;
+            list-style-position: outside;
+            padding-inline-start: calc(var(--br-unit-space-4) * 2);
+
+
+            li {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                list-style-type: decimal;
+            }
+        }
+    }
+
+
+    &__footer {
+        background-color: var(--br-comp-history-area-footer-background);
+        color: var(--br-comp-history-area-footer-text);
+        border-width: var(--br-comp-history-area-footer-border-width);
+        border-style: var(--br-comp-history-area-footer-border-style);
+        border-radius: var(--br-comp-history-area-footer-border-radius);
+        border-color: var(--br-comp-history-area-footer-border-colour);
+        font: var(--br-comp-history-area-footer-font);
+        font-size: var(--br-comp-history-area-footer-font-size);
+        font-weight: var(--br-comp-history-area-footer-font-weigh);
+        line-height: var(--br-comp-history-area-footer-line-height);
+        grid-row: 3/4;
+        min-height: calc(var(--br-unit-wcag-target-2a) + var(--br-unit-space-5));
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: var(--br-unit-space-5);
+        align-items: center;
+        padding-top: var(--br-unit-space-4);
+    }
+
+    &__button {
+        appearance: none;
+        background-color: var(--br-comp-history-button-background);
+        color: var(--br-comp-history-button-text);
+        font: var(--br-comp-history-button-font);
+        font-size: var(--br-comp-history-button-font-size);
+        font-weight: var(--br-comp-history-button-font-weigh);
+        line-height: var(--br-comp-history-button-line-height);
+        padding: var(--br-unit-space-2);
+        position: relative;
+        overflow: hidden;
+        min-width: var(--br-unit-wcag-target-2a);
+        min-height: var(--br-unit-wcag-target-2a);
+        border-radius: var(--br-comp-history-button-border-radius);
+        border-width: var(--br-comp-history-button-border-width);
+        border-style: var(--br-comp-history-button-border-style);
+        border-color: var(--br-comp-history-button-border-colour);
+        min-width: calc((var(--br-unit-wcag-reflow-2a) / 3) + var(--br-unit-space-5));
+        white-space: normal;
+        cursor: pointer;
+
+
+        &:active {
+            transform: scale(var(--br-comp-history-button-state-active-scale));
+            filter: brightness(var(--br-comp-history-button-state-active-brigthness));
+            outline: none;
+        }
+
+        &:focus-visible {
+            outline-offset: var(--br-comp-history-button-outline-offset);
+            outline-width: var(--br-comp-history-button-outline-width);
+            outline-style: var(--br-comp-history-button-outline-style);
+            outline-color: var(--br-comp-history-button-outline-colour);
+        }
+
+        &:hover {
+            background-color: var(--br-comp-history-button-state-hover);
+        }
+    }
+
+    &__trigger {
+        z-index: 1000; //one more that buys indicator as its after the trigger in the dom
+        appearance: none;
+        position: fixed;
+        bottom: calc(var(--br-unit-space-5) * 2);
+        right: calc(var(--br-unit-space-5) * 2.5);
+        border-radius: var(--br-comp-history-trigger-pane-surface-border-radius);
+        border-width: var(--br-comp-history-trigger-pane-surface-border-width);
+        border-style: var(--br-comp-history-trigger-pane-surface-border-style);
+        border-color: var(--br-comp-history-trigger-pane-surface-border-colour);
+        box-shadow: var(--br-unit-box-shadow-1);
+        min-height: var(--br-unit-wcag-target-3a);
+        min-width: var(--br-unit-wcag-target-3a);
+        font-size: var(--br-comp-history-trigger-pane-surface-font-size);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: var(--br-unit-space-3);
+        overflow: hidden;
+        aspect-ratio: 1/1;
+        padding: calc(var(--br-unit-space-2) * 5);
+        background-color: var(--br-comp-history-trigger-pane-surface-background);
+        color: var(--br-comp-history-trigger-pane-surface-text);
+
+        &--only-focus-visible {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            clip-path: inset(50%);
+            white-space: nowrap;
+            border: 0;
+
+            &:focus-visible {
+                position: fixed; // Matches the base __trigger position
+                width: auto;
+                height: auto;
+                min-height: var(--br-unit-wcag-target-3a);
+                min-width: var(--br-unit-wcag-target-3a);
+                padding: calc(var(--br-unit-space-2) * 5);
+                margin: 0;
+                clip: auto;
+                clip-path: none;
+                overflow: hidden;
+                white-space: normal;
+            }
+        }
+
+        &:focus-visible {
+            outline-offset: var(--br-comp-history-trigger-outline-offset);
+            outline-style: var(--br-comp-history-trigger-outline-style);
+            outline-width: var(--br-comp-history-trigger-outline-width);
+            outline-color: var(--br-comp-history-trigger-outline-colour);
+        }
+
+        &:hover {
+            filter: brightness(var(--br-comp-history-trigger-state-active-brigthness));
+        }
+
+        &:active {
+            transform: scale(var(--br-comp-history-trigger-state-active-scale));
+            filter: brightness(var(--br-comp-history-trigger-state-active-brigthness));
+            outline: none;
+        }
+    }
+
+    &__icon {
+        @include megaphone-icon;
+        min-height: 2.75rem;
+        min-width: 2.75rem;
+    }
+    //stop bootstrap an maybe others messing with the focus ring
+    & button.br-announcement-history__button:focus {
+        border-width: var(--br-comp-history-button-border-width);
+        border-style: var(--br-comp-history-button-border-style);
+        border-color: var(--br-comp-history-button-border-colour);
+    }
+}
