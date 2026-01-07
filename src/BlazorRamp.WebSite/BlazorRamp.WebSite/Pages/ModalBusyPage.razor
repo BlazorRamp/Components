@@ -1,0 +1,157 @@
+﻿@attribute [Route(GlobalValues.Path_Modal_Busy_Screen)]
+@implements IAsyncDisposable
+@inject IJSRuntime _jsRuntime
+
+<PageTitle>@GlobalValues.Title_Modal_Busy_Screen</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">Busy Indicator In Modal Dialog Full Page Test</h1>
+
+    <p>
+        This portion of the test is to ensure that, while the busy indicator is inside a modal dialog, that its overlay covers the entire page with all content beneath it, inaccessible.
+        The only exceptions should be the <b>Announcement History dialog</b> and <b>Alerts button</b>.
+    </p>
+    <p>
+        It is important to note that the HTML Dialog API uses the top layer and makes everything beneath it effectively inert (when shown modally), including
+        aria live regions. The Core project reacts to dialogs and moves its elements accordingly, to ensure that its functionality remains intact.
+    </p>
+    <p>I have not styled the dialog other than to add my content to it. Its the browser defaults, with the dialog being placed centre page. I plan on releasing an accessible dialog framework after
+       the Core project and Busy Indicator.
+    </p>
+    <p>
+        Please click the Open Modal Dialog button below for instructions and to perform the test. 
+    </p>
+</section>
+<section class="flex-content justify-content-center">
+    <button class="@GlobalValues.Button_Test_Class" @onclick="ShowModalDialog" type="button">Open Modal Dialog</button>
+</section>
+
+<dialog @ref="DialogElementRef" aria-labelledby="@GlobalValues.Modal_Screen_Dialog_Title_ID">
+
+    <BusyIndicator AriaStartText="Dummy task has started, please wait" AriaEndText="Dummy task completed successfully" BusyText=". . .Processing please wait . . " ContentPosition="ContentPosition.Centre"
+                   OverlayPosition="OverlayPosition.Screen" IndicatorTrigger="Run Modal Test button" ShowIndicator="@_showIndicator" />
+
+    <div class="@GlobalValues.Info_Box_Class">
+
+        <h2 id="@GlobalValues.Modal_Screen_Dialog_Title_ID" class="@GlobalValues.Info_Box_Heading_Class" tabindex="-1">Information & Instructions</h2>
+
+        <p><b>Important: </b>I have not attached any handler to the native dialog escape key mechanism that would prevent you from closing the dialog while the busy indicator is still active. 
+        </p>
+        <p>
+            Both the native dialog (shown modally) and the busy indicator make content beneath the overlays inert.
+            When an element is inert, the browser ignores all user input (clicks, tabs, and typing) and removes the content from the Accessibility Tree.
+            This ensures that the background content is neither interactive for keyboard users nor discoverable by screen reader users until the task is complete.
+        </p>
+        <p>
+            To allow you sufficient time to attempt to access content, now only the "Run Modal Test" and "Close Dialog" buttons, the busy indicator has been assigned a dummy task
+            lasting <b>six seconds</b>.
+        </p>
+        <p>
+            I have set the spinner to show centre screen, with some (optional aria hidden) text.
+        </p>
+        <p>
+            As the delay exceeds a few seconds, I have provided text to be announced at the start of the process (which is optional), in addition to the required text used to announce the completion of the task.
+        </p>
+        <p>
+            Please review the expectations below, before running the test.
+        </p>
+    </div>
+
+    <div class="@GlobalValues.Info_Box_Class">
+
+        <h3 id="expectations" class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+        <ul aria-labelledby="expectations">
+            <li>
+                Both the starting announcement: "Dummy task has started, please wait" and the on completion announcement "Dummy task completed successfully" are announced and logged.
+            </li>
+            <li>
+                You can still access the the announcement history dialog and the alert button whilst the busy indicator is active.
+            </li>
+            <li>
+                Everything behind the overlay is inaccessible.
+            </li>
+            <li>
+                A static hour glass is seen for those who have system settings for reduced motion (you can also simulate this via the browser dev tools)
+            </li>
+            <li>
+                Everything is still visible for those using system accessibility colour/contrast schemes (you can also simulate this via the browser dev tools)
+            </li>
+            <li>
+                Whilst inside the dialog, if you open the announcement history dialog and press the escape key, only the announcement history dialog should close 
+                unless you press the escape key again in which case the modal dialog will close.
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="flex-content flex-content--add-margin-back justify-content-between">
+        <button class="@GlobalValues.Button_Test_Class" @ref="ButtonRunTestRef" @onclick="RunTest" type="button">Run Modal Test</button>
+        <button class="@GlobalValues.Button_Test_Class" @onclick="CloseModalDialog" type="button">Close Dialog</button>
+    </div>
+
+
+</dialog>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Busy_Container">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Title_Busy_Container</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Busy_Short">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Title_Busy_Short</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+    private bool _showIndicator = false;
+
+    private ElementReference ButtonRunTestRef { get; set; }
+    private ElementReference DialogElementRef { get; set; }
+
+
+    private IJSObjectReference? _jsTestComponentModule;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _jsTestComponentModule = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Module_File_Path);
+        }
+        catch {}
+    }
+
+    private async Task RunTest()
+    {
+        _showIndicator = true;
+
+        await Task.Delay(6000);
+
+        _showIndicator = false;
+
+    }
+
+    private async Task CloseModalDialog()
+    {
+        if (_jsTestComponentModule is not null) await _jsTestComponentModule.InvokeVoidAsync(GlobalValues.JS_Close_Modal_Dialog, DialogElementRef);
+
+    }
+
+    private async Task ShowModalDialog()
+    {
+        if (_jsTestComponentModule is not null)
+        {
+            await _jsTestComponentModule.InvokeVoidAsync(GlobalValues.JS_Show_Modal_Dialog, DialogElementRef);
+        }
+          
+    }   
+
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_jsTestComponentModule is not null) await _jsTestComponentModule.DisposeAsync();
+    }
+}

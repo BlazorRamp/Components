@@ -1,0 +1,100 @@
+﻿@attribute [Route(GlobalValues.Path_Busy_Container)]
+
+<PageTitle>@GlobalValues.Title_Busy_Container</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">Busy Indicator Container Test</h1>
+
+    <p>
+        This portion of the test is to ensure that, while the busy indicator overlay covers only a section of the page, that it is only the content beneath the 
+        overlay that is inaccessible. In this instance only the Run Test button should become inaccessible.
+    </p>
+    <p>
+        <b>Note:</b> you can have multiple spinners on a page running concurrently.
+    </p>
+
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & Instructions</h2>
+
+    <p>
+        The busy indicator uses the inert attribute to make all content beneath it inaccessible to all users and AT.
+        In this instance its only the "Run Container Test" button. Please note I have not added any sort of route guards so the navigation menu is still active.
+    </p>
+    <p>
+        The busy indicator has been assigned a dummy task lasting <b>four seconds.</b>
+    </p>
+    <p>
+        I have set the spinner to show at the top of the container without text.
+    </p>
+    <p>
+        As the delay exceeds a few seconds, I have provided text to be announced at the start of the process (which is optional), in addition to the required text used to announce the completion of the task
+    </p>
+    <p>
+        Please review the expectations below, before running the test.
+    </p>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+    <ul>
+        <li>
+            Both the starting announcement: "Dummy task has started, please wait" and the on completion announcement "Dummy task completed successfully" are announced and logged.
+        </li>
+        <li>
+            Only the content beneath the overlay is inaccessible.
+        </li>
+        <li>
+            A static hour glass is seen for those who have system settings for reduced motion (you can also simulate this via the browser dev tools)
+        </li>
+        <li>
+            Everything is still visible for those using system accessibility colour/contrast schemes (you can also simulate this via the browser dev tools)
+        </li>
+    </ul>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Container_Test_Modifier">
+
+    <BusyIndicator AriaStartText="Dummy task has started, please wait." AriaEndText="Dummy task completed successfully." ContentPosition="ContentPosition.Top" OverlayPosition="OverlayPosition.Container"
+                   IndicatorTrigger="Run Container Test button" ShowIndicator="@_showIndicator" />
+
+
+    <button class="@GlobalValues.Button_Test_Class" @ref="ButtonRunTestRef" @onclick="RunTest" type="button">Run Container Test</button>
+
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Busy_Screen">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Title_Busy_Screen</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Modal_Busy_Screen">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Title_Modal_Busy_Screen</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+    private bool _showIndicator = false;
+
+    private ElementReference ButtonRunTestRef { get; set; }
+
+
+    private async Task RunTest()
+    {
+        _showIndicator = true;
+
+        await Task.Delay(4000);
+
+        _showIndicator = false;
+
+    }
+ 
+
+}

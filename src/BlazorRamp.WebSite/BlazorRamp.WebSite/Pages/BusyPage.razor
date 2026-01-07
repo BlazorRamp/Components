@@ -1,0 +1,100 @@
+﻿@attribute [Route(GlobalValues.Path_Busy_Screen)]
+
+<PageTitle>@GlobalValues.Title_Busy_Screen</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">Busy Indicator Full Page Test</h1>
+
+    <p>
+        This portion of the test is to ensure that, while the busy indicator overlay covers the entire page, all content beneath it is inaccessible.
+        The only exceptions should be the <b>Announcement History dialog</b> and <b>Alerts button</b>.
+    </p>
+
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & Instructions</h2>
+
+    <p>
+        The busy indicator uses the inert attribute to effectively 'freeze' the covered content.
+        When an element is inert, the browser ignores all user input (clicks, tabs, and typing) and removes the content from the Accessibility Tree.
+        This ensures that the background content is neither interactive for keyboard users nor discoverable by screen reader users until the task is complete.
+    </p>
+    <p>
+        To allow you sufficient time to attempt to access content, use the side navigation, or open the announcement history dialog while the indicator is active, the busy indicator has been assigned a dummy task 
+        lasting <b>eight seconds</b>.
+    </p>
+    <p>
+        I have set the spinner to show centre screen, with some (optional, aria hidden) text.
+    </p>
+    <p>
+        As the delay exceeds a few seconds, I have provided text to be announced at the start of the process (which is optional), in addition to the required text used to announce the completion of the task
+    </p>
+    <p>
+        Please review the expectations below, before running the test.
+    </p>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+    <ul>
+        <li>
+            Both the starting announcement: "Dummy task has started, please wait" and the on completion announcement "Dummy task completed successfully" are announced and logged.
+        </li>
+        <li>
+            You can still access the the announcement history dialog and the alert button whilst the busy indicator is active.
+        </li>
+        <li>
+            Everything behind the overlay is inaccessible.
+        </li>
+        <li>
+            A static hour glass is seen for those who have system settings for reduced motion (you can also simulate this via the browser dev tools)
+        </li>
+        <li>
+            Everything is still visible for those using system accessibility colour/contrast schemes (you can also simulate this via the browser dev tools)
+        </li>
+    </ul>
+</section>
+
+
+<BusyIndicator AriaStartText="@message" AriaEndText="Dummy task completed successfully." BusyText=". . .Processing please wait . . " ContentPosition="ContentPosition.Centre"
+               OverlayPosition="OverlayPosition.Screen"  IndicatorTrigger="Run Page Test button" ShowIndicator="@_showIndicator" />
+
+<section class="flex-content justify-content-center">
+    <button class="@GlobalValues.Button_Test_Class" @ref="ButtonRunTestRef" @onclick="RunTest" type="button">Run Page Test</button>
+</section>
+
+
+
+<div class="flex-content justify-content-between flex-content--wrap">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_About_Blazor_Ramp">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Title_About_Blazor_Ramp</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Busy_Container">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Title_Busy_Container</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+    private bool _showIndicator = false;
+
+    private ElementReference ButtonRunTestRef { get; set; }
+
+    private string message = "\u200B Dummy task has started, please wait.";
+    private async Task RunTest()
+    {
+        _showIndicator = true;
+
+        await Task.Delay(8000);
+
+        _showIndicator = false;
+
+    }
+
+}

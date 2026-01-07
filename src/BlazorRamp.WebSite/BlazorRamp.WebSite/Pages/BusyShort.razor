@@ -1,0 +1,100 @@
+﻿@attribute [Route(GlobalValues.Path_Busy_Short)]
+
+
+<PageTitle>@GlobalValues.Title_Busy_Short</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">Busy Indicator With a Short Delay</h1>
+
+    <p>
+        This portion of the test is to ensure that even with vary short tasks, that messages are announced, in full correctly, IHMO, this is arguably the most complex problem to solve, if you want good results across
+        differing screen reader / browser combinations, given the various nuances, bugs and aggressive focus event announcements (see <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Final_Words">@GlobalValues.Title_Final_Words</a>).
+    </p>
+    <p>
+        <b>Note:</b> In production I would only supply a start message for tasks that I know may take longer than four or five seconds to complete as well as keeping all announcements succinct; for 
+        a save customer button, I would just announce "Saving, pleas wait" or just "Saving" followed by the correct end status such as "Saved". Given these actions are generally pretty quick I mainly omit the starting 
+        announcement so for the save customer button action, with indicator I would generally only announce "Saved" or "Saved, successfully" on completion, which I believe is adequate, but I will happily take advise from users, 
+        who unlike myself, rely on a screen reader.
+    </p>
+
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & Instructions</h2>
+    <p>
+        The busy indicator has only been assigned a dummy task lasting <b>one second</b> (this could have been 10ms), but it has been assigned both of the familiar starting and ending messages sent to the live region service for announcements.
+    </p>
+    <p>
+        <b>Note: </b>For those with stop watches, there is a delay of 1200ms after the indicator receives notification to close the indicator (after the one second task for extra stability due to screen reader focus event actions), but even with a fast speech rate 
+        the task will complete, the indicator will close, and focus will be set on the triggering button well before the screen reader finishes reading both announcements.
+    </p>
+    <p>
+        I have set the spinner to show in the top of the container without text and left the button inside the same container so it will become inert whilst the busy indicator is visible.
+    </p>
+    <p>
+        Please review the expectations below, before running the test.
+    </p>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+    <ul>
+        <li>
+            Both the starting announcement: "Dummy task has started, please wait" and the on completion announcement "Dummy task completed successfully" are announced and logged.
+        </li>
+        <li>
+            Only the content beneath the overlay is inaccessible.
+        </li>
+        <li>
+            A static hour glass is seen for those who have system settings for reduced motion (you can also simulate this via the browser dev tools)
+        </li>
+        <li>
+            Everything is still visible for those using system accessibility colour/contrast schemes (you can also simulate this via the browser dev tools)
+        </li>
+    </ul>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Container_Test_Modifier">
+
+    <BusyIndicator AriaStartText="Dummy task has started, please wait." AriaEndText="Dummy task completed successfully." ContentPosition="ContentPosition.Top" OverlayPosition="OverlayPosition.Container"
+                   IndicatorTrigger="Run Short Delay Test Button" ShowIndicator="@_showIndicator" />
+
+
+    <button class="@GlobalValues.Button_Test_Class" @ref="ButtonRunTestRef" @onclick="RunTest" type="button">Run Short Delay Test</button>
+
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Modal_Busy_Screen">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Title_Modal_Busy_Screen</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Final_Words">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Title_Final_Words</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+    private bool _showIndicator = false;
+
+    private ElementReference ButtonRunTestRef { get; set; }
+
+
+    private async Task RunTest()
+    {
+        _showIndicator = true;
+
+        await Task.Delay(1000);
+
+        _showIndicator = false;
+
+    }
+
+
+}

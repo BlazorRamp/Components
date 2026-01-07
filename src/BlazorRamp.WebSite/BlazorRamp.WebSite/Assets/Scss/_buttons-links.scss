@@ -1,0 +1,101 @@
+﻿@use "_configuration" as *;
+@use "_svg-icons" as *;
+
+@mixin buttonBase {
+    box-sizing: border-box;
+    appearance: none;
+    border-radius: var(--br-comp-all-button-border-radius);
+    border-style: var(--br-comp-all-button-border-style);
+    border-width: var(--br-comp-all-button-border-width);
+    font: var(--br-comp-all-button-font);
+    font-weight: var(--br-comp-all-button-font-weigh);
+    font-size: var(--br-comp-all-button-font-size);
+    line-height: var(--br-comp-all-button-line-height);
+    color: var(--br-comp-all-button-text);
+    background-color: var(--br-comp-all-button-background);
+    cursor: pointer;
+    padding: var(--br-unit-space-5);
+    width: $app-nav-max-width;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--br-unit-space-5);
+
+    &:active {
+        transform: scale(var(--br-comp-all-button-state-active-scale));
+        filter: brightness(var(--br-comp-all-button-state-active-brigthness));
+        outline: none;
+    }
+
+    &:focus-visible {
+        outline-offset: var(--br-comp-all-outline-offset);
+        outline-width: var(--br-comp-all-outline-width);
+        outline-style: var(--br-comp-all-outline-style);
+        outline-color: var(--br-comp-all-outline-colour);
+    }
+
+    &:hover {
+        background-color: var(--br-comp-all-button-state-hover);
+    }
+}
+.test-button {
+
+    @include buttonBase;
+}
+
+.link-button {
+    @include buttonBase;
+    border-width: 0;
+    padding: var(--br-unit-space-3);
+    width: fit-content;
+    white-space: nowrap;
+
+    &:active {
+        transform: none;
+    }
+
+    &--right-arrow {
+        text-align: right;
+
+        & > span:last-child {
+            @include right-arrow-circle-icon;
+            height: 2rem;
+            width: 2rem;
+        }
+    }
+
+    &--left-arrow {
+
+        & > span:first-child {
+            @include left-arrow-circle-icon;
+            height: 2rem;
+            width: 2rem;
+        }
+    }
+
+    &:focus-visible{
+        text-decoration:none;
+    }
+}
+
+.link {
+    width: fit-content;
+    font-size: inherit;
+    border-width: 0;
+    padding: 0;
+    margin: 0;
+    color: var(--br-unit-colour-convas-text);
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &:focus-visible {
+        text-decoration:none;
+        border-radius:var(--br-unit-radius-2);
+        outline-offset: var(--br-comp-all-outline-offset);
+        outline-width: calc(var(--br-comp-all-outline-width) * 1.5);
+        outline-style: var(--br-comp-all-outline-style);
+        outline-color: var(--br-comp-all-outline-colour);
+     }
+}

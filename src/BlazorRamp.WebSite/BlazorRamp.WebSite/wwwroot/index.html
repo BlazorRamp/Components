@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blazor Ramp Component Testing</title>
+    <base href="/" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="_content/BlazorRamp.Core/assets/css/core.min.css" />
+    <link rel="stylesheet" href="_content/BlazorRamp.BusyIndicator/assets/css/busy-indicator.min.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script type="text/javascript">
+        // Single Page Apps for GitHub Pages
+        (function (l) {
+            if (l.search[1] === '/') {
+                var decoded = l.search.slice(1).split('&').map(function (s) {
+                    return s.replace(/~and~/g, '&')
+                }).join('?');
+                window.history.replaceState(null, null,
+                    l.pathname.slice(0, -1) + decoded + l.hash
+                );
+            }
+        }(window.location))
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="default-loader">
+            <svg class="loading-progress" style="grid-row:1/2;grid-column:1/2">
+                <circle r="40%" cx="50%" cy="50%" />
+                <circle r="40%" cx="50%" cy="50%" />
+            </svg>
+            <div class="loading-progress-text" style="grid-row:1/2;grid-column:1/2"></div>
+        </div>
+
+        <span id="sr-loading" role="alert" class="br-visually-hidden">
+            Application loading, please wait.
+        </span>
+
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script type="module" src="_content/BlazorRamp.Core/assets/js/core-live-region.js"></script>
+
+</body>
+
+</html>

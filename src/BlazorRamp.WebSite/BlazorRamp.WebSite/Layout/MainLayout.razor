@@ -1,0 +1,88 @@
+﻿@using BlazorRamp.Core.Common.Models
+
+@implements IAsyncDisposable
+
+@inherits LayoutComponentBase
+@inject IJSRuntime _jsRuntime
+@inject NavigationManager _navigationManager
+@inject ILiveRegionService _liveRegionService
+
+<header id="app__header">
+
+    <span>
+        Blazor Ramp Component Testing
+    </span>
+    <a href="https://github.com/BlazorRamp/Components" target="_self">
+        <span aria-hidden="true"></span>
+        <span>GitHub</span>
+    </a>
+    <button id="theme-toggler" type="button" aria-pressed="@_pressed.ToString().ToLower()" @onclick="ToggleTheme">
+        <span aria-hidden="true"></span>
+        <span>Theme</span>
+    </button>
+
+    <button id="menu-toggler" type="button" aria-expanded="true" aria-controls="@GlobalValues.Main_Navigation_ID" @ref="MenuButtonRef">
+        <span aria-hidden="true"></span>
+        <span>Menu</span>
+    </button>
+
+</header>
+<div id="app__nav" @ref="SideNavigationRef">
+    <MainNavigation />
+</div>
+<main id="app__main" @ref="MainContentRef">
+    @Body
+</main>
+
+@code{
+
+    private bool _pressed  = false;
+    private IJSObjectReference? _jsLiveRegionModule;
+    private IJSObjectReference? _jsTestComponentModule;
+
+    private ElementReference MenuButtonRef     { get; set; }
+    private ElementReference SideNavigationRef { get; set; }
+    private ElementReference MainContentRef    { get; set; }
+
+    private Announcement _darkThemeAnnouncement = new Announcement("The site is now using a dark coloured theme.", AnnouncementType.Info,  "Theme button", LiveRegionType.Polite);
+    private Announcement _lightThemAnnouncement = new Announcement("The site is now using a light coloured theme.", AnnouncementType.Info, "Theme button", LiveRegionType.Polite);
+
+    protected override async Task OnInitializedAsync()
+    {
+        _navigationManager.LocationChanged+=  Navigation_LocationChanged;
+        try
+        {
+            _jsLiveRegionModule    = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", CoreGlobalValues.JS_Utils_File_Path);
+            _jsTestComponentModule = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Module_File_Path);
+
+            await _jsTestComponentModule.InvokeVoidAsync(GlobalValues.JS_Initialise_Func, MenuButtonRef, SideNavigationRef, MainContentRef, GlobalValues.Start_Width_For_Collapsed_Menu);
+
+        }
+        catch (Exception ex)
+        {
+            var s = ex;
+        }
+    }
+    private async void Navigation_LocationChanged(object? sender, LocationChangedEventArgs args)
+    {
+        if (_jsLiveRegionModule is not null) await _jsTestComponentModule!.InvokeVoidAsync(GlobalValues.JS_Check_Close_Nav, MenuButtonRef);
+    }
+
+    private void ToggleTheme()
+    {
+        _pressed = !_pressed;
+
+        var announcement = _pressed ? _darkThemeAnnouncement : _lightThemAnnouncement;
+
+        _liveRegionService.MakeAnnouncement(announcement);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_jsLiveRegionModule is not null) await _jsLiveRegionModule.DisposeAsync();
+        if (_jsTestComponentModule is not null) await _jsTestComponentModule.DisposeAsync();
+
+        _navigationManager.LocationChanged-= Navigation_LocationChanged;
+    }
+}
+

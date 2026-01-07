@@ -1,0 +1,50 @@
+﻿@use "_configuration" as *;
+@use "_functions" as *;
+
+.info-box {
+    position: relative;
+    padding: var(--br-unit-space-5);
+    margin-bottom: var(--br-unit-space-5);
+    border-radius: var(--br-unit-radius-5);
+    border: 1px solid var(--br-unit-colour-neutral-30);
+    min-width: fit-content;
+
+    & ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        & li {
+            margin-bottom: var(--br-unit-space-5);
+        }
+    }
+
+    & ol {
+        margin-left: calc(var(--br-unit-space-2) * 5);
+    }
+
+    &__heading {
+        color: var(--br-info-box-alternate-heading-text);
+
+        @include media-device-sm(max-width) {
+            text-align: center;
+        }
+    }
+
+    &--coloured {
+        background-color: var(--br-comp-all-pane-surface-background);
+        border-width: 0;
+
+        & > h1 {
+            color: var(--br-comp-all-area-header-text); //make H1 blue in coloured section
+        }
+    }
+
+
+    &--container-test {
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

@@ -1,0 +1,114 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class @GlobalValues.Info_Box_Heading_Primary_Modifier">Welcome</h1>
+    <p>
+        Thank you for visiting the Blazor Ramp component test site. 
+    </p>
+    <p>
+        Currently, the tests on this site only relate to a Blazor Live Region Service that developers, or their components, can use to make announcements via ARIA live regions, an Announcement History dialog component for viewing these transient messages, 
+        and a Busy Indicator that makes use of the Live Region Service.
+    </p>
+    <p>
+        If you identify any accessibility issues with the components under test, I would appreciate it if you could let me know what these issues were. 
+        Please note that this is a free, open-source project currently developed solely by myself (code-dispenser aka Paul Kent).
+        If possible, please provide details of the device (mobile, tablet, or PC) and browser you were using when you encountered an issue, as well as to provide the name and version of any assistive technology (AT) involved, such as the NVDA 
+        or VoiceOver screen readers.
+    </p>
+    <p>
+        You can provide feedback or log bugs via the GitHub repository, or by leaving a comment on the Reddit thread that likely directed you here. Alternatively, you can send me (code-dispenser) a direct message on Reddit
+        if you prefer not to make a public comment.
+    </p>
+    <p>
+        Currently, I test locally on a Windows 11 PC using various combinations of Microsoft Edge, Mozilla Firefox, and Google Chrome with the JAWS, NVDA, and Narrator screen readers. I hope to set up an 
+        account on a platform such as BrowserStack in the near future to enable testing on mobile devices. Until then, the more feedback I receive from the community regarding any accessibility issues, the quicker 
+        I will be able to refine, package, and release these components (lots in the pipeline).
+    </p>
+
+</section>
+
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & Instructions</h2>
+
+    <p>
+        Please read the <b>Information and Instructions</b> section on each test page to understand the scope of the tests and the expected outcomes. 
+    </p>
+    <p>
+        I welcome your feedback; if you feel anything is lacking or incorrect, please offer any advice that could improve accessibility.
+    </p>
+    <p>
+        As discussed on the <b>About Blazor Ramp</b> page, every component references a Core project. This Core project contains a dedicated live region service designed to simplify text output for screen reader 
+        users, and a Blazor component that allows users to review a rolling log of these transient session messages.
+    </p>
+    <p>
+        To streamline the testing of the live region service and the announcement history component, I have combined them with this test process for the first component scheduled to be released, a humble <b>Busy Indicator</b> that internally 
+        uses the live region service.
+    </p>
+    <p>
+        Ironically, this seemingly simple component is quite complex. Given the nuances of ARIA live regions, the varied timings of different screen readers, and the Blazor rendering lifecycle, it is not 
+        as straightforward as one might hope. It is for these reasons that I felt the busy indicator, alongside the live region service and announcement history viewer, should be released first. 
+        These core utilities can often have a more significant impact on a project than more complex components, especially given the frequency with which busy indicators are used in Single Page Applications (SPAs).
+    </p>
+    <p>
+        Please note that this test site uses the older standalone Blazor template suitable for static hosting on hosts such as GitHub Pages (the current host), as such it is entirely client-side and offline-capable. I chose this 
+        route for now to ensure the components worked with this older template, that many projects use, as well as the new templates. Locally the components are built and tested on new templates to ensure they work across 
+        all interactive render modes, seamlessly. 
+    </p>
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Viewing the Announcement History</h3>
+    <p>
+        In this implementation, the non-modal <b>Announcement History dialog</b> can be accessed at any time using the keyboard shortcut <span class="br-visually-hidden">Control plus Shift plus the H key</span>
+        <span aria-hidden="true"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd></span> or by pressing the <b>Alerts button</b> located at the bottom-right
+        of the screen. While this component supports a hidden, "focus-visible only" mode for a cleaner UI, it is currently configured to be always visible to ensure ease of use for mouse and/or voice assistive technology users.
+    </p>
+    <p>
+        Please note this alert button and its parent the announcement history dialog is a Blazor component with the appropriate parameters in order to change the displayed text shown on buttons (accessible names) and headings etc. However, these are 
+        not the priority of these tests which are solely to check for accessibility issues. As I only speak English (en-GB), I am only providing the testing environment in English (for now).  
+    </p>
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">The Busy Indicator</h3>
+
+    <p>
+        The busy indicator allows developers to display a spinning circle which automatically changes to a static hourglass for <b>reduced-motion schemes</b> when a task is performed that may involve a delay, such as persisting form data to a server.
+    </p>
+    <p>
+        Developers have the option to display text beneath the spinner. More importantly, they can queue text to be sent to an <b>ARIA live region</b>, which Assistive Technology (AT) can monitor and relay to the user.
+    </p>
+    <p>
+        While a task is in progress, everything behind the busy indicator overlay is made inert. This ensures that the affected part of the page (or the entire page/screen) remains inaccessible to all users and AT until the task completes.
+    </p>
+    <p>
+        Similarly, the new <b>HTML Dialog API</b> utilises inert functionality when shown modally, ensuring that any content beneath the dialogue is inaccessible to all users and AT.
+    </p>
+
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">The Live Region Service</h3>
+
+    <p>
+        The Live Region Service is used by the Busy Indicator component and will be utilised by other components where appropriate.
+    </p>
+    <p>
+        As this is a regular service, it is available for use at any time. 
+        The Theme button at the top right of the page uses the service in its click event to advise screen reader users of the action performed. As this is via the service, 
+        it's logged and can be viewed in the Announcement History dialog for those without a screen reader.
+    </p>
+    <p>
+        Whilst making the Live Region Service available as a general service for developers could be open to misuse, I believe that the complexities and nuances involved in making announcements via ARIA live regions mean that more good will come from 
+        providing this service than potential harm (see <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Final_Words">@GlobalValues.Title_Final_Words</a>).
+
+    </p>
+
+</section>
+
+<div class="flex-content justify-content-end">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_About_Blazor_Ramp">
+        <span aria-hidden="true"></span>
+         <span>@GlobalValues.Title_About_Blazor_Ramp</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+
+}

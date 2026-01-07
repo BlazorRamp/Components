@@ -1,0 +1,25 @@
+﻿@use "_configuration" as *;
+
+@mixin media-device-sm($width: min-width) {
+    @media ($width:$device-sm-min-width ) {
+        @content;
+    }
+}
+
+@mixin media-device-md($width: min-width) {
+    @media ($width:$device-md-min-width ) {
+        @content;
+    }
+}
+
+@mixin media-device-lg($width: min-width) {
+    @media ($width:$device-lg-min-width ) {
+        @content;
+    }
+}
+
+@mixin media-device-xl($width: min-width) {
+    @media (width:$device-xl-min-width ) {
+        @content;
+    }
+}

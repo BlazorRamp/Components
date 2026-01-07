@@ -1,0 +1,48 @@
+﻿@attribute [Route(GlobalValues.Path_About_Blazor_Ramp)]
+
+<PageTitle>@GlobalValues.Title_About_Blazor_Ramp</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">The Blazor Ramp Project</h1>
+
+    <p>
+        Blazor Ramp aims to provide a suite of modular Blazor components delivered individually via NuGet.
+        While each component is self-contained, they all utilise the <b>Blazor Ramp Core</b> package.
+        This core dependency provides a centralised service that ensures stable, consistent announcements via the <b>ARIA Live API.</b>
+        Additionally, the Core package includes an <b>Announcement History component</b>, which maintains a rolling log of the last twenty live region
+        announcements for user review.
+    </p>
+
+    <p>
+        Each component or NuGet package is designed to be both agnostic and self-contained, with no dependencies on third-party scripts or CSS libraries.
+    </p>
+    <p>
+        Rather than forcing a specific design scheme upon you, every component is built using a common set of CSS variables, alongside component-specific properties where appropriate. This approach avoids the need for endless CssClass parameters; you can simply override a shared CSS variable to update all related components simultaneously, or target individual component classes for more granular control.
+    </p>
+    <p>
+        While Blazor Ramp is not a CSS library and does not include a set of pre-defined themes, its layered property architecture effectively mimics one. By leveraging modern CSS colour functions, changing a single primary colour property will ripple through the system, automatically updating derived colours.
+    </p>
+    <p>
+        This behaviour is achieved without a CSS pre-processor which I would typically use and add code to handle contrast-checks and adjustments. But I wanted to keep the architecture as simple and as flexible as possible as not everyone uses SASS. 
+        Given the lack of contrast checking functions, you should ensure that your chosen colour schemes are suitable and meet the necessary WCAG compliance standards using your preferred contrast checking tools. I built one for Blazor some time
+        ago (not a NuGet package), but you are welcome to use the code as you see fit. I tend to put the component on a test page (opened in a new window) during development so I have access to the eye droppers to check things from time to time etc. 
+        If I ever get time, I may turn it into a Blazor Ramp component and release it via NuGet, until then the source is here: <a class="@GlobalValues.Link_Class" target="_blank" href="https://github.com/code-dispenser/YT-BlazorBuilds-ContrastChecker">Blazor Contrast Checker Component (opens in a new window)</a>
+    </p>
+
+</section>
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Home">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Title_Home_Screen</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Busy_Screen">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Title_Busy_Screen</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+
+}

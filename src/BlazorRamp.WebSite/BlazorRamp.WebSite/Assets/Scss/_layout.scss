@@ -1,0 +1,211 @@
+﻿@use "_configuration" as *;
+@use "_functions" as *;
+@use "_svg-icons" as *;
+
+
+#app {
+    height: 100vh;
+    background-color: var(--br-comp-all-pane-base-background);
+    display: grid;
+    grid-template-rows: $app-header-height 1fr;
+    grid-template-columns: auto 1fr;
+    color: var(--br-unit-colour-canvas-text);
+
+
+
+    &__header {
+        grid-column: 1/3;
+        grid-row: 1/2;
+        display: flex;
+        gap: var(--br-unit-space-5);
+        padding: var(--br-unit-space-5);
+        align-items: center;
+
+
+        & > span:first-child {
+            color: var(--br-comp-all-area-header-text);
+            font-size: var(--br-unit-font-size-5);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        & #menu-toggler {
+            margin-top: var(--br-unit-space-2);
+            order: -1;
+            flex-shrink: 0;
+            appearance: none;
+            border: none;
+            outline: none;
+            border-radius: var(--br-unit-radius-5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            cursor: pointer;
+            min-width: var(--br-unit-wcag-target-3a);
+            min-height: var(--br-unit-wcag-target-3a);
+            aspect-ratio: 1/1;
+            padding: var(--br-unit-space-4);
+            color: var(--br-unit-colour-canvas-text);
+
+            &[aria-expanded="false"] {
+                & > span:first-child {
+                    min-height: 1.5rem;
+                    min-width: 1.5rem;
+
+                    @include burger-open-icon;
+                }
+            }
+
+            &[aria-expanded="true"] {
+                & > span:first-child {
+                    min-height: 1.5rem;
+                    min-width: 1.5rem;
+                    @include burger-close-icon;
+                }
+            }
+
+            & > span:last-child {
+                font-size: var(--br-unit-font-size-label);
+            }
+
+            &:focus-visible {
+                outline-offset: var(--br-comp-all-outline-offset);
+                outline-width: var(--br-comp-all-outline-width);
+                outline-style: var(--br-comp-all-outline-style);
+                outline-color: var(--br-comp-all-focus-indicator-colour);
+                background-color: var(--br-comp-all-link-focused-background-colour);
+            }
+
+            &:hover {
+                background-color: var(--br-comp-all-button-state-hover);
+            }
+        }
+
+        & #theme-toggler {
+            margin-top: var(--br-unit-space-2);
+            flex-shrink: 0;
+            appearance: none;
+            border: none;
+            outline: none;
+            border-radius: var(--br-unit-radius-5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            cursor: pointer;
+            min-width: var(--br-unit-wcag-target-3a);
+            min-height: var(--br-unit-wcag-target-3a);
+            aspect-ratio: 1/1;
+            padding: var(--br-unit-space-4);
+            color: var(--br-unit-colour-canvas-text);
+
+            &[aria-pressed="true"] {
+                & > span:first-child {
+                    min-height: 1.5rem;
+                    min-width: 1.5rem;
+                    color: var(--br-unit-colour-warning);
+                    @include dark-theme-icon;
+                }
+            }
+
+            &[aria-pressed="false"] {
+                & > span:first-child {
+                    min-height: 1.5rem;
+                    min-width: 1.5rem;
+                    @include light-theme-icon;
+                }
+            }
+
+            & > span:last-child {
+                font-size: var(--br-unit-font-size-label);
+            }
+
+            &:focus-visible {
+                outline-offset: var(--br-comp-all-outline-offset);
+                outline-width: var(--br-comp-all-outline-width);
+                outline-style: var(--br-comp-all-outline-style);
+                outline-color: var(--br-comp-all-focus-indicator-colour);
+                background-color: var(--br-comp-all-link-focused-background-colour);
+            }
+
+            &:hover {
+                background-color: var(--br-comp-all-button-state-hover);
+            }
+        }
+
+        & > a {
+            margin-left: auto;
+            font-size: var(--br-unit-font-size-label);
+            margin-top: var(--br-unit-space-2);
+            flex-shrink: 0;
+            border: none;
+            outline: none;
+            border-radius: var(--br-unit-radius-5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            cursor: pointer;
+            min-width: var(--br-unit-wcag-target-3a);
+            min-height: var(--br-unit-wcag-target-3a);
+            padding: var(--br-unit-space-4);
+            color: var(--br-unit-colour-canvas-text);
+            aspect-ratio: 1/1;
+
+            & > span:first-child {
+                min-height: 1.5rem;
+                min-width: 1.5rem;
+                @include github-icon;
+            }
+
+            &:focus-visible {
+                outline-offset: var(--br-comp-all-outline-offset);
+                outline-width: var(--br-comp-all-outline-width);
+                outline-style: var(--br-comp-all-outline-style);
+                outline-color: var(--br-comp-all-focus-indicator-colour);
+                background-color: var(--br-comp-all-link-focused-background-colour);
+            }
+
+            &:hover {
+                background-color: var(--br-comp-all-button-state-hover);
+            }
+        }
+    }
+
+
+    &__nav {
+        padding: var(--br-unit-space-5);
+        padding-right: var(--br-unit-space-3); //main has 1 rem left margin.
+        grid-column: 1/2;
+        grid-row: 2/3;
+        width: $app-nav-max-width;
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    &__main {
+        margin: var(--br-unit-space-5);
+        border-radius: var(--br-unit-radius-5);
+        padding: var(--br-unit-space-5);
+        grid-column: 2/3;
+        grid-row: 2/3;
+        overflow-y: auto;
+    }
+
+
+    &:has(#menu-toggler[aria-expanded="false"]) #app__nav {
+        display: none;
+    }
+
+    @include media-device-sm(max-width) {
+
+        &:has(#menu-toggler[aria-expanded="true"]) #app__main {
+            display: none;
+        }
+    }
+}

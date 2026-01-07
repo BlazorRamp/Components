@@ -1,0 +1,114 @@
+﻿
+:root {
+    --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-darker);
+    --br-kbd-background-colour: var(--br-unit-colour-info-lighter)
+}
+:root:has(#theme-toggler[aria-pressed="true"]) {
+    --br-comp-history-trigger-pane-surface-background: var(--br-unit-colour-neutral-5);
+    --br-comp-history-trigger-pane-surface-text: var(--br-unit-colour-neutral-90);
+    --br-comp-all-pane-base-background: var(--br-unit-colour-neutral-80);
+    --br-comp-all-focus-indicator-colour: var(--br-unit-colour-primary-30);
+    --br-comp-all-pane-surface-background: var(--br-unit-colour-neutral-70);
+    --br-comp-all-area-content-text: var(--br-unit-colour-neutral-5);
+    --br-unit-colour-canvas: var(--br-unit-colour-neutral-90);
+    --br-unit-colour-canvas-text: var(--br-unit-colour-neutral-5);
+    --br-comp-all-button-text: var(--br-unit-colour-primary-text-light);
+    --br-comp-all-area-header-text: var(--br-unit-colour-primary-20);
+    --br-comp-all-button-state-hover: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-30));
+    --br-comp-all-link-current-page-background-colour: var(--br-unit-colour-secondary-darker);
+    --br-comp-all-link-hover-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.15);
+    --br-comp-all-link-active-bacbground-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.3);
+    --br-comp-all-link-focused-background-colour: var(--br-unit-colour-secondary-darker);
+
+    --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-light);
+    --br-kbd-background-colour: var(--br-unit-colour-info-darker);
+    --br-unit-colour-canvas-inverted: var(--br-unit-colour-neutral-5);
+    --br-unit-colour-canvas-text-inverted: var(--br-unit-colour-neutral-90);
+    --br-comp-all-button-background: var(--br-unit-colour-primary-70);
+    --br-comp-all-button-text: var(--br-unit-colour-primary-text-light);
+}
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+* {
+    padding: 0;
+    margin: 0;
+    font: inherit;
+}
+h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    border: none;
+    font-weight:var(--fw-500);
+}
+/*
+    * Use anthing already defined in the Core project that was used for components.
+*/
+
+
+ul{
+    padding-left:1rem;
+}
+li{
+    margin-bottom: var(--br-unit-space-3);
+}
+html{
+
+}
+
+p {
+    margin-bottom: var(--br-unit-space-5);
+    text-wrap: pretty;
+}
+
+h1 {
+    font-size: var(--br-unit-font-size-6);
+    font-weight: var(--br-unit-font-weight-500);
+    margin-bottom: var(--br-unit-space-5)
+}
+
+h2 {
+    font-size: var(--br-unit-font-size-3);
+    font-weight: var(--br-unit-font-weight-500);
+    margin-bottom: var(--br-unit-space-4)
+}
+h3 {
+    font-size: var(--br-unit-font-size-2);
+    font-weight: var(--br-unit-font-weight-500);
+    margin-bottom: var(--br-unit-space-4)
+}
+b {
+    font-weight:bold;
+}
+
+kbd {
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    border-radius: var(--br-unit-radius-4);
+    background-color: var(--br-kbd-background-colour);
+    padding-inline: var(--br-unit-space-3);
+    padding-block: var(--br-unit-space-2);
+    border: 1px solid transparent;
+}
+
+dialog {
+    background-color: var(--br-unit-colour-canvas);
+    color: var(--br-unit-colour-canvas-text);
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--br-unit-colour-canvas);
+    color: var(--br-unit-colour-canvas-text);
+    letter-spacing: 0.5px;
+
+    & #app__main {
+        background-color: var(--br-unit-colour-canvas); //CHECK
+    }
+}
+

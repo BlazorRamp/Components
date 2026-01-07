@@ -1,0 +1,212 @@
+﻿@attribute [Route(GlobalValues.Path_Final_Words)]
+
+<PageTitle>@GlobalValues.Title_Final_Words</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">Final Words</h1>
+
+    <p>
+        Before you go, I thought I would share some of the trials and tribulations I went through while creating the Busy Indicator and Live Region Service.
+        Hopefully this will save you some of the many hours, a significant number in my case, that I lost while trying to implement this yourself.
+    </p>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Blue Tooth Earbuds and Narrator</h2>
+
+    <p>
+        If, like me, you wear earbuds with a bit of background music while coding or working, and you leave them in when testing with Windows Narrator, be warned.
+    </p>
+    <p>
+        I recently bought some so called Hi-Res earbuds that support the LDAC codec. Because of this, I installed a driver to enable LDAC on Windows 11. What I did not
+        realise was that using the LDAC codec with Windows Narrator is problematic, to say the least, given how Narrator interacts with the Windows audio stack.
+    </p>
+    <p>
+        To cut a long story short, the speech was choppy, random words were dropped, and I spent a full day going round in circles trying to work out what code I must have broken.
+        The fix was simply to switch back to my non-LDAC earbuds when working with Narrator.
+    </p>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">The Inert Attribute</h2>
+
+    <p>
+        Not everyone uses modal dialogs, or knows how to correctly implement a true focus trap, so using inert on the busy indicator seemed appropriate. It allows developers
+        to cover the page, or just a section of a page, preventing interaction while some progress is taking place, which is exactly what the inert attribute is designed for.
+    </p>
+    <p>
+        I came across a number of nuances with the screen readers when using inert. Each combination of screen reader and browser exhibited different behaviours depending on the
+        scenario. These scenarios like the tests on the site, included making a section such as a div inert, which by default also makes its children inert, making the entire page inert, or doing something similar within a
+        modal dialog using the HTML Dialog API. The Dialog API itself uses behaviour similar to inert, as well as the top layer.
+    </p>
+    <p>
+        Narrator seemed to struggle the most with inert and would sometimes start reading the address bar unless it was given an element to focus. Regardless of what was read,
+        anything being announced out of context and unexpectedly is confusing at best.
+    </p>
+    <p>
+        Both JAWS and NVDA also had quirks around what they would or would not announce, depending on the browser and test scenario. However, at least they did not randomly start
+        reading the address bar.
+    </p>
+    <p>
+        To cut a very long story short, to resolve the issues I encountered and to allow any combination of screen reader and browser that I tested to produce acceptable results,
+        I added a visually hidden span with a tabindex of -1 inside the busy indicator container. This span is populated with a supplied name, such as “Busy Indicator”, or as I prefer, simply “Status”.
+    </p>
+    <p>
+        When opening the busy indicator, inert effectively removes all focusable elements from the accessibility tree. Providing the screen readers with a focusable element resolved
+        many issues, particularly for Narrator and JAWS.
+    </p>
+    <p>
+        The content of the span acts somewhat like an aria-label. Before you ask why I did not use one, that is a whole other story. You cannot apply aria-label to a div unless it has
+        an appropriate role, and I tried every role that seemed even remotely suitable for a busy indicator. Each one introduced some form of quirk or annoyance, none of which I felt
+        were particularly user friendly. As far as I am aware, what I have implemented is WCAG compliant, given the focus issues introduced by inert and the need for screen readers to have a valid focus target.
+    </p>
+    <p>
+        Another issue with inert, which I believe is still being actively debated, is that when using the new modal Dialog API it effectively makes everything outside the dialog inert,
+        including live regions that you may have added for centralised use, which I personally consider best practice. Unless you add additional live regions inside the dialog, or dynamically
+        move your centralised ones into it, they will not be available while the dialog is open. This leads neatly on to the next topic.
+    </p>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">The Top Layer</h2>
+
+    <p>
+        The top layer is also not without its own issues, regardless of whether it is created for a non-modal popover or a full modal dialog. If you want to focus something that is still visible and logically
+        available, but is not in the top layer, you simply cannot.
+    </p>
+    <p>
+        For example, you might create your own announcement history and use a keyboard shortcut to show it. So far, so good. However, you will then be unable to tab around it because focus will not move to
+        elements outside the top layer. At that point, accessibility quickly breaks down unless you dynamically move your element into the same layer or deliberately override the behaviour with your own solution.
+    </p>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Aria Atomic True, the Good, the Bad, the Ugly</h2>
+
+    <h3>The Good</h3>
+    <p>
+        Using this attribute solved issues with Narrator on Firefox. Messages were being cut short due to the timings used to clear the live regions, but with this attribute applied the
+        entire message was read.
+    </p>
+
+    <h3>The Bad</h3>
+    <p>
+        Using this attribute meant that JAWS on Firefox would no longer read any live region message that used it.
+    </p>
+
+    <h3>The Ugly</h3>
+    <p>
+        This JAWS bug was logged on 3 December 2024: <a class="@GlobalValues.Link_Class" target="_blank" href="https://github.com/FreedomScientific/standards-support/issues/876#event-2015833716">Issue #876 (opens in a new window)</a>
+        and, at the time of writing, nothing appears to have been done about it. This resulted in several more days of trial and error while trying to find a solution that worked across
+        all of the browsers and screen readers I was testing with.
+    </p>
+</section>
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">My Secret Sauce</h2>
+
+    <p>In combination with the issues already discussed, I ended up using the following approach.</p>
+
+    <ul>
+        <li>
+            One centralised pair of ARIA live regions set to polite. On this site, only the Theme button makes use of polite announcements via the live region service.
+        </li>
+        <li>
+            One centralised pair of ARIA live regions set to assertive. These are used by the Busy Indicator via the same service, as polite announcements were not reliable enough
+            depending on the screen reader and browser combination.
+        </li>
+        <li>
+            All announcements are added to a JavaScript queue, along with a reference to either the polite or assertive live region.
+        </li>
+        <li>
+            Announcements are read from the queue sequentially in a loop.
+        </li>
+    </ul>
+
+    <p>The announcement process itself works as follows.</p>
+
+    <ol>
+        <li>Add a zero-width character to one of the live regions. The region is toggled between the pair for each message.</li>
+        <li>Wait 400ms.</li>
+        <li>
+            Add the message to the live region. Using a separate true or false toggle, a non-breaking space is appended to the end of the message.
+        </li>
+        <li>Wait 400ms.</li>
+        <li>Add an <code>aria-hidden="true"</code> attribute to the current live region.</li>
+        <li>Wait 800ms.</li>
+        <li>Clear the live region content.</li>
+        <li>Remove the <code>aria-hidden</code> attribute.</li>
+    </ol>
+
+    <p>
+        Adding and removing the <code>aria-hidden</code> attribute, combined with the timings above, resolved all of the issues I was experiencing with Narrator on Firefox, given that I could
+        not use the aria-atomic attribute.
+    </p>
+
+    <p>
+        An alternative approach is to use much longer delays, for example waiting however long it takes the screen reader to read the content based on the current speech rate. In practice,
+        this can mean adding delays of several seconds for just a couple of messages, particularly at slower speech rates.
+    </p>
+
+    <p>
+        There are also issues with repeated messages. By using zero-width characters and non-breaking spaces, each announcement remains unique and therefore is not treated as a
+        repeated message by the screen reader. The loop always ends with the live region content being cleared, so nothing is left behind to be discovered later by the screen reader.
+    </p>
+
+    <p>
+        Pairs of live regions; I can only guess that toggling between two live regions of the same type forces screen readers to recognise each announcement as a new accessibility event. And by alternating between distinct live region
+        nodes rather than repeatedly updating the same one, browser and screen reader optimisations are avoided, resulting in far more reliable and consistent announcements. If you know exactly why this worked, please let me know.
+    </p>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">What’s Next</h2>
+
+    <p>
+        If nobody flags any issues, or anything that would fail a WCAG audit, I will package and release the Core project via NuGet. This will contain the Live Region Service 
+        and the Announcement History component.
+    </p>
+    <p>
+        I will then release the Busy Indicator as its own NuGet package, which will reference and include the Core project.
+    </p>
+    <p>
+        Over the years I have built most of my Blazor components, so it is now largely a matter of going through them and making them better and more accessible.
+    </p>
+    <p>
+        The next component to be released, after tests like this, will be a Modal Dialog Framework that uses the new Dialog API. The framework will allow nested dialogs 
+        that can accept data via Blazor parameters and return data using a dialog result object, all in an accessible way. The framework handles all interactions with the Dialog API 
+        via JavaScript, so you simply supply the content in the form of Blazor components, along with any parameters you require.
+    </p>
+    <p>
+        A good example is a modal dialog pop-up form. To make this accessible, you need focus trapping and a way for the user to close the dialog using the Escape key. 
+        The focus trap is effectively handled for you by the Dialog API. The Escape key, however, raises an important question. If the user has spent the last ten minutes completing 
+        your form, are you really going to close it and potentially discard their data?
+    </p>
+    <p>
+        There are multiple ways to handle this, but one simple approach is to override the Escape key. If the user has made changes, you can present another dialog, which has its 
+        own top layer, asking whether they want to close the form or continue editing.
+    </p>
+    <p>
+        After this, there are any number of components that I could release, in any order. If certain components are requested, they would naturally be moved further up the list.
+    </p>
+
+</section>
+
+
+
+<div class="flex-content justify-content-start">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Busy_Short">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Title_Busy_Short</span>
+        <span aria-hidden="true"></span>
+    </a>
+
+</div>
+@code {
+
+}
