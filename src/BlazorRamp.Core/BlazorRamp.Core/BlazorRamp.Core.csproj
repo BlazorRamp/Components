@@ -41,5 +41,17 @@
   <ItemGroup>
     <None Include="compilerconfig.json" />
   </ItemGroup>
-
+	
+<ItemGroup>
+	<None Update="tsconfig.json">
+		<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+		<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	</None>
+	<Content Update="tsconfig.json">
+		<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+		<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	</Content>
+</ItemGroup>
 </Project>
