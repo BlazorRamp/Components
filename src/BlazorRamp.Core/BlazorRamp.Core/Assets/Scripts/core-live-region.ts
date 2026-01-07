@@ -2,27 +2,27 @@
     Info = "Info", OperationStarted = "OperationStarted", OperationCompleted = "OperationCompleted", OperationFailed = "OperationFailed",
     OperationCancelled = "OperationCancelled", SystemWarning = "SystemWarning", SystemError = "SystemError"
 }
-enum LiveRegionType {Polite = "Polite", Assertive = "Assertive"}
+enum LiveRegionType { Polite = "Polite", Assertive = "Assertive" }
 interface Announcement { message: string; announcementType: AnnouncementType; announcementTrigger?: string; liveRegionType: LiveRegionType; }
-interface AnnouncementRecord extends Announcement { announcementRecordID: number; timestamp: string; page: string; } 
+interface AnnouncementRecord extends Announcement { announcementRecordID: number; timestamp: string; page: string; }
 interface QueueItem { element: HTMLElement; message: string };
 
 
 const QUEUE_LENGTH = 20;
 
-let _liveRegionPoliteOne     = document.getElementById("blazor-ramp-live-region-polite_one");
-let _liveRegionPoliteTwo     = document.getElementById("blazor-ramp-live-region-polite_two");
-let _liveRegionAssertiveOne  = document.getElementById("blazor-ramp-live-region-assertive_one");
-let _liveRegionAssertiveTwo  = document.getElementById("blazor-ramp-live-region-assertive_two");
-let _liveRegionPoliteToggle     = false;
+let _liveRegionPoliteOne = document.getElementById("blazor-ramp-live-region-polite_one");
+let _liveRegionPoliteTwo = document.getElementById("blazor-ramp-live-region-polite_two");
+let _liveRegionAssertiveOne = document.getElementById("blazor-ramp-live-region-assertive_one");
+let _liveRegionAssertiveTwo = document.getElementById("blazor-ramp-live-region-assertive_two");
+let _liveRegionPoliteToggle = false;
 let _liveRegionsAssertiveToggle = false
 
-const _messageQueue: QueueItem[]          = [];
+const _messageQueue: QueueItem[] = [];
 const _historyQueue: AnnouncementRecord[] = [];
 
-let _isAnnouncing       = false;
+let _isAnnouncing = false;
 let _announceRegistered = false
-let _messageCounter     = 0;
+let _messageCounter = 0;
 let focusBeforePopover: HTMLElement | null = null;
 
 let elementsForLocationChanged: { containerElement: HTMLElement | null, componentsElement: HTMLElement | null, popoverElement: HTMLElement | null, triggerElement: HTMLButtonElement | null };
@@ -46,7 +46,7 @@ const getLocalIsoTimestamp = () => {
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-const getNextID = () => _messageCounter++; 
+const getNextID = () => _messageCounter++;
 
 const addToHistoryQueue = (announcementRecord: AnnouncementRecord): void => {
 
@@ -77,8 +77,10 @@ const announcement = (announcement: Announcement, replayable: boolean = true) =>
 
         const trigger = (announcement.announcementTrigger ?? "").trim();
 
-        const announcementRecord: AnnouncementRecord = {announcementRecordID: getNextID(), timestamp: getLocalIsoTimestamp(), page: document.title,
-            message: announcement.message, announcementType: announcement.announcementType, announcementTrigger: trigger, liveRegionType: announcement.liveRegionType}
+        const announcementRecord: AnnouncementRecord = {
+            announcementRecordID: getNextID(), timestamp: getLocalIsoTimestamp(), page: document.title,
+            message: announcement.message, announcementType: announcement.announcementType, announcementTrigger: trigger, liveRegionType: announcement.liveRegionType
+        }
 
         addToHistoryQueue(announcementRecord);
     }
@@ -103,7 +105,7 @@ const processQueue = async () => {
 };
 
 
-let _toggleChar:boolean = false;
+let _toggleChar: boolean = false;
 
 const makeAnnouncement = async (queueItem: QueueItem): Promise<void> => {
 
@@ -121,18 +123,18 @@ const makeAnnouncement = async (queueItem: QueueItem): Promise<void> => {
 
     await delay(400)
 
-    element.textContent = _toggleChar ? messageText : messageText + nbsp; 
+    element.textContent = _toggleChar ? messageText : messageText + nbsp;
 
-    await delay(400); 
+    await delay(400);
 
     element.setAttribute('aria-hidden', 'true');
 
-    await delay(800); 
+    await delay(800);
 
     element.textContent = "";
     element.removeAttribute('aria-hidden');
 
-   
+
 
 }
 
@@ -149,26 +151,26 @@ const formatTimestampLocalized = (isoTimestamp: string, locale: string = 'en-GB'
     const diffSeconds = Math.round(diffMs / 1000); // Use round for better precision
 
     // Initialize the RelativeTimeFormat object
-    const rtf = new Intl.RelativeTimeFormat(locale, {numeric: 'auto', style: 'long'});
+    const rtf = new Intl.RelativeTimeFormat(locale, { numeric: 'auto', style: 'long' });
 
     const diffMinutes = Math.floor(diffSeconds / 60);
-    const diffHours   = Math.floor(diffMinutes / 60);
-    const diffDays    = Math.floor(diffHours / 24);
-    const diffMonths  = Math.floor(diffDays / 30);
-    const diffYears   = Math.floor(diffDays / 365);
+    const diffHours = Math.floor(diffMinutes / 60);
+    const diffDays = Math.floor(diffHours / 24);
+    const diffMonths = Math.floor(diffDays / 30);
+    const diffYears = Math.floor(diffDays / 365);
 
     // Note: We pass a NEGATIVE value to RTF to indicate time in the PAST ("ago")
 
-    if (diffSeconds < 60)  return rtf.format(-diffSeconds, 'second');
+    if (diffSeconds < 60) return rtf.format(-diffSeconds, 'second');
 
     if (diffMinutes < 60) return rtf.format(-diffMinutes, 'minute');
 
     if (diffHours < 24) return rtf.format(-diffHours, 'hour');
 
     if (diffDays < 30) return rtf.format(-diffDays, 'day');
-    
+
     if (diffMonths < 12) return rtf.format(-diffMonths, 'month');
-        
+
     return rtf.format(-diffYears, 'year');
 };
 
@@ -176,21 +178,21 @@ const buildAnnouncementList = (ahContentElement: HTMLElement, locale: string) =>
 
     if (!ahContentElement || !ahContentElement.firstElementChild) return;
 
-    const olElement   = ahContentElement.firstElementChild as HTMLElement;
+    const olElement = ahContentElement.firstElementChild as HTMLElement;
     const paraElement = ahContentElement.lastElementChild as HTMLElement;
 
     locale = isNullOrWhitespace(locale) ? "en-GB" : locale.trim();
 
     paraElement.style.display = "none";
-    olElement.innerHTML   = "";
+    olElement.innerHTML = "";
 
     for (const record of [..._historyQueue].reverse()) {
 
-        const li        = document.createElement("li");
-        const time      = formatTimestampLocalized(record.timestamp, locale) + ";";
-        const page      = record.page === "" ? "" : record.page.trim() + ";";
-        const trigger   = (!record.announcementTrigger || record.announcementTrigger.trim().length === 0) ? "" : record.announcementTrigger.trim() + ";";
-        li.textContent  = `${time} ${page} ${trigger} ${record.message}`;
+        const li = document.createElement("li");
+        const time = formatTimestampLocalized(record.timestamp, locale) + ";";
+        const page = record.page === "" ? "" : record.page.trim() + ";";
+        const trigger = (!record.announcementTrigger || record.announcementTrigger.trim().length === 0) ? "" : record.announcementTrigger.trim() + ";";
+        li.textContent = `${time} ${page} ${trigger} ${record.message}`;
 
         olElement.appendChild(li);
     }
@@ -199,19 +201,19 @@ const buildAnnouncementList = (ahContentElement: HTMLElement, locale: string) =>
 };
 
 
-const setPopoverState = (isOpen: boolean, triggerButton: HTMLButtonElement, popoverElement: HTMLElement):void => {
+const setPopoverState = (isOpen: boolean, triggerButton: HTMLButtonElement, popoverElement: HTMLElement): void => {
 
     if (isOpen) {
         popoverElement.showPopover();
     }
-    else { popoverElement.hidePopover();}
+    else { popoverElement.hidePopover(); }
 
     _isPopoverOpen = isOpen;
 
     if (triggerButton) triggerButton.setAttribute("aria-expanded", isOpen.toString());
 }
 
-const clearHistoryAndClosePopover = (popoverElement: HTMLElement, triggerButton:HTMLButtonElement) => {
+const clearHistoryAndClosePopover = (popoverElement: HTMLElement, triggerButton: HTMLButtonElement) => {
 
     _historyQueue.length = 0;
     setPopoverState(false, triggerButton, popoverElement);
@@ -236,17 +238,17 @@ const registerCloseButtonHandler = (closeButton: HTMLButtonElement, popoverEleme
 
     if (!closeButton || !popoverElement || !triggerButton) return;
 
-    closeButton.addEventListener("click", (_) =>  setPopoverState(false, triggerButton, popoverElement));
+    closeButton.addEventListener("click", (_) => setPopoverState(false, triggerButton, popoverElement));
 };
 
-const registerClearButtonHandler = (clearButton: HTMLButtonElement, popoverElement:HTMLElement, triggerButton: HTMLButtonElement ) => {
+const registerClearButtonHandler = (clearButton: HTMLButtonElement, popoverElement: HTMLElement, triggerButton: HTMLButtonElement) => {
 
     if (!clearButton || !popoverElement || !triggerButton) return;
 
     clearButton.addEventListener("click", (_) => clearHistoryAndClosePopover(popoverElement, triggerButton));
 };
 
-const registerTriggerButtonHandler = (triggerButton:HTMLButtonElement, popoverElement:HTMLElement, contentElement:HTMLElement, locale:string = "en-GB") => {
+const registerTriggerButtonHandler = (triggerButton: HTMLButtonElement, popoverElement: HTMLElement, contentElement: HTMLElement, locale: string = "en-GB") => {
 
     if (!triggerButton || !popoverElement || !contentElement) return;
 
@@ -274,7 +276,7 @@ const registerPopoverToggleHandler = (popoverElement: HTMLElement, triggerButton
 };
 
 const registerDocumentKeyDownHandler = (componentsElement: HTMLElement, originalParentElement: HTMLElement, contentElement: HTMLElement, popoverElement: HTMLElement,
-                                        triggerButton: HTMLButtonElement, locale: string = "en-GB"): void => {
+    triggerButton: HTMLButtonElement, locale: string = "en-GB"): void => {
 
     document.addEventListener("keydown", (event) => {
 
@@ -288,57 +290,29 @@ const registerDocumentKeyDownHandler = (componentsElement: HTMLElement, original
     });
 };
 
-const registerGlobalDialogWatcher = (containerElement: HTMLElement, componentsElement: HTMLElement, popoverElement: HTMLElement, triggerButton: HTMLButtonElement) => {
-
-    document.addEventListener("keydown", (e) => {
-
-        if (e.key !== "Escape") return;
-
-        if (popoverElement && popoverElement.matches(":popover-open")) {
-            popoverElement.hidePopover();
-            setPopoverState(false, triggerButton, popoverElement);
-            e.preventDefault();
-            return;
-        }
-   
-        const openDialogs = Array.from(document.querySelectorAll("dialog")).filter(dialog => dialog.open);
-        const topmostDialog = openDialogs.length > 0 ? openDialogs[openDialogs.length - 1] : null;
-
-        if (topmostDialog && topmostDialog.contains(componentsElement)) {
-
-            if (componentsElement.parentElement !== containerElement) containerElement.appendChild(componentsElement);
-        }
-    });
-
-    document.addEventListener("close", (e) => {
-        const closedDialog = e.target as HTMLElement;
-
-        if (closedDialog.tagName === "DIALOG" && closedDialog.contains(componentsElement)) {
-
-            if (componentsElement.parentElement !== containerElement) containerElement.appendChild(componentsElement);
-        }
-    });
-}
-
 const registerMutationObserver = (containerElement: HTMLElement, componentsElement: HTMLElement): void => {
 
-    const handleDialogOpened: MutationCallback = (mutationsList: MutationRecord[], observer: MutationObserver) => {
+    const observer = new MutationObserver((mutationsList) => {
 
-        const dialogOpened = mutationsList.some((mutation: MutationRecord) => {
+        for (const mutation of mutationsList) {
+            const target = mutation.target as HTMLElement;
 
-            const targetElement = mutation.target as HTMLElement;
+            if (target.tagName === 'DIALOG' && mutation.attributeName === 'open') {
 
-            return (mutation.type === 'attributes' && mutation.attributeName === 'open' && targetElement.tagName === 'DIALOG' && targetElement.hasAttribute('open'));
-        });
+                const dialog = target as HTMLDialogElement;
 
-        if (dialogOpened) checkMoveComponentsElement(componentsElement, containerElement)
-    };
+                if (dialog.open) {
+                    dialog.appendChild(componentsElement);
+                } else {
+                    if (componentsElement.parentElement !== containerElement) {
+                        containerElement.appendChild(componentsElement);
+                    }
+                }
+            }
+        }
+    });
 
-    const observer: MutationObserver = new MutationObserver(handleDialogOpened);
-
-    const config: MutationObserverInit = {attributes: true,subtree: true, attributeFilter: ['open']};
-
-    observer.observe(document.body, config);
+    observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['open'] });
 };
 
 const registerRefreshButtonHandler = (refreshButton: HTMLButtonElement, contentElement: HTMLElement, locale: string = "en-GB") => {
@@ -365,17 +339,17 @@ const getElementsForLocationChanged = () => {
     return elementsForLocationChanged;
 };
 
-function closePopoverOnLocationChanged():void  {
+function closePopoverOnLocationChanged(): void {
 
     const { containerElement, componentsElement, popoverElement, triggerElement } = getElementsForLocationChanged();
 
     if (popoverElement && triggerElement && _isPopoverOpen) setPopoverState(false, triggerElement, popoverElement);
 
     if (componentsElement && containerElement) checkResetComponentsLocation(componentsElement, containerElement);
-    
+
 };
 
-const checkResetComponentsLocation = (componentsElement:HTMLElement, originalParentElement: HTMLElement): void => {
+const checkResetComponentsLocation = (componentsElement: HTMLElement, originalParentElement: HTMLElement): void => {
 
     if (!componentsElement || !originalParentElement) return;
 
@@ -383,7 +357,7 @@ const checkResetComponentsLocation = (componentsElement:HTMLElement, originalPar
 
 };
 
-const checkMoveElementToBody = (containerElement:HTMLElement) => {
+const checkMoveElementToBody = (containerElement: HTMLElement) => {
     /*
         * To simplify things the live regionss are also in the container.
     */
@@ -396,7 +370,7 @@ const registerLiveRegionAndHistory = () => {
 
     if (_announceRegistered) return;
 
-    _liveRegionPoliteOne    = document.getElementById("blazor-ramp-live-region-polite_one");
+    _liveRegionPoliteOne = document.getElementById("blazor-ramp-live-region-polite_one");
     _liveRegionAssertiveOne = document.getElementById("blazor-ramp-live-region-assertive_one");
     _liveRegionPoliteTwo = document.getElementById("blazor-ramp-live-region-polite_two");
     _liveRegionAssertiveTwo = document.getElementById("blazor-ramp-live-region-assertive_two");
@@ -404,34 +378,30 @@ const registerLiveRegionAndHistory = () => {
     const containerElement = document.getElementById("blazor-ramp-announcement-history") as HTMLElement;
 
     if (!containerElement) return;
-    
+
     const componentsElement = document.getElementById("blazor-ramp-announcement-history-components") as HTMLElement;
-    const popoverElement    = document.getElementById("blazor-ramp-announcement-history-dialog") as HTMLDialogElement;
-    const ahContentElement  = document.getElementById("blazor-ramp-announcement-history-content") as HTMLElement;
-    const closeButton       = document.getElementById("blazor-ramp-announcement-history-close") as HTMLButtonElement;
-    const clearButton       = document.getElementById("blazor-ramp-announcement-history-clear") as HTMLButtonElement;
-    const refreshButton     = document.getElementById("blazor-ramp-announcement-history-refresh") as HTMLButtonElement;
-    const triggerButton     = document.getElementById("blazor-ramp-announcement-history-trigger") as HTMLButtonElement;
+    const popoverElement = document.getElementById("blazor-ramp-announcement-history-dialog") as HTMLDialogElement;
+    const ahContentElement = document.getElementById("blazor-ramp-announcement-history-content") as HTMLElement;
+    const closeButton = document.getElementById("blazor-ramp-announcement-history-close") as HTMLButtonElement;
+    const clearButton = document.getElementById("blazor-ramp-announcement-history-clear") as HTMLButtonElement;
+    const refreshButton = document.getElementById("blazor-ramp-announcement-history-refresh") as HTMLButtonElement;
+    const triggerButton = document.getElementById("blazor-ramp-announcement-history-trigger") as HTMLButtonElement;
 
     const originalParent = componentsElement?.parentElement as HTMLElement;
 
     const locale = popoverElement.getAttribute("data-br-locale") ?? "en-GB";
 
-    //registerLocationChangedHandler(containerElement, componentsElement, popoverElement, triggerButton);
-
     registerTriggerButtonHandler(triggerButton, popoverElement, ahContentElement, locale);
 
     registerCloseButtonHandler(closeButton, popoverElement, triggerButton);
-    
+
     registerClearButtonHandler(clearButton, popoverElement, triggerButton);
 
     registerRefreshButtonHandler(refreshButton, ahContentElement, locale);
 
     registerPopoverToggleHandler(popoverElement, triggerButton);
 
-    registerDocumentKeyDownHandler(componentsElement, originalParent, ahContentElement, popoverElement,triggerButton, locale);
-
-    registerGlobalDialogWatcher(containerElement, componentsElement, popoverElement, triggerButton);
+    registerDocumentKeyDownHandler(componentsElement, originalParent, ahContentElement, popoverElement, triggerButton, locale);
 
     registerMutationObserver(containerElement, componentsElement);
 
@@ -448,7 +418,7 @@ const tryRegister = (attemptsLeft = 600) => {
 
     registerLiveRegionAndHistory();
 
-    if (!_announceRegistered && attemptsLeft > 0) setTimeout(() => tryRegister(attemptsLeft - 1), 1000); 
+    if (!_announceRegistered && attemptsLeft > 0) setTimeout(() => tryRegister(attemptsLeft - 1), 1000);
 };
 
 const start = () => {

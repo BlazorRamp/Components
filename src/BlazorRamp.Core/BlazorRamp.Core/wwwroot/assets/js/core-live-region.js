@@ -62,8 +62,10 @@ const announcement = (announcement, replayable = true) => {
     const queueItem = { element: liveRegion, message: announcement.message };
     if (replayable) {
         const trigger = (announcement.announcementTrigger ?? "").trim();
-        const announcementRecord = { announcementRecordID: getNextID(), timestamp: getLocalIsoTimestamp(), page: document.title,
-            message: announcement.message, announcementType: announcement.announcementType, announcementTrigger: trigger, liveRegionType: announcement.liveRegionType };
+        const announcementRecord = {
+            announcementRecordID: getNextID(), timestamp: getLocalIsoTimestamp(), page: document.title,
+            message: announcement.message, announcementType: announcement.announcementType, announcementTrigger: trigger, liveRegionType: announcement.liveRegionType
+        };
         addToHistoryQueue(announcementRecord);
     }
     _messageQueue.push(queueItem);
@@ -211,43 +213,24 @@ const registerDocumentKeyDownHandler = (componentsElement, originalParentElement
         }
     });
 };
-const registerGlobalDialogWatcher = (containerElement, componentsElement, popoverElement, triggerButton) => {
-    document.addEventListener("keydown", (e) => {
-        if (e.key !== "Escape")
-            return;
-        if (popoverElement && popoverElement.matches(":popover-open")) {
-            popoverElement.hidePopover();
-            setPopoverState(false, triggerButton, popoverElement);
-            e.preventDefault();
-            return;
-        }
-        const openDialogs = Array.from(document.querySelectorAll("dialog")).filter(dialog => dialog.open);
-        const topmostDialog = openDialogs.length > 0 ? openDialogs[openDialogs.length - 1] : null;
-        if (topmostDialog && topmostDialog.contains(componentsElement)) {
-            if (componentsElement.parentElement !== containerElement)
-                containerElement.appendChild(componentsElement);
-        }
-    });
-    document.addEventListener("close", (e) => {
-        const closedDialog = e.target;
-        if (closedDialog.tagName === "DIALOG" && closedDialog.contains(componentsElement)) {
-            if (componentsElement.parentElement !== containerElement)
-                containerElement.appendChild(componentsElement);
-        }
-    });
-};
 const registerMutationObserver = (containerElement, componentsElement) => {
-    const handleDialogOpened = (mutationsList, observer) => {
-        const dialogOpened = mutationsList.some((mutation) => {
-            const targetElement = mutation.target;
-            return (mutation.type === 'attributes' && mutation.attributeName === 'open' && targetElement.tagName === 'DIALOG' && targetElement.hasAttribute('open'));
-        });
-        if (dialogOpened)
-            checkMoveComponentsElement(componentsElement, containerElement);
-    };
-    const observer = new MutationObserver(handleDialogOpened);
-    const config = { attributes: true, subtree: true, attributeFilter: ['open'] };
-    observer.observe(document.body, config);
+    const observer = new MutationObserver((mutationsList) => {
+        for (const mutation of mutationsList) {
+            const target = mutation.target;
+            if (target.tagName === 'DIALOG' && mutation.attributeName === 'open') {
+                const dialog = target;
+                if (dialog.open) {
+                    dialog.appendChild(componentsElement);
+                }
+                else {
+                    if (componentsElement.parentElement !== containerElement) {
+                        containerElement.appendChild(componentsElement);
+                    }
+                }
+            }
+        }
+    });
+    observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['open'] });
 };
 const registerRefreshButtonHandler = (refreshButton, contentElement, locale = "en-GB") => {
     if (!refreshButton || !contentElement)
@@ -310,14 +293,12 @@ const registerLiveRegionAndHistory = () => {
     const triggerButton = document.getElementById("blazor-ramp-announcement-history-trigger");
     const originalParent = componentsElement?.parentElement;
     const locale = popoverElement.getAttribute("data-br-locale") ?? "en-GB";
-    //registerLocationChangedHandler(containerElement, componentsElement, popoverElement, triggerButton);
     registerTriggerButtonHandler(triggerButton, popoverElement, ahContentElement, locale);
     registerCloseButtonHandler(closeButton, popoverElement, triggerButton);
     registerClearButtonHandler(clearButton, popoverElement, triggerButton);
     registerRefreshButtonHandler(refreshButton, ahContentElement, locale);
     registerPopoverToggleHandler(popoverElement, triggerButton);
     registerDocumentKeyDownHandler(componentsElement, originalParent, ahContentElement, popoverElement, triggerButton, locale);
-    registerGlobalDialogWatcher(containerElement, componentsElement, popoverElement, triggerButton);
     registerMutationObserver(containerElement, componentsElement);
     checkMoveElementToBody(containerElement);
     _announceRegistered = true;
