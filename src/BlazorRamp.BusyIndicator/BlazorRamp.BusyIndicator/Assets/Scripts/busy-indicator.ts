@@ -100,7 +100,9 @@ const startBusyIndicator = (busyElement: HTMLElement, displayModifier: string, t
 
     indicatorData.activatingElement = document?.activeElement as HTMLElement;
 
-    (element.firstElementChild as HTMLElement).focus();
+    //(element.firstElementChild as HTMLElement).focus();
+
+    element.focus();
 
     indicatorData.inertElements = getSetInertElements(element);
 
@@ -141,8 +143,11 @@ const stopBusyIndicator = (busyElement: HTMLElement): void => {
 
         const currentActiveElement = document.activeElement;
 
+        //if (currentActiveElement === activatingElement || currentActiveElement == document.body
+        //    || currentActiveElement === busyElement.firstElementChild as Element) activatingElement.focus();
+
         if (currentActiveElement === activatingElement || currentActiveElement == document.body
-           || currentActiveElement === busyElement.firstElementChild as Element) activatingElement.focus();
+            || currentActiveElement === busyElement as Element) activatingElement.focus();
     }
       
 

@@ -68,7 +68,8 @@ const startBusyIndicator = (busyElement, displayModifier, timeout = BUSY_INDICAT
     if (element.parentElement !== targetParent)
         targetParent.appendChild(element);
     indicatorData.activatingElement = document?.activeElement;
-    element.firstElementChild.focus();
+    //(element.firstElementChild as HTMLElement).focus();
+    element.focus();
     indicatorData.inertElements = getSetInertElements(element);
     if (indicatorData.timerId)
         clearTimeout(indicatorData.timerId);
@@ -93,8 +94,10 @@ const stopBusyIndicator = (busyElement) => {
     }
     if (activatingElement && activatingElement.isConnected && !activatingElement.hasAttribute('disabled') && activatingElement.getAttribute('aria-disabled') !== 'true') {
         const currentActiveElement = document.activeElement;
+        //if (currentActiveElement === activatingElement || currentActiveElement == document.body
+        //    || currentActiveElement === busyElement.firstElementChild as Element) activatingElement.focus();
         if (currentActiveElement === activatingElement || currentActiveElement == document.body
-            || currentActiveElement === busyElement.firstElementChild)
+            || currentActiveElement === busyElement)
             activatingElement.focus();
     }
     element.classList.remove(displayModifier);
