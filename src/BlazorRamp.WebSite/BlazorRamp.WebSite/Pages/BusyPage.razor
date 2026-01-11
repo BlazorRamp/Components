@@ -7,9 +7,12 @@
 
     <p>
         This portion of the test is to ensure that, while the busy indicator overlay covers the entire page, all content beneath it is inaccessible.
-        The only exceptions should be the <b>Announcement History dialog</b> and <b>Alerts button</b>.
+        The only exceptions should be the <b>Run Page Test button, Announcement History dialog</b> and <b>Alerts button</b>.
     </p>
-
+    <p>
+        <b>Important: </b>Many developers seem to think that simply using an overlay or focus trap prevents assistive technology (AT) users from accessing content.
+        This is not true unless everything is disabled or removed from the accessibility tree. For example, NVDA users can bring up the list of accessible items (Insert + F7) and move directly to them.
+    </p>
 </section>
 
 <section class="@GlobalValues.Info_Box_Class">
@@ -48,7 +51,10 @@
             You can still access the the announcement history dialog and the alert button whilst the busy indicator is active.
         </li>
         <li>
-            Everything behind the overlay is inaccessible.
+            Focus remains on the Run Page Test Button unless moved.
+        </li>
+        <li>
+            Everything else behind the overlay is inaccessible.
         </li>
         <li>
             A static hour glass is seen for those who have system settings for reduced motion (you can also simulate this via the browser dev tools)

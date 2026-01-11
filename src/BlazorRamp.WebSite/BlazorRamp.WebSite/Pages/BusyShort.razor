@@ -30,7 +30,8 @@
         the task will complete, the indicator will close, and focus will be set on the triggering button well before the screen reader finishes reading both announcements.
     </p>
     <p>
-        I have set the spinner to show in the top of the container without text and left the button inside the same container so it will become inert whilst the busy indicator is visible.
+        I have set the spinner to show in the top of the container without text and left the button inside the same container, but as the code does not make the 
+        triggering element inert (to retain focus, unless moved) only the <b>"Not accessible when busy"</b>  checkbox will become inert whilst the busy indicator is visible.
     </p>
     <p>
         Please review the expectations below, before running the test.
@@ -46,7 +47,10 @@
             Both the starting announcement: "Dummy task has started, please wait" and the on completion announcement "Dummy task completed successfully" are announced and logged.
         </li>
         <li>
-            Only the content beneath the overlay is inaccessible.
+            Only the content beneath the overlay is inaccessible, excluding the triggering element.
+        </li>
+        <li>
+            Focus remains on the Run Short Delay Test Button unless moved.
         </li>
         <li>
             A static hour glass is seen for those who have system settings for reduced motion (you can also simulate this via the browser dev tools)
@@ -62,7 +66,9 @@
     <BusyIndicator AriaStartText="Dummy task has started, please wait." AriaEndText="Dummy task completed successfully." ContentPosition="ContentPosition.Top" OverlayPosition="OverlayPosition.Container"
                    IndicatorTrigger="Run Short Delay Test Button" ShowIndicator="@_showIndicator" />
 
-
+    <span class="checkboxtest">
+        <label for="checkBoxContainerTest">Not accessible when busy:</label><input id="checkBoxContainerTest" type="checkbox" />
+    </span>
     <button class="@GlobalValues.Button_Test_Class" @ref="ButtonRunTestRef" @onclick="RunTest" type="button">Run Short Delay Test</button>
 
 </section>

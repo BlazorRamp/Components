@@ -9,7 +9,7 @@
 
     <p>
         This portion of the test is to ensure that, while the busy indicator is inside a modal dialog, that its overlay covers the entire page with all content beneath it, inaccessible.
-        The only exceptions should be the <b>Announcement History dialog</b> and <b>Alerts button</b>.
+        The only exceptions should be the triggering element <b>Run Modal Test button,</b> the <b>Announcement History dialog</b> and <b>Alerts button</b>.
     </p>
     <p>
         It is important to note that the HTML Dialog API uses the top layer and makes everything beneath it effectively inert (when shown modally), including
@@ -43,8 +43,7 @@
             This ensures that the background content is neither interactive for keyboard users nor discoverable by screen reader users until the task is complete.
         </p>
         <p>
-            To allow you sufficient time to attempt to access content, now only the "Run Modal Test" and "Close Dialog" buttons, the busy indicator has been assigned a dummy task
-            lasting <b>six seconds</b>.
+            To allow you sufficient time to attempt to access content, just the "Close Dialog" button, the busy indicator has been assigned a dummy task lasting <b>six seconds</b>.
         </p>
         <p>
             I have set the spinner to show centre screen, with some (optional aria hidden) text.
@@ -66,10 +65,10 @@
                 Both the starting announcement: "Dummy task has started, please wait" and the on completion announcement "Dummy task completed successfully" are announced and logged.
             </li>
             <li>
-                You can still access the the announcement history dialog and the alert button whilst the busy indicator is active.
+                You can still access the the run modal test button, the announcement history dialog and the alert button whilst the busy indicator is active, everything else is inaccessible.
             </li>
             <li>
-                Everything behind the overlay is inaccessible.
+                Focus remains on the Run Modal Test Button unless moved.
             </li>
             <li>
                 A static hour glass is seen for those who have system settings for reduced motion (you can also simulate this via the browser dev tools)

@@ -22,11 +22,22 @@
         if you prefer not to make a public comment.
     </p>
     <p>
-        Currently, I test locally on a Windows 11 PC using various combinations of Microsoft Edge, Mozilla Firefox, and Google Chrome with the JAWS, NVDA, and Narrator screen readers. I hope to set up an 
-        account on a platform such as BrowserStack in the near future to enable testing on mobile devices. Until then, the more feedback I receive from the community regarding any accessibility issues, the quicker 
-        I will be able to refine, package, and release these components (lots in the pipeline).
+        Currently, I test locally on a Windows 11 PC using various combinations of Microsoft Edge, Mozilla Firefox, and Google Chrome with the JAWS, NVDA, and Narrator screen readers. 
     </p>
-
+    <p>
+        <b>Update:</b> I can now test locally with VoiceOver on macOS Sequoia, so VoiceOver with Safari will be a set combination included with those above.
+    </p>
+    <p>
+        TalkBack on Android using Chrome, appears stable so will be included (but desktops are my priority).
+    </p>
+    <p>
+        The only slightly problematic platform is VoiceOver on macOS/iPhone. It works correctly for all tests except the one involving a one-second delay between starting and finishing a task. In this case, VoiceOver does not quite complete the entire 
+        first message (on default speech rate, sometimes it does on macOS) before beginning to read the second.
+    </p>
+    <p>
+        I am going to leave this for now, as I do not advocate using both a start announcement and an end announcement for anything lasting less than four or five seconds, as this is too verbose for users. 
+        It is technically fixable by using longer delays, but that would affect all scenarios. Making this configurable is a possibility; however, this is such an edge case at this stage that it is not worth the effort, in my humble opinion.
+    </p>
 </section>
 
 

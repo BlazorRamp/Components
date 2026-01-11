@@ -46,6 +46,47 @@ const getSetInertElements = (busyElement: HTMLElement | null): HTMLElement[] => 
     return inertElements;
 };
 
+
+const getSetInertElements2 = (busyElement: HTMLElement | null, activatingElement: HTMLElement | null, inertElements: HTMLElement[] = []): HTMLElement[] => {
+
+    if (!busyElement || !busyElement.parentElement) return inertElements;
+
+
+    Array.from(busyElement.parentElement.children).forEach(child => {
+
+        if (child !== busyElement && child instanceof HTMLElement) inertElements = recurseTree(child, activatingElement, inertElements);
+        
+    });
+
+    return inertElements;
+};
+
+const recurseTree = (element: HTMLElement, activatingElement: HTMLElement | null, inertElements: HTMLElement[] = []): HTMLElement[] => {
+
+    const tagName = element.tagName.toLowerCase();
+
+    const shouldSkip = element.hasAttribute(INERT_ATTRIBUTE) || element.getAttribute("aria-live") !== null ||
+                       element.getAttribute("data-br-component") === BS_COMPONENT_NAME || element.id === ANNOUNCEMENT_COMPONENTS_ID ||
+                       element.getAttribute("data-br-component") === AH_COMPONENT_NAME ||  element.getAttribute("role") === "alert" ||
+                       tagName === "script";
+
+    if (shouldSkip) return inertElements; 
+
+    if (activatingElement && element.contains(activatingElement)) {
+        Array.from(element.children).forEach(child => {
+
+            if (child instanceof HTMLElement && child !== activatingElement) inertElements = recurseTree(child, activatingElement, inertElements);
+
+        });
+        return inertElements;
+    }
+    element.setAttribute(INERT_ATTRIBUTE, "true");
+
+    inertElements.push(element);
+
+    return inertElements;
+};
+
 const checkIsInsideDialog = (busyElement: HTMLElement): [HTMLElement | null, boolean] => {
 
     if (!busyElement) return [null, false];
@@ -100,11 +141,7 @@ const startBusyIndicator = (busyElement: HTMLElement, displayModifier: string, t
 
     indicatorData.activatingElement = document?.activeElement as HTMLElement;
 
-    //(element.firstElementChild as HTMLElement).focus();
-
-    element.focus();
-
-    indicatorData.inertElements = getSetInertElements(element);
+    indicatorData.inertElements = getSetInertElements2(element, indicatorData.activatingElement);
 
     if (indicatorData.timerId)  clearTimeout(indicatorData.timerId);
 
@@ -142,9 +179,6 @@ const stopBusyIndicator = (busyElement: HTMLElement): void => {
     if (activatingElement && activatingElement.isConnected && !activatingElement.hasAttribute('disabled') && activatingElement.getAttribute('aria-disabled') !== 'true') {
 
         const currentActiveElement = document.activeElement;
-
-        //if (currentActiveElement === activatingElement || currentActiveElement == document.body
-        //    || currentActiveElement === busyElement.firstElementChild as Element) activatingElement.focus();
 
         if (currentActiveElement === activatingElement || currentActiveElement == document.body
             || currentActiveElement === busyElement as Element) activatingElement.focus();

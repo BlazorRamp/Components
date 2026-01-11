@@ -526,8 +526,22 @@ body #app__main {
 .info-box--container-test {
   height: 300px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: calc(var(--br-unit-space-5) * 2);
+  cursor: pointer;
+}
+.info-box--container-test > span.checkboxtest {
+  font-size: var(--br-unit-font-size-label);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--br-unit-space-3);
+}
+.info-box--container-test > span.checkboxtest input[type=checkbox] {
+  min-height: 1.25rem;
+  min-width: 1.25rem;
+  accent-color: var(--br-unit-colour-accent-dark);
 }
 
 .test-button {

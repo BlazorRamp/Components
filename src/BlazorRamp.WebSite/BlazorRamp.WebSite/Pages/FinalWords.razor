@@ -49,19 +49,13 @@
         Both JAWS and NVDA also had quirks around what they would or would not announce, depending on the browser and test scenario. However, at least they did not randomly start
         reading the address bar.
     </p>
+    
+    <b>Update:</b> Originally, to resolve the issues I was experiencing and to make the triggering element inert like other elements, I set focus to the busy indicator and then moved it back to the triggering element. This approach resolved many issues but, in hindsight, was probably a bad decision. As it turned out, I did not have access to VoiceOver (VO) at the time, this method caused problems for VO on macOS, not on iPhone.
+
     <p>
-        To cut a very long story short, to resolve the issues I encountered and to allow any combination of screen reader and browser that I tested to produce acceptable results,
-        I added a visually hidden span with a tabindex of -1 inside the busy indicator container. This span is populated with a supplied name, such as “Busy Indicator”, or as I prefer, simply “Status”.
+        Leaving focus on the triggering element works consistently across platforms with the timings. Currently, I am only aware of one minor (edge case) issue with VO on macOS/iPhone, as mentioned on the <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Home"> @(GlobalValues.Title_Home_Screen + " page")</a>.
     </p>
-    <p>
-        When opening the busy indicator, inert effectively removes all focusable elements from the accessibility tree. Providing the screen readers with a focusable element resolved
-        many issues, particularly for Narrator and JAWS.
-    </p>
-    <p>
-        The content of the span acts somewhat like an aria-label. Before you ask why I did not use one, that is a whole other story. You cannot apply aria-label to a div unless it has
-        an appropriate role, and I tried every role that seemed even remotely suitable for a busy indicator. Each one introduced some form of quirk or annoyance, none of which I felt
-        were particularly user friendly. As far as I am aware, what I have implemented is WCAG compliant, given the focus issues introduced by inert and the need for screen readers to have a valid focus target.
-    </p>
+
     <p>
         Another issue with inert, which I believe is still being actively debated, is that when using the new modal Dialog API it effectively makes everything outside the dialog inert,
         including live regions that you may have added for centralised use, which I personally consider best practice. Unless you add additional live regions inside the dialog, or dynamically
