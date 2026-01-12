@@ -388,7 +388,7 @@ body {
   --br-comp-history-box-shadow: var(--br-unit-box-shadow-1);
   --br-comp-history-outline-style: var(--br-comp-all-outline-style);
   --br-comp-history-outline-width: var(--br-comp-all-outline-width);
-  --br-comp-history-outline-offset: var(--br-comp-all-outline-offset);
+  --br-comp-history-outline-offset: 0px;
   --br-comp-history-outline-colour: var(--br-comp-all-outline-colour);
   /*
       * pane base styles

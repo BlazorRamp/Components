@@ -30,7 +30,7 @@ dialog {
         padding:0;
 
         &:focus-visible {
-            outline-offset:var(--br-comp-history-outline-offset);
+            outline-offset: var(--br-comp-history-outline-offset);
             outline-style: var(--br-comp-history-outline-style);
             outline-width: var(--br-comp-history-outline-width);
             outline-color: var(--br-comp-history-outline-colour);
