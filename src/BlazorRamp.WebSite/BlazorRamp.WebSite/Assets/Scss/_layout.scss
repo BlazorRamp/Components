@@ -103,7 +103,7 @@
             padding: var(--br-unit-space-4);
             color: var(--br-unit-colour-canvas-text);
 
-            &[aria-pressed="true"] {
+            &[aria-checked="true"] {
                 & > span:first-child {
                     min-height: 1.5rem;
                     min-width: 1.5rem;
@@ -112,7 +112,7 @@
                 }
             }
 
-            &[aria-pressed="false"] {
+            &[aria-checked="false"] {
                 & > span:first-child {
                     min-height: 1.5rem;
                     min-width: 1.5rem;

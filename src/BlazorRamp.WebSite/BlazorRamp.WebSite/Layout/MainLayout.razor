@@ -16,9 +16,11 @@
         <span aria-hidden="true"></span>
         <span>GitHub</span>
     </a>
-    <button id="theme-toggler" type="button" aria-pressed="@_pressed.ToString().ToLower()" @onclick="ToggleTheme">
+    <button id="theme-toggler" type="button" aria-checked="@_checked.ToString().ToLower()" @onclick="ToggleTheme" role="switch">
         <span aria-hidden="true"></span>
+        <span class="br-visually-hidden">Dark</span>
         <span>Theme</span>
+        
     </button>
 
     <button id="menu-toggler" type="button" aria-expanded="true" aria-controls="@GlobalValues.Main_Navigation_ID" @ref="MenuButtonRef">
@@ -36,7 +38,7 @@
 
 @code{
 
-    private bool _pressed  = false;
+    private bool _checked  = false;
     private IJSObjectReference? _jsLiveRegionModule;
     private IJSObjectReference? _jsTestComponentModule;
 
@@ -70,9 +72,9 @@
 
     private void ToggleTheme()
     {
-        _pressed = !_pressed;
+        _checked = !_checked;
 
-        var announcement = _pressed ? _darkThemeAnnouncement : _lightThemAnnouncement;
+        var announcement = _checked ? _darkThemeAnnouncement : _lightThemAnnouncement;
 
         _liveRegionService.MakeAnnouncement(announcement);
     }

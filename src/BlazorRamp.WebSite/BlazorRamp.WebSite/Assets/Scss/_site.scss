@@ -3,7 +3,7 @@
     --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-darker);
     --br-kbd-background-colour: var(--br-unit-colour-info-lighter)
 }
-:root:has(#theme-toggler[aria-pressed="true"]) {
+:root:has(#theme-toggler[aria-checked="true"]) {
     --br-comp-history-trigger-pane-surface-background: var(--br-unit-colour-neutral-5);
     --br-comp-history-trigger-pane-surface-text: var(--br-unit-colour-neutral-90);
     --br-comp-all-pane-base-background: var(--br-unit-colour-neutral-80);
