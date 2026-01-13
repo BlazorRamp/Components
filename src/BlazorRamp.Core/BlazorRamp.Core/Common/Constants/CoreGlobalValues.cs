@@ -24,8 +24,8 @@ internal static class CoreGlobalValues
 
     public const string CSS_Visually_Hidden_Class = "br-visually-hidden";
 
-    public const string Style_As_Dark = "dark";
-    public const string Style_As_Light = "light";
+    public const string Style_As_Dark = "on-dark";
+    public const string Style_As_Light = "on-light";
 
     public const string Live_Regions_Class    = "br-visually-hidden";
 
