@@ -1,5 +1,9 @@
 ﻿namespace BlazorRamp.Core.Common.Constants;
 
+
+/// <summary>
+/// Contains global constant values, file paths, and default text strings used throughout the BlazorRamp Core library.
+/// </summary>
 internal static class CoreGlobalValues
 {
     public const string JS_Utils_File_Path          = "./_content/BlazorRamp.Core/assets/js/core-utilities.js";
@@ -54,8 +58,8 @@ internal static class CoreGlobalValues
     public const string AH_Text_For_Refresh_Btn = "Refresh";
     public const string AH_Text_For_Close_Btn   = "Close";
     public const string AH_Text_For_Clear_Btn   = "Clear & Close";
-    public const string AH_Text_For_Heading     = "Recent alerts";
-    public const string AH_Text_No_Content      = "No alerts";
+    public const string AH_Text_For_Heading     = "Recent Announcements";
+    public const string AH_Text_No_Content      = "No Announcements";
     public const string AH_Text_For_Trigger_Btn = "Alerts";
 
 }
