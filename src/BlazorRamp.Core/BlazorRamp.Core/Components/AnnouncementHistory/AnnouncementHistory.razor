@@ -1,7 +1,7 @@
 ﻿<div id="@CoreGlobalValues.AH_ID" class="@CoreGlobalValues.AH_Class" data-br-component="@CoreGlobalValues.Component_Name">
     <div id="@CoreGlobalValues.AH_Components_ID">
         <dialog id="@CoreGlobalValues.AH_Dialog_ID" class="@CoreGlobalValues.AH_Popover_Class" popover="auto" aria-modal="false"
-                data-br-locale="@_locale" aria-labelledby="@CoreGlobalValues.AH_Title_ID">
+                data-br-locale="@_locale" aria-labelledby="@CoreGlobalValues.AH_Title_ID" tabindex="-1" autofocus>
            
             <div class="@CoreGlobalValues.AH_Content_Area_Class">
                 <h2 id="@CoreGlobalValues.AH_Title_ID" class="@CoreGlobalValues.AH_Header_Class">
@@ -19,7 +19,7 @@
             </div>
         </dialog>
 
-        <button id="@CoreGlobalValues.AH_Trigger_Button_ID" class="@CoreGlobalValues.AH_Trigger_Class" type="button" aria-expanded="false" aria-controls="@CoreGlobalValues.AH_Dialog_ID" aria-haspopup="dialog">
+        <button id="@CoreGlobalValues.AH_Trigger_Button_ID" class="@_triggerClasses" type="button" aria-expanded="false" aria-controls="@CoreGlobalValues.AH_Dialog_ID" aria-haspopup="dialog">
             <span aria-hidden="true" class="@CoreGlobalValues.AH_Icon_Class"></span>
             <span>@CoreGlobalValues.AH_Text_For_Trigger_Btn</span>
         </button>

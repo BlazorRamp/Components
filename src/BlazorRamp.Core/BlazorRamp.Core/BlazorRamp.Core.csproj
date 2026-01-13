@@ -1,11 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
-
   <PropertyGroup>
 	<TargetFrameworks>net8.0</TargetFrameworks>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
+    <Title>BlazorRamp.Core</Title>
+    <Copyright>Copyright (c) 2025 Paul Kent and BlazorRamp Contributors</Copyright>
+    <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
+    <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region;</PackageTags>
+    <PackageReleaseNotes>Core foundational library for the BlazorRamp ecosystem. 
+Provides essential services for ARIA Live Region announcements, accessibility history management, and common utilities 
+for accessible Blazor UI components.
+</PackageReleaseNotes>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+	  <Version>1.0.0</Version>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	  <Deterministic>true</Deterministic>
+	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0|AnyCPU'">
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,14 +41,17 @@
     <SupportedPlatform Include="browser" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="BuildWebCompiler2022" Version="1.14.15" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.22" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.9.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="BuildWebCompiler2022" Version="1.14.15">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.22" />
+		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.9.3">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
 	<ItemGroup>
 		<InternalsVisibleTo Include="BlazorRamp.Switch" key="002400000480000094000000060200000024000052534131000400000100010091764439b057aa648d9b6fae0af179aacf637c9e9eb0c53eb2d2480ebc4eadc7ad2cc8ddaca110281c6da8f466eea56e22ce7f6cada84d657f1b2e4a6c5169a03c7e272c3bc7b14930364f0c1a5c5a75a8631dd303454f3569bf32a95db99132838602a24d64b3b92124827682ee19d6df5921a6bc4bd77a999b26c9420337df" />
@@ -40,6 +67,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include="compilerconfig.json" />
   </ItemGroup>
 	

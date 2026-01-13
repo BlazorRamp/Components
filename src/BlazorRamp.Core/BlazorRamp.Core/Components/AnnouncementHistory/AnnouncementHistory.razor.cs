@@ -1,11 +1,8 @@
 ﻿using BlazorRamp.Core.Common.Constants;
-using BlazorRamp.Core.Common.Models;
 using BlazorRamp.Core.Common.Utilities;
 using BlazorRamp.Core.Services;
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 using System.Globalization;
-using System.Text.Json;
 
 namespace BlazorRamp.Core.Components.AnnouncementHistory;
 

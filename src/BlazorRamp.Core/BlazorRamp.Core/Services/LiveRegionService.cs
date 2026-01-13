@@ -3,7 +3,6 @@ using BlazorRamp.Core.Common.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.JSInterop;
-using BlazorRamp.Core.Common.Utilities;
 
 namespace BlazorRamp.Core.Services;
 
@@ -60,7 +59,7 @@ public sealed class LiveRegionService : ILiveRegionService, IAsyncDisposable
     {
         _jsLiveRegionModule = await GetJSLiveRegionModule(CoreGlobalValues.JS_Live_Region_File_Path);
 
-        if (_jsLiveRegionModule is not null) await _jsLiveRegionModule.InvokeVoidAsync(CoreGlobalValues.JS_Live_Region_Check_Close_Popover_Func); ; 
+        if (_jsLiveRegionModule is not null) await _jsLiveRegionModule.InvokeVoidAsync(CoreGlobalValues.JS_Live_Region_Check_Close_Popover_Func);  
         
     }
 
