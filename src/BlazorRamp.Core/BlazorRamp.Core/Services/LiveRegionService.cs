@@ -9,7 +9,7 @@ namespace BlazorRamp.Core.Services;
 /// <summary>
 /// Provides an implementation of <see cref="ILiveRegionService"/> that manages 
 /// JavaScript interop for ARIA live regions and popover state.
-/// </summary
+/// </summary>
 public sealed class LiveRegionService : ILiveRegionService, IAsyncDisposable
 {
     private IJSObjectReference?        _jsLiveRegionModule;

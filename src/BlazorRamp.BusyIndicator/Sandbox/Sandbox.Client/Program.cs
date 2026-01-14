@@ -1,3 +1,4 @@
+using BlazorRamp.Core.Common.Extensions;
 using BlazorRamp.Core.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -9,7 +10,7 @@ namespace Sandbox.Client
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
-            builder.Services.AddScoped<ILiveRegionService, LiveRegionService>();
+            builder.Services.AddBlazorRampCore();
 
             await builder.Build().RunAsync();
         }

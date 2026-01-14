@@ -12,41 +12,50 @@ namespace BlazorRamp.Core.Components.AnnouncementHistory;
 /// </summary>
 public partial class AnnouncementHistory
 {
-    /// <summary>Gets or sets the h2 heading text displayed for announcement history dialog as well as being used for the dialogs aria-labelledby attribute.
+    /// <summary>
+    /// Gets or sets the h2 heading text displayed for announcement history dialog as well as being used for the dialogs aria-labelledby attribute.
     /// A default value of "Recent Announcements" is used if the parameter value is not specified.
     /// </summary>
     [Parameter] public string Title          { get; set; } = CoreGlobalValues.AH_Text_For_Heading;
 
-    /// <summary>Gets or sets the text for the button that closes the history dialog.
+    /// <summary>
+    /// Gets or sets the text for the button that closes the history dialog.
     /// A default value of "Close" is used if the parameter value is not specified.
     /// </summary>
     [Parameter] public string CloseText      { get; set; } = CoreGlobalValues.AH_Text_For_Close_Btn;
 
-    /// <summary>Gets or sets the text for the button that clears the announcement history logs and closes the dialog.
-    /// A default value of "Clear & Close" is used if the parameter value is not specified.
+    /// <summary>
+    /// Gets or sets the text for the button that clears the announcement history logs and closes the dialog.
+    /// A default value of "Clear &amp; Close" is used if the parameter value is not specified.
     /// </summary>
     [Parameter] public string ClearCloseText { get; set; } = CoreGlobalValues.AH_Text_For_Clear_Btn;
 
-    /// <summary>Gets or sets the text for the button that refreshes the history list that is displayed in the dialog.
+    /// <summary>
+    /// Gets or sets the text for the button that refreshes the history list that is displayed in the dialog.
     /// A default value of "Refresh" is used if the parameter value is not specified.
     /// </summary>
     [Parameter] public string RefreshText    { get; set; } = CoreGlobalValues.AH_Text_For_Refresh_Btn;
 
-    /// <summary>Gets or sets the text displayed when there are no announcements in the history.
+    /// <summary>
+    /// Gets or sets the text displayed when there are no announcements in the history.
     /// A default value of "No Announcements" is used if the parameter value is not specified.
     /// </summary>
     [Parameter] public string NoDataText     { get; set; } = CoreGlobalValues.AH_Text_No_Content;
 
-    /// <summary>Gets or sets the text for the trigger button that opens the history dialog.
+    /// <summary>
+    /// Gets or sets the text for the trigger button that opens the history dialog.
     /// A default value of "Alerts" is used if the parameter value is not specified.
     /// </summary>
     [Parameter] public string TriggerText    { get; set; } = CoreGlobalValues.AH_Text_For_Trigger_Btn;
 
-    /// <summary>Gets or sets a value indicating whether the trigger button is visible or only when its focused via the keyboard.
+    /// <summary>
+    /// Gets or sets a value indicating whether the trigger button is visible or only when its focused via the keyboard.
     /// The default value is true, always visible.    /// </summary>
     [Parameter] public bool   TriggerVisible { get; set; } = true;
 
-    /// <summary>Injected service to manage and dispatch live region announcements.</summary>
+    /// <summary>
+    /// Injected service to manage and dispatch live region announcements.
+    /// </summary>
     [Inject] private ILiveRegionService  LiveRegionService  { get; set; } = default!;//just forces service to load.
 
     private string  _historyTitle      = String.Empty;

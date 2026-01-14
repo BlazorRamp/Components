@@ -1,7 +1,7 @@
-using BlazorRamp.Core.Services;
 using Microsoft.Extensions.Options;
 using Sandbox.Client.Pages;
 using Sandbox.Components;
+using BlazorRamp.Core.Common.Extensions;
 
 namespace Sandbox
 {
@@ -17,7 +17,7 @@ namespace Sandbox
                 .AddInteractiveWebAssemblyComponents();
 
 
-            builder.Services.AddScoped<ILiveRegionService, LiveRegionService>();
+            builder.Services.AddBlazorRampCore();
 
             var app = builder.Build();
 

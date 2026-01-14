@@ -30,6 +30,10 @@
     --br-unit-space-3: 0.5rem;
     --br-unit-space-4: 0.75rem;
     --br-unit-space-5: 1rem;
+    --br-unit-space-6: 1.25rem;
+    --br-unit-space-7: 1.5rem;
+    --br-unit-space-8: 1.75rem;
+    --br-unit-space-9: 2rem;
     /*
         * Border radidius
     */
@@ -361,9 +365,6 @@
     --br-comp-all-button-state-hover: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10));
     --br-comp-all-button-state-active-brigthness: var(--br-unit-state-active-brigthness);
     --br-comp-all-button-state-active-scale: var(--br-unit-state-active-scale);
-    /*
-        *
-    */
     /*
         * SVG icons
     */

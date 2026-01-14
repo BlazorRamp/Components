@@ -26,7 +26,6 @@ const _historyQueue = [];
 let _isAnnouncing = false;
 let _announceRegistered = false;
 let _messageCounter = 0;
-let focusBeforePopover = null;
 let elementsForLocationChanged;
 /*
     * Bug in api spent see https://github.com/whatwg/html/issues/10890a

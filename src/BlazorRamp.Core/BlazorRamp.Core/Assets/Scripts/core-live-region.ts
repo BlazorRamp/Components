@@ -23,7 +23,6 @@ const _historyQueue: AnnouncementRecord[] = [];
 let _isAnnouncing = false;
 let _announceRegistered = false
 let _messageCounter = 0;
-let focusBeforePopover: HTMLElement | null = null;
 
 let elementsForLocationChanged: { containerElement: HTMLElement | null, componentsElement: HTMLElement | null, popoverElement: HTMLElement | null, triggerElement: HTMLButtonElement | null };
 
