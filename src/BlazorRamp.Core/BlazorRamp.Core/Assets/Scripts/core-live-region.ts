@@ -34,6 +34,20 @@ let elementsForLocationChanged: { containerElement: HTMLElement | null, componen
 */
 let _isPopoverOpen: boolean = false;
 
+
+const isRightToLeftText = (locale: string = "en-GB"): boolean => {
+    try {
+        const intlLocale = new Intl.Locale(locale);
+        // @ts-ignore - textInfo not in es2020 that I set in the cofig
+        const textInfo = intlLocale.getTextInfo?.();
+        return textInfo?.direction === 'rtl';
+
+       
+    } catch (e) {
+        return false;
+    }
+};
+
 const getLocalIsoTimestamp = () => {
 
     const now = new Date();
@@ -177,21 +191,41 @@ const buildAnnouncementList = (ahContentElement: HTMLElement, locale: string) =>
 
     if (!ahContentElement || !ahContentElement.firstElementChild) return;
 
-    const olElement = ahContentElement.firstElementChild as HTMLElement;
-    const paraElement = ahContentElement.lastElementChild as HTMLElement;
-
     locale = isNullOrWhitespace(locale) ? "en-GB" : locale.trim();
+
+    const olElement   = ahContentElement.firstElementChild as HTMLElement;
+    const paraElement = ahContentElement.lastElementChild as HTMLElement;
+    const isRTL = isRightToLeftText(locale);
+
+    olElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr')
 
     paraElement.style.display = "none";
     olElement.innerHTML = "";
 
+    //for (const record of [..._historyQueue].reverse()) {
+
+    //    const li = document.createElement("li");
+    //    const time = formatTimestampLocalized(record.timestamp, locale) + ";";
+    //    const page = record.page === "" ? "" : record.page.trim() + ";";
+    //    const trigger = (!record.announcementTrigger || record.announcementTrigger.trim().length === 0) ? "" : record.announcementTrigger.trim() + ";";
+    //    li.textContent = `${time} ${page} ${trigger} ${record.message}`;
+
+    //    olElement.appendChild(li);
+    //}
+
+
     for (const record of [..._historyQueue].reverse()) {
 
         const li = document.createElement("li");
-        const time = formatTimestampLocalized(record.timestamp, locale) + ";";
-        const page = record.page === "" ? "" : record.page.trim() + ";";
-        const trigger = (!record.announcementTrigger || record.announcementTrigger.trim().length === 0) ? "" : record.announcementTrigger.trim() + ";";
-        li.textContent = `${time} ${page} ${trigger} ${record.message}`;
+        const time = formatTimestampLocalized(record.timestamp, locale);
+        const page = record.page === "" ? "" : record.page.trim();
+        const trigger = (!record.announcementTrigger || record.announcementTrigger.trim().length === 0) ? "" : record.announcementTrigger.trim();
+
+        if (isRTL) {
+            li.textContent = `${record.message}${trigger ? '; ' + trigger : ''}${page ? '; ' + page : ''}; ${time}`;
+        } else {
+            li.textContent = `${time}; ${page ? page + '; ' : ''}${trigger ? trigger + '; ' : ''}${record.message}`;
+        }
 
         olElement.appendChild(li);
     }

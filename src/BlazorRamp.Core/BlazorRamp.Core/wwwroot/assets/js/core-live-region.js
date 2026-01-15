@@ -34,6 +34,17 @@ let elementsForLocationChanged;
     * The state flag is the best workaround I found.
 */
 let _isPopoverOpen = false;
+const isRightToLeftText = (locale = "en-GB") => {
+    try {
+        const intlLocale = new Intl.Locale(locale);
+        // @ts-ignore - textInfo not in es2020 that I set in the cofig
+        const textInfo = intlLocale.getTextInfo?.();
+        return textInfo?.direction === 'rtl';
+    }
+    catch (e) {
+        return false;
+    }
+};
 const getLocalIsoTimestamp = () => {
     const now = new Date();
     const pad = (num) => String(num).padStart(2, "0");
@@ -126,17 +137,32 @@ const formatTimestampLocalized = (isoTimestamp, locale = 'en-GB') => {
 const buildAnnouncementList = (ahContentElement, locale) => {
     if (!ahContentElement || !ahContentElement.firstElementChild)
         return;
+    locale = isNullOrWhitespace(locale) ? "en-GB" : locale.trim();
     const olElement = ahContentElement.firstElementChild;
     const paraElement = ahContentElement.lastElementChild;
-    locale = isNullOrWhitespace(locale) ? "en-GB" : locale.trim();
+    const isRTL = isRightToLeftText(locale);
+    olElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
     paraElement.style.display = "none";
     olElement.innerHTML = "";
+    //for (const record of [..._historyQueue].reverse()) {
+    //    const li = document.createElement("li");
+    //    const time = formatTimestampLocalized(record.timestamp, locale) + ";";
+    //    const page = record.page === "" ? "" : record.page.trim() + ";";
+    //    const trigger = (!record.announcementTrigger || record.announcementTrigger.trim().length === 0) ? "" : record.announcementTrigger.trim() + ";";
+    //    li.textContent = `${time} ${page} ${trigger} ${record.message}`;
+    //    olElement.appendChild(li);
+    //}
     for (const record of [..._historyQueue].reverse()) {
         const li = document.createElement("li");
-        const time = formatTimestampLocalized(record.timestamp, locale) + ";";
-        const page = record.page === "" ? "" : record.page.trim() + ";";
-        const trigger = (!record.announcementTrigger || record.announcementTrigger.trim().length === 0) ? "" : record.announcementTrigger.trim() + ";";
-        li.textContent = `${time} ${page} ${trigger} ${record.message}`;
+        const time = formatTimestampLocalized(record.timestamp, locale);
+        const page = record.page === "" ? "" : record.page.trim();
+        const trigger = (!record.announcementTrigger || record.announcementTrigger.trim().length === 0) ? "" : record.announcementTrigger.trim();
+        if (isRTL) {
+            li.textContent = `${record.message}${trigger ? '; ' + trigger : ''}${page ? '; ' + page : ''}; ${time}`;
+        }
+        else {
+            li.textContent = `${time}; ${page ? page + '; ' : ''}${trigger ? trigger + '; ' : ''}${record.message}`;
+        }
         olElement.appendChild(li);
     }
     if (_historyQueue.length === 0)

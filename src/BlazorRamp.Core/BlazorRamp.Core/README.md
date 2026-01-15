@@ -53,3 +53,38 @@ Title="Recent Announcements" TriggerVisible="true" TriggerText="Alerts" />
 
 <Router AppAssembly . . .
 ```
+
+## Using the Live Region Service
+
+Inject the `ILiveRegionService` into your desired component or class and make the appropriate calls by passing the `ILiveRegionSerivce.MakeAnnouncement` method an announcement object.
+
+```
+@inject ILiveRegionService _liveRegionService
+
+@code{
+
+	private async Task MakeAnnouncement()
+	{
+		var announcement = new Announcement("The site is now using a dark coloured theme.", AnnouncementType.Info, "Dark Theme Switch", LiveRegionType.Polite);
+		await _liveRegionService.MakeAnnouncement(announcement);
+	}
+}
+
+```
+**Note:** Where possible make announcements using `LiveRegionType.Polite` and keep your messages brief and to the point. Long verbose messages are annoying and just slow the user down. 
+
+The announcement object has the following constructor parameters:
+
+- **Message** - a string value containing the message to be announced.
+- **AnnouncementType** - an enumerated type describing the type category of announcement (for future use) the default is `AnnoucementType.Info`,
+- **AnnouncementTrigger** - an optional string value with the user friendly display name of the element that triggered the announcement such as 'Save Button'
+- **LiveRegionType** - the urgency of the announcement. Polite announcements wait for the screen reader to finish current speech before announcing where as assertive announcements 
+interrupt the screen reader immediately. 
+
+**Full documentation available at:** https://docs.blazorramp.uk 
+
+**Screen Reader Browser Combination Tests:** 
+- On Windows 11 - JAWS, NVDA and FireFox each paired with Chrome, Edge and FireFox.
+- On macOS (Sequoia) VoiceOver was paired with Safari
+- On iPhone, VoiceOver was paired with Safari
+- On Android, TalkBack was paired with Chrome

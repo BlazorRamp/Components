@@ -51,6 +51,7 @@ internal static class CoreGlobalValues
     public const string AH_Header_Class       = $"{AH_Class}__header";
     public const string AH_Ol_list_Class      = $"{AH_Class}__numbered-list";
     public const string AH_Footer_Class       = $"{AH_Class}__footer";
+    public const string AH_Footer_Modifier    = $"{AH_Footer_Class}--reverse";
     public const string AH_Trigger_Class      = $"{AH_Class}__trigger";
     public const string AH_Trigger_Modifier   = $"{AH_Trigger_Class}--only-focus-visible";
     public const string AH_Icon_Class         = $"{AH_Class}__icon";

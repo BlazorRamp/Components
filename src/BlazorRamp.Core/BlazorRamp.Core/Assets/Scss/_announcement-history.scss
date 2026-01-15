@@ -129,6 +129,10 @@ dialog {
         gap: var(--br-unit-space-5);
         align-items: center;
         padding-top: var(--br-unit-space-4);
+
+        &--reverse{
+            flex-direction: row-reverse;
+        }
     }
 
     &__button {

@@ -66,7 +66,7 @@ public partial class AnnouncementHistory
     private string  _noDataText        = String.Empty;
     private string  _locale            = String.Empty;
     private string? _triggerClasses    = null;
-
+    private string? _footerClasses     = null;
 
     /// <summary>
     /// Initializes the component by setting up localized strings and determining the visibility classes 
@@ -74,7 +74,9 @@ public partial class AnnouncementHistory
     /// </summary>
     protected override void OnInitialized()
     {
-        _locale            = CultureInfo.CurrentUICulture.Name; ;
+        var isRTL = true;//CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
+
+        _locale            = CultureInfo.CurrentUICulture.Name;
         _historyTitle      = String.IsNullOrWhiteSpace(Title)          ? CoreGlobalValues.AH_Text_For_Heading     : Title.Trim();
         _closeButtonText   = String.IsNullOrWhiteSpace(CloseText)      ? CoreGlobalValues.AH_Text_For_Close_Btn   : CloseText.Trim();
         _clearButtonText   = String.IsNullOrWhiteSpace(ClearCloseText) ? CoreGlobalValues.AH_Text_For_Clear_Btn   : ClearCloseText.Trim();
@@ -83,7 +85,7 @@ public partial class AnnouncementHistory
         _noDataText        = String.IsNullOrWhiteSpace(NoDataText)     ? CoreGlobalValues.AH_Text_No_Content      : NoDataText.Trim();
 
         _triggerClasses    = TriggerVisible ? CoreGlobalValues.AH_Trigger_Class : CoreUtilities.CreateClassList(CoreGlobalValues.AH_Trigger_Class, CoreGlobalValues.AH_Trigger_Modifier);
-
+        _footerClasses     = isRTL ? CoreUtilities.CreateClassList(CoreGlobalValues.AH_Footer_Class, CoreGlobalValues.AH_Footer_Modifier) : CoreGlobalValues.AH_Footer_Class;
     }
     
 }

@@ -1,6 +1,3 @@
 const getScreenInnerWidth = () => window.innerWidth;
-function testModuleIsWorking(message) {
-    alert('Hello from javascript');
-}
-export { getScreenInnerWidth, testModuleIsWorking };
+export { getScreenInnerWidth };
 //# sourceMappingURL=core-utilities.js.map

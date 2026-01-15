@@ -46,7 +46,7 @@
     private ElementReference SideNavigationRef { get; set; }
     private ElementReference MainContentRef    { get; set; }
 
-    private Announcement _darkThemeAnnouncement = new Announcement("The site is now using a dark coloured theme.", AnnouncementType.Info,  "Dark Theme Switch", LiveRegionType.Polite);
+    private Announcement _darkThemeAnnouncement = new Announcement("The site is now using a dark coloured theme.", AnnouncementType.Info, "Dark Theme Switch", LiveRegionType.Polite);
     private Announcement _lightThemAnnouncement = new Announcement("The site is now using a light coloured theme.", AnnouncementType.Info, "Dark Theme Switch", LiveRegionType.Polite);
 
     protected override async Task OnInitializedAsync()
@@ -70,13 +70,13 @@
         if (_jsLiveRegionModule is not null) await _jsTestComponentModule!.InvokeVoidAsync(GlobalValues.JS_Check_Close_Nav, MenuButtonRef);
     }
 
-    private void ToggleTheme()
+    private async Task ToggleTheme()
     {
         _checked = !_checked;
 
         var announcement = _checked ? _darkThemeAnnouncement : _lightThemAnnouncement;
 
-        _liveRegionService.MakeAnnouncement(announcement);
+        await _liveRegionService.MakeAnnouncement(announcement);
     }
 
     public async ValueTask DisposeAsync()

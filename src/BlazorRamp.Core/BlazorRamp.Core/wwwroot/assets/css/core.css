@@ -630,6 +630,9 @@ dialog.br-announcement-history__popover:focus-visible {
   align-items: center;
   padding-top: var(--br-unit-space-4);
 }
+.br-announcement-history__footer--reverse {
+  flex-direction: row-reverse;
+}
 .br-announcement-history__button {
   appearance: none;
   background-color: var(--br-comp-history-button-background);

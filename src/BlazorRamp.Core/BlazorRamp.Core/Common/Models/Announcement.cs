@@ -13,7 +13,7 @@ namespace BlazorRamp.Core.Common.Models;
 public record Announcement(
     [property: JsonPropertyName("message")] string Message,
     [property: JsonConverter(typeof(JsonStringEnumConverter))]
-    [property: JsonPropertyName("announcementType")] AnnouncementType AnnouncementType,
+    [property: JsonPropertyName("announcementType")] AnnouncementType AnnouncementType = AnnouncementType.Info,
     [property: JsonPropertyName("announcementTrigger")] string? AnnouncementTrigger = "",
     [property: JsonConverter(typeof(JsonStringEnumConverter))]
     [property: JsonPropertyName("liveRegionType")] LiveRegionType LiveRegionType = LiveRegionType.Polite
