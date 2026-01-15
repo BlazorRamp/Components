@@ -1,4 +1,4 @@
-using BlazorRamp.Core.Services;
+using BlazorRamp.Core.Common.Extensions;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -12,7 +12,7 @@ public class Program
         builder.RootComponents.Add<App>("#app");
         builder.RootComponents.Add<HeadOutlet>("head::after");
 
-        builder.Services.AddScoped<ILiveRegionService, LiveRegionService>();
+        builder.Services.AddBlazorRampCore();
         builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
         await builder.Build().RunAsync();

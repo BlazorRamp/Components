@@ -35,7 +35,7 @@ public static class GlobalValues
 
     public const string Info_Box_Class                      = "info-box";
     public const string Info_Box_Heading_Class              = $"{Info_Box_Class}__heading";
-    public const string Info_Box_Heading_Primary_Modifier   = $"{Info_Box_Class}__heading--primary";
+    public const string Info_Box_Heading_Primary_Modifier   = $"{Info_Box_Heading_Class}--primary";
     public const string Info_Box_Coloured_Modifier          = $"{Info_Box_Class}--coloured";
     public const string Info_Box_Container_Test_Modifier    = $"{Info_Box_Class}--container-test";
 

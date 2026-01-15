@@ -1,0 +1,77 @@
+﻿
+@implements IAsyncDisposable
+
+@inherits LayoutComponentBase
+
+@inject IJSRuntime _jsRuntime
+@inject NavigationManager _navigationManager
+@inject ILiveRegionService _liveRegionService
+
+
+<header id="app__header">
+    <button id="theme-toggler" type="button" aria-checked="@_checked.ToString().ToLower()" @onclick="ToggleTheme" role="switch">
+        <span aria-hidden="true"></span>
+        <span class="br-visually-hidden">Dark</span>
+        <span>Theme</span>
+
+    </button>
+</header>
+
+<div id="app__nav" @ref="SideNavigationRef">
+
+</div>
+<main id="app__main" @ref="MainContentRef">
+    @Body
+</main>
+
+@code{
+
+    private bool _checked  = false;
+    private IJSObjectReference? _jsLiveRegionModule;
+    private IJSObjectReference? _jsDocSiteModule;
+
+    private ElementReference MenuButtonRef     { get; set; }
+    private ElementReference SideNavigationRef { get; set; }
+    private ElementReference MainContentRef    { get; set; }
+
+    private Announcement _darkThemeAnnouncement = new Announcement("The site is now using a dark coloured theme.", AnnouncementType.Info,  "Dark Theme Switch", LiveRegionType.Polite);
+    private Announcement _lightThemAnnouncement = new Announcement("The site is now using a light coloured theme.", AnnouncementType.Info, "Dark Theme Switch", LiveRegionType.Polite);
+
+    protected override async Task OnInitializedAsync()
+    {
+        _navigationManager.LocationChanged+=  Navigation_LocationChanged;
+        try
+        {
+            _jsLiveRegionModule    = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", CoreGlobalValues.JS_Utils_File_Path);
+            _jsDocSiteModule = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Module_File_Path);
+
+           // await _jsDocSiteModule.InvokeVoidAsync(GlobalValues.JS_Initialise_Func, MenuButtonRef, SideNavigationRef, MainContentRef, GlobalValues.Start_Width_For_Collapsed_Menu);
+
+        }
+        catch (Exception ex)
+        {
+            var s = ex;
+        }
+    }
+    private async void Navigation_LocationChanged(object? sender, LocationChangedEventArgs args)
+    {
+        if (_jsLiveRegionModule is not null) await _jsDocSiteModule!.InvokeVoidAsync(GlobalValues.JS_Check_Close_Nav, MenuButtonRef);
+    }
+
+    private void ToggleTheme()
+    {
+        _checked = !_checked;
+
+        var announcement = _checked ? _darkThemeAnnouncement : _lightThemAnnouncement;
+
+        _liveRegionService.MakeAnnouncement(announcement);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_jsLiveRegionModule is not null) await _jsLiveRegionModule.DisposeAsync();
+        if (_jsDocSiteModule is not null) await _jsDocSiteModule.DisposeAsync();
+
+        _navigationManager.LocationChanged-= Navigation_LocationChanged;
+    }
+}
