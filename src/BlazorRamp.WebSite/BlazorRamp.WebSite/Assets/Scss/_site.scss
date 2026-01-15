@@ -19,13 +19,12 @@
     --br-comp-all-link-hover-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.15);
     --br-comp-all-link-active-bacbground-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.3);
     --br-comp-all-link-focused-background-colour: var(--br-unit-colour-secondary-darker);
-
     --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-light);
     --br-kbd-background-colour: var(--br-unit-colour-info-darker);
     --br-unit-colour-canvas-inverted: var(--br-unit-colour-neutral-5);
     --br-unit-colour-canvas-text-inverted: var(--br-unit-colour-neutral-90);
     --br-comp-all-button-background: var(--br-unit-colour-primary-70);
-    --br-comp-all-button-text: var(--br-unit-colour-primary-text-light);
+    --br-comp-all-button-border-colour: var(--br-unit-colour-primary-30);
 }
 *,
 *::before,

@@ -353,7 +353,7 @@
   --br-comp-all-button-font-weight: var(--br-unit-font-weight-400,inherit);
   --br-comp-all-button-line-height: inherit;
   --br-comp-all-button-border-style: solid;
-  --br-comp-all-button-border-colour: var(--br-unit-colour-primary-30);
+  --br-comp-all-button-border-colour: var(--br-unit-colour-primary-40);
   --br-comp-all-button-border-width: var(--br-unit-border-1);
   --br-comp-all-button-border-radius: var(--br-unit-radius-full);
   --br-comp-all-button-state-hover: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10));
@@ -468,7 +468,6 @@ body {
   --br-comp-history-button-font-size: var(--br-comp-all-button-font-size);
   --br-comp-history-button-font-weight: var(--br-comp-all-button-font-weight);
   --br-comp-history-button-line-height: var(--br-comp-all-button-line-heigh);
-  --br-comp-history-button-border: var(--br-comp-all-button-borde);
   --br-comp-history-button-border-style: var(--br-comp-all-button-border-style);
   --br-comp-history-button-border-colour: var(--br-comp-all-button-border-colour);
   --br-comp-history-button-border-width: var(--br-comp-all-button-border-width);

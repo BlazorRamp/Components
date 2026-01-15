@@ -365,7 +365,7 @@
   --br-unit-colour-canvas-inverted: var(--br-unit-colour-neutral-5);
   --br-unit-colour-canvas-text-inverted: var(--br-unit-colour-neutral-90);
   --br-comp-all-button-background: var(--br-unit-colour-primary-70);
-  --br-comp-all-button-text: var(--br-unit-colour-primary-text-light);
+  --br-comp-all-button-border-colour: var(--br-unit-colour-primary-30);
 }
 
 *,
