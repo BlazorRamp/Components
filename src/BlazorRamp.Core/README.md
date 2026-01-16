@@ -84,7 +84,7 @@ interrupt the screen reader immediately.
 **Full documentation available at:** https://docs.blazorramp.uk 
 
 **Screen Reader Browser Combination Tests:** 
-- On Windows 11 - JAWS, NVDA and FireFox each paired with Chrome, Edge and FireFox.
+- On Windows 11 - JAWS, NVDA and Narrator each paired with Chrome, Edge and FireFox.
 - On macOS (Sequoia) VoiceOver was paired with Safari
 - On iPhone, VoiceOver was paired with Safari
 - On Android, TalkBack was paired with Chrome
