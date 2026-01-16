@@ -4,8 +4,12 @@ Blazor Ramp aims to provide a suite of modular, accessible-first Blazor componen
 
 Please check back **regularly** during this **initial** phase whilst I put in place everything you would expect.
 
-Whilst you are waiting, please visit the test site [blazorramp.uk](https://blazorramp.uk)
+Whilst you are waiting, please visit the test site [https://blazorramp.uk](https://blazorramp.uk)
  and use any **assistive** technology at your disposal to help identify any issues with the **Live Region Service**, **Announcement history** and **Busy Indicator** components under test.
+
+Currently I am putting the finishing touches on the Core project prior to release as well making start on the documentation site that will be for
+all the components. This will be a separate Blazor WASM site (again hosted on GitHub Pages) using: [https://docs.blazorramp.uk](https://docs.blazorramp.uk). I will most likely release the Core project prior to finishing all of the documentation so people can take it for a spin,
+as the main / longest part of the documentation will be regarding all of the css properties and the implemented hierarchy.
 
 **Screen Reader Browser Combination Tests:** 
 - On Windows 11 - JAWS, NVDA and Narrator each paired with Chrome, Edge and FireFox.
