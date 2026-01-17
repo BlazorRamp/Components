@@ -210,7 +210,7 @@
 
         &:has(#menu-toggler[aria-expanded="true"]) #app__nav {
             grid-column: 1/3; // Span both columns
-            width: 100%;
+            width: calc(100% - 0.5rem);
         }
     }
 }
