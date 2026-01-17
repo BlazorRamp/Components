@@ -24,6 +24,8 @@ public static class GlobalValues
     public const string Title_Busy_Short           = "Busy With Short Delay Test";
     public const string Title_Final_Words          = "Final Words";
 
+    public const string Main_Navigation_Aria_Label = "Main Navigation";
+
     public const string Main_Navigation_ID = "main-navigation";
 
     public const string Main_Navigation_Class = "main-navigation";
