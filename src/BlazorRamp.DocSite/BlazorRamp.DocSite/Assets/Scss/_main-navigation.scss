@@ -1,4 +1,9 @@
-﻿.main-navigation {
+﻿@use "_functions" as *;
+@use "_svg-icons" as *;
+
+.main-navigation {
+
+
 
     & > ul {
         all: unset;
@@ -8,6 +13,13 @@
         flex-direction: column;
         gap: var(--br-unit-space-2);
         font-size: var(--br-unit-font-size-label);
+    }
+
+    &__heading {
+        font-size: var(--br-unit-font-size-3);
+        font-weight: var(--br-unit-font-weight-500);
+        margin-bottom: var(--br-unit-space-3);
+        color: var(--br-comp-all-area-header-text);
     }
 
     &__link {
@@ -25,12 +37,9 @@
             font-weight: var(--br-unit-font-weight-500, bold);
         }
 
-
-
         &:active {
             background-color: var(--br-comp-all-link-active-background-colour);
         }
-
 
 
         &:focus-visible {

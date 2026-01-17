@@ -207,5 +207,10 @@
         &:has(#menu-toggler[aria-expanded="true"]) #app__main {
             display: none;
         }
+
+        &:has(#menu-toggler[aria-expanded="true"]) #app__nav {
+            grid-column: 1/3; // Span both columns
+            width: 100%;
+        }
     }
 }

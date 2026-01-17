@@ -125,3 +125,18 @@
     }
 }
 
+@mixin home-icon {
+    --br-home-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='m16 8.41l-4.5-4.5L4.41 11H6v8h3v-6h5v6h3v-8h1.59L17 9.41V6h-1zM2 12l9.5-9.5L15 6V5h3v4l3 3h-3v8h-5v-6h-3v6H5v-8z'/%3E%3C/svg%3E");
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-color: currentColor;
+    mask-image: var(--br-home-svg);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+
+    @media (forced-colors: active) {
+        background-color: CanvasText;
+        color: Canvas;
+    }
+}

@@ -1,6 +1,6 @@
 ﻿[
   {
-    "outputFile": "wwwroot/assets/css/main.min.css",
+    "outputFile": "wwwroot/assets/css/main.css",
     "inputFile": "Assets/Scss/main.scss"
   }
 ]

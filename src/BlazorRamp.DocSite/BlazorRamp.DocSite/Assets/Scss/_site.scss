@@ -21,13 +21,13 @@
     --br-comp-all-link-hover-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.15);
     --br-comp-all-link-active-bacbground-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.3);
     --br-comp-all-link-focused-background-colour: var(--br-unit-colour-secondary-darker);
-
     --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-light);
     --br-kbd-background-colour: var(--br-unit-colour-info-darker);
     --br-unit-colour-canvas-inverted: var(--br-unit-colour-neutral-5);
     --br-unit-colour-canvas-text-inverted: var(--br-unit-colour-neutral-90);
     --br-comp-all-button-background: var(--br-unit-colour-primary-70);
     --br-comp-all-button-text: var(--br-unit-colour-primary-text-light);
+    --br-comp-all-button-border-colour: var(--br-unit-colour-primary-30);
 }
 *,
 *::before,
@@ -69,18 +69,22 @@ p {
 h1 {
     font-size: var(--br-unit-font-size-6);
     font-weight: var(--br-unit-font-weight-500);
-    margin-bottom: var(--br-unit-space-5)
+    margin-bottom: var(--br-unit-space-5);
+    color: var(--br-comp-all-area-header-text);
+   
 }
 
 h2 {
     font-size: var(--br-unit-font-size-3);
     font-weight: var(--br-unit-font-weight-500);
-    margin-bottom: var(--br-unit-space-4)
+    margin-bottom: var(--br-unit-space-4);
+    color: var(--br-comp-all-area-header-text);
 }
 h3 {
     font-size: var(--br-unit-font-size-2);
     font-weight: var(--br-unit-font-weight-500);
-    margin-bottom: var(--br-unit-space-4)
+    margin-bottom: var(--br-unit-space-4); 
+    
 }
 b {
     font-weight:bold;
@@ -114,3 +118,7 @@ body {
     }
 }
 
+
+.centre-text{
+    text-align:center;
+}

@@ -27,7 +27,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Components\" />
 		<Folder Include="wwwroot\assets\js\" />
 	</ItemGroup>
 

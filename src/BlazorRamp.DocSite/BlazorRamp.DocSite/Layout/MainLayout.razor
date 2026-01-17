@@ -7,18 +7,28 @@
 @inject NavigationManager _navigationManager
 @inject ILiveRegionService _liveRegionService
 
-
 <header id="app__header">
+<span>
+    @GlobalValues.Site_Banner_Title
+</span>
+    <a href="https://github.com/BlazorRamp/Components" target="_self">
+        <span aria-hidden="true"></span>
+        <span>GitHub</span>
+    </a>
     <button id="theme-toggler" type="button" aria-checked="@_checked.ToString().ToLower()" @onclick="ToggleTheme" role="switch">
         <span aria-hidden="true"></span>
         <span class="br-visually-hidden">Dark</span>
         <span>Theme</span>
-
     </button>
+
+    <button id="menu-toggler" type="button" aria-expanded="true" aria-controls="@GlobalValues.Main_Navigation_ID" @ref="MenuButtonRef">
+        <span aria-hidden="true"></span>
+        <span>Menu</span>
+    </button>
+
 </header>
-
 <div id="app__nav" @ref="SideNavigationRef">
-
+    <MainNavigation />
 </div>
 <main id="app__main" @ref="MainContentRef">
     @Body
@@ -45,7 +55,7 @@
             _jsLiveRegionModule    = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", CoreGlobalValues.JS_Utils_File_Path);
             _jsDocSiteModule = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Module_File_Path);
 
-           // await _jsDocSiteModule.InvokeVoidAsync(GlobalValues.JS_Initialise_Func, MenuButtonRef, SideNavigationRef, MainContentRef, GlobalValues.Start_Width_For_Collapsed_Menu);
+             await _jsDocSiteModule.InvokeVoidAsync(GlobalValues.JS_Initialise_Func, MenuButtonRef, SideNavigationRef, MainContentRef, GlobalValues.Start_Width_For_Collapsed_Menu);
 
         }
         catch (Exception ex)
