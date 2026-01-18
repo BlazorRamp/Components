@@ -2,7 +2,58 @@
 
 <PageTitle>@GlobalValues.Page_Title_Overview_Accessibility</PageTitle>
 
-<h1>. . @GlobalValues.Page_Heading_Overview_Accessibility . .</h1>
+<div class="info-box info-box--coloured">
+    <h1>@GlobalValues.Page_Heading_Overview_Accessibility</h1>
 
+    <p>
+        The goal of the Blazor Ramp project is to provide free, open-source, accessibility-first components for your Blazor project, making the end result more inclusive.
+    </p>
 
+    <p>
+        Each component is manually tested using the following Assistive Technology (AT) and browser combinations. I strive to ensure that the components work 
+        with the widest combination set possible whilst still providing components that meet both the developers' and end users' expectations.
+    </p>
+</div>
 
+<div class="info-box">
+
+<h2 id="screen-reader-testing" class="info-box__heading">Screen Reader Testing</h2>
+
+<ul aria-labelledby="screen-reader-testing">
+    <li>JAWS, Narrator and NVDA on Windows are each paired with every one of the following browsers: Google Chrome, Microsoft Edge and Mozilla Firefox.</li>
+    <li>VoiceOver on macOS is paired with Apple's Safari.</li>
+    <li>VoiceOver on iPhone is paired with mobile Safari.</li>
+    <li>Talkback on Android is paired with mobile Google Chrome.</li>
+</ul>
+
+<p>
+    I neither have access to and/or the finances for many other devices, but would like to do more with Voice Control. 
+    As I am on Windows that has built in Voice access I can at lease ensure that the voice commands work as expected i.e they activate
+    the correct item. The Voice Control software will assign numbers to items when there is more than one actionable item using the accessible name.
+</p>
+
+    <h2 class="info-box__heading">Approach to Accessibility</h2>
+
+<p>
+    Although Web Content Accessibility Guidelines (WCAG) are extremely important, I take the approach of first making the components usable for AT users and then worrying about 
+    meeting specific WCAG requirements.
+</p>
+<p>
+    I neither have access to nor the finances for many other devices, but would like to do more with Voice Control. As I am on Windows, which has built-in Voice Access, I can at 
+    least ensure that the voice commands work as expected, i.e. they activate the correct item. The Voice Control software will assign numbers to items when there is more than one 
+    actionable item, using the accessible name.
+    </p>
+</div>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Overview_Getting_Started">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Page_Heading_Overview_Getting_Started</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Overview_Roadmap">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Page_Heading_Overview_Roadmap</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>

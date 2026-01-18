@@ -56,23 +56,24 @@ h1, h2, h3, h4, h5, h6 {
 
 
 ul{
-    padding-left:1rem;
+   margin-left:var(--br-unit-space-7); 
+   padding:0;
 }
-li{
+li {
     margin-bottom: var(--br-unit-space-3);
 }
 
 ol > li {
-    gap:1rem;
     margin-left: 1rem;
-
+    list-style:decimal;
+   
 }
 html{
 
 }
 
 p {
-    margin-bottom: var(--br-unit-space-5);
+    margin-block: var(--br-unit-space-5);
     text-wrap: pretty;
 }
 
@@ -132,3 +133,9 @@ body {
 .centre-text{
     text-align:center;
 }
+/*.bullet-list{
+ 
+    list-style-type: circle;
+    margin-left:var(--br-unit-space-5);
+
+ }*/

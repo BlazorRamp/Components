@@ -51,7 +51,7 @@ public class GlobalValues
 
     public const string Page_Heading_Overview_Introduction           = "Introduction";
     public const string Page_Heading_Overview_Getting_Started        = "Getting Started";
-    public const string Page_Heading_Overview_Accessibility          = "Accessibility";
+    public const string Page_Heading_Overview_Accessibility          = "Accessibility & Inclusivity";
     public const string Page_Heading_Overview_Roadmap                = "Roadmap";
 
     public const string Page_Heading_Theming_Overview                = "Overview";
@@ -66,4 +66,12 @@ public class GlobalValues
     public const string Main_Nav_Section_Heading_Frameworks = "Frameworks";
     public const string Main_Nav_Section_Heading_Services   = "Services";
     public const string Main_Nav_Section_Heading_Components = "Components";
+
+
+
+    public const string Link_Button_Class = $"link-button";
+    public const string Link_Class = $"link";
+
+    public const string Link_Button_Right_Arrow_Modifier = $"{Link_Button_Class}--right-arrow";
+    public const string Link_Button_Left_Arrow_Modifier = $"{Link_Button_Class}--left-arrow";
 }

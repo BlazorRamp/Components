@@ -36,15 +36,8 @@
 .flex-content {
     display: flex;
     gap: var(--br-unit-space-5);
-    margin-bottom: var(--br-unit-space-5);
-
-    &:not(:has(button.test-button)) {
-        margin-bottom: calc(var(--br-unit-space-5) * 6);
-    }
-
-    &--add-margin-back {
-        margin-bottom: calc(var(--br-unit-space-5) * 6);
-    }
+    //margin-bottom: var(--br-unit-space-5);
+    margin-bottom: calc(var(--br-unit-space-9) * 3);
 
     &--columns {
         flex-direction: column;
