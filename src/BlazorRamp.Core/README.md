@@ -16,7 +16,7 @@ Overriding these CSS properties will therefore update the appearance of all comp
 ```c#
 dotnet add package BlazorRamp.Core
 ```
-2. Add the following static stylesheet reference to the `<head>` section of you application:
+2. Add the following Core stylesheet reference to the `<head>` section of your application:
 - Blazor Web App / Blazor Server → App.razor
 - Blazor WebAssembly → wwwroot/index.html
 ```html
@@ -25,7 +25,7 @@ dotnet add package BlazorRamp.Core
 </head>
 ```
  
-3. Add the following script tag after `_framework/blazor.web.js"`as follows to you application: 
+3. Add the following Blazor Ramp Core live region script after Blazors script, as follows: 
 - Blazor Web App / Blazor Server → App.razor
 - Blazor WebAssembly → wwwroot/index.html
 

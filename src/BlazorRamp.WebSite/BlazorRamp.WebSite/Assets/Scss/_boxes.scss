@@ -20,7 +20,7 @@
     }
 
     & ol {
-        margin-left: calc(var(--br-unit-space-2) * 5);
+        margin-left: var(--br-unit-space-6);
     }
 
     &__heading {
@@ -47,7 +47,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: calc(var(--br-unit-space-5) * 2);
+        gap: var(--br-unit-space-9);
         cursor: pointer;
 
 

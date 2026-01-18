@@ -510,7 +510,7 @@ body #app__main {
   margin-bottom: var(--br-unit-space-5);
 }
 .info-box ol {
-  margin-left: calc(var(--br-unit-space-2) * 5);
+  margin-left: var(--br-unit-space-6);
 }
 .info-box__heading {
   color: var(--br-info-box-alternate-heading-text);
@@ -533,7 +533,7 @@ body #app__main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: calc(var(--br-unit-space-5) * 2);
+  gap: var(--br-unit-space-9);
   cursor: pointer;
 }
 .info-box--container-test > span.checkboxtest {

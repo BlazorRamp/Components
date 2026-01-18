@@ -224,6 +224,7 @@
   grid-column: 2/3;
   grid-row: 2/3;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 #app:has(#menu-toggler[aria-expanded=false]) #app__nav {
   display: none;
@@ -347,7 +348,9 @@
 :root {
   --br-unit-colour-primary: Sienna;
   --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-darker);
-  --br-kbd-background-colour: var(--br-unit-colour-info-lighter) ;
+  --br-kbd-background-colour: var(--br-unit-colour-info-lighter);
+  --br-code-block-background-colour: var(--br-unit-colour-secondary-lighter);
+  --br-code-block-text: var(--br-unit-colour-info-darker);
 }
 
 :root:has(#theme-toggler[aria-checked=true]) {
@@ -373,6 +376,8 @@
   --br-comp-all-button-background: var(--br-unit-colour-primary-70);
   --br-comp-all-button-text: var(--br-unit-colour-primary-text-light);
   --br-comp-all-button-border-colour: var(--br-unit-colour-primary-30);
+  --br-code-block-background-colour: var(--br-unit-colour-secondary-darker);
+  --br-code-block-text: var(--br-unit-colour-info-lighter);
 }
 
 *,
@@ -406,13 +411,18 @@ li {
   margin-bottom: var(--br-unit-space-3);
 }
 
+ol > li {
+  gap: 1rem;
+  margin-left: 1rem;
+}
+
 p {
   margin-bottom: var(--br-unit-space-5);
   text-wrap: pretty;
 }
 
 h1 {
-  font-size: var(--br-unit-font-size-6);
+  font-size: var(--br-unit-font-size-4);
   font-weight: var(--br-unit-font-weight-500);
   margin-bottom: var(--br-unit-space-5);
   color: var(--br-comp-all-area-header-text);
@@ -530,6 +540,29 @@ body #app__main {
 }
 .info-box--coloured > h1 {
   color: var(--br-comp-all-area-header-text);
+}
+
+.code-box {
+  position: relative;
+  padding: var(--br-unit-space-5);
+  margin-block: var(--br-unit-space-5);
+  border-radius: var(--br-unit-radius-5);
+  border: 1px solid var(--br-unit-colour-neutral-30);
+  width: auto;
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+  background-color: var(--br-code-block-background-colour);
+  overflow-x: auto;
+  color: var(--br-code-block-text);
+}
+
+.code-span {
+  padding: var(--br-unit-space-2);
+  border-radius: var(--br-unit-radius-3);
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+  background-color: var(--br-code-block-background-colour);
+  overflow-x: auto;
+  color: var(--br-code-block-text);
+  border: 1px solid transparent;
 }
 
 .test-button {

@@ -1,0 +1,19 @@
+﻿<div class="code-box">
+    <pre>
+        <code>
+            @CodeBlock        
+        </code>
+    </pre>
+</div>
+
+@code {
+
+    [Parameter] public string? CodeBlock { get; set; }
+
+    private MarkupString _codeBlock;
+
+    protected override void OnParametersSet()
+    
+        => _codeBlock = (MarkupString)System.Net.WebUtility.HtmlEncode(CodeBlock ?? "");
+    
+}

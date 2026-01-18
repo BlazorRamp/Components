@@ -2,7 +2,61 @@
 
 <PageTitle>@GlobalValues.Page_Title_Overview_Getting_Started</PageTitle>
 
-<h1>. . @GlobalValues.Page_Heading_Overview_Getting_Started. .</h1>
+<h1>@GlobalValues.Page_Heading_Overview_Getting_Started</h1>
 
+<p>
+    Every component NuGet package references the BlazorRamp.Core package. This Core package contains the "Live Region Service" and "Announcement History" component, but you can of course use 
+    this NuGet package on its own if you are only interested in its contents.
+</p>
+<p>
+    In addition to the service and component mentioned above, the Core project provides a common set of CSS custom properties that all future components will utilise for their styling
+    see Theming <a class="link" href="@GlobalValues.Path_Theming_Overview">@GlobalValues.Page_Heading_Theming_Overview</a> for more details.
+</p>
 
+<ol>
+    <li>
+        <p>
+            Add the chosen BlazorRamp NuGet package using NuGet Package Manager or the DotNet CLI, for example:
+        </p>
+        <CodeBox CodeBlock="@CodeSnippets.Add_Core_Package" />
+    </li>
+    <li>
+        <p>
+           Add the following Core stylesheet reference to the <span class="code-span">&lt;head&gt;</span> section of your applications
+            <span class="code-span">index.html</span> or <span class="code-span">App.razor</span> file dependent on the project type:
+        </p>
+        <CodeBox CodeBlock="@CodeSnippets.Add_Core_Style_Sheet" />
+        <p>
+            <b>Note: </b>Additional component specific stylesheets would then follow for each installed package. 
+        </p>
+    </li>
 
+    <li>
+        <p>
+            Add the following Blazor Ramp Core live region script after Blazors script, as follows:
+        </p>
+        <CodeBox CodeBlock="@CodeSnippets.Add_Core_Script" />
+    </li>
+    <li>
+        <p>
+            Register BlazorRamp services in the <span class="code-span">Program.cs</span> file (Both server and client if using Server and WebAssembly interactive rendermode)
+        </p>
+        <p>
+            Add the following line to the service registration section:
+        </p>
+        <CodeBox CodeBlock="@CodeSnippets.Add_Live_Region_Service" />
+    </li>
+    <li>
+        <p>
+            Add the <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component with your parameter values above the Router component contained in either the
+            <span class="code-span">Routes.razor</span> file or <span class="code-span">App.razor</span> filed depending on your project type:
+        </p>
+        <CodeBox CodeBlock="@CodeSnippets.Add_Announcement_History_Component" />
+    </li>
+</ol>
+<p>
+    That's it you good to go. For usage of the services or components please see the relevant section for more details.
+</p>
+<p>For information about using the Live Region Service see: <a class="link" href="@GlobalValues.Path_Services_Live_Region">@GlobalValues.Page_Heading_Services_Live_Region</a> 
+    and for using the Announcement History component see:  <a class="link" href="@GlobalValues.Path_Components_Announcement_History">@GlobalValues.Page_Heading_Components_Announcement_History</a>
+</p>

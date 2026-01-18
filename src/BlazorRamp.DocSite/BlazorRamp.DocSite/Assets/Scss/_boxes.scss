@@ -26,3 +26,26 @@
         }
     }
 }
+
+.code-box {
+    position: relative;
+    padding: var(--br-unit-space-5);
+    margin-block: var(--br-unit-space-5);
+    border-radius: var(--br-unit-radius-5);
+    border: 1px solid var(--br-unit-colour-neutral-30);
+    width: auto;
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    background-color: var(--br-code-block-background-colour);
+    overflow-x: auto;
+    color: var(--br-code-block-text);
+}
+
+.code-span {
+    padding: var(--br-unit-space-2);
+    border-radius: var(--br-unit-radius-3);
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    background-color: var(--br-code-block-background-colour);
+    overflow-x: auto;
+    color: var(--br-code-block-text);
+    border: 1px solid transparent;
+}
