@@ -2,28 +2,515 @@
 
 <PageTitle>@GlobalValues.Page_Title_Theming_CSS_Unit_Variables</PageTitle>
 
-<h1>. . @GlobalValues.Page_Heading_Theming_CSS_Unit_Variables . .</h1>
+<h1>@GlobalValues.Page_Heading_Theming_CSS_Unit_Variables</h1>
 
-<p>about text</p>
+<p>
+    The following tables contain all of the unit type css variables that can be used by the base variables.
+    Theses included such things as the units for border widths, font-sizes, weights, colours, opacity values etc. 
+</p>
 
 <div class="code-table">
 
-    <h2 id="variable-category-variables" class="code-table__heading">Variable Category</h2>
+    <h2 id="spacing-variables" class="code-table__heading">Spacing Variables</h2>
 
-    <table aria-labelledby="variable-category-variables">
+    <p>
+        Variables used to set spacing such as padding, margins and offsets.
+    </p>
+    <table aria-labelledby="spacing-variables">
 
         <thead>
             <tr>
                 <th scope="col">Variable Name</th>
                 <th scope="col">Default Value</th>
-                <th scope="col">Description</th>
             </tr>
         </thead>
         <tbody>
+            <tr>
+                <td>--br-unit-space-0</td>
+                <td>0rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-space-1</td>
+                <td>0.125rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-space-2</td>
+                <td>0.25rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-space-3</td>
+                <td>0.5rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-space-4</td>
+                <td>0.75rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-space-5</td>
+                <td>1rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-space-6</td>
+                <td>1.25rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-space-7</td>
+                <td>1.5rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-space-8</td>
+                <td>1.75rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-space-9</td>
+                <td>2rem</td>
+            </tr>
         </tbody>
     </table>
 
 </div>
+<div class="code-table">
+
+    <h2 id="border-radius-variables" class="code-table__heading">Variable Category</h2>
+    <p>Radius values used for such things as the border corners.</p>
+    <table aria-labelledby="border-radius-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-radius-0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>--br-unit-radius-1</td>
+                <td>0.125rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-radius-2</td>
+                <td>0.25rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-radius-3</td>
+                <td>0.5rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-radius-4</td>
+                <td>0.75rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-radius-5</td>
+                <td>1rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-radius-6</td>
+                <td>1.25rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-radius-7</td>
+                <td>1.5rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-radius-8</td>
+                <td>1.75rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-radius-9</td>
+                <td>2rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-radius-full</td>
+                <td>9999px</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="code-table">
+
+    <h2 id="border-width-variables" class="code-table__heading">Border Width Variables</h2>
+
+    <table aria-labelledby="border-width-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-border-0</td>
+                <td>0px</td>
+            </tr>
+            <tr>
+                <td>--br-unit-border-1</td>
+                <td>1px</td>
+            </tr>
+            <tr>
+                <td>--br-unit-border-2</td>
+                <td>2px</td>
+            </tr>
+            <tr>
+                <td>--br-unit-border-3</td>
+                <td>3px</td>
+            </tr>
+            <tr>
+                <td>--br-unit-border-4</td>
+                <td>4px</td>
+            </tr>
+            <tr>
+                <td>--br-unit-border-5</td>
+                <td>5px</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="code-table">
+
+    <h2 id="outline-widths-and-offset-variables" class="code-table__heading">Outline Width & Offset Variables</h2>
+
+    <table aria-labelledby="outline-widths-and-offset-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-outline-0</td>
+                <td>0px</td>
+            </tr>
+            <tr>
+                <td>--br-unit-outline-1</td>
+                <td>1px</td>
+            </tr>
+            <tr>
+                <td>--br-unit-outline-2</td>
+                <td>2px</td>
+            </tr>
+            <tr>
+                <td>--br-unit-outline-3</td>
+                <td>3px</td>
+            </tr>
+            <tr>
+                <td>--br-unit-outline-4</td>
+                <td>4px</td>
+            </tr>
+            <tr>
+                <td>--br-unit-outline-5</td>
+                <td>5px</td>
+            </tr>
+            <tr>
+                <td>--br-unit-outline-offset-0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>--br-unit-outline-offset-1</td>
+                <td>0.125rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-outline-offset-2</td>
+                <td>0.25rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-outline-offset-3</td>
+                <td>0.5rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-outline-offset-4</td>
+                <td>0.75rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-outline-offset-5</td>
+                <td>1rem</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="code-table">
+
+    <h2 id="font-related-variables" class="code-table__heading">Font Related Variables</h2>
+
+    <table aria-labelledby="font-related-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-font-size-sm-3</td>
+                <td>0.51rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-font-size-sm-2</td>
+                <td>0.64rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-font-size-sm-1</td>
+                <td>0.8rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-font-size-label</td>
+                <td>0.875rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-font-size-1</td>
+                <td>1rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-font-size-2</td>
+                <td>1.25rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-font-size-3</td>
+                <td>1.56rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-font-size-4</td>
+                <td>1.95rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-font-size-5</td>
+                <td>2.44rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-font-size-6</td>
+                <td>3.05rem</td>
+            </tr>
+            <tr>
+                <td>--br-unit-font-weight-100</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td>--br-unit-font-weight-200</td>
+                <td>200</td>
+            </tr>
+            <tr>
+                <td>--br-unit-font-weight-300</td>
+                <td>300</td>
+            </tr>
+            <tr>
+                <td>--br-unit-font-weight-400</td>
+                <td>400</td>
+            </tr>
+            <tr>
+                <td>--br-unit-font-weight-500</td>
+                <td>500</td>
+            </tr>
+            <tr>
+                <td>--br-unit-font-weight-600</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>--br-unit-font-weight-700</td>
+                <td>700</td>
+            </tr>
+            <tr>
+                <td>--br-unit-font-family-default</td>
+                <td>"Roboto Flex", sans-serif</td>
+            </tr>
+            <tr>
+                <td>--br-unit-line-height-1</td>
+                <td>1.5</td>
+            </tr>
+            <tr>
+                <td>--br-unit-line-height-2</td>
+                <td>1.6</td>
+            </tr>
+            <tr>
+                <td>--br-unit-line-height-3</td>
+                <td>1.7</td>
+            </tr>
+            <tr>
+                <td>--br-unit-line-height-4</td>
+                <td>1.8</td>
+            </tr>
+            <tr>
+                <td>--br-unit-line-height-5</td>
+                <td>1.9</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="code-table">
+
+    <h2 id="opacity-value-variables" class="code-table__heading">Opacity Value Variables</h2>
+
+    <table aria-labelledby="opacity-value-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-opacity-val-0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-5</td>
+                <td>0.05</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-10</td>
+                <td>0.10</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-15</td>
+                <td>0.15</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-20</td>
+                <td>0.20</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-25</td>
+                <td>0.25</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-30</td>
+                <td>0.30</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-35</td>
+                <td>0.35</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-40</td>
+                <td>0.40</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-45</td>
+                <td>0.45</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-50</td>
+                <td>0.50</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-55</td>
+                <td>0.55</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-60</td>
+                <td>0.60</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-65</td>
+                <td>0.65</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-70</td>
+                <td>0.70</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-75</td>
+                <td>0.75</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-80</td>
+                <td>0.80</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-85</td>
+                <td>0.85</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-90</td>
+                <td>0.90</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-95</td>
+                <td>0.95</td>
+            </tr>
+            <tr>
+                <td>--br-unit-opacity-val-100</td>
+                <td>1</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="code-table">
+
+    <h2 id="wcag-related-variables" class="code-table__heading">WCAG Related Variables</h2>
+    
+    <p>Variables for any WCAG measurements such as target size and reflow widths.</p>
+
+    <table aria-labelledby="wcag-related-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-wcag-target-2a</td>
+                <td>24px</td>
+            </tr>
+            <tr>
+                <td>--br-unit-wcag-target-3a</td>
+                <td>48px</td>
+            </tr>
+            <tr>
+                <td>--br-unit-wcag-reflow-2a</td>
+                <td>320px</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="code-table">
+
+    <h2 id="state-related-variables" class="code-table__heading">State Related Variables</h2>
+
+    <table aria-labelledby="state-related-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-state-disabled-brightness</td>
+                <td>75%</td>
+            </tr>
+            <tr>
+                <td>--br-unit-state-hover-opacity</td>
+                <td>0.1</td>
+            </tr>
+            <tr>
+                <td>--br-unit-state-active-brightness</td>
+                <td>95%</td>
+            </tr>
+            <tr>
+                <td>--br-unit-state-active-scale</td>
+                <td>0.95</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Theming_CSS_Base_Variables">
@@ -31,9 +518,9 @@
         <span>@GlobalValues.Page_Heading_Theming_CSS_Base_Variables</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Services_Live_Region">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Theming_CSS_Colour_Variables">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Page_Heading_Services_Live_Region</span>
+        <span>@GlobalValues.Page_Heading_Theming_CSS_Colour_Variables</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

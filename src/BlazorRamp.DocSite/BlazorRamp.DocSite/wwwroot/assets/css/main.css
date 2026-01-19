@@ -725,6 +725,8 @@ body #app__main {
   margin-bottom: var(--br-unit-space-9);
 }
 .code-table th {
+  text-align: left;
+  border-left: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
   background-color: var(--br-comp-history-area-header-background);
   padding: var(--br-unit-space-3);
   font-size: var(--br-unit-font-label);
@@ -732,6 +734,7 @@ body #app__main {
 }
 .code-table th:first-child {
   border-top-left-radius: var(--br-unit-radius-4);
+  border-left: 0;
 }
 .code-table th:last-child {
   border-top-right-radius: var(--br-unit-radius-4);
@@ -744,11 +747,12 @@ body #app__main {
   width: 33%;
   padding: var(--br-unit-space-3);
 }
-.code-table td:nth-child(2) {
-  border-inline: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
-}
 .code-table td:last-child {
   font: inherit;
-  font-size: var(--br-unit-font-size-label);
   color: inherit;
+}
+.code-table td:nth-child(2) {
+  border-inline: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+  color: var(--br-code-block-text);
 }

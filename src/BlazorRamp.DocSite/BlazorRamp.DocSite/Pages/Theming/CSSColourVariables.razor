@@ -1,0 +1,538 @@
+﻿@attribute [Route(GlobalValues.Path_Theming_CSS_Colour_Variables)]
+
+<PageTitle>@GlobalValues.Page_Title_Theming_CSS_Colour_Variables</PageTitle>
+
+<h1>@GlobalValues.Page_Heading_Theming_CSS_Colour_Variables</h1>
+
+<p>
+    The following tables contain all of the colour unit css variables that can be used by the base variables.
+</p>
+
+<div class="code-table">
+
+    <h2 id="primary-colour-variables" class="code-table__heading">Primary Colour Variables</h2>
+
+    <table aria-labelledby="primary-colour-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-colour-primary</td>
+                <td>hsl(220, 44%, 48%)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-primary-0</td>
+                <td>hsl(0, 0%, 0%)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-primary-5</td>
+                <td>hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.9))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-primary-10</td>
+                <td>hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.8))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-primary-20</td>
+                <td>hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.6))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-primary-30</td>
+                <td>hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.4))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-primary-40</td>
+                <td>hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.2))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-primary-50</td>
+                <td>var(--br-unit-colour-primary)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-primary-60</td>
+                <td>hsl(from var(--br-unit-colour-primary) h s calc(l * 0.8))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-primary-70</td>
+                <td>hsl(from var(--br-unit-colour-primary) h s calc(l * 0.6))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-primary-80</td>
+                <td>hsl(from var(--br-unit-colour-primary) h s calc(l * 0.4))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-primary-90</td>
+                <td>hsl(from var(--br-unit-colour-primary) h s calc(l * 0.2))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-primary-100</td>
+                <td>hsl(0, 0%, 100%)</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+<div class="code-table">
+
+    <h2 id="neutral-colour-variables" class="code-table__heading">Neutral Colour Variables</h2>
+    <p>
+        <b>Note: </b> The <span class="code-span">--br-unit-colour-neutral-saturation</span> variable is used to increase or decrease the amount of 
+        primary colour in the neutral colour.
+    </p>
+    <table aria-labelledby="neutral-colour-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-colour-neutral</td>
+                <td>hsl(from var(--br-unit-colour-primary) h var(--br-unit-colour-neutral-saturation) 70%)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-neutral-saturation</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-neutral-0</td>
+                <td>hsl(0, 0%, 100%)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-neutral-5</td>
+                <td>hsl(from var(--br-unit-colour-neutral) h calc(var(--br-unit-colour-neutral-saturation) + 8) calc(l + (100 - l) * 0.95))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-neutral-10</td>
+                <td>hsl(from var(--br-unit-colour-neutral) h calc(var(--br-unit-colour-neutral-saturation) + 13) calc(l + (100 - l) * 0.85))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-neutral-20</td>
+                <td>hsl(from var(--br-unit-colour-neutral) h calc(var(--br-unit-colour-neutral-saturation) + 16) calc(l + (100 - l) * 0.80))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-neutral-30</td>
+                <td>hsl(from var(--br-unit-colour-neutral) h s calc(l + (100 - l) * 0.4))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-neutral-40</td>
+                <td>hsl(from var(--br-unit-colour-neutral) h s calc(l + (100 - l) * 0.2))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-neutral-50</td>
+                <td>var(--br-unit-colour-neutral)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-neutral-60</td>
+                <td>hsl(from var(--br-unit-colour-neutral) h s calc(l * 0.5))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-neutral-70</td>
+                <td>hsl(from var(--br-unit-colour-neutral) h s calc(l * 0.30))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-neutral-80</td>
+                <td>hsl(from var(--br-unit-colour-neutral) h s calc(l * 0.20))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-neutral-90</td>
+                <td>hsl(from var(--br-unit-colour-neutral) h s calc(l * 0.15))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-neutral-100</td>
+                <td>hsl(0, 0%, 0%)</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="code-table">
+
+    <h2 id="secondary-colour-variables" class="code-table__heading">Secondary Colour Variables</h2>
+
+    <table aria-labelledby="secondary-colour-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-colour-secondary-lighter</td>
+                <td>hsl(from var(--br-unit-colour-secondary) h s calc((l + (100 - l) * 0.80)))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-secondary-light</td>
+                <td>hsl(from var(--br-unit-colour-secondary) h s calc((l + (100 - l) * 0.40)))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-secondary-dark</td>
+                <td>hsl(from var(--br-unit-colour-secondary) h s calc(l * 0.80))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-secondary</td>
+                <td>hsl(from var(--br-unit-colour-primary) calc(h + 10) 15% 60%)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-secondary-darker</td>
+                <td>hsl(from var(--br-unit-colour-secondary) h s calc(l * 0.40))</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+<div class="code-table">
+
+    <h2 id="accent-colour-variables" class="code-table__heading">Accent Colour Variables</h2>
+
+    <table aria-labelledby="accent-colour-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-colour-accent-lighter</td>
+                <td>hsl(from var(--br-unit-colour-accent) h s calc((l + (100 - l) * 0.80)))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-accent-light</td>
+                <td>hsl(from var(--br-unit-colour-accent) h s calc((l + (100 - l) * 0.40)))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-accent</td>
+                <td>hsl(from var(--br-unit-colour-primary) calc(h + 80) 15% 60%)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-accent-dark</td>
+                <td>hsl(from var(--br-unit-colour-accent) h s calc(l * 0.80))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-accent-darker</td>
+                <td>hsl(from var(--br-unit-colour-accent) h s calc(l * 0.40))</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+<div class="code-table">
+
+    <h2 id="success-colour-variables" class="code-table__heading">Success Colour Variables</h2>
+
+    <table aria-labelledby="success-colour-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-colour-success-lighter</td>
+                <td>hsl(from var(--br-unit-colour-success) h s calc((l + (100 - l) * 0.80)))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-success-light</td>
+                <td>hsl(from var(--br-unit-colour-success) h s calc((l + (100 - l) * 0.40)))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-success</td>
+                <td>hsl(100, 35%, 40%)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-success-dark</td>
+                <td>hsl(from var(--br-unit-colour-success) h s calc(l * 0.80))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-success-darker</td>
+                <td>hsl(from var(--br-unit-colour-success) h s calc(l * 0.40))</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+<div class="code-table">
+
+    <h2 id="danger-colour-variables" class="code-table__heading">Danger Colour Variables</h2>
+
+    <table aria-labelledby="danger-colour-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-colour-danger-lighter</td>
+                <td>hsl(from var(--br-unit-colour-danger) h s calc((l + (100 - l) * 0.80)))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-danger-light</td>
+                <td>hsl(from var(--br-unit-colour-danger) h s calc((l + (100 - l) * 0.40)))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-danger</td>
+                <td>hsl(0, 70%, 40%)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-danger-dark</td>
+                <td>hsl(from var(--br-unit-colour-danger) h s calc(l * 0.80))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-danger-darker</td>
+                <td>hsl(from var(--br-unit-colour-danger) h s calc(l * 0.40))</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+<div class="code-table">
+
+    <h2 id="info-colour-variables" class="code-table__heading">Information Colour Variables</h2>
+
+    <table aria-labelledby="info-colour-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-colour-info-lighter</td>
+                <td>hsl(from var(--br-unit-colour-info) h s calc((l + (100 - l) * 0.80)))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-info-light</td>
+                <td>hsl(from var(--br-unit-colour-info) h s calc((l + (100 - l) * 0.40)))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-info</td>
+                <td>hsl(200, 60%, 40%)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-info-dark</td>
+                <td>hsl(from var(--br-unit-colour-info) h s calc(l * 0.80))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-info-darker</td>
+                <td>hsl(from var(--br-unit-colour-info) h s calc(l * 0.40))</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+<div class="code-table">
+
+    <h2 id="warning-colour-variables" class="code-table__heading">Warning Colour Variables</h2>
+
+    <table aria-labelledby="warning-colour-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+                </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-colour-warning-lighter</td>
+                <td>hsl(from var(--br-unit-colour-warning) h s calc((l + (100 - l) * 0.80)))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-warning-light</td>
+                <td>hsl(from var(--br-unit-colour-warning) h s calc((l + (100 - l) * 0.40)))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-warning</td>
+                <td>hsl(45, 100%, 50%)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-warning-dark</td>
+                <td>hsl(from var(--br-unit-colour-warning) h s calc(l * 0.55))</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-warning-darker</td>
+                <td>hsl(from var(--br-unit-colour-warning) h s calc(l * 0.35))</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="code-table">
+
+    <h2 id="canvas-colour-variables" class="code-table__heading">Canvas Colour Variables</h2>
+
+    <p>Colours used for the page (canvas) background colour.</p>
+
+    <table aria-labelledby="canvas-colour-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+               </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-colour-canvas</td>
+                <td>var(--br-unit-colour-neutral-5)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-canvas-inverted</td>
+                <td>var(--br-unit-colour-neutral-90)</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="code-table">
+
+    <h2 id="box-shadow-variables" class="code-table__heading">Box Shadow Variables</h2>
+
+    <table aria-labelledby="box-shadow-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-box-shadow-1</td>
+                <td>0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-box-shadow-2</td>
+                <td>0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2)</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="code-table">
+
+    <h2 id="text-colour-variables" class="code-table__heading">Text Colour Variables</h2>
+
+    <table aria-labelledby="text-colour-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-colour-primary-text-dark</td>
+                <td>var(--br-unit-colour-primary-70)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-primary-text-light</td>
+                <td>var(--br-unit-colour-primary-10)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-secondary-text-light</td>
+                <td>var(--br-unit-colour-secondary-lighter)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-secondary-text-dark</td>
+                <td>var(--br-unit-colour-secondary-lighter)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-accent-text-light</td>
+                <td>var(--br-unit-colour-accent-lighter)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-accent-text-dark</td>
+                <td>var(--br-unit-colour-accent-darker)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-success-text-light</td>
+                <td>var(--br-unit-colour-success-lighter)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-success-text-dark</td>
+                <td>var(--br-unit-colour-success-darker)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-danger-text-light</td>
+                <td>var(--br-unit-colour-danger-lighter)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-danger-text-dark</td>
+                <td>var(--br-unit-colour-danger-darker)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-info-text-light</td>
+                <td>var(--br-unit-colour-info-lighter)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-info-text-dark</td>
+                <td>var(--br-unit-colour-info-darker)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-warning-text-light</td>
+                <td>var(--br-unit-colour-warning-lighter)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-warning-text-dark</td>
+                <td>var(--br-unit-colour-warning-darker)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-canvas-text</td>
+                <td>var(--br-unit-colour-neutral-90)</td>
+            </tr>
+            <tr>
+                <td>--br-unit-colour-canvas-text-inverted</td>
+                <td>var(--br-unit-colour-neutral-5)</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Theming_CSS_Unit_Variables">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Page_Heading_Theming_CSS_Unit_Variables</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Services_Live_Region">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Page_Heading_Services_Live_Region</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>

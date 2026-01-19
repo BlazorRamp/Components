@@ -157,8 +157,8 @@
   --br-unit-colour-accent-light: hsl(from var(--br-unit-colour-accent) h s calc((l + (100 - l) * 0.40)));
   --br-unit-colour-accent-dark: hsl(from var(--br-unit-colour-accent) h s calc(l * 0.80));
   --br-unit-colour-accent-darker: hsl(from var(--br-unit-colour-accent) h s calc(l * 0.40));
-  --br-unit-colour-accebt-text-light: var(--br-unit-colour-accent-lighter);
-  --br-unit-colour-accebt-text-dark: var(--br-unit-colour-accent-darker);
+  --br-unit-colour-accent-text-light: var(--br-unit-colour-accent-lighter);
+  --br-unit-colour-accent-text-dark: var(--br-unit-colour-accent-darker);
   /*
       * Success palette
   */
@@ -193,6 +193,8 @@
   --br-unit-colour-warning-light: hsl(from var(--br-unit-colour-warning) h s calc((l + (100 - l) * 0.40)));
   --br-unit-colour-warning-dark: hsl(from var(--br-unit-colour-warning) h s calc(l * 0.55));
   --br-unit-colour-warning-darker: hsl(from var(--br-unit-colour-warning) h s calc(l * 0.35));
+  --br-unit-colour-warning-text-light: var(--br-unit-colour-warning-lighter:);
+  --br-unit-colour-warning-text-dark: var(--br-unit-colour-warning-darker);
   /*
       * IMPORANT TWEAK NEUTRAL TO SUIT perhaps lighter and more colour for the lower ends and darker and higher end
   */
