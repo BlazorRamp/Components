@@ -5,18 +5,18 @@
 <h1 class="page-heading">@GlobalValues.Page_Heading_Services_Live_Region</h1>
 
 <p>
-    The Live Region Service allows you to send announcements to ARIA live regions, which are monitored by assistive technologies. These technologies 
+    The Live Region Service allows you to send announcements to ARIA live regions, which are monitored by assistive technologies. These technologies
     then relay this information to their users; for example, screen readers will output the text as speech.
 </p>
 
 <p>
-    <b>Important: </b>In order to use the Live Region Service, you need to ensure that is has been registered in the <span class="code-span">Program.cs</span> file (Both server and client 
+    <b>Important: </b>In order to use the Live Region Service, you need to ensure that is has been registered in the <span class="code-span">Program.cs</span> file (Both server and client
     if using Server and WebAssembly interactive rendermode) and that the <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component has been added as it contains the live regions used.
     Please see the <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Overview_Getting_Started">@GlobalValues.Page_Heading_Overview_Getting_Started</a> page for details.
- </p>
+</p>
 
 
-<div class="code-table two-col-descriptive">
+<section class="code-table two-col-descriptive">
 
     <h2 id="iliveregionservice-interface" class="code-table__heading">ILiveRegionService interface</h2>
 
@@ -36,9 +36,9 @@
         </tbody>
     </table>
 
-</div>
+</section>
 
-<div class="code-table">
+<section class="code-table">
 
     <h2 id="announcement-record" class="code-table__heading">Announcement record</h2>
 
@@ -75,101 +75,106 @@
         </tbody>
     </table>
 
-</div>
+</section>
 
-<h2 class="page-heading">Supporting enums</h2>
+<section>
 
-<div class="code-table">
 
-    <h3 id="announcementtype-enum" class="code-table__heading">AnnouncementType enum</h3>
+    <h2 class="page-heading">Supporting enums</h2>
 
-    <table aria-labelledby="announcement-record">
+    <section class="code-table">
 
-        <thead>
-            <tr>
-                <th scope="col">Value</th>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>0</td>
-                <td>Info</td>
-                <td>General informational announcement..</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>OperationStarted</td>
-                <td>Indicates an operation has started.</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>OperationCompleted?</td>
-                <td>Indicates an operation has completed successfully.</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>OperationFailed</td>
-                <td>Indicates an operation has failed.</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>OperationCancelled</td>
-                <td>Indicates an operation was cancelled.</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>SystemWarning</td>
-                <td>System-level warning message.</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>OperationFailed</td>
-                <td>System-level error message.</td>
-            </tr>
-        </tbody>
-    </table>
+        <h3 id="announcementtype-enum" class="code-table__heading">AnnouncementType enum</h3>
 
-</div>
-<div class="code-table">
+        <table aria-labelledby="announcementtype-enum">
 
-    <h3 id="liveregiontype-enum" class="code-table__heading">LiveRegionType enum</h3>
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Info</td>
+                    <td>General informational announcement..</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>OperationStarted</td>
+                    <td>Indicates an operation has started.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>OperationCompleted?</td>
+                    <td>Indicates an operation has completed successfully.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>OperationFailed</td>
+                    <td>Indicates an operation has failed.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>OperationCancelled</td>
+                    <td>Indicates an operation was cancelled.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>SystemWarning</td>
+                    <td>System-level warning message.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>OperationFailed</td>
+                    <td>System-level error message.</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <table aria-labelledby="announcement-record">
+    </section>
+    <section class="code-table">
 
-        <thead>
-            <tr>
-                <th scope="col">Value</th>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>0</td>
-                <td>Polite</td>
-                <td>Waits for the screen reader to finish current speech before announcing.</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Assertive</td>
-                <td>Interrupts the screen reader immediately.</td>
-            </tr>
+        <h3 id="liveregiontype-enum" class="code-table__heading">LiveRegionType enum</h3>
 
-        </tbody>
-    </table>
+        <table aria-labelledby="liveregiontype-enum">
 
-</div>
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Polite</td>
+                    <td>Waits for the screen reader to finish current speech before announcing.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Assertive</td>
+                    <td>Interrupts the screen reader immediately.</td>
+                </tr>
 
-<h2 class="page-heading">Making announcements</h2>
+            </tbody>
+        </table>
 
-<p>
-    Please keep your messages short and to the point, for example on completion of saving a customer entry "Saved Successfully" would be sufficient. 
-    Provide context when necessary; the "Theme" button on this site uses the live regions service as follows:
-</p>
-<CodeBox CodeBlock="@CodeSnippets.Make_Announcement" />
+    </section>
+</section>
 
+<section>
+    <h2 class="page-heading">Making announcements</h2>
+
+    <p>
+        Please keep your messages short and to the point, for example on completion of saving a customer entry "Saved Successfully" would be sufficient.
+        Provide context when necessary; the "Theme" button on this site uses the live regions service as follows:
+    </p>
+    <CodeBox CodeBlock="@CodeSnippets.Make_Announcement" />
+</section>
 
 
 <div class="flex-content justify-content-between">
