@@ -570,7 +570,7 @@ body #app__main {
 }
 .test-button:active {
   transform: scale(var(--br-comp-all-button-state-active-scale));
-  filter: brightness(var(--br-comp-all-button-state-active-brigthness));
+  filter: brightness(var(--br-comp-all-button-state-active-brightness));
   outline: none;
 }
 .test-button:focus-visible {
@@ -609,7 +609,7 @@ body #app__main {
 }
 .link-button:active {
   transform: scale(var(--br-comp-all-button-state-active-scale));
-  filter: brightness(var(--br-comp-all-button-state-active-brigthness));
+  filter: brightness(var(--br-comp-all-button-state-active-brightness));
   outline: none;
 }
 .link-button:focus-visible {

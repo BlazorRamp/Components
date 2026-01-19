@@ -248,7 +248,7 @@
   */
   --br-unit-state-disabled-brightness: 75%;
   --br-unit-state-hover-opacity: 0.1;
-  --br-unit-state-active-brigthness: 95%;
+  --br-unit-state-active-brightness: 95%;
   --br-unit-state-active-scale: 0.95;
   /*
       * Scroll bars & track styles & misc
@@ -267,7 +267,7 @@
   --br-comp-all-border-interactive-colour: var(--br-primary-clr-lighter-20);
   --br-comp-all-hint-text-brightness: 85%;
   --br-comp-all-divider-colour: var(--br-unit-colour-neutral-30);
-  --br-comp-all-selection-colour: silver;
+  --br-comp-all-selection-colour: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10));
   /*
       * Outlines
   */
@@ -307,7 +307,7 @@
   /*
       * area header styles
   */
-  --br-comp-all-area-header-background: transparent;
+  --br-comp-all-area-header-background: var(--br-unit-colour-neutral-20);
   --br-comp-all-area-header-text: var(--br-unit-colour-primary-text-dark);
   --br-comp-all-area-header-font: inherit;
   --br-comp-all-area-header-font-size: var(--br-unit-font-size-2);
@@ -357,7 +357,7 @@
   --br-comp-all-button-border-width: var(--br-unit-border-1);
   --br-comp-all-button-border-radius: var(--br-unit-radius-full);
   --br-comp-all-button-state-hover: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10));
-  --br-comp-all-button-state-active-brigthness: var(--br-unit-state-active-brigthness);
+  --br-comp-all-button-state-active-brightness: var(--br-unit-state-active-brightness);
   --br-comp-all-button-state-active-scale: var(--br-unit-state-active-scale);
   /*
       * SVG icons
@@ -477,7 +477,7 @@ body {
   --br-comp-history-button-outline-offset: var(--br-comp-all-outline-offset);
   --br-comp-history-button-outline-colour: var(--br-comp-all-outline-colour);
   --br-comp-history-button-state-hover: var(--br-comp-all-button-state-hover);
-  --br-comp-history-button-state-active-brigthness: var(--br-comp-all-button-state-active-brigthness);
+  --br-comp-history-button-state-active-brightness: var(--br-comp-all-button-state-active-brightness);
   --br-comp-history-button-state-active-scale: var(--br-comp-all-button-state-active-scale);
   /*
       * Trigger styles
@@ -497,7 +497,7 @@ body {
   --br-comp-history-trigger-outline-offset: var(--br-comp-all-outline-offset);
   --br-comp-history-trigger-outline-colour: var(--br-comp-all-outline-colour);
   --br-comp-history-trigger-state-hover: var(--br-comp-all-button-state-hover);
-  --br-comp-history-trigger-state-active-brigthness: var(--br-comp-all-button-state-active-brigthness);
+  --br-comp-history-trigger-state-active-brightness: var(--br-comp-all-button-state-active-brightness);
   --br-comp-history-trigger-state-active-scale: var(--br-comp-all-button-state-active-scale);
 }
 
@@ -572,6 +572,7 @@ dialog.br-announcement-history__popover:focus-visible {
   font-size: var(--br-comp-history-area-header-font-size);
   font-weight: var(--br-comp-history-area-header-font-weight);
   color: var(--br-comp-history-area-header-text);
+  background-color: var(--br-comp-history-area-header-background);
 }
 .br-announcement-history__content {
   grid-row: 2/3;
@@ -655,7 +656,7 @@ dialog.br-announcement-history__popover:focus-visible {
 }
 .br-announcement-history__button:active {
   transform: scale(var(--br-comp-history-button-state-active-scale));
-  filter: brightness(var(--br-comp-history-button-state-active-brigthness));
+  filter: brightness(var(--br-comp-history-button-state-active-brightness));
   outline: none;
 }
 .br-announcement-history__button:focus-visible {
@@ -724,11 +725,11 @@ dialog.br-announcement-history__popover:focus-visible {
   outline-color: var(--br-comp-history-trigger-outline-colour);
 }
 .br-announcement-history__trigger:hover {
-  filter: brightness(var(--br-comp-history-trigger-state-active-brigthness));
+  filter: brightness(var(--br-comp-history-trigger-state-active-brightness));
 }
 .br-announcement-history__trigger:active {
   transform: scale(var(--br-comp-history-trigger-state-active-scale));
-  filter: brightness(var(--br-comp-history-trigger-state-active-brigthness));
+  filter: brightness(var(--br-comp-history-trigger-state-active-brightness));
   outline: none;
 }
 .br-announcement-history__icon {

@@ -345,6 +345,7 @@
   --br-kbd-background-colour: var(--br-unit-colour-info-lighter);
   --br-code-block-background-colour: var(--br-unit-colour-secondary-lighter);
   --br-code-block-text: var(--br-unit-colour-info-darker);
+  --br-code-table-heading-text: var(--br-info-box-alternate-heading-text);
 }
 
 :root:has(#theme-toggler[aria-checked=true]) {
@@ -353,6 +354,7 @@
   --br-comp-all-pane-base-background: var(--br-unit-colour-neutral-80);
   --br-comp-all-focus-indicator-colour: var(--br-unit-colour-primary-30);
   --br-comp-all-pane-surface-background: var(--br-unit-colour-neutral-70);
+  --br-comp-all-area-header-background: var(--br-unit-colour-neutral-70);
   --br-comp-all-area-content-text: var(--br-unit-colour-neutral-5);
   --br-unit-colour-canvas: var(--br-unit-colour-neutral-90);
   --br-unit-colour-canvas-text: var(--br-unit-colour-neutral-5);
@@ -524,7 +526,7 @@ body #app__main {
   padding: var(--br-unit-space-5);
   margin-bottom: var(--br-unit-space-5);
   border-radius: var(--br-unit-radius-5);
-  border: 1px solid var(--br-unit-colour-neutral-30);
+  border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
   min-width: fit-content;
 }
 .info-box__heading {
@@ -548,7 +550,7 @@ body #app__main {
   padding: var(--br-unit-space-5);
   margin-block: var(--br-unit-space-5);
   border-radius: var(--br-unit-radius-5);
-  border: 1px solid var(--br-unit-colour-neutral-30);
+  border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
   width: auto;
   font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
   background-color: var(--br-code-block-background-colour);
@@ -588,7 +590,7 @@ body #app__main {
 }
 .test-button:active {
   transform: scale(var(--br-comp-all-button-state-active-scale));
-  filter: brightness(var(--br-comp-all-button-state-active-brigthness));
+  filter: brightness(var(--br-comp-all-button-state-active-brightness));
   outline: none;
 }
 .test-button:focus-visible {
@@ -627,7 +629,7 @@ body #app__main {
 }
 .link-button:active {
   transform: scale(var(--br-comp-all-button-state-active-scale));
-  filter: brightness(var(--br-comp-all-button-state-active-brigthness));
+  filter: brightness(var(--br-comp-all-button-state-active-brightness));
   outline: none;
 }
 .link-button:focus-visible {
@@ -703,4 +705,50 @@ body #app__main {
   outline-width: calc(var(--br-comp-all-outline-width) * 1.5);
   outline-style: var(--br-comp-all-outline-style);
   outline-color: var(--br-comp-all-outline-colour);
+}
+
+.code-table__heading {
+  color: var(--br-code-table-heading-text);
+}
+@media (max-width: 576px) {
+  .code-table__heading {
+    text-align: center;
+  }
+}
+.code-table table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--br-unit-radius-4);
+  border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
+  background-color: var(--br-comp-all-area-content-background);
+  margin-bottom: var(--br-unit-space-9);
+}
+.code-table th {
+  background-color: var(--br-comp-history-area-header-background);
+  padding: var(--br-unit-space-3);
+  font-size: var(--br-unit-font-label);
+  font-weight: var(--br-unit-font-weight-500);
+}
+.code-table th:first-child {
+  border-top-left-radius: var(--br-unit-radius-4);
+}
+.code-table th:last-child {
+  border-top-right-radius: var(--br-unit-radius-4);
+}
+.code-table td {
+  font-size: var(--br-unit-font-size-label);
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+  color: var(--br-code-block-text);
+  border-top: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
+  width: 33%;
+  padding: var(--br-unit-space-3);
+}
+.code-table td:nth-child(2) {
+  border-inline: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
+}
+.code-table td:last-child {
+  font: inherit;
+  font-size: var(--br-unit-font-size-label);
+  color: inherit;
 }

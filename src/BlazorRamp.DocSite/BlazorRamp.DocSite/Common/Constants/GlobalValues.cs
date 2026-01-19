@@ -36,6 +36,8 @@ public class GlobalValues
     public const string Path_Components_Announcement_History = "/components/announcement-history";
     public const string Path_Components_Busy_Indicator       = "/components/busy-indicator";
     public const string Path_Theming_Overview                = "/theming/overview";
+    public const string Path_Theming_CSS_Base_Variables      = "/theming/core-base-variables";
+    public const string Path_Theming_CSS_Unit_Variables      = "/theming/core-unit-variables";
 
     public const string Page_Title_Overview_Introduction            = "Overview - Introduction";
     public const string Page_Title_Overview_Getting_Started         = "Overview - Getting Started";
@@ -45,9 +47,9 @@ public class GlobalValues
     public const string Page_Title_Frameworks_Modal_Dialog          = "Frameworks - Modal Dialog";
     public const string Page_Title_Components_Announcement_History  = "Components - Announcement History";
     public const string Page_Title_Components_Busy_Indicator        = "Components - Busy Indicator";
-    
     public const string Page_Title_Theming_Overview                 = "Theming - Overview";
-
+    public const string Page_Title_Theming_CSS_Base_Variables       = "Theming - Core Base Variables";
+    public const string Page_Title_Theming_CSS_Unit_Variables       = "Theming - Core Unit Variables";
 
     public const string Page_Heading_Overview_Introduction           = "Introduction";
     public const string Page_Heading_Overview_Getting_Started        = "Getting Started";
@@ -55,6 +57,8 @@ public class GlobalValues
     public const string Page_Heading_Overview_Roadmap                = "Roadmap";
 
     public const string Page_Heading_Theming_Overview                = "Overview";
+    public const string Page_Heading_Theming_CSS_Base_Variables      = "Core Base CSS Variables";
+    public const string Page_Heading_Theming_CSS_Unit_Variables      = "Core Unit CSS Variables";
 
     public const string Page_Heading_Services_Live_Region            = "Live Region Service";
     public const string Page_Heading_Frameworks_Modal_Dialog         = "Modal Dialog Framework";

@@ -5,6 +5,7 @@
     --br-kbd-background-colour: var(--br-unit-colour-info-lighter);
     --br-code-block-background-colour: var(--br-unit-colour-secondary-lighter);
     --br-code-block-text: var(--br-unit-colour-info-darker);
+    --br-code-table-heading-text: var(--br-info-box-alternate-heading-text);
 }
 
 :root:has(#theme-toggler[aria-checked="true"]) {
@@ -13,6 +14,7 @@
     --br-comp-all-pane-base-background: var(--br-unit-colour-neutral-80);
     --br-comp-all-focus-indicator-colour: var(--br-unit-colour-primary-30);
     --br-comp-all-pane-surface-background: var(--br-unit-colour-neutral-70);
+    --br-comp-all-area-header-background: var(--br-unit-colour-neutral-70);
     --br-comp-all-area-content-text: var(--br-unit-colour-neutral-5);
     --br-unit-colour-canvas: var(--br-unit-colour-neutral-90);
     --br-unit-colour-canvas-text: var(--br-unit-colour-neutral-5);

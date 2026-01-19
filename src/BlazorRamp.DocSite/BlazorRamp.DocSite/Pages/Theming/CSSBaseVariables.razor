@@ -1,0 +1,694 @@
+﻿@attribute [Route(GlobalValues.Path_Theming_CSS_Base_Variables)]
+
+<PageTitle>@GlobalValues.Page_Title_Theming_CSS_Base_Variables</PageTitle>
+
+<h1>@GlobalValues.Page_Heading_Theming_CSS_Base_Variables</h1>
+
+<p>The following css custom properties (variables) are used for all components.</p>
+<p>
+    A component may define its own variables which can accept the base variable values
+    or override them, as and when necessary; this allows you very fine grained control.
+</p>
+<p>
+    Changing one base variable will ripple through the system and change everything, but you can, at various stages override this
+    behaviour in order to apply a specific value to a specific component without effecting the others.
+</p>
+<p>
+    <b>Note: </b>More base variables may be added and/or some default values may be changed but only if not currently in use a released component.
+</p>
+<div class="code-table">
+
+    <h2 id="base-outline-variables" class="code-table__heading">Base Outline Variables</h2>
+
+    <table aria-labelledby="base-outline-variables" >
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-comp-all-outline-style</td>
+                <td>solid</td>
+                <td>The style type of the outline.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-outline-width</td>
+                <td>var(--br-unit-outline-2)</td>
+                <td>The width of the outline.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-outline-offset</td>
+                <td>var(--br-unit-outline-offset-2)</td>
+                <td>Any offset applied to the outline.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-outline-colour</td>
+                <td>var(--br-comp-all-focus-indicator-colour)</td>
+                <td>The outline colour.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="code-table">
+
+    <h2 id="pane-base-variables" class="code-table__heading">Pane Base Variables</h2>
+    <p>
+        For any component that may conceptually have 3 layers like a sandwich, I call each of these layers a 'Pane'.
+        I found having these 3 conceptual layers made it easier to reason when creating and setting variables. Especially when you have say a hole cut out of the surface to expose
+        a panel or further down to the base.
+    </p>
+    
+    <p>Base, the first pane.</p>
+    
+    <table aria-labelledby="pane-base-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-comp-all-pane-base-background</td>
+                <td>var(--br-unit-colour-neutral-10)</td>
+                <td>The background colour for the base pane.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-pane-base-border-style</td>
+                <td>solid</td>
+                <td>The style type for the border.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-pane-base-border-colour</td>
+                <td>transparent</td>
+                <td>The border colour.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-pane-base-border-width</td>
+                <td>var(--br-unit-border-0)</td>
+                <td>The width of the border.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-pane-base-border-radius</td>
+                <td>var(--br-unit-radius-3)</td>
+                <td>The radius applied to all four corners.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="code-table">
+
+    <h2 id="pane-panel-variables" class="code-table__heading">Pane Panel Variables</h2>
+    
+    <p>Panel, the middle pane.</p>
+    
+    <table aria-labelledby="pane-panel-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-comp-all-pane-panel-background</td>
+                <td>var(--br-unit-colour-neutral-10)</td>
+                <td>The background colour for the panel pane.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-pane-panel-border-style</td>
+                <td>solid</td>
+                <td>The style type for the border.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-pane-panel-border-colour</td>
+                <td>transparent</td>
+                <td>The border colour.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-pane-panel-border-width</td>
+                <td>var(--br-unit-border-0)</td>
+                <td>The width of the border.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-pane-panel-border-radius</td>
+                <td>var(--br-unit-radius-3)</td>
+                <td>The radius applied to all four corners.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="code-table">
+
+    <h2 id="pane-surface-variables" class="code-table__heading">Pane Surface Variables</h2>
+    <p>Surface, the pane on top.</p>
+    <table aria-labelledby="pane-surface-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-comp-all-pane-surface-background</td>
+                <td>var(--br-unit-colour-neutral-20)</td>
+                <td>The background colour of the surface pane.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-pane-surface-text</td>
+                <td>inherit</td>
+                <td>The text colour</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-pane-surface-font</td>
+                <td>inherit</td>
+                <td>The font used.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-pane-surface-font-size</td>
+                <td>inherit</td>
+                <td>The size of the font.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-pane-surface-font-weight</td>
+                <td>inherit</td>
+                <td>The weight of the font.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-pane-surface-line-height</td>
+                <td>inherit</td>
+                <td>The line height.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-pane-surface-border-style</td>
+                <td>solid</td>
+                <td>The style type for the border.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-pane-surface-border-colour</td>
+                <td>transparent</td>
+                <td>The border colour.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-pane-surface-border-width</td>
+                <td>var(--br-unit-border-0)</td>
+                <td>The width of the border.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-pane-surface-border-radius</td>
+                <td>var(--br-unit-radius-3)</td>
+                <td>The radius applied to all four corners.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="code-table">
+
+    <h2 id="area-header-variables" class="code-table__heading">Area Header Variables</h2>
+    <p>
+        Panes, covered our conceptual depths, areas are just sections of the component.
+    </p>
+
+    <p>Header, for any component that has a heading area like the Announcement History dialog</p>
+
+    <table aria-labelledby="area-header-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-comp-all-area-header-background</td>
+                <td>var(--br-unit-colour-neutral-20)</td>
+                <td>The background colour of the heading area, which may sit on the surface.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-header-text</td>
+                <td>var(--br-unit-colour-primary-text-dark)</td>
+                <td>The text colour.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-header-font</td>
+                <td>inherit</td>
+                <td>The font used.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-header-font-size</td>
+                <td>var(--br-unit-font-size-2)</td>
+                <td>The size of the font.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-header-font-weight</td>
+                <td>inherit</td>
+                <td>The weight of the font.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-header-line-height</td>
+                <td>inherit</td>
+                <td>The line height.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-header-border-style</td>
+                <td>solid</td>
+                <td>The style type for the border.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-header-border-colour</td>
+                <td>transparent</td>
+                <td>The border colour.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-header-border-width</td>
+                <td>var(--br-unit-border-0)</td>
+                <td>The width of the border.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-header-border-radius</td>
+                <td>var(--br-unit-radius-3)</td>
+                <td>The radius applied to all four corners.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="code-table">
+
+    <h2 id="area-content-variables" class="code-table__heading">Area Content Variables</h2>
+
+    <p>
+        Content,for any component that has some area for textual content, such as the list of announcements within the Announcement
+        History dialog.
+    </p>
+    <table aria-labelledby="area-content-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-comp-all-area-content-background</td>
+                <td>var(--br-unit-colour-canvas)</td>
+                <td>The background colour of the content area.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-content-text</td>
+                <td>inherit</td>
+                <td>The text colour.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-content-font</td>
+                <td>inherit</td>
+                <td>The font used.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-content-font-size</td>
+                <td>var(--br-unit-font-size-1)</td>
+                <td>The size of the font.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-content-font-weight</td>
+                <td>inherit</td>
+                <td>The weight of the font.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-content-line-height</td>
+                <td>inherit</td>
+                <td>The line height.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-content-border-style</td>
+                <td>solid</td>
+                <td>The style type for the border.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-content-border-colour</td>
+                <td>transparent</td>
+                <td>The border colour.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-content-border-width</td>
+                <td>var(--br-unit-border-0)</td>
+                <td>The width of the border.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-content-border-radius</td>
+                <td>var(--br-unit-radius-3)</td>
+                <td>The radius applied to all four corners.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="code-table">
+
+    <h2 id="area-footer-variables" class="code-table__heading">Area Footer Variables</h2>
+
+    <p>
+        footer, area towards the bottom of the component. The Announcement History dialog has its buttons
+        in this area.
+    </p>
+    <table aria-labelledby="area-footer-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-comp-all-area-footer-background</td>
+                <td>transparent</td>
+                <td>The background colour of the footer area.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-footer-text</td>
+                <td>inherit</td>
+                 <td>The text colour.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-footer-font</td>
+                <td>inherit</td>
+                <td>The font used.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-footer-font-size</td>
+                <td>var(--br-unit-font-size-1)</td>
+               <td>The size of the font.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-footer-font-weight</td>
+                <td>inherit</td>
+                <td>The weight of the font.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-footer-line-height</td>
+                <td>inherit</td>
+                <td>The line height.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-footer-border-style</td>
+                <td>solid</td>
+                <td>The style type for the border.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-footer-border-colour</td>
+                <td>transparent</td>
+                <td>The border colour.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-footer-border-width</td>
+                <td>var(--br-unit-border-0)</td>
+                <td>The width of the border.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-area-footer-border-radius</td>
+                <td>var(--br-unit-radius-3)</td>
+                <td>The radius applied to all four corners.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="code-table">
+
+    <h2 id="internal-button-variables" class="code-table__heading">Internal Button Variables</h2>
+
+    <p>
+        Variables to style buttons that live inside components such as the buttons in the footer area of the Announcement 
+        History dialog.
+    </p>
+
+    <table aria-labelledby="internal-button-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-comp-all-button-background</td>
+                <td>transparent</td>
+                <td>The background colour for the button.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-button-text</td>
+                <td>var(--br-unit-colour-primary-text-dark)</td>
+                <td>The text colour.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-button-font</td>
+                <td>inherit</td>
+                <td>The font used.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-button-font-size</td>
+                <td>var(--br-unit-font-size-label)</td>
+                <td>The size of the font.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-button-font-weight</td>
+                <td>var(--br-unit-font-weight-400,inherit)</td>
+                <td>The weight of the font.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-button-line-height</td>
+                <td>inherit</td>
+                  <td>The line height.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-button-border-style</td>
+                <td>solid</td>
+                <td>The style type for the border.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-button-border-colour</td>
+                <td>var(--br-unit-colour-primary-40)</td>
+                <td>The border colour.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-button-border-width</td>
+                <td>var(--br-unit-border-1)</td>
+                <td>The width of the border.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-button-border-radius</td>
+                <td>var(--br-unit-radius-full)</td>
+                <td>The radius applied to all four corners. Full causes buttons to have rounded ends.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-button-state-hover</td>
+                <td>hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10))</td>
+                <td>The colour used for the pseudo class hover</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-button-state-active-brightness</td>
+                <td>var(--br-unit-state-active-brightness)</td>
+                <td>Any filter brightness applied for the pseudo class active</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-button-state-active-scale</td>
+                <td>var(--br-unit-state-active-scale)</td>
+                <td>A value that may be used in a transform to scale the button when its in the active state.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="code-table">
+
+    <h2 id="track-related-variables" class="code-table__heading">Track Related Variables</h2>
+    <p>
+        Variables used for tracks, that have thumbs or sliders.
+    </p>
+    <table aria-labelledby="track-related-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-comp-all-track-colour</td>
+                <td>var(--br-unit-colour-neutral-30)</td>
+                <td>The background colour of tracks used for thumbs and sliders</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-track-active-colour</td>
+                <td>var(--br-unit-colour-neutral-30)</td>
+                <td>The background colour when the track is active.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-track-inactive-colour</td>
+                <td>var(--br-unit-colour-neutral-30)</td>
+                <td>The background colour when the track is inactive.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-thumb-colour</td>
+                <td>var(--br-unit-colour-neutral-30)</td>
+                <td>The thumb or slider colour.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="code-table">
+
+    <h2 id="focus-related-variables" class="code-table__heading">Focus, Selection Related Variables</h2>
+
+    <table aria-labelledby="focus-related-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-comp-all-focus-indicator-colour</td>
+                <td>var(--br-unit-colour-primary-70)</td>
+                <td>Colour used for focus indicators.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-focus-indicator-text</td>
+                <td>var(--br-unit-colour-primary-5)</td>
+                <td>Text colour if on top of an item using the focus indicator colour.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-selection-colour</td>
+                <td>silver</td>
+                <td>hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10))</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+<div class="code-table">
+    <h2 id="link-related-variables" class="code-table__heading">Link Related Variables</h2>
+
+    <table class="code-table">
+        <caption>Core CSS Variables</caption>
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-comp-all-link-current-page-background-colour</td>
+                <td>var(--br-unit-colour-secondary-lighter)</td>
+                <td>Link background colour for the link that is the current page.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-link-hover-background-colour</td>
+                <td>hsl(from var(--br-unit-colour-secondary) h s l / 0.15)</td>
+                <td>Colour for the pseudo hover class.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-link-active-background-colour</td>
+                <td>hsl(from var(--br-unit-colour-secondary) h s l / 0.3)</td>
+                <td>The links background colour for the active state pseudo class.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-link-focused-background-colour</td>
+                <td>var(--br-unit-colour-secondary-lighter)</td>
+                <td>The links background colour when it has the focus.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="code-table">
+
+    <h2 id="miscellaneous-variables" class="code-table__heading">Miscellaneous Variables</h2>
+
+    <table aria-labelledby="miscellaneous-variables">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-comp-all-overlay-colour</td>
+                <td>hsl(from var(--br-unit-colour-secondary) h s l / 0.15)</td>
+                <td>Overlay colour (backdrop) as used by busy indicators and modal dialogs</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-border-interactive-colour</td>
+                <td>var(--br-primary-clr-lighter-20)</td>
+                <td>Border colour applied to text inputs / interactive elements when active.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-hint-text-brightness</td>
+                <td>85%</td>
+                <td>Brightness filter value applied to hint text.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-all-divider-colour</td>
+                <td>var(--br-unit-colour-neutral-30)</td>
+                <td>General purpose divider colour.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Theming_Overview">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Page_Heading_Theming_Overview</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Theming_CSS_Unit_Variables">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Page_Heading_Theming_CSS_Unit_Variables</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>

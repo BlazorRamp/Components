@@ -65,6 +65,7 @@ dialog {
         font-size: var(--br-comp-history-area-header-font-size);
         font-weight: var(--br-comp-history-area-header-font-weight);
         color: var(--br-comp-history-area-header-text);
+        background-color: var(--br-comp-history-area-header-background);
     }
 
     &__content {
@@ -130,7 +131,7 @@ dialog {
         align-items: center;
         padding-top: var(--br-unit-space-4);
 
-        &--reverse{
+        &--reverse {
             flex-direction: row-reverse;
         }
     }
@@ -159,7 +160,7 @@ dialog {
 
         &:active {
             transform: scale(var(--br-comp-history-button-state-active-scale));
-            filter: brightness(var(--br-comp-history-button-state-active-brigthness));
+            filter: brightness(var(--br-comp-history-button-state-active-brightness));
             outline: none;
         }
 
@@ -235,12 +236,12 @@ dialog {
         }
 
         &:hover {
-            filter: brightness(var(--br-comp-history-trigger-state-active-brigthness));
+            filter: brightness(var(--br-comp-history-trigger-state-active-brightness));
         }
 
         &:active {
             transform: scale(var(--br-comp-history-trigger-state-active-scale));
-            filter: brightness(var(--br-comp-history-trigger-state-active-brigthness));
+            filter: brightness(var(--br-comp-history-trigger-state-active-brightness));
             outline: none;
         }
     }
