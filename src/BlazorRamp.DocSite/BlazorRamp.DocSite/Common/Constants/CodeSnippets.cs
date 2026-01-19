@@ -27,4 +27,10 @@ public class CodeSnippets
 
         <Router AppAssembly . . .
         """;
+
+    public const string Make_Announcement = """
+        var announcement = new Announcement("The site is now using a dark coloured theme.", AnnouncementType.Info,  "Dark Theme Switch", LiveRegionType.Polite);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+        """;
 }

@@ -1,4 +1,5 @@
-﻿
+﻿@use "_configuration" as *;
+@use "_functions" as *;
 :root {
     --br-unit-colour-primary: Sienna;
     --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-darker);
@@ -98,6 +99,12 @@ h3 {
     font-weight: var(--br-unit-font-weight-500);
     margin-bottom: var(--br-unit-space-4); 
     
+}
+
+.page-heading {
+    @include media-device-sm(max-width) {
+        text-align: center;
+    }
 }
 b {
     font-weight:bold;

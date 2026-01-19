@@ -2,7 +2,175 @@
 
 <PageTitle>@GlobalValues.Page_Title_Services_Live_Region</PageTitle>
 
-<h1>. . @GlobalValues.Page_Heading_Services_Live_Region . .</h1>
+<h1 class="page-heading">@GlobalValues.Page_Heading_Services_Live_Region</h1>
+
+<p>
+    The Live Region Service allows you to send announcements to ARIA live regions, which are monitored by assistive technologies. These technologies 
+    then relay this information to their users; for example, screen readers will output the text as speech.
+</p>
+
+<p>
+    <b>Important: </b>In order to use the Live Region Service, you need to ensure that is has been registered in the <span class="code-span">Program.cs</span> file (Both server and client 
+    if using Server and WebAssembly interactive rendermode) and that the <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component has been added as it contains the live regions used.
+    Please see the <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Overview_Getting_Started">@GlobalValues.Page_Heading_Overview_Getting_Started</a> page for details.
+ </p>
+
+
+<div class="code-table two-col-descriptive">
+
+    <h2 id="iliveregionservice-interface" class="code-table__heading">ILiveRegionService interface</h2>
+
+    <table aria-labelledby="iliveregionservice-interface">
+
+        <thead>
+            <tr>
+                <th scope="col">Method</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>MakeAnnouncement(Announcement announcement)</td>
+                <td>Dispatches an announcement to be spoken by a screen reader. Returns a <span class="code-span">Task</span>.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="code-table">
+
+    <h2 id="announcement-record" class="code-table__heading">Announcement record</h2>
+
+    <table aria-labelledby="announcement-record">
+
+        <thead>
+            <tr>
+                <th scope="col">Property</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Message</td>
+                <td>string</td>
+                <td>The text content to be spoken by the screen reader.</td>
+            </tr>
+            <tr>
+                <td>AnnouncementType</td>
+                <td>AnnouncementType (enum)</td>
+                <td>TThe semantic classification (e.g., Info, Success, Error).</td>
+            </tr>
+            <tr>
+                <td>AnnouncementTrigger</td>
+                <td>string?</td>
+                <td>Optional text describing what triggered this announcement. For example clicking a Save Button you would just pass "Save Button"</td>
+            </tr>
+            <tr>
+                <td>LiveRegionType</td>
+                <td>LiveRegionType (enum)</td>
+                <td>The ARIA priority level (Polite or Assertive).</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<h2 class="page-heading">Supporting enums</h2>
+
+<div class="code-table">
+
+    <h3 id="announcementtype-enum" class="code-table__heading">AnnouncementType enum</h3>
+
+    <table aria-labelledby="announcement-record">
+
+        <thead>
+            <tr>
+                <th scope="col">Value</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0</td>
+                <td>Info</td>
+                <td>General informational announcement..</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>OperationStarted</td>
+                <td>Indicates an operation has started.</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>OperationCompleted?</td>
+                <td>Indicates an operation has completed successfully.</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>OperationFailed</td>
+                <td>Indicates an operation has failed.</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>OperationCancelled</td>
+                <td>Indicates an operation was cancelled.</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>SystemWarning</td>
+                <td>System-level warning message.</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>OperationFailed</td>
+                <td>System-level error message.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="code-table">
+
+    <h3 id="liveregiontype-enum" class="code-table__heading">LiveRegionType enum</h3>
+
+    <table aria-labelledby="announcement-record">
+
+        <thead>
+            <tr>
+                <th scope="col">Value</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0</td>
+                <td>Polite</td>
+                <td>Waits for the screen reader to finish current speech before announcing.</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Assertive</td>
+                <td>Interrupts the screen reader immediately.</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+<h2 class="page-heading">Making announcements</h2>
+
+<p>
+    Please keep your messages short and to the point, for example on completion of saving a customer entry "Saved Successfully" would be sufficient. 
+    Provide context when necessary; the "Theme" button on this site uses the live regions service as follows:
+</p>
+<CodeBox CodeBlock="@CodeSnippets.Make_Announcement" />
+
+
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Theming_CSS_Colour_Variables">

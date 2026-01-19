@@ -68,13 +68,13 @@
         if (_jsLiveRegionModule is not null) await _jsDocSiteModule!.InvokeVoidAsync(GlobalValues.JS_Check_Close_Nav, MenuButtonRef);
     }
 
-    private void ToggleTheme()
+    private async Task ToggleTheme()
     {
         _checked = !_checked;
 
         var announcement = _checked ? _darkThemeAnnouncement : _lightThemAnnouncement;
 
-        _liveRegionService.MakeAnnouncement(announcement);
+        await _liveRegionService.MakeAnnouncement(announcement);
     }
 
     public async ValueTask DisposeAsync()

@@ -2,7 +2,7 @@
 
 <PageTitle>@GlobalValues.Page_Title_Overview_Getting_Started</PageTitle>
 
-<h1>@GlobalValues.Page_Heading_Overview_Getting_Started</h1>
+<h1 class="page-heading">@GlobalValues.Page_Heading_Overview_Getting_Started</h1>
 
 <p>
     Every component NuGet package references the BlazorRamp.Core package. This Core package contains the "Live Region Service" and "Announcement History" component, but you can of course use 
@@ -42,9 +42,13 @@
             Register BlazorRamp services in the <span class="code-span">Program.cs</span> file (Both server and client if using Server and WebAssembly interactive rendermode)
         </p>
         <p>
-            Add the following line to the service registration section:
+            Add the following line to the service registration section if you are using the <span class="code-span">Microsoft.Extensions.DependencyInjection</span> package:
         </p>
         <CodeBox CodeBlock="@CodeSnippets.Add_Live_Region_Service" />
+        <p>
+            For other Dependency Injection providers, register the interface <span class="code-span">ILiveRegionService</span> and its implementation <span class="code-span">LiveRegionService</span>
+            as you normally would.
+        </p>
     </li>
     <li>
         <p>

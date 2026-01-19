@@ -35,6 +35,7 @@
     border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
     width: auto;
     font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    font-size:var(--br-unit-font-size-label);
     background-color: var(--br-code-block-background-colour);
     overflow-x: auto;
     color: var(--br-code-block-text);

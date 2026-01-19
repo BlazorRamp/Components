@@ -438,6 +438,12 @@ h3 {
   margin-bottom: var(--br-unit-space-4);
 }
 
+@media (max-width: 576px) {
+  .page-heading {
+    text-align: center;
+  }
+}
+
 b {
   font-weight: bold;
 }
@@ -553,6 +559,7 @@ body #app__main {
   border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
   width: auto;
   font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+  font-size: var(--br-unit-font-size-label);
   background-color: var(--br-code-block-background-colour);
   overflow-x: auto;
   color: var(--br-code-block-text);
@@ -747,12 +754,17 @@ body #app__main {
   width: 33%;
   padding: var(--br-unit-space-3);
 }
-.code-table td:last-child {
-  font: inherit;
-  color: inherit;
-}
 .code-table td:nth-child(2) {
   border-inline: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
   font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
   color: var(--br-code-block-text);
+}
+.code-table td:last-child {
+  font-family: var(--br-unit-font-family-default);
+  color: inherit;
+}
+.code-table--two-col-descriptive td:last-child {
+  border-inline: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
+  font-family: var(--br-unit-font-family-default);
+  color: inherit;
 }
