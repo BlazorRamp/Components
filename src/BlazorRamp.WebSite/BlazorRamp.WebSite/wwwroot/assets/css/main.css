@@ -358,7 +358,7 @@
   --br-unit-colour-canvas: var(--br-unit-colour-neutral-90);
   --br-unit-colour-canvas-text: var(--br-unit-colour-neutral-5);
   --br-comp-all-button-text: var(--br-unit-colour-primary-text-light);
-  --br-comp-all-area-header-text: var(--br-unit-colour-primary-20);
+  --br-comp-all-area-header-text: var(--br-unit-colour-primary-10);
   --br-comp-all-button-state-hover: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-30));
   --br-comp-all-link-current-page-background-colour: var(--br-unit-colour-secondary-darker);
   --br-comp-all-link-hover-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.15);

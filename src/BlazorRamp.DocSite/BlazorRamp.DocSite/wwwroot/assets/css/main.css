@@ -212,7 +212,7 @@
   padding-right: var(--br-unit-space-3);
   grid-column: 1/2;
   grid-row: 2/3;
-  width: 16rem;
+  width: 20rem;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
@@ -359,7 +359,7 @@
   --br-unit-colour-canvas: var(--br-unit-colour-neutral-90);
   --br-unit-colour-canvas-text: var(--br-unit-colour-neutral-5);
   --br-comp-all-button-text: var(--br-unit-colour-primary-text-light);
-  --br-comp-all-area-header-text: var(--br-unit-colour-primary-20);
+  --br-comp-all-area-header-text: var(--br-unit-colour-primary-10);
   --br-comp-all-button-state-hover: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-30));
   --br-comp-all-link-current-page-background-colour: var(--br-unit-colour-secondary-darker);
   --br-comp-all-link-hover-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.15);
@@ -564,6 +564,12 @@ body #app__main {
   overflow-x: auto;
   color: var(--br-code-block-text);
 }
+.code-box:focus {
+  outline-style: var(--br-comp-all-outline-style);
+  outline-width: var(--br-comp-all-outline-width);
+  outline-offset: var(--br-comp-all-outline-offset);
+  outline-color: var(--br-comp-all-outline-colour);
+}
 
 .code-span {
   padding: var(--br-unit-space-2);
@@ -589,7 +595,7 @@ body #app__main {
   background-color: var(--br-comp-all-button-background);
   cursor: pointer;
   padding: var(--br-unit-space-5);
-  width: 16rem;
+  width: 20rem;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -624,7 +630,7 @@ body #app__main {
   background-color: var(--br-comp-all-button-background);
   cursor: pointer;
   padding: var(--br-unit-space-5);
-  width: 16rem;
+  width: 20rem;
   display: inline-flex;
   justify-content: center;
   align-items: center;

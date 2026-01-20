@@ -1,4 +1,4 @@
-﻿<div class="code-box" tabindex="0">
+﻿<div class="code-box" tabindex="0" role="region" aria-label="@_ariaLabel">
     <pre>
         <code>
             @CodeBlock        
@@ -9,11 +9,14 @@
 @code {
 
     [Parameter] public string? CodeBlock { get; set; }
+    [Parameter] public string AriaLabel  { get; set; }
 
     private MarkupString _codeBlock;
+    private string _ariaLabel = "Code block";
 
     protected override void OnParametersSet()
-    
-        => _codeBlock = (MarkupString)System.Net.WebUtility.HtmlEncode(CodeBlock ?? "");
-    
+    {
+        _codeBlock = (MarkupString)System.Net.WebUtility.HtmlEncode(CodeBlock ?? "");
+        _ariaLabel = String.IsNullOrWhiteSpace(AriaLabel) ? _ariaLabel : AriaLabel.Trim();
+    }
 }

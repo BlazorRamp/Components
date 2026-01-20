@@ -52,7 +52,7 @@ public partial class AnnouncementHistory
     /// <summary>
     /// Gets or sets a value indicating whether the trigger button is visible or only when its focused via the keyboard.
     /// The default value is true, always visible.    /// </summary>
-    [Parameter] public bool   TriggerVisible { get; set; } = true;
+    [Parameter] public bool   TriggerVisible { get; set; } = false;
 
     /// <summary>
     /// Injected service to manage and dispatch live region announcements.
@@ -67,7 +67,6 @@ public partial class AnnouncementHistory
     private string  _noDataText        = String.Empty;
     private string  _locale            = String.Empty;
     private string? _triggerClasses    = null;
-    private string? _footerClasses     = null;
 
     /// <summary>
     /// Initializes the component by setting up localized strings and determining the visibility classes 
@@ -86,7 +85,6 @@ public partial class AnnouncementHistory
         _noDataText        = String.IsNullOrWhiteSpace(NoDataText) ? CoreGlobalValues.AH_Text_No_Content : NoDataText.Trim();
 
         _triggerClasses    = TriggerVisible ? CoreGlobalValues.AH_Trigger_Class : CoreUtilities.CreateClassList(CoreGlobalValues.AH_Trigger_Class, CoreGlobalValues.AH_Trigger_Modifier);
-        _footerClasses     = isRTL ? CoreUtilities.CreateClassList(CoreGlobalValues.AH_Footer_Class, CoreGlobalValues.AH_Footer_Modifier) : CoreGlobalValues.AH_Footer_Class;
     }
 
 }

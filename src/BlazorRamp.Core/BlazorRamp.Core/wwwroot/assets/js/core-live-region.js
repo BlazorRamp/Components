@@ -144,14 +144,6 @@ const buildAnnouncementList = (ahContentElement, locale) => {
     olElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
     paraElement.style.display = "none";
     olElement.innerHTML = "";
-    //for (const record of [..._historyQueue].reverse()) {
-    //    const li = document.createElement("li");
-    //    const time = formatTimestampLocalized(record.timestamp, locale) + ";";
-    //    const page = record.page === "" ? "" : record.page.trim() + ";";
-    //    const trigger = (!record.announcementTrigger || record.announcementTrigger.trim().length === 0) ? "" : record.announcementTrigger.trim() + ";";
-    //    li.textContent = `${time} ${page} ${trigger} ${record.message}`;
-    //    olElement.appendChild(li);
-    //}
     for (const record of [..._historyQueue].reverse()) {
         const li = document.createElement("li");
         const time = formatTimestampLocalized(record.timestamp, locale);

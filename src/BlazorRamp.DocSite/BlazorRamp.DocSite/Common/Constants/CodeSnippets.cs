@@ -33,4 +33,13 @@ public class CodeSnippets
 
         await _liveRegionService.MakeAnnouncement(announcement);
         """;
+
+    public const string Add_Configure_Announcement_History_Component = """
+        <AnnouncementHistory Title="Recent Announcements" CloseText="Close" ClearCloseText="Clear & Close" 
+         RefreshText="Refresh" TriggerText="Alerts" TriggerVisible="false" />
+        /*
+            * Which is the same as
+        */
+        <AnnouncementHistory />
+        """;
 }

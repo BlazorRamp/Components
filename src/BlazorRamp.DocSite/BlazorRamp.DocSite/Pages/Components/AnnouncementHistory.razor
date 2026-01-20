@@ -2,7 +2,106 @@
 
 <PageTitle>@GlobalValues.Page_Title_Components_Announcement_History</PageTitle>
 
-<h1 class="page-heading">. . @GlobalValues.Page_Heading_Components_Announcement_History . .</h1>
+<h1 class="page-heading">@GlobalValues.Page_Heading_Components_Announcement_History Component</h1>
+
+<p>
+    The <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component allows the user to view the last 20 announcements made via the live region service.
+</p>
+<p>
+    The announcement history viewer is a non-modal dialog that can be accessed at any time by using <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd> or by clicking
+    on its associated button, which can either remain visible all the time or only when it is focused <span class="code-span">:focus-visible</span>.
+</p>
+<p>
+    <b>Important: </b>In order to use the <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component contained in the <span class="code-span">BlazorRamp.Core</span> NuGet package,
+    please ensure that it has been added to your project as described on the <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Overview_Getting_Started">
+        @GlobalValues.Main_Nav_Section_Heading_About - @GlobalValues.Page_Heading_Overview_Getting_Started
+    </a> page.
+</p>
+
+<section class="code-table">
+
+    <h2 id="announcement-history-component" class="code-table__heading">AnnouncementHistory component</h2>
+
+    <table aria-labelledby="announcement-history-component">
+
+        <thead>
+            <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Title</td>
+                <td>string</td>
+                <td>
+                    The h2 heading text displayed for the announcement history dialog and used for the aria-labelledby attribute. 
+                    A default value of "Recent Announcements" will be used if omitted.
+                </td>
+            </tr>
+            <tr>
+                <td>CloseText</td>
+                <td>string</td>
+                <td>
+                    The text for the button that closes the history dialog.
+                    A default value of "Close" will be used if omitted.    
+                </td>
+            </tr>
+            <tr>
+                <td>ClearCloseText</td>
+                <td>string</td>
+                <td>
+                    The text for the button that clears the announcement history logs and closes the dialog.
+                    A default value of "Clear & Close" will be used if omitted.
+                </td>
+            </tr>
+            <tr>
+                <td>RefreshText</td>
+                <td>string</td>
+                <td>
+                    The text for the button that refreshes the history list displayed in the dialog.
+                    A default value of "Refresh" will be used if omitted.
+                </td>
+            </tr>
+            <tr>
+                <td>NoDataText</td>
+                <td>string</td>
+                <td>
+                    The text displayed when there are no announcements in the history.
+                    A default value of "No Announcements" will be used if omitted.
+                 </td>
+            </tr>
+            <tr>
+                <td>TriggerText</td>
+                <td>string</td>
+                <td>
+                    The text for the trigger button that opens the history dialog.
+                    A default value of "Alerts" will be used if omitted.
+                </td>
+            </tr>
+            <tr>
+                <td>TriggerVisible</td>
+                <td>bool</td>
+                <td>
+                    Determines if the trigger button is always visible or only visible when focused via the keyboard.
+                    The default value is false, so it will be hidden by default. Please ensure to advise users of the 
+                    short cut keys.
+                 </td>
+            </tr>
+        </tbody>
+    </table>
+
+</section>
+
+<section>
+    <h2 class="page-heading">Setting Component Parameters</h2>
+
+    <p>Example showing all of the parameters being set:</p>
+
+    <CodeBox CodeBlock="@CodeSnippets.Add_Configure_Announcement_History_Component" AriaLabel="Component parameter code block" />
+
+</section>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Frameworks_Modal_Dialog">

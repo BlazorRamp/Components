@@ -31,6 +31,7 @@
     position: relative;
     padding: var(--br-unit-space-5);
     margin-block: var(--br-unit-space-5);
+  
     border-radius: var(--br-unit-radius-5);
     border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
     width: auto;
@@ -39,6 +40,14 @@
     background-color: var(--br-code-block-background-colour);
     overflow-x: auto;
     color: var(--br-code-block-text);
+
+    &:focus{
+       
+        outline-style: var(--br-comp-all-outline-style); 
+        outline-width: var(--br-comp-all-outline-width); 
+        outline-offset: var(--br-comp-all-outline-offset);
+        outline-color: var(--br-comp-all-outline-colour);
+    }
 }
 
 .code-span {
