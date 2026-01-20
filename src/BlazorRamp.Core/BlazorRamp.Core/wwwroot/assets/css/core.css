@@ -406,8 +406,8 @@ body {
   */
   --br-comp-history-pane-panel-background: var(--br-comp-all-pane-panel-background);
   --br-comp-history-pane-panel-border-style: var(--br-comp-all-pane-panel-border-style);
-  --br-comp-history-pane-panel-border-colour: var(--br-comp-all-pane-base-border-colour);
-  --br-comp-history-pane-panel-border-width: var(--br-comp-all-pane-base-border-width);
+  --br-comp-history-pane-panel-border-colour: var(--br-comp-all-pane-panel-border-colour);
+  --br-comp-history-pane-panel-border-width: var(--br-comp-all-pane-panel-border-width);
   --br-comp-history-pane-panel-border-radius: var(--br-unit-radius-7);
   /*
       * pane surface styles
