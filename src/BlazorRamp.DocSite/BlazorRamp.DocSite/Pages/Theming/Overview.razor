@@ -2,7 +2,113 @@
 
 <PageTitle>@GlobalValues.Page_Title_Theming_Overview</PageTitle>
 
-<h1 class="page-heading">. . @GlobalValues.Page_Heading_Theming_Overview . .</h1>
+<h1 class="page-heading">@GlobalValues.Page_Heading_Theming_Overview</h1>
+
+<p>
+    This section of the documentation provides you with all of the necessary details to be able to style any or all components to meet your needs.
+</p>
+<p>
+    Although Blazor Ramp makes no claims about being a CSS framework or even offering a theming service, once you understand how it works, it is possible to use it as such.
+</p>
+<p>
+    For example, if you are starting a fresh project without reliance on other CSS and/or component frameworks where you need Blazor Ramp components to blend in, you could build 
+    your own components following the same logic and hierarchical nature using the provided CSS variables, so that the mix of your own and Blazor Ramp components would be seamlessly 
+    styled as one.
+</p>
+
+<section class="section-box">
+
+    <h2>How theming works in Blazor Ramp</h2>
+    <p>
+        Blazor Ramp has three categories of CSS variables, the first two of which are shared by everything.
+    </p>
+    
+    <section>
+        <h3>Units (<span class="code-span code-span--h3-sizing">--br-unit</span>)</h3>
+        <p>
+            These define all of the base unitary values such as widths, spaces, fonts and colours, and are the underlying values which every variable ultimately uses unless overridden 
+            by an individual component.
+        </p>
+    </section>
+
+    <section>
+        <h3>All components (<span class="code-span code-span--h3-sizing">--br-comp-all</span>)</h3>
+        <p>
+            These form the base set of variables that all components use unless overridden by the individual component.
+        </p>
+    </section>
+
+    <section>
+        <h3>Component specific</h3>
+        <p>
+            These are defined on each individual component. 
+            For example, those defined for the Announcement History component are prefixed <span class="code-span">--br-comp-history</span>.
+        </p>
+        <p>
+            Unless it was necessary to do so for the component, each component-specific variable will map to a shared <span class="code-span">--br-comp-all</span> variable. 
+            For example, the Announcement History outline that appears around the dialogue on focus has the variable <span class="code-span">--br-comp-history-outline-style</span>,
+            which maps to (has the value) <span class="code-span">var(--br-comp-all-outline-style)</span>.
+        </p>
+    </section>
+
+    <section>
+        <h3>Component Classes</h3>
+        <p>
+            Each component uses the Block Element Modifier (BEM) syntax and as such each component has its own block class, such as <span class="code-span">.br-announcement-history</span>.
+        </p>
+        <p>
+            The styles set in the classes map to the component-specific variables unless overridden in the class. For example, the dialogue's background property 
+            maps to <span class="code-span">var(--br-comp-history-pane-base-background)</span>.
+        </p>
+    </section>
+
+    <section>
+        <h3>Hierarchy of granularity</h3>
+        <p>The hierarchy of granularity is as follows:</p>
+        <ol style="margin-left:var(--br-unit-space-1);margin-bottom:var(--br-unit-space-5);">
+            <li>
+                <span class="code-span">--br-unit</span> - changes everything everywhere.
+            </li>
+            <li>
+                <span class="code-span">--br-comp-all</span> - changes the parts of all components that map to this variable.
+            </li>
+            <li>
+                <span class="code-span">--br-comp-[component-identifier]</span> - changes the value that is used for the style property it's mapped to.
+            </li>
+            <li>
+                <span class="code-span">.br-[class-identifier]</span> - modifies the style properties of the component directly.
+            </li>
+        </ol>
+
+    </section>
+
+    <section>
+        <h3>The concept</h3>
+        <p>
+            The concept is very simple, but there are a lot of variables, so it can appear daunting. However, most variables will just map back to the units, so changing a single unit 
+            colour value will ripple through the entire system.
+            The process is generally simple: <b>start at the top to change everything and only change things at the bottom where necessary.</b>
+        </p>
+    </section>
+
+    <section>
+        <h3>Example</h3>
+        <p>
+            The difference between this documentation site and the <a target="_blank" class="@GlobalValues.Link_Class" href="@GlobalValues.Web_Site_Path_Component_Test">component test site (opens in new window)</a> was achieved 
+            by changing the <span class="code-span">--br-unit-colour-primary</span> from <span class="code-span">hsl(220, 44%, 48%)</span> to the named colour <span class="code-span">Sienna</span>. I implemented a 
+            very rudimentary colour theming system where the secondary, accent and neutral colours were all derived from the primary colour using just CSS colour functions, without SASS (which I normally use).
+        </p>
+    </section>
+
+    <section>
+        <h3>Integration with your framework</h3>
+        <p>
+            As you will most likely be using your own framework or a third party's, you will most likely need to change more than a single value to have any component that you choose to use blend in with your existing components.
+            But this is a one time simple process.
+        </p>
+    </section>
+
+</section>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Overview_Roadmap">

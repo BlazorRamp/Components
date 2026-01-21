@@ -580,6 +580,15 @@ body #app__main {
   color: var(--br-code-block-text);
   border: 1px solid transparent;
 }
+.code-span--h3-sizing {
+  font-size: var(--br-unit-font-size-1);
+}
+
+@media (max-width: 576px) {
+  .section-box h2 {
+    text-align: center;
+  }
+}
 
 .test-button {
   box-sizing: border-box;

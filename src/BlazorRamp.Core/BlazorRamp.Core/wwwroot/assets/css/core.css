@@ -34,7 +34,7 @@
   /*
       * Border radidius
   */
-  --br-unit-radius-0: 0;
+  --br-unit-radius-0: 0rem;
   --br-unit-radius-1: 0.125rem;
   --br-unit-radius-2: 0.25rem;
   --br-unit-radius-3: 0.5rem;
@@ -63,7 +63,7 @@
   --br-unit-outline-3: 3px;
   --br-unit-outline-4: 4px;
   --br-unit-outline-5: 5px;
-  --br-unit-outline-offset-0: 0;
+  --br-unit-outline-offset-0: 0rem;
   --br-unit-outline-offset-1: 0.125rem;
   --br-unit-outline-offset-2: 0.25rem;
   --br-unit-outline-offset-3: 0.5rem;
@@ -193,7 +193,7 @@
   --br-unit-colour-warning-light: hsl(from var(--br-unit-colour-warning) h s calc((l + (100 - l) * 0.40)));
   --br-unit-colour-warning-dark: hsl(from var(--br-unit-colour-warning) h s calc(l * 0.55));
   --br-unit-colour-warning-darker: hsl(from var(--br-unit-colour-warning) h s calc(l * 0.35));
-  --br-unit-colour-warning-text-light: var(--br-unit-colour-warning-lighter:);
+  --br-unit-colour-warning-text-light: var(--br-unit-colour-warning-lighter);
   --br-unit-colour-warning-text-dark: var(--br-unit-colour-warning-darker);
   /*
       * IMPORANT TWEAK NEUTRAL TO SUIT perhaps lighter and more colour for the lower ends and darker and higher end
@@ -475,7 +475,7 @@ body {
   --br-comp-history-button-border-width: var(--br-comp-all-button-border-width);
   --br-comp-history-button-border-radius: var(--br-comp-all-button-border-radius);
   --br-comp-history-button-outline-style: var(--br-comp-all-outline-style);
-  --br-comp-history-button-outline-width: va(--br-comp-all-outline-width);
+  --br-comp-history-button-outline-width: var(--br-comp-all-outline-width);
   --br-comp-history-button-outline-offset: var(--br-comp-all-outline-offset);
   --br-comp-history-button-outline-colour: var(--br-comp-all-outline-colour);
   --br-comp-history-button-state-hover: var(--br-comp-all-button-state-hover);

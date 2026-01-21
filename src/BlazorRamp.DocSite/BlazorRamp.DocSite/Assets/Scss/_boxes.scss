@@ -58,4 +58,17 @@
     overflow-x: auto;
     color: var(--br-code-block-text);
     border: 1px solid transparent;
+
+    &--h3-sizing{
+        font-size:var(--br-unit-font-size-1);
+    }
+}
+
+.section-box {
+
+    & h2 {
+        @include media-device-sm(max-width) {
+            text-align: center;
+        }
+    }
 }
