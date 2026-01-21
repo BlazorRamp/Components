@@ -39,6 +39,7 @@ public class GlobalValues
     public const string Path_Theming_CSS_Base_Variables      = "/theming/core-base-variables";
     public const string Path_Theming_CSS_Unit_Variables      = "/theming/core-unit-variables";
     public const string Path_Theming_CSS_Colour_Variables    = "/theming/core-colour-variables";
+    public const string Path_FAQs_Questions                  = "/faqs/questions";
 
     public const string Page_Title_Overview_Introduction            = "Overview - Introduction";
     public const string Page_Title_Overview_Getting_Started         = "Overview - Getting Started";
@@ -52,11 +53,13 @@ public class GlobalValues
     public const string Page_Title_Theming_CSS_Base_Variables       = "Theming - Core Base Variables";
     public const string Page_Title_Theming_CSS_Unit_Variables       = "Theming - Core Unit Variables";
     public const string Page_Title_Theming_CSS_Colour_Variables     = "Theming - Core Colour Variables";
+    public const string Page_Title_FAQs_Questions                   = "FAQs - Frequently Asked Questions";
 
     public const string Page_Heading_Overview_Introduction           = "Introduction";
     public const string Page_Heading_Overview_Getting_Started        = "Getting Started";
     public const string Page_Heading_Overview_Accessibility          = "Accessibility & Inclusivity";
     public const string Page_Heading_Overview_Roadmap                = "Roadmap";
+    public const string Page_Heading_FAQs_Questions                  = "Frequently Asked Questions";
 
     public const string Page_Heading_Theming_Overview                = "Overview";
     public const string Page_Heading_Theming_CSS_Base_Variables      = "Core Base CSS Variables";
@@ -73,6 +76,7 @@ public class GlobalValues
     public const string Main_Nav_Section_Heading_Frameworks = "Frameworks";
     public const string Main_Nav_Section_Heading_Services   = "Services";
     public const string Main_Nav_Section_Heading_Components = "Components";
+    public const string Main_Nav_Section_Heading_FAQs       = "FAQs";
 
 
 
