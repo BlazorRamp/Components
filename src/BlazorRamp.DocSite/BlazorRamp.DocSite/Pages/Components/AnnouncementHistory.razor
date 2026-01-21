@@ -36,7 +36,7 @@
                 <td>Title</td>
                 <td>string</td>
                 <td>
-                    The h2 heading text displayed for the announcement history dialog and used for the aria-labelledby attribute. 
+                    The h2 heading text displayed for the announcement history dialog and used for the aria-labelledby attribute.
                     A default value of "Recent Announcements" will be used if omitted.
                 </td>
             </tr>
@@ -45,7 +45,7 @@
                 <td>string</td>
                 <td>
                     The text for the button that closes the history dialog.
-                    A default value of "Close" will be used if omitted.    
+                    A default value of "Close" will be used if omitted.
                 </td>
             </tr>
             <tr>
@@ -70,7 +70,7 @@
                 <td>
                     The text displayed when there are no announcements in the history.
                     A default value of "No Announcements" will be used if omitted.
-                 </td>
+                </td>
             </tr>
             <tr>
                 <td>TriggerText</td>
@@ -85,9 +85,9 @@
                 <td>bool</td>
                 <td>
                     Determines if the trigger button is always visible or only visible when focused via the keyboard.
-                    The default value is false, so it will be hidden by default. Please ensure to advise users of the 
+                    The default value is false, so it will be hidden by default. Please ensure to advise users of the
                     short cut keys.
-                 </td>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -115,7 +115,7 @@
     <section class="code-table">
 
         <h3 id="dialog-outline-variables" class="code-table__heading">Dialog outline variables</h3>
-    
+
         <table aria-labelledby="dialog-outline-variables">
 
             <thead>
@@ -778,44 +778,87 @@
 
     </section>
 
+</section>
 
 
+<section class="code-table">
 
+    <h2 class="page-heading">CSS variables from the above not mapped to the <span  class="code-span code-span--h2-sizing">--br-comp-all</span> variables.</h2>
+    
+    <p>
+        The following table of unmapped variables are those for both the announcement dialog and its associated trigger that needed to deviate from the underlying values provided by 
+        by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
+    </p>
 
+    <h3 id="unmapped-variables" class="code-table__heading">Unmapped variables</h3>
 
+    <table aria-labelledby="unmapped-variables">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>--br-comp-history-outline-offset</td>
+                <td>0px</td>
+                <td>Outline offset - <b>sets its own value of 0px to turn off the outline.</b></td>
+            </tr>
+            <tr>
+                <td>--br-comp-history-pane-base-border-width</td>
+                <td>var(--br-unit-border-1)</td>
+                <td>The border width - <b>does not use the shared component variable</b></td>
+            </tr>
+            <tr>
+                <td>--br-comp-history-pane-base-border-radius</td>
+                <td>var(--br-unit-radius-7)</td>
+                <td>The border radius - <b>does not use the shared component variable</b></td>
+            </tr>
+            <tr>
+                <td>--br-comp-history-pane-panel-border-radius</td>
+                <td>var(--br-unit-radius-7)</td>
+                <td>The border radius - <b>does not use the shared component variable.</b> </td>
+            </tr>
+            <tr>
+                <td>--br-comp-history-area-content-font-size</td>
+                <td>var(--br-unit-font-size-label)</td>
+                <td>The font size - <b>does not use the shared component value.</b></td>
+            </tr>
+            <tr>
+                <td>--br-comp-history-area-content-border-width</td>
+                <td>var(--br-unit-border-2)</td>
+                <td>The border width - <b>does not use the shared component variable</b></td>
+            </tr>
+            <tr>
+                <td>--br-comp-history-trigger-pane-surface-background</td>
+                <td>var(--br-unit-colour-canvas-inverted)</td>
+                <td>The background colour uses for the surface pane - <b>does not use the shared component variable</b></td>
+            </tr>
+            <tr>
+                <td>--br-comp-history-trigger-pane-surface-text</td>
+                <td>var(--br-unit-colour-canvas-text-inverted)</td>
+                <td>The text colour used on the surface area - <b>does not use the shared component variable.</b></td>
+            </tr>
+            <tr>
+                <td>--br-comp-history-trigger-pane-surface-font-size</td>
+                <td>var(--br-unit-font-size-label)</td>
+                <td>The font size - <b>does not use the shared component variable.</b></td>
+            </tr>
+            <tr>
+                <td>--br-comp-history-trigger-pane-surface-border-width</td>
+                <td>var(--br-unit-border-1)</td>
+                <td>The border width - <b>does not use the shared component variable.</b></td>
+            </tr>
+            <tr>
+                <td>--br-comp-history-trigger-pane-surface-border-radius</td>
+                <td>var(--br-unit-radius-7)</td>
+                <td>The border width - <b>does not use the shared component variable.</b></td>
+            </tr>
+            </tbody>
+        </table>
 
 
 </section>

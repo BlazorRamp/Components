@@ -583,6 +583,9 @@ body #app__main {
 .code-span--h3-sizing {
   font-size: var(--br-unit-font-size-1);
 }
+.code-span--h2-sizing {
+  font-size: var(--br-unit-font-size-2);
+}
 
 @media (max-width: 576px) {
   .section-box h2 {

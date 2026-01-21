@@ -83,4 +83,5 @@ public class GlobalValues
     public const string Link_Button_Left_Arrow_Modifier = $"{Link_Button_Class}--left-arrow";
 
     public const string Web_Site_Path_Component_Test = "https://blazorramp.uk";
+    public const string Web_Site_Path_GitHub_Repo = "https://github.com/BlazorRamp/Components";
 }

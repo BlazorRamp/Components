@@ -59,8 +59,12 @@
     color: var(--br-code-block-text);
     border: 1px solid transparent;
 
-    &--h3-sizing{
-        font-size:var(--br-unit-font-size-1);
+    &--h3-sizing {
+        font-size: var(--br-unit-font-size-1);
+    }
+
+    &--h2-sizing {
+        font-size: var(--br-unit-font-size-2);
     }
 }
 
