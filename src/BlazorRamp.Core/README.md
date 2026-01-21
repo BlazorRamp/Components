@@ -8,6 +8,8 @@ The Core package also includes the `<AnnouncementHistory />` component, which al
 In addition to the service and component mentioned above, the Core project provides a common set of CSS custom properties that all future components will utilise for their styling. 
 Overriding these CSS properties will therefore update the appearance of all components that rely on them. Each component also exposes non-scoped CSS classes, enabling you to apply custom style overrides where necessary.
 
+**Full documentation available at:** https://docs.blazorramp.uk 
+
 ## Installation
 
 
@@ -84,7 +86,7 @@ interrupt the screen reader immediately.
 **Full documentation available at:** https://docs.blazorramp.uk 
 
 **Screen Reader Browser Combination Tests:** 
-- On Windows 11 - JAWS, NVDA and Narrator each paired with Chrome, Edge and FireFox.
+- On Windows 11 - JAWS, NVDA and Narrator each paired with Chrome, Edge and Firefox.
 - On macOS (Sequoia) VoiceOver was paired with Safari
 - On iPhone, VoiceOver was paired with Safari
 - On Android, TalkBack was paired with Chrome
