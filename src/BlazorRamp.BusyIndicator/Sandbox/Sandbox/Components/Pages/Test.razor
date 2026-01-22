@@ -12,7 +12,7 @@
 
         <p> Some content</p>
 
-        <button @ref="ButtonRef" class="btn-primary btn" type="button" @onclick="ShowSpinner">Open Spinner 1</button>
+        <button class="btn-primary btn" type="button" @onclick="ShowSpinner">Open Spinner 1</button>
 
         <p>lots of text</p>
 
@@ -26,7 +26,7 @@
 
         <p> Some content</p>
 
-        <button @ref="ButtonRef2" class="btn-primary btn" type="button" @onclick="ShowSpinner2">Open Spinner 2</button>
+        <button class="btn-primary btn" type="button" @onclick="ShowSpinner2">Open Spinner 2</button>
 
         <p>lots of text</p>
 
@@ -39,10 +39,6 @@
 @code {
     public bool _isLoading = false;
     public bool _isLoading2 = false;
-
-
-    public ElementReference ButtonRef { get; set; }
-    public ElementReference ButtonRef2 { get; set; }
 
     public async Task ShowSpinner()
     {

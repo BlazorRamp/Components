@@ -85,7 +85,7 @@
 
 
     <div class="flex-content flex-content--add-margin-back justify-content-between">
-        <button class="@GlobalValues.Button_Test_Class" @ref="ButtonRunTestRef" @onclick="RunTest" type="button">Run Modal Test</button>
+        <button class="@GlobalValues.Button_Test_Class" @onclick="RunTest" type="button">Run Modal Test</button>
         <button class="@GlobalValues.Button_Test_Class" @onclick="CloseModalDialog" type="button">Close Dialog</button>
     </div>
 
@@ -108,7 +108,6 @@
 @code {
     private bool _showIndicator = false;
 
-    private ElementReference ButtonRunTestRef { get; set; }
     private ElementReference DialogElementRef { get; set; }
 
 

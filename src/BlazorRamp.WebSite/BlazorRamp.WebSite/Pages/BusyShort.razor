@@ -69,7 +69,7 @@
     <span class="checkboxtest">
         <label for="checkBoxContainerTest">Not accessible when busy:</label><input id="checkBoxContainerTest" type="checkbox" />
     </span>
-    <button class="@GlobalValues.Button_Test_Class" @ref="ButtonRunTestRef" @onclick="RunTest" type="button">Run Short Delay Test</button>
+    <button class="@GlobalValues.Button_Test_Class" @onclick="RunTest" type="button">Run Short Delay Test</button>
 
 </section>
 
@@ -88,9 +88,6 @@
 
 @code {
     private bool _showIndicator = false;
-
-    private ElementReference ButtonRunTestRef { get; set; }
-
 
     private async Task RunTest()
     {

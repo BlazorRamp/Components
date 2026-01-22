@@ -66,11 +66,11 @@
 </section>
 
 
-<BusyIndicator AriaStartText="@message" AriaEndText="Dummy task completed successfully." BusyText=". . .Processing please wait . . " ContentPosition="ContentPosition.Centre"
+<BusyIndicator AriaStartText="Dummy task has started, please wait." AriaEndText="Dummy task completed successfully." BusyText=". . .Processing please wait . . " ContentPosition="ContentPosition.Centre"
                OverlayPosition="OverlayPosition.Screen"  IndicatorTrigger="Run Page Test button" ShowIndicator="@_showIndicator" />
 
 <section class="flex-content justify-content-center">
-    <button class="@GlobalValues.Button_Test_Class" @ref="ButtonRunTestRef" @onclick="RunTest" type="button">Run Page Test</button>
+    <button class="@GlobalValues.Button_Test_Class" @onclick="RunTest" type="button">Run Page Test</button>
 </section>
 
 
@@ -90,9 +90,6 @@
 @code {
     private bool _showIndicator = false;
 
-    private ElementReference ButtonRunTestRef { get; set; }
-
-    private string message = "\u200B Dummy task has started, please wait.";
     private async Task RunTest()
     {
         _showIndicator = true;

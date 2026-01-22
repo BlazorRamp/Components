@@ -24,15 +24,15 @@
 
 <div style="width:500px; height:350px; border:1px solid; display:flex;justify-content:center;align-items:center;position:relative;">
     <BusyIndicator AriaEndText="Client Finished" ShowIndicator="@_isLoading2" BusyText=". . . Loading . . ."
-                   OverlayPosition="OverlayPosition.Container" ContentPosition="ContentPosition.Top" OnBusyCompleted="HandleBusyCompleted"/>
+                   OverlayPosition="OverlayPosition.Container" ContentPosition="ContentPosition.Top" />
 
     <input type="text" />
     <p>Some content</p>
 
 </div>
 
-<button class="btn btn-primary" @ref="@ButtonRef" @onclick="StartTask" type="button">Busy Indicator On</button>
-<button class="btn btn-primary" @ref="@ButtonRef2" @onclick="StartTask2" type="button">Busy Indicator On 2</button>
+<button class="btn btn-primary" @onclick="StartTask" type="button">Busy Indicator On</button>
+<button class="btn btn-primary" @onclick="StartTask2" type="button">Busy Indicator On 2</button>
 
 @code {
     private bool _isLoading = false;
@@ -62,9 +62,6 @@
         await Task.Delay(1000);
         _isLoading2 = false;
     }
-    private async Task HandleBusyCompleted()
-    {
-        //=>  await ButtonRef.FocusAsync();
-    }
+
 
 }

@@ -94,8 +94,10 @@ public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
         }
         else
         {
-            //time needed to finish reading before ending otherwise SR may start reading content due to a focus event
+
             await MakeAnnouncement(announcementText, EndStatus, _indicatorTrigger, ShowIndicator);
+            
+            //time needed to finish reading before ending otherwise SR may start reading content due to a focus event
 
             await Task.Delay(CoreGlobalValues.Live_Region_Delay_MS);
 
