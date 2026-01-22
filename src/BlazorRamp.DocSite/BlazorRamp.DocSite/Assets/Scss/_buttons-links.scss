@@ -86,11 +86,11 @@
     margin: 0;
     color: var(--br-unit-colour-convas-text);
 
-    &:hover {
+/*    & {
         text-decoration: underline;
-    }
+    }*/
 
-    &:focus-visible {
+    &:focus-visible, &:hover {
         text-decoration:none;
         border-radius:var(--br-unit-radius-2);
         outline-offset: var(--br-comp-all-outline-offset);

@@ -113,6 +113,39 @@
 
 </section>
 
+<section class="section-box">
+
+    <h2>Creating a dark mode - important!</h2>
+    
+    <p>
+
+    </p>
+    <section>
+        
+        <h3>Why define dark mode in <span class="code-span code-span--h3-sizing">:root</span>?</h3>
+        <p>
+            CSS custom properties (variables) are scoped to the element they're defined on and inherited by descendants. To ensure dark mode variables are available throughout your entire application—including all Blazor Ramp components, they must
+            be defined on the <span class="code-span">:root</span> pseudo-class, which targets the <span>&lt;html&gt;></span> element.
+        </p>
+        <p>
+            Defining variables on <span class="code-span">:root</span> ensures they have global scope and can be accessed by any component anywhere in your application, regardless of where it's rendered in the DOM.
+        </p>
+    </section>
+
+    <section>
+        <h3>How its done on this site</h3>
+        
+        <p>
+            The theme button at the top of the page has the ID of <span class="code-span">theme-toggler</span> and the ARIA role of switch with the the associated <span class="code-span">aria-checked</span> attribute.
+            On the pseudo class <span class="code-span">:root</span> we can then use the Relational Pseudo-class <span class="code-span">:has()</span>, more commonly known as the Parent Selector, to select our theme toggler
+            and use its <span class="code-span">aria-checked</span> state to turn on or off the dark theme as follows:
+        </p>
+        <CodeBox CodeBlock="@CodeSnippets.Dark_Theme_Setting" AriaLabel="Dark theme settings" />
+
+    </section>
+
+</section>
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Overview_Roadmap">
         <span aria-hidden="true"></span>

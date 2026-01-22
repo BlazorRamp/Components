@@ -219,12 +219,13 @@ dialog {
                 height: auto;
                 min-height: var(--br-unit-wcag-target-3a);
                 min-width: var(--br-unit-wcag-target-3a);
-                padding: calc(var(--br-unit-space-2) * 5);
+                padding: var(--br-unit-space-3);
                 margin: 0;
                 clip: auto;
                 clip-path: none;
                 overflow: hidden;
                 white-space: normal;
+                min-width: 100px;
             }
         }
 

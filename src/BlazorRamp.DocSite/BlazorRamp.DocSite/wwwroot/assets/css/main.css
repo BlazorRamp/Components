@@ -362,8 +362,8 @@
   --br-comp-all-area-header-text: var(--br-unit-colour-primary-10);
   --br-comp-all-button-state-hover: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-30));
   --br-comp-all-link-current-page-background-colour: var(--br-unit-colour-secondary-darker);
-  --br-comp-all-link-hover-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.15);
-  --br-comp-all-link-active-bacbground-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.3);
+  --br-comp-all-link-hover-background-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.15);
+  --br-comp-all-link-active-background-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.3);
   --br-comp-all-link-focused-background-colour: var(--br-unit-colour-secondary-darker);
   --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-light);
   --br-kbd-background-colour: var(--br-unit-colour-info-darker);
@@ -598,7 +598,7 @@ body #app__main {
   margin-bottom: var(--br-unit-space-5);
   border-radius: var(--br-unit-radius-5);
   border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
-  min-width: fit-content;
+  max-width: fit-content;
 }
 @media (max-width: 576px) {
   .section-box h2 {
@@ -735,11 +735,11 @@ body #app__main {
   padding: 0;
   margin: 0;
   color: var(--br-unit-colour-convas-text);
+  /*    & {
+          text-decoration: underline;
+      }*/
 }
-.link:hover {
-  text-decoration: underline;
-}
-.link:focus-visible {
+.link:focus-visible, .link:hover {
   text-decoration: none;
   border-radius: var(--br-unit-radius-2);
   outline-offset: var(--br-comp-all-outline-offset);
