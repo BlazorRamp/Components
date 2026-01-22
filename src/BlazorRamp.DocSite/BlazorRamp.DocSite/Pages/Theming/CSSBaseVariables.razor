@@ -14,7 +14,7 @@
     behaviour in order to apply a specific value to a specific component without effecting the others.
 </p>
 <p>
-    <b>Note: </b>More base variables may be added and/or some default values may be changed but only if not currently in use a released component.
+    <b>Note: </b>More base variables may be added and/or some default values may be changed but only if they are not currently in use by a released component.
 </p>
 <section class="code-table">
 
@@ -597,8 +597,8 @@
             </tr>
             <tr>
                 <td>--br-comp-all-selection-colour</td>
-                <td>silver</td>
-                <td>hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10))</td>
+                <td>hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10));</td>
+                <td>Background colour modifier for a selection such as a row in a table.</td>
             </tr>
         </tbody>
     </table>
@@ -609,7 +609,6 @@
     <h2 id="link-related-variables" class="code-table__heading">Link related variables</h2>
 
     <table class="code-table">
-        <caption>Core CSS Variables</caption>
         <thead>
             <tr>
                 <th scope="col">Variable Name</th>
