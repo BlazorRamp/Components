@@ -65,7 +65,6 @@ public partial class AnnouncementHistory
     private string  _refreshButtonText = String.Empty;
     private string  _triggerButtonText = String.Empty;
     private string  _noDataText        = String.Empty;
-    private string  _locale            = String.Empty;
     private string? _triggerClasses    = null;
 
     /// <summary>
@@ -74,9 +73,6 @@ public partial class AnnouncementHistory
     /// </summary>
     protected override void OnInitialized()
     {
-        var isRTL = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
-
-        _locale            = CultureInfo.CurrentUICulture.Name;
         _historyTitle      = String.IsNullOrWhiteSpace(Title) ? CoreGlobalValues.AH_Text_For_Heading : Title.Trim();
         _closeButtonText   = String.IsNullOrWhiteSpace(CloseText) ? CoreGlobalValues.AH_Text_For_Close_Btn : CloseText.Trim();
         _clearButtonText   = String.IsNullOrWhiteSpace(ClearCloseText) ? CoreGlobalValues.AH_Text_For_Clear_Btn : ClearCloseText.Trim();

@@ -309,7 +309,7 @@ const registerLiveRegionAndHistory = () => {
     const refreshButton = document.getElementById("blazor-ramp-announcement-history-refresh");
     const triggerButton = document.getElementById("blazor-ramp-announcement-history-trigger");
     const originalParent = componentsElement?.parentElement;
-    const locale = popoverElement.getAttribute("data-br-locale") ?? "en-GB";
+    const locale = navigator.language || "en-GB";
     registerTriggerButtonHandler(triggerButton, popoverElement, ahContentElement, locale);
     registerCloseButtonHandler(closeButton, popoverElement, triggerButton);
     registerClearButtonHandler(clearButton, popoverElement, triggerButton);

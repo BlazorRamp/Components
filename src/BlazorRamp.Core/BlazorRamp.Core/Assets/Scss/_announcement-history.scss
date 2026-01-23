@@ -181,7 +181,9 @@ dialog {
         appearance: none;
         position: fixed;
         bottom: calc(var(--br-unit-space-5) * 2);
-        right: calc(var(--br-unit-space-5) * 2.5);
+        //right: calc(var(--br-unit-space-5) * 2.5);
+        inset-inline-end: calc(var(--br-unit-space-5) * 2.5);
+
         border-radius: var(--br-comp-history-trigger-pane-surface-border-radius);
         border-width: var(--br-comp-history-trigger-pane-surface-border-width);
         border-style: var(--br-comp-history-trigger-pane-surface-border-style);

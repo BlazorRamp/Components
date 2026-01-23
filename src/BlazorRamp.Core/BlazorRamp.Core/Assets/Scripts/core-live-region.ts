@@ -410,7 +410,7 @@ const registerLiveRegionAndHistory = () => {
 
     const originalParent = componentsElement?.parentElement as HTMLElement;
 
-    const locale = popoverElement.getAttribute("data-br-locale") ?? "en-GB";
+    const locale = navigator.language || "en-GB";
 
     registerTriggerButtonHandler(triggerButton, popoverElement, ahContentElement, locale);
 
