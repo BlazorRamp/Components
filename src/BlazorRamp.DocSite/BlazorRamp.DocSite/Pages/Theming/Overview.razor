@@ -115,25 +115,22 @@
 
 <section class="section-box">
 
-    <h2>Creating a dark mode - important!</h2>
+    <h2>Changing variable values and/or creating a dark mode - important!</h2>
     
     <p>
-
+        CSS custom properties (variables) are scoped to the element they're defined on and inherited by descendants. To ensure the variables / dark mode variables are available throughout your entire application—including all Blazor Ramp 
+        components, they must be defined on the <span class="code-span">:root</span> pseudo-class, which targets the <span>&lt;html&gt;></span> element.
     </p>
-    <section>
-        
-        <h3>Why define dark mode in <span class="code-span code-span--h3-sizing">:root</span>?</h3>
-        <p>
-            CSS custom properties (variables) are scoped to the element they're defined on and inherited by descendants. To ensure dark mode variables are available throughout your entire application—including all Blazor Ramp components, they must
-            be defined on the <span class="code-span">:root</span> pseudo-class, which targets the <span>&lt;html&gt;></span> element.
-        </p>
-        <p>
-            Defining variables on <span class="code-span">:root</span> ensures they have global scope and can be accessed by any component anywhere in your application, regardless of where it's rendered in the DOM.
-        </p>
-    </section>
+    <p>
+        Defining variables on <span class="code-span">:root</span> ensures they have global scope and can be accessed by any component anywhere in your application, regardless of where it's rendered in the DOM.
+    </p>
+     <p>
+        <b>Note: </b>Most of the variables can be changed outside of the <span class="code-span">:root</span> but as some of the components dynamically move around the DOM, setting everything in the <span class="code-span">:root</span>
+        ensures that everything will be applied correctly.
+     </p>   
 
     <section>
-        <h3>How its done on this site</h3>
+        <h3>How dark mode is set on this site</h3>
         
         <p>
             The theme button at the top of the page has the ID of <span class="code-span">theme-toggler</span> and the ARIA role of switch with the the associated <span class="code-span">aria-checked</span> attribute.
