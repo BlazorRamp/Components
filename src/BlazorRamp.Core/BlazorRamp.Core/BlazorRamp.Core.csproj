@@ -22,6 +22,11 @@ for accessible Blazor UI components.
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
 	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+	  <Authors>Paul Kent</Authors>
+	  <Description>Core project for Blazor Ramp that contians a Live Regions Service and an Announcement History component. 
+All Blazor Ramp components reference this project.
+</Description>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
@@ -69,6 +74,10 @@ for accessible Blazor UI components.
 
   <ItemGroup>
     <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
