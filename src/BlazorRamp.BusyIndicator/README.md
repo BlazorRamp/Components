@@ -15,7 +15,8 @@ users.
 It is a requirement that the Blazor Ramp Core script, Live Region Service, and associated Announcement History component are added alongside this component’s specific 
 requirements (a stylesheet reference), as outlined below.
 
-**Note**: Every package includes a reference to the Blazor Ramp Core project (where the aforementioned items reside) so there is no need to install this separately.
+**Note**: Every package includes a reference to the Blazor Ramp Core project (where the aforementioned items reside) so there is no need to install 
+this package separately (but it can be if you only require the Live Regions Service and Announcement History component).
 
 **The full documentation is available at:** https://docs.blazorramp.uk 
 
@@ -71,6 +72,8 @@ Title="Recent Announcements" TriggerVisible="true" TriggerText="Alerts" />
 Add one or more Busy Indicators to each page where required. You can have multiple indicators running concurrently. Each indicator allows you to specify whether it should 
 cover the entire page or just a section of it, as well as the location of its spinner or hourglass and optional text.
 
+To cover just a portion of the screen it must be inside a container such as a div with its position set, such as relative.
+
 It is a requirement that text be provided for the indicator to relay via the Live Region Service to inform screen reader users when the underlying task has completed. 
 Optionally, you can also provide a starting announcement, but I do not recommend this unless you know the task is likely to take more than four or five seconds. I also advise 
 keeping any message short and to the point; for example, upon the completion and submission of edited data, an announcement such as "Saved successfully" is sufficient.
@@ -96,9 +99,9 @@ The following example is taken from the test site https://blazorramp.uk where I 
 ```
 **Note:** In production, unlike the test you would use a variable for the `AriaEndText` and assign it with correct status dependant on success or failure.
 
-If the user has there system settings for reduced motion instead of a spinning circle they will see a static hour gloss.
+If the user has their system settings for reduced motion instead of a spinning circle they will see a static hour gloss.
 
-For the full description of all of the component parameters and events, please see the documentation for the Busy Indicator: https://docs.blazorramp.uk/components/busy-indicator
+For the full description of all the component parameters and events, please see the documentation for the Busy Indicator: https://docs.blazorramp.uk/components/busy-indicator
 
 
 ## Using the Live Region Service (directly)

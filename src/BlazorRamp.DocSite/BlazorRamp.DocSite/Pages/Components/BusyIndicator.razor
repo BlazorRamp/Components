@@ -2,8 +2,290 @@
 
 <PageTitle>@GlobalValues.Page_Title_Components_Busy_Indicator</PageTitle>
 
-<h1 class="page-heading">. . @GlobalValues.Page_Heading_Components_Busy_Indicator . . should be released in the first or second week of February 2026</h1>
+<h1 class="page-heading">. . @GlobalValues.Page_Heading_Components_Busy_Indicator . . docs in progress . . . should be released in the first or second week of February 2026</h1>
 
+<p>
+    The Busy Indicator component provides the ability to cover an entire page, or a specific section of a page, while an action is taking place. This indicator differs from others in two ways:
+</p>
+<ol>
+    <li>
+        It makes everything beneath it (excluding the trigger button) inert, ensuring it is inaccessible to all users until the action is complete.
+    </li>
+    <li>
+        It requires you to provide text that is sent via a <b>Live Region Service</b> to hidden ARIA live regions. This allows assistive technologies, 
+        such as screen readers, to monitor and announce this to its users.
+    </li>
+</ol>
+
+<section>
+    <h2 class="page-heading">Installation</h2>
+
+    <p>
+        <b>Note: </b> It is a requirement that the Blazor Ramp Core script, Live Region Service, and associated Announcement History component are added alongside this component’s specific
+        requirements (a stylesheet reference in this instance). You do not need to add the BlazorRamp.Core NuGet package as all projects include the Core, you only need to add the packages that contain the components 
+        that you wish to use i.e the BlazorRamp.BusyIndicator NuGet package. 
+    </p>
+    <p>
+        Please follow the instructions in the <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Overview_Getting_Started">@GlobalValues.Main_Nav_Section_Heading_About - @GlobalValues.Page_Heading_Overview_Getting_Started</a>
+        ensuring that in the <span class="code-span">&lt;head&gt;</span> section you also add the Busy Indicator stylesheet as follows:<a href="#"></a>
+    </p>
+    <CodeBox CodeBlock="@CodeSnippets.Add_Busy_Indicator_Style_Sheet" AriaLabel="Add busy indicator stylesheet code block" />
+
+</section>
+
+
+
+<section class="code-table">
+
+    <h2 id="busy-indicator-component" class="code-table__heading">BusyIndicator component</h2>
+
+    <table aria-labelledby="buy-indicator-component">
+
+        <thead>
+            <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>AriaStartText</td>
+                <td>string?</td>
+                <td>Optional text announced by screen readers when the busy state begins.</td>
+            </tr>
+            <tr>
+                <td>AriaEndText</td>
+                <td>string</td>
+                <td>Required text announced by screen readers when the busy state ends. Defaults to "Operation Completed".</td>
+            </tr>
+            <tr>
+                <td>ChildContent</td>
+                <td>RenderFragment?</td>
+                <td>
+                    Optional, you can wrap your content with the busy indicator to make it clearer 
+                    as to what is being wrapped when using the <span class="code-span">OverlayPosition</span> of Container.
+                </td>
+            </tr>
+            <tr>
+                <td>OverlayPosition</td>
+                <td>OverlayPosition</td>
+                <td>The positioning of the overlay (Container or Screen). Defaults to Container.</td>
+            </tr>
+            <tr>
+                <td>ContentPosition</td>
+                <td>ContentPosition</td>
+                <td>The vertical alignment of the indicator content (Top or Centre). Defaults to Top.</td>
+            </tr>
+            <tr>
+                <td>ShowIndicator</td>
+                <td>bool</td>
+                <td>Indicates whether the busy indicator is currently visible/started.</td>
+            </tr>
+            <tr>
+                <td>BusyText</td>
+                <td>string?</td>
+                <td>Optional (aria-hidden) visual text displayed alongside the spinner or hourglass.</td>
+            </tr>
+            <tr>
+                <td>IndicatorTrigger</td>
+                <td>string?</td>
+                <td>Identifier or description of what triggered the indicator (e.g., "Save Customer Button") for screen reader logs.</td>
+            </tr>
+            <tr>
+                <td>DisplayTimeoutMS</td>
+                <td>int</td>
+                <td>Maximum time in milliseconds before auto-dismissing (content remains inert until dismissed). Defaults to 30s.</td>
+            </tr>
+            <tr>
+                <td>EndStatus</td>
+                <td>AnnouncementType</td>
+                <td>Type of announcement made when the operation completes. Defaults to OperationCompleted.</td>
+            </tr>
+            <tr>
+                <td>OnBusyCompleted</td>
+                <td>EventCallback</td>
+                <td>Event fired after the busy state has finished and the indicator is hidden.</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        <b>Note: </b> The spinner is just a spinning svg circle with the CSS set to use a static hour glass svg if the user has reduced motion (animation effects turned off in Windows 11) set on there device.
+    </p>
+</section>
+
+<section>
+    <h2 class="page-heading">Setting Component Parameters</h2>
+
+    <p>Example showing the parameters being set at both design and runtime:</p>
+
+    <CodeBox CodeBlock="@CodeSnippets.Busy_Indicator_Example" AriaLabel="Busy indicator code block" />
+    <p>
+        <b>Note: </b>Please keep your announcements short and too the point and only provide starting text for processes that that may take longer than four or five seconds.
+    </p>
+</section>
+<section>
+    <h2 class="page-heading">CSS variables defined for the busy indicator.</h2>
+
+    <p>
+        The following sections outline all of the css variables that can be set to alter the styling of the busy indicator component.
+        You can of course also override its style classes directly.
+    </p>
+
+
+    <section class="code-table">
+
+        <h3 id="pane-base-variables" class="code-table__heading">Pane base variables</h3>
+
+        <table aria-labelledby="pane-base-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-busy-pane-base-background</td>
+                    <td>var(--br-comp-all-overlay-colour)</td>
+                    <td>The background colour of the base pane - uses the shared component variable..</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-busy-pane-base-border-radius</td>
+                    <td>var(--br-comp-all-pane-base-border-radius)</td>
+                    <td>The border radius - uses the shared component variable.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="pane-surface-variables" class="code-table__heading">Pane surface variables</h3>
+
+        <table aria-labelledby="pane-surface-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+                <tr>
+                    <td>--br-comp-busy-pane-surface-background</td>
+                    <td>transparent</td>
+                    <td>The background colour of the surface pane - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-busy-pane-surface-line-height</td>
+                    <td>var(--br-comp-all-pane-surface-line-height)</td>
+                    <td>The line-height - uses the shared component variable.</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="content-area-variables" class="code-table__heading">Content area variables</h3>
+        <p>
+            The content area in the busy indicator is just for the optional text part. 
+        </p>
+        <table aria-labelledby="content-area-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+
+                <tr>
+                    <td>--br-comp-busy-area-content-background</td>
+                    <td>var(--br-comp-all-focus-indicator-colour)</td>
+                    <td>The background colour of the content area - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-busy-area-content-text</td>
+                    <td>var(--br-unit-colour-canvas-text-inverted)</td>
+                    <td>The text colour on the content area - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-busy-area-content-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The font-size for the content area - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-busy-area-content-font</td>
+                    <td>var(--br-comp-all-area-content-font)</td>
+                    <td>The font for the content area - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-busy-area-content-font-weight</td>
+                    <td>var(--br-comp-all-area-content-font-weight)</td>
+                    <td>The font weight - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-busy-area-content-border-radius</td>
+                    <td>var(--br-comp-all-area-content-border-radius)</td>
+                    <td>The border radius for the content area  - uses the shared component variable.</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
+        <p>
+            The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
+            by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
+        </p>
+
+        <table aria-labelledby="unmapped-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+                <tr>
+                    <td>--br-comp-busy-pane-surface-background</td>
+                    <td>transparent</td>
+                    <td>The background colour of the surface pane - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-busy-area-content-background</td>
+                    <td>var(--br-comp-all-focus-indicator-colour)</td>
+                    <td>The background colour of the content area - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-busy-area-content-text</td>
+                    <td>var(--br-unit-colour-canvas-text-inverted)</td>
+                    <td>The text colour on the content area - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-busy-area-content-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The font-size for the content area - <b>does not use the shared component variable.</b></td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+
+    </section>
+</section>
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Components_Announcement_History">
         <span aria-hidden="true"></span>

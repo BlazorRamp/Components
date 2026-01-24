@@ -22,7 +22,6 @@ internal static class GlobalValues
 
     public const string Busy_Indicator_Start_Text  = "Operation Started";
     public const string Busy_Indicator_End_Text    = "Operation Completed";
-    public const string Busy_Indicator_Label       = "Status";
 
     public const string Component_Name  = "Busy Indicator";
 

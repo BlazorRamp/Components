@@ -1,4 +1,6 @@
-﻿@mixin hourglass-icon {
+﻿@use "_root-busy-indicator";
+
+@mixin hourglass-icon {
     display: inline-block;
     background-color: currentColor;
     mask-image: var(--br-svg-hourglass-icon);
@@ -24,6 +26,7 @@
     }
 }
 
+
 .br-busy-indicator {
     z-index: 999;
     position: fixed;
@@ -32,17 +35,11 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: var(--br-comp-all-overlay-colour);
+    background-color: var(--br-comp-busy-pane-base-background);
     justify-content: center;
     align-items: flex-start;
-    border: var(--br-unit-border-2) solid transparent;
-    border-radius: var(--br-unit-radius-2);
-    line-height: var(--br-unit-line-height-1);
+    border-radius: var(--br-comp-busy-pane-base-border-radius);
     pointer-events: none;
-
-    &:focus-visible {
-        border-color: var(--br-comp-all-focus-indicator-colour);
-    }
 
     &--display-flex {
         display: flex;
@@ -57,9 +54,10 @@
     }
 
     &__content {
+        line-height: var(--br-comp-busy-pane-surface-line-height);
         width: fit-content;
         padding: 1rem;
-        background-color: transparent;
+        background-color: var(--br-comp-busy-pane-surface-background);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -70,17 +68,20 @@
     }
 
     &__text {
-        font-size: var(--br-unit-font-size-label);
-        color: var(--br-unit-colour-canvas-text-inverted);
-        background-color: var(--br-comp-all-focus-indicator-colour);
+        font-size: var(--br-comp-busy-area-content-font-size);
+        font: var(--br-comp-busy-area-content-font);
+        font-weight: var(--br-comp-busy-area-content-font-weight); 
+        color: var(--br-comp-busy-area-content-text);
+        background-color: var(--br-comp-busy-area-content-background);
         padding: var(--br-unit-space-3);
-        border-radius: var(--br-unit-radius-3);
+        border-radius: var(--br-comp-busy-area-content-border-radius);
+
     }
 
     &__spinner {
         height: 3rem;
         width: 3rem;
-        color: var(--br-comp-all-focus-indicator-colour);
+        color: var(--br-comp-busy-spinner-colour);
         @include quarter-circle-icon;
     }
 

@@ -9,7 +9,7 @@
 @code {
 
     [Parameter] public string? CodeBlock { get; set; }
-    [Parameter] public string AriaLabel  { get; set; }
+    [Parameter] public string AriaLabel { get; set; } = "Code block";
 
     private MarkupString _codeBlock;
     private string _ariaLabel = "Code block";

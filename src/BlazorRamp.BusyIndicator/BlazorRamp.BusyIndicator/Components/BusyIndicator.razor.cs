@@ -8,22 +8,66 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
 namespace BlazorRamp.BusyIndicator.Components;
-
+/// <summary>
+/// A Busy indicator that provides visual and screen-reader feedback, making the content behind it (excluding the triggering button)
+/// inert so it is not accessible by any user until the operation completes.
+/// </summary>
 public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
 {
-    [Parameter] public string           IndicatorLabel   { get; set; } = GlobalValues.Busy_Indicator_Label;
+    /// <summary>
+    /// Gets or sets the optional text announced by screen readers when the busy state begins.
+    /// </summary>
     [Parameter] public string?          AriaStartText    { get; set; } = String.Empty;
+    /// <summary>
+    /// Gets or sets the required text announced by screen readers when the busy state ends.
+    /// A default value of "Operation Completed" will be used if not provided.
+    /// </summary>
     [Parameter] public string           AriaEndText      { get; set; } = GlobalValues.Busy_Indicator_End_Text;
+    /// <summary>
+    /// Gets or sets the content to be wrapped by the busy indicator.
+    /// </summary>
     [Parameter] public RenderFragment?  ChildContent     { get; set; } = default;
+    /// <summary>
+    /// Gets or sets the positioning of the overlay, either relative to its container or the entire screen.
+    /// A default value of 0 (Container) will be used if not provided.
+    /// </summary>
     [Parameter] public OverlayPosition  OverlayPosition  { get; set; } = OverlayPosition.Container;
+    /// <summary>
+    /// Gets or sets the vertical alignment of the indicator content (Top or Centre).
+    /// A default value of 0 (Top) will be used if not provided.
+    /// </summary>
     [Parameter] public ContentPosition  ContentPosition  { get; set; } = ContentPosition.Top;
+    /// <summary>
+    /// Gets or sets a value indicating whether the busy indicator is currently visible / started.
+    /// </summary>
     [Parameter] public bool             ShowIndicator    { get; set; } = false;
+    /// <summary>
+    /// Gets or sets the optional (aria-hidden) visual text displayed alongside the 
+    /// spinner or hour glass. 
+    /// The default value is an empty string.
+    /// </summary>
     [Parameter] public string?          BusyText         { get; set; } = String.Empty;
+    /// <summary>
+    /// Gets or sets the identifier or description for what triggered the indicator such as "Save Customer Button".
+    /// This provides context for the screen reader user when reviewing the logs.
+    /// To negate exceptions, an empty string is used if not provided.
+    /// </summary>
     [Parameter] public string?          IndicatorTrigger { get; set; } = String.Empty;
+    /// <summary>
+    /// Gets or sets the maximum time in milliseconds the indicator remains visible before auto-dismissing.
+    /// This is important as until dismissed all content beneath the indicator it will remain inert.
+    /// A default value of 30 seconds is used if not provided.
+    /// </summary>
     [Parameter] public int              DisplayTimeoutMS { get; set; } = GlobalValues.Busy_Indicator_Timeout_MS;
-    [Parameter] public StyleAs          StyleAs          { get; set; } = StyleAs.Dynamic;
+    /// <summary>
+    /// Gets or sets the type of announcement made when the operation completes.
+    /// A default value of 2 (OperationCompleted) is used if not provided. Currently this
+    /// value is not exposed but may be utilised in the future to filter announcements.
+    /// </summary>
     [Parameter] public AnnouncementType EndStatus        { get; set; } = AnnouncementType.OperationCompleted;
-
+    /// <summary>
+    /// An event that is fired  after the busy state has finished and the indicator is hidden.
+    /// </summary>
     [Parameter] public EventCallback    OnBusyCompleted  { get; set; }
 
     [Inject] private IJSRuntime         JsRuntime         { get; set; } = default!;
@@ -38,13 +82,11 @@ public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
     
     private string  _busyClasses        = GlobalValues.Busy_Class;
     private string  _busyContentClasses = GlobalValues.Busy_Content_Class;
-    private string  _indicatorLabel     = GlobalValues.Busy_Indicator_Label;
     private bool    _prevShowIndicator  = false;
     private string  _busyText           = String.Empty;
     private int     _timeOut            = GlobalValues.Busy_Indicator_Timeout_MS;
     private string  _ariaStartText      = GlobalValues.Busy_Indicator_Start_Text;
     private string  _ariaEndText        = GlobalValues.Busy_Indicator_End_Text;
-    private string? _styleAs            = null;
     private string  _indicatorTrigger   = String.Empty;
 
     private bool _disposed = false;
@@ -61,7 +103,6 @@ public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
         _ariaStartText      = String.IsNullOrWhiteSpace(AriaStartText) ? String.Empty : AriaStartText.Trim();
         _ariaEndText        = String.IsNullOrWhiteSpace(AriaEndText)  ? GlobalValues.Busy_Indicator_End_Text : AriaEndText.Trim(); 
 
-        _styleAs           = CoreUtilities.GetStyleAsValue(StyleAs);
     }
 
     protected override void OnInitialized()
@@ -70,7 +111,6 @@ public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
              * Don't allow change after initialisation. 
         */ 
         _overlayPosition  = OverlayPosition;
-        _indicatorLabel   = String.IsNullOrWhiteSpace(IndicatorLabel) ? GlobalValues.Busy_Indicator_Label : IndicatorLabel.Trim();
     }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
