@@ -643,7 +643,8 @@ dialog.br-announcement-history__popover:focus-visible {
   font-size: var(--br-comp-history-button-font-size);
   font-weight: var(--br-comp-history-button-font-weigh);
   line-height: var(--br-comp-history-button-line-height);
-  padding: var(--br-unit-space-2);
+  padding-block: var(--br-unit-space-2);
+  padding-inline: var(--br-unit-space-4);
   position: relative;
   overflow: hidden;
   min-width: var(--br-unit-wcag-target-2a);
