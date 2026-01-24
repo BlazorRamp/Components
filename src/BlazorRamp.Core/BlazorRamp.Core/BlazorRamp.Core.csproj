@@ -11,9 +11,7 @@
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region;</PackageTags>
     <PackageReleaseNotes>Core foundational library for the BlazorRamp ecosystem. 
-Provides essential services for ARIA Live Region announcements, accessibility history management, and common utilities 
-for accessible Blazor UI components.
-</PackageReleaseNotes>
+Provides essential services for ARIA Live Region announcements and common utilities.</PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <FileVersion>1.0.0</FileVersion>
