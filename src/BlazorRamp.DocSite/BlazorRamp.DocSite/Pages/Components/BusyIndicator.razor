@@ -1,8 +1,9 @@
-﻿@attribute [Route(GlobalValues.Path_Components_Busy_Indicator)]
+﻿
+@attribute [Route(GlobalValues.Path_Components_Busy_Indicator)]
 
 <PageTitle>@GlobalValues.Page_Title_Components_Busy_Indicator</PageTitle>
 
-<h1 class="page-heading">. . @GlobalValues.Page_Heading_Components_Busy_Indicator . . docs in progress . . . should be released in a few days.</h1>
+<h1 class="page-heading">. . @GlobalValues.Page_Heading_Components_Busy_Indicator . . should be released in a few days . . . docs in progress.</h1>
 
 <p>
     The Busy Indicator component provides the ability to cover an entire page, or a specific section of a page, while an action is taking place. This indicator differs from others in two ways:
@@ -34,8 +35,36 @@
 
 </section>
 
+<section class="info-box info-box--container-test">
+    <BlazorRamp.BusyIndicator.Components.BusyIndicator ShowIndicator="@_showTestIndicator" BusyText=". . . Saving, please wait . . ." IndicatorTrigger="Test Busy Indicator Button"
+    AriaEndText="@_ariaEndText" ContentPosition="ContentPosition.Centre" OverlayPosition=" OverlayPosition.Container">
+        <p>
+            <b>Try it:</b> This text is inside a container (<span class="code-span">position:relative</span>).I have set the indicator to be top of the container, with the
+            optional <span class="code-span">aria-hidden</span> text of "Saving, please wait", using a dummy task set for <b>2 seconds</b>. I have set the required <span class="code-span">AriaEndText</span> to "Saved, successfully" 
+            which is sent via the <span class="code-span">LiveRegionService</span> for screen readers to announce. Click the Alerts button, bottom right of the page after trying the busy indicator.This text has been wrapped by 
+            the busy indicator as sometimes it makes it clearer to do this so you can see which blocks of code the busy indicator is protecting when wading through your html.
+        </p>
+         <p>
+            Everything behind the overlay is inert excluding the triggering button.
+         </p>   
+          <button class="test-button" role="button" @onclick="RunDummyTask">Test Busy Indicator</button>
+   </BlazorRamp.BusyIndicator.Components.BusyIndicator>
+</section>
 
+@code {
+    private bool _showTestIndicator = false;
+    private string _ariaEndText = String.Empty;
 
+    private async Task RunDummyTask()
+    {
+        _showTestIndicator = true;
+
+        await Task.Delay(2000);
+
+        _ariaEndText = "Saved successfully";
+        _showTestIndicator = false;
+    }
+}
 <section class="code-table">
 
     <h2 id="busy-indicator-component" class="code-table__heading">BusyIndicator component</h2>
@@ -299,6 +328,5 @@
         <span aria-hidden="true"></span>
     </a>
 </div>
-
 
 

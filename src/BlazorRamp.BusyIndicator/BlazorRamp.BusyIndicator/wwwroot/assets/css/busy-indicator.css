@@ -4,10 +4,10 @@
   --br-comp-busy-pane-surface-background: transparent;
   --br-comp-busy-pane-surface-line-height: var(--br-comp-all-pane-surface-line-height);
   --br-comp-busy-area-content-background: var(--br-comp-all-focus-indicator-colour);
-  --br-comp-busy-area-content-font: var(--br-comp-all-area-content-font);
+  --br-comp-busy-area-content-font-family: var(--br-comp-all-area-content-font);
   --br-comp-busy-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
   --br-comp-busy-area-content-text: var(--br-unit-colour-canvas-text-inverted);
-  --br-comp-busy-area-content-font-size: var(--br-unit-font-size-label);
+  --br-comp-busy-area-content-font-size:var(--br-unit-font-size-label);
   --br-comp-busy-spinner-colour: var(--br-comp-all-focus-indicator-colour);
   --br-comp-busy-area-content-border-radius: var(--br-comp-all-area-content-border-radius);
 }
@@ -49,13 +49,14 @@
   max-width: 500px;
 }
 .br-busy-indicator__text {
+  font-family: var(--br-comp-busy-area-content-font-family);
   font-size: var(--br-comp-busy-area-content-font-size);
-  font: var(--br-comp-busy-area-content-font);
   font-weight: var(--br-comp-busy-area-content-font-weight);
   color: var(--br-comp-busy-area-content-text);
   background-color: var(--br-comp-busy-area-content-background);
   padding: var(--br-unit-space-3);
   border-radius: var(--br-comp-busy-area-content-border-radius);
+  padding-inline: var(--br-unit-space-5);
 }
 .br-busy-indicator__spinner {
   height: 3rem;

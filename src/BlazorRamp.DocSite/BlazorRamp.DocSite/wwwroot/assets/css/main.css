@@ -555,6 +555,13 @@ body #app__main {
     text-align: center;
   }
 }
+.info-box--container-test {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+}
 
 .code-box {
   position: relative;
@@ -628,6 +635,7 @@ body #app__main {
   justify-content: center;
   align-items: center;
   gap: var(--br-unit-space-5);
+  width: fit-content;
 }
 .test-button:active {
   transform: scale(var(--br-comp-all-button-state-active-scale));

@@ -11,27 +11,7 @@ const _ahCompsOriginalParent = _ahCompsElement?.parentElement ?? null;
     * To simplify things I moved the live regions into the announcment history container so everything in this container does not
     * get the inert attribute added. I also chack and move everything to the body element.
 */
-const getSetInertElements = (busyElement) => {
-    const inertElements = [];
-    if (!busyElement || !busyElement.parentElement)
-        return inertElements;
-    Array.from(busyElement.parentElement.children).forEach(child => {
-        const tagName = child.tagName.toLowerCase();
-        if (child instanceof HTMLElement
-            && child !== busyElement
-            && !child.hasAttribute(INERT_ATTRIBUTE)
-            && !child.getAttribute("aria-live")
-            && child.getAttribute("data-br-component") !== BS_COMPONENT_NAME
-            && child.id !== ANNOUNCEMENT_COMPONENTS_ID
-            && child.getAttribute("data-br-component") !== AH_COMPONENT_NAME
-            && child.getAttribute("role") !== "alert" && tagName !== "script") {
-            child.setAttribute(INERT_ATTRIBUTE, "true");
-            inertElements.push(child);
-        }
-    });
-    return inertElements;
-};
-const getSetInertElements2 = (busyElement, activatingElement, inertElements = []) => {
+const getSetInertElements = (busyElement, activatingElement, inertElements = []) => {
     if (!busyElement || !busyElement.parentElement)
         return inertElements;
     Array.from(busyElement.parentElement.children).forEach(child => {
@@ -96,7 +76,7 @@ const startBusyIndicator = (busyElement, displayModifier, timeout = BUSY_INDICAT
     if (element.parentElement !== targetParent)
         targetParent.appendChild(element);
     indicatorData.activatingElement = document?.activeElement;
-    indicatorData.inertElements = getSetInertElements2(element, indicatorData.activatingElement);
+    indicatorData.inertElements = getSetInertElements(element, indicatorData.activatingElement);
     if (indicatorData.timerId)
         clearTimeout(indicatorData.timerId);
     const timerId = setTimeout(() => {

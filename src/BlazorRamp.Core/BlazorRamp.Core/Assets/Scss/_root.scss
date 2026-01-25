@@ -304,7 +304,7 @@
     */
     --br-comp-all-pane-surface-background: var(--br-unit-colour-neutral-20);
     --br-comp-all-pane-surface-text: inherit;
-    --br-comp-all-pane-surface-font: inherit;
+    --br-comp-all-pane-surface-font-family: inherit;
     --br-comp-all-pane-surface-font-size: inherit;
     --br-comp-all-pane-surface-font-weight: inherit;
     --br-comp-all-pane-surface-line-height: inherit;
@@ -317,7 +317,7 @@
     */
     --br-comp-all-area-header-background: var(--br-unit-colour-neutral-20);
     --br-comp-all-area-header-text: var(--br-unit-colour-primary-text-dark);
-    --br-comp-all-area-header-font: inherit;
+    --br-comp-all-area-header-font-family: inherit;
     --br-comp-all-area-header-font-size: var(--br-unit-font-size-2);
     --br-comp-all-area-header-font-weight: inherit;
     --br-comp-all-area-header-line-height: inherit;
@@ -330,7 +330,7 @@
     */
     --br-comp-all-area-content-background: var(--br-unit-colour-canvas);
     --br-comp-all-area-content-text: inherit;
-    --br-comp-all-area-content-font: inherit;
+    --br-comp-all-area-content-font-family: inherit;
     --br-comp-all-area-content-font-size: var(--br-unit-font-size-1);
     --br-comp-all-area-content-font-weight: inherit;
     --br-comp-all-area-content-line-height: inherit;
@@ -343,7 +343,7 @@
     */
     --br-comp-all-area-footer-background: transparent;
     --br-comp-all-area-footer-text: inherit;
-    --br-comp-all-area-footer-font: inherit;
+    --br-comp-all-area-footer-font-family: inherit;
     --br-comp-all-area-footer-font-size: var(--br-unit-font-size-1);
     --br-comp-all-area-footer-font-weight: inherit;
     --br-comp-all-area-footer-line-height: inherit;
@@ -356,7 +356,7 @@
     */
     --br-comp-all-button-background: transparent;
     --br-comp-all-button-text: var(--br-unit-colour-primary-text-dark);
-    --br-comp-all-button-font: inherit;
+    --br-comp-all-button-font-family: inherit;
     --br-comp-all-button-font-size: var(--br-unit-font-size-label);
     --br-comp-all-button-font-weight: var(--br-unit-font-weight-400,inherit);
     --br-comp-all-button-line-height: inherit;

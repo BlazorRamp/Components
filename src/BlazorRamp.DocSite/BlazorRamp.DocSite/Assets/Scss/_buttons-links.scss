@@ -41,6 +41,7 @@
 .test-button {
 
     @include buttonBase;
+    width:fit-content;
 }
 
 .link-button {

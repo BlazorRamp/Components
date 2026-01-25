@@ -68,14 +68,14 @@
     }
 
     &__text {
+        font-family: var(--br-comp-busy-area-content-font-family);
         font-size: var(--br-comp-busy-area-content-font-size);
-        font: var(--br-comp-busy-area-content-font);
-        font-weight: var(--br-comp-busy-area-content-font-weight); 
+        font-weight: var(--br-comp-busy-area-content-font-weight);
         color: var(--br-comp-busy-area-content-text);
         background-color: var(--br-comp-busy-area-content-background);
         padding: var(--br-unit-space-3);
         border-radius: var(--br-comp-busy-area-content-border-radius);
-
+        padding-inline: var(--br-unit-space-5);
     }
 
     &__spinner {
