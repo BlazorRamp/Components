@@ -1,7 +1,7 @@
 ﻿
 @if(_isInteractive)
 {
-    <button class="@BuildClassList(SkipToType)" role="link" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="() => HandleNavigation(_targetID)">
+    <a class="@BuildClassList(SkipToType)" href="@_relativeUrl" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="() => HandleNavigation(_relativeUrl)">
 
         <span class="@GlobalValues.SkipTo_Content_Class">
             @if (_iconVisible)
@@ -10,7 +10,7 @@
             }
             <span>@_skipToText</span>
         </span>
-    </button>
+    </a>
 }
 else
 {

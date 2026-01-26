@@ -25,6 +25,7 @@
     white-space: nowrap;
     border: 0;
     outline: none;
+    text-decoration: underline;
 
     &--container {
         position: absolute;
@@ -43,6 +44,7 @@
         font-weight: var(--br-comp-skipto-pane-area-contentfont-weight);
         min-height: var(--br-unit-wcag-target-3a);
         min-width: var(--br-unit-wcag-target-3a);
+        text-decoration: underline;
     }
 
     &__icon {
@@ -52,9 +54,8 @@
     }
 
     &:focus-visible {
-        top:0;
-        inset-inline-start:0;
-
+        top: 0;
+        inset-inline-start: 0;
         width: auto;
         height: auto;
         min-height: var(--br-unit-wcag-target-3a);

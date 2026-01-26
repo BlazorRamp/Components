@@ -226,6 +226,9 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
+#app__main:focus {
+  border-color: var(--br-comp-all-focus-indicator-colour);
+}
 #app:has(#menu-toggler[aria-expanded=false]) #app__nav {
   display: none;
 }

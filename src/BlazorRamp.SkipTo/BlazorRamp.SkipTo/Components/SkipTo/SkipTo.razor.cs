@@ -23,20 +23,21 @@ public partial class SkipTo : IAsyncDisposable
     private bool   _iconVisible   = true;
     private bool   _isInteractive = false;
     private bool    _disposed     = false;
+
+    private string _relativeUrl = "";
     protected override void OnParametersSet()
     {
         _skipToText  = String.IsNullOrWhiteSpace(SkipToText) ? GlobalValues.SkipTo_Text : SkipToText.Trim();
         _targetID    = String.IsNullOrWhiteSpace(TargetID) ? GlobalValues.SkipTo_Target_ID : TargetID.Trim();
         _targetID    = TargetID.StartsWith("#") ? _targetID : $"#{_targetID}";
-
         _iconVisible = IconVisible;
+        _relativeUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri) + _targetID;
     }
 
     private string? BuildClassList(SkipToType skipToType)
     
         => skipToType == SkipToType.Section ? CoreUtilities.CreateClassList(GlobalValues.SkipTo_Class, GlobalValues.SkipTo_Container_Modifier) : GlobalValues.SkipTo_Class;
     
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         _isInteractive = true;
@@ -48,14 +49,15 @@ public partial class SkipTo : IAsyncDisposable
         }
     }
 
+    private string CreateRelativeUrl(NavigationManager navigationManager, string targetID)
+    
+        => NavigationManager.ToBaseRelativePath(NavigationManager.Uri) + targetID;
+
     private async Task HandleNavigation(string navigateTo)
     {
         if (String.IsNullOrWhiteSpace(navigateTo)) return;
-     
 
-        var url = NavigationManager.ToBaseRelativePath(NavigationManager.Uri) + navigateTo;
-
-        NavigationManager.NavigateTo(url, false, false);
+        NavigationManager.NavigateTo(navigateTo, false, false);
 
         if (_skipToModule is not null) await _skipToModule.InvokeVoidAsync(GlobalValues.JS_SkipTo_Scroll_To_View_Func, navigateTo.TrimStart('#'));
     }

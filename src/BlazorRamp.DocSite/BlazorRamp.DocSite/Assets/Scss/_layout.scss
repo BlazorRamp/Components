@@ -195,7 +195,11 @@
         grid-column: 2/3;
         grid-row: 2/3;
         overflow-y: auto;
-        overflow-x:hidden;
+        overflow-x: hidden;
+
+        &:focus {
+            border-color: var(--br-comp-all-focus-indicator-colour);
+        }
     }
 
 

@@ -25,6 +25,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\BlazorRamp.BusyIndicator\BlazorRamp.BusyIndicator\BlazorRamp.BusyIndicator.csproj" />
 		<ProjectReference Include="..\..\BlazorRamp.Core\BlazorRamp.Core\BlazorRamp.Core.csproj" />
+		<ProjectReference Include="..\..\BlazorRamp.SkipTo\BlazorRamp.SkipTo\BlazorRamp.SkipTo.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
