@@ -1,6 +1,7 @@
 ﻿using BlazorRamp.Core.Common.Utilities;
 using BlazorRamp.SkipTo.Common.Constants;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.JSInterop;
 
 namespace BlazorRamp.SkipTo.Components.SkipTo;
@@ -30,7 +31,7 @@ public partial class SkipTo : IAsyncDisposable
         _targetID    = String.IsNullOrWhiteSpace(TargetID) ? GlobalValues.SkipTo_Target_ID : TargetID.Trim();
         _targetID    = TargetID.StartsWith("#") ? _targetID : $"#{_targetID}";
         _iconVisible = IconVisible;
-        _relativeUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri) + _targetID;
+        _relativeUrl = CreateRelativeUrl(NavigationManager, _targetID);
     }
 
     private string? BuildClassList(SkipToType skipToType)
@@ -43,28 +44,39 @@ public partial class SkipTo : IAsyncDisposable
 
         if (true == firstRender)
         {
+            NavigationManager.LocationChanged+=NavigationManager_LocationChanged;
+
             _skipToModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_SkipTo_File_Path);
             await InvokeAsync(StateHasChanged);
         }
+    }
+
+    private void NavigationManager_LocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        _relativeUrl = (new UriBuilder(e.Location).Path + _targetID).TrimStart('/');
+        StateHasChanged();
     }
 
     private string CreateRelativeUrl(NavigationManager navigationManager, string targetID)
     
         => NavigationManager.ToBaseRelativePath(NavigationManager.Uri) + targetID;
 
-    private async Task HandleNavigation(string navigateTo)
+    private async Task HandleNavigation(string navigateTo, string targetID)
     {
         if (String.IsNullOrWhiteSpace(navigateTo)) return;
 
         NavigationManager.NavigateTo(navigateTo, false, false);
 
-        if (_skipToModule is not null) await _skipToModule.InvokeVoidAsync(GlobalValues.JS_SkipTo_Scroll_To_View_Func, navigateTo.TrimStart('#'));
+        if (_skipToModule is not null) await _skipToModule.InvokeVoidAsync(GlobalValues.JS_SkipTo_Scroll_To_View_Func, targetID.TrimStart('#'));
     }
 
 
     public async ValueTask DisposeAsync()
     {
        if (_disposed == false && _skipToModule is not null) await _skipToModule.DisposeAsync();
+
+       NavigationManager.LocationChanged -= NavigationManager_LocationChanged;
+
        _disposed = true;
     }
 }
