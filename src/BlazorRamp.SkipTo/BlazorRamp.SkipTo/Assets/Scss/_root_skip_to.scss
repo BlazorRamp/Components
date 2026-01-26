@@ -1,0 +1,26 @@
+﻿:root {
+
+    --br-comp-skipto-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-skipto-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-skipto-outline-offset: var(--br-comp-all-outline-offset);
+    --br-comp-skipto-outline-colour: var(--br-comp-all-outline-colour);
+    --br-comp-skipto-pane-area-content-background: var(--br-unit-colour-canvas-inverted);
+    --br-comp-skipto-pane-area-content-text: var(--br-unit-colour-canvas-text-inverted);
+    --br-comp-skipto-pane-area-content-font-family: var(--br-comp-all-pane-area-content-font-family);
+    --br-comp-skipto-pane-area-content-font-weight: var(--br-comp-all-pane-area-content-font-weight);
+    --br-comp-skipto-pane-area-content-font-size: var(--br-comp-all-pane-area-conent-font-size);
+    //
+    --br-comp-skipto-pane-surface-background: var(--br-unit-colour-canvas-inverted);
+    --br-comp-skipto-pane-surface-border-style: var(--br-comp-all-area-header-border-style:);
+    --br-comp-skipto-pane-surface-border-width: var(--br-comp-all-pane-surface-border-width);
+    --br-comp-skipto-pane-surface-border-colour: var(--br-comp-all-pane-surface-border-colour);
+    --br-comp-skipto-pane-surface-border-radius-top-right: var(--br-unit-radius-5);
+    --br-comp-skipto-pane-surface-border-radius-top-left: var(--br-unit-radius-5);
+    --br-comp-skipto-pane-surface-border-radius-bottom-right: var(--br-unit-radius-5);
+    --br-comp-skipto-pane-surface-border-radius-bottom-left: var(--br-unit-radius-5);
+    //
+    --br-comp-skipto-z-index: 999;
+    --br-comp-skipto-margin: var(--br-unit-space-5);
+    //
+    --br-svg-running-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='%23000'%3E%3Cpath d='M15.25 6.5a2.25 2.25 0 1 0 0-4.5a2.25 2.25 0 0 0 0 4.5m-2.867-.001c-1.495-.21-4.912.397-6.32 4.15a1 1 0 1 0 1.873.702c.584-1.555 1.636-2.316 2.574-2.655l-1.17 3.006q-.029.075-.045.15a1 1 0 0 0 .164.91l3.562 4.607l.231 3.693a1 1 0 1 0 1.996-.124l-.27-4.307l-2.092-2.707l1.373-2.661l.093.134a2 2 0 0 0 2.42.711l2.115-.886a1 1 0 0 0-.773-1.844l-2.115.886l-1.606-2.335a3.04 3.04 0 0 0-1.661-1.36a1.4 1.4 0 0 0-.35-.07'/%3E%3Cpath d='m8.45 16.45l.827-2.452l1.469 1.9l-.402 1.191a2 2 0 0 1-2.032 1.356l-2.88-.197a1 1 0 1 1 .136-1.996z'/%3E%3C/g%3E%3C/svg%3E");
+}

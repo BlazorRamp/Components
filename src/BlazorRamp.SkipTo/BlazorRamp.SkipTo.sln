@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorRamp.SkipTo", "Blazor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorRamp.Core", "..\BlazorRamp.Core\BlazorRamp.Core\BlazorRamp.Core.csproj", "{3E5DCEC9-7A6A-43EA-674D-4580579962FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Sandbox\Sandbox\Sandbox.csproj", "{70E6F53F-0F62-4D56-9C83-1241E79CE279}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.Client", "Sandbox\Sandbox.Client\Sandbox.Client.csproj", "{B24E22E0-01F7-47F0-86EB-9F0781CC2419}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{3E5DCEC9-7A6A-43EA-674D-4580579962FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E5DCEC9-7A6A-43EA-674D-4580579962FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E5DCEC9-7A6A-43EA-674D-4580579962FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70E6F53F-0F62-4D56-9C83-1241E79CE279}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70E6F53F-0F62-4D56-9C83-1241E79CE279}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70E6F53F-0F62-4D56-9C83-1241E79CE279}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70E6F53F-0F62-4D56-9C83-1241E79CE279}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B24E22E0-01F7-47F0-86EB-9F0781CC2419}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B24E22E0-01F7-47F0-86EB-9F0781CC2419}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B24E22E0-01F7-47F0-86EB-9F0781CC2419}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B24E22E0-01F7-47F0-86EB-9F0781CC2419}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

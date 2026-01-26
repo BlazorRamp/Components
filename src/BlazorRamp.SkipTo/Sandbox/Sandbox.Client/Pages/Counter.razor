@@ -1,0 +1,109 @@
+﻿@page "/counter"
+@using BlazorRamp.SkipTo.Common.Constants
+@rendermode InteractiveAuto
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+<SkipTo SkipToText="Skip Text" IconVisible="true" TargetID="section-content" SkipToType="SkipToType.Section"  />
+<p role="status">Current count: @currentCount</p>
+
+<pre>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    dddd
+
+
+
+
+
+
+    wwwwwwwwww
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    eeeeeeeeeeeeeeeee
+
+
+
+
+
+
+
+
+
+
+
+    rrrrrrrrrrrrrrrrrr
+
+
+
+
+
+
+
+
+    ttttttttttttttt
+
+
+
+
+
+
+
+
+
+
+</pre>
+
+<button id="section-content" class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

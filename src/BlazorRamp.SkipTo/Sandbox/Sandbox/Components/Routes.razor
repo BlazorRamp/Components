@@ -1,0 +1,11 @@
+﻿<AnnouncementHistory RefreshText="Refresh" ClearCloseText="Clear & Close" CloseText="Close" 
+NoDataText="No announcements" Title="Recent Announcements" TriggerVisible="true" TriggerText="Alerts" />
+
+<SkipTo SkipToText="Skip to content" IconVisible="true" />
+
+<Router AppAssembly="typeof(Program).Assembly" AdditionalAssemblies="new[] { typeof(Client._Imports).Assembly }">
+    <Found Context="routeData">
+        <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+    </Found>
+</Router>

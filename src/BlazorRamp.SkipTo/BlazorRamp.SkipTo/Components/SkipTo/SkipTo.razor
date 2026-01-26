@@ -1,0 +1,28 @@
+﻿
+@if(_isInteractive)
+{
+    <button class="@BuildClassList(SkipToType)" role="link" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="() => HandleNavigation(_targetID)">
+
+        <span class="@GlobalValues.SkipTo_Content_Class">
+            @if (_iconVisible)
+            {
+                <span class ="@GlobalValues.SkipTo_Icon_Class"></span>
+            }
+            <span>@_skipToText</span>
+        </span>
+    </button>
+}
+else
+{
+    <a class="@GlobalValues.SkipTo_Class" href="@_targetID" target="_self">
+
+        <span class="@GlobalValues.SkipTo_Content_Class">
+            @if (_iconVisible)
+            {
+                <span class="@GlobalValues.SkipTo_Icon_Class"></span>
+            }
+            <span>@_skipToText</span>
+        </span>
+    </a>
+}
+

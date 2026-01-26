@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -12,24 +12,51 @@
     <Content Remove="compilerconfig.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="Assets\Scss\_root_skip_to.scss" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BuildWebCompiler2022" Version="1.14.15" />
+	  <PackageReference Include="BuildWebCompiler2022" Version="1.14.15">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.23" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Common\Constants\" />
-    <Folder Include="Components\SkipTo\" />
-    <Folder Include="wwwroot\assets\css\" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.9.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
   </ItemGroup>
 
+	<!-- For local development: use project reference -->
+	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
+		<ProjectReference Include="..\..\BlazorRamp.Core\BlazorRamp.Core\BlazorRamp.Core.csproj" />
+	</ItemGroup>
+
+	<!-- For packaging (Release): use package reference -->
+	<ItemGroup Condition="'$(Configuration)' == 'Release'">
+		<PackageReference Include="BlazorRamp.Core" Version="1.0.0" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<None Update="tsconfig.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		</None>
+		<Content Update="tsconfig.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		</Content>
+	</ItemGroup>
 </Project>
