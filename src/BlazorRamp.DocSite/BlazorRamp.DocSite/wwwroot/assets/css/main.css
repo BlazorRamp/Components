@@ -226,8 +226,10 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
-#app__main:focus {
-  border-color: var(--br-comp-all-focus-indicator-colour);
+#app__main:focus-visible {
+  outline-width: var(--br-comp-all-outline-width);
+  outline-color: var(--br-comp-all-outline-colour);
+  outline-offset: var(--br-comp-all-outline-offset);
 }
 #app:has(#menu-toggler[aria-expanded=false]) #app__nav {
   display: none;
@@ -482,12 +484,9 @@ body #app__main {
   text-align: center;
 }
 
-/*.bullet-list{
-
-    list-style-type: circle;
-    margin-left:var(--br-unit-space-5);
-
- }*/
+/*main:focus-visible{
+    outline:5px solid red;
+}*/
 .main-navigation > ul {
   all: unset;
   box-sizing: border-box;
