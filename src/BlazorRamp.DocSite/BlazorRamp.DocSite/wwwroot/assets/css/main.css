@@ -229,7 +229,6 @@
 #app__main:focus-visible {
   outline-width: var(--br-comp-all-outline-width);
   outline-color: var(--br-comp-all-outline-colour);
-  outline-offset: var(--br-comp-all-outline-offset);
 }
 #app:has(#menu-toggler[aria-expanded=false]) #app__nav {
   display: none;

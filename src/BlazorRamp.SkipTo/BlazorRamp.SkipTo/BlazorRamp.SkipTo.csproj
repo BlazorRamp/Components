@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -38,13 +38,13 @@
   </ItemGroup>
 
 	<!-- For local development: use project reference -->
-	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
-		<ProjectReference Include="..\..\BlazorRamp.Core\BlazorRamp.Core\BlazorRamp.Core.csproj" />
-	</ItemGroup>
 
 	<!-- For packaging (Release): use package reference -->
 	<ItemGroup Condition="'$(Configuration)' == 'Release'">
 		<PackageReference Include="BlazorRamp.Core" Version="1.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\BlazorRamp.Core\BlazorRamp.Core\BlazorRamp.Core.csproj" />
 	</ItemGroup>
 	
 	<ItemGroup>

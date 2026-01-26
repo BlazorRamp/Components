@@ -2,7 +2,6 @@
 using BlazorRamp.SkipTo.Common.Constants;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System.Runtime.InteropServices;
 
 namespace BlazorRamp.SkipTo.Components.SkipTo;
 
