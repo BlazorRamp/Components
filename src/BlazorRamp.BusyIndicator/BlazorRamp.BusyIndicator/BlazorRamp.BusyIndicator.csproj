@@ -81,14 +81,6 @@ Uses the Blazor Ramp Core Live Region Service to infrom screen reader users when
   <ItemGroup>
     <ProjectReference Include="..\..\BlazorRamp.Core\BlazorRamp.Core\BlazorRamp.Core.csproj" />
   </ItemGroup>
-
-  <!--<ItemGroup>
-    <ProjectReference Include="..\..\BlazorRamp.Core\BlazorRamp.Core\BlazorRamp.Core.csproj" />
-  </ItemGroup>-->
-
-	<!-- For local development: use project reference -->
-
-	<!-- For packaging (Release): use package reference -->
 	
 <ItemGroup>
 	<None Update="tsconfig.json">
