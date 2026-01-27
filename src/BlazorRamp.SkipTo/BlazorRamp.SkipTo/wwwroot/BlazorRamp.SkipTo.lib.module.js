@@ -10,9 +10,10 @@ const scrollToView = (elementID) => {
     });
     element.focus();
 };
-const initializeSkipLink = () => {
+let startUpCompleted = false;
+const initialiseSkipLink = () => {
     const skipLink = document.querySelector(".br-skip-to");
-    if (!skipLink)
+    if (!skipLink || startUpCompleted === true)
         return;
     skipLink.addEventListener("click", (event) => {
         event.preventDefault();
@@ -22,9 +23,10 @@ const initializeSkipLink = () => {
             history.pushState(null, '', skipLink.hash);
         }
     });
+    startUpCompleted = true;
 };
-const afterWebStarted = () => initializeSkipLink();
-const afterServerStarted = () => initializeSkipLink();
-const afterWebAssemblyStarted = () => initializeSkipLink();
-export { afterWebStarted, afterServerStarted, afterWebAssemblyStarted, scrollToView };
+const afterWebStarted = () => initialiseSkipLink();
+const afterServerStarted = () => initialiseSkipLink();
+const afterWebAssemblyStarted = () => initialiseSkipLink();
+export { afterWebStarted, afterServerStarted, afterWebAssemblyStarted };
 //# sourceMappingURL=BlazorRamp.SkipTo.lib.module.js.map

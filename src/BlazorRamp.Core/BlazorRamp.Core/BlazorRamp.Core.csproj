@@ -21,6 +21,7 @@ Provides essential services for ARIA Live Region announcements and common utilit
 	  <Deterministic>true</Deterministic>
 	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 	  <Authors>Paul Kent</Authors>
+	  <PackageId>$(AssemblyName)</PackageId>
 	  <Description>Core project for Blazor Ramp that contians a Live Regions Service and an Announcement History component. 
 All Blazor Ramp components reference this project.
 </Description>

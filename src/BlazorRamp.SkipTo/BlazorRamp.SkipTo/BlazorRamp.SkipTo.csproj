@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -37,12 +38,6 @@
     <None Include="compilerconfig.json" />
   </ItemGroup>
 
-	<!-- For local development: use project reference -->
-
-	<!-- For packaging (Release): use package reference -->
-	<ItemGroup Condition="'$(Configuration)' == 'Release'">
-		<PackageReference Include="BlazorRamp.Core" Version="1.0.0" />
-	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\BlazorRamp.Core\BlazorRamp.Core\BlazorRamp.Core.csproj" />
 	</ItemGroup>
@@ -59,4 +54,7 @@
 			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 		</Content>
 	</ItemGroup>
+	
+	<!-- tests -->
+
 </Project>

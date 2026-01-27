@@ -78,19 +78,17 @@ Uses the Blazor Ramp Core Live Region Service to infrom screen reader users when
     <None Include="compilerconfig.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\BlazorRamp.Core\BlazorRamp.Core\BlazorRamp.Core.csproj" />
+  </ItemGroup>
+
   <!--<ItemGroup>
     <ProjectReference Include="..\..\BlazorRamp.Core\BlazorRamp.Core\BlazorRamp.Core.csproj" />
   </ItemGroup>-->
 
 	<!-- For local development: use project reference -->
-	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
-		<ProjectReference Include="..\..\BlazorRamp.Core\BlazorRamp.Core\BlazorRamp.Core.csproj" />
-	</ItemGroup>
 
 	<!-- For packaging (Release): use package reference -->
-	<ItemGroup Condition="'$(Configuration)' == 'Release'">
-		<PackageReference Include="BlazorRamp.Core" Version="1.0.0" />
-	</ItemGroup>
 	
 <ItemGroup>
 	<None Update="tsconfig.json">

@@ -16,11 +16,13 @@ const scrollToView = (elementID: string) => {
     element.focus();
 }
 
-const initializeSkipLink = ():void => {
+let startUpCompleted: boolean = false;
+
+const initialiseSkipLink = ():void => {
 
     const skipLink = document.querySelector(".br-skip-to") as HTMLAnchorElement;
 
-    if (!skipLink) return;
+    if (!skipLink || startUpCompleted === true) return;
 
     skipLink.addEventListener("click", (event) => {
 
@@ -35,11 +37,13 @@ const initializeSkipLink = ():void => {
  
     });
 
+    startUpCompleted = true;
+
 };
-const afterWebStarted = (): void => initializeSkipLink();
+const afterWebStarted = (): void => initialiseSkipLink();
 
-const afterServerStarted = (): void => initializeSkipLink();
+const afterServerStarted = (): void => initialiseSkipLink();
 
-const afterWebAssemblyStarted = (): void => initializeSkipLink();
+const afterWebAssemblyStarted = (): void => initialiseSkipLink();
 
-export { afterWebStarted, afterServerStarted, afterWebAssemblyStarted, scrollToView };
+export { afterWebStarted, afterServerStarted, afterWebAssemblyStarted};

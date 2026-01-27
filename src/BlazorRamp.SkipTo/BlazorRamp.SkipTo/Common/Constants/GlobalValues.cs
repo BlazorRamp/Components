@@ -3,7 +3,8 @@
 internal class GlobalValues
 {
 
-    public const string JS_SkipTo_File_Path           = "./_content/BlazorRamp.SkipTo/BlazorRamp.SkipTo.lib.module.js";
+    public const string JS_SkipTo_Lib_Mod_File_Path   = "./_content/BlazorRamp.SkipTo/BlazorRamp.SkipTo.lib.module.js";
+    public const string JS_SkipTo_File_Path           = "./_content/BlazorRamp.SkipTo/skip-to.js";
     public const string JS_SkipTo_Scroll_To_View_Func = "scrollToView";
 
     public const string SkipTo_Class              = "br-skip-to";
