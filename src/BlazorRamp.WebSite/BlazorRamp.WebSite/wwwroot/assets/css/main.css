@@ -224,6 +224,10 @@
   grid-row: 2/3;
   overflow-y: auto;
 }
+#app__main:focus-visible {
+  outline-width: var(--br-comp-all-outline-width);
+  outline-color: var(--br-comp-all-outline-colour);
+}
 #app:has(#menu-toggler[aria-expanded=false]) #app__nav {
   display: none;
 }

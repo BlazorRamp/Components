@@ -195,6 +195,11 @@
         grid-column: 2/3;
         grid-row: 2/3;
         overflow-y: auto;
+
+        &:focus-visible {
+            outline-width: var(--br-comp-all-outline-width);
+            outline-color: var(--br-comp-all-outline-colour);
+        }
     }
 
 
