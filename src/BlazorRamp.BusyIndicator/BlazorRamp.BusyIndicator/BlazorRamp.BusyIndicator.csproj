@@ -23,7 +23,7 @@ Uses the Blazor Ramp Core Live Region Service to infrom screen reader users when
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
-	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 		  
   </PropertyGroup>
 
