@@ -35,6 +35,7 @@ public class GlobalValues
     public const string Path_Frameworks_Modal_Dialog         = "/frameworks/modal-dialog";
     public const string Path_Components_Announcement_History = "/components/announcement-history";
     public const string Path_Components_Busy_Indicator       = "/components/busy-indicator";
+    public const string Path_Components_Skip_To              = "/components/skip-to";
     public const string Path_Theming_Overview                = "/theming/overview";
     public const string Path_Theming_CSS_Base_Variables      = "/theming/core-base-variables";
     public const string Path_Theming_CSS_Unit_Variables      = "/theming/core-unit-variables";
@@ -49,6 +50,7 @@ public class GlobalValues
     public const string Page_Title_Frameworks_Modal_Dialog          = "Frameworks - Modal Dialog";
     public const string Page_Title_Components_Announcement_History  = "Components - Announcement History";
     public const string Page_Title_Components_Busy_Indicator        = "Components - Busy Indicator";
+    public const string Page_Title_Components_Skip_To               = "Components - Skip To";
     public const string Page_Title_Theming_Overview                 = "Theming - Overview";
     public const string Page_Title_Theming_CSS_Base_Variables       = "Theming - Core Base Variables";
     public const string Page_Title_Theming_CSS_Unit_Variables       = "Theming - Core Unit Variables";
@@ -70,6 +72,7 @@ public class GlobalValues
     public const string Page_Heading_Frameworks_Modal_Dialog         = "Modal Dialog Framework";
     public const string Page_Heading_Components_Announcement_History = "Announcement History";
     public const string Page_Heading_Components_Busy_Indicator       = "Busy Indicator";
+    public const string Page_Heading_Components_Skip_To              = "Skip To";
 
     public const string Main_Nav_Section_Heading_About      = "Overview";
     public const string Main_Nav_Section_Heading_Theming    = "Theming";

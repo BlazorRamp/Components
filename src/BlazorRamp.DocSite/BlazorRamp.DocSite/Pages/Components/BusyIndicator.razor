@@ -3,7 +3,7 @@
 
 <PageTitle>@GlobalValues.Page_Title_Components_Busy_Indicator</PageTitle>
 
-<h1 class="page-heading">. . @GlobalValues.Page_Heading_Components_Busy_Indicator . . should be released in a few days . . . docs in progress.</h1>
+<h1 class="page-heading">@GlobalValues.Page_Heading_Components_Busy_Indicator . . should be released in a few days.</h1>
 
 <p>
     The Busy Indicator component provides the ability to cover an entire page, or a specific section of a page, while an action is taking place. This indicator differs from others in two ways:
@@ -149,10 +149,15 @@
 
     <p>Example showing the parameters being set at both design and runtime:</p>
 
-    <CodeBox CodeBlock="@CodeSnippets.Busy_Indicator_Example" AriaLabel="Busy indicator code block" />
+    <CodeBox CodeBlock="@CodeSnippets.Busy_Indicator_Example" AriaLabel="Busy indicator example code block" />
     <p>
         <b>Note: </b>Please keep your announcements short and too the point and only provide starting text for processes that that may take longer than four or five seconds.
     </p>
+    <p>
+        For sections of code that are being covered by the inert overlay of the busy indicator sometimes it makes it clearer by wrapping the content. 
+        You can also do this:
+    </p>
+    <CodeBox CodeBlock="@CodeSnippets.Busy_Indicator_Content" AriaLabel="Busy indicator content wrapping code block" />
 </section>
 <section>
     <h2 class="page-heading">CSS variables defined for the busy indicator.</h2>
@@ -204,6 +209,8 @@
                     <th scope="col">Default Value</th>
                     <th scope="col">Description</th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr>
                     <td>--br-comp-busy-pane-surface-background</td>
                     <td>transparent</td>
@@ -214,8 +221,6 @@
                     <td>var(--br-comp-all-pane-surface-line-height)</td>
                     <td>The line-height - uses the shared component variable.</td>
                 </tr>
-            </thead>
-            <tbody>
             </tbody>
         </table>
 
@@ -235,7 +240,8 @@
                     <th scope="col">Default Value</th>
                     <th scope="col">Description</th>
                 </tr>
-
+            </thead>
+            <tbody>
                 <tr>
                     <td>--br-comp-busy-area-content-background</td>
                     <td>var(--br-comp-all-focus-indicator-colour)</td>
@@ -266,8 +272,6 @@
                     <td>var(--br-comp-all-area-content-border-radius)</td>
                     <td>The border radius for the content area  - uses the shared component variable.</td>
                 </tr>
-            </thead>
-            <tbody>
             </tbody>
         </table>
 
@@ -288,6 +292,8 @@
                     <th scope="col">Default Value</th>
                     <th scope="col">Description</th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr>
                     <td>--br-comp-busy-pane-surface-background</td>
                     <td>transparent</td>
@@ -308,8 +314,6 @@
                     <td>var(--br-unit-font-size-label)</td>
                     <td>The font-size for the content area - <b>does not use the shared component variable.</b></td>
                 </tr>
-            </thead>
-            <tbody>
             </tbody>
         </table>
 
@@ -322,9 +326,9 @@
         <span>@GlobalValues.Main_Nav_Section_Heading_Components - @GlobalValues.Page_Heading_Components_Announcement_History</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_FAQs_Questions">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Components_Skip_To">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_FAQs - @GlobalValues.Page_Heading_FAQs_Questions</span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_Components - @GlobalValues.Page_Heading_Components_Skip_To</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

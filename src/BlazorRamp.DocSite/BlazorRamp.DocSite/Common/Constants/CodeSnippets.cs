@@ -82,7 +82,6 @@ public class CodeSnippets
 
 
     public const string Busy_Indicator_Example = """
-
         <BusyIndicator AriaStartText="Saving, please wait" AriaEndText=@_endMessage ShowIndicator="@_showIndicator" 
                 OverlayPosition="OverlayPosition.Screen" BusyText=". . . Saving . . . ."  ContentPosition="ContentPosition.Top" 
                 EndStatus="@_announcementType" DisplayTimeoutMS="15_000" OnBusyCompleted="HandleOnBusyCompleted" />
@@ -112,5 +111,15 @@ public class CodeSnippets
                 _showIndicator = false;
             }
         }
+        """;
+
+
+    public const string Busy_Indicator_Content = """
+        <BusyIndicator>
+
+        <!-- Your content in here -->
+
+        </BusyIndicator>
+
         """;
 }
