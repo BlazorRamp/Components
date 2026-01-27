@@ -11,6 +11,6 @@
         "strict": true
     },
     "include": [
-        "Assets/Scripts/*"
+        "Assets/Scripts/**/*.ts"
     ]
 }

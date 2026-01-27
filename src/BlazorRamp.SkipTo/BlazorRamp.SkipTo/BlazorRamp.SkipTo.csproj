@@ -55,6 +55,10 @@
 		</Content>
 	</ItemGroup>
 	
+	<ItemGroup>
+	  <Folder Include="wwwroot\assets\js\" />
+	</ItemGroup>
+	
 	<!-- tests -->
 
 </Project>
