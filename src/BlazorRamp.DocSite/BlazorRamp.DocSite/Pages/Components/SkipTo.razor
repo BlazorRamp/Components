@@ -4,6 +4,19 @@
 
 <h1 class="page-heading">. . @GlobalValues.Page_Heading_Components_Skip_To . . should be released in a few days . . . docs in progress.</h1>
 
+<p>
+    The Skip To component is designed with two use cases in mind. The first will probably cover 90% of cases, where it simply sits at the top-right corner of the page and always targets the main content element. 
+    In the case of Blazor, that main content is most likely fixed, with the <span class="code-span">&#64;Body</span> injecting the content.
+</p>
+<p>
+    Given that this fixed location may be client-side, server-side, or static, the Skip To has been designed to work with or without interactivity at that level (<span class="code-span">SkipToType.Page</span>). You can only have one such Skip To for this
+    purpose, technically, I could have made it support multiples, but I didn't feel the effort would be worth it for the limited use cases.
+</p>
+<p>
+    The second use case is where you have a block of repeated items on each interactive page and need to skip this content i.e. a secondary skip to. You can have multiple Skip To components on a page at 
+    this level (<span class="code-span">SkipToType.Section</span>).
+</p>
+
 <section>
     <h2 class="page-heading">CSS variables defined for the skip to component.</h2>
 
