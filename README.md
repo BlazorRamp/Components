@@ -8,6 +8,8 @@ Both the Core project containing the live region service and announcment history
 
 The full documentation is available at: [https://docs.blazorramp.uk](https://docs.blazorramp.uk). 
 
+The test site is avaialbe at:  [https://blazorramp.uk](https://blazorramp.uk). 
+
 Going forward I will re-structure the test site so its used for each component before each NuGet is released - it now also contains a Skip To component, that appears when keyboard
 focused (`:focus-visible`). Its next on the release list as I needed it for the documentation site.
 
