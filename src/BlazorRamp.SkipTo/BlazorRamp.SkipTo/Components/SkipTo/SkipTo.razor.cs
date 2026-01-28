@@ -6,11 +6,37 @@ using Microsoft.JSInterop;
 
 namespace BlazorRamp.SkipTo.Components.SkipTo;
 
+/// <summary>
+/// An accessibility-first skip link component that allows keyboard users to bypass repetitive navigation content.
+/// </summary>
 public partial class SkipTo : IAsyncDisposable
 {
+    /// <summary>
+    /// Gets or sets the text displayed by the skip link. 
+    /// Defaults to "Skip to content".
+    /// </summary>
     [Parameter] public string SkipToText     { get; set; } = GlobalValues.SkipTo_Text;
+
+    /// <summary>
+    /// Gets or sets the ID of the target element to move focus to. 
+    /// Defaults to "main-content".
+    /// </summary>
     [Parameter] public string TargetID       { get; set; }  = GlobalValues.SkipTo_Target_ID;
+
+    /// <summary>
+    /// Gets or sets whether the skip link is positioned for the entire page or a specific section. 
+    /// Defaults to Page.
+    /// <remarks>
+    /// Only one Skip To at the Page level is supported. 
+    /// You can use as many Section level ones on interactive pages as needed.
+    /// </remarks>
+    /// </summary>
     [Parameter] public SkipToType SkipToType { get; set; } = SkipToType.Page;
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the skip link icon is visible. 
+    /// Defaults to true.
+    /// </summary>
     [Parameter] public bool IconVisible      { get; set; } = true;
 
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
@@ -29,12 +55,12 @@ public partial class SkipTo : IAsyncDisposable
     {
         _skipToText  = String.IsNullOrWhiteSpace(SkipToText) ? GlobalValues.SkipTo_Text : SkipToText.Trim();
         _targetID    = String.IsNullOrWhiteSpace(TargetID) ? GlobalValues.SkipTo_Target_ID : TargetID.Trim();
-        _targetID    = TargetID.StartsWith("#") ? _targetID : $"#{_targetID}";
+        _targetID    = TargetID.StartsWith('#') ? _targetID : $"#{_targetID}";
         _iconVisible = IconVisible;
         _relativeUrl = CreateRelativeUrl(NavigationManager, _targetID);
     }
 
-    private string? BuildClassList(SkipToType skipToType)
+    private static string? BuildClassList(SkipToType skipToType)
     
         => skipToType == SkipToType.Section ? CoreUtilities.CreateClassList(GlobalValues.SkipTo_Class, GlobalValues.SkipTo_Container_Modifier) : GlobalValues.SkipTo_Class;
     
@@ -59,7 +85,7 @@ public partial class SkipTo : IAsyncDisposable
 
     private string CreateRelativeUrl(NavigationManager navigationManager, string targetID)
     
-        => NavigationManager.ToBaseRelativePath(NavigationManager.Uri) + targetID;
+        => navigationManager.ToBaseRelativePath(NavigationManager.Uri) + targetID;
 
     private async Task HandleNavigation(string navigateTo, string targetID)
     {
@@ -73,10 +99,15 @@ public partial class SkipTo : IAsyncDisposable
 
     public async ValueTask DisposeAsync()
     {
-       if (_disposed == false && _skipToModule is not null) await _skipToModule.DisposeAsync();
+        if (_disposed == false)
+        {
+            if (_skipToModule is not null) await _skipToModule.DisposeAsync();
 
-       NavigationManager.LocationChanged -= NavigationManager_LocationChanged;
+            NavigationManager.LocationChanged -= NavigationManager_LocationChanged;
 
-       _disposed = true;
+            GC.SuppressFinalize(this);
+
+            _disposed = true;
+        }
     }
 }

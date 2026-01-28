@@ -11,6 +11,10 @@
         background-color: CanvasText;
         color: Canvas;
     }
+
+    &:dir(rtl) {
+        transform: scaleX(-1);
+    }
 }
 
 .br-skip-to {
@@ -80,5 +84,6 @@
         outline-style: var(--br-comp-skip-to-outline-style);
         margin: var(--br-comp-skip-to-margin);
         z-index: var(--br-comp-skip-to-z-index);
+         
     }
 }
