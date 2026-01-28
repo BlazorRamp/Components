@@ -14,6 +14,7 @@ const scrollToView = (elementID: string) => {
     });
 
     element.focus();
+
 }
 
 let startUpCompleted: boolean = false;

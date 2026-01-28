@@ -223,6 +223,7 @@
   grid-column: 2/3;
   grid-row: 2/3;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 #app__main:focus-visible {
   outline-width: var(--br-comp-all-outline-width);

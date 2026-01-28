@@ -30,7 +30,7 @@
     border: 0;
     outline: none;
     text-decoration: underline;
-
+    z-index:999;
     &--container {
         position: absolute;
     }
@@ -82,7 +82,7 @@
         cursor: pointer;
         outline-color: var(--br-comp-skip-to-outline-colour);
         outline-width: var(--br-comp-skip-to-outline-width);
-        outline-offset: 0px;//var(--br-comp-skip-to-outline-offset);
+        outline-offset: var(--br-comp-skip-to-outline-offset);
         outline-style: var(--br-comp-skip-to-outline-style);
         margin: var(--br-comp-skip-to-margin);
         z-index: var(--br-comp-skip-to-z-index);

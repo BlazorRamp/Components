@@ -1,7 +1,7 @@
 ﻿:root {
     --br-comp-skip-to-outline-style: var(--br-comp-all-outline-style);
     --br-comp-skip-to-outline-width: var(--br-comp-all-outline-width);
-    --br-comp-skip-to-outline-offset: var(--br-comp-all-outline-offset);
+    --br-comp-skip-to-outline-offset: var(--br-unit-outline-offset-0);
     --br-comp-skip-to-outline-colour: var(--br-comp-all-outline-colour);
     --br-comp-skip-to-area-content-background: var(--br-unit-colour-canvas-inverted);
     --br-comp-skip-to-area-content-text: var(--br-unit-colour-canvas-text-inverted);
@@ -11,7 +11,7 @@
     //
     --br-comp-skip-to-pane-surface-background: var(--br-unit-colour-canvas-inverted);
     --br-comp-skip-to-pane-surface-border-style: var(--br-comp-all-pane-surface-border-style);
-    --br-comp-skip-to-pane-surface-border-width: var(--br-comp-all-outline-width);
+    --br-comp-skip-to-pane-surface-border-width: var(--br-comp-all-outline-offset);
     --br-comp-skip-to-pane-surface-border-colour: var(--br-unit-colour-canvas);
     --br-comp-skip-to-pane-surface-border-radius-top-right: var(--br-unit-radius-5);
     --br-comp-skip-to-pane-surface-border-radius-top-left: var(--br-unit-radius-5);

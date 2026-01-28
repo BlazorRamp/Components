@@ -6,16 +6,6 @@
 @use "_buttons-links";
 @use "_tables";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+html {
+    scroll-padding-top: calc(5rem + var(--br-unit-space-5));
+}

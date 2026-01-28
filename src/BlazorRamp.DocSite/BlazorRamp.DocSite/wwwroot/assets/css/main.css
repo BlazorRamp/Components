@@ -22,8 +22,8 @@
   text-overflow: ellipsis;
 }
 #app__header #menu-toggler {
-  order: -1;
   margin-top: var(--br-unit-space-2);
+  order: -1;
   flex-shrink: 0;
   appearance: none;
   border: none;
@@ -215,7 +215,6 @@
   width: 20rem;
   height: 100%;
   overflow-y: auto;
-  overflow-x: hidden;
 }
 #app__main {
   margin: var(--br-unit-space-5);
@@ -483,9 +482,6 @@ body #app__main {
   text-align: center;
 }
 
-/*main:focus-visible{
-    outline:5px solid red;
-}*/
 .main-navigation > ul {
   all: unset;
   box-sizing: border-box;
@@ -810,4 +806,8 @@ body #app__main {
   border-inline: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
   font-family: var(--br-unit-font-family-default);
   color: inherit;
+}
+
+html {
+  scroll-padding-top: calc(5rem + var(--br-unit-space-5));
 }

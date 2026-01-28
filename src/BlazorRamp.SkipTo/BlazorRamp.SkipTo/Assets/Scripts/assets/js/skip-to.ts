@@ -13,6 +13,7 @@
     });
 
     element.focus();
+
 }
 
 export { scrollToView };

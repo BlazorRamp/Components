@@ -39,7 +39,7 @@
 </section>
 
 <section class="info-box info-box--container-test">
-    <BlazorRamp.BusyIndicator.Components.BusyIndicator ShowIndicator="@_showTestIndicator" BusyText=". . . Saving, please wait . . ." IndicatorTrigger="Test Busy Indicator Button"
+    <BusyIndicator ShowIndicator="@_showTestIndicator" BusyText=". . . Saving, please wait . . ." IndicatorTrigger="Test Busy Indicator Button"
     AriaEndText="@_ariaEndText" ContentPosition="ContentPosition.Centre" OverlayPosition=" OverlayPosition.Container">
         <p>
             <b>Try it:</b> This text is inside a container (<span class="code-span">position:relative</span>).I have set the indicator to be top of the container, with the
@@ -51,7 +51,7 @@
             Everything behind the overlay is inert excluding the triggering button.
          </p>   
           <button class="test-button" role="button" @onclick="RunDummyTask">Test Busy Indicator</button>
-   </BlazorRamp.BusyIndicator.Components.BusyIndicator>
+   </BusyIndicator>
 </section>
 
 @code {
@@ -261,9 +261,9 @@
                     <td>The font-size for the content area - <b>does not use the shared component variable.</b></td>
                 </tr>
                 <tr>
-                    <td>--br-comp-busy-area-content-font</td>
-                    <td>var(--br-comp-all-area-content-font)</td>
-                    <td>The font for the content area - uses the shared component variable.</td>
+                    <td>--br-comp-busy-area-content-font-family</td>
+                    <td>var(--br-comp-all-area-content-font-family)</td>
+                    <td>The type of font for the content area - uses the shared component variable.</td>
                 </tr>
                 <tr>
                     <td>--br-comp-busy-area-content-font-weight</td>

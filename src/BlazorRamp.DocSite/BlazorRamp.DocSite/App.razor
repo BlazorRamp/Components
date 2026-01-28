@@ -1,6 +1,7 @@
-﻿<AnnouncementHistory TriggerVisible="true" />
-<SkipTo IconVisible ="true" SkipToText="Skip to content" SkipToType="SkipToType.Page" TargetID="app__main" />
-<Router AppAssembly="@typeof(App).Assembly">
+﻿
+<AnnouncementHistory RefreshText="Refresh" ClearCloseText="Clear & Close" CloseText="Close" NoDataText="No announcements" Title="Recent Announcements" TriggerVisible="true" TriggerText="Alerts" />
+<SkipTo IconVisible="true" SkipToText="Skip to content" SkipToType="SkipToType.Page" TargetID="app__main" />
+ <Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />

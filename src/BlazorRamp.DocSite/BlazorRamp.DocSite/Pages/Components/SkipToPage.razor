@@ -1,5 +1,5 @@
-﻿@attribute [Route(GlobalValues.Path_Components_Skip_To)]
-
+﻿
+@attribute [Route(GlobalValues.Path_Components_Skip_To)]
 <PageTitle>@GlobalValues.Page_Title_Components_Skip_To</PageTitle>
 
 <h1 class="page-heading">. . @GlobalValues.Page_Heading_Components_Skip_To . . should be released in a few days . . . docs in progress.</h1>
@@ -9,13 +9,28 @@
     In the case of Blazor, that main content is most likely fixed, with the <span class="code-span">&#64;Body</span> injecting the content.
 </p>
 <p>
-    Given that this fixed location may be client-side, server-side, or static, the Skip To has been designed to work with or without interactivity at that level (<span class="code-span">SkipToType.Page</span>). You can only have one such Skip To for this
-    purpose, technically, I could have made it support multiples, but I didn't feel the effort would be worth it for the limited use cases.
+    Given that a skip to for the page may be on a non-interactive area, the Skip To has been designed to work with or without interactivity at the (<span class="code-span">SkipToType.Page</span>) level.
+    Currently, I only support having one Skip to at the page level which it positioned top (LTR/RTL).  
 </p>
 <p>
-    The second use case is where you have a block of repeated items on each interactive page and need to skip this content i.e. a secondary skip to. You can have multiple Skip To components on a page at 
-    this level (<span class="code-span">SkipToType.Section</span>).
+    To try the skip to at the page level (its at the top left of the page),keep pressing the tab key and eventually it will become <span class="code-span">:focus-visible</span>
+    Pressing the enter key will then put the focus the container that this page content is inside.
 </p>
+<p>
+    The second use case is where you have a block of repeated items on each interactive page and need to skip this content i.e. a secondary skip to. 
+    You can have multiple skip to components on a page at this level (<span class="code-span">SkipToType.Section</span>). Each skip to for a section uses absolute positioning
+    relative to its parent (that has a position set, such as relative) and will be position top (LTR/RTL) within its parent.
+</p>
+
+<div class="info-box">
+        
+    <div class="section-box">
+        Some block you want to skip.
+    </div>
+    <div style="width:100%;" class="info-box" tabindex="-1" id="section-one">
+        The content you want to get to.
+    </div>
+</div>
 
 <section>
     <h2 class="page-heading">CSS variables defined for the skip to component.</h2>
@@ -47,12 +62,12 @@
                 <tr>
                     <td>--br-comp-skip-to-outline-width</td>
                     <td>var(--br-comp-all-outline-width)</td>
-                    <td>Widht of the outline - uses the shared component variable.</td>
+                    <td>Width of the outline - uses the shared component variable.</td>
                 </tr>
                 <tr>
                     <td>--br-comp-skip-to-outline-offset</td>
-                    <td>var(--br-comp-all-outline-offset)</td>
-                    <td>Outline offset - uses the shared component variable.</td>
+                    <td>var(--br-unit-outline-offset-0)</td>
+                    <td>Outline offset - <b>does not use the shared component variable.</b></td>
                 </tr>
                 <tr>
                     <td>--br-comp-skip-to-outline-colour</td>
@@ -62,6 +77,10 @@
             </tbody>
         </table>
 
+        <p>
+            <b>Note: </b> Given that the Skip To is likely to be placed top left, there was more risk of contrast violations with an offset outline.
+            To simulate just the outline and its offset, a border is used that has the same colour as the canvas and then an outline is applied without an offset.
+        </p>
     </section>
 
     <section class="code-table">
@@ -90,13 +109,16 @@
                 </tr>
                 <tr>
                     <td>--br-comp-skip-to-pane-surface-border-width</td>
-                    <td>var(--br-comp-all-pane-surface-border-width)</td>
-                    <td>The border width - uses the shared component variable.</td>
+                    <td>var(--br-comp-all-outline-offset)</td>
+                    <td>
+                        The border width - <b>does not use the shared component variable</b> It uses the outline offset as its using
+                        an outline without an offset. In this instance the border is the acting as an offset.
+                    </td>
                 </tr>
                 <tr>
                     <td>--br-comp-skip-to-pane-surface-border-colour</td>
-                    <td>var(--br-comp-all-pane-surface-border-colour)</td>
-                    <td>The border colour - uses the shared component variable.</td>
+                    <td>var(--br-unit-colour-canvas)</td>
+                    <td>The border colour - <b>does not use the shared component variable.</b></td>
                 </tr>
                 <tr>
                     <td>--br-comp-skip-to-pane-surface-border-radius-top-right</td>
@@ -216,9 +238,27 @@
             </thead>
             <tbody>
                 <tr>
+                    <td>--br-comp-skip-to-outline-offset</td>
+                    <td>var(--br-unit-outline-offset-0)</td>
+                    <td>Outline offset - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-pane-surface-border-width</td>
+                    <td>var(--br-comp-all-outline-offset)</td>
+                    <td>
+                        The border width - <b>does not use the shared component variable</b> It uses the outline offset as its using
+                        an outline without an offset. In this instance the border is the acting as an offset.
+                    </td>
+                </tr>
+                <tr>
                     <td>--br-comp-skip-to-pane-surface-background</td>
                     <td>var(--br-unit-colour-canvas-inverted)</td>
                     <td>The background colour of the surface pane - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-pane-surface-border-colour</td>
+                    <td>var(--br-unit-colour-canvas)</td>
+                    <td>The border colour - <b>does not use the shared component variable.</b></td>
                 </tr>
                 <tr>
                     <td>--br-comp-skip-to-pane-surface-border-radius-top-right</td>
@@ -262,7 +302,6 @@
                 </tr>
             </tbody>
         </table>
-
 
     </section>
 
