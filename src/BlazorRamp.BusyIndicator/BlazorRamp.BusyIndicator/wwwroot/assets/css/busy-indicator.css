@@ -4,7 +4,7 @@
   --br-comp-busy-pane-surface-background: transparent;
   --br-comp-busy-pane-surface-line-height: var(--br-comp-all-pane-surface-line-height);
   --br-comp-busy-area-content-background: var(--br-comp-all-focus-indicator-colour);
-  --br-comp-busy-area-content-font-family: var(--br-comp-all-area-content-font);
+  --br-comp-busy-area-content-font-family: var(--br-comp-all-area-content-font-family);
   --br-comp-busy-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
   --br-comp-busy-area-content-text: var(--br-unit-colour-canvas-text-inverted);
   --br-comp-busy-area-content-font-size:var(--br-unit-font-size-label);

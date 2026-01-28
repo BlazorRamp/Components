@@ -469,7 +469,7 @@ body {
   --br-comp-history-button-font-family: var(--br-comp-all-button-font-family);
   --br-comp-history-button-font-size: var(--br-comp-all-button-font-size);
   --br-comp-history-button-font-weight: var(--br-comp-all-button-font-weight);
-  --br-comp-history-button-line-height: var(--br-comp-all-button-line-heigh);
+  --br-comp-history-button-line-height: var(--br-comp-all-button-line-height);
   --br-comp-history-button-border-style: var(--br-comp-all-button-border-style);
   --br-comp-history-button-border-colour: var(--br-comp-all-button-border-colour);
   --br-comp-history-button-border-width: var(--br-comp-all-button-border-width);
@@ -495,7 +495,7 @@ body {
   --br-comp-history-trigger-pane-surface-border-width: var(--br-unit-border-1);
   --br-comp-history-trigger-pane-surface-border-radius: var(--br-unit-radius-7);
   --br-comp-history-trigger-outline-style: var(--br-comp-all-outline-style);
-  --br-comp-history-trigger-outline-width: va(--br-comp-all-outline-width);
+  --br-comp-history-trigger-outline-width: var(--br-comp-all-outline-width);
   --br-comp-history-trigger-outline-offset: var(--br-comp-all-outline-offset);
   --br-comp-history-trigger-outline-colour: var(--br-comp-all-outline-colour);
   --br-comp-history-trigger-state-hover: var(--br-comp-all-button-state-hover);
