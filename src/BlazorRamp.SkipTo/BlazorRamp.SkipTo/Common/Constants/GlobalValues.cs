@@ -4,7 +4,7 @@ internal class GlobalValues
 {
 
     public const string JS_SkipTo_File_Path           = "./_content/BlazorRamp.SkipTo/assets/js/skip-to.js";
-    public const string JS_SkipTo_Scroll_To_View_Func = "scrollToView";
+    public const string JS_SkipTo_Scroll_Focus_Func   = "scrollToView";
 
     public const string SkipTo_Class              = "br-skip-to";
     public const string SkipTo_Content_Class      = $"{SkipTo_Class}__content";

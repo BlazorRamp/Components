@@ -48,8 +48,7 @@ public partial class SkipTo : IAsyncDisposable
     private string _targetID      = GlobalValues.SkipTo_Target_ID;
     private bool   _iconVisible   = true;
     private bool   _isInteractive = false;
-    private bool    _disposed     = false;
-
+    private bool   _disposed     = false;
     private string _relativeUrl = "";
 
     /// <summary>
@@ -59,7 +58,7 @@ public partial class SkipTo : IAsyncDisposable
     {
         _skipToText  = String.IsNullOrWhiteSpace(SkipToText) ? GlobalValues.SkipTo_Text : SkipToText.Trim();
         _targetID    = String.IsNullOrWhiteSpace(TargetID) ? GlobalValues.SkipTo_Target_ID : TargetID.Trim();
-        _targetID    = TargetID.StartsWith('#') ? _targetID : $"#{_targetID}";
+        _targetID    = _targetID.StartsWith('#') ? _targetID : $"#{_targetID}";
         _iconVisible = IconVisible;
         _relativeUrl = CreateRelativeUrl(NavigationManager, _targetID);
     }
@@ -85,7 +84,7 @@ public partial class SkipTo : IAsyncDisposable
 
         NavigationManager.NavigateTo(navigateTo, false, false);
 
-        if (_skipToModule is not null) await _skipToModule.InvokeVoidAsync(GlobalValues.JS_SkipTo_Scroll_To_View_Func, targetID.TrimStart('#'));
+        if (_skipToModule is not null) await _skipToModule.InvokeVoidAsync(GlobalValues.JS_SkipTo_Scroll_Focus_Func, targetID.TrimStart('#'));
     }
 
     /// <summary>

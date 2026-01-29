@@ -1,7 +1,7 @@
 ﻿
 @if(_isInteractive)
 {
-    <a class="@BuildClassList(SkipToType)" href="@_relativeUrl" target="_blank" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="() => HandleNavigation(_relativeUrl,_targetID)">
+    <a class="@BuildClassList(SkipToType)" href="@_relativeUrl" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="() => HandleNavigation(_relativeUrl, _targetID)">
 
         <span class="@GlobalValues.SkipTo_Content_Class">
             @if (_iconVisible)
