@@ -36,7 +36,7 @@ internal static class CoreUtilities
     /// </returns>
     public static string? CreateClassList(params string[] classes)
     {
-        if (classes.Length == 0) return null;
+        if (classes == null || classes.Length == 0) return null;
 
         var classList = String.Join(" ", classes.Where(c => !String.IsNullOrWhiteSpace(c)).Select(c => c.Trim()));
 

@@ -24,4 +24,34 @@ public class CoreUtilities_Tests
 
         }
     }
+
+    public class CreateClassList
+    {
+        [Theory]
+        [InlineData("  class-with-space  ", 1)]
+        [InlineData("  ", 0)]
+        [InlineData(null, 0)]
+        [InlineData("one-class", 1)]
+        [InlineData("one-class, two-class", 2)]
+        [InlineData("one-class, two-class three-class", 3)]
+
+        public void Should_get_a_space_separated_list_of_classes_or_return_null(string classes, int expectedClasses)
+        {
+            string[]? classList = null;
+            
+            if (classes is not null) classList = classes.Split(',');
+
+            var result = CoreUtilities.CreateClassList(classList!);
+
+            if (String.IsNullOrWhiteSpace(classes))
+            {
+                result.Should().BeNull();
+                return;
+            }
+            
+            result!.Split(' ').Count().Should().Be(expectedClasses);
+
+        }
+    }
+
 }

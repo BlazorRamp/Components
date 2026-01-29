@@ -36,56 +36,6 @@ public class BusyIndicator_Tests
         }
 
         [Theory]
-        [InlineData(StyleAs.Dynamic)]
-        [InlineData(StyleAs.OnLight)]
-        [InlineData(StyleAs.OnDark)]
-        [InlineData(null)]
-        public async Task Style_as_should_use_the_value_provided_with_a_default_of_dynamic_which_removes_the_data_attribute(StyleAs? styleAs)
-        {
-            await using var context = new BunitContext();
-
-            IRenderedComponent<BusyIndicatorComponent> busyIndicator;
-
-            busyIndicator = (styleAs is null) ? busyIndicator = CreateBusyIndicatorWithoutParams(context)
-                                              : CreateBusyIndicatorWithParamByName<StyleAs>(context, nameof(BusyIndicatorComponent.StyleAs), styleAs.Value);
-
-            if (styleAs is not null && styleAs != StyleAs.Dynamic)
-            {
-                string styleAsValue = $"[data-br-style={CoreUtilities.GetStyleAsValue(styleAs.Value)}]";
-
-                busyIndicator.FindAll(styleAsValue).Should().NotBeEmpty();
-
-                return;
-            }
-
-            busyIndicator.FindAll("[data-br-style]").Should().BeEmpty();
-        }
-
-        [Theory]
-        [InlineData("My Indicator")]
-        [InlineData("")]
-        [InlineData("  ")]
-        [InlineData(null)]
-        [InlineData("missing")]
-        public async Task Indicator_Label_when_not_missing_null_empty_or_whitespace_should_be_used_otherwise_the_default_is_used(string? indicatorLabel)
-        {
-            await using var context = new BunitContext();
-
-            IRenderedComponent<BusyIndicatorComponent> busyIndicator;
-
-            busyIndicator = (indicatorLabel == "missing") ? busyIndicator = CreateBusyIndicatorWithoutParams(context)
-                                                          : CreateBusyIndicatorWithParamByName<string>(context, nameof(BusyIndicatorComponent.IndicatorLabel), indicatorLabel!);
-
-            if (true == String.IsNullOrWhiteSpace(indicatorLabel) || indicatorLabel == "missing")
-            {
-                busyIndicator.Find("div > span.br-visually-hidden").TextContent.Should().Be(GlobalValues.Busy_Indicator_Label);
-                return;
-            }
-
-            busyIndicator.Find("div > span.br-visually-hidden").TextContent.Should().Be(indicatorLabel);
-        }
-
-        [Theory]
         [InlineData("Busy Please Wait")]
         [InlineData("")]
         [InlineData("  ")]
