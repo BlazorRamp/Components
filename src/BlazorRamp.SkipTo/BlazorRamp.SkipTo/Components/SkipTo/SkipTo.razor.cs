@@ -27,11 +27,11 @@ public partial class SkipTo : IAsyncDisposable
     /// Gets or sets whether the skip link is positioned for the entire page or a specific section. 
     /// Defaults to Page.
     /// <remarks>
-    /// Only one Skip To at the Page level is supported. 
+    /// Only one Skip To at the Site level is supported. 
     /// You can use as many Section level ones on interactive pages as needed.
     /// </remarks>
     /// </summary>
-    [Parameter] public SkipToType SkipToType { get; set; } = SkipToType.Page;
+    [Parameter] public SkipToType SkipToType { get; set; } = SkipToType.Site;
 
     /// <summary>
     /// Gets or sets a value indicating whether the skip link icon is visible. 

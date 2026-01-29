@@ -20,7 +20,7 @@ let startUpCompleted: boolean = false;
 
 const initialiseSkipLink = (): void => {
 
-    const skipLink = document.querySelector(".br-skip-to") as HTMLAnchorElement;
+    const skipLink = document.querySelector('.br-skip-to[data-br-skip-to="site"]') as HTMLAnchorElement;
 
     if (!skipLink || startUpCompleted === true) return;
 

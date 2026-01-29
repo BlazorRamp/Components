@@ -12,7 +12,7 @@ const scrollToView = (elementID) => {
 };
 let startUpCompleted = false;
 const initialiseSkipLink = () => {
-    const skipLink = document.querySelector(".br-skip-to");
+    const skipLink = document.querySelector('.br-skip-to[data-br-skip-to="site"]');
     if (!skipLink || startUpCompleted === true)
         return;
     skipLink.addEventListener("click", (event) => {

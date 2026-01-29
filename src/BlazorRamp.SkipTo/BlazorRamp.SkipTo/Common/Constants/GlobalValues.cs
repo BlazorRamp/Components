@@ -13,4 +13,6 @@ internal class GlobalValues
 
     public const string SkipTo_Text      = "Skip to content";
     public const string SkipTo_Target_ID = "main-content";
+
+    public const string Component_Name = "Skip To";
 }

@@ -1,7 +1,8 @@
 ﻿
 @if(_isInteractive)
 {
-    <a class="@BuildClassList(SkipToType)" href="@_relativeUrl" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="() => HandleNavigation(_relativeUrl, _targetID)">
+    <a class="@BuildClassList(SkipToType)" href="@_relativeUrl" target="_self" @onclick:stopPropagation="true" @onclick:preventDefault="true" @onclick="() => HandleNavigation(_relativeUrl, _targetID)"
+       data-br-skip-to="@SkipToType.ToString().ToLower()" data-br-component="@GlobalValues.Component_Name">
 
         <span class="@GlobalValues.SkipTo_Content_Class">
             @if (_iconVisible)
@@ -14,7 +15,7 @@
 }
 else
 {
-    <a class="@GlobalValues.SkipTo_Class" href="@_targetID" target="_self">
+    <a class="@GlobalValues.SkipTo_Class" href="@_targetID" target="_self" data-br-skip-to="@SkipToType.ToString().ToLower()" data-br-component="@GlobalValues.Component_Name">
 
         <span class="@GlobalValues.SkipTo_Content_Class">
             @if (_iconVisible)

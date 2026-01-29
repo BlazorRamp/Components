@@ -1,15 +1,9 @@
-﻿# Blazor Ramp - Busy Indicator
+﻿# Blazor Ramp - Skip To
 
 The Blazor Ramp project aims to provide a suite of modular, accessibility-first Blazor components. 
 
-The **Busy Indicator** component provides the ability to cover an entire page, or a specific section of a page, while an action is taking place. This indicator differs from 
-others in two ways:
-
-First, it makes everything beneath it (excluding the trigger button) inert, ensuring it is inaccessible to all users until the action is complete. 
-
-Second, it requires you to 
-provide text that is sent via a **Live Region Service** to hidden ARIA live regions. This allows assistive technologies, such as screen readers, to monitor and relay updates to 
-users.
+The **Skip To** component is a utility component that allows navigation to a named target on the page enabling its users to skip repetitive blocks of elements such as navigation
+menus. The focused target will either scroll into view or just snap into view dependent on if the user has reduced motion settings enabled on their device.
 
 ## Requirements
 It is a requirement that the Blazor Ramp Core script, Live Region Service, and associated Announcement History component are added alongside this component’s specific 
@@ -23,18 +17,18 @@ this package separately (but it can be if you only require the Live Regions Serv
 ## Installation
 
 
-1. Add the BlazorRamp.BusyIndicator nuget package to your project using the Nuget Package Manager or the dotnet CLI.
+1. Add the BlazorRamp.SkipTo NuGet package to your project using the Nuget Package Manager or the dotnet CLI.
 
 ```c#
-dotnet add package BlazorRamp.BusyIndicator
+dotnet add package BlazorRamp.SkipTo
 ```
-2. Add the following Core and Busy Indicator stylesheet references to the `<head>` section of your application:
+2. Add the following Core and Skip To stylesheet references to the `<head>` section of your application:
 - Blazor Web App / Blazor Server → App.razor
 - Blazor WebAssembly → wwwroot/index.html
 ```html
 <head>
 	<link rel="stylesheet" href="_content/BlazorRamp.Core/assets/css/core.min.css" />
-	<link rel="stylesheet" href="_content/BlazorRamp.BusyIndicator/assets/css/busy-indicator.min.css" />
+	<link rel="stylesheet" href="_content/BlazorRamp.SkipTo/assets/css/skip-to.min.css" />
 </head>
 ```
  
@@ -67,74 +61,27 @@ Title="Recent Announcements" TriggerVisible="true" TriggerText="Alerts" />
 <Router AppAssembly . . .
 ```
 
-## Using the Busy Indicator
+## Using the Skip To Component
 
-Add one or more Busy Indicators to each page where required. You can have multiple indicators running concurrently. Each indicator allows you to specify whether it should 
-cover the entire page or just a section of it, as well as the location of its spinner or hourglass and optional text.
 
-To cover just a portion of the screen it must be inside a container such as a div with its position set, such as relative.
 
-It is a requirement that text be provided for the indicator to relay via the Live Region Service to inform screen reader users when the underlying task has completed. 
-Optionally, you can also provide a starting announcement, but I do not recommend this unless you know the task is likely to take more than four or five seconds. I also advise 
-keeping any message short and to the point; for example, upon the completion and submission of edited data, an announcement such as "Saved successfully" is sufficient.
+The Skip To component is designed with two use cases in mind. The first will probably cover 90% of cases, where it simply sits at the top-right corner of the page and 
+always targets the main content element. In the case of Blazor, that main content is most likely fixed, with the `@Body` injecting the content.
 
-The following example is taken from the test site https://blazorramp.uk where I created some simple tests for any user to try with their device setup.
+Given that a skip to for the site may be on a non-interactive area, the Skip To has been designed to work with or without interactivity at the `SkipToType.Page` level.
+Currently, I only support having one Skip to at the Site level which it positioned top (LTR/RTL).  
 
 ```
-<BusyIndicator AriaStartText="Dummy task has started, please wait." AriaEndText="Dummy task completed successfully." BusyText=". . .Processing please wait . . " ContentPosition="ContentPosition.Centre"
-               OverlayPosition="OverlayPosition.Screen"  IndicatorTrigger="Run Page Test button" ShowIndicator="@_showIndicator" />
-
-@code {
-    private bool _showIndicator = false;
-
-    private async Task RunTest()
-    {
-        _showIndicator = true;
-
-        await Task.Delay(8000);
-
-        _showIndicator = false;
-    }
-}
+<SkipTo IconVisible="true" SkipToText="Skip to content" SkipToType="SkipToType.Site" TargetID="app__main" />
 ```
-**Note:** In production, unlike the test you would use a variable for the `AriaEndText` and assign it with correct status dependant on success or failure.
+The second use case is where you have a block of repeated items on each interactive page and need to skip this content i.e. a secondary skip to. You can have multiple 
+skip to components on a page at this level (SkipToType.Section). Each skip to for a section uses absolute positioning relative to its parent (that has a position set, 
+such as relative) and will be position top (LTR/RTL) within its parent
 
-If the user has their system settings for reduced motion instead of a spinning circle they will see a static hour gloss.
-
-For the full description of all the component parameters and events, please see the documentation for the Busy Indicator: https://docs.blazorramp.uk/components/busy-indicator
-
-
-## Using the Live Region Service (directly)
-
-Inject the `ILiveRegionService` into your desired component or class and make the appropriate calls by passing the `ILiveRegionSerivce.MakeAnnouncement` method an announcement object.
 
 ```
-@inject ILiveRegionService _liveRegionService
-
-@code{
-
-	private async Task MakeAnnouncement()
-	{
-		var announcement = new Announcement("The site is now using a dark coloured theme.", AnnouncementType.Info, "Dark Theme Switch", LiveRegionType.Polite);
-		await _liveRegionService.MakeAnnouncement(announcement);
-	}
-}
-
+<SkipTo IconVisible="true" SkipToText="Skip to section content" SkipToType="SkipToType.Section" TargetID="section-one" />
 ```
-**Note:** Where possible make announcements using `LiveRegionType.Polite` and keep your messages brief and to the point. Long verbose messages are annoying and just slow the user down. 
 
-The announcement object has the following constructor parameters:
+Please see the full documentation for more information: https://docs.blazorramp.uk
 
-- **Message** - a string value containing the message to be announced.
-- **AnnouncementType** - an enumerated type describing the type category of announcement (for future use) the default is `AnnoucementType.Info`,
-- **AnnouncementTrigger** - an optional string value with the user friendly display name of the element that triggered the announcement such as 'Save Button'
-- **LiveRegionType** - the urgency of the announcement. Polite announcements wait for the screen reader to finish current speech before announcing where as assertive announcements 
-interrupt the screen reader immediately. 
-
-**Full documentation available at:** https://docs.blazorramp.uk 
-
-**Screen Reader Browser Combination Tests:** 
-- On Windows 11 - JAWS, NVDA and Narrator each paired with Chrome, Edge and Firefox.
-- On macOS (Sequoia) VoiceOver was paired with Safari
-- On iPhone, VoiceOver was paired with Safari
-- On Android, TalkBack was paired with Chrome
