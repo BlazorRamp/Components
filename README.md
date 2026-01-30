@@ -1,5 +1,9 @@
 # Blazor Ramp … in progress …
 
+**Note**: Avast antivirus is currently flagging both websites as a false positive. 
+   I have reported this to Avast and are waiting for resolution. The sites are safe - 
+   you can verify at VirusTotal.com.
+
 Blazor Ramp aims to provide a suite of modular, accessible-first Blazor components, delivered individually via NuGet.
 
 Please check back **regularly** during this **initial** phase whilst I put in place everything you would expect.
