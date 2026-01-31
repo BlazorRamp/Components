@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-	<TargetFramework>net8.0</TargetFramework>
+	<TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 	<SignAssembly>True</SignAssembly>
@@ -17,9 +17,9 @@ Uses the Blazor Ramp Core Live Region Service to infrom screen reader users when
 	<RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
 	<PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region; Busy Indicator</PackageTags>
 	<PackageReleaseNotes>Busy Indicator for the Blazor Ramp ecosystem of accessible Blazor components</PackageReleaseNotes>
-	  <AssemblyVersion>1.0.0</AssemblyVersion>
-	  <FileVersion>1.0.0</FileVersion>
-	  <Version>1.0.0</Version>
+	  <AssemblyVersion>1.0.1</AssemblyVersion>
+	  <FileVersion>1.0.1</FileVersion>
+	  <Version>1.0.1</Version>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
