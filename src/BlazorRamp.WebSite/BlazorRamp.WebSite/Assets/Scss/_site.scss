@@ -94,6 +94,7 @@ kbd {
 }
 
 dialog {
+    all: revert;
     background-color: var(--br-unit-colour-canvas);
     color: var(--br-unit-colour-canvas-text);
 }
