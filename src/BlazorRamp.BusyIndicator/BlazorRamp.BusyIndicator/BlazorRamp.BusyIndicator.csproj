@@ -16,7 +16,7 @@ Uses the Blazor Ramp Core Live Region Service to infrom screen reader users when
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
 	<PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region; Busy Indicator</PackageTags>
-	<PackageReleaseNotes>Busy Indicator for the Blazor Ramp ecosystem of accessible Blazor components</PackageReleaseNotes>
+	<PackageReleaseNotes>Added .NET 9.0 and .NET 10.0 support (multi-targeting)</PackageReleaseNotes>
 	  <AssemblyVersion>1.0.1</AssemblyVersion>
 	  <FileVersion>1.0.1</FileVersion>
 	  <Version>1.0.1</Version>

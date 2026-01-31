@@ -366,7 +366,7 @@ public class BusyIndicator_Tests
 
             busyIndicator.Render<BusyIndicatorComponent>(paramBuilder => paramBuilder.Add(p => p.ShowIndicator, false));
 
-            await Task.Delay((CoreGlobalValues.Live_Region_Delay_MS * 2) + 100);//needs to wait just like the component before calling stop.
+            await Task.Delay((CoreGlobalValues.Live_Region_Delay_MS * 2) + 100, CancellationToken.None);//needs to wait just like the component before calling stop.
 
             stopBusy.VerifyInvoke(GlobalValues.JS_Stop_Busy_Indicator);
 
@@ -399,7 +399,7 @@ public class BusyIndicator_Tests
             busyIndicator.Render<BusyIndicatorComponent>(paramBuilder => paramBuilder.Add(p => p.ShowIndicator, false));
 
 
-            await Task.Delay((CoreGlobalValues.Live_Region_Delay_MS * 2) + 150);//needs to wait just like the component before calling stop.
+            await Task.Delay((CoreGlobalValues.Live_Region_Delay_MS * 2) + 150, CancellationToken.None);//needs to wait just like the component before calling stop.
 
             callbackInvoked.Should().BeTrue();
         }
