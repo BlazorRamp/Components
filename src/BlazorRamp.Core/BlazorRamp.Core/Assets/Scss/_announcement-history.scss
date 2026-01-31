@@ -10,10 +10,9 @@
     ^ which would effectivley put the dialog top left instead of centre screen.
 */
 dialog {
-    all: revert;
-    background-color: var(--br-comp-history-pane-base-background);
-
+  
     &.br-announcement-history__popover {
+        all: revert;
         background-color: var(--br-comp-history-pane-base-background);
         border-radius: var(--br-comp-history-pane-base-border-radius);
         border-width: var(--br-comp-history-pane-base-border-width);

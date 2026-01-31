@@ -416,6 +416,10 @@ ol > li {
   list-style: decimal;
 }
 
+li ul li {
+  list-style-type: disc;
+}
+
 html {
   /*
       * Sill cannot find the issue causing the jump (header height + margin) on this site when the css is the same as the working site?

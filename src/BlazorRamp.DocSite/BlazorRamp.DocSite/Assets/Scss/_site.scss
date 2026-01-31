@@ -69,7 +69,10 @@ li {
 ol > li {
     margin-left: 1rem;
     list-style:decimal;
-   
+ }
+
+li ul li {
+    list-style-type: disc;
 }
 html {
    /*

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.JSInterop;
 
-namespace BlazorRamp.SkipTo.Components.SkipTo;
+namespace BlazorRamp.SkipTo.Components;
 
 /// <summary>
 /// An accessibility-first skip link component that allows keyboard users to bypass repetitive navigation content.
@@ -56,8 +56,8 @@ public partial class SkipTo : IAsyncDisposable
     /// </summary>
     protected override void OnParametersSet()
     {
-        _skipToText  = String.IsNullOrWhiteSpace(SkipToText) ? GlobalValues.SkipTo_Text : SkipToText.Trim();
-        _targetID    = String.IsNullOrWhiteSpace(TargetID) ? GlobalValues.SkipTo_Target_ID : TargetID.Trim();
+        _skipToText  = string.IsNullOrWhiteSpace(SkipToText) ? GlobalValues.SkipTo_Text : SkipToText.Trim();
+        _targetID    = string.IsNullOrWhiteSpace(TargetID) ? GlobalValues.SkipTo_Target_ID : TargetID.Trim();
         _targetID    = _targetID.StartsWith('#') ? _targetID : $"#{_targetID}";
         _iconVisible = IconVisible;
         _relativeUrl = CreateRelativeUrl(NavigationManager, _targetID);
@@ -80,7 +80,7 @@ public partial class SkipTo : IAsyncDisposable
 
     private async Task HandleNavigation(string navigateTo, string targetID)
     {
-        if (String.IsNullOrWhiteSpace(navigateTo)) return;
+        if (string.IsNullOrWhiteSpace(navigateTo)) return;
 
         NavigationManager.NavigateTo(navigateTo, false, false);
 
