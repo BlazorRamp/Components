@@ -571,6 +571,10 @@ body #app__main {
   justify-content: end;
   align-items: center;
 }
+.info-box:focus-visible {
+  outline-width: var(--br-comp-all-outline-width);
+  outline-color: var(--br-comp-all-outline-colour);
+}
 
 .code-box {
   position: relative;

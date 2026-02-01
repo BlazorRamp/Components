@@ -1,6 +1,6 @@
 ﻿@use "_configuration" as *;
 @use "_functions" as *;
-    
+
 .info-box {
     position: relative;
     padding: var(--br-unit-space-5);
@@ -34,8 +34,13 @@
         height: fit-content;
         display: flex;
         flex-direction: column;
-        justify-content:end;
-        align-items:center;
+        justify-content: end;
+        align-items: center;
+    }
+
+    &:focus-visible {
+        outline-width: var(--br-comp-all-outline-width);
+        outline-color: var(--br-comp-all-outline-colour);
     }
 }
 
