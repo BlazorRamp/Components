@@ -628,6 +628,12 @@ body #app__main {
 .section-box h3 {
   color: var(--br-info-box-alternate-heading-text);
 }
+.section-box:focus {
+  outline-style: var(--br-comp-all-outline-style);
+  outline-width: var(--br-comp-all-outline-width);
+  outline-offset: var(--br-comp-all-outline-offset);
+  outline-color: var(--br-comp-all-outline-colour);
+}
 
 .test-button {
   box-sizing: border-box;

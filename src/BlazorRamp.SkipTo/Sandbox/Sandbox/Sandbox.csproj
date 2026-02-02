@@ -9,7 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\BlazorRamp.SkipTo\BlazorRamp.SkipTo.csproj" />
     <ProjectReference Include="..\Sandbox.Client\Sandbox.Client.csproj" />
-    <PackageReference Include="BlazorRamp.Core" Version="1.0.1" />
+    <PackageReference Include="BlazorRamp.Core" Version="1.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.23" />
   </ItemGroup>
 
