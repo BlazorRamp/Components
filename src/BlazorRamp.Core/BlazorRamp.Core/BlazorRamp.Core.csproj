@@ -10,11 +10,12 @@
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region;</PackageTags>
-    <PackageReleaseNotes>Added .NET 9.0 and .NET 10.0 support (multi-targeting)</PackageReleaseNotes>
+    <PackageReleaseNotes>Resolved JSDisconnectedException in component disposal that could appear when debugging 
+when quickly switching between server and wasm </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>
-	  <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.2</AssemblyVersion>
+    <FileVersion>1.0.2</FileVersion>
+	  <Version>1.0.2</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
@@ -95,4 +96,15 @@ All Blazor Ramp components reference this project.
 		<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 	</Content>
 </ItemGroup>
+
+
+	<!-- section to test settings -->
+
+	<!--<PropertyGroup>
+		<PrepareForBuildDependsOn>
+			CompileTypeScriptWithTSConfig;
+			$(PrepareForBuildDependsOn)
+		</PrepareForBuildDependsOn>
+		<DisableParallelMultiTargetingBuild>true</DisableParallelMultiTargetingBuild>
+	</PropertyGroup>-->
 </Project>

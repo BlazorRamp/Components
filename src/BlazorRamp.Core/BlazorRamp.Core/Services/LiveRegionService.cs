@@ -71,7 +71,14 @@ public sealed class LiveRegionService : ILiveRegionService, IAsyncDisposable
     {
         if (_isDisposed) return;
 
-        if (_jsLiveRegionModule is not null) await _jsLiveRegionModule!.DisposeAsync();
+        if (_jsLiveRegionModule is not null)
+        {
+            try
+            {
+                await _jsLiveRegionModule!.DisposeAsync();
+            }
+            catch { }// Circuit is disconnected (JSDisconnectedException), JS interop is no longer available - safe to ignore
+        }
 
         _navigationManager.LocationChanged -= NavigationManager_LocationChanged;
 

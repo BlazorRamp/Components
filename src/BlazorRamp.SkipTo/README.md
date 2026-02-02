@@ -83,5 +83,7 @@ such as relative) and will be position top (LTR/RTL) within its parent
 <SkipTo IconVisible="true" SkipToText="Skip to section content" SkipToType="SkipToType.Section" TargetID="section-one" />
 ```
 
+**Note**: Don't forget to add tabindex="-1" on the target element.
+
 Please see the full documentation for more information: https://docs.blazorramp.uk
 

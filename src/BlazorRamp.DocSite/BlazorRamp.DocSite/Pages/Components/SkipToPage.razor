@@ -25,6 +25,9 @@
     relative to its parent (that has a position set, such as relative) and will be position top (LTR/RTL) within its parent.
 </p>
 <p>
+    <b>Note: </b>For either use case as mentioned above don't forget to add tabindex="-1" on the target element.
+</p>
+<p>
     There is a skip to inside the section below that will jump to its target, the container of: "The content you wand to get to.". Use your tab key to find it.
 </p>
 <div class="info-box">
@@ -390,6 +393,25 @@
     </section>
 
 </section>
+
+@* <section class="info-box" aria-labelledby="release-history">
+
+    <h2 id="release-history">Release history</h2>
+
+    <ol reversed>
+        <li>
+            <h3>
+                Version 1.0.0 — <time datetime="2026-02-01">February 01, 2026</time>
+            </h3>
+            <ul>
+                <li>Initial release part of the <span class="code-span">BlazorRamp.BusyIndicator v1.0.0</span> NuGet package, multi-targeting <span class="code-span">.NET 8.0, NET 9.0 & .NET10.0</span></li>
+            </ul>
+        </li>
+    </ol>
+
+</section> *@
+
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Components_Busy_Indicator">
         <span aria-hidden="true"></span>

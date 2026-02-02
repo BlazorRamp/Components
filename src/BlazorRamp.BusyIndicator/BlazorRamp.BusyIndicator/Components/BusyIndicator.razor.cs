@@ -226,14 +226,16 @@ public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
             * Needed the dispose flag for the stop method as when at container level the user could start a spinner and move to another page
             * only for the stop to be called after the module ref has been disposed.
         */ 
-        await (_jsModule != null && !_disposed).WhenTrue(() => _jsModule!.DisposeAsync());
+        if(_jsModule != null && !_disposed)
+        {
+            try
+            {
+                await _jsModule!.DisposeAsync();
+            }
+            catch { }// Circuit is disconnected, JS interop is no longer available - safe to ignore
+        }
 
         _disposed = true;
     }
-
-
-
-
-
 
 }
