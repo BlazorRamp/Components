@@ -4,14 +4,17 @@ Blazor Ramp aims to provide a suite of modular, accessible-first Blazor componen
 
 Please check back **regularly** during this **initial** phase whilst I put in place everything you would expect.
 
-Both the Core project containing the live region service and announcment history component, and the busy indicator project have now been released.
+Both the Core project containing the live region service and announcment history component, the busy indicator and skip to components/projects have now been released.
+
+Just type BlazorRamp in any nuget package manager to see whats available.
 
 The full documentation is available at: [https://docs.blazorramp.uk](https://docs.blazorramp.uk). 
 
 The test site is avaialbe at:  [https://blazorramp.uk](https://blazorramp.uk). 
 
-Going forward I will re-structure the test site so its used for each component before each NuGet is released - it now also contains a Skip To component, that appears when keyboard
-focused (`:focus-visible`). Its next on the release list as I needed it for the documentation site.
+Going forward I will re-structure the test site so its used for each component before each NuGet is released.
+
+Currently, looking at the Switch and Modal Dialog Framework.
 
 Lots more things in the pipeline.
 
