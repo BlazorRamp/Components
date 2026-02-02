@@ -15,7 +15,7 @@
 	<ItemGroup>
 		<PackageReference Include="BlazorRamp.BusyIndicator" Version="1.0.2" />
 		<PackageReference Include="BlazorRamp.Core" Version="1.0.2" />
-		<PackageReference Include="BlazorRamp.SkipTo" Version="1.0.0" />
+		<PackageReference Include="BlazorRamp.SkipTo" Version="1.0.1" />
 		<PackageReference Include="BuildWebCompiler2022" Version="1.14.15" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.2" PrivateAssets="all" />
