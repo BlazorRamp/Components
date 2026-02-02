@@ -16,10 +16,10 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region;, Skip To content</PackageTags>
-    <PackageReleaseNotes>Version 1.0.0 of the Skip To component for the Blazor Ramp ecosystem of accessible components </PackageReleaseNotes>
-	<AssemblyVersion>1.0.0</AssemblyVersion>
-	<FileVersion>1.0.0</FileVersion>
-	<Version>1.0.0</Version>
+    <PackageReleaseNotes>Removal of scss file that got added to the package.</PackageReleaseNotes>
+	<AssemblyVersion>1.0.1</AssemblyVersion>
+	<FileVersion>1.0.1</FileVersion>
+	<Version>1.0.1</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 	 <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
@@ -35,10 +35,6 @@
 
   <ItemGroup>
     <Content Remove="compilerconfig.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Assets\Scss\_root_skip_to.scss" />
   </ItemGroup>
 
 
