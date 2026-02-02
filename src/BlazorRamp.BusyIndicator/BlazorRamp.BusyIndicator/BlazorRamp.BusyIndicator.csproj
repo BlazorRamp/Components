@@ -16,10 +16,11 @@ Uses the Blazor Ramp Core Live Region Service to infrom screen reader users when
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
 	<PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region; Busy Indicator</PackageTags>
-	<PackageReleaseNotes>Added .NET 9.0 and .NET 10.0 support (multi-targeting)</PackageReleaseNotes>
-	  <AssemblyVersion>1.0.1</AssemblyVersion>
-	  <FileVersion>1.0.1</FileVersion>
-	  <Version>1.0.1</Version>
+	<PackageReleaseNotes>Resolved JSDisconnectedException in component disposal that could appear when debugging 
+when quickly switching between server and wasm </PackageReleaseNotes>
+	  <AssemblyVersion>1.0.2</AssemblyVersion>
+	  <FileVersion>1.0.2</FileVersion>
+	  <Version>1.0.2</Version>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
@@ -46,6 +47,7 @@ Uses the Blazor Ramp Core Live Region Service to infrom screen reader users when
   </ItemGroup>
 
   <ItemGroup>
+	  <PackageReference Include="BlazorRamp.Core" Version="1.0.2" />
 	  <PackageReference Include="BuildWebCompiler2022" Version="1.14.15">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -76,10 +78,6 @@ Uses the Blazor Ramp Core Live Region Service to infrom screen reader users when
       <PackagePath>\</PackagePath>
     </None>
     <None Include="compilerconfig.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\BlazorRamp.Core\BlazorRamp.Core\BlazorRamp.Core.csproj" />
   </ItemGroup>
 	
 <ItemGroup>

@@ -232,7 +232,7 @@ public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
             {
                 await _jsModule!.DisposeAsync();
             }
-            catch { }// Circuit is disconnected, JS interop is no longer available - safe to ignore
+            catch { }// Circuit is disconnected (JSDisconnectedException), JS interop is no longer available - safe to ignore
         }
 
         _disposed = true;
