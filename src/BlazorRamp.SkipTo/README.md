@@ -68,7 +68,7 @@ Title="Recent Announcements" TriggerVisible="true" TriggerText="Alerts" />
 The Skip To component is designed with two use cases in mind. The first will probably cover 90% of cases, where it simply sits at the top-right corner of the page and 
 always targets the main content element. In the case of Blazor, that main content is most likely fixed, with the `@Body` injecting the content.
 
-Given that a skip to for the site may be on a non-interactive area, the Skip To has been designed to work with or without interactivity at the `SkipToType.Page` level.
+Given that a skip to for the site may be on a non-interactive area, the Skip To has been designed to work with or without interactivity at the `SkipToType.Site` level.
 Currently, I only support having one Skip to at the Site level which it positioned top (LTR/RTL).  
 
 ```
