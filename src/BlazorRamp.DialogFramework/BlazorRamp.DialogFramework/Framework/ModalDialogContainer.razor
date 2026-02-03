@@ -1,0 +1,44 @@
+﻿
+
+@implements IDisposable
+@inject ModalDialogService _dialogService
+
+@foreach (var dialogWindow in _dialogService.DialogWindows)
+{
+    var horizontalPosition = dialogWindow.DialogOptions.HorizonalPosition;
+    var verticalPosition   = dialogWindow.DialogOptions.VerticalPosition;
+    var contentMaxWidth    = dialogWindow.DialogOptions.MaxWidth;
+
+    <!-- 
+        Important the default escape key behavior on the <dialog> has been circumvented in the TypeScript/JavaScript. You must handle this in your component like the demo to remain accessible
+        as users expect this key on modals. Also you should provide an accessible name for the dialog, this is usually done via the aria-labelledby attribute which points to the id of an element in the
+        dialog such as a heading. The value 'dialog-dialogWindow.WindowID.ToString()' used can be obtained in your component for a heading id by calling _dialogService.GetAriaLabelledByID as can
+        be seen in the example dialog components
+    -->
+
+    <dialog id="@dialogWindow.WindowID" class="@GlobalValues.DialogFramework_Class" style="justify-content:@horizontalPosition; align-items:@verticalPosition;" aria-labelledby="dialog-@dialogWindow.WindowID.ToString()">
+           
+        <div class="@GlobalValues.DialogFramework_Window_Class" style="max-width:@contentMaxWidth;">
+            @dialogWindow.DialogContents
+        </div>
+    </dialog>
+}
+
+@code {
+    protected override void OnInitialized() 
+
+        => _dialogService.OnChanged  += StateHasChanged;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        /*
+            * Blazor needs to have rendered the html dialog before we can ask JS to show it.
+            * The method also adds a JavaScript key down event handler to the dialog element to prevent the escape key so we can handle it incase its a form with unsaved changes.
+         */
+        await _dialogService.JsOpenModalDialog();
+    }
+
+    public void Dispose()
+
+        => _dialogService.OnChanged -= StateHasChanged;
+}

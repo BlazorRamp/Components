@@ -20,11 +20,13 @@
   <ItemGroup>
     <PackageReference Include="BlazorRamp.Core" Version="1.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.23" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.9.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\Scripts\" />
-    <Folder Include="Common\" />
     <Folder Include="wwwroot\assets\css\" />
     <Folder Include="wwwroot\assets\js\" />
   </ItemGroup>

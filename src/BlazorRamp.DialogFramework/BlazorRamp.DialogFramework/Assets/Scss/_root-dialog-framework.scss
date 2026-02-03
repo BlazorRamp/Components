@@ -1,3 +1,28 @@
-﻿:root{
+﻿:root {
+    --control-surface-bg: #f2f2f2;
+    --control-border-bg: silver;
+    --control-divider-bg: silver;
+    --control-focus-clr: #000000;
+    --control-border-radius: 0.25rem;
+    --success-clr: #28a745;
+    --danger-clr: #d92d2b;
+    --warning-clr: #FFBF00;
+    --neutral-clr: #808080;
+    --fs-label: 0.875rem;
+    --control-disabled-brightness: 75%;
+    --control-box-shadow-1: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    --control-box-shadow-2: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --text-danger-contrast: #FFFFFF;
+    --text-warning-contrast: #000000;
+    --text-success-contrast: #000000;
+    --text-info-contrast: #000000;
+    --fs-label: 0.875rem;
+    --fs-1: 1rem;
+    --fs-2: 1.25rem;
+}
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
