@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/01 - Component Source/">
+    <Project Path="BlazorRamp.Core/BlazorRamp.Core.csproj" />
+  </Folder>
+  <Folder Name="/02 - Tests/" />
+  <Folder Name="/02 - Tests/00 - Shared Data/">
+    <Project Path="BlazorRamp.Core.Tests.SharedDataFixtures/BlazorRamp.Core.Tests.SharedDataFixtures.csproj" />
+  </Folder>
+  <Folder Name="/02 - Tests/01 - Unit/">
+    <Project Path="BlazorRamp.Core.Tests.Unit/BlazorRamp.Core.Tests.Unit.csproj" />
+  </Folder>
+</Solution>
