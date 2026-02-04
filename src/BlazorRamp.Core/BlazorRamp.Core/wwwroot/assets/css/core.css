@@ -248,6 +248,7 @@
   /*
       * States
   */
+  --br-unit-state-disabled-opacity: var(--br-unit-opacity-val-50);
   --br-unit-state-disabled-brightness: 75%;
   --br-unit-state-hover-opacity: 0.1;
   --br-unit-state-active-brightness: 95%;
@@ -255,10 +256,10 @@
   /*
       * Scroll bars & track styles & misc
   */
-  --br-comp-all-track-colour: var(--br-unit-colour-neutral-30);
+  --br-comp-all-track-colour: var(--br-unit-colour-neutral-10);
   --br-comp-all-track-active-colour: var(--br-unit-colour-neutral-30);
+  --br-comp-all-thumb-colour: var(--br-unit-colour-neutral-20);
   --br-comp-all-track-inactive-colour: var(--br-unit-colour-neutral-30);
-  --br-comp-all-thumb-colour: var(--br-unit-colour-neutral-30);
   --br-comp-all-focus-indicator-colour: var(--br-unit-colour-primary-70);
   --br-comp-all-focus-indicator-text: var(--br-unit-colour-primary-5);
   --br-comp-all-link-current-page-background-colour: var(--br-unit-colour-secondary-lighter);

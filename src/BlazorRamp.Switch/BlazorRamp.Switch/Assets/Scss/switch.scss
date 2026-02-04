@@ -1,1 +1,162 @@
-﻿
+﻿//If this is in a project with bootstrap,
+//bootstrap is totally annoying with its resets so this is the safest option
+@use "_root-switch";
+
+@mixin power-on-icon {
+    display: inline-block;
+    background-color: currentColor;
+    mask-image: var(--br-svg-power-on-icon);
+    mask-repeat: no-repeat;
+    mask-size: 90% 90%;
+    mask-position: center;
+
+    @media (forced-colors: active) {
+        background-color: CanvasText;
+        color: Canvas;
+    }
+}
+
+@mixin power-off-icon {
+    display: inline-block;
+    background-color: currentColor;
+    mask-image: var(--br-svg-power-off-icon);
+    mask-repeat: no-repeat;
+    mask-size: 120% 120%;
+    mask-position: center;
+
+    @media (forced-colors: active) {
+        background-color: CanvasText;
+        color: Canvas;
+    }
+}
+
+.br-switch {
+    box-sizing: border-box;
+    appearance: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    pointer-events: none;
+    font: inherit;
+    background-color: transparent;
+    color: inherit;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    
+    justify-content: end;
+
+    &--space{
+        justify-content:space-between;
+    }
+
+    gap: var(--br-unit-space-3);
+
+    &:focus-within &__track {
+        outline-style: var(--br-comp-switch-outline-style);
+        outline-width: var(--br-comp-switch-outline-width);
+        outline-offset: var(--br-comp-switch-outline-offset);
+        outline-color: var(--br-comp-switch-outline-colour);
+    }
+
+    &__label {
+        font-size: 0.875rem;
+    }
+
+    &__track {
+        display: inline-flex;
+        position: relative;
+        min-width: 44px;
+        min-height: var(--br-unit-wcag-target-2a);
+        width: calc(var(--br-comp-switch-track-height) * 1.75);
+        height: var(--br-comp-switch-track-height);
+        border-width: var(--br-comp-switch-track-border-width);
+        border-style: var(--br-comp-switch-track-border-style);
+        border-color: var(--br-comp-switch-track-border-colour);
+        border-radius: var(--br-unit-radius-full);
+        background-color: var(--br-comp-switch-track-colour);
+    }
+
+    &__thumb {
+        position: absolute;
+        width: calc(var(--br-comp-switch-track-height) * 0.85);
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        inset-inline-start: 0.2em;
+       
+        background-color: var(--br-comp-switch-thumb-colour);
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            @include power-off-icon;
+        }
+    }
+
+    &[aria-disabled="false"] {
+        .br-switch__label {
+            pointer-events: all;
+            cursor: pointer;
+        }
+
+        .br-switch__track {
+            pointer-events: all;
+            cursor: pointer;
+        }
+
+        &:hover .br-switch__thumb {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 0 10px 5px hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-30));
+            color: var(--br-unit-colour-primary-60);
+        }
+    }
+
+    &[aria-checked="true"] {
+        .br-switch__track {
+            background-color: var(--br-unit-colour-primary);
+        }
+
+        .br-switch__thumb {
+            inset-inline-start: auto;
+            inset-inline-end: 0.2em;
+            background-color: var(--br-comp-switch-track-colour);
+            color: var(--br-unit-colour-primary);
+
+            &::after {
+                @include power-on-icon;
+            }
+        }
+    }
+
+    &[aria-disabled="true"] {
+        cursor: not-allowed;
+        opacity: var(--br-comp-switch-disabled-opacity);
+        
+        .br-switch__label {
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .br-switch__track {
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .br-switch__thumb {
+            pointer-events: none;
+        }
+    }
+}

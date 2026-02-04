@@ -1,6 +1,6 @@
 using Sandbox.Client.Pages;
 using Sandbox.Components;
-
+using BlazorRamp.Core.Common.Extensions;
 namespace Sandbox
 {
     public class Program
@@ -14,6 +14,7 @@ namespace Sandbox
                 .AddInteractiveServerComponents()
                 .AddInteractiveWebAssemblyComponents();
 
+            builder.Services.AddBlazorRampCore();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
