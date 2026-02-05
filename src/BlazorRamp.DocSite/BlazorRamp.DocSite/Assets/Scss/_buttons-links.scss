@@ -87,16 +87,22 @@
     margin: 0;
     color: var(--br-unit-colour-convas-text);
 
-/*    & {
+    &--testingbot {
+        display: flex;
+        align-items: start;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    /*    & {
         text-decoration: underline;
     }*/
 
     &:focus-visible, &:hover {
-        text-decoration:none;
-        border-radius:var(--br-unit-radius-2);
+        text-decoration: none;
+        border-radius: var(--br-unit-radius-2);
         outline-offset: var(--br-comp-all-outline-offset);
         outline-width: calc(var(--br-comp-all-outline-width) * 1.5);
         outline-style: var(--br-comp-all-outline-style);
         outline-color: var(--br-comp-all-outline-colour);
-     }
+    }
 }

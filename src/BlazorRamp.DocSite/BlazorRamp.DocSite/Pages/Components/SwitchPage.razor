@@ -12,7 +12,7 @@
     You can use either use the <span>@@bind:SwitchState</span> for two-way binding or the event, <span class="code-span">EventCallbac&lt;bool&gt;</span> with one-way binding.
     By default the switch and label will be together and aligned to the right of the parent container as below. Clicking on either the label or the switch with toggle it its state.
 </p>
-<Switch @bind-SwitchState="@_switchState" Label="Airplane mode:" Disabled="false" SpaceBetween="false" />
+<Switch @bind-SwitchState="@_switchState" Label="Airplane mode:" AriaDisabled="false" SpaceBetween="false" />
 @code{
     public bool _switchState = false;
 }
@@ -58,7 +58,7 @@
                 <td>Indicates the state of the switch on/off (true/false).</td>
             </tr>
             <tr>
-                <td>Disabled</td>
+                <td>AriaDisabled</td>
                 <td>bool</td>
                 <td>
                     Indicates if the switch is in a disabled state. <b>Note:</b> uses the <span class="code-span">aria-disabled</span>

@@ -682,6 +682,12 @@ body #app__main {
   margin: 0;
   color: var(--br-unit-colour-convas-text);
 }
+.link--testingbot {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  gap: 1rem;
+}
 .link:hover {
   text-decoration: underline;
 }

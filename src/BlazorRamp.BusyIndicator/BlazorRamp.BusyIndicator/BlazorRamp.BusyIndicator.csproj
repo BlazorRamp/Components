@@ -11,7 +11,7 @@
 	<Authors>Paul Kent</Authors>
 	<Description>A busy indicator that makes everything beneath its overlay inert whilst a task is in progress.
 Uses the Blazor Ramp Core Live Region Service to infrom screen reader users when the task is complete.</Description>
-	<Copyright>Copyright (c) 2025 Paul Kent and BlazorRamp Contributors</Copyright>
+	<Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
 	<PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>

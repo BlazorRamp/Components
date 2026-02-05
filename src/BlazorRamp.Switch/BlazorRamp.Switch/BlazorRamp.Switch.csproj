@@ -6,6 +6,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
+    <Title>Blazor Ramp Switch</Title>
+    <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
+    <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
+    <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Switch</PackageTags>
+    <PackageReleaseNotes>Initial release of the Blazor Ramp Switch component</PackageReleaseNotes>
+    <Description>A Blazor toggle siwtch component.</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BlazorRamp.Core" Version="1.0.3" />
     <PackageReference Include="BuildWebCompiler2022" Version="1.14.15" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.22" />
   </ItemGroup>
@@ -28,10 +36,6 @@
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\BlazorRamp.Core\BlazorRamp.Core\BlazorRamp.Core.csproj" />
   </ItemGroup>
 
 </Project>

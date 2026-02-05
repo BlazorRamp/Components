@@ -88,6 +88,7 @@ public class GlobalValues
 
     public const string Link_Button_Class = $"link-button";
     public const string Link_Class = $"link";
+    public const string Link_Bot_Modifier = $"{Link_Class}--testingbot";
 
     public const string Link_Button_Right_Arrow_Modifier = $"{Link_Button_Class}--right-arrow";
     public const string Link_Button_Left_Arrow_Modifier = $"{Link_Button_Class}--left-arrow";

@@ -1,5 +1,4 @@
 <Solution>
-  <Project Path="../BlazorRamp.Core/BlazorRamp.Core/BlazorRamp.Core.csproj" />
   <Project Path="BlazorRamp.Switch/BlazorRamp.Switch.csproj" />
   <Project Path="Sandbox/Sandbox.Client/Sandbox.Client.csproj" />
   <Project Path="Sandbox/Sandbox/Sandbox.csproj" />

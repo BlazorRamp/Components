@@ -763,8 +763,14 @@ body #app__main {
   margin: 0;
   color: var(--br-unit-colour-convas-text);
   /*    & {
-          text-decoration: underline;
-      }*/
+      text-decoration: underline;
+  }*/
+}
+.link--testingbot {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  gap: 1rem;
 }
 .link:focus-visible, .link:hover {
   text-decoration: none;

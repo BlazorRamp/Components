@@ -1,6 +1,6 @@
 ﻿
 <button @attributes="AdditionalAttributes" class="@BuildClassList(SpaceBetween)" type="button" role="switch" aria-checked="@_switchState.ToString().ToLower()"
-        @onclick="() => RaiseOnSwitchStateChanged(!_switchState)" aria-label="@Label" aria-disabled="@Disabled.ToString().ToLower()" >
+        @onclick="() => RaiseOnSwitchStateChanged(!_switchState)" aria-label="@Label" aria-disabled="@AriaDisabled.ToString().ToLower()" >
 
     <span class="@GlobalValues.Switch_Label_Class">@Label</span>
 

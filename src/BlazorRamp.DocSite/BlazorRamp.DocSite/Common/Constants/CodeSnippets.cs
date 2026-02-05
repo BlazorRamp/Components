@@ -148,7 +148,7 @@ public class CodeSnippets
 
 
     public const string Switch_Two_Way_Bind_Example = """
-        <Switch @bind-SwitchState="@_switchState" Label="Airplane mode:" Disabled="@_switchDisabled" SpaceBetween="false" />
+        <Switch @bind-SwitchState="@_switchState" Label="Airplane mode:" AriaDisabled="@_switchDisabled" SpaceBetween="false" />
 
         @code {
 
@@ -158,7 +158,7 @@ public class CodeSnippets
         """;
 
     public const string Switch_One_Way_Bind_Event_Example = """
-        <Switch SwitchState="@_switchState" Label="Airplane mode:" Disabled="@_switchDisabled" SpaceBetween="false" 
+        <Switch SwitchState="@_switchState" Label="Airplane mode:" AriaDisabled="@_switchDisabled" SpaceBetween="false" 
         SwitchStateChanged="HandleSwitchChange" />
 
         @code {

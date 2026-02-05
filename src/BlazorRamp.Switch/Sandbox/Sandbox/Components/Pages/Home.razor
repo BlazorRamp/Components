@@ -6,8 +6,8 @@
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
-<Switch @bind-SwitchState="@_switchState" Label="Airplane mode:" Disabled="@_switchDisabled" SpaceBetween="true" />
-<Switch @bind-SwitchState="@_switchState" Label="Airplane mode:" Disabled="@_switchDisabled" SpaceBetween="true" />
+<Switch @bind-SwitchState="@_switchState" Label="Airplane mode:" AriaDisabled="@_switchDisabled" SpaceBetween="true" />
+<Switch @bind-SwitchState="@_switchState" Label="Airplane mode:" AriaDisabled="@_switchDisabled" SpaceBetween="true" />
 
 
 Welcome to your new app
@@ -19,7 +19,7 @@ Welcome to your new app
 
 <button type="button" @onclick="() => _switchDisabled = !_switchDisabled">Toggle Disabled</button>
 
-<Switch SwitchState="@_switchState" Label="Airplane mode:" Disabled="@_switchDisabled" SwitchStateChanged="HandleSwitchChange" />
+<Switch SwitchState="@_switchState" Label="Airplane mode:" AriaDisabled="@_switchDisabled" SwitchStateChanged="HandleSwitchChange" />
 
 @code {
 
