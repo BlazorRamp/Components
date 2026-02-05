@@ -6,29 +6,28 @@
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
+<Switch @bind-SwitchState="@_switchState" Label="Airplane mode:" Disabled="@_switchDisabled" SpaceBetween="true" />
+<Switch @bind-SwitchState="@_switchState" Label="Airplane mode:" Disabled="@_switchDisabled" SpaceBetween="true" />
+
 
 Welcome to your new app
 
-<Switch SwitchState="_switchState" SwitchStateChanged="HandleSwitchChange" Label="Airplane mode:" Disabled="_switchDisabled" />
+
       
 <input type="text" value="Paul" />
 
 
 <button type="button" @onclick="() => _switchDisabled = !_switchDisabled">Toggle Disabled</button>
+
+<Switch SwitchState="@_switchState" Label="Airplane mode:" Disabled="@_switchDisabled" SwitchStateChanged="HandleSwitchChange" />
+
 @code {
 
-    private bool _switchState = false;
+    private bool _switchState    = false;
     private bool _switchDisabled = false;
-    private string _message = String.Empty;
 
-    protected override void OnInitialized()
-    {
-        _message = $"The switch state is : {(_switchState ? "On" : "Off")}";
-    }
     private void HandleSwitchChange(bool switchState)
     {
         _switchState = switchState;
-        _message = $"The switch state is : {(switchState ? "On" : "Off")}";
     }
-
 }

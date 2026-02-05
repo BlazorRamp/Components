@@ -6,16 +6,16 @@
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
     <Title>BlazorRamp.Core</Title>
-    <Copyright>Copyright (c) 2025 Paul Kent and BlazorRamp Contributors</Copyright>
+    <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region;</PackageTags>
-    <PackageReleaseNotes>Resolved JSDisconnectedException in component disposal that could appear when debugging 
-when quickly switching between server and wasm </PackageReleaseNotes>
+    <PackageReleaseNotes>Added an additional css variable required by the switch and amended two
+unused variable values.</PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <AssemblyVersion>1.0.2</AssemblyVersion>
-    <FileVersion>1.0.2</FileVersion>
-	  <Version>1.0.2</Version>
+    <AssemblyVersion>1.0.3</AssemblyVersion>
+    <FileVersion>1.0.3</FileVersion>
+	  <Version>1.0.3</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>

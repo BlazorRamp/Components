@@ -7,7 +7,7 @@
     background-color: currentColor;
     mask-image: var(--br-svg-power-on-icon);
     mask-repeat: no-repeat;
-    mask-size: 90% 90%;
+    mask-size: 75% 75%;
     mask-position: center;
 
     @media (forced-colors: active) {
@@ -21,7 +21,7 @@
     background-color: currentColor;
     mask-image: var(--br-svg-power-off-icon);
     mask-repeat: no-repeat;
-    mask-size: 120% 120%;
+    mask-size: 100% 100%;
     mask-position: center;
 
     @media (forced-colors: active) {
@@ -43,15 +43,15 @@
     color: inherit;
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    
     justify-content: end;
 
-    &--space{
-        justify-content:space-between;
+    &--space {
+        justify-content: space-between;
     }
 
-    gap: var(--br-unit-space-3);
+    gap: var(--br-unit-space-4);
 
     &:focus-within &__track {
         outline-style: var(--br-comp-switch-outline-style);
@@ -61,7 +61,13 @@
     }
 
     &__label {
-        font-size: 0.875rem;
+        background-color: var(--br-comp-switch-area-content-background);
+        color: var(--br-comp-switch-area-content-text);
+        font-size: var(--br-comp-switch-area-content-font-family);
+        font-size: var(--br-comp-switch-area-content-font-size);
+        font-weight: var(--br-comp-switch-area-content-font-weight);
+        line-height: var(--br-comp-switch-area-content-line-height);
+
     }
 
     &__track {
@@ -86,8 +92,8 @@
         top: 50%;
         transform: translateY(-50%);
         inset-inline-start: 0.2em;
-       
         background-color: var(--br-comp-switch-thumb-colour);
+        color: var(--br-comp-switch-thumb-text);
 
         &::before {
             content: "";
@@ -119,21 +125,21 @@
 
         &:hover .br-switch__thumb {
             transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 0 10px 5px hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-30));
+            box-shadow: var(--br-comp-switch-thumb-hover-shadow);
             color: var(--br-unit-colour-primary-60);
         }
     }
 
     &[aria-checked="true"] {
         .br-switch__track {
-            background-color: var(--br-unit-colour-primary);
+            background-color: var(--br-comp-switch-on-track-colour);
+            border-color: transparent; //wcag needs contrast so removed/transparent for high contrast forced.
         }
 
         .br-switch__thumb {
             inset-inline-start: auto;
             inset-inline-end: 0.2em;
             background-color: var(--br-comp-switch-track-colour);
-            color: var(--br-unit-colour-primary);
 
             &::after {
                 @include power-on-icon;
@@ -144,7 +150,7 @@
     &[aria-disabled="true"] {
         cursor: not-allowed;
         opacity: var(--br-comp-switch-disabled-opacity);
-        
+
         .br-switch__label {
             cursor: not-allowed;
             pointer-events: none;
