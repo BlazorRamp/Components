@@ -32,6 +32,7 @@ Regards
 Paul
 
 **P.S** I need a logo and icon for the NuGet packages if you have a spare one
+## Sponsors
 
 **Thank you** to TestingBot for providing an unlimited open-source plan so I have access to real devices for testing. Please pay them a visit to see what services they offer.
 
