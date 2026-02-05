@@ -44,7 +44,13 @@
 .br-switch--space {
   justify-content: space-between;
 }
-.br-switch:focus-within .br-switch__track {
+.br-switch:focus-visible .br-switch__track {
+  outline-style: var(--br-comp-switch-outline-style);
+  outline-width: var(--br-comp-switch-outline-width);
+  outline-offset: var(--br-comp-switch-outline-offset);
+  outline-color: var(--br-comp-switch-outline-colour);
+}
+.br-switch:focus-within:has(*:focus-visible) {
   outline-style: var(--br-comp-switch-outline-style);
   outline-width: var(--br-comp-switch-outline-width);
   outline-offset: var(--br-comp-switch-outline-offset);

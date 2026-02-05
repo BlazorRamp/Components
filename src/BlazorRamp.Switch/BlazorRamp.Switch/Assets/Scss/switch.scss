@@ -53,7 +53,14 @@
 
     gap: var(--br-unit-space-4);
 
-    &:focus-within &__track {
+    &:focus-visible &__track {
+        outline-style: var(--br-comp-switch-outline-style);
+        outline-width: var(--br-comp-switch-outline-width);
+        outline-offset: var(--br-comp-switch-outline-offset);
+        outline-color: var(--br-comp-switch-outline-colour);
+    }
+
+    &:focus-within:has(*:focus-visible) {
         outline-style: var(--br-comp-switch-outline-style);
         outline-width: var(--br-comp-switch-outline-width);
         outline-offset: var(--br-comp-switch-outline-offset);
@@ -67,7 +74,6 @@
         font-size: var(--br-comp-switch-area-content-font-size);
         font-weight: var(--br-comp-switch-area-content-font-weight);
         line-height: var(--br-comp-switch-area-content-line-height);
-
     }
 
     &__track {
