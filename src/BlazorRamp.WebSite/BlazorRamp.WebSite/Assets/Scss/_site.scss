@@ -55,6 +55,13 @@ ul{
 li{
     margin-bottom: var(--br-unit-space-3);
 }
+    li:focus-visible {
+        outline-style: var(--br-comp-all-outline-style);
+        outline-width: var(--br-comp-all-outline-width);
+        outline-color: var(--br-comp-all-outline-colour);
+        outline-offset: var(--br-comp-all-outline-offset);
+        border-radius: var(--br-unit-radius-2);
+    }
 html{
 
 }

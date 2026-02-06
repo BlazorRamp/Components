@@ -1,0 +1,104 @@
+﻿@attribute [Route(GlobalValues.Path_SkipTo_Overview)]
+
+<PageTitle>@GlobalValues.Page_Title_SkipTo_Overview_Test</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">Skip To Component Overview & Tests</h1>
+
+    <p>
+        The Skip To component is designed with two use cases in mind. The first will probably cover 90% of the Blazor developers use cases, where it simply sits at the top-right corner of the site and always 
+        targets the main content element. In the case of Blazor, that main content element is generally fixed, with all the web content being injected into that content area.
+    </p>
+    <p>
+        The second use case is for skipping over blocks of repeated focusable items to save the keyboard user endless tabbing to get to the content after it. 
+        In Blazor terms this part of the page may be interactive, unlike the first use case where it may be static. This site uses a version of Blazor that is fully interactive.
+    </p>
+
+    <p>
+        The tests covered here are to ensure that keyboard only users see the component when it receives focus, and upon activating the link the focus is set on the target of the skip link.
+    </p>
+    <p>
+        <b>Note: </b>These tests may seem trivial but Blazor controls the routing so it is not straight forward as with a typical non Blazor static web page.
+    </p>
+
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & Instructions</h2>
+    <p>
+        There are two <b>Skip To</b> components on this site, one hidden away at the top left corner of the page and one and one the hidden just below the expectations section.
+    </p>
+    <p>
+        The test is to simply tab to both hidden components and use the enter key to activate the skip to link once they become visible.
+    </p>
+    
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+    <ul>
+        <li>
+           Once focus reaches the main skip to at the top of the page it becomes visible, and screen reader users ere notified of the link with the text "Skip to content".
+           Sighted users will see the same text, but in addition to the text I have placed a little icon of a running person that is aria hidden as its purely decorative.
+        </li>
+        <li>
+            Activating the main skip to link with either the enter key or mouse will move focus to the main content area. 
+        </li>
+        <li>
+            Once the secondary skip to link has focus, it becomes visible and screen reader users are notified of the link with the text "Skip list of items".
+           Sighted, users will see the same text and for this test I have removed the icon of the running person.
+        </li>
+        <li>
+            Activating the secondary skip to link with either the enter key or mouse move focus to the . . .
+        </li>
+    </ul>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <ul>
+        <li tabindex="0">Tab stop one.</li>
+        <li tabindex="0">Tab stop two.</li>
+        <li tabindex="0">Tab stop three.</li>
+        <li tabindex="0">Tab stop four.</li>
+        <li tabindex="0">Tab stop five.</li>
+        <li tabindex="0">Tab stop six.</li>
+        <li tabindex="0">Tab stop seven.</li>
+        <li tabindex="0">Tab stop eight.</li>
+        <li tabindex="0">Tab stop nine.</li>
+        <li tabindex="0">Tab stop ten.</li>
+    </ul>
+
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Busy_Short">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_BusyIndicator - @GlobalValues.Page_Title_Busy_Short</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Faqs_Final_Words">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_FAQs - @GlobalValues.Page_Title_Final_Words</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+    private bool _showIndicator = false;
+
+    private async Task RunTest()
+    {
+        _showIndicator = true;
+
+        await Task.Delay(4000);
+
+        _showIndicator = false;
+
+    }
+
+
+}

@@ -1,9 +1,21 @@
 ﻿@attribute [Route(GlobalValues.Path_Busy_Screen)]
 
-<PageTitle>@GlobalValues.Title_Busy_Screen</PageTitle>
+<PageTitle>@GlobalValues.Page_Title_Busy_Screen</PageTitle>
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
-    <h1 class="@GlobalValues.Info_Box_Heading_Class">Busy Indicator Full Page Test</h1>
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">Busy Indicator Overview & Page Test</h1>
+    <p>
+        The busy indicator allows developers to display a spinning circle which automatically changes to a static hourglass for <b>reduced-motion schemes</b> when a task is performed that may involve a delay, such as persisting form data to a server.
+    </p>
+    <p>
+        Developers have the option to display text beneath the spinner. More importantly, they can queue text to be sent to an <b>ARIA live region</b>, which Assistive Technology (AT) can monitor and relay to the user.
+    </p>
+    <p>
+        While a task is in progress, everything behind the busy indicator overlay is made inert. This ensures that the affected part of the page (or the entire page/screen) remains inaccessible to all users and AT until the task completes.
+    </p>
+    <p>
+        Similarly, the new <b>HTML Dialog API</b> utilises inert functionality when shown modally, ensuring that any content beneath the dialog is inaccessible to all users and AT.
+    </p>
 
     <p>
         This portion of the test is to ensure that, while the busy indicator overlay covers the entire page, all content beneath it is inaccessible.
@@ -76,14 +88,14 @@
 
 
 <div class="flex-content justify-content-between flex-content--wrap">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_About_Blazor_Ramp">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Overview_About">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Title_About_Blazor_Ramp</span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_Overview - @GlobalValues.Page_Title_Overview_About</span>
         <span aria-hidden="true"></span>
     </a>
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Busy_Container">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Title_Busy_Container</span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_BusyIndicator - @GlobalValues.Page_Title_Busy_Container</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

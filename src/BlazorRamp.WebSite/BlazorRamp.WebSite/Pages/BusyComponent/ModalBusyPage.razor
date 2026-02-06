@@ -1,8 +1,8 @@
-﻿@attribute [Route(GlobalValues.Path_Modal_Busy_Screen)]
+﻿@attribute [Route(GlobalValues.Path_Busy_Modal_Screen)]
 @implements IAsyncDisposable
 @inject IJSRuntime _jsRuntime
 
-<PageTitle>@GlobalValues.Title_Modal_Busy_Screen</PageTitle>
+<PageTitle>@GlobalValues.Page_Title_Modal_Busy_Screen</PageTitle>
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
     <h1 class="@GlobalValues.Info_Box_Heading_Class">Busy Indicator In Modal Dialog Full Page Test</h1>
@@ -95,12 +95,12 @@
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Busy_Container">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Title_Busy_Container</span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_BusyIndicator - @GlobalValues.Page_Title_Busy_Container</span>
         <span aria-hidden="true"></span>
     </a>
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Busy_Short">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Title_Busy_Short</span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_BusyIndicator - @GlobalValues.Page_Title_Busy_Short</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

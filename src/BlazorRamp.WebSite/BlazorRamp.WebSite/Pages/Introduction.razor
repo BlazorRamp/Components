@@ -48,7 +48,7 @@
     </p>
     <p>
         <a href="https://testingbot.com/" target="_blank" class="@GlobalValues.Link_Class @GlobalValues.Link_Bot_Modifier">
-            <img src="/assets/img/testingbot-logo.svg" width="200px" alt="" />
+            <img src="/assets/img/testingbot-logo.svg" width="200" alt="" />
             <span>Testingbot home page (opens in new window)</span>
         </a>
     </p>
@@ -94,20 +94,6 @@
         Please note this alert button and its parent the announcement history dialog is a Blazor component with the appropriate parameters in order to change the displayed text shown on buttons (accessible names) and headings etc. However, these are 
         not the priority of these tests which are solely to check for accessibility issues. As I only speak English (en-GB), I am only providing the testing environment in English (for now).  
     </p>
-    <h3 class="@GlobalValues.Info_Box_Heading_Class">The Busy Indicator</h3>
-
-    <p>
-        The busy indicator allows developers to display a spinning circle which automatically changes to a static hourglass for <b>reduced-motion schemes</b> when a task is performed that may involve a delay, such as persisting form data to a server.
-    </p>
-    <p>
-        Developers have the option to display text beneath the spinner. More importantly, they can queue text to be sent to an <b>ARIA live region</b>, which Assistive Technology (AT) can monitor and relay to the user.
-    </p>
-    <p>
-        While a task is in progress, everything behind the busy indicator overlay is made inert. This ensures that the affected part of the page (or the entire page/screen) remains inaccessible to all users and AT until the task completes.
-    </p>
-    <p>
-        Similarly, the new <b>HTML Dialog API</b> utilises inert functionality when shown modally, ensuring that any content beneath the dialog is inaccessible to all users and AT.
-    </p>
 
     <h3 class="@GlobalValues.Info_Box_Heading_Class">The Live Region Service</h3>
 
@@ -121,16 +107,16 @@
     </p>
     <p>
         Whilst making the Live Region Service available as a general service for developers could be open to misuse, I believe that the complexities and nuances involved in making announcements via ARIA live regions mean that more good will come from 
-        providing this service than potential harm (see <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Final_Words">@GlobalValues.Title_Final_Words</a>).
+        providing this service than potential harm (see <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Faqs_Final_Words">@GlobalValues.Page_Title_Final_Words</a>).
 
     </p>
 
 </section>
 
 <div class="flex-content justify-content-end">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_About_Blazor_Ramp">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Overview_About">
         <span aria-hidden="true"></span>
-         <span>@GlobalValues.Title_About_Blazor_Ramp</span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_Overview - @GlobalValues.Page_Title_Overview_About</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

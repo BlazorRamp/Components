@@ -212,7 +212,7 @@
   padding-right: var(--br-unit-space-3);
   grid-column: 1/2;
   grid-row: 2/3;
-  width: 16rem;
+  width: 20rem;
   height: 100%;
   overflow-y: auto;
 }
@@ -409,6 +409,14 @@ li {
   margin-bottom: var(--br-unit-space-3);
 }
 
+li:focus-visible {
+  outline-style: var(--br-comp-all-outline-style);
+  outline-width: var(--br-comp-all-outline-width);
+  outline-color: var(--br-comp-all-outline-colour);
+  outline-offset: var(--br-comp-all-outline-offset);
+  border-radius: var(--br-unit-radius-2);
+}
+
 p {
   margin-bottom: var(--br-unit-space-5);
   text-wrap: pretty;
@@ -472,6 +480,12 @@ body #app__main {
   flex-direction: column;
   gap: var(--br-unit-space-2);
   font-size: var(--br-unit-font-size-label);
+}
+.main-navigation__heading {
+  font-size: var(--br-unit-font-size-2);
+  font-weight: var(--br-unit-font-weight-500);
+  margin-bottom: var(--br-unit-space-3);
+  color: var(--br-comp-all-area-header-text);
 }
 .main-navigation__link {
   all: unset;
@@ -569,7 +583,7 @@ body #app__main {
   background-color: var(--br-comp-all-button-background);
   cursor: pointer;
   padding: var(--br-unit-space-5);
-  width: 16rem;
+  width: 20rem;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -604,7 +618,7 @@ body #app__main {
   background-color: var(--br-comp-all-button-background);
   cursor: pointer;
   padding: var(--br-unit-space-5);
-  width: 16rem;
+  width: 20rem;
   display: inline-flex;
   justify-content: center;
   align-items: center;

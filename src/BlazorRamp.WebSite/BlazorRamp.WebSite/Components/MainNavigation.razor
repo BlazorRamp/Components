@@ -1,40 +1,63 @@
 ﻿
 <nav id="@GlobalValues.Main_Navigation_ID" class="main-navigation" aria-label="@GlobalValues.Main_Navigation_Aria_Label">
+
+    <h2 class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Overview</h2>
    <ul>
         <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Home" Match="NavLinkMatch.All">
-                @GlobalValues.Title_Home_Screen
+            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Overview_Introduction" Match="NavLinkMatch.All">
+                @GlobalValues.Page_Title_Overview_Introduction
             </NavLink>
         </li>
         <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_About_Blazor_Ramp">
-                @GlobalValues.Title_About_Blazor_Ramp
+            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Overview_About">
+                @GlobalValues.Page_Title_Overview_About
             </NavLink>
         </li>
-       <li>
+
+
+   </ul>
+
+    <h2 class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_BusyIndicator Component</h2>
+   <ul>
+        <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Busy_Screen">
-                @GlobalValues.Title_Busy_Screen
-           </NavLink>
+                @GlobalValues.Page_Title_Busy_Screen
+            </NavLink>
         </li>
-       <li>
+        <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Busy_Container">
-                @GlobalValues.Title_Busy_Container
+                @GlobalValues.Page_Title_Busy_Container
             </NavLink>
         </li>
-       <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Modal_Busy_Screen">
-                @GlobalValues.Title_Modal_Busy_Screen
+        <li>
+            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Busy_Modal_Screen">
+                @GlobalValues.Page_Title_Modal_Busy_Screen
             </NavLink>
-       </li>
+        </li>
         <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Busy_Short">
-                @GlobalValues.Title_Busy_Short
-            </NavLink>
-        </li>
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Final_Words">
-                @GlobalValues.Title_Final_Words
+                @GlobalValues.Page_Title_Busy_Short
             </NavLink>
         </li>
    </ul>
+
+    <h2 class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_SkipTo Component</h2>
+    <ul>
+        <li>
+            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_SkipTo_Overview">
+                @GlobalValues.Page_Title_SkipTo_Overview_Test
+            </NavLink>
+        </li>
+    </ul>
+
+    <h2 class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_FAQs</h2>
+    <ul>
+        <li>
+            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Faqs_Final_Words">
+                @GlobalValues.Page_Title_Final_Words
+            </NavLink>
+        </li>
+    </ul>
+   
+
 </nav>

@@ -1,6 +1,6 @@
-﻿@attribute [Route(GlobalValues.Path_About_Blazor_Ramp)]
+﻿@attribute [Route(GlobalValues.Path_Overview_About)]
 
-<PageTitle>@GlobalValues.Title_About_Blazor_Ramp</PageTitle>
+<PageTitle>@GlobalValues.Page_Title_Overview_About</PageTitle>
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
     <h1 class="@GlobalValues.Info_Box_Heading_Class">The Blazor Ramp Project</h1>
@@ -31,14 +31,14 @@
 
 </section>
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Home">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Overview_Introduction">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Title_Home_Screen</span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_Overview - @GlobalValues.Page_Title_Overview_Introduction</span>
         <span aria-hidden="true"></span>
     </a>
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Busy_Screen">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Title_Busy_Screen</span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_BusyIndicator - @GlobalValues.Page_Title_Busy_Screen</span>
         <span aria-hidden="true"></span>
     </a>
 </div>
