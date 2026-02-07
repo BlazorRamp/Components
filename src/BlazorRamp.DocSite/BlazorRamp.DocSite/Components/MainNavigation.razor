@@ -1,6 +1,6 @@
 ﻿<nav id="@GlobalValues.Main_Navigation_ID" class="main-navigation" aria-label="@GlobalValues.Main_Navigation_Aria_Title">
-    <h2 class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_About</h2>
-    <ul>
+    <h2 id="overview-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_About</h2>
+    <ul aria-labelledby="overview-section">
         <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Overview_Introduction" Match="NavLinkMatch.All">
                 <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_About</span>@GlobalValues.Page_Heading_Overview_Introduction
@@ -22,8 +22,8 @@
             </NavLink>
         </li>
     </ul>
-    <h2 class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Theming</h2>
-    <ul>
+    <h2 id="theming-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Theming</h2>
+    <ul aria-labelledby="theming-section">
         <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Theming_Overview" Match="NavLinkMatch.All">
                 <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Theming</span>@GlobalValues.Page_Heading_Theming_Overview
@@ -45,24 +45,24 @@
             </NavLink>
         </li>
     </ul>
-    <h2 class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Services</h2>
-    <ul>
+    <h2 id="services-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Services</h2>
+    <ul aria-labelledby="services-section">
         <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Services_Live_Region" Match="NavLinkMatch.All">
-                @GlobalValues.Page_Heading_Services_Live_Region
+                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Services</span>@GlobalValues.Page_Heading_Services_Live_Region
             </NavLink>
         </li>
     </ul>
-    <h2 class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Frameworks</h2>
-    <ul>
+    <h2 id="framework-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Frameworks</h2>
+    <ul aria-labelledby="framework-section">
         <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Frameworks_Modal_Dialog" Match="NavLinkMatch.All">
-                @GlobalValues.Page_Heading_Frameworks_Modal_Dialog
+                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Frameworks</span>@GlobalValues.Page_Heading_Frameworks_Modal_Dialog
             </NavLink>
         </li>
     </ul>
-    <h2 class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Components</h2>
-    <ul>
+    <h2 id="components-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Components</h2>
+    <ul aria-labelledby="components-section">
         <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Components_Announcement_History" Match="NavLinkMatch.All">
                 <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Components</span>@GlobalValues.Page_Heading_Components_Announcement_History
@@ -84,8 +84,8 @@
             </NavLink>
         </li>
     </ul>
-    <h2 class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_FAQs</h2>
-    <ul>
+    <h2 id="faq-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_FAQs</h2>
+    <ul aria-labelledby="faq-section">
         <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_FAQs_Questions" Match="NavLinkMatch.All">
                 <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_FAQs</span>@GlobalValues.Page_Heading_FAQs_Questions

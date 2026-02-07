@@ -1,5 +1,7 @@
 ﻿
 :root {
+    --br-unit-colour-neutral-saturation: 10; // this will probably need to be lower for greens, higher for blues
+    --br-unit-colour-primary: olive;
     --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-darker);
     --br-kbd-background-colour: var(--br-unit-colour-info-lighter)
 }
@@ -49,19 +51,30 @@ h1, h2, h3, h4, h5, h6 {
 */
 
 
-ul{
-    padding-left:1rem;
+ul {
+    margin-left: var(--br-unit-space-7);
+    padding: 0;
 }
-li{
+
+li {
     margin-bottom: var(--br-unit-space-3);
 }
-    li:focus-visible {
-        outline-style: var(--br-comp-all-outline-style);
-        outline-width: var(--br-comp-all-outline-width);
-        outline-color: var(--br-comp-all-outline-colour);
-        outline-offset: var(--br-comp-all-outline-offset);
-        border-radius: var(--br-unit-radius-2);
-    }
+
+ol > li {
+    margin-left: 1rem;
+    list-style: decimal;
+}
+
+li ul li {
+    list-style-type: disc;
+}
+li:focus-visible {
+    outline-style: var(--br-comp-all-outline-style);
+    outline-width: var(--br-comp-all-outline-width);
+    outline-color: var(--br-comp-all-outline-colour);
+    outline-offset: var(--br-comp-all-outline-offset);
+    border-radius: var(--br-unit-radius-2);
+}
 html{
 
 }
@@ -99,6 +112,7 @@ kbd {
     padding-block: var(--br-unit-space-2);
     border: 1px solid transparent;
 }
+
 
 dialog {
     all: revert;

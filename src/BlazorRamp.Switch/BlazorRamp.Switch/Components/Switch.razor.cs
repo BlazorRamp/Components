@@ -67,6 +67,13 @@ public partial class Switch
 
         if (_switchState != SwitchState && false == AriaDisabled) await RaiseOnSwitchStateChanged(SwitchState);
     }
+    /// <summary>
+    /// Captures the initial state of the switch
+    /// </summary>
+    protected override void OnInitialized()
+    
+        => _switchState = SwitchState;
+    
 
     private static string? BuildClassList(bool spaceBetween)
 

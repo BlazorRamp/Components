@@ -147,20 +147,21 @@
 
     &[aria-disabled="true"] {
         cursor: not-allowed;
-        opacity: var(--br-comp-switch-disabled-opacity);
 
         .br-switch__label {
             cursor: not-allowed;
-            pointer-events: none;
+            pointer-events: all;
+            opacity: var(--br-comp-switch-disabled-opacity);
         }
 
         .br-switch__track {
             cursor: not-allowed;
-            pointer-events: none;
+            pointer-events: all;
         }
 
         .br-switch__thumb {
             pointer-events: none;
+            opacity: var(--br-comp-switch-disabled-opacity);
         }
     }
 }

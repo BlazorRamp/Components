@@ -33,10 +33,15 @@
     <Folder Include="wwwroot\assets\css\" />
     <Folder Include="wwwroot\assets\js\" />
     <Folder Include="wwwroot\assets\img\" />
+    <Folder Include="wwwroot\css\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BlazorRamp.Switch\BlazorRamp.Switch\BlazorRamp.Switch.csproj" />
   </ItemGroup>
 
   <ItemGroup>

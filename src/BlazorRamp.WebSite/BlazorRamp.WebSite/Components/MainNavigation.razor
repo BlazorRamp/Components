@@ -1,60 +1,63 @@
 ﻿
-<nav id="@GlobalValues.Main_Navigation_ID" class="main-navigation" aria-label="@GlobalValues.Main_Navigation_Aria_Label">
+<nav id="@GlobalValues.Main_Navigation_ID" class="main-navigation" aria-label="@GlobalValues.Main_Navigation_Aria_Title">
 
-    <h2 class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Overview</h2>
-   <ul>
+    <h2 id="overview-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Overview</h2>
+    <ul aria-labelledby="overview-section">
         <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Overview_Introduction" Match="NavLinkMatch.All">
-                @GlobalValues.Page_Title_Overview_Introduction
+                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Overview</span>@GlobalValues.Page_Title_Overview_Introduction
             </NavLink>
         </li>
         <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Overview_About">
-                @GlobalValues.Page_Title_Overview_About
+                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Overview</span>@GlobalValues.Page_Title_Overview_About
             </NavLink>
         </li>
-
-
    </ul>
-
-    <h2 class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_BusyIndicator Component</h2>
-   <ul>
+    <h2 id="busy-indicator-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_BusyIndicator Component</h2>
+    <ul aria-labelledby="busy-indicator-section">
         <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Busy_Screen">
-                @GlobalValues.Page_Title_Busy_Screen
+                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_BusyIndicator</span>@GlobalValues.Page_Title_Busy_Screen
             </NavLink>
         </li>
         <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Busy_Container">
-                @GlobalValues.Page_Title_Busy_Container
+                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_BusyIndicator</span>@GlobalValues.Page_Title_Busy_Container
             </NavLink>
         </li>
         <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Busy_Modal_Screen">
-                @GlobalValues.Page_Title_Modal_Busy_Screen
+                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_BusyIndicator</span>@GlobalValues.Page_Title_Modal_Busy_Screen
             </NavLink>
         </li>
         <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Busy_Short">
-                @GlobalValues.Page_Title_Busy_Short
+                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_BusyIndicator</span>@GlobalValues.Page_Title_Busy_Short
             </NavLink>
         </li>
    </ul>
-
-    <h2 class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_SkipTo Component</h2>
-    <ul>
+    <h2 id="skip-to-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_SkipTo Component</h2>
+    <ul aria-labelledby="skip-to-section">
         <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_SkipTo_Overview">
-                @GlobalValues.Page_Title_SkipTo_Overview_Test
+                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_SkipTo</span>@GlobalValues.Page_Title_SkipTo_Overview_Test
             </NavLink>
         </li>
     </ul>
-
-    <h2 class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_FAQs</h2>
-    <ul>
+    <h2 id="switch-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Switch Component</h2>
+    <ul aria-labelledby="switch-section">
+        <li>
+            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Switch_Overview">
+                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Switch</span>@GlobalValues.Page_Title_Switch_Overview_Test
+            </NavLink>
+        </li>
+    </ul>
+    <h2 id="faq-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_FAQs</h2>
+    <ul aria-labelledby="faq-section">
         <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Faqs_Final_Words">
-                @GlobalValues.Page_Title_Final_Words
+                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_FAQs</span>@GlobalValues.Page_Title_Final_Words
             </NavLink>
         </li>
     </ul>

@@ -49,16 +49,25 @@
         </li>
         <li>
             Once the secondary skip to link has focus, it becomes visible and screen reader users are notified of the link with the text "Skip list of items".
-           Sighted, users will see the same text and for this test I have removed the icon of the running person.
+           Sighted, users will see the same text. I removed the icon for this test.
         </li>
         <li>
-            Activating the secondary skip to link with either the enter key or mouse move focus to the . . .
+            Activating the secondary skip to link with either the enter key or mouse will move the focus to the content in the target contain which is 
+            immediately after the list of 10 tab stop list items.
         </li>
+    </ul>
+    <p>
+        <b>Note: </b>Starting from here you will encounter the list and secondary skip to link before reaching the main skip to link.
+    </p>
+
+    <h3 id="skip-to-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard Interaction</h3>
+    <ul aria-labelledby="skip-to-keyboard">
+        <li><kbd>Enter</kbd> - when focus is on the skip to link executes the link and moves focus to the link target.</li>
     </ul>
 </section>
 
 <section class="@GlobalValues.Info_Box_Class">
-
+    <SkipTo IconVisible="false" SkipToText="Skip list of items" TargetID="skip-to-section" SkipToType="SkipToType.Section" />
     <ul>
         <li tabindex="0">Tab stop one.</li>
         <li tabindex="0">Tab stop two.</li>
@@ -71,7 +80,9 @@
         <li tabindex="0">Tab stop nine.</li>
         <li tabindex="0">Tab stop ten.</li>
     </ul>
-
+    <div style="width:100%;" class="section-box" tabindex="-1" id="skip-to-section">
+        The content in the target container.
+    </div>
 </section>
 
 <div class="flex-content justify-content-between">
@@ -80,9 +91,9 @@
         <span>@GlobalValues.Main_Nav_Section_Heading_BusyIndicator - @GlobalValues.Page_Title_Busy_Short</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Faqs_Final_Words">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Switch_Overview">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_FAQs - @GlobalValues.Page_Title_Final_Words</span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_Switch - @GlobalValues.Page_Title_Switch_Overview_Test</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

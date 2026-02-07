@@ -1,0 +1,90 @@
+﻿
+@attribute [Route(GlobalValues.Path_Switch_Overview)]
+
+<PageTitle>@GlobalValues.Page_Title_Switch_Overview_Test</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">Switch Component Overview & Tests</h1>
+
+    <p>
+        The Switch component is a simple toggle component that is either on or off communicated to assistive technologies via the use of the "switch" role.
+    </p>
+
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & Instructions</h2>
+    <p>
+        The tests are straight forward. You should be able to toggle the switch with either your mouse, the space or enter key on your keyboard or via a voice command, using the switches
+        accessible name - the visible label to the left of the switch.
+    </p>
+    <p>
+        There are two switches used in the test, one labelled "Airplane mode" which is enabled, the second labelled "Bluetooth" which is aria disabled.
+    </p>
+    <h3 id="switch-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard Interaction</h3>
+    <ul aria-labelledby="switch-keyboard">
+        <li><kbd>Space</kbd> - when focus is on the Switch or Switch label, toggles the state of the switch.</li>
+        <li><kbd>Enter</kbd> - when focus is on the Switch or Switch label, toggles the state of the switch.</li>
+    </ul>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+    <ul>
+        <li>
+            Once the Switch has the focus you should be able to activate it with your mouse or keyboard using the keys described. 
+        </li>
+        <li>
+            Voice commands should toggle the switch at any time, whilst enabled.
+        </li>
+        <li>
+            Mouse users can click on either the switch or its label to toggle its state.
+        </li>
+        <li>
+            An aria disabled switch should be announced to screen readers as disabled. Sighted users will get visual conformation that the switch is disabled
+            and the usual pointer will change to a not allowed icon. No interaction will be possible, using any method, but the control will remain in the tab order and 
+            receive focus.
+        </li>
+    </ul>
+</section>
+<section class="section-box" style="width:320px;">
+    <Switch AriaDisabled="false" Label="Airplane mode:" @bind-SwitchState="@_airplaneState" SpaceBetween="true" style="margin-bottom:1rem;" />
+    <Switch AriaDisabled="true" Label="Bluetooth:" @bind-SwitchState="@_blueToothState" SpaceBetween="true" />
+</section>
+
+@code{
+    private bool _airplaneState = false;
+    private bool _blueToothState = false;
+}
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_SkipTo_Overview">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_SkipTo - @GlobalValues.Page_Title_SkipTo_Overview_Test</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Faqs_Final_Words">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_FAQs - @GlobalValues.Page_Title_Final_Words</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+    private bool _showIndicator = false;
+
+    private async Task RunTest()
+    {
+        _showIndicator = true;
+
+        await Task.Delay(4000);
+
+        _showIndicator = false;
+
+    }
+
+
+}

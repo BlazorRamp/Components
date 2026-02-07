@@ -21,6 +21,7 @@
   --br-comp-switch-area-content-font-size: var(--br-unit-font-size-label);
   --br-comp-switch-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
   --br-comp-switch-area-content-line-height: var(--br-comp-all-area-content-line-height);
+  --br-comp-switch-disabled-opacity: var(--br-unit-state-disabled-opacity);
 }
 
 .br-switch {
@@ -144,16 +145,17 @@
 }
 .br-switch[aria-disabled=true] {
   cursor: not-allowed;
-  opacity: var(--br-comp-switch-disabled-opacity);
 }
 .br-switch[aria-disabled=true] .br-switch__label {
   cursor: not-allowed;
-  pointer-events: none;
+  pointer-events: all;
+  opacity: var(--br-comp-switch-disabled-opacity);
 }
 .br-switch[aria-disabled=true] .br-switch__track {
   cursor: not-allowed;
-  pointer-events: none;
+  pointer-events: all;
 }
 .br-switch[aria-disabled=true] .br-switch__thumb {
   pointer-events: none;
+  opacity: var(--br-comp-switch-disabled-opacity);
 }

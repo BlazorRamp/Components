@@ -18,14 +18,15 @@ public static class GlobalValues
     public const string Page_Title_Busy_Container        = "Busy Container Test";
     public const string Page_Title_Modal_Busy_Screen     = "Modal Busy Page Test";
     public const string Page_Title_Busy_Short            = "Busy With Short Delay Test";
-    public const string Page_Title_Final_Words = "Final Words";
-
-    public const string Page_Title_SkipTo_Overview_Test = "Overview & Tests";
+    public const string Page_Title_Final_Words           = "Final Words";
+    public const string Page_Title_SkipTo_Overview_Test  = "Overview & Tests";
+    public const string Page_Title_Switch_Overview_Test  = "Overview & Tests";
 
     public const string Path_Overview_Introduction = "/";
     public const string Path_Overview_About = "/about-blazor-ramp";
 
     public const string Path_SkipTo_Overview = "/skip-to/overview-tests";
+    public const string Path_Switch_Overview = "/switch/overview-tests";
 
     public const string Path_Busy_Screen        = "/busy-indicator/busy-page";
     public const string Path_Busy_Container     = "/busy-indicator/busy-container";
@@ -42,9 +43,7 @@ public static class GlobalValues
     public const string Main_Nav_Section_Heading_FAQs = "FAQs";
 
 
-
-    public const string Main_Navigation_Aria_Label = "Main";
-
+    public const string Main_Navigation_Aria_Title = "Main Menu";
     public const string Main_Navigation_ID = "main-navigation";
 
     public const string Main_Navigation_Class = "main-navigation";
