@@ -9,7 +9,7 @@ namespace BlazorRamp.Switch.Components;
 /// </summary>
 public partial class Switch
 {
-    // <summary>
+    /// <summary>
     /// Gets or sets the label text displayed next to the switch.
     /// This property is required and cannot be null, empty or whitespace.
     /// </summary>
@@ -33,7 +33,7 @@ public partial class Switch
     /// </summary>
     [Parameter] public bool     SpaceBetween { get; set; } = false;
 
-    // <summary>
+    /// <summary>
     /// Gets or sets the callback invoked when the switch state changes.
     /// </summary>
     [Parameter] public EventCallback<bool> SwitchStateChanged { get; set; }

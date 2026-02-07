@@ -55,11 +55,6 @@
     <Switch AriaDisabled="true" Label="Bluetooth:" @bind-SwitchState="@_blueToothState" SpaceBetween="true" />
 </section>
 
-@code{
-    private bool _airplaneState = false;
-    private bool _blueToothState = false;
-}
-
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_SkipTo_Overview">
         <span aria-hidden="true"></span>
@@ -74,17 +69,6 @@
 </div>
 
 @code {
-    private bool _showIndicator = false;
-
-    private async Task RunTest()
-    {
-        _showIndicator = true;
-
-        await Task.Delay(4000);
-
-        _showIndicator = false;
-
-    }
-
-
+    private bool _airplaneState = false;
+    private bool _blueToothState = false;
 }
