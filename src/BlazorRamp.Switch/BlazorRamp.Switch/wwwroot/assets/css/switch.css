@@ -88,13 +88,6 @@
   background-color: var(--br-comp-switch-thumb-colour);
   color: var(--br-comp-switch-thumb-text);
 }
-.br-switch__thumb::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  z-index: 0;
-}
 .br-switch__thumb::after {
   content: "";
   position: absolute;

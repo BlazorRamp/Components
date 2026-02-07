@@ -101,14 +101,6 @@
         background-color: var(--br-comp-switch-thumb-colour);
         color: var(--br-comp-switch-thumb-text);
 
-        &::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            z-index: 0;
-        }
-
         &::after {
             content: "";
             position: absolute;
