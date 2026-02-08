@@ -31,7 +31,7 @@
   padding: 0;
   border: none;
   outline: none;
-  pointer-events: all;
+  pointer-events: none;
   font: inherit;
   background-color: transparent;
   color: inherit;
@@ -40,7 +40,6 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: end;
-  cursor: pointer;
   gap: var(--br-unit-space-4);
 }
 .br-switch--space {
@@ -108,7 +107,13 @@
     color: Canvas;
   }
 }
-.br-switch[aria-disabled=false]:not(:disabled):hover .br-switch__thumb {
+.br-switch[aria-disabled=false]:not(:disabled) .br-switch__label,
+.br-switch[aria-disabled=false]:not(:disabled) .br-switch__track {
+  cursor: pointer;
+  pointer-events: all;
+}
+.br-switch[aria-disabled=false]:not(:disabled) .br-switch__label:hover ~ .br-switch__track .br-switch__thumb,
+.br-switch[aria-disabled=false]:not(:disabled) .br-switch__track:hover .br-switch__thumb {
   transform: translateY(-50%) scale(1.1);
   box-shadow: var(--br-comp-switch-thumb-hover-shadow);
 }
@@ -135,8 +140,11 @@
     color: Canvas;
   }
 }
-.br-switch[aria-disabled=true], .br-switch:disabled {
+.br-switch[aria-disabled=true] .br-switch__label,
+.br-switch[aria-disabled=true] .br-switch__track, .br-switch:disabled .br-switch__label,
+.br-switch:disabled .br-switch__track {
   cursor: not-allowed;
+  pointer-events: all;
 }
 .br-switch[aria-disabled=true] .br-switch__label, .br-switch:disabled .br-switch__label {
   opacity: var(--br-comp-switch-disabled-opacity);

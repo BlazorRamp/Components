@@ -37,7 +37,7 @@
     padding: 0;
     border: none;
     outline: none;
-    pointer-events: all;
+    pointer-events: none;
     font: inherit;
     background-color: transparent;
     color: inherit;
@@ -46,8 +46,8 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: end;
-    
-    cursor:pointer;
+
+
 
     &--space {
         justify-content: space-between;
@@ -103,6 +103,7 @@
         background-color: var(--br-comp-switch-thumb-colour);
         color: var(--br-comp-switch-thumb-text);
 
+
         &::after {
             content: "";
             position: absolute;
@@ -113,11 +114,17 @@
     }
 
     &[aria-disabled="false"]:not(:disabled) {
-
-        &:hover .br-switch__thumb {
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: var(--br-comp-switch-thumb-hover-shadow);
+        .br-switch__label,
+        .br-switch__track {
+            cursor: pointer;
+            pointer-events: all;
         }
+
+            .br-switch__label:hover ~ .br-switch__track .br-switch__thumb,
+            .br-switch__track:hover .br-switch__thumb {
+                transform: translateY(-50%) scale(1.1);
+                box-shadow: var(--br-comp-switch-thumb-hover-shadow);
+            }
     }
 
     &[aria-checked="true"] {
@@ -138,7 +145,11 @@
     }
 
     &[aria-disabled="true"], &:disabled {
-        cursor: not-allowed;
+        .br-switch__label,
+        .br-switch__track {
+            cursor: not-allowed;
+            pointer-events: all;
+        }
 
         .br-switch__label {
             opacity: var(--br-comp-switch-disabled-opacity);
