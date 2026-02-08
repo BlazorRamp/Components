@@ -28,11 +28,20 @@
     By default the switch will align to the right of its container, with its label to the left. You can force the label to the left hand side of the container whilst the switch remains to the right 
     of its container.
 </p>
+
+<h2 id="switch-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard Interaction</h2>
+<ul aria-labelledby="switch-keyboard">
+    <li><kbd>Space</kbd> - when focus is on the Switch, toggles the state of the switch.</li>
+    <li><kbd>Enter</kbd> - when focus is on the Switch, toggles the state of the switch.</li>
+</ul>
 <p>
     The following three switches show the different states and alignments. The first switch is the default alignment and is enabled. The next two switches are in a disabled state, the first of
     these using the <span class="code-span">aria-disabled</span> attribute set by the  <span class="code-span">AriaDisabled</span> parameter, as such it can still receive focus. The last
     switch has the html <span class="code-span">disabled</span> attribute so it is removed from the Accessibility Tree and will not receive focus.
 </p>
+
+
+
 <section class="section-box" style="max-width:320px">
 
     <Switch @bind-SwitchState="@_airplaneSwitchState" Label="Airplane mode:" AriaDisabled="false" SpaceBetween="false" style="margin-block:1rem;" />
@@ -248,7 +257,7 @@
                 </tr>
                 <tr>
                     <td>--br-comp-switch-thumb-text</td>
-                    <td>var(--br-unit-colour-canvas-text)</td>
+                    <td>var(--br-unit-colour-primary)</td>
                     <td>The colour of the thumb icon - <b>no shared component variable.</b></td>
                 </tr>
                 <tr>
@@ -332,11 +341,6 @@
                     <td>--br-comp-switch-disabled-opacity</td>
                     <td>var(--br-comp-all-thumb-colour)</td>
                     <td>The colour of the thumb - <b>does not use the shared component variable.</b></td>
-                </tr>
-                <tr>
-                    <td>--br-comp-switch-on-thumb-colour</td>
-                    <td>var(--br-unit-colour-primary)</td>
-                    <td>The colour of the thumb when the switch is on - <b>no shared component variable.</b></td>
                 </tr>
                 <tr>
                     <td>--br-comp-switch-thumb-Hover-colour</td>
@@ -455,11 +459,6 @@
                     <td>--br-comp-switch-disabled-opacity</td>
                     <td>var(--br-comp-all-thumb-colour)</td>
                     <td>The colour of the thumb - <b>does not use the shared component variable.</b></td>
-                </tr>
-                <tr>
-                    <td>--br-comp-switch-on-thumb-colour</td>
-                    <td>var(--br-unit-colour-primary)</td>
-                    <td>The colour of the thumb when the switch is on - <b>no shared component variable.</b></td>
                 </tr>
                 <tr>
                     <td>--br-comp-switch-thumb-Hover-colour</td>
