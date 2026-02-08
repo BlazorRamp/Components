@@ -8,8 +8,15 @@
         Thank you for visiting the Blazor Ramp component test site. 
     </p>
     <p>
-        Currently, the tests on this site only relate to a Blazor Live Region Service that developers, or their components, can use to make announcements via ARIA live regions, an Announcement History dialog component for viewing these transient messages, 
-        and a Busy Indicator that makes use of the Live Region Service.
+        Originally, the tests on the site were to only test a Live Region Service made for Blazor that allows developers, or their components, can use to make announcements via ARIA live regions, an Announcement History dialog component for viewing these 
+        transient messages, and a Busy Indicator that makes use of the Live Region Service.
+    </p>
+    <p>
+        I have since altered the structure of the site so going forward it will include both current versions of each released component as well as components prior to release 
+        that are under test.
+    </p>
+    <p>
+        You are welcome to test any component at anytime with your chosen device setup.
     </p>
     <p>
         If you identify any accessibility issues with the components under test, I would appreciate it if you could let me know what these issues were. 
@@ -24,27 +31,13 @@
     <p>
         Currently, I test locally on a Windows 11 PC using various combinations of Microsoft Edge, Mozilla Firefox, and Google Chrome with the JAWS, NVDA, and Narrator screen readers. 
     </p>
-        <p>
-        <b>Update 27th January 2026:</b> As the documentation site was growing I needed a Skip To content component so I have added one to both site so it can be tested as well.
-        It only appears when focused using the keyboard.
-    </p>
     <p>
-        <b>Update:</b> I can now test locally with VoiceOver on macOS Sequoia, so VoiceOver with Safari will be a set combination included with those above.
+        I also test with VoiceOver using the Safari browser on the macOS and iPhone, TalkBack on Android with the Chrome mobile browser
+        and Voice access on Windows 11 for voice control
     </p>
-    <p>
-        TalkBack on Android using Chrome, appears stable so will be included (but desktops are my priority).
-    </p>
-    <p>
-        The only slightly problematic platform is VoiceOver on macOS/iPhone. It works correctly for all tests except the one involving a one-second delay between starting and finishing a task. In this case, VoiceOver does not quite complete the entire 
-        first message (on default speech rate, sometimes it does on macOS) before beginning to read the second.
-    </p>
-    <p>
-        I am going to leave this for now, as I do not advocate using both a start announcement and an end announcement for anything lasting less than four or five seconds, as this is too verbose for users. 
-        It is technically fixable by using longer delays, but that would affect all scenarios. Making this configurable is a possibility; however, this is such an edge case at this stage that it is not worth the effort, in my humble opinion.
-    </p>
-
-    <p>
-        <b>Thank you</b> to TestingBot for providing an open-source plan so I can access a variety of real devices when testing. Please pay them a visit to see the services they offer.
+      <p>
+           <b>Thank you</b> to TestingBot who granted me an unlimited open-source plan to access their platform and real devices, so please pay them a visit to see the services they offer.
+        
     </p>
     <p>
         <a href="https://testingbot.com/" target="_blank" class="@GlobalValues.Link_Class @GlobalValues.Link_Bot_Modifier">
@@ -86,6 +79,11 @@
     </p>
     <h3 class="@GlobalValues.Info_Box_Heading_Class">Viewing the Announcement History</h3>
     <p>
+        The announcement history dialog component is used to review any announcement output via the Live Region Service, so is useful for the testing of the service.
+        Its main purpose however, is to provide users the ability to review these transient messages from live regions that they may have missed, misheard or got clipped
+        due to aggressive screen reader focus events etc.
+    </p>
+    <p>
         In this implementation, the non-modal <b>Announcement History dialog</b> can be accessed at any time using the keyboard shortcut <span class="br-visually-hidden">Control plus Shift plus the H key</span>
         <span aria-hidden="true"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd></span> or by pressing the <b>Alerts button</b> located at the bottom-right
         of the screen. While this component supports a hidden, "focus-visible only" mode for a cleaner UI, it is currently configured to be always visible to ensure ease of use for mouse and/or voice assistive technology users.
@@ -109,6 +107,15 @@
         Whilst making the Live Region Service available as a general service for developers could be open to misuse, I believe that the complexities and nuances involved in making announcements via ARIA live regions mean that more good will come from 
         providing this service than potential harm (see <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Faqs_Final_Words">@GlobalValues.Page_Title_Final_Words</a>).
 
+    </p>
+
+    <p>
+        <b>Note: </b> During my testing of live regions and screen reader announcements I noted one problematic platform VoiceOver on macOS/iPhone if rapid announcements are made in quick succession, something that would not normally be done from
+        a single component.All tested were passed, excluding one involving just a one-second delay between starting and finishing a task. In this case, VoiceOver clipped the end of the first message on default speech rate before, reading the second message in full.
+    </p>
+    <p>
+        I am going to leave this for now, as I do not advocate using both a start announcement and an end announcement for anything lasting less than four or five seconds, as this is too verbose for users. It is technically fixable by using longer 
+        delays, but that would affect all scenarios. Making this configurable is a possibility; however, this is such an edge case at this stage that it is not worth the effort, in my humble opinion.
     </p>
 
 </section>

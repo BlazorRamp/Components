@@ -98,18 +98,3 @@
     </a>
 </div>
 
-@code {
-    private bool _showIndicator = false;
-
-    private async Task RunTest()
-    {
-        _showIndicator = true;
-
-        await Task.Delay(4000);
-
-        _showIndicator = false;
-
-    }
-
-
-}
