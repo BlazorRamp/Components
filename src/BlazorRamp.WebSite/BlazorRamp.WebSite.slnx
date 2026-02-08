@@ -1,4 +1,3 @@
 <Solution>
-  <Project Path="../BlazorRamp.Switch/BlazorRamp.Switch/BlazorRamp.Switch.csproj" />
   <Project Path="BlazorRamp.WebSite/BlazorRamp.WebSite.csproj" />
 </Solution>
