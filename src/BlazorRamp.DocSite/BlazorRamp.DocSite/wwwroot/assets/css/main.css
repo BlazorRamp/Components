@@ -352,6 +352,11 @@
 }
 
 :root:has(#theme-toggler[aria-checked=true]) {
+  --br-comp-switch-thumb-Hover-colour: var(--br-unit-colour-primary-20);
+  --br-comp-switch-thumb-text: var(--br-unit-colour-primary-30);
+  --br-comp-all-thumb-colour: var(--br-unit-colour-neutral-80);
+  --br-comp-switch-on-track-colour: var(--br-unit-colour-primary-30);
+  --br-comp-all-track-colour: var(--br-unit-colour-neutral-70);
   --br-comp-history-trigger-pane-surface-background: var(--br-unit-colour-neutral-5);
   --br-comp-history-trigger-pane-surface-text: var(--br-unit-colour-neutral-90);
   --br-comp-all-pane-base-background: var(--br-unit-colour-neutral-80);
@@ -618,7 +623,6 @@ body #app__main {
   margin-bottom: var(--br-unit-space-5);
   border-radius: var(--br-unit-radius-5);
   border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
-  max-width: fit-content;
 }
 @media (max-width: 576px) {
   .section-box h2 {

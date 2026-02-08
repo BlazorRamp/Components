@@ -5,30 +5,35 @@
     --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-darker);
     --br-kbd-background-colour: var(--br-unit-colour-info-lighter)
 }
-:root:has(#theme-toggler[aria-checked="true"]) {
-    --br-comp-history-trigger-pane-surface-background: var(--br-unit-colour-neutral-5);
-    --br-comp-history-trigger-pane-surface-text: var(--br-unit-colour-neutral-90);
-    --br-comp-all-pane-base-background: var(--br-unit-colour-neutral-80);
-    --br-comp-all-focus-indicator-colour: var(--br-unit-colour-primary-30);
-    --br-comp-all-pane-surface-background: var(--br-unit-colour-neutral-70);
-    --br-comp-all-area-content-text: var(--br-unit-colour-neutral-5);
-    --br-unit-colour-canvas: var(--br-unit-colour-neutral-90);
-    --br-unit-colour-canvas-text: var(--br-unit-colour-neutral-5);
-    --br-comp-all-button-text: var(--br-unit-colour-primary-text-light);
-    --br-comp-all-area-header-text: var(--br-unit-colour-primary-10);
-    --br-comp-all-button-state-hover: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-30));
-    --br-comp-all-link-current-page-background-colour: var(--br-unit-colour-secondary-darker);
-    --br-comp-all-link-hover-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.15);
-    --br-comp-all-link-active-bacbground-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.3);
-    --br-comp-all-link-focused-background-colour: var(--br-unit-colour-secondary-darker);
-    --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-light);
-    --br-kbd-background-colour: var(--br-unit-colour-info-darker);
-    --br-unit-colour-canvas-inverted: var(--br-unit-colour-neutral-5);
-    --br-unit-colour-canvas-text-inverted: var(--br-unit-colour-neutral-90);
-    --br-comp-all-button-background: var(--br-unit-colour-primary-70);
-    --br-comp-all-button-border-colour: var(--br-unit-colour-primary-30);
-    --br-comp-all-area-header-background: var(--br-unit-colour-neutral-70);
-}
+    :root:has(#theme-toggler[aria-checked="true"]) {
+        --br-comp-switch-thumb-Hover-colour: var(--br-unit-colour-primary-20);
+        --br-comp-switch-thumb-text: var(--br-unit-colour-primary-30);
+        --br-comp-all-thumb-colour: var(--br-unit-colour-neutral-80);
+        --br-comp-switch-on-track-colour: var(--br-unit-colour-primary-30);
+        --br-comp-all-track-colour: var(--br-unit-colour-neutral-70);
+        --br-comp-history-trigger-pane-surface-background: var(--br-unit-colour-neutral-5);
+        --br-comp-history-trigger-pane-surface-text: var(--br-unit-colour-neutral-90);
+        --br-comp-all-pane-base-background: var(--br-unit-colour-neutral-80);
+        --br-comp-all-focus-indicator-colour: var(--br-unit-colour-primary-30);
+        --br-comp-all-pane-surface-background: var(--br-unit-colour-neutral-70);
+        --br-comp-all-area-content-text: var(--br-unit-colour-neutral-5);
+        --br-unit-colour-canvas: var(--br-unit-colour-neutral-90);
+        --br-unit-colour-canvas-text: var(--br-unit-colour-neutral-5);
+        --br-comp-all-button-text: var(--br-unit-colour-primary-text-light);
+        --br-comp-all-area-header-text: var(--br-unit-colour-primary-10);
+        --br-comp-all-button-state-hover: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-30));
+        --br-comp-all-link-current-page-background-colour: var(--br-unit-colour-secondary-darker);
+        --br-comp-all-link-hover-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.15);
+        --br-comp-all-link-active-bacbground-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.3);
+        --br-comp-all-link-focused-background-colour: var(--br-unit-colour-secondary-darker);
+        --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-light);
+        --br-kbd-background-colour: var(--br-unit-colour-info-darker);
+        --br-unit-colour-canvas-inverted: var(--br-unit-colour-neutral-5);
+        --br-unit-colour-canvas-text-inverted: var(--br-unit-colour-neutral-90);
+        --br-comp-all-button-background: var(--br-unit-colour-primary-70);
+        --br-comp-all-button-border-colour: var(--br-unit-colour-primary-30);
+        --br-comp-all-area-header-background: var(--br-unit-colour-neutral-70);
+    }
 *,
 *::before,
 *::after {

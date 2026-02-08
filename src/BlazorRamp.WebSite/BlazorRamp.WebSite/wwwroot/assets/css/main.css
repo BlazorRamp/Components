@@ -356,6 +356,11 @@
 }
 
 :root:has(#theme-toggler[aria-checked=true]) {
+  --br-comp-switch-thumb-Hover-colour: var(--br-unit-colour-primary-20);
+  --br-comp-switch-thumb-text: var(--br-unit-colour-primary-30);
+  --br-comp-all-thumb-colour: var(--br-unit-colour-neutral-80);
+  --br-comp-switch-on-track-colour: var(--br-unit-colour-primary-30);
+  --br-comp-all-track-colour: var(--br-unit-colour-neutral-70);
   --br-comp-history-trigger-pane-surface-background: var(--br-unit-colour-neutral-5);
   --br-comp-history-trigger-pane-surface-text: var(--br-unit-colour-neutral-90);
   --br-comp-all-pane-base-background: var(--br-unit-colour-neutral-80);

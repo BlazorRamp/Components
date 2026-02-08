@@ -110,7 +110,7 @@
         }
     }
 
-    &[aria-disabled="false"] {
+    &[aria-disabled="false"]:not(:disabled) {
         .br-switch__label {
             pointer-events: all;
             cursor: pointer;
@@ -124,7 +124,6 @@
         &:hover .br-switch__thumb {
             transform: translateY(-50%) scale(1.1);
             box-shadow: var(--br-comp-switch-thumb-hover-shadow);
-            color: var(--br-unit-colour-primary-60);
         }
     }
 
@@ -145,7 +144,7 @@
         }
     }
 
-    &[aria-disabled="true"] {
+    &[aria-disabled="true"], &:disabled {
         cursor: not-allowed;
 
         .br-switch__label {
