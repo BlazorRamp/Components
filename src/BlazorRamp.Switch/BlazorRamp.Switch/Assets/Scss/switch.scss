@@ -37,7 +37,7 @@
     padding: 0;
     border: none;
     outline: none;
-    pointer-events: none;
+    pointer-events: all;
     font: inherit;
     background-color: transparent;
     color: inherit;
@@ -46,6 +46,8 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: end;
+    
+    cursor:pointer;
 
     &--space {
         justify-content: space-between;
@@ -60,7 +62,7 @@
         outline-color: var(--br-comp-switch-outline-colour);
     }
 
-    &:focus-within:has(*:focus-visible) {
+    &:has(:focus-visible) {
         outline-style: var(--br-comp-switch-outline-style);
         outline-width: var(--br-comp-switch-outline-width);
         outline-offset: var(--br-comp-switch-outline-offset);
@@ -111,15 +113,6 @@
     }
 
     &[aria-disabled="false"]:not(:disabled) {
-        .br-switch__label {
-            pointer-events: all;
-            cursor: pointer;
-        }
-
-        .br-switch__track {
-            pointer-events: all;
-            cursor: pointer;
-        }
 
         &:hover .br-switch__thumb {
             transform: translateY(-50%) scale(1.1);
@@ -148,14 +141,7 @@
         cursor: not-allowed;
 
         .br-switch__label {
-            cursor: not-allowed;
-            pointer-events: all;
             opacity: var(--br-comp-switch-disabled-opacity);
-        }
-
-        .br-switch__track {
-            cursor: not-allowed;
-            pointer-events: all;
         }
 
         .br-switch__thumb {

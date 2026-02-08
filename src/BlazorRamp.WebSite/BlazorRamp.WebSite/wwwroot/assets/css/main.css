@@ -352,7 +352,7 @@
   --br-unit-colour-neutral-saturation: 10;
   --br-unit-colour-primary: olive;
   --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-darker);
-  --br-kbd-background-colour: var(--br-unit-colour-info-lighter) ;
+  --br-kbd-background-colour: var(--br-unit-colour-info-lighter);
 }
 
 :root:has(#theme-toggler[aria-checked=true]) {

@@ -31,7 +31,7 @@
   padding: 0;
   border: none;
   outline: none;
-  pointer-events: none;
+  pointer-events: all;
   font: inherit;
   background-color: transparent;
   color: inherit;
@@ -40,6 +40,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: end;
+  cursor: pointer;
   gap: var(--br-unit-space-4);
 }
 .br-switch--space {
@@ -51,7 +52,7 @@
   outline-offset: var(--br-comp-switch-outline-offset);
   outline-color: var(--br-comp-switch-outline-colour);
 }
-.br-switch:focus-within:has(*:focus-visible) {
+.br-switch:has(:focus-visible) {
   outline-style: var(--br-comp-switch-outline-style);
   outline-width: var(--br-comp-switch-outline-width);
   outline-offset: var(--br-comp-switch-outline-offset);
@@ -107,14 +108,6 @@
     color: Canvas;
   }
 }
-.br-switch[aria-disabled=false]:not(:disabled) .br-switch__label {
-  pointer-events: all;
-  cursor: pointer;
-}
-.br-switch[aria-disabled=false]:not(:disabled) .br-switch__track {
-  pointer-events: all;
-  cursor: pointer;
-}
 .br-switch[aria-disabled=false]:not(:disabled):hover .br-switch__thumb {
   transform: translateY(-50%) scale(1.1);
   box-shadow: var(--br-comp-switch-thumb-hover-shadow);
@@ -146,13 +139,7 @@
   cursor: not-allowed;
 }
 .br-switch[aria-disabled=true] .br-switch__label, .br-switch:disabled .br-switch__label {
-  cursor: not-allowed;
-  pointer-events: all;
   opacity: var(--br-comp-switch-disabled-opacity);
-}
-.br-switch[aria-disabled=true] .br-switch__track, .br-switch:disabled .br-switch__track {
-  cursor: not-allowed;
-  pointer-events: all;
 }
 .br-switch[aria-disabled=true] .br-switch__thumb, .br-switch:disabled .br-switch__thumb {
   pointer-events: none;
