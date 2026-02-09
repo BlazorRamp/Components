@@ -4,11 +4,11 @@
 <PageTitle>@GlobalValues.Page_Title_Busy_Short</PageTitle>
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
-    <h1 class="@GlobalValues.Info_Box_Heading_Class">Busy Indicator With a Short Delay</h1>
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">Busy indicator with a short delay</h1>
 
     <p>
         This portion of the test is to ensure that even with vary short tasks, that messages are announced, in full correctly, IMHO, this is arguably the most complex problem to solve, if you want good results across
-        differing screen reader / browser combinations, given the various nuances, bugs and aggressive focus event announcements (see <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Faqs_Final_Words">@GlobalValues.Page_Title_Final_Words</a>).
+        differing screen reader / browser combinations, given the various nuances, bugs and aggressive focus event announcements (see <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Faqs_Final_Words">@GlobalValues.Page_Title_Faqs_Final_Words</a>).
     </p>
     <p>
         <b>Note:</b> In production I would only supply a start message for tasks that I know may take longer than four or five seconds to complete as well as keeping all announcements succinct; for 
@@ -21,7 +21,7 @@
 
 <section class="@GlobalValues.Info_Box_Class">
 
-    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & Instructions</h2>
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
     <p>
         The busy indicator has only been assigned a dummy task lasting <b>one second</b> (this could have been 10ms), but it has been assigned both of the familiar starting and ending messages sent to the live region service for announcements.
     </p>
@@ -79,9 +79,9 @@
         <span>@GlobalValues.Main_Nav_Section_Heading_BusyIndicator - @GlobalValues.Page_Title_Modal_Busy_Screen</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_SkipTo_Overview">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Busy_Quirks">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_SkipTo - @GlobalValues.Page_Title_SkipTo_Overview_Test</span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_BusyIndicator - @GlobalValues.Page_Title_Busy_Quirks</span>
         <span aria-hidden="true"></span>
     </a>
 </div>
