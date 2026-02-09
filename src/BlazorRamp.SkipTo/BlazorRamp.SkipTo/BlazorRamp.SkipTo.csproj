@@ -16,10 +16,10 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region;, Skip To content</PackageTags>
-    <PackageReleaseNotes>Removal of scss file that got added to the package.</PackageReleaseNotes>
-	<AssemblyVersion>1.0.1</AssemblyVersion>
-	<FileVersion>1.0.1</FileVersion>
-	<Version>1.0.1</Version>
+    <PackageReleaseNotes>Added an additional css property to the optional icon to use the em unit so it scales up with base font-size changes.</PackageReleaseNotes>
+	<AssemblyVersion>1.0.2</AssemblyVersion>
+	<FileVersion>1.0.2</FileVersion>
+	<Version>1.0.2</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 	 <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>

@@ -55,6 +55,8 @@
         @include running-icon;
         min-height: var(--br-unit-wcag-target-2a);
         min-width: var(--br-unit-wcag-target-2a);
+        aspect-ratio:1/1;
+        height:1.5em;
     }
 
     &:focus-visible {
