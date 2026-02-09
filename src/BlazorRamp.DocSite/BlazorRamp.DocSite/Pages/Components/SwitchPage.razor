@@ -40,8 +40,6 @@
     switch has the html <span class="code-span">disabled</span> attribute so it is removed from the Accessibility Tree and will not receive focus.
 </p>
 
-
-
 <section class="section-box" style="max-width:320px">
 
     <Switch @bind-SwitchState="@_airplaneSwitchState" Label="Airplane mode:" AriaDisabled="false" SpaceBetween="false" style="margin-block:1rem;" />
@@ -49,7 +47,10 @@
     <Switch @bind-SwitchState="@_wifiSwitchState" Label="WiFi:" AriaDisabled="false" SpaceBetween="true" style="margin-block:1rem;" disabled />
 </section>
 
-
+<h3 id="screen-reader-quirks" class="@GlobalValues.Info_Box_Heading_Class">Screen reader quirks or known issues</h3>
+<ul aria-labelledby="screen-reader-quirks">
+    <li><b>Narrator</b> paired with <b>Firefox</b> announces button on/off instead of switch on/off.</li>
+</ul>
 
 @code{
     public bool _airplaneSwitchState = false;
