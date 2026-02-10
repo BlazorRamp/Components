@@ -3,7 +3,7 @@
 .br-dialog-framework {
     border: none;
     display: flex;
-    padding: 2rem;
+    padding: var(--br-comp-mdframe-padding);
     min-width: 100%;
     min-height: 100%;
     background-color: transparent;
@@ -12,13 +12,20 @@
         backdrop-filter: blur(2px);
     }
 
+    &:focus-visible {
+        outline-offset: var(--br-comp-mdframe-outline-offset);
+        outline-style: var(--br-comp-mdframe-outline-style);
+        outline-width: var(--br-comp-mdframe-outline-width);
+        outline-color: var(--br-comp-mdframe-outline-colour);
+    }
+
     &__window {
-        min-width: 330px;
-        max-height: 94vh;
+        min-width: var(--br-unit-wcag-reflow-2a);
+        max-height: 95vh;
         height: auto;
-        border: 1px solid var(--control-border-bg);
-        border-radius: var(--control-border-radius);
-        background-color: var(--control-surface-bg);
+        border-width:     var(--br-comp-mdframe-pane-base-border-width);
+        border-radius:    var(--br-comp-mdframe-pane-base-border-radius);
+        background-color: var(--br-comp-mdframe-pane-base-background);
         position: relative;
         width: 100%;
         overflow: hidden;

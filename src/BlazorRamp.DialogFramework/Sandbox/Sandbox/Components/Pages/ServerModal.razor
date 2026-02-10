@@ -1,0 +1,58 @@
+﻿@inject ModalDialogService _dialogService //< < < Service is required.
+@inject ILiveRegionService _liveRegionService //< < < Service is required.
+
+
+@page "/ServerModal"
+@using BlazorRamp.Core.Common.Models
+@using BlazorRamp.Core.Services
+@using BlazorRamp.DialogFramework.Common.Constants
+@using Sandbox.Client.Dialogs
+
+@rendermode InteractiveServer
+
+<button @ref="ButtonRef" class="btn btn-primary mt-3" @onclick="ShowDialog">Show Dialog</button>
+<button class="btn btn-primary mt-3" @onclick="Announce">Speak</button>
+
+
+@code {
+
+    private ElementReference ButtonRef { get; set; }
+
+    private string _outputMessage = String.Empty;
+    private string _location = String.Empty;
+
+    public async Task ShowDialog()
+    {
+
+        //SomePersonData somePersonData = new() { FirstName = "John", Surname = "Doe", Age = 42, Country = "United Kingdom" };
+
+        var dialogOptions = new ModalDialogOptions(HorizontalAlignment.Centre, VerticalAlignment.Top);
+        var dialogParameters = new ModalDialogParameters<SomeForm>();
+
+        //dialogParameters.Add(x => x.SomePersonData, somePersonData);
+
+        var dialogResult = await _dialogService.ShowDialog<SomeForm>(dialogParameters, dialogOptions);
+
+        if(dialogResult.ButtonClicked == DialogResultButtons.Ok)
+        {
+
+        }
+        else
+        {
+
+        }
+
+        await ButtonRef.FocusAsync();
+    }
+
+    private async Task Announce()
+    {
+
+        await _liveRegionService.MakeAnnouncement(new Announcement("Hello how are you doing"));
+    }
+
+
+    protected override void OnInitialized()
+
+        => _location = OperatingSystem.IsBrowser() ? "Client" : "Server";
+}

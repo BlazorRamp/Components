@@ -1,0 +1,36 @@
+﻿@implements IDisposable
+
+@inject ModalDialogService _dialogService
+
+
+
+<div class="dialog" >
+    <!-- Important add a key down handler for the escape key -->
+    <h3>Is it working</h3>
+
+    <input type="text" id="test-dialog" />
+
+</div>
+
+
+@code {
+    private ElementReference ButtonCancelRef { get; set; }
+    private string _dialogTitleID = Guid.Empty.ToString();
+    private bool _isDirty = false;
+
+
+    protected override void OnInitialized()
+    {
+        _dialogTitleID = _dialogService is null ? _dialogTitleID : _dialogService.GetAriaLabelledByID();
+        _dialogService?.RegisterEscapeHandler(HandleEscapeKey);
+    }
+
+    private async Task HandleEscapeKey()
+    {
+        await _dialogService.CloseDialog(ModalDialogResult.Cancel());
+    }
+
+    public void Dispose()
+    
+        => _dialogService?.UnregisterEscapeHandler(HandleEscapeKey);
+}

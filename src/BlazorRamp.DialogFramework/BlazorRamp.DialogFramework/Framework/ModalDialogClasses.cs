@@ -66,3 +66,33 @@ public record NoReturnValue
     public override string ToString() => "Ø";
 }
 
+public class EscapeTrigger
+{
+    private readonly List<WeakReference<Func<Task>>> _handlers = new();
+
+    public bool HasHandlers => _handlers.Any(weakRef => weakRef.TryGetTarget(out _));
+
+    public void Subscribe(Func<Task> handler)
+
+        => _handlers.Add(new WeakReference<Func<Task>>(handler));
+
+    public void Unsubscribe(Func<Task> handler)
+    
+        => _handlers.RemoveAll(weakRef => weakRef.TryGetTarget(out var target) && target == handler);
+    
+
+    public async Task RaiseEscapeKeyPressed()
+    {
+        for (int index = _handlers.Count - 1; index >= 0; index--)
+        {
+            if (_handlers[index].TryGetTarget(out var handler))
+            {
+                await handler.Invoke();
+            }
+            else
+            {
+                _handlers.RemoveAt(index); // Clean up "dead" references
+            }
+        }
+    }
+}

@@ -1,4 +1,5 @@
 using BlazorRamp.Core.Common.Extensions;
+using BlazorRamp.DialogFramework.Common.Extensions;
 using Sandbox.Client.Pages;
 using Sandbox.Components;
 
@@ -10,6 +11,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddBlazorRampCore();
+builder.Services.AddBlazorRampDialogFramework();
 
 var app = builder.Build();
 

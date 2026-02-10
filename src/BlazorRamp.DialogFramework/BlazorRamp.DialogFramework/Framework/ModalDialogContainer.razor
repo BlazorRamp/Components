@@ -9,25 +9,22 @@
     var verticalPosition   = dialogWindow.DialogOptions.VerticalPosition;
     var contentMaxWidth    = dialogWindow.DialogOptions.MaxWidth;
 
-    <!-- 
-        Important the default escape key behavior on the <dialog> has been circumvented in the TypeScript/JavaScript. You must handle this in your component like the demo to remain accessible
-        as users expect this key on modals. Also you should provide an accessible name for the dialog, this is usually done via the aria-labelledby attribute which points to the id of an element in the
-        dialog such as a heading. The value 'dialog-dialogWindow.WindowID.ToString()' used can be obtained in your component for a heading id by calling _dialogService.GetAriaLabelledByID as can
-        be seen in the example dialog components
-    -->
-
-    <dialog id="@dialogWindow.WindowID" class="@GlobalValues.DialogFramework_Class" style="justify-content:@horizontalPosition; align-items:@verticalPosition;" aria-labelledby="dialog-@dialogWindow.WindowID.ToString()">
-           
+    <dialog id="@dialogWindow.WindowID" class="@GlobalValues.DialogFramework_Class" style="justify-content:@horizontalPosition; align-items:@verticalPosition;"
+            aria-labelledby="dialog-@dialogWindow.WindowID.ToString()" @onkeydown="(e) => HandleKeyDown(e, dialogWindow)">
         <div class="@GlobalValues.DialogFramework_Window_Class" style="max-width:@contentMaxWidth;">
-            @dialogWindow.DialogContents
+            <CascadingValue Value="dialogWindow.EscapeTrigger">
+                @dialogWindow.DialogContents
+            </CascadingValue>
         </div>
     </dialog>
 }
 
 @code {
-    protected override void OnInitialized() 
 
-        => _dialogService.OnChanged  += StateHasChanged;
+
+    protected override void OnInitialized()
+
+        => _dialogService.SubscribeToUpdates(StateHasChanged);
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -38,7 +35,27 @@
         await _dialogService.JsOpenModalDialog();
     }
 
+    private async Task HandleKeyDown(KeyboardEventArgs e, ModalDialogWindow window)
+    {
+        if (e.Key == "Escape")
+        {
+            var topmostWindow = _dialogService.DialogWindows.LastOrDefault();
+
+            if (topmostWindow != null && topmostWindow.WindowID == window.WindowID)
+            {
+                if (topmostWindow.EscapeTrigger.HasHandlers)
+                {
+                    await topmostWindow.EscapeTrigger.RaiseEscapeKeyPressed();
+                }
+                else
+                {
+                    await _dialogService.CloseDialog(ModalDialogResult.Cancel());
+                }
+            }
+        }
+    }
+
     public void Dispose()
 
-        => _dialogService.OnChanged -= StateHasChanged;
+        => _dialogService.SubscribeToUpdates(StateHasChanged);
 }

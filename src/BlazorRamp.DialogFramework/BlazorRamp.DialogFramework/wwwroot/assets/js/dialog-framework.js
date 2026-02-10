@@ -1,6 +1,7 @@
 const _cancelHandlerMap = new WeakMap();
+const ANNOUNCEMENT_DIALOG_ID = "blazor-ramp-announcement-history-dialog";
 const getModalDialog = (elementID) => document.getElementById(elementID);
-function openModalDialog(elementID) {
+const openModalDialog = (elementID) => {
     const modalDialog = getModalDialog(elementID);
     if (!modalDialog)
         return;
@@ -8,33 +9,38 @@ function openModalDialog(elementID) {
         addCancelEscapeHandler(modalDialog);
     if (!modalDialog.open)
         modalDialog.showModal();
-}
-function closeModalDialog(elementID) {
+};
+const closeModalDialog = (elementID) => {
     const modalDialog = getModalDialog(elementID);
     if (!modalDialog)
         return;
     removeCancelEscapeHandler(modalDialog);
     if (modalDialog.open)
         modalDialog.close();
-}
-function addCancelEscapeHandler(modalDialog) {
+};
+const addCancelEscapeHandler = (modalDialog) => {
     if (!modalDialog)
         return;
+    const historyDialog = document.getElementById(ANNOUNCEMENT_DIALOG_ID);
     const handler = (event) => {
         if (event.key === "Escape") {
+            if (historyDialog?.contains(event.target) && historyDialog.matches(':popover-open')) {
+                event.stopPropagation(); //stop blazor getting the event which it uses to notify dialog component
+                return; // Allow escape to work normally for announcement history
+            }
             event.preventDefault();
         }
     };
     modalDialog.addEventListener('keydown', handler);
     _cancelHandlerMap.set(modalDialog, handler);
-}
-function removeCancelEscapeHandler(modalDialog) {
+};
+const removeCancelEscapeHandler = (modalDialog) => {
     if (!modalDialog)
         return;
     const handler = _cancelHandlerMap.get(modalDialog);
     if (handler)
         modalDialog.removeEventListener('keydown', handler);
     _cancelHandlerMap.delete(modalDialog);
-}
+};
 export { openModalDialog, closeModalDialog };
-//# sourceMappingURL=modal-dialog.js.map
+//# sourceMappingURL=dialog-framework.js.map

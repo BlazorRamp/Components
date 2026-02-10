@@ -1,8 +1,11 @@
 ﻿const _cancelHandlerMap = new WeakMap();
 
+const ANNOUNCEMENT_DIALOG_ID = "blazor-ramp-announcement-history-dialog";
+
+
 const getModalDialog = (elementID: string): HTMLDialogElement | null => document.getElementById(elementID) as HTMLDialogElement | null;
 
-function openModalDialog(elementID: string): void {
+const openModalDialog = (elementID: string): void => {
 
     const modalDialog = getModalDialog(elementID);
 
@@ -12,7 +15,7 @@ function openModalDialog(elementID: string): void {
 
     if (!modalDialog.open) modalDialog.showModal();
 }
-function closeModalDialog(elementID: string): void {
+const closeModalDialog = (elementID: string): void => {
 
     const modalDialog = getModalDialog(elementID);
 
@@ -23,12 +26,21 @@ function closeModalDialog(elementID: string): void {
     if (modalDialog.open) modalDialog.close();
 }
 
-function addCancelEscapeHandler(modalDialog: HTMLDialogElement) {
+const addCancelEscapeHandler = (modalDialog: HTMLDialogElement):void => {
 
     if (!modalDialog) return;
 
+    const historyDialog: HTMLDialogElement | null = document.getElementById(ANNOUNCEMENT_DIALOG_ID) as HTMLDialogElement;
+
     const handler = (event: KeyboardEvent) => {
         if (event.key === "Escape") {
+
+            if (historyDialog?.contains(event.target as Node) && historyDialog.matches(':popover-open')) {
+                event.stopPropagation();//stop blazor getting the event which it uses to notify dialog component
+
+                return; // Allow escape to work normally for announcement history
+            }
+
             event.preventDefault();
         }
     };
@@ -37,7 +49,8 @@ function addCancelEscapeHandler(modalDialog: HTMLDialogElement) {
 
     _cancelHandlerMap.set(modalDialog, handler);
 }
-function removeCancelEscapeHandler(modalDialog: HTMLDialogElement) {
+
+const removeCancelEscapeHandler = (modalDialog: HTMLDialogElement):void => {
 
     if (!modalDialog) return;
 
