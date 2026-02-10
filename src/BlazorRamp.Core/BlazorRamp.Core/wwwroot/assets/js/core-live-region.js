@@ -230,6 +230,24 @@ const registerDocumentKeyDownHandler = (componentsElement, originalParentElement
         }
     });
 };
+//const registerMutationObserver = (containerElement: HTMLElement, componentsElement: HTMLElement): void => {
+//    const observer = new MutationObserver((mutationsList) => {
+//        for (const mutation of mutationsList) {
+//            const target = mutation.target as HTMLElement;
+//            if (target.tagName === 'DIALOG' && mutation.attributeName === 'open') {
+//                const dialog = target as HTMLDialogElement;
+//                if (dialog.open) {
+//                    dialog.appendChild(componentsElement);
+//                } else {
+//                    if (componentsElement.parentElement !== containerElement) {
+//                        containerElement.appendChild(componentsElement);
+//                    }
+//                }
+//            }
+//        }
+//    });
+//    observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['open'] });
+//};
 const registerMutationObserver = (containerElement, componentsElement) => {
     const observer = new MutationObserver((mutationsList) => {
         for (const mutation of mutationsList) {
@@ -240,8 +258,15 @@ const registerMutationObserver = (containerElement, componentsElement) => {
                     dialog.appendChild(componentsElement);
                 }
                 else {
-                    if (componentsElement.parentElement !== containerElement) {
-                        containerElement.appendChild(componentsElement);
+                    //Check if we are coming from nested dialogs i.e one closed but there is still one open so move to that one.
+                    const remainingDialogs = Array.from(document.querySelectorAll("dialog")).filter(d => d.open && d !== dialog);
+                    if (remainingDialogs.length > 0) {
+                        const topDialog = remainingDialogs[remainingDialogs.length - 1];
+                        topDialog.appendChild(componentsElement);
+                    }
+                    else {
+                        if (componentsElement.parentElement !== containerElement)
+                            containerElement.appendChild(componentsElement);
                     }
                 }
             }
