@@ -1,13 +1,18 @@
 ﻿:root {
-    --br-comp-mdframe-padding: var(--br-unit-space-5);
+    --br-comp-mdframe-dialog-padding: var(--br-unit-space-5);
     //
+    --br-comp-mdframe-box-shadow: var(--br-comp-history-box-shadow);
     --br-comp-mdframe-outline-style: var(--br-comp-all-outline-style);
     --br-comp-mdframe-outline-width: var(--br-comp-all-outline-width);
     --br-comp-mdframe-outline-offset: 0px;
     --br-comp-mdframe-outline-colour: var(--br-comp-all-outline-colour);
     //
-    --br-comp-mdframe-pane-base-border-width: var(--br-comp-all-pane-base-border-width);
-    --br-comp-mdframe-pane-base-border-radius: var(--br-unit-radius-7);
-    --br-comp-mdframe-pane-base-background: var(--br-comp-all-pane-base-border-colour);
+    --br-comp-mdframe-pane-base-background-colour: var(--br-comp-all-overlay-colour);
+    //
+    --br-comp-mdframe-area-content-border-style: var(--br-comp-all-area-content-border-style);
+    --br-comp-mdframe-area-content-border-width: var(--br-comp-all-area-content-border-width);
+    --br-comp-mdframe-area-content-border-colour: var(--br-comp-all-area-content-border-colour);
+    --br-comp-mdframe-area-content-border-radius: var(--br-unit-radius-7);
+    --br-comp-mdframe-area-content-background: var(--br-comp-all-area-content-background);
     //
 }

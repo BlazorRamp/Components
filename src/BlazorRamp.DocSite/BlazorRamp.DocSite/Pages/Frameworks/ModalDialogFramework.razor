@@ -2,7 +2,513 @@
 
 <PageTitle>@GlobalValues.Page_Title_Frameworks_Modal_Dialog</PageTitle>
 
-<h1 class="page-heading">. . @GlobalValues.Page_Heading_Frameworks_Modal_Dialog . . aiming for release mid / end February 2026</h1>
+<h1 class="page-heading">. . @GlobalValues.Page_Heading_Frameworks_Modal_Dialog . . docs in progress . . not long now</h1>
+
+<p>
+    The dialog framework component and service together make up a framework that allow you to have your content placed within a an HTML dialog element, with the freamwork
+    taking care of all interactions with the HTML Dialog API. 
+</p>
+<p>
+    This content is in the form of a standard blazor component and as such you just define your <span class="code-span">[Parameter]</span> properties as normal as the means of 
+    passing data into your component. When you want to show your component in a dialog you just invoke the methods on the service providing it with the values for your component parameters.
+</p>
+<p>
+    The framework allows for nested dialogs and as it overrides the default HTML Dialog API escape key mechanism, via a subscription mechanism on the service, it gives you the ability
+    to close the dialog when the escape key is pressed, or perhaps open another dialog asking for confirmation if the current dialog was a pop up form with unsaved changes.
+</p>
+<p>
+    As the HTML dialog makes everything beneath it inert, this also makes any centralised aria regions inert. However, the announcement history component and its associated live regions
+    react to dialog openings move themselves so the live regions are always available via the live region service.
+</p>
+<section>
+    <h2 class="page-heading">Installation</h2>
+
+    <p>
+        <b>Note: </b> It is a requirement that the Blazor Ramp Core <span class="code-span">core-live-region.js</span> script, <span class="code-span">LiveRegionService</span>, and
+        associated <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component are added alongside this component’s specific
+        requirements (a stylesheet reference in this instance). You do not need to add the BlazorRamp.Core package separately, as BlazorRamp.Core is included as a transitive package, you only need to add the packages that contain the components
+        that you wish to use i.e the <b>BlazorRamp.DialogFramework</b> NuGet package.
+    </p>
+    <p>
+        Please follow the instructions in the <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Overview_Getting_Started">@GlobalValues.Main_Nav_Section_Heading_About - @GlobalValues.Page_Heading_Overview_Getting_Started</a>
+        ensuring that in the <span class="code-span">&lt;head&gt;</span> section you also add the Dialog Framework stylesheet as follows:
+    </p>
+    <CodeBox CodeBlock="@CodeSnippets.Add_Dialog_Framework_Style_Sheet" AriaLabel="Add dialog framew stylesheet code block" />
+    
+
+    <p>
+        Register the dialog framework service in the <span class="code-span">Program.cs</span> file (Both server and client if using Server and WebAssembly interactive rendermode) and
+        add the following line to the service registration section if you are using the <span class="code-span">Microsoft.Extensions.DependencyInjection</span> package:
+    </p>
+    <CodeBox CodeBlock="@CodeSnippets.Add_Dialog_Framework_Service" AriaLabel="Register live region service code block" />
+    <p>
+        For other Dependency Injection providers, register the type <span class="code-span">ModalDialogService</span> as you normally would.
+    </p>
+
+    <p>
+        Add the <span class="code-span">&lt;ModalDialogContainer /&gt;</span> component . . . in progress
+@*             <span class="code-span">Routes.razor</span> file or <span class="code-span">App.razor</span> file depending on your project type: *@
+    </p>
+@*         <CodeBox CodeBlock="@CodeSnippets.Add_Announcement_History_Component" AriaLabel="Add announcement history component code block" /> *@
+
+</section>
+
+<section>
+    <h2>Dialog serivce & assoicated classes</h2>
+    <p>
+        The following provides details of the dialog service and all related classes
+    </p>
+    <section class="code-table two-col-descriptive" style="margin-top:1.5rem;">
+
+        <h3 id="dialog-service" class="code-table__heading">ModalDialogService</h3>
+
+        <table aria-labelledby="dialog-service">
+
+            <thead>
+                <tr>
+                    <th scope="col">Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>CloseDialog(ModalDialogResult dialogResult)</td>
+                    <td>
+                        Closes the dialog and sets the opening task as completed, in order for the <span class="code-span">ModalDialogResult</span>  to be returned from the awaited
+                        <span class="code-span">ShowModal</span>. Returns a <span class="code-span">Task</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>GetAriaLabelledByID()</td>
+                    <td>
+                        Property to get the unique <span class="code-span">string</span> value that was added to the <span class="code-span">aria-labelledby</span> attribute on the
+                        HTML <span class="code-span">dialog</span> elenent. Uss this value for the <span class="code-span">id</span> attribute on your heading to give the dialog an accessible
+                        name
+                    </td>
+                </tr>
+                <tr>
+                    <td>RegisterEscapeHandler(Func&lt;Task&gt; handler)</td>
+                    <td>
+                        Allows for the registering of a handler that will be called when the escape key is pressed for your dialog window.
+                        <b>Note: </b>If you do not provide a handler and the escape key is presed the dialog will close and return a cancelled result.
+                    </td>
+                </tr>
+                <tr>
+                    <td>UnregisterEscapeHandler(Func&lt;Task&gt; handler)</td>
+                    <td>Unregisters the escape handler. <b>Note: </b>Weak references are used but you should call this in your components dispose method.</td>
+                </tr>
+                <tr>
+                    <td>ShowDialog&lt;TDialog&gt;()</td>
+                    <td>
+                        Shows the dialog containing your component (<span>TDialog</span>) with no paramater data (<sapn class="code-span">ModalDialogParameters&lt;TDialog&gt;</sapn>) and uses the
+                        default values for the dialog options, <span class="code-span">ModalDialogOptions</span>.
+                        Returns a <span class="code-span">Task&lt;ModalDialogResult&gt;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ShowDialog&lt;TDialog&gt;(ModalDialogOptions dialogOptions)</td>
+                    <td>
+                        Shows the dialog containing your component (<span>TDialog</span>) with no paramater data, but with <span class="code-span">ModalDialogOptions</span> specified.
+                        Returns a <span class="code-span">Task&lt;ModalDialogResult&gt;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ShowDialog&lt;TDialog&gt;(ModalDialogParameters&lt;TDialog&gt; dialogParameters)</td>
+                    <td>
+                        Shows the dialog containing your component (<span>TDialog</span>) with <span class="code-span">ModalDialogParameters&lt;TDialog&gt;</span> data, using the default values
+                        for the dialog otpions, <span class=code-span">ModalDialogOptions</span>.
+                        Returns a <span class="code-span">Task&lt;ModalDialogResult&gt;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ShowDialog&lt;TDialog&gt;(ModalDialogParameters&lt;TDialog&gt; dialogParameters, ModalDialogOptions dialogOptions)</td>
+                    <td>
+                        Shows the dialog containing your component (<span>TDialog</span>) with both <span class="code-span">ModalDialogParameters&lt;TDialog&gt;</span> data
+                        andd ialog otpions, <span class=code-span">ModalDialogOptions</span>.  Returns a <span class="code-span">Task&lt;ModalDialogResult&gt;</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table two-col-descriptive" style="margin-top:1.5rem;">
+
+        <h3 id="dialog-options" class="code-table__heading">ModalDialogOptions class</h3>
+
+        <table aria-labelledby="dialog-options">
+
+            <thead>
+                <tr>
+                    <th scope="col">Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pending ...</td>
+                    <td>Pending ...</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table two-col-descriptive" style="margin-top:1.5rem;">
+
+        <h3 id="dialog-parameters" class="code-table__heading">ModalDialogParameter&lt;TDialog&gt; class</h3>
+
+        <table aria-labelledby="dialog-parameters">
+
+            <thead>
+                <tr>
+                    <th scope="col">Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pending ...</td>
+                    <td>Pending ...</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table two-col-descriptive" style="margin-top:1.5rem;">
+
+        <h3 id="dialog-result" class="code-table__heading">ModalDialogResult class</h3>
+
+        <table aria-labelledby="dialog-result">
+
+            <thead>
+                <tr>
+                    <th scope="col">Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pending ...</td>
+                    <td>Pending ...</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table two-col-descriptive" style="margin-top:1.5rem;">
+
+        <h3 id="dialog-result" class="code-table__heading">NoReturnValue record (Unit)</h3>
+
+        <table aria-labelledby="dialog-result">
+
+            <thead>
+                <tr>
+                    <th scope="col">Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pending ...</td>
+                    <td>Pending ...</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting enums</h2>
+
+    <section class="code-table">
+
+        <h3 id="horizontal-alignment-enum" class="code-table__heading">HorizontalAlignment enum</h3>
+
+        <table aria-labelledby="horizontal-alignment-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pending ...</td>
+                    <td>Pending ...</td>
+                    <td>Pending ...</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="vertical-alignment-enum" class="code-table__heading">VerticalAlignment enum</h3>
+
+        <table aria-labelledby="vertical-alignment-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pending ...</td>
+                    <td>Pending ...</td>
+                    <td>Pending ...</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="dialog-result-buttons-enum" class="code-table__heading">DialogResultButtons enum</h3>
+
+        <table aria-labelledby="dialog-result-buttons-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pending ...</td>
+                    <td>Pending ...</td>
+                    <td>Pending ...</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+</section>
+<section>
+    <h2 class="page-heading">CSS variables defined for the dialog framework component.</h2>
+
+    <p>
+        The following sections outline all of the css variables that can be set to alter the styling of the dialog framework component.
+        You can of course also override its style classes directly.
+    </p>
+
+    <section class="code-table">
+
+        <h3 id="dialog-framework-outline-variables" class="code-table__heading">Dialog framework outline variables</h3>
+        <p>
+            The outline on <span class="code-span">:focus-visible</span> is what you will see around where you place your content
+        </p>
+        <table aria-labelledby="dialog-framework-outline-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> --br-comp-mdframe-outline-style:</td>
+                    <td>var(--br-comp-all-outline-style)</td>
+                    <td>Style of the outline around the component on focus - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-outline-width</td>
+                    <td>var(--br-comp-all-outline-width)</td>
+                    <td>Width of the outline - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-outline-offset</td>
+                    <td>var(--br-unit-outline-offset-0)</td>
+                    <td>Outline offset - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-outline-colour</td>
+                    <td>var(--br-comp-all-outline-colour)</td>
+                    <td>The outline colour - uses the shared component variable.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="pane-base-variables" class="code-table__heading">Pane base variables</h3>
+
+        <table aria-labelledby="pane-base-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-mdframe-pane-base-background-colour</td>
+                    <td>var(--br-comp-all-overlay-colour)</td>
+                    <td>This is the background colour of the dialog backdrop/overlay - <b>does not use the shared component variable</b>.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="content-area-variables" class="code-table__heading">Content area variables</h3>
+        <p>
+            The content area in the dialog framework is where you component will go.
+        </p>
+        <table aria-labelledby="content-area-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-mdframe-area-content-background</td>
+                    <td>var(--br-comp-all-area-content-background)</td>
+                    <td>The background colour of the content areas - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-area-content-border-style</td>
+                    <td>var(--br-comp-all-area-content-border-style)</td>
+                    <td>The border style - uses the shared component variable.</td>
+                </tr>
+                 <tr>
+                    <td>--br-comp-mdframe-area-content-border-width</td>
+                    <td>var(--br-comp-all-area-content-border-width)</td>
+                    <td>The border width - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-area-content-border-colour</td>
+                    <td>var(--br-comp-all-area-content-border-colour)</td>
+                    <td>The border colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-area-content-border-radius</td>
+                    <td>var(--br-unit-radius-7)</td>
+                    <td>The radius of each border corner - <b>does not use the shared component variable</b>.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="misc-variables" class="code-table__heading">Miscellaneous variables</h3>
+
+        <table aria-labelledby="misc-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-mdframe-dialog-padding</td>
+                    <td>var(--br-unit-space-5)</td>
+                    <td>The padding between the browser window and the content area when used with maximum dimensions - <b>No shared variable for this property.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-box-shadow</td>
+                    <td>var(--br-comp-history-box-shadow)</td>
+                    <td>Box shadow areound the content areas - <b>No shared variable for this property.</b></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
+        <p>
+            The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
+            by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
+        </p>
+
+        <table aria-labelledby="unmapped-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-mdframe-outline-offset</td>
+                    <td>var(--br-unit-outline-offset-0)</td>
+                    <td>Outline offset - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-pane-base-background-colour</td>
+                    <td>var(--br-comp-all-overlay-colour)</td>
+                    <td>This is the background colour of the dialog backdrop/overlay - <b>does not use the shared component variable</b>.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-area-content-border-radius</td>
+                    <td>var(--br-unit-radius-7)</td>
+                    <td>The radius of each border corner - <b>does not use the shared component variable</b>.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-dialog-padding</td>
+                    <td>var(--br-unit-space-5)</td>
+                    <td>The padding between the browser window and the content area when used with maximum dimensions - <b>No shared variable for this property.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-box-shadow</td>
+                    <td>var(--br-comp-history-box-shadow)</td>
+                    <td>Box shadow areound the content areas - <b>No shared variable for this property.</b></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+</section>
+
+<section class="info-box" aria-labelledby="release-history">
+
+    <h2 id="release-history">Release history</h2>
+
+    <ol reversed>
+        <li>
+            <h3>
+                Version 1.0.0 — <time datetime="2026-02-01">TBA</time>
+            </h3>
+            <ul>
+                <li>Initial release part of the <span class="code-span">BlazorRamp.DialogFramework v1.0.0</span> NuGet package, multi-targeting <span class="code-span">.NET 8.0, NET 9.0 & .NET10.0</span></li>
+            </ul>
+        </li>
+    </ol>
+
+</section>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Services_Live_Region">

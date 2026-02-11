@@ -6,5 +6,5 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
 builder.Services.AddBlazorRampCore();
-builder.Services.AddBlazorRampDialogFramework();
+builder.Services.AddBlazorRampDialogService();
 await builder.Build().RunAsync();

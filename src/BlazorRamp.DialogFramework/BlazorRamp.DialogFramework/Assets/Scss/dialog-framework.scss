@@ -3,34 +3,38 @@
 .br-dialog-framework {
     border: none;
     display: flex;
-    padding: var(--br-comp-mdframe-padding);
+    padding: var(--br-comp-mdframe-dialog-padding);
     min-width: 100%;
     min-height: 100%;
     background-color: transparent;
 
     &::backdrop {
-        backdrop-filter: blur(2px);
-    }
-
-    &:focus-visible {
-        outline-offset: var(--br-comp-mdframe-outline-offset);
-        outline-style: var(--br-comp-mdframe-outline-style);
-        outline-width: var(--br-comp-mdframe-outline-width);
-        outline-color: var(--br-comp-mdframe-outline-colour);
+        background-color: var(--br-comp-mdframe-pane-base-background-colour);
     }
 
     &__window {
         min-width: var(--br-unit-wcag-reflow-2a);
+        min-height: calc(var(--br-unit-wcag-reflow-2a)/ 2);
         max-height: 95vh;
         height: auto;
-        border-width:     var(--br-comp-mdframe-pane-base-border-width);
-        border-radius:    var(--br-comp-mdframe-pane-base-border-radius);
-        background-color: var(--br-comp-mdframe-pane-base-background);
+        border-width: var(--br-comp-mdframe-area-content-border-width);
+        border-radius: var(--br-comp-mdframe-area-content-border-radius);
+        border-style: var(--br-comp-mdframe-area-content-border-style);
+        border-color: var(--br-comp-mdframe-area-content-border-colour);
+        background-color: var(--br-comp-mdframe-area-content-background);
         position: relative;
         width: 100%;
         overflow: hidden;
-        opacity: 0;
         animation: fadeIn 150ms ease-in forwards;
+        box-shadow: var(--br-comp-mdframe-box-shadow);
+
+        &:focus-visible {
+            border-color: red;
+            outline-offset: var(--br-comp-mdframe-outline-offset);
+            outline-style: var(--br-comp-mdframe-outline-style);
+            outline-width: var(--br-comp-mdframe-outline-width);
+            outline-color: var(--br-comp-mdframe-outline-colour);
+        }
     }
 }
 

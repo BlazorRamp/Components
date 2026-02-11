@@ -6,17 +6,17 @@ namespace BlazorRamp.DialogFramework.Framework;
 
 public class ModalDialogService(IJSRuntime jsRuntime)
 {
-    private IJSObjectReference?              _jsModule;
-    private readonly IJSRuntime              _jsRuntime = jsRuntime;
+    private IJSObjectReference? _jsModule;
+    private readonly IJSRuntime _jsRuntime = jsRuntime;
     private readonly List<ModalDialogWindow> _dialogWindows = new();
-    public IReadOnlyList<ModalDialogWindow> DialogWindows => _dialogWindows.AsReadOnly();
+    internal IReadOnlyList<ModalDialogWindow> DialogWindows => _dialogWindows.AsReadOnly();
 
     internal event Action OnChanged = delegate { };//add one to the invocation list to stop null and compiler null warning
 
-    public void SubscribeToUpdates(Action updateHandler)                                                => OnChanged += updateHandler;
-    public void UnsubscribeFromUpdates(Action updateHandler)                                            => OnChanged -= updateHandler;
-    public Task<ModalDialogResult> ShowDialog<TDialog>()                                                => ShowDialog<TDialog>([], new());
-    public Task<ModalDialogResult> ShowDialog<TDialog>(ModalDialogOptions dialogOptions)                => ShowDialog<TDialog>([], dialogOptions);
+    public void SubscribeToUpdates(Action updateHandler) => OnChanged += updateHandler;
+    public void UnsubscribeFromUpdates(Action updateHandler) => OnChanged -= updateHandler;
+    public Task<ModalDialogResult> ShowDialog<TDialog>() => ShowDialog<TDialog>([], new());
+    public Task<ModalDialogResult> ShowDialog<TDialog>(ModalDialogOptions dialogOptions) => ShowDialog<TDialog>([], dialogOptions);
     public Task<ModalDialogResult> ShowDialog<TDialog>(ModalDialogParameters<TDialog> dialogParameters) => ShowDialog<TDialog>(dialogParameters, new());
     public Task<ModalDialogResult> ShowDialog<TDialog>(ModalDialogParameters<TDialog> dialogParameters, ModalDialogOptions dialogOptions)
     {

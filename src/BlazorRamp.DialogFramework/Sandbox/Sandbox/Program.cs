@@ -11,7 +11,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddBlazorRampCore();
-builder.Services.AddBlazorRampDialogFramework();
+builder.Services.AddBlazorRampDialogService();
 
 var app = builder.Build();
 

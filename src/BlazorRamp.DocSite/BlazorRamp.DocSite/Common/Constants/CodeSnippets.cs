@@ -19,7 +19,12 @@ public class CodeSnippets
             <link rel="stylesheet" href="_content/BlazorRamp.SkipTo/assets/css/skip-to.min.css" />
         </head>
         """;
-
+    public const string Add_Dialog_Framework_Style_Sheet = """
+        <head>
+            <link rel="stylesheet" href="_content/BlazorRamp.Core/assets/css/core.min.css" />
+            <link rel="stylesheet" href="_content/BlazorRamp.DialogFramework/assets/css/dialog-framework.min.css" />
+        </head>
+        """;
     public const string Add_Switch_Style_Sheet = """
         <head>
             <link rel="stylesheet" href="_content/BlazorRamp.Core/assets/css/core.min.css" />
@@ -38,6 +43,11 @@ public class CodeSnippets
         @using BlazorRamp.Core.Common.Extensions;
 
         builder.Services.AddBlazorRampCore();
+        """;
+    public const string Add_Dialog_Framework_Service = """
+        @using BlazorRamp.DialogFramew.Common.Extensions;
+
+        builder.Services.AddBlazorRampDialogService();
         """;
 
     public const string Add_Announcement_History_Component = """

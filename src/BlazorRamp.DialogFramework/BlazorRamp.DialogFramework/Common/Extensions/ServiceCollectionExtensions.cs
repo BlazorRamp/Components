@@ -5,7 +5,7 @@ namespace BlazorRamp.DialogFramework.Common.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddBlazorRampDialogFramework(this IServiceCollection services)
+    public static IServiceCollection AddBlazorRampDialogService(this IServiceCollection services)
     {
         services.AddScoped<ModalDialogService>();
         return services;

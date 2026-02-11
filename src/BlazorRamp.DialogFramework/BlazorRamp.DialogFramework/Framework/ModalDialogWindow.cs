@@ -2,9 +2,9 @@
 
 namespace BlazorRamp.DialogFramework.Framework;
 
-public class ModalDialogWindow(Guid windowID, Type dialogType, ModalDialogParameters dialogParameters, ModalDialogOptions dialogOptions)
+internal class ModalDialogWindow(Guid windowID, Type dialogType, ModalDialogParameters dialogParameters, ModalDialogOptions dialogOptions)
 {
-    internal TaskCompletionSource<ModalDialogResult> TaskSource { get; } = new TaskCompletionSource<ModalDialogResult>();
+    public TaskCompletionSource<ModalDialogResult> TaskSource { get; } = new TaskCompletionSource<ModalDialogResult>();
     public Task<ModalDialogResult> ShowDialogTask => TaskSource.Task;
 
     public EscapeTrigger         EscapeTrigger      { get; } = new();

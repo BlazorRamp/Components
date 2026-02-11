@@ -8,9 +8,9 @@ namespace BlazorRamp.DialogFramework.Framework;
 
 public class ModalDialogOptions (HorizontalAlignment horizontalAlignment = HorizontalAlignment.Centre, VerticalAlignment verticalAlignment = VerticalAlignment.Centre, int maxWidthPercent = 70)
 {
-    public string HorizonalPosition { get; } = horizontalAlignment switch { HorizontalAlignment.Left => "flex-start", HorizontalAlignment.Centre => "center", HorizontalAlignment.Right => "flex-end", _ => "center" };
-    public string VerticalPosition  { get; } = verticalAlignment switch { VerticalAlignment.Top => "flex-start", VerticalAlignment.Centre => "center", VerticalAlignment.Bottom => "flex-end", _ => "center" };
-    public string MaxWidth          { get; } = maxWidthPercent > 90 ? "90%" : maxWidthPercent + "%";
+    public string HorizonalPosition { get; } = horizontalAlignment switch { HorizontalAlignment.Left => "start", HorizontalAlignment.Centre => "center", HorizontalAlignment.Right => "end", _ => "center" };
+    public string VerticalPosition  { get; } = verticalAlignment switch { VerticalAlignment.Top => "start", VerticalAlignment.Centre => "center", VerticalAlignment.Bottom => "end", _ => "center" };
+    public string MaxWidth          { get; } = maxWidthPercent > 100 ? "100%" : maxWidthPercent + "%";
 
 }
 
@@ -66,7 +66,7 @@ public record NoReturnValue
     public override string ToString() => "Ø";
 }
 
-public class EscapeTrigger
+internal class EscapeTrigger
 {
     private readonly List<WeakReference<Func<Task>>> _handlers = new();
 
