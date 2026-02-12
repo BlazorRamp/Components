@@ -1,16 +1,21 @@
 ﻿@inject ModalDialogService _dialogService //< < < Service is required.
 @inject ILiveRegionService _liveRegionService //< < < Service is required.
 
-@page "/client-modal"
 
-@rendermode InteractiveWebAssembly
+@page "/auto-modal"
+@using BlazorRamp.Core.Common.Models
+@using BlazorRamp.Core.Services
+@using BlazorRamp.DialogFramework.Common.Constants
+@using Sandbox.Client.Dialogs
 
-<ModalDialogContainer @rendermode="InteractiveWebAssembly" />
+@rendermode InteractiveAuto
 
+<ModalDialogContainer />
 
 <p><b>Code is running on the: @_location</b></p>
 
 <button @ref="ButtonRef" class="btn btn-primary mt-3" @onclick="ShowDialog">Show Dialog</button>
+
 
 
 @if (_outputVisible)
@@ -32,10 +37,10 @@
 
     public async Task ShowDialog()
     {
-        SomePersonData somePersonData = new("John","Doe", 42,"United Kingdom");
+        SomePersonData somePersonData = new("John", "Doe", 42, "United Kingdom");
 
-        var dialogOptions     = new ModalDialogOptions(HorizontalAlignment.Centre, VerticalAlignment.Top);
-        var dialogParameters  = new ModalDialogParameters<SomeForm>();
+        var dialogOptions = new ModalDialogOptions(HorizontalAlignment.Centre, VerticalAlignment.Top);
+        var dialogParameters = new ModalDialogParameters<SomeForm>();
 
         dialogParameters.Add(x => x.SomePersonData, somePersonData);//The parameter/type and the data
 

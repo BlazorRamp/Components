@@ -1,58 +1,59 @@
 ﻿@inject ModalDialogService _dialogService //< < < Service is required.
 @inject ILiveRegionService _liveRegionService //< < < Service is required.
 
-
-@page "/ServerModal"
-@using BlazorRamp.Core.Common.Models
-@using BlazorRamp.Core.Services
-@using BlazorRamp.DialogFramework.Common.Constants
-@using Sandbox.Client.Dialogs
+@page "/server-modal"
 
 @rendermode InteractiveServer
 
 <button @ref="ButtonRef" class="btn btn-primary mt-3" @onclick="ShowDialog">Show Dialog</button>
-<button class="btn btn-primary mt-3" @onclick="Announce">Speak</button>
+
+<ModalDialogContainer @rendermode="InteractiveServer" />
+
+@if(_outputVisible)
+{
+    <p style="margin-top:2rem;">
+        <b>The result: </b> @_outputMessage
+    </p>
+}
 
 
 @code {
 
     private ElementReference ButtonRef { get; set; }
 
+    private bool   _outputVisible = false;
     private string _outputMessage = String.Empty;
     private string _location = String.Empty;
 
     public async Task ShowDialog()
     {
+        _outputVisible = false;
 
-        //SomePersonData somePersonData = new() { FirstName = "John", Surname = "Doe", Age = 42, Country = "United Kingdom" };
+        SomePersonData somePersonData = new("John", "Doe", 42, "United Kingdom");
 
-        var dialogOptions = new ModalDialogOptions(HorizontalAlignment.Centre, VerticalAlignment.Top,100);
+        var dialogOptions = new ModalDialogOptions(HorizontalAlignment.Centre, VerticalAlignment.Top);
         var dialogParameters = new ModalDialogParameters<SomeForm>();
 
-        //dialogParameters.Add(x => x.SomePersonData, somePersonData);
+        dialogParameters.Add(x => x.SomePersonData, somePersonData);//The parameter/type and the data
 
         var dialogResult = await _dialogService.ShowDialog<SomeForm>(dialogParameters, dialogOptions);
 
-        if(dialogResult.ButtonClicked == DialogResultButtons.Ok)
+        if (dialogResult.ButtonClicked == DialogResultButtons.Ok)
         {
-
+            _outputMessage = "The data returned was:" + dialogResult.Data.ToString();
         }
         else
         {
-
+            _outputMessage = "The operation was cancelled.";
         }
+
+        _outputVisible = true; 
 
         await ButtonRef.FocusAsync();
     }
-
-    private async Task Announce()
-    {
-
-        await _liveRegionService.MakeAnnouncement(new Announcement("Hello how are you doing"));
-    }
-
 
     protected override void OnInitialized()
 
         => _location = OperatingSystem.IsBrowser() ? "Client" : "Server";
 }
+
