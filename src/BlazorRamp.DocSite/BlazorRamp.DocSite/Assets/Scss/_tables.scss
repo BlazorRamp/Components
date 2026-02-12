@@ -2,6 +2,7 @@
 @use "_functions" as *;
 
 .code-table {
+    overflow-x: auto;
 
     &__heading {
         color: var(--br-code-table-heading-text);
@@ -59,8 +60,14 @@
             color: inherit;
         }
 
+        &[colspan] {
+            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+        }
+
         padding: var(--br-unit-space-3);
     }
+
+
 
     &--two-col-descriptive {
 

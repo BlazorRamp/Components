@@ -785,6 +785,9 @@ body #app__main {
   outline-color: var(--br-comp-all-outline-colour);
 }
 
+.code-table {
+  overflow-x: auto;
+}
 .code-table__heading {
   color: var(--br-code-table-heading-text);
 }
@@ -833,6 +836,9 @@ body #app__main {
 .code-table td:last-child {
   font-family: var(--br-unit-font-family-default);
   color: inherit;
+}
+.code-table td[colspan] {
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
 }
 .code-table--two-col-descriptive td:last-child {
   border-inline: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);

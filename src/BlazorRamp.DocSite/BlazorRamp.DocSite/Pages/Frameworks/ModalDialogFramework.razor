@@ -1,24 +1,25 @@
-﻿@attribute [Route(GlobalValues.Path_Frameworks_Modal_Dialog)]
+﻿@using BlazorRamp.Core.Components.LiveRegion
+@attribute [Route(GlobalValues.Path_Frameworks_Modal_Dialog)]
 
 <PageTitle>@GlobalValues.Page_Title_Frameworks_Modal_Dialog</PageTitle>
 
-<h1 class="page-heading">. . @GlobalValues.Page_Heading_Frameworks_Modal_Dialog . . docs in progress . . not long now</h1>
+<h1 class="page-heading">@GlobalValues.Page_Heading_Frameworks_Modal_Dialog . . docs in progress . . not long now</h1>
 
 <p>
-    The dialog framework component and service together make up a framework that allow you to have your content placed within a an HTML dialog element, with the freamwork
-    taking care of all interactions with the HTML Dialog API. 
+    The dialog framework component and service together make up a framework that allow you to have your content placed within a an HTML dialog element, with the framework
+    taking care of all interactions with the HTML Dialog API.
 </p>
 <p>
-    This content is in the form of a standard blazor component and as such you just define your <span class="code-span">[Parameter]</span> properties as normal as the means of 
+    This content is in the form of a standard blazor component and as such you just define your <span class="code-span">[Parameter]</span> properties as normal as the means of
     passing data into your component. When you want to show your component in a dialog you just invoke the methods on the service providing it with the values for your component parameters.
 </p>
 <p>
     The framework allows for nested dialogs and as it overrides the default HTML Dialog API escape key mechanism, via a subscription mechanism on the service, it gives you the ability
-    to close the dialog when the escape key is pressed, or perhaps open another dialog asking for confirmation if the current dialog was a pop up form with unsaved changes.
+    to close the dialog when the escape key is pressed, or perhaps open another dialog asking for confirmation if the current dialog was a pop up form with unsaved changes etc.
 </p>
 <p>
-    As the HTML dialog makes everything beneath it inert, this also makes any centralised aria regions inert. However, the announcement history component and its associated live regions
-    react to dialog openings move themselves so the live regions are always available via the live region service.
+    As the HTML dialog makes everything beneath it inert, this also makes any centralised aria live regions inert. However, the announcement history component and its associated live regions
+    react to dialog openings and are moved, so the live regions are always available via the live region service.
 </p>
 <section>
     <h2 class="page-heading">Installation</h2>
@@ -34,10 +35,10 @@
         ensuring that in the <span class="code-span">&lt;head&gt;</span> section you also add the Dialog Framework stylesheet as follows:
     </p>
     <CodeBox CodeBlock="@CodeSnippets.Add_Dialog_Framework_Style_Sheet" AriaLabel="Add dialog framew stylesheet code block" />
-    
+
 
     <p>
-        Register the dialog framework service in the <span class="code-span">Program.cs</span> file (Both server and client if using Server and WebAssembly interactive rendermode) and
+        <b>Next register</b> the dialog framework service in the <span class="code-span">Program.cs</span> file (Both server and client if using Server and WebAssembly interactive rendermode) and
         add the following line to the service registration section if you are using the <span class="code-span">Microsoft.Extensions.DependencyInjection</span> package:
     </p>
     <CodeBox CodeBlock="@CodeSnippets.Add_Dialog_Framework_Service" AriaLabel="Register live region service code block" />
@@ -46,19 +47,66 @@
     </p>
 
     <p>
-        Add the <span class="code-span">&lt;ModalDialogContainer /&gt;</span> component . . . in progress
-@*             <span class="code-span">Routes.razor</span> file or <span class="code-span">App.razor</span> file depending on your project type: *@
+        <b>Important</b> Please read carefully so you understand the best place for the <span class="code-span">&lt;ModalDialogContainer /&gt;</span> which acts as the
+        root for unlimeited nested dialogs for the specific process.
     </p>
-@*         <CodeBox CodeBlock="@CodeSnippets.Add_Announcement_History_Component" AriaLabel="Add announcement history component code block" /> *@
+    <p>
+        <b>Adding</b> the <span class="code-span">&lt;ModalDialogContainer /&gt;</span>
+    </p>
+    <p>
+        The best location really depends on your project type and the following is the recommendation.
+        <ul>
+            <li>
+                <b>Interactive Server (Global or Per Page)</b> - You can simply place a single instance of the <span class="code-span">&lt;ModalDialogContainer @@rendermode="InteractiveServer" /&gt;</span> in the
+                <span class="Routes.razor"></span> file next to the <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component.
+            </li>
+            <li>
+                <b>Interactive WebAssembly (Global or Per Page)</b> - You can simply place a single instance of the <span class="code-span">&lt;ModalDialogContainer @@rendermode="InteractiveWebAssembly" /&gt;</span> in the
+                <span class="Routes.razor"></span> file next to the <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component.
+            </li>
+            <li>
+                <p>
+                    <b>Interactive Auto (Server and WebAssembly) (Global or Per Page)</b>
+                </p>
+                <p>
+                    This is the most complex Blazor scenario, and as such placement is determined by your understanding of the render modes and when you want the downloading of the WebAssembly files to start.
+                </p>
+                <p>
+                    For example you can simply place two instances of the <span>ModalDialogContainer</span> in the <span class="Routes.razor"></span> file next to the
+                    <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component. One using <span class="code-span">@@rendermode="InteractiveServer"</span> the othere using
+                    <span class="code-span">@@rendermode="InteractiveWebAssemlby"</span> and these would handle all Server and WebAssembly page usages.<br />
+                    <b>Note: You cannot add another</b> for <span class="code-span">@@rendermode="InteractiveAuto""</span>. For your Auto pages you would place an instance of the
+                    <span class="code-span">&lt;ModalDialogContainer @@rendermode="InteractiveAuto" /&gt;</span> on each page that wants to have a dialog / nested dialogs.
+                </p>
+                <p>
+                    Placing an  <span class="code-span">@@rendermode="InteractiveWebAssembly"</span> in this project type will cause the WASM files to download immediately as
+                    the <span class="code-span">&lt;Router &gt;</span> is run every request.
+                </p>
 
+                <p>
+                    If this is a little confusing then you can also just simply place an instance of the <span>ModalDialogContainer</span> on each page where you want to have a dialog / nested dialogs
+                    and by default it will use the parent components <span class="code-span">@@rendermode</span>.
+                </p>
+                <p>
+                    <b>Note:</b> Unlike the <span class="code-span">&lt;AnnouncmentHistory /&gt;</span> that works without an interactive mode, the <span class="code-span">ModalDialogContainer</span>
+                    needs one to work correctly.
+                </p>
+            </li>
+        </ul>
+    </p>
+    <p>
+        See the next page, <b>Modal Dialog (Using)</b> for examples of how you use the dialog service to open and close dialogs, pass data in, get data out and handle the register a handler for the
+        <span class="code-span">Escape</span> key. The dialog framework overrides the default HTML Dialog API so you can choose what you want to do when the <span class="code-span">Escape</span> key
+        is pressed.
+    </p>
 </section>
 
 <section>
-    <h2>Dialog serivce & assoicated classes</h2>
+    <h2>Dialog service & assoicated classes</h2>
     <p>
         The following provides details of the dialog service and all related classes
     </p>
-    <section class="code-table two-col-descriptive" style="margin-top:1.5rem;">
+    <section class="code-table" style="margin-top:1.5rem;">
 
         <h3 id="dialog-service" class="code-table__heading">ModalDialogService</h3>
 
@@ -66,6 +114,7 @@
 
             <thead>
                 <tr>
+                    <th scope="col">Returns</th>
                     <th scope="col">Method</th>
                     <th scope="col">Description</th>
                 </tr>
@@ -73,21 +122,24 @@
             <tbody>
 
                 <tr>
+                    <td>Task</td>
                     <td>CloseDialog(ModalDialogResult dialogResult)</td>
                     <td>
                         Closes the dialog and sets the opening task as completed, in order for the <span class="code-span">ModalDialogResult</span>  to be returned from the awaited
-                        <span class="code-span">ShowModal</span>. Returns a <span class="code-span">Task</span>.
+                        <span class="code-span">ShowModal</span>.
                     </td>
                 </tr>
                 <tr>
+                    <td>string</td>
                     <td>GetAriaLabelledByID()</td>
                     <td>
-                        Property to get the unique <span class="code-span">string</span> value that was added to the <span class="code-span">aria-labelledby</span> attribute on the
+                        Property to get the unique string value that was added to the <span class="code-span">aria-labelledby</span> attribute on the
                         HTML <span class="code-span">dialog</span> elenent. Uss this value for the <span class="code-span">id</span> attribute on your heading to give the dialog an accessible
                         name
                     </td>
                 </tr>
                 <tr>
+                    <td>void</td>
                     <td>RegisterEscapeHandler(Func&lt;Task&gt; handler)</td>
                     <td>
                         Allows for the registering of a handler that will be called when the escape key is pressed for your dialog window.
@@ -95,37 +147,39 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>void</td>
                     <td>UnregisterEscapeHandler(Func&lt;Task&gt; handler)</td>
                     <td>Unregisters the escape handler. <b>Note: </b>Weak references are used but you should call this in your components dispose method.</td>
                 </tr>
                 <tr>
+                    <td>Task&lt;ModalDialogResult&gt</td>
                     <td>ShowDialog&lt;TDialog&gt;()</td>
                     <td>
                         Shows the dialog containing your component (<span>TDialog</span>) with no paramater data (<sapn class="code-span">ModalDialogParameters&lt;TDialog&gt;</sapn>) and uses the
                         default values for the dialog options, <span class="code-span">ModalDialogOptions</span>.
-                        Returns a <span class="code-span">Task&lt;ModalDialogResult&gt;</span>
                     </td>
                 </tr>
                 <tr>
+                    <td>Task&lt;ModalDialogResult&gt;</td>
                     <td>ShowDialog&lt;TDialog&gt;(ModalDialogOptions dialogOptions)</td>
                     <td>
                         Shows the dialog containing your component (<span>TDialog</span>) with no paramater data, but with <span class="code-span">ModalDialogOptions</span> specified.
-                        Returns a <span class="code-span">Task&lt;ModalDialogResult&gt;</span>
                     </td>
                 </tr>
                 <tr>
+                    <td>Task&lt;ModalDialogResult&gt;</td>
                     <td>ShowDialog&lt;TDialog&gt;(ModalDialogParameters&lt;TDialog&gt; dialogParameters)</td>
                     <td>
                         Shows the dialog containing your component (<span>TDialog</span>) with <span class="code-span">ModalDialogParameters&lt;TDialog&gt;</span> data, using the default values
                         for the dialog otpions, <span class="code-span">ModalDialogOptions</span>.
-                        Returns a <span class="code-span">Task&lt;ModalDialogResult&gt;</span>
                     </td>
                 </tr>
                 <tr>
+                    <td>Task&lt;ModalDialogResult&gt;</td>
                     <td>ShowDialog&lt;TDialog&gt;(ModalDialogParameters&lt;TDialog&gt; dialogParameters, ModalDialogOptions dialogOptions)</td>
                     <td>
                         Shows the dialog containing your component (<span>TDialog</span>) with both <span class="code-span">ModalDialogParameters&lt;TDialog&gt;</span> data
-                        andd ialog otpions, <span class="code-span">ModalDialogOptions</span>.  Returns a <span class="code-span">Task&lt;ModalDialogResult&gt;</span>
+                        andd ialog otpions, <span class="code-span">ModalDialogOptions</span>.
                     </td>
                 </tr>
             </tbody>
@@ -141,14 +195,42 @@
 
             <thead>
                 <tr>
-                    <th scope="col">Method</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Property</th>
                     <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody>
+
                 <tr>
-                    <td>Pending ...</td>
-                    <td>Pending ...</td>
+                    <td>string</td>
+                    <td>HorizonalPosition</td>
+                    <td>
+                        Retruns a value such as <span class="code-span">start</span>, <span class="code-span">center</span> or <span class="code-span">end</span>
+                        used for an inline style that sets the horizontal alignment.
+                    </td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>VerticalPosition</td>
+                    <td>
+                        Retruns a value such as <span class="code-span">start</span>, <span class="code-span">center</span> or <span class="code-span">end</span>
+                        used for an inline style that sets the vertical alignment.
+                    </td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>MaxWidth</td>
+                    <td>
+                        Returns a string value with the % sign appended for use in an inline style that sets the maximum width
+                        of the dialog window.
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <b>Constructor:</b><br />
+                        ModalDialogOptions (HorizontalAlignment horizontalAlignment = HorizontalAlignment.Centre, VerticalAlignment verticalAlignment = VerticalAlignment.Centre, int maxWidthPercent = 70)
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -163,14 +245,21 @@
 
             <thead>
                 <tr>
+                    <th scope="col">Returns</th>
                     <th scope="col">Method</th>
                     <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Pending ...</td>
-                    <td>Pending ...</td>
+                    <td>void</td>
+                    <td>Add&lt;TData&gt;(Expression&lt;Func&lt;TDialog, object&gt;&gt; dialogParam, TData? data)</td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <b>Parameterless constructor (initialise with the your component type): </b>
+                        new ModalDialogParameters&lt;MyComponentType&gt;()
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -185,14 +274,59 @@
 
             <thead>
                 <tr>
-                    <th scope="col">Method</th>
+                    <th scope="col">Type/Return</th>
+                    <th scope="col">Property/Static Method</th>
                     <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Pending ...</td>
-                    <td>Pending ...</td>
+                    <td>DialogResultButtons (enum)</td>
+                    <td>ButtonClicked</td>
+                    <td>Returns the type of button used to close the dilaog.</td>
+                </tr>
+                <tr>
+                    <td>object</td>
+                    <td>Data</td>
+                    <td>Data returned when the dialog is closed.</td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td>DataType</td>
+                    <td>The type of data that was cast as object.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>ButtonText</td>
+                    <td>
+                        The text on the button, used for Other when you want more than just OK and Cancel.
+                        The <span class="code-span">ButtonText</span> allows you to differentiate between Other buttons.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ModalDialogResult</td>
+                    <td>Cancel&ltT&gt;()</td>
+                    <td>Returns a cancelled result with a payload of type <span class="code-span">NoReturnValue</span></td>
+                </tr>
+                <tr>
+                    <td>ModalDialogResult</td>
+                    <td>OK&ltT&gt;()</td>
+                    <td>Returns a successful result with a payload of type <span class="code-span">NoReturnValue</span></td>
+                </tr>
+                <tr>
+                    <td>ModalDialogResult</td>
+                    <td>OK&ltT&gt;(T data)</td>
+                    <td>Returns a successful result with a payload of type <span class="code-span">T</span></td>
+                </tr>
+                <tr>
+                    <td>ModalDialogResult</td>
+                    <td>Other&ltT&gt;(string buttonText)</td>
+                    <td>Returns an Other result with a payload of type <span class="code-span">NoReturnValue</span></td>
+                </tr>
+                <tr>
+                    <td>ModalDialogResult</td>
+                    <td>Other&ltT&gt;(string buttonText, T data)</td>
+                    <td>Returns an Other result with a payload of type <span class="code-span">T</span></td>
                 </tr>
             </tbody>
         </table>
@@ -207,14 +341,16 @@
 
             <thead>
                 <tr>
-                    <th scope="col">Method</th>
+                    <th scope="col">Type/Return</th>
+                    <th scope="col">Public Field</th>
                     <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Pending ...</td>
-                    <td>Pending ...</td>
+                    <td>NoReturnValue</td>
+                    <td>Value</td>
+                    <td>Returns a Unit type of <span class="code-span">NoReturnValue</span> to indicate the return has no meaningful value</td>
                 </tr>
             </tbody>
         </table>
@@ -241,9 +377,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Pending ...</td>
-                    <td>Pending ...</td>
-                    <td>Pending ...</td>
+                    <td>0</td>
+                    <td>Left</td>
+                    <td>Indicates the dialog window should be aligned to the left.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Centre</td>
+                    <td>Indicates the dialog window should be horizontally centred.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Left</td>
+                    <td>Indicates the dialog window should be aligned to the right.</td>
                 </tr>
             </tbody>
         </table>
@@ -264,9 +410,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Pending ...</td>
-                    <td>Pending ...</td>
-                    <td>Pending ...</td>
+                    <td>0</td>
+                    <td>Top</td>
+                    <td>Indicates the dialog window should be aligned to the top.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Centre</td>
+                    <td>Indicates the dialog window should be vertically centred.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Left</td>
+                    <td>Indicates the dialog window should be aligned to the bottom.</td>
                 </tr>
             </tbody>
         </table>
@@ -287,9 +443,23 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Pending ...</td>
-                    <td>Pending ...</td>
-                    <td>Pending ...</td>
+                    <td>0</td>
+                    <td>OK</td>
+                    <td>Indicates a successful result</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Cancel</td>
+                    <td>Indicates a cancelled (or failed result)</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Other</td>
+                    <td>
+                        Indicates some other result, could be failed, errored etc. You can use the
+                        <span class="code-span">ButtonText</span> on the <span class="code-span">ModalDialogResult</span> class
+                        for a specific meaning/type.
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -394,7 +564,7 @@
                     <td>var(--br-comp-all-area-content-border-style)</td>
                     <td>The border style - uses the shared component variable.</td>
                 </tr>
-                 <tr>
+                <tr>
                     <td>--br-comp-mdframe-area-content-border-width</td>
                     <td>var(--br-comp-all-area-content-border-width)</td>
                     <td>The border width - uses the shared component variable.</td>
@@ -516,9 +686,9 @@
         <span>@GlobalValues.Main_Nav_Section_Heading_Services - @GlobalValues.Page_Heading_Services_Live_Region</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Components_Announcement_History">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Frameworks_Modal_Dialog_Using">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_Components - @GlobalValues.Page_Heading_Components_Announcement_History</span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_Frameworks - @GlobalValues.Page_Heading_Frameworks_Modal_Dialog_Using</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

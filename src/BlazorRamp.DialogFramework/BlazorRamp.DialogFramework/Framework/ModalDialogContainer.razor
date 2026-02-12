@@ -12,9 +12,7 @@
     <dialog id="@dialogWindow.WindowID" class="@GlobalValues.DialogFramework_Class" style="justify-content:@horizontalPosition; align-items:@verticalPosition;"
             aria-labelledby="dialog-@dialogWindow.WindowID.ToString()" @onkeydown="(e) => HandleKeyDown(e, dialogWindow)">
         <div class="@GlobalValues.DialogFramework_Window_Class" style="max-width:@contentMaxWidth;" tabindex="0">
-            <CascadingValue Value="dialogWindow.EscapeTrigger">
-                @dialogWindow.DialogContents
-            </CascadingValue>
+            @dialogWindow.DialogContents
         </div>
     </dialog>
 }
@@ -57,5 +55,5 @@
 
     public void Dispose()
 
-        => _dialogService.SubscribeToUpdates(StateHasChanged);
+        => _dialogService.UnsubscribeFromUpdates(StateHasChanged);
 }

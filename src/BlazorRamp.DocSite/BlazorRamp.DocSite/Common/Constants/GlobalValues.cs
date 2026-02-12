@@ -33,6 +33,7 @@ public class GlobalValues
     public const string Path_Overview_Roadmap                = "/roadmap";
     public const string Path_Services_Live_Region            = "/services/live-region";
     public const string Path_Frameworks_Modal_Dialog         = "/frameworks/modal-dialog";
+    public const string Path_Frameworks_Modal_Dialog_Using   = "/frameworks/modal-dialog-using";
     public const string Path_Components_Announcement_History = "/components/announcement-history";
     public const string Path_Components_Busy_Indicator       = "/components/busy-indicator";
     public const string Path_Components_Skip_To              = "/components/skip-to";
@@ -49,6 +50,7 @@ public class GlobalValues
     public const string Page_Title_Overview_Roadmap                 = "Overview - Roadmap";
     public const string Page_Title_Services_Live_Region             = "Services - Live Regions";
     public const string Page_Title_Frameworks_Modal_Dialog          = "Frameworks - Modal Dialog";
+    public const string Page_Title_Frameworks_Modal_Dialog_Using    = "Frameworks - Modal Dialog (using)";
     public const string Page_Title_Components_Announcement_History  = "Components - Announcement History";
     public const string Page_Title_Components_Busy_Indicator        = "Components - Busy Indicator";
     public const string Page_Title_Components_Skip_To               = "Components - Skip To";
@@ -71,7 +73,8 @@ public class GlobalValues
     public const string Page_Heading_Theming_CSS_Colour_Variables    = "Core Colour CSS Variables";
 
     public const string Page_Heading_Services_Live_Region            = "Live Region Service";
-    public const string Page_Heading_Frameworks_Modal_Dialog         = "Modal Dialog Framework";
+    public const string Page_Heading_Frameworks_Modal_Dialog         = "Modal Dialog";
+    public const string Page_Heading_Frameworks_Modal_Dialog_Using   = "Modal Dialog (using)";
     public const string Page_Heading_Components_Announcement_History = "Announcement History";
     public const string Page_Heading_Components_Busy_Indicator       = "Busy Indicator";
     public const string Page_Heading_Components_Skip_To              = "Skip To";
