@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/01 - Component Source/">
+    <Project Path="../BlazorRamp.Core/BlazorRamp.Core/BlazorRamp.Core.csproj" />
     <Project Path="BlazorRamp.DialogFramework/BlazorRamp.DialogFramework.csproj" />
   </Folder>
   <Folder Name="/02 - Sandbox/">

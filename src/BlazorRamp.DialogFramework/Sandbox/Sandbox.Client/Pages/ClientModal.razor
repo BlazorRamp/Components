@@ -3,7 +3,8 @@
 
 @page "/client-modal"
 
-@rendermode InteractiveWebAssembly
+
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
 
 <ModalDialogContainer @rendermode="InteractiveWebAssembly" />
 

@@ -1,13 +1,9 @@
 ﻿@inject ModalDialogService _dialogService
 @implements IDisposable
 
-<div class="dialog">
-    <!-- Important add a key down handler for the escape key -->
-    <div class="dialog__header dialog__header--success">
-        <span class="dialog__icon dialog__icon--success pencil-icon" aria-hidden="true"></span>
-        <h3 id="@_dialogTitleID">Some Form</h3>
-    </div>
-    <div class="dialog__body">
+<div class="demo-dialog">
+    <h2 class="demo-dialog__header" id="@_dialogTitleID">Some Form</h2>
+    <div class="demo-dialog__content">
         <p>Your form fields in here.</p>
         <p>The object passed in: @(SomePersonData is null ? "[Null]" : SomePersonData)</p>
         <p>
@@ -17,12 +13,13 @@
         <p>The confirmation dialog is set to open bottom right</p>
     </div>
 
-    <div class="dialog__footer">
-        <button class="button button--success" @onclick="async () => await HandleSaveChanges()"
-                aria-disabled="@((!_isDirty).ToString().ToLower())" type="button">
+    <div class="demo-dialog__footer">
+        <button class="demo-dialog__button" @onclick="async () => await HandleSaveChanges()" aria-disabled="@((!_isDirty).ToString().ToLower())" type="button">
             Save Changes
         </button>
-        <button @ref="ButtonCancelRef" class="button button--warning" @onclick="async () => await HandleCancelRequest(_isDirty, _dialogService, ButtonCancelRef)" type="button">Cancel</button>
+        <button @ref="ButtonCancelRef" class="demo-dialog__button" @onclick="async () => await HandleCancelRequest(_isDirty, _dialogService, ButtonCancelRef)" type="button">
+            Cancel
+        </button>
     </div>
 </div>
 @code {

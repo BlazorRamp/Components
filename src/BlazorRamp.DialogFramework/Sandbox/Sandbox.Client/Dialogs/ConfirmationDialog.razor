@@ -2,21 +2,16 @@
 @inject ModalDialogService _dialogService
 @implements IDisposable
 
-<div class="dialog">
-
-    <div class="dialog__header dialog__header--warning">
-        <span class="dialog__icon dialog__icon--warning warning-triangle-icon"
-        aria-hidden="true"></span>
-        <h3 id="@_dialogTitleID">@_title</h3>
-    </div>
-
-    <div class="dialog__body">
+<div class="demo-dialog">
+    <h3 class="demo-dialog__header" id="@_dialogTitleID">@_title</h3>
+ 
+    <div class="demo-dialog__content">
         @((MarkupString)_dialogMessage)
     </div>
 
-    <div class="dialog__footer">
-        <button class="button button--success" @onclick="async () => await HandleCloseDialog(false)">@_buttonOKText</button>
-        <button class="button button--warning" @onclick="async () => await HandleCloseDialog(true)">@_buttonCancelText</button>
+    <div class="demo-dialog__footer">
+        <button class="demo-dialog__button" @onclick="async () => await HandleCloseDialog(false)">@_buttonOKText</button>
+        <button class="demo-dialog__button" @onclick="async () => await HandleCloseDialog(true)">@_buttonCancelText</button>
     </div>
 
 </div>

@@ -3,7 +3,7 @@
 
 @page "/server-modal"
 
-@rendermode InteractiveServer
+ @rendermode @(new InteractiveServerRenderMode(prerender: false)) 
 
 <button @ref="ButtonRef" class="btn btn-primary mt-3" @onclick="ShowDialog">Show Dialog</button>
 

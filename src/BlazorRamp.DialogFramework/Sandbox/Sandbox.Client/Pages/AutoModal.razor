@@ -8,7 +8,8 @@
 @using BlazorRamp.DialogFramework.Common.Constants
 @using Sandbox.Client.Dialogs
 
-@rendermode InteractiveAuto
+
+@rendermode @(new InteractiveAutoRenderMode(prerender: false))
 
 <ModalDialogContainer />
 

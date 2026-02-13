@@ -311,31 +311,7 @@ const registerDocumentKeyDownHandler = (componentsElement: HTMLElement, original
     });
 };
 
-//const registerMutationObserver = (containerElement: HTMLElement, componentsElement: HTMLElement): void => {
-
-//    const observer = new MutationObserver((mutationsList) => {
-
-//        for (const mutation of mutationsList) {
-//            const target = mutation.target as HTMLElement;
-
-//            if (target.tagName === 'DIALOG' && mutation.attributeName === 'open') {
-
-//                const dialog = target as HTMLDialogElement;
-
-//                if (dialog.open) {
-//                    dialog.appendChild(componentsElement);
-//                } else {
-//                    if (componentsElement.parentElement !== containerElement) {
-//                        containerElement.appendChild(componentsElement);
-//                    }
-//                }
-//            }
-//        }
-//    });
-
-//    observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['open'] });
-//};
-const registerMutationObserver = (containerElement: HTMLElement, componentsElement: HTMLElement): void => {
+const registerMutationObserver = (containerElement: HTMLElement, componentsElement: HTMLElement, triggerButton: HTMLButtonElement, popoverElement: HTMLElement): void => {
 
     const observer = new MutationObserver((mutationsList) => {
 
@@ -361,6 +337,8 @@ const registerMutationObserver = (containerElement: HTMLElement, componentsEleme
                     } else {
                         
                         if (componentsElement.parentElement !== containerElement) containerElement.appendChild(componentsElement);
+                        //Could close modal dialog framework with button while announcement history is open so need to close it.
+                        setPopoverState(false, triggerButton, popoverElement);
                     }
                 }
             }
@@ -458,7 +436,7 @@ const registerLiveRegionAndHistory = () => {
 
     registerDocumentKeyDownHandler(componentsElement, originalParent, ahContentElement, popoverElement, triggerButton, locale);
 
-    registerMutationObserver(containerElement, componentsElement);
+    registerMutationObserver(containerElement, componentsElement, triggerButton, popoverElement);
 
     checkMoveElementToBody(containerElement);
 
