@@ -25,11 +25,9 @@
         position: relative;
         width: 100%;
         overflow: hidden;
-        //animation: fadeIn 1500ms ease-in forwards;
         box-shadow: var(--br-comp-mdframe-box-shadow);
 
         &:focus-visible {
-            border-color: red;
             outline-offset: var(--br-comp-mdframe-outline-offset);
             outline-style: var(--br-comp-mdframe-outline-style);
             outline-width: var(--br-comp-mdframe-outline-width);
@@ -38,8 +36,3 @@
     }
 }
 
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
-}

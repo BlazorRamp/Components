@@ -32,6 +32,8 @@
   grid-row: 3/4;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 .demo-dialog__button {
   appearance: none;
@@ -52,7 +54,6 @@
   border-style: var(--br-comp-history-button-border-style);
   border-color: var(--br-comp-history-button-border-colour);
   min-width: calc(var(--br-unit-wcag-reflow-2a) / 3 + var(--br-unit-space-5));
-  white-space: normal;
   cursor: pointer;
 }
 .demo-dialog__button:active {

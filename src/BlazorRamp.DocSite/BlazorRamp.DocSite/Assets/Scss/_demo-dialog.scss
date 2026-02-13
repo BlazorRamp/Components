@@ -1,4 +1,6 @@
 ﻿.demo-dialog {
+    //Just reusing the announcement history styles as I have no common dialogs
+
     display: grid;
     grid-template-rows: auto 1fr auto;
     background-color: var(--br-comp-all-pane-surface-background);
@@ -36,7 +38,7 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        gap:1rem;
+        gap: 1rem;
     }
 
     &__button {
@@ -60,12 +62,6 @@
         min-width: calc((var(--br-unit-wcag-reflow-2a) / 3) + var(--br-unit-space-5));
         cursor: pointer;
 
-        &:active {
-            transform: scale(var(--br-comp-history-button-state-active-scale));
-            filter: brightness(var(--br-comp-history-button-state-active-brightness));
-            outline: none;
-        }
-
         &:focus-visible {
             outline-offset: var(--br-comp-history-button-outline-offset);
             outline-width: var(--br-comp-history-button-outline-width);
@@ -73,13 +69,20 @@
             outline-color: var(--br-comp-history-button-outline-colour);
         }
 
-        &:hover {
+        &:active:not([aria-disabled="true"]) {
+            transform: scale(var(--br-comp-history-button-state-active-scale));
+            filter: brightness(var(--br-comp-history-button-state-active-brightness));
+            outline: none;
+        }
+
+
+        &:hover:not([aria-disabled="true"]) {
             background-color: var(--br-comp-history-button-state-hover);
         }
 
         &[aria-disabled="true"] {
             cursor: not-allowed;
-            opacity: var(--br-unit-state-disabled-opacity);
+            color: hsl(from var(--br-comp-history-button-text) h s l / var(--br-unit-opacity-val-40))
         }
     }
 }

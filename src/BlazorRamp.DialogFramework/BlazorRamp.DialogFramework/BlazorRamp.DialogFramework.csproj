@@ -35,6 +35,7 @@
   </ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="BlazorRamp.Core" Version="1.0.5" />
 		<PackageReference Include="BuildWebCompiler2022" Version="1.14.15">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -53,10 +54,6 @@
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\BlazorRamp.Core\BlazorRamp.Core\BlazorRamp.Core.csproj" />
   </ItemGroup>
 
 </Project>
