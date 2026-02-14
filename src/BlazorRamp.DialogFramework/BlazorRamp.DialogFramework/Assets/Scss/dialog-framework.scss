@@ -1,7 +1,13 @@
 ﻿@use "_root-dialog-framework";
 
-.br-dialog-framework {
+//added to dialog to defend against bootstraps ridculous resets and overrides.
+
+dialog.br-dialog-framework {
     border: none;
+    margin: 0;
+}
+
+.br-dialog-framework {
     display: flex;
     padding: var(--br-comp-mdframe-dialog-padding);
     min-width: 100%;
@@ -26,6 +32,9 @@
         width: 100%;
         overflow: hidden;
         box-shadow: var(--br-comp-mdframe-box-shadow);
+        opacity: 0;
+        transform: translateY(-20px);
+        animation: slideIn 200ms ease-in forwards;
 
         &:focus-visible {
             outline-offset: var(--br-comp-mdframe-outline-offset);
@@ -36,3 +45,9 @@
     }
 }
 
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

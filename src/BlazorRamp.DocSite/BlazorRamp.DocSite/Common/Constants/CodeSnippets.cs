@@ -207,10 +207,9 @@ public class CodeSnippets
 
             private ElementReference ButtonRef { get; set; }
 
-            private bool _outputVisible = false;
-
+            private bool   _outputVisible = false;
             private string _outputMessage = String.Empty;
-            private string _location = String.Empty;
+
 
             public async Task ShowDialog()
             {

@@ -13,7 +13,14 @@ const openModalDialog = (elementID: string): void => {
 
     if (!_cancelHandlerMap.has(modalDialog)) addCancelEscapeHandler(modalDialog);
 
-    if (!modalDialog.open) modalDialog.showModal();
+    if (!modalDialog.open) { 
+
+        modalDialog.showModal();
+
+        const dialogwindow = modalDialog.querySelector('.br-dialog-framework__window') as HTMLElement;
+        dialogwindow?.focus();
+    }
+
 }
 const closeModalDialog = (elementID: string): void => {
 

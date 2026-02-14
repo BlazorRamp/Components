@@ -7,8 +7,11 @@ const openModalDialog = (elementID) => {
         return;
     if (!_cancelHandlerMap.has(modalDialog))
         addCancelEscapeHandler(modalDialog);
-    if (!modalDialog.open)
+    if (!modalDialog.open) {
         modalDialog.showModal();
+        const dialogwindow = modalDialog.querySelector('.br-dialog-framework__window');
+        dialogwindow?.focus();
+    }
 };
 const closeModalDialog = (elementID) => {
     const modalDialog = getModalDialog(elementID);

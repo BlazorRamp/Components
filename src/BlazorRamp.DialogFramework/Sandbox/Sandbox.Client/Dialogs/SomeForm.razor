@@ -14,12 +14,13 @@
     </div>
 
     <div class="demo-dialog__footer">
-        <button class="demo-dialog__button" @onclick="async () => await HandleSaveChanges()" aria-disabled="@((!_isDirty).ToString().ToLower())" type="button">
-            Save Changes
-        </button>
         <button @ref="ButtonCancelRef" class="demo-dialog__button" @onclick="async () => await HandleCancelRequest(_isDirty, _dialogService, ButtonCancelRef)" type="button">
             Cancel
         </button>
+        <button class="demo-dialog__button" @onclick="async () => await HandleSaveChanges()" aria-disabled="@((!_isDirty).ToString().ToLower())" type="button">
+            Save Changes
+        </button>
+
     </div>
 </div>
 @code {

@@ -31,19 +31,15 @@
             dependent on the state of the form.
         </li>
         <li>
-            We want the result either that the user cancelled the process or saved the data and get the new data with the OK result.
+            We want the result of the process. Either the user cancelled the process or the data was saved. If the data was saved we want the refreshed view data (from the api) to be 
+            returned in the OK result.
         </li>
     </ol>
 </p>
 <p>
     <b>Note: </b>For accessibility, if the user cancels any dialog via the escape key then the focus must be returned to the triggering element.
 </p>
-<p>
-    The code should be fairly explanatory, but I am always lurking on Reddit if you need help.
-</p>
-<p>
-    The code that launches our form component SomeForm. The form component only has one parameter for the data but it can have as many as you need, it's just a regular component.
-</p>
+
 <p>
     As this site just uses Blazor WASM it only needs a single instance of the <span class="code-span">&lt;ModalDialogContainer /&gt; </span> which I placed next to the 
     <span class="code-span">&lt;Router /&gt;</span> component.
@@ -64,25 +60,31 @@
         </p>
     }
 </section>
+
 <p>
-    Below shows all of the code that used for the the dialog demo.
+    The code below shows all the code used and it should be fairly explanatory, but I am always lurking on Reddit if you need help.
+</p>
+<p>
+    The code that launches our form component <span>&lt;SomeForm /&gt;</span>. The form component only has one parameter for the data but it can have as many as you need, it's just a regular component.
 </p>
 <p>
     All the code does is set the dialog options to have our dialog window placed top centre, pass the data to it for its parameter and await the results. Once the result is returned 
     it updates the output message to display on screen and sets the focus back to the trigger button.
+
 </p>
 
 <CodeBox CodeBlock="@CodeSnippets.Modal_Dialog_Starting" AriaLabel="Showing the popup dialog form" />
 
 <p>
-    The code for the form just registers to be notified when the escape key has been pressed for its dialog and can then decide what to do. If you do not provide a handler the 
+    The code for the form component, <span class="code-span">&lt;SomeForm /&gt;</span>, shown next, just registers to be notified when the escape key has been pressed for its dialog and can then decide what to do. If you do not provide a handler the 
     default escape key action will occur and the form will close with a cancelled result.
 </p>
 
-<CodeBox CodeBlock="@CodeSnippets.Modal_Dialog_Some_Form" AriaLabel="Code for the popup form" />
+<CodeBox CodeBlock="@CodeSnippets.Modal_Dialog_Some_Form" AriaLabel="Code for the some form component" />
 
-<p>
-    The code for the confirmation dialog again just registers a handler for the escape key so it can pass the correct result to the caller, there really is not much else to say.
+<p style="margin-top:var(--br-unit-space-7);">
+    The code for the confirmation dialog component, <span class="code-span">&lt;ConfirmationDialog /&gt;</span> below, again registers a handler for the escape key, and returns either a Cancelled or an Ok 
+    result to the caller.
 </p>
 
 <CodeBox CodeBlock="@CodeSnippets.Modal_Dialog_Confirmation_Form" AriaLabel="Code for the confirmation dialog" />

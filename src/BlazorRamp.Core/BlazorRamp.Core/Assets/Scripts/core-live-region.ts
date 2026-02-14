@@ -337,9 +337,10 @@ const registerMutationObserver = (containerElement: HTMLElement, componentsEleme
                     } else {
                         
                         if (componentsElement.parentElement !== containerElement) containerElement.appendChild(componentsElement);
-                        //Could close modal dialog framework with button while announcement history is open so need to close it.
-                        setPopoverState(false, triggerButton, popoverElement);
+
                     }
+                    //Could close modal dialog framework with button while announcement history is open so need to close it.
+                    setPopoverState(false, triggerButton, popoverElement);
                 }
             }
         }

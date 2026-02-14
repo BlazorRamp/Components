@@ -10,11 +10,11 @@
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region;</PackageTags>
-    <PackageReleaseNotes>Amended the script file to stop an edge case issue with the modal dialog framework that did not toggle the open state of the announcement history dialog correctly. This meant clicking twice on the alert button to open it.</PackageReleaseNotes>
+    <PackageReleaseNotes>Change to the script file to stop an edge case issue with the modal dialog framework that did not toggle the open state of the announcement history dialog correctly. Just made the previous patch more robust.</PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <AssemblyVersion>1.0.5</AssemblyVersion>
-    <FileVersion>1.0.5</FileVersion>
-	  <Version>1.0.5</Version>
+    <AssemblyVersion>1.0.6</AssemblyVersion>
+    <FileVersion>1.0.6</FileVersion>
+	  <Version>1.0.6</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>

@@ -14,6 +14,13 @@
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Modal dialog; Modal; Dialog;</PackageTags>
     <PackageReleaseNotes>Initial release of the Blazor Ramp modal dialog framework</PackageReleaseNotes>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+	<Version>1.0.0</Version>
+	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	  <Deterministic>true</Deterministic>
+	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -35,7 +42,6 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="BlazorRamp.Core" Version="1.0.5" />
 		<PackageReference Include="BuildWebCompiler2022" Version="1.14.15">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -53,7 +59,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BlazorRamp.Core\BlazorRamp.Core\BlazorRamp.Core.csproj" />
   </ItemGroup>
 
 </Project>
