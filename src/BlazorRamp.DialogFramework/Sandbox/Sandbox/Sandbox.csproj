@@ -12,11 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\BlazorRamp.Core\BlazorRamp.Core\BlazorRamp.Core.csproj" />
     <ProjectReference Include="..\..\BlazorRamp.DialogFramework\BlazorRamp.DialogFramework.csproj" />
     <ProjectReference Include="..\Sandbox.Client\Sandbox.Client.csproj" />
+    <PackageReference Include="BlazorRamp.Core" Version="1.0.6" />
     <PackageReference Include="BuildWebCompiler2022" Version="1.14.15" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.3" />
   </ItemGroup>
 
   <ItemGroup>
