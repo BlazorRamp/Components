@@ -5,6 +5,11 @@
 dialog.br-dialog-framework {
     border: none;
     margin: 0;
+    display: none; // Keep it hidden until the framework is ready
+
+    &[open] {
+        display: flex !important; // Override the UA 'display: block'
+    }
 }
 
 .br-dialog-framework {
