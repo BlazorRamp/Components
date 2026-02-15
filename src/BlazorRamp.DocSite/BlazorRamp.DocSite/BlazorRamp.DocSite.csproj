@@ -15,6 +15,7 @@
 	<ItemGroup>
 		<PackageReference Include="BlazorRamp.BusyIndicator" Version="1.0.2" />
 		<PackageReference Include="BlazorRamp.Core" Version="1.0.6" />
+		<PackageReference Include="BlazorRamp.DialogFramework" Version="1.0.0" />
 		<PackageReference Include="BlazorRamp.SkipTo" Version="1.0.2" />
 		<PackageReference Include="BlazorRamp.Switch" Version="1.0.0" />
 		<PackageReference Include="BuildWebCompiler2022" Version="1.14.15" />
@@ -32,10 +33,6 @@
 
 	<ItemGroup>
 		<None Include="compilerconfig.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\..\BlazorRamp.DialogFramework\BlazorRamp.DialogFramework\BlazorRamp.DialogFramework.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

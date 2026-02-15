@@ -3,7 +3,7 @@
 
 <PageTitle>@GlobalValues.Page_Title_Frameworks_Modal_Dialog</PageTitle>
 
-<h1 class="page-heading">@GlobalValues.Page_Heading_Frameworks_Modal_Dialog . . docs in progress . . not long now</h1>
+<h1 class="page-heading">@GlobalValues.Page_Heading_Frameworks_Modal_Dialog</h1>
 
 <p>
     The dialog framework component and service together make up a framework that allow you to have your content placed within a an HTML dialog element, with the framework
@@ -21,6 +21,35 @@
     As the HTML dialog makes everything beneath it inert, this also makes any centralised aria live regions inert. However, the announcement history component and its associated live regions
     react to dialog openings and are moved, so the live regions are always available via the live region service.
 </p>
+
+
+<h2 id="dialog-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard Interaction</h2>
+<ul aria-labelledby="dialog-keyboard">
+    <li><kbd>Escape</kbd> - closes the top most dialog if a handler has not been specified. If one has been specified then you control whether or not the dialog should close, 
+                            as this could be a popup form with unsaved changes, and you may want to get confirmation from the user first etc. 
+                            <b>Note: </b> If the Announcement History popover (non-modal dialog) is open, then the escape key will close that first.
+        .</li>
+</ul>
+
+<h2 id="screen-reader-quirks" class="@GlobalValues.Info_Box_Heading_Class">Screen reader quirks or known issues</h2>
+<ul aria-labelledby="screen-reader-quirks">
+    <li>
+        <p>
+            <b>Safari browser.</b> Safari has, at the time of writing multiple issues regarding using a popover inside of nested modal dialogs and from my investigations, reordering issues of nested modal dialogs. 
+        </p>
+            <p>
+                What does this mean, there is an edge case that I cannot do anything about. Lets say you open a dialog and then launch another dialog, everything will work perfectly.
+                Lets say now in the second nested dialog (it works fine in a single dialog), you open a popover (non-modal dialog) such as the Announcmenet History component. At this point it all works fine, and
+                if you use the buttons to close the popover, its OK. But if you use the escape key, the popover will close but then Safari puts the dialogs in the wrong order. You then tab and the ordering is
+                restored.
+            </p>
+            <p>
+                <b>Note:</b> All other browsers that I tested workd perfectly without issue, it was only this one edge case when using Safari on macOS (iPhone was not effected given its touch the buttons) I came across when 
+                testing. I will from time to time checkup on this, but I cannot control how safari orders the top layer items.
+            </p>
+    </li>
+</ul>
+
 <section>
     <h2 class="page-heading">Installation</h2>
 
@@ -675,7 +704,7 @@
     <ol reversed>
         <li>
             <h3>
-                Version 1.0.0 — <time datetime="2026-02-01">TBA</time>
+                Version 1.0.0 — <time datetime="2026-02-15">February 15, 2026</time>
             </h3>
             <ul>
                 <li>Initial release part of the <span class="code-span">BlazorRamp.DialogFramework v1.0.0</span> NuGet package, multi-targeting <span class="code-span">.NET 8.0, NET 9.0 & .NET10.0</span></li>
