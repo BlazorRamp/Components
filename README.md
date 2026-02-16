@@ -14,7 +14,7 @@ Currently, looking at either the ToggleTip, TabControl or Pager for the next bui
 
 Lots more things in the pipeline.
 
-For all components, I test using the following as well as voice commands with Windows Voice access. 
+For all components, I test using the following: 
 
 **Screen Reader Browser Combination Tests:** 
 - On Windows 11 - JAWS, NVDA and Narrator each paired with Chrome, Edge and FireFox.
