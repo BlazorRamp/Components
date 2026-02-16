@@ -4,17 +4,13 @@ Blazor Ramp aims to provide a suite of modular, accessible-first Blazor componen
 
 Please check back **regularly** during this **initial** phase whilst I put in place everything you would expect.
 
-Both the Core project containing the live region service and announcment history component, the busy indicator and skip to components/projects have now been released.
-
-Just type BlazorRamp in any nuget package manager to see whats available.
+The Core project containing the live region service and announcment history component have been released, along with other projects containing the busy indicator component, the switch component, the skip to components and recently the modal dialog framework. 
 
 The full documentation is available at: [https://docs.blazorramp.uk](https://docs.blazorramp.uk). 
 
 The test site is avaialbe at:  [https://blazorramp.uk](https://blazorramp.uk). 
 
-Going forward I will re-structure the test site so its used for each component before each NuGet is released.
-
-Currently, looking at the Switch and Modal Dialog Framework.
+Currently, looking at either the ToggleTip, TabControl or Pager for the next build.
 
 Lots more things in the pipeline.
 
@@ -22,10 +18,11 @@ For all components, I test using the following as well as voice commands with Wi
 
 **Screen Reader Browser Combination Tests:** 
 - On Windows 11 - JAWS, NVDA and Narrator each paired with Chrome, Edge and FireFox.
-- On macOS (Sequoia) VoiceOver paired with Safari
+- On macOS VoiceOver paired with Safari
 - On iPhone, VoiceOver paired with Safari
 - On Android, TalkBack paired with Chrome
 
+I also test voice control using Windows voice access.
 
 Regards
 
