@@ -755,3 +755,80 @@ body #app__main {
   outline-style: var(--br-comp-all-outline-style);
   outline-color: var(--br-comp-all-outline-colour);
 }
+
+.dialog-test {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background-color: var(--br-comp-all-pane-surface-background);
+}
+.dialog-test__header {
+  padding-block: var(--br-unit-space-5);
+  padding-inline: var(--br-unit-space-9);
+  text-align: center;
+  grid-row: 1/2;
+  font-size: var(--br-comp-history-area-header-font-size);
+  font-weight: var(--br-comp-history-area-header-font-weight);
+  font-family: var(--br-comp-history-area-header-font-family);
+  color: var(--br-comp-history-area-header-text);
+}
+.dialog-test__content {
+  grid-row: 2/3;
+  border-block: 1px solid var(--br-comp-all-divider-colour);
+  padding-block: var(--br-unit-space-5);
+  padding-inline: var(--br-unit-space-9);
+  color: var(--br-comp-history-area-content-text);
+  font-family: var(--br-comp-history-area-content-font-family);
+  font-size: var(--br-comp-history-area-content-font-size);
+  font-weight: var(--br-comp-history-area-content-font-weight);
+  line-height: var(--br-comp-history-area-content-line-height);
+  overflow-y: auto;
+  max-height: 60vh;
+}
+.dialog-test__footer {
+  padding-block: var(--br-unit-space-5);
+  padding-inline: var(--br-unit-space-9);
+  grid-row: 3/4;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.dialog-test__button {
+  appearance: none;
+  background-color: var(--br-comp-history-button-background);
+  color: var(--br-comp-history-button-text);
+  font-family: var(--br-comp-history-button-font-family);
+  font-size: var(--br-comp-history-button-font-size);
+  font-weight: var(--br-comp-history-button-font-weigh);
+  line-height: var(--br-comp-history-button-line-height);
+  padding-block: var(--br-unit-space-2);
+  padding-inline: var(--br-unit-space-4);
+  position: relative;
+  overflow: hidden;
+  min-width: var(--br-unit-wcag-target-2a);
+  min-height: var(--br-unit-wcag-target-2a);
+  border-radius: var(--br-comp-history-button-border-radius);
+  border-width: var(--br-comp-history-button-border-width);
+  border-style: var(--br-comp-history-button-border-style);
+  border-color: var(--br-comp-history-button-border-colour);
+  min-width: calc(var(--br-unit-wcag-reflow-2a) / 3 + var(--br-unit-space-5));
+  cursor: pointer;
+}
+.dialog-test__button:focus-visible {
+  outline-offset: var(--br-comp-history-button-outline-offset);
+  outline-width: var(--br-comp-history-button-outline-width);
+  outline-style: var(--br-comp-history-button-outline-style);
+  outline-color: var(--br-comp-history-button-outline-colour);
+}
+.dialog-test__button:active:not([aria-disabled=true]) {
+  transform: scale(var(--br-comp-history-button-state-active-scale));
+  filter: brightness(var(--br-comp-history-button-state-active-brightness));
+  outline: none;
+}
+.dialog-test__button:hover:not([aria-disabled=true]) {
+  background-color: var(--br-comp-history-button-state-hover);
+}
+.dialog-test__button[aria-disabled=true] {
+  cursor: not-allowed;
+  color: hsl(from var(--br-comp-history-button-text) h s l/var(--br-unit-opacity-val-40));
+}

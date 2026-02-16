@@ -24,6 +24,9 @@ public static class GlobalValues
     public const string Page_Title_Switch_Overview_Test  = "Overview & Tests";
     public const string Page_Title_Switch_Quirks          = "Quirks & Issues";
 
+    public const string Page_Title_Modal_Dialog_Overview_Test = "Overview & Tests";
+    public const string Page_Title_Modal_Dialog_Quirks        = "Quirks & Issues";
+
     public const string Path_Overview_Introduction = "/";
     public const string Path_Overview_About = "/about-blazor-ramp";
 
@@ -36,6 +39,10 @@ public static class GlobalValues
     public const string Path_Busy_Modal_Screen  = "/busy-indicator/modal-busy-page";
     public const string Path_Busy_Short         = "/busy-indicator/busy-short";
     public const string Path_Busy_Quirks        = "/busy-indicator/known-issues";
+
+    public const string Path_Modal_Dialog_Overview = "/modal-dialog/overview-tests";
+    public const string Path_Modal_Dialog_Quirks   = "/modal-dialog/known-issues";
+
     public const string Path_Faqs_Final_Words   = "/faqs/final-words";
 
 
@@ -43,7 +50,7 @@ public static class GlobalValues
     public const string Main_Nav_Section_Heading_BusyIndicator = "Busy Indicator";
     public const string Main_Nav_Section_Heading_SkipTo        = "Skip To";
     public const string Main_Nav_Section_Heading_Switch        = "Switch";
-    public const string Main_Nav_Section_Heading_ModalDialog   = "Modal Dialog Framework";
+    public const string Main_Nav_Section_Heading_Modal_Dialog  = "Modal Dialog";
     public const string Main_Nav_Section_Heading_FAQs = "FAQs";
 
 
@@ -78,7 +85,8 @@ public static class GlobalValues
 
     public const int Start_Width_For_Collapsed_Menu = 576;
 
-    public const string Site_Link_Docs_Busy   = "https://docs.blazorramp.uk/components/busy-indicator";
-    public const string Site_Link_Docs_Switch = "https://docs.blazorramp.uk/components/switch";
-    public const string Site_Link_Docs_SkipTo = "https://docs.blazorramp.uk/components/skip-to";
+    public const string Site_Link_Docs_Busy         = "https://docs.blazorramp.uk/components/busy-indicator";
+    public const string Site_Link_Docs_Switch       = "https://docs.blazorramp.uk/components/switch";
+    public const string Site_Link_Docs_SkipTo       = "https://docs.blazorramp.uk/components/skip-to";
+    public const string Site_Link_Docs_Modal_Dialog = "https://docs.blazorramp.uk/frameworks/modal-dialog";
 }

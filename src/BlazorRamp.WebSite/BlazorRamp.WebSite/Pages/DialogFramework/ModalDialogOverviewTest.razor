@@ -1,0 +1,132 @@
+﻿@attribute [Route(GlobalValues.Path_Modal_Dialog_Overview)]
+
+<PageTitle>@GlobalValues.Page_Title_Modal_Dialog_Overview_Test</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">Modal Dialog Framework Overview & Test Page</h1>
+    <p>
+        The modal dialog framework provides Blazor developers the ability to show modal dialogs in such a manner that data can be passed into the dialog and data returned from the dialog when closed. 
+        The framework also allows for nested dialogs; for example, the first modal dialog may be a form and rather than the form just closing, potentially losing user data when the <kbd>Escape</kbd> key 
+        is pressed, the framework allows the developer to respond to this event, whereby they could show another modal dialog requesting confirmation given the potential loss of data.
+    </p>
+    <p>
+        All of these dialogs use the natvie HTML Dialog API which effectively makes the content beneath it inert and inaccessible to all users while the modal dialog is open.
+    </p>
+    <p>
+        <b>Released: </b>Current version <b>v1.0.0</b> See the documentation site for more information: <a target="_blank" class="@GlobalValues.Link_Class" href="@GlobalValues.Site_Link_Docs_Modal_Dialog">Modal Dialog Framework documentation (opens in new window)</a>
+    </p>
+
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
+
+    <p>
+        Each modal dialog (when nested) effectively 'freezes' the content below it effectively making it inert.
+        When an element is inert, the browser ignores all user input (clicks, tabs, and typing) and removes the content from the Accessibility Tree.
+        This ensures that the background content is neither interactive for keyboard users nor discoverable by screen reader users until the task is complete.
+    </p>
+    <p>
+        The test comprises of a fake modal popup form that has a checkbox that when ticked simulates the form having data entered, at which point it can be saved. If the 
+        fake form is saved it will return a different object to that which was passed in, althought, this is not what is being tested.
+    </p>
+    <p>
+        If the fake form is dirty (has data) then on pressing either the <kbd>Escape</kbd> key or the "Cancel" button will spawn another modal dialog requesting confirmation of the action as cancelling
+        at this point would lose data. 
+    </p>
+
+    <p>
+        Please review the expectations below, before running the test.
+    </p>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+    <ul>
+        <li>
+            When either the modal dialog form or the modal confirmation is shown the content beneath it should be inaccessible to all users.
+            </li>
+        <li>
+            Whilst the form is not dirty (does not have data), if the <kbd>Escape</kbd> key is pressed the modal dialog should close with the focus set to back to the "Run Modal Test" button.
+        </li>
+        <li>
+            If the form is dirty (has data) then pressing the <kbd>Escape</kbd> key in this instance, as the behaviour has been overriden, should open a modal confirmation dialog.
+        </li>
+        <li>
+            Whilst the confiramtion dialog is shown, pressing either the <kbd>Escape</kbd> key or the "No, do not continue" button will close the confirmation dialog with focus returning to the
+            "Cancel" button on the modal dialog form. Pressing the "Yes, I would like to continue" button will close the confirmation dialog, and the form returning focus to the "Run Modal Test" button.
+        </li>
+        <li>               
+            At any point during the test process, despite each modal dialog making its background inert, the Announcement History non-modal dialog should be avaialbe either using the keyboard shortcut <span class="br-visually-hidden">Control plus Shift plus the H key</span>
+            <span aria-hidden="true"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd></span> or by pressing the <b>Alerts button</b> located at the bottom-right. Pressing the <kbd>Escape</kbd> key when the Announcement History dialog is open should only close
+            the Announcment History dialog. Clikcing, <b>not</b> tabbing outside of the Announcement History dialog will close it, so it will close if open when any modal dialog button is clicked.
+        </li>
+        <li>
+            When either of the modal dialogs is opened the focus is set to the dialog and the dialog is labelled using the heading text in the dialog. The heading text in the form was set to "Fake Form" and confirmation dailog heading set to "Your confirmation is required"
+        </li>
+    </ul>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Container_Test_Modifier">
+    <button @ref="ButtonRef" class="@GlobalValues.Button_Test_Class" @onclick="RunTest" type="button">Run Modal Test</button>
+    @if (_outputVisible)
+    {
+        <p style="margin-top:2rem;">
+            <b>The result: </b> @_outputMessage
+        </p>
+    }
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Busy_Quirks">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_BusyIndicator - @GlobalValues.Page_Title_Busy_Quirks</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Modal_Dialog_Quirks">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_Modal_Dialog - @GlobalValues.Page_Title_Modal_Dialog_Quirks</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@inject ModalDialogService _dialogService
+
+@code {
+
+    private ElementReference ButtonRef { get; set; }
+
+    private bool _outputVisible = false;
+
+    private string _outputMessage = String.Empty;
+    private string _location = String.Empty;
+
+    public async Task RunTest()
+    {
+        _outputVisible = false;
+        SomePersonData somePersonData = new("John", "Doe", 42, "United Kingdom");
+
+        var dialogOptions    = new ModalDialogOptions(HorizontalAlignment.Centre, VerticalAlignment.Top);
+        var dialogParameters = new ModalDialogParameters<SomeForm>();
+
+        dialogParameters.Add(x => x.SomePersonData, somePersonData);//The parameter/type and the data
+
+        var dialogResult = await _dialogService.ShowDialog<SomeForm>(dialogParameters, dialogOptions);
+
+        if (dialogResult.ButtonClicked == DialogResultButtons.Ok)
+        {
+            _outputMessage = "The data returned was:" + dialogResult.Data.ToString();
+        }
+        else
+        {
+            _outputMessage = "The operation was cancelled.";
+        }
+        _outputVisible = true;
+        await ButtonRef.FocusAsync();
+    }
+}
+
+

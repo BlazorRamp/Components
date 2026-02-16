@@ -1,4 +1,5 @@
 using BlazorRamp.Core.Common.Extensions;
+using BlazorRamp.DialogFramework.Common.Extensions;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -13,6 +14,7 @@ public class Program
         builder.RootComponents.Add<HeadOutlet>("head::after");
 
         builder.Services.AddBlazorRampCore();
+        builder.Services.AddBlazorRampDialogService();
         builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
         await builder.Build().RunAsync();

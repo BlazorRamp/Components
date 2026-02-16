@@ -1,0 +1,50 @@
+﻿@attribute [Route(GlobalValues.Path_Modal_Dialog_Quirks)]
+
+<PageTitle>@GlobalValues.Page_Title_Modal_Dialog_Quirks</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">Quirks & Issues</h1>
+
+    <p>
+        Below are all the quirks and/or issues that I experienced whilst testing the Modal Dialog Framework.
+    </p>
+
+</section>
+
+<section class="section-box">
+    <h2 id="browser-issues">Browser issues</h2>
+    <ul aria-labelledby="browser-issues">
+        <li>
+            <p>
+                <b>Safari browser.</b> Safari has, at the time of writing multiple issues regarding using a popover inside of nested modal dialogs and from my investigations, reordering issues of nested modal dialogs.
+            </p>
+            <p>
+                What does this mean, there is an edge case that I cannot do anything about. Lets say you open a dialog and then launch another dialog, everything will work perfectly.
+                Lets say now in the second nested dialog (it works fine in a single dialog), you open a popover (non-modal dialog) such as the Announcmenet History component. At this point it all works fine, and
+                if you use the buttons to close the popover, its OK. But if you use the escape key, the popover will close but then Safari puts the dialogs in the wrong order. You then tab and the ordering is
+                restored.
+            </p>
+            <p>
+                <b>Note:</b> All other browsers that I tested worked correctly without issue, it was only this one edge case when using Safari on macOS, the iPhone was not effected given its touch and uses the buttons.
+                I will from time to time checkup on this, but I cannot control how safari orders the top layer items.
+            </p>
+        </li>
+    </ul>
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Modal_Dialog_Overview">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_Modal_Dialog - @GlobalValues.Page_Title_Modal_Dialog_Overview_Test</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_SkipTo_Overview">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_SkipTo - @GlobalValues.Page_Title_SkipTo_Overview_Test</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+
+}

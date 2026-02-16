@@ -1,0 +1,66 @@
+﻿
+@inject ModalDialogService _dialogService
+@implements IDisposable
+
+<div class="dialog-test">
+    <h3 class="dialog-test__header" id="@_dialogTitleID">@_title</h3>
+ 
+    <div class="dialog-test__content">
+        @((MarkupString)_dialogMessage)
+    </div>
+
+    <div class="dialog-test__footer">
+        <button class="dialog-test__button" @onclick="async () => await HandleCloseDialog(true)">@_buttonCancelText</button>
+        <button class="dialog-test__button" @onclick="async () => await HandleCloseDialog(false)">
+            <span>
+                @_buttonOKText
+            </span>
+        </button>
+    </div>
+
+</div>
+@code {
+
+    [Parameter] public string DialogTitle   { get; set; } = default!;
+    [Parameter] public string DialogMessage { get; set; } = default!; 
+    [Parameter] public string ButtonYesText { get; set; } = default!;
+    [Parameter] public string ButtonNoText  { get; set; } = default!;
+
+    private string _title            = "Your confirmation is required.";
+    private string _buttonOKText     = "Yes, I would like to continue";
+    private string _buttonCancelText = "No, do not continue";
+    private string _dialogTitleID    = Guid.Empty.ToString();
+    private string _dialogMessage    = "In order to continue with the selected action you must provide confirmation.";
+
+    protected override void OnInitialized()
+    {
+        _title            = String.IsNullOrWhiteSpace(DialogTitle)   ? _title : DialogTitle.Trim();
+        _buttonOKText     = String.IsNullOrWhiteSpace(ButtonYesText) ? _buttonOKText : ButtonYesText.Trim();
+        _buttonCancelText = String.IsNullOrWhiteSpace(ButtonNoText)  ? _buttonCancelText : ButtonNoText.Trim();
+        _dialogMessage    = String.IsNullOrWhiteSpace(DialogMessage) ? _dialogMessage : DialogMessage.Trim();
+
+        _dialogTitleID       = _dialogService is null ? _dialogTitleID : _dialogService.GetAriaLabelledByID();
+
+        _dialogService?.RegisterEscapeHandler(HandleEscapeKey);
+    }
+
+    private async Task HandleEscapeKey()
+    
+        => await HandleCloseDialog(true);
+ 
+    public async Task HandleCloseDialog(bool cancelled = false)
+    {
+        if (false == cancelled)
+        {
+            await _dialogService.CloseDialog(ModalDialogResult.OK()); 
+            return;
+        }
+        
+        await _dialogService.CloseDialog(ModalDialogResult.Cancel());
+    }
+
+    public void Dispose()
+
+        => _dialogService?.UnregisterEscapeHandler(HandleEscapeKey);
+    
+}
