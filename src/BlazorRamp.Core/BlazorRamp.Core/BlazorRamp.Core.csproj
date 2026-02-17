@@ -98,12 +98,16 @@ All Blazor Ramp components reference this project.
 
 
 	<!-- section to test settings -->
+	<Target Name="PreResolveProjectStaticWebAssets" BeforeTargets="ResolveProjectStaticWebAssets">
+		<ItemGroup>
+			<StashedContent Include="@(Content)" />
+			<Content Remove="@(Content)" />
+		</ItemGroup>
+	</Target>
+	<Target Name="PostResolveProjectStaticWebAssets" AfterTargets="ResolveProjectStaticWebAssets">
+		<ItemGroup>
+			<Content Include="@(StashedContent)" />
+		</ItemGroup>
+	</Target>
 
-	<!--<PropertyGroup>
-		<PrepareForBuildDependsOn>
-			CompileTypeScriptWithTSConfig;
-			$(PrepareForBuildDependsOn)
-		</PrepareForBuildDependsOn>
-		<DisableParallelMultiTargetingBuild>true</DisableParallelMultiTargetingBuild>
-	</PropertyGroup>-->
 </Project>

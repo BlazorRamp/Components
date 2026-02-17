@@ -35,7 +35,7 @@ public class CoreUtilities_Tests
         [InlineData("one-class, two-class", 2)]
         [InlineData("one-class, two-class three-class", 3)]
 
-        public void Should_get_a_space_separated_list_of_classes_or_return_null(string classes, int expectedClasses)
+        public void Should_get_a_space_separated_list_of_classes_or_return_null(string? classes, int expectedClasses)
         {
             string[]? classList = null;
             
