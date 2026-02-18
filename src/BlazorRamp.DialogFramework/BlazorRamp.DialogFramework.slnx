@@ -6,7 +6,11 @@
     <Project Path="Sandbox/Sandbox.Client/Sandbox.Client.csproj" />
     <Project Path="Sandbox/Sandbox/Sandbox.csproj" />
   </Folder>
-  <Folder Name="/03 - Tests/">
+  <Folder Name="/03 - Tests/" />
+  <Folder Name="/03 - Tests/00 - Shared Data/">
+    <Project Path="BlazorRamp.DialogFramework.Tests.SharedDataFixtures/BlazorRamp.DialogFramework.Tests.SharedDataFixtures.csproj" Id="4181e157-ca07-46d2-8c70-f38b4d5ab109" />
+  </Folder>
+  <Folder Name="/03 - Tests/01 - Unit Tests/">
     <Project Path="BlazorRamp.DialogFramework.Tests.Unit/BlazorRamp.DialogFramework.Tests.Unit.csproj" Id="807ad445-bf2f-4e52-ba42-2c5d000670fa" />
   </Folder>
 </Solution>
