@@ -69,7 +69,7 @@ public class ModalDialogParameters<TDialog> : ModalDialogParameters
     {
         var (paramName, paramType) = GeneralUtilities.GetModalDialogParamType(dialogParam);
 
-        if (paramType != typeof(TData)) new ArgumentException("The data type does not match the component parameter type");
+        if (paramType != typeof(TData)) throw new ArgumentException("The data type does not match the component parameter type");
 
         this.Add(paramName, data!);
     }
