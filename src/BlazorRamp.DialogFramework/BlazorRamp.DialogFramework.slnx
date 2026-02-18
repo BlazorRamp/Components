@@ -6,4 +6,7 @@
     <Project Path="Sandbox/Sandbox.Client/Sandbox.Client.csproj" />
     <Project Path="Sandbox/Sandbox/Sandbox.csproj" />
   </Folder>
+  <Folder Name="/03 - Tests/">
+    <Project Path="BlazorRamp.DialogFramework.Tests.Unit/BlazorRamp.DialogFramework.Tests.Unit.csproj" Id="807ad445-bf2f-4e52-ba42-2c5d000670fa" />
+  </Folder>
 </Solution>
