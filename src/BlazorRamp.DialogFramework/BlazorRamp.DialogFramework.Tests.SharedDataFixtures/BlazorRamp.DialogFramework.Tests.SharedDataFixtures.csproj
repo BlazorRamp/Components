@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
 	  <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
@@ -31,8 +31,5 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\BlazorRamp.DialogFramework\BlazorRamp.DialogFramework.csproj" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Components\" />
 	</ItemGroup>
 </Project>

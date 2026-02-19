@@ -37,7 +37,7 @@ namespace BlazorRamp.DialogFramework.Tests.Unit.Framework
         [Fact]
         public void A_width_less_than_15_should_be_set_to_15_percent()
         {
-            var modalDialogOptions = new ModalDialogOptions(HorizontalAlignment.Right, VerticalAlignment.Top, 15);
+            var modalDialogOptions = new ModalDialogOptions(HorizontalAlignment.Right, VerticalAlignment.Top, 14);
 
             modalDialogOptions.Should().Match<ModalDialogOptions>(o => o.HorizonalPosition == "end" && o.VerticalPosition == "start" && o.MaxWidth == "15%");
 

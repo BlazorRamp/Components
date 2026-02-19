@@ -1,0 +1,20 @@
+﻿
+@using BlazorRamp.DialogFramework.Tests.SharedDataFixtures.Common.Models
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using static Microsoft.AspNetCore.Components.Web.RenderMode
+
+<div class="demo-dialog">
+    <h2 class="demo-dialog__header">Some Form</h2>
+    <div class="demo-dialog__content">
+        <p>Your form fields in here.</p>
+        <p>The object passed in: @(SomePersonData is null ? "[Null]" : SomePersonData)</p>
+    </div>
+</div>
+@code {
+
+    [Parameter] public SomePersonData SomePersonData { get; set; } = default!;
+
+
+}
