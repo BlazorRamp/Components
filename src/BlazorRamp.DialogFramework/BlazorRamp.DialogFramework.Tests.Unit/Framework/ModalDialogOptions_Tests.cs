@@ -34,7 +34,14 @@ namespace BlazorRamp.DialogFramework.Tests.Unit.Framework
             modalDialogOptions.Should().Match<ModalDialogOptions>(o => o.HorizonalPosition == "end" && o.VerticalPosition == "start" && o.MaxWidth == "100%");
 
         }
+        [Fact]
+        public void A_width_less_than_15_should_be_set_to_15_percent()
+        {
+            var modalDialogOptions = new ModalDialogOptions(HorizontalAlignment.Right, VerticalAlignment.Top, 15);
 
+            modalDialogOptions.Should().Match<ModalDialogOptions>(o => o.HorizonalPosition == "end" && o.VerticalPosition == "start" && o.MaxWidth == "15%");
+
+        }
         [Fact]
         public void Invalid_horizontal_or_vertical_values_should_default_to_center()
         {

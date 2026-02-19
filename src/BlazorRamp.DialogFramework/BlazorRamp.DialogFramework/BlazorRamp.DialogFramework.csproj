@@ -13,11 +13,11 @@
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Modal dialog; Modal; Dialog;</PackageTags>
-    <PackageReleaseNotes>Initial release of the Blazor Ramp modal dialog framework</PackageReleaseNotes>
+    <PackageReleaseNotes>Added a dialog window min/max width cap set to 15% if the entered value was below this.</PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
-    <FileVersion>1.0.0</FileVersion>
-	<Version>1.0.0</Version>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>
+	<Version>1.0.1</Version>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
 	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -60,6 +60,10 @@
     <Folder Include="wwwroot\assets\js\" />
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="BlazorRamp.DialogFramework.Tests.Unit" key="002400000480000094000000060200000024000052534131000400000100010091764439b057aa648d9b6fae0af179aacf637c9e9eb0c53eb2d2480ebc4eadc7ad2cc8ddaca110281c6da8f466eea56e22ce7f6cada84d657f1b2e4a6c5169a03c7e272c3bc7b14930364f0c1a5c5a75a8631dd303454f3569bf32a95db99132838602a24d64b3b92124827682ee19d6df5921a6bc4bd77a999b26c9420337df" />
+	</ItemGroup>
+	
   <ItemGroup>
     <None Include="..\README.md">
       <Pack>True</Pack>

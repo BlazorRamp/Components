@@ -26,7 +26,7 @@ public class ModalDialogOptions (HorizontalAlignment horizontalAlignment = Horiz
     /// <summary>
     /// Gets the maximum width of the dialog window as a CSS percentage string.
     /// </summary>
-    public string MaxWidth          { get; } = maxWidthPercent > 100 ? "100%" : maxWidthPercent + "%";
+    public string MaxWidth          { get; } = maxWidthPercent > 100 ? "100%" : (maxWidthPercent < 15 ? "15%" : maxWidthPercent + "%");
 
 }
 
