@@ -350,7 +350,7 @@
 
 :root {
   --br-unit-colour-neutral-saturation: 10;
-  --br-unit-colour-primary: olive;
+  --br-unit-colour-primary: tomato;
   --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-darker);
   --br-kbd-background-colour: var(--br-unit-colour-info-lighter);
 }

@@ -343,7 +343,7 @@
 }
 
 :root {
-  --br-unit-colour-primary: Sienna;
+  --br-unit-colour-primary: darkslateblue;
   --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-darker);
   --br-kbd-background-colour: var(--br-unit-colour-info-lighter);
   --br-code-block-background-colour: var(--br-unit-colour-secondary-lighter);
