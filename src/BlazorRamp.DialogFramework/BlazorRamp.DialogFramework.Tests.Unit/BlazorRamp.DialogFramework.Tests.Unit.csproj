@@ -31,9 +31,6 @@
 		<AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Common\Utilities\" />
-	</ItemGroup>
-	<ItemGroup>
 	  <ProjectReference Include="..\BlazorRamp.DialogFramework.Tests.SharedDataFixtures\BlazorRamp.DialogFramework.Tests.SharedDataFixtures.csproj" />
 	  <ProjectReference Include="..\BlazorRamp.DialogFramework\BlazorRamp.DialogFramework.csproj" />
 	</ItemGroup>
