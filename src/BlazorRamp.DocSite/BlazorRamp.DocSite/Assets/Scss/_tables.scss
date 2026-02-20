@@ -67,7 +67,10 @@
         padding: var(--br-unit-space-3);
     }
 
-
+    & caption{
+        text-align:start;
+        margin-block-end: var(--br-unit-space-5);
+    }
 
     &--two-col-descriptive {
 

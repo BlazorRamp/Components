@@ -840,6 +840,10 @@ body #app__main {
 .code-table td[colspan] {
   font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
 }
+.code-table caption {
+  text-align: start;
+  margin-block-end: var(--br-unit-space-5);
+}
 .code-table--two-col-descriptive td:last-child {
   border-inline: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
   font-family: var(--br-unit-font-family-default);
