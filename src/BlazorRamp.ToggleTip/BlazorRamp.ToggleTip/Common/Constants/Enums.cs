@@ -22,3 +22,10 @@ public enum ToggleTipLabelOrder: int
     LabelFirst = 0,
     IconFirst = 1
 }
+
+public enum ToggleTipSize : int
+{
+    Small = 0,
+    Medium = 1,
+    Large = 2
+}

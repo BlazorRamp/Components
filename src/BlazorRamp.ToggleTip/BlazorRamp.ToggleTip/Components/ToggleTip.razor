@@ -1,4 +1,4 @@
-﻿<div class="@GlobalValues.ToggleTip_Class">
+﻿<div @attributes="AdditionalAttributes" class="@BuildToggleTipClasses(ToggleTipSize)">
 
     <button class="@BuildTrggerClasses(ToggleTipLabelOrder)" popovertarget="@_contentID" type="button" aria-label="@_label">
         @if(ShowLabel)
@@ -14,10 +14,10 @@
     <div id="@_contentID" class="@GlobalValues.ToggleTip_Popover_Class" data-br-toggle-tip-position="@_toggleTipPosition" popover="auto" >
         <div class="@GlobalValues.ToggleTip_Content_Area_Wrapper_Class">
             <div class="@GlobalValues.ToggleTip_Content_Area_Class" tabindex="0">
-                This area is from a render fragment and contain any markup you like. The footer below with the close button is part of the toggletip.
-
-                The toggletip icon uses EM's so it will grow with the surrounding text. The close button also grows with surrounding text.
-                The render fragment is up to you how its sized. With no font-sizes used in the content it too will will grow.
+                @if(ChildContent is not null)
+                {
+                    @ChildContent
+                }
             </div> 
             <div class="@GlobalValues.ToggleTip_Footer_Class">
             @if(true == ShowClose)  

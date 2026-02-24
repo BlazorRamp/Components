@@ -20,6 +20,34 @@
     pre elment spaces
 </pre>
 Welcome to your new app. Welcome to your new app. Welcome to your new app.
-<ToggleTip Label="keyboard info:" ShowClose="true" ShowLabel="true" ToggleTipPosition="ToggleTipPosition.CentreRight" ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" /> 
+
+<ToggleTip CloseText="Close Toggletip" ShowClose="true" ShowLabel="true" Label="Keyboard info" ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" 
+ToggleTipPosition="ToggleTipPosition.TopCentre" ToggleTipSize="ToggleTipSize.Large">
+    
+    <p>
+        This area is from a render fragment and contain any markup you like. The footer below with the close button is part of the toggletip.
+    </p>
+   
+    <p>
+        The toggletip icon uses EM's so it will grow with the surrounding text. The close button also grows with surrounding text.
+    </p>
+    <p>
+        The render fragment is up to you how its sized. With no font-sizes used in the content it too will will grow.
+    </p>
+   
+</ToggleTip>
+
 Welcome to your new app. Welcome to your new app. Welcome to your new app. Welcome to your new app. Welcome to your new app. Welcome to your new app.
 
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

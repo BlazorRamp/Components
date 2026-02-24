@@ -18,7 +18,10 @@ internal class GlobalValues
     public const string ToggleTip_Closer_Class               = $"{ToggleTip_Class}__closer";
     public const string ToggleTip_Footer_Class               = $"{ToggleTip_Class}__footer";
 
-    public const string ToggleTip_Trigger_Modifier_Class = $"{ToggleTip_Class}__trigger--reverse";
+    public const string ToggleTip_Trigger_Order_Modifier_Class = $"{ToggleTip_Class}__trigger--reverse";
+    public const string ToggleTip_Small_Modifier_Class = $"{ToggleTip_Class}--small";
+    public const string ToggleTip_medium_Modifier_Class = $"{ToggleTip_Class}--medium";
+    public const string ToggleTip_large_Modifier_Class  = $"{ToggleTip_Class}--large";
 
 
 }

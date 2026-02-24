@@ -1,0 +1,96 @@
+﻿@attribute [Route(GlobalValues.Path_Toggle_Tip_Overview)]
+
+<PageTitle>@GlobalValues.Page_Title_Toggle_Tip_Overview_Test</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">Toggletip Overview & Tests</h1>
+
+    <p>
+        The Toggletip component is a simple component based on the original idea by Heydon Pickering of a way of showing supplemental information that is revealed on click rather than on hover.
+    </p>
+    <p>
+        The implementation I chose was that of simple disclosure pattern using the new HTML popover attribute so the component has light dismiss on mouse click, has no focus trap and will reamin 
+        open until closed explicity with the <kbd>Escape</kbd> key or an additional close button and/or opening another item that uses the popover api.
+    </p>
+    <p>
+        <b>In Test </b> 
+    </p>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
+    <p>
+        You should be able to open and view the toggletip information by activating the components with either the mouse (on either the label or icon), the <kbd>Enter</kbd> or <kbd>Space</kbd> key
+        on the keyboard (when focused on the icon), or via voice commands by saying the controls accessible name, the label that appears to the left of the toggletip, in this configuration.
+    </p>
+    <p>
+        You should be able to close the toggletip by either using the <kbd>Escape</kbd> key, activing the trigger again, clicking outside of the toogletip with the mouse, pressing the additional
+        "Close Toggletip" button that has been added or voice control users may re-say the accessible name.
+    </p>
+    <p>
+        You should be able to scroll scollable data using the arrow keys.
+    </p>
+    <p>
+        The annoucement history dialog also uses the popover api, so that can be used to test closing of the toggletip via opening of another item that uses the popover api.
+        Tthe non-modal <b>Announcement History dialog</b> can be accessed at any time using the keyboard shortcut <span class="br-visually-hidden">Control plus Shift plus the H key</span>
+        <span aria-hidden="true"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd></span> or by pressing the <b>Alerts button</b> located at the bottom-right
+        of the screen.
+    </p>
+    <h3 id="switch-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h3>
+    <ul aria-labelledby="switch-keyboard">
+        <li><kbd>Space</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
+        <li><kbd>Enter</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
+        <li><kbd>Escape</kbd> - closes the toggletip<</li>
+    </ul>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+    <ul>
+        <li>
+            The toggletip should show its contents once activated via your chosen activation method.
+        </li>
+        <li>
+            You should be able to tab to the content area and scoll any scrollable data.
+        </li>
+        <li>
+            Tabbing out of the toggletip should go to the next focusable element on the page with the toggletip remaining open.
+        </li>
+        <li>
+            The toggletip should close if the <kbd>Escape</kbd> key is pressed at any time whilst on the page. If focus is on the toggletip then focus should return to the trigger (the icon).
+        </li>
+        <li>
+            The toggletip should close if the "Close toggle" button is pressed with the focus returning to the trigger (the icon).
+        </li>
+        <li>
+            The toggletip should remain open until explicity closed, you leave the page or another item using the popover api is used.
+        </li>
+
+        <li>
+            Screen readers should announce that the toggletip is either expanded or collapsed on focus and activation.
+        </li>
+    </ul>
+</section>
+<section class="section-box">
+
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Switch_Quirks">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_Switch - @GlobalValues.Page_Title_Switch_Quirks</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Faqs_Final_Words">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_FAQs - @GlobalValues.Page_Title_Faqs_Final_Words</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+
+}

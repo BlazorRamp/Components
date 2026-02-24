@@ -24,15 +24,21 @@ public static class GlobalValues
     public const string Page_Title_Switch_Overview_Test  = "Overview & Tests";
     public const string Page_Title_Switch_Quirks          = "Quirks & Issues";
 
+    public const string Page_Title_Toggle_Tip_Overview_Test = "Overview & Tests";
+
+
     public const string Page_Title_Modal_Dialog_Overview_Test = "Overview & Tests";
     public const string Page_Title_Modal_Dialog_Quirks        = "Quirks & Issues";
 
     public const string Path_Overview_Introduction = "/";
     public const string Path_Overview_About = "/about-blazor-ramp";
 
-    public const string Path_SkipTo_Overview = "/skip-to/overview-tests";
-    public const string Path_Switch_Overview = "/switch/overview-tests";
-    public const string Path_Switch_Quirks   = "/switch/known-issues";
+    public const string Path_SkipTo_Overview     = "/skip-to/overview-tests";
+    public const string Path_Switch_Overview     = "/switch/overview-tests";
+    public const string Path_Switch_Quirks       = "/switch/known-issues";
+    public const string Path_Toggle_Tip_Overview = "/toggle-tip/overview-tests";
+
+
 
     public const string Path_Busy_Screen        = "/busy-indicator/busy-page";
     public const string Path_Busy_Container     = "/busy-indicator/busy-container";
@@ -51,7 +57,8 @@ public static class GlobalValues
     public const string Main_Nav_Section_Heading_SkipTo        = "Skip To";
     public const string Main_Nav_Section_Heading_Switch        = "Switch";
     public const string Main_Nav_Section_Heading_Modal_Dialog  = "Modal Dialog";
-    public const string Main_Nav_Section_Heading_FAQs = "FAQs";
+    public const string Main_Nav_Section_Heading_Toggle_Tip    = "Toggletip";
+    public const string Main_Nav_Section_Heading_FAQs          = "FAQs";
 
 
     public const string Main_Navigation_Aria_Title = "Main Menu";
