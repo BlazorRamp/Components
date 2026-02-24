@@ -51,17 +51,18 @@ for displaying supplimental information, activated by click, keyobard, touch or 
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Constants\" />
-    <Folder Include="Components\" />
+    <None Include="compilerconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="compilerconfig.json" />
+    <Folder Include="wwwroot\assets\css\" />
   </ItemGroup>
 
 
 	<!-- section to test settings -->
-	<Target Name="PreResolveProjectStaticWebAssets" BeforeTargets="ResolveProjectStaticWebAssets">
+
+	<!-- This stop the static errors but then stops just pressing save and seeing css changes.-->
+	<!--<Target Name="PreResolveProjectStaticWebAssets" BeforeTargets="ResolveProjectStaticWebAssets">
 		<ItemGroup>
 			<StashedContent Include="@(Content)" />
 			<Content Remove="@(Content)" />
@@ -71,5 +72,5 @@ for displaying supplimental information, activated by click, keyobard, touch or 
 		<ItemGroup>
 			<Content Include="@(StashedContent)" />
 		</ItemGroup>
-	</Target>
+	</Target>-->
 </Project>

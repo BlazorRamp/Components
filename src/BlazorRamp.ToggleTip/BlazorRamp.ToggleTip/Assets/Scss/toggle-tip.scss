@@ -1,1 +1,218 @@
 ﻿@use "_root-toggle-tip";
+
+@mixin information-icon {
+    display: inline-block;
+    background-color: currentColor;
+    mask-image: var(--svg-information-icon);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+
+    @media (forced-colors: active) {
+        background-color: CanvasText;
+        color: Canvas;
+    }
+}
+
+
+.br-toggle-tip {
+    anchor-scope: --toggle-tip-anchor;
+    display: inline;
+    border: solid;
+    border: 0;
+    border-color: transparent;
+    --_icon-size: 1.5em;
+
+    &__label {
+        color: var(--br-comp-toggletip-trigger-label-text);
+        font-family: var(--br-comp-toggletip-trigger-label-font-family);
+        font-size: var(--br-comp-toggletip-trigger-label-font-size);
+        font-weight: var(--br-comp-toggletip-trigger-label-font-weight);
+    }
+
+    & button.br-toggle-tip__trigger { // done tike this due to overrides from frameworks like bootstrap
+        all: revert;
+        appearance: none;
+        margin: 0;
+        padding: 0;
+        display: inline-flex;
+        justify-content: start;
+        align-items: center;
+        gap: var(--br-unit-space-1);
+        font-size: inherit;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        cursor: pointer;
+        vertical-align: middle;
+
+        &--reverse {
+            flex-direction: row-reverse;
+        }
+
+        &:focus-within .br-toggle-tip__anchor::before {
+            outline-style: var(--br-comp-all-outline-style);
+            outline-width: var(--br-comp-all-outline-width);
+            outline-offset: var(--br-comp-all-outline-offset);
+            outline-color: var(--br-comp-all-outline-colour);
+        }
+    }
+
+    &__anchor {
+        position: relative;
+        anchor-name: --toggle-tip-anchor;
+        display: inline-flex;
+        vertical-align: middle;
+        align-items: center;
+
+        &::before {
+            content: "";
+            position: absolute;
+            min-height: var(--br-unit-wcag-target-2a);
+            min-width: var(--br-unit-wcag-target-2a);
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            border-radius: 0.25rem;
+        }
+    }
+
+    &__info-icon {
+        height: var(--_icon-size);
+        width: var(--_icon-size);
+        @include information-icon;
+    }
+
+    &__popover {
+        position: absolute;
+        padding-inline: var(--br-unit-space-4);
+        padding-top: var(--br-unit-space-6);
+        margin: var(--br-unit-space-5);
+        position-anchor: --toggle-tip-anchor;
+        position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+        //position-try-fallbacks: flip-block, flip-inline;
+        min-inline-size: var(--br-unit-wcag-reflow-2a);
+        background-color: var(--br-comp-toggletip-pane-base-background);
+        border-radius: var(--br-comp-toggletip-pane-base-border-radius);
+        border-width: var(--br-comp-toggletip-pane-base-border-width);
+        border-style: var(--br-comp-toggletip-pane-base-border-style);
+        border-color: var(--br-comp-toggletip-pane-base-border-colour);
+        box-shadow: var(--br-comp-toggletip-box-shadow);
+        max-width: 50vw;
+
+
+        &[data-br-toggletip-position="top-left"] {
+            margin-inline-start: calc(var(--br-comp-all-outline-offset) * -1);
+            position-area: block-start span-inline-end;
+        }
+
+        &[data-br-toggletip-position="top-centre"] {
+            position-area: block-start;
+        }
+
+        &[data-br-toggletip-position="top-right"] {
+            margin-inline-end: calc(var(--br-comp-all-outline-offset) * -1);
+            position-area: block-start span-inline-start;
+        }
+
+        &[data-br-toggletip-position="bottom-left"] {
+            margin-inline-start: calc(var(--br-comp-all-outline-offset) * -1);
+            position-area: block-end span-inline-end;
+        }
+
+        &[data-br-toggletip-position="bottom-centre"] {
+            position-area: block-end;
+        }
+
+        &[data-br-toggletip-position="bottom-right"] {
+            margin-inline-end: calc(var(--br-comp-all-outline-offset) * -1);
+            position-area: block-end span-inline-start;
+        }
+
+        &[data-br-toggletip-position="centre-right"] {
+            position-area: inline-end;
+        }
+
+        &[data-br-toggletip-position="centre-left"] {
+            position-area: inline-start;
+        }
+
+        @media (max-width:576px) {
+            min-width: Calc(100vw - (var(--br-unit-space-5) * 2));
+        }
+    }
+
+    &__content-area-wrapper {
+        display: grid;
+        grid-template-rows: 1fr auto;
+    }
+
+    &__content-area {
+        padding: var(--br-unit-space-3);
+        grid-row: 1/2;
+        overflow-y: auto;
+        min-height: 100px;
+        max-height: 25vh;
+        background-color: var(--br-comp-toggletip-area-content-background);
+        color: var(--br-comp-toggletip-area-content-text);
+        font-family: var(--br-comp-toggletip-area-content-font-family);
+        font-size: var(--br-comp-toggletip-area-content-font-size);
+        font-weight: var(--br-comp-toggletip-area-content-font-weight);
+        border-width: var(--br-comp-toggletip-area-content-border-width);
+        border-style: var(--br-comp-toggletip-area-content-border-style);
+        border-color: var(--br-comp-toggletip-area-content-border-colour);
+        border-radius: var(--br-comp-toggletip-area-content-border-radius);
+
+        &:focus-visible {
+            outline-style: var(--br-comp-toggletip-area-content-outline-style);
+            outline-width: var(--br-comp-toggletip-area-content-outline-width);
+            outline-offset: var(--br-comp-toggletip-area-content-outline-offset);
+            outline-color: var(--br-comp-toggletip-area-content-outline-colour);
+        }
+    }
+
+    &__footer {
+        grid-row: 2/3;
+        margin-block: var(--br-unit-space-3);
+        display: inline-flex;
+        justify-content: end;
+        width: 100%;
+    }
+
+    & button.br-toggle-tip__closer { // done tike this due to overrides from frameworks like bootstrap
+        all: revert;
+        appearance: none;
+        margin: 0;
+        padding-block: var(--br-unit-space-2);
+        padding-inline: var(--br-unit-space-4);
+        background-color: var(--br-comp-toggletip-button-background);
+        color: var( --br-comp-toggletip-button-text);
+        border-radius: var(--br-comp-toggletip-button-border-radius);
+        border-width: var(--br-comp-toggletip-button-border-width);
+        border-style: var(--br-comp-toggletip-button-border-style);
+        border-color: var(--br-comp-toggletip-button-border-colour);
+        font-family: var(--br-comp-toggletip-button-font-family);
+        font-size: var(--br-comp-toggletip-button-font-size);
+        font-weight: var(--br-comp-toggletip-button-font-weigh);
+        line-height: var(--br-comp-toggletip-button-line-height);
+        cursor: pointer;
+        margin-top: var(--br-unit-space-3);
+        min-width: calc((var(--br-unit-wcag-reflow-2a) / 3) + var(--br-unit-space-5));
+
+        &:hover {
+            background-color: var(--br-comp-toggletip-button-state-hover);
+        }
+
+        &:active {
+            transform: scale(var(--br-comp-toggletip-button-state-active-scale));
+            filter: brightness(var(--br-comp-toggletip-button-state-active-brightness));
+            outline: none;
+        }
+
+        &:focus-visible {
+            outline-style: var(--br-comp-toggletip-button-outline-style);
+            outline-width: var(--br-comp-toggletip-button-outline-width);
+            outline-offset: var(--br-comp-toggletip-button-outline-offset);
+            outline-color: var(--br-comp-toggletip-button-outline-colour);
+        }
+    }
+}
