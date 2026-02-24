@@ -46,7 +46,7 @@ public partial class ToggleTip
 
         => labelOrder switch
         {
-            ToggleTipLabelOrder.LabelFirst => $"{GlobalValues.ToggleTip_Trigger_Class} {GlobalValues.ToggleTip_Trigger_Modifier_Class}",
+            ToggleTipLabelOrder.IconFirst => $"{GlobalValues.ToggleTip_Trigger_Class} {GlobalValues.ToggleTip_Trigger_Modifier_Class}",
             _ => GlobalValues.ToggleTip_Trigger_Class
         };
 }

@@ -43,6 +43,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BlazorRamp.ToggleTip\BlazorRamp.ToggleTip\BlazorRamp.ToggleTip.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <TypeScriptCompile Include="Assets\Scripts\test-component.ts" />
   </ItemGroup>
 
