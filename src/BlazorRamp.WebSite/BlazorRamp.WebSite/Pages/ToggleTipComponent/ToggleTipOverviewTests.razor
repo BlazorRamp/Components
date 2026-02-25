@@ -9,11 +9,19 @@
         The Toggletip component is a simple component based on the original idea by Heydon Pickering of a way of showing supplemental information that is revealed on click rather than on hover.
     </p>
     <p>
-        The implementation I chose was that of simple disclosure pattern using the new HTML popover attribute so the component has light dismiss on mouse click, has no focus trap and will reamin 
+        The implementation I chose was that of simple disclosure pattern using the new HTML popover attribute so the component has light dismiss on mouse click, has no focus trap and will remain 
         open until closed explicity with the <kbd>Escape</kbd> key or an additional close button and/or opening another item that uses the popover api.
     </p>
     <p>
-        <b>In Test </b> 
+        The toggletip has also been designed so it can be part of a paragraph of text with the label and icon aligning and sizing to the text.
+    </p>
+    <p>
+        <b>Note: </b>I have used the new css anchor positioning properties which only became base line at the start of the year (2026). 
+        I choose not to add the free polyfill by 'oddbird' for older browsers which you can obtain from here: <a class="@GlobalValues.Link_Class" target="_blank" href="https://github.com/oddbird/css-anchor-positioning">https://github.com/oddbird/css-anchor-positioning (opens inert new window)</a>
+        so dependant on the age of your browser the popover may just appear top left of the screen instead of being positioned top center of the icon (one of the available component positioning options), but funtionally it will work correctly irrespective of the positioning. 
+    </p>
+    <p>
+        Release status: <b>In Test </b> 
     </p>
 </section>
 
@@ -26,7 +34,7 @@
     </p>
     <p>
         You should be able to close the toggletip by either using the <kbd>Escape</kbd> key, activing the trigger again, clicking outside of the toogletip with the mouse, pressing the additional
-        "Close Toggletip" button that has been added or voice control users may re-say the accessible name.
+        Close button that has been added or voice control users may re-say the accessible name or the close buttons accessible name (Close Keyboard Info).
     </p>
     <p>
         You should be able to scroll scollable data using the arrow keys.
@@ -37,11 +45,11 @@
         <span aria-hidden="true"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd></span> or by pressing the <b>Alerts button</b> located at the bottom-right
         of the screen.
     </p>
-    <h3 id="switch-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h3>
-    <ul aria-labelledby="switch-keyboard">
+    <h3 id="toggletip-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h3>
+    <ul aria-labelledby="toggletip-keyboard">
         <li><kbd>Space</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
         <li><kbd>Enter</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
-        <li><kbd>Escape</kbd> - closes the toggletip<</li>
+        <li><kbd>Escape</kbd> - closes the toggletip</li>
     </ul>
 </section>
 
@@ -63,7 +71,7 @@
             The toggletip should close if the <kbd>Escape</kbd> key is pressed at any time whilst on the page. If focus is on the toggletip then focus should return to the trigger (the icon).
         </li>
         <li>
-            The toggletip should close if the "Close toggle" button is pressed with the focus returning to the trigger (the icon).
+            The toggletip should close if the "Close Keyboard Info" button is pressed with the focus returning to the trigger (the icon).
         </li>
         <li>
             The toggletip should remain open until explicity closed, you leave the page or another item using the popover api is used.
@@ -75,6 +83,30 @@
     </ul>
 </section>
 <section class="section-box">
+
+<ToggleTip CloseText="Close Keyboard Info." Label="Keyboard info:" ShowClose="true" ShowLabel="true" ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" ToggleTipSize="ToggleTipSize.Small">
+        <h3 id="toggletip-demo" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h3>
+        <ul aria-labelledby="toggletip-demo">
+            <li><kbd>Space</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
+            <li><kbd>Enter</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
+            <li><kbd>Escape</kbd> - closes the toggletip</li>
+        </ul>
+
+        <p>Lorem ipsum text below to force a scroll bar. The toggletip is responsive so if you do not see on make your window narrower.</p>
+        
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum massa, feugiat id sapien 
+            non, egestas vestibulum dolor. Nulla luctus est ac urna imperdiet tristique. Vestibulum ante 
+            ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent egestas massa 
+            nec sem sagittis, at efficitur urna rutrum. Nunc et.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum massa, feugiat id sapien
+            non, egestas vestibulum dolor. Nulla luctus est ac urna imperdiet tristique. Vestibulum ante
+            ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent egestas massa
+            nec sem sagittis, at efficitur urna rutrum. Nunc et.
+        </p>
+</ToggleTip>
 
 </section>
 

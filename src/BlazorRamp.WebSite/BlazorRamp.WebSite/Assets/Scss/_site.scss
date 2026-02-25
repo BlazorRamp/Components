@@ -81,8 +81,8 @@ li:focus-visible {
     outline-offset: var(--br-comp-all-outline-offset);
     border-radius: var(--br-unit-radius-2);
 }
-html{
-
+html {
+    scroll-padding-top: calc(5rem + var(--br-unit-space-5));
 }
 
 p {

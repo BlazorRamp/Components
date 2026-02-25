@@ -18,36 +18,37 @@
     $break-point-width: 576px;
 
     --_icon-size: 1.5em;
-    --_toggletip-floor-width: var(--br-unit-wcag-reflow-2a);
-    --_toggletip-floor-height: 300px;
-    --_toggletip-target-width: var( --_toggletip-floor-width);
-    --_toggletip-target-height: var(--_toggletip-floor-height);
+    --_toggle-tip-floor-width: var(--br-unit-wcag-reflow-2a);
+    --_toggle-tip-floor-height: 300px;
+    --_toggle-tip-target-width: var( --_toggle-tip-floor-width);
+    --_toggle-tip-target-height: var(--_toggle-tip-floor-height);
     anchor-scope: --toggle-tip-anchor;
     display: inline;
     border: solid;
     border: 0;
     border-color: transparent;
 
+
     &--small {
-        --_toggletip-target-width: 30vw;
-        --_toggletip-target-height: 40vh;
+        --_toggle-tip-target-width: 30vw;
+        --_toggle-tip-target-height: 40vh;
     }
 
     &--medium {
-        --_toggletip-target-width: 40vw;
-        --_toggletip-target-height: 50vh;
+        --_toggle-tip-target-width: 40vw;
+        --_toggle-tip-target-height: 50vh;
     }
 
     &--large {
-        --_toggletip-target-width: 50vw;
-        --_toggletip-target-height: 60vh;
+        --_toggle-tip-target-width: 50vw;
+        --_toggle-tip-target-height: 60vh;
     }
 
     &__label {
-        color: var(--br-comp-toggletip-trigger-label-text);
-        font-family: var(--br-comp-toggletip-trigger-label-font-family);
-        font-size: var(--br-comp-toggletip-trigger-label-font-size);
-        font-weight: var(--br-comp-toggletip-trigger-label-font-weight);
+        color: var(--br-comp-toggle-tip-trigger-label-text);
+        font-family: var(--br-comp-toggle-tip-trigger-label-font-family);
+        font-size: var(--br-comp-toggle-tip-trigger-label-font-size);
+        font-weight: var(--br-comp-toggle-tip-trigger-label-font-weight);
     }
 
     & button.br-toggle-tip__trigger { // done tike this due to overrides from frameworks like bootstrap
@@ -98,6 +99,7 @@
     }
 
     &__info-icon {
+        color: var(--br-comp-toggle-tip-trigger-Icon-Colour);
         height: var(--_icon-size);
         width: var(--_icon-size);
         @include information-icon;
@@ -110,14 +112,14 @@
         margin: var(--br-unit-space-5);
         position-anchor: --toggle-tip-anchor;
         position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
-        background-color: var(--br-comp-toggletip-pane-base-background);
-        border-radius: var(--br-comp-toggletip-pane-base-border-radius);
-        border-width: var(--br-comp-toggletip-pane-base-border-width);
-        border-style: var(--br-comp-toggletip-pane-base-border-style);
-        border-color: var(--br-comp-toggletip-pane-base-border-colour);
-        box-shadow: var(--br-comp-toggletip-box-shadow);
+        background-color: var(--br-comp-toggle-tip-pane-base-background);
+        border-radius: var(--br-comp-toggle-tip-pane-base-border-radius);
+        border-width: var(--br-comp-toggle-tip-pane-base-border-width);
+        border-style: var(--br-comp-toggle-tip-pane-base-border-style);
+        border-color: var(--br-comp-toggle-tip-pane-base-border-colour);
+        box-shadow: var(--br-comp-toggle-tip-box-shadow);
         overflow: hidden;
-        max-width: max(var(--_toggletip-floor-width), var(--_toggletip-target-width));
+        max-width: max(var(--_toggle-tip-floor-width), var(--_toggle-tip-target-width));
 
         &[data-br-toggle-tip-position="top-left"] {
             margin-inline-start: calc(var(--br-comp-all-outline-offset) * -1);
@@ -163,8 +165,8 @@
     &__content-area-wrapper {
         display: grid;
         grid-template-rows: 1fr auto;
-        max-height: max(var(--_toggletip-floor-height), var(--_toggletip-target-height));
-        max-width: max(var(--_toggletip-floor-width), var(--_toggletip-target-width));
+        max-height: max(var(--_toggle-tip-floor-height), var(--_toggle-tip-target-height));
+        max-width: max(var(--_toggle-tip-floor-width), var(--_toggle-tip-target-width));
 
         @media (max-width:$break-point-width) {
             min-width: 100%;
@@ -176,21 +178,21 @@
         grid-row: 1/2;
         overflow-y: auto;
         min-height: 100px;
-        background-color: var(--br-comp-toggletip-area-content-background);
-        color: var(--br-comp-toggletip-area-content-text);
-        font-family: var(--br-comp-toggletip-area-content-font-family);
-        font-size: var(--br-comp-toggletip-area-content-font-size);
-        font-weight: var(--br-comp-toggletip-area-content-font-weight);
-        border-width: var(--br-comp-toggletip-area-content-border-width);
-        border-style: var(--br-comp-toggletip-area-content-border-style);
-        border-color: var(--br-comp-toggletip-area-content-border-colour);
-        border-radius: var(--br-comp-toggletip-area-content-border-radius);
+        background-color: var(--br-comp-toggle-tip-area-content-background);
+        color: var(--br-comp-toggle-tip-area-content-text);
+        font-family: var(--br-comp-toggle-tip-area-content-font-family);
+        font-size: var(--br-comp-toggle-tip-area-content-font-size);
+        font-weight: var(--br-comp-toggle-tip-area-content-font-weight);
+        border-width: var(--br-comp-toggle-tip-area-content-border-width);
+        border-style: var(--br-comp-toggle-tip-area-content-border-style);
+        border-color: var(--br-comp-toggle-tip-area-content-border-colour);
+        border-radius: var(--br-comp-toggle-tip-area-content-border-radius);
 
         &:focus-visible {
-            outline-style: var(--br-comp-toggletip-area-content-outline-style);
-            outline-width: var(--br-comp-toggletip-area-content-outline-width);
-            outline-offset: var(--br-comp-toggletip-area-content-outline-offset);
-            outline-color: var(--br-comp-toggletip-area-content-outline-colour);
+            outline-style: var(--br-comp-toggle-tip-area-content-outline-style);
+            outline-width: var(--br-comp-toggle-tip-area-content-outline-width);
+            outline-offset: var(--br-comp-toggle-tip-area-content-outline-offset);
+            outline-color: var(--br-comp-toggle-tip-area-content-outline-colour);
         }
     }
 
@@ -212,35 +214,35 @@
         margin: 0;
         padding-block: var(--br-unit-space-2);
         padding-inline: var(--br-unit-space-4);
-        background-color: var(--br-comp-toggletip-button-background);
-        color: var( --br-comp-toggletip-button-text);
-        border-radius: var(--br-comp-toggletip-button-border-radius);
-        border-width: var(--br-comp-toggletip-button-border-width);
-        border-style: var(--br-comp-toggletip-button-border-style);
-        border-color: var(--br-comp-toggletip-button-border-colour);
-        font-family: var(--br-comp-toggletip-button-font-family);
-        font-size: var(--br-comp-toggletip-button-font-size);
-        font-weight: var(--br-comp-toggletip-button-font-weight);
-        line-height: var(--br-comp-toggletip-button-line-height);
+        background-color: var(--br-comp-toggle-tip-button-background);
+        color: var( --br-comp-toggle-tip-button-text);
+        border-radius: var(--br-comp-toggle-tip-button-border-radius);
+        border-width: var(--br-comp-toggle-tip-button-border-width);
+        border-style: var(--br-comp-toggle-tip-button-border-style);
+        border-color: var(--br-comp-toggle-tip-button-border-colour);
+        font-family: var(--br-comp-toggle-tip-button-font-family);
+        font-size: var(--br-comp-toggle-tip-button-font-size);
+        font-weight: var(--br-comp-toggle-tip-button-font-weight);
+        line-height: var(--br-comp-toggle-tip-button-line-height);
         cursor: pointer;
         margin-top: var(--br-unit-space-3);
         min-width: calc((var(--br-unit-wcag-reflow-2a) / 3) + var(--br-unit-space-5));
 
         &:hover {
-            background-color: var(--br-comp-toggletip-button-state-hover);
+            background-color: var(--br-comp-toggle-tip-button-state-hover);
         }
 
         &:active {
-            transform: scale(var(--br-comp-toggletip-button-state-active-scale));
-            filter: brightness(var(--br-comp-toggletip-button-state-active-brightness));
+            transform: scale(var(--br-comp-toggle-tip-button-state-active-scale));
+            filter: brightness(var(--br-comp-toggle-tip-button-state-active-brightness));
             outline: none;
         }
 
         &:focus-visible {
-            outline-style: var(--br-comp-toggletip-button-outline-style);
-            outline-width: var(--br-comp-toggletip-button-outline-width);
-            outline-offset: var(--br-comp-toggletip-button-outline-offset);
-            outline-color: var(--br-comp-toggletip-button-outline-colour);
+            outline-style: var(--br-comp-toggle-tip-button-outline-style);
+            outline-width: var(--br-comp-toggle-tip-button-outline-width);
+            outline-offset: var(--br-comp-toggle-tip-button-outline-offset);
+            outline-color: var(--br-comp-toggle-tip-button-outline-colour);
         }
     }
 }

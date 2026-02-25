@@ -1,61 +1,61 @@
 ﻿:root {
     --svg-information-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10m0-2a8 8 0 1 0 0-16a8 8 0 0 0 0 16M11 7h2v2h-2zm0 4h2v6h-2z'/%3E%3C/svg%3E");
-    
     //
-    --br-comp-toggletip-box-shadow: var(--br-unit-box-shadow-1);
+    --br-comp-toggle-tip-box-shadow: var(--br-unit-box-shadow-1);
     //
-    --br-comp-toggletip-trigger-outline-style: var(--br-comp-all-outline-style);
-    --br-comp-toggletip-trigger-outline-width: var(--br-comp-all-outline-width);
-    --br-comp-toggletip-trigger-outline-offset: var(--br-comp-all-outline-offset);
-    --br-comp-toggletip-trigger-outline-colour: var(--br-comp-all-outline-colour);
+    --br-comp-toggle-tip-trigger-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-toggle-tip-trigger-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-toggle-tip-trigger-outline-offset: var(--br-comp-all-outline-offset);
+    --br-comp-toggle-tip-trigger-outline-colour: var(--br-comp-all-outline-colour);
     //
-    --br-comp-toggletip-trigger-label-text: inherit;
-    --br-comp-toggletip-trigger-label-font-family: inherit;
-    --br-comp-toggletip-trigger-label-font-size: inherit;
-    --br-comp-toggletip-trigger-label-font-weight: inherit;
+    --br-comp-toggle-tip-trigger-Icon-Colour: var(--br-unit-colour-canvas-text);
+    --br-comp-toggle-tip-trigger-label-text: var(--br-unit-colour-canvas-text);
+    --br-comp-toggle-tip-trigger-label-font-family: inherit;
+    --br-comp-toggle-tip-trigger-label-font-size: inherit;
+    --br-comp-toggle-tip-trigger-label-font-weight: inherit;
     /*
         * pane base styles
     */
-    --br-comp-toggletip-pane-base-background: var(--br-comp-all-pane-base-background);
-    --br-comp-toggletip-pane-base-border-style: var(--br-comp-all-pane-base-border-style);
-    --br-comp-toggletip-pane-base-border-colour: var(--br-comp-all-pane-base-border-colour);
-    --br-comp-toggletip-pane-base-border-width: var(--br-unit-border-1);
-    --br-comp-toggletip-pane-base-border-radius: var(--br-unit-radius-7);
+    --br-comp-toggle-tip-pane-base-background: var(--br-comp-all-pane-base-background);
+    --br-comp-toggle-tip-pane-base-border-style: var(--br-comp-all-pane-base-border-style);
+    --br-comp-toggle-tip-pane-base-border-colour: var(--br-comp-all-pane-base-border-colour);
+    --br-comp-toggle-tip-pane-base-border-width: var(--br-unit-border-1);
+    --br-comp-toggle-tip-pane-base-border-radius: var(--br-unit-radius-7);
     /*
         * area content styles
     */
 
-    --br-comp-toggletip-area-content-outline-style: var(--br-comp-all-outline-style);
-    --br-comp-toggletip-area-content-outline-width: var(--br-comp-all-outline-width);
-    --br-comp-toggletip-area-content-outline-offset: var(--br-comp-all-outline-offset);
-    --br-comp-toggletip-area-content-outline-colour: var(--br-comp-all-outline-colour);
+    --br-comp-toggle-tip-area-content-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-toggle-tip-area-content-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-toggle-tip-area-content-outline-offset: var(--br-comp-all-outline-offset);
+    --br-comp-toggle-tip-area-content-outline-colour: var(--br-comp-all-outline-colour);
     //
-    --br-comp-toggletip-area-content-background: var(--br-comp-all-area-content-background);
-    --br-comp-toggletip-area-content-text: var(--br-comp-all-area-content-text);
-    --br-comp-toggletip-area-content-font-family: var(--br-comp-all-area-content-font-family);
-    --br-comp-toggletip-area-content-font-size: var(--br-unit-font-size-label);
-    --br-comp-toggletip-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
-    --br-comp-toggletip-area-content-line-height: var(--br-comp-all-area-content-line-height);
-    --br-comp-toggletip-area-content-border-style: var(--br-comp-all-area-content-border-style);
-    --br-comp-toggletip-area-content-border-colour: var(--br-comp-all-area-content-border-colour);
-    --br-comp-toggletip-area-content-border-width: var(--br-comp-all-area-content-border-width);
-    --br-comp-toggletip-area-content-border-radius: var(--br-comp-all-area-content-border-radius);
+    --br-comp-toggle-tip-area-content-background: var(--br-comp-all-area-content-background);
+    --br-comp-toggle-tip-area-content-text: var(--br-comp-all-area-content-text);
+    --br-comp-toggle-tip-area-content-font-family: var(--br-comp-all-area-content-font-family);
+    --br-comp-toggle-tip-area-content-font-size: var(--br-unit-font-size-label);
+    --br-comp-toggle-tip-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
+    --br-comp-toggle-tip-area-content-line-height: var(--br-comp-all-area-content-line-height);
+    --br-comp-toggle-tip-area-content-border-style: var(--br-comp-all-area-content-border-style);
+    --br-comp-toggle-tip-area-content-border-colour: var(--br-comp-all-area-content-border-colour);
+    --br-comp-toggle-tip-area-content-border-width: var(--br-comp-all-area-content-border-width);
+    --br-comp-toggle-tip-area-content-border-radius: var(--br-comp-all-area-content-border-radius);
     //
-    --br-comp-toggletip-button-background: var(--br-comp-all-button-background);
-    --br-comp-toggletip-button-text: var(--br-comp-all-button-text);
-    --br-comp-toggletip-button-font-family: var(--br-comp-all-button-font-family);
-    --br-comp-toggletip-button-font-size: var(--br-comp-all-button-font-size);
-    --br-comp-toggletip-button-font-weight: var(--br-comp-all-button-font-weight);
-    --br-comp-toggletip-button-line-height: var(--br-comp-all-button-line-height);
-    --br-comp-toggletip-button-border-style: var(--br-comp-all-button-border-style);
-    --br-comp-toggletip-button-border-colour: var(--br-comp-all-button-border-colour);
-    --br-comp-toggletip-button-border-width: var(--br-comp-all-button-border-width);
-    --br-comp-toggletip-button-border-radius: var(--br-comp-all-button-border-radius);
-    --br-comp-toggletip-button-outline-style: var(--br-comp-all-outline-style);
-    --br-comp-toggletip-button-outline-width: var(--br-comp-all-outline-width);
-    --br-comp-toggletip-button-outline-offset: var(--br-comp-all-outline-offset);
-    --br-comp-toggletip-button-outline-colour: var(--br-comp-all-outline-colour);
-    --br-comp-toggletip-button-state-hover: var(--br-comp-all-button-state-hover);
-    --br-comp-toggletip-button-state-active-brightness: var(--br-comp-all-button-state-active-brightness);
-    --br-comp-toggletip-button-state-active-scale: var(--br-comp-all-button-state-active-scale);
+    --br-comp-toggle-tip-button-background: var(--br-comp-all-button-background);
+    --br-comp-toggle-tip-button-text: var(--br-comp-all-button-text);
+    --br-comp-toggle-tip-button-font-family: var(--br-comp-all-button-font-family);
+    --br-comp-toggle-tip-button-font-size: var(--br-comp-all-button-font-size);
+    --br-comp-toggle-tip-button-font-weight: var(--br-comp-all-button-font-weight);
+    --br-comp-toggle-tip-button-line-height: var(--br-comp-all-button-line-height);
+    --br-comp-toggle-tip-button-border-style: var(--br-comp-all-button-border-style);
+    --br-comp-toggle-tip-button-border-colour: var(--br-comp-all-button-border-colour);
+    --br-comp-toggle-tip-button-border-width: var(--br-comp-all-button-border-width);
+    --br-comp-toggle-tip-button-border-radius: var(--br-comp-all-button-border-radius);
+    --br-comp-toggle-tip-button-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-toggle-tip-button-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-toggle-tip-button-outline-offset: var(--br-comp-all-outline-offset);
+    --br-comp-toggle-tip-button-outline-colour: var(--br-comp-all-outline-colour);
+    --br-comp-toggle-tip-button-state-hover: var(--br-comp-all-button-state-hover);
+    --br-comp-toggle-tip-button-state-active-brightness: var(--br-comp-all-button-state-active-brightness);
+    --br-comp-toggle-tip-button-state-active-scale: var(--br-comp-all-button-state-active-scale);
 }
