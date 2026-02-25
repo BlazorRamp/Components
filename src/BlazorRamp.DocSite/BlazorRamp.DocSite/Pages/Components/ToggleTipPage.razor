@@ -1,0 +1,59 @@
+﻿@attribute [Route(GlobalValues.Path_Components_ToggleTip)]
+<PageTitle>@GlobalValues.Page_Title_Components_ToggleTip</PageTitle>
+
+<h1 class="page-heading">. . .@GlobalValues.Page_Heading_Components_ToggleTip . . . docs in progress . . .</h1>
+
+<p>In test . . .</p>
+
+<p>
+    ToggleTip (a term coined by Heydon Pickering) displays supplemental information on click, key press, touch or voice control rather than on on mouseover/hover. 
+</p>
+<p>
+    The component has been designed so it can be placed inlne within a paragraph of text and usless overriden its label and icon will size accordingly. The label visibility is optional 
+    as its still used for the components accessible name. You can also reverse the ordering of the label and icon. As the component has a <span class="code-span">RenderFragement</span>
+    parameter for child content, you can include whatever html content you like.  You provide the content and set the desired size and position of the Toggletip and the component does the rest.
+</p>
+<p>
+    <b>Important: </b>The Toggletip component uses CSS anchor positioning which was only baseline at the start of the year 2026. Dependant on your target audience and supported browser versions,
+    you may want to condider referencing the OddBird anchor positioning polyfill see: <a class="@GlobalValues.Link_Class" target="_blank" href="https://github.com/oddbird/css-anchor-positioning">https://github.com/oddbird/css-anchor-positioning (opens in new window)</a> 
+    to support older browser versions. Without CSS anchor positioning the Toggletip content will be located at the top left of the page, but with all functionality intact.
+</p>
+<h2 id="toggle-tip-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard Interaction</h2>
+<ul aria-labelledby="toggle-tip-keyboard">
+    <li><kbd>Space</kbd> - when focus is on the toggletip icon, expands/collapses the toggletip.</li>
+    <li><kbd>Enter</kbd> - when focus is on the toggletip icon, expands/collapses the toggletip.</li>
+    <li><kbd>Escape</kbd> - closes the toggletip.</li>
+</ul>
+
+<section>
+    <h2 class="page-heading">Installation</h2>
+
+    <p>
+        <b>Note: </b> It is a requirement that the Blazor Ramp Core <span class="code-span">core-live-region.js</span> script, <span class="code-span">LiveRegionService</span>, and
+        associated <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component are added alongside this component’s specific
+        requirements (a stylesheet reference in this instance). You do not need to add the BlazorRamp.Core package separately, as BlazorRamp.Core is included as a transitive package, you only need to add the packages that contain the components
+        that you wish to use i.e the <b>BlazorRamp.Switch</b> NuGet package.
+    </p>
+    <p>
+        Please follow the instructions in the <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Overview_Getting_Started">@GlobalValues.Main_Nav_Section_Heading_About - @GlobalValues.Page_Heading_Overview_Getting_Started</a>
+        ensuring that in the <span class="code-span">&lt;head&gt;</span> section you also add the Switch stylesheet as follows:
+    </p>
+    <CodeBox CodeBlock="@CodeSnippets.Add_ToggleTip_Style_Sheet" AriaLabel="Add toggleitp stylesheet code block" />
+
+</section>
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Components_Switch">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_Components - @GlobalValues.Page_Heading_Components_Switch</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_FAQs_Questions">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_FAQs - @GlobalValues.Page_Heading_FAQs_Questions</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+
+}

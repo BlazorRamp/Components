@@ -11,24 +11,24 @@ public static class GlobalValues
 
 
 
-    public const string Page_Title_Overview_Introduction = "Introduction";
-    public const string Page_Title_Overview_About        = "About Blazor Ramp";
+    public const string Page_Title_Overview_Introduction    = "Introduction";
+    public const string Page_Title_Overview_About           = "About Blazor Ramp";
 
-    public const string Page_Title_Busy_Screen           = "Overview & Page Test";
-    public const string Page_Title_Busy_Container        = "Busy Container Test";
-    public const string Page_Title_Modal_Busy_Screen     = "Modal Busy Page Test";
-    public const string Page_Title_Busy_Short            = "Busy With Short Delay Test";
-    public const string Page_Title_Busy_Quirks          = "Quirks & Issues";
-    public const string Page_Title_Faqs_Final_Words           = "Final Words";
-    public const string Page_Title_SkipTo_Overview_Test  = "Overview & Tests";
-    public const string Page_Title_Switch_Overview_Test  = "Overview & Tests";
-    public const string Page_Title_Switch_Quirks          = "Quirks & Issues";
+    public const string Page_Title_Busy_Screen           = "Busy Indicator Overview & Page Test";
+    public const string Page_Title_Busy_Container        = "Busy Indicator  Container Test";
+    public const string Page_Title_Modal_Busy_Screen     = "Busy Indicator Modal Page Test";
+    public const string Page_Title_Busy_Short            = "Busy Indicator With Short Delay Test";
+    public const string Page_Title_Busy_Quirks          = "Busy Indicator Quirks & Issues";
+    public const string Page_Title_Faqs_Final_Words           = "FAQs Final Words";
+    public const string Page_Title_SkipTo_Overview_Test  = "Switch Overview & Tests";
+    public const string Page_Title_Switch_Overview_Test  = "Switch Overview & Tests";
+    public const string Page_Title_Switch_Quirks          = "Switch Quirks & Issues";
 
-    public const string Page_Title_Toggle_Tip_Overview_Test = "Overview & Tests";
+    public const string Page_Title_Toggle_Tip_Overview_Test = "Toggletip Overview & Tests";
 
 
-    public const string Page_Title_Modal_Dialog_Overview_Test = "Overview & Tests";
-    public const string Page_Title_Modal_Dialog_Quirks        = "Quirks & Issues";
+    public const string Page_Title_Modal_Dialog_Overview_Test = "Modal Dialog Overview & Tests";
+    public const string Page_Title_Modal_Dialog_Quirks        = "Modal Dialog Quirks & Issues";
 
     public const string Path_Overview_Introduction = "/";
     public const string Path_Overview_About = "/about-blazor-ramp";

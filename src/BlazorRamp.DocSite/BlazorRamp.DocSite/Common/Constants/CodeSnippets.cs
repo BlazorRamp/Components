@@ -31,7 +31,12 @@ public class CodeSnippets
             <link rel="stylesheet" href="_content/BlazorRamp.Switch/assets/css/switch.min.css" />
         </head>
         """;
-
+    public const string Add_ToggleTip_Style_Sheet = """
+        <head>
+            <link rel="stylesheet" href="_content/BlazorRamp.Core/assets/css/core.min.css" />
+            <link rel="stylesheet" href="_content/BlazorRamp.ToggleTip/assets/css/toggle-tip.min.css" />
+        </head>
+        """;
     public const string Add_Core_Package = "dotnet add package BlazorRamp.Core";
 
     public const string Add_Core_Script = """
