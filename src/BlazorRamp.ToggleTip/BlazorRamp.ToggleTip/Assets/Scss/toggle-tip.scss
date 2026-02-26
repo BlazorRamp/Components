@@ -108,18 +108,19 @@
     &__popover {
         position: absolute;
         padding-inline: var(--br-unit-space-4);
-        padding-top: var(--br-unit-space-6);
+        padding-block: var(--br-unit-space-6);
         margin: var(--br-unit-space-5);
         position-anchor: --toggle-tip-anchor;
         position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
-        background-color: var(--br-comp-toggle-tip-pane-base-background);
-        border-radius: var(--br-comp-toggle-tip-pane-base-border-radius);
-        border-width: var(--br-comp-toggle-tip-pane-base-border-width);
-        border-style: var(--br-comp-toggle-tip-pane-base-border-style);
-        border-color: var(--br-comp-toggle-tip-pane-base-border-colour);
+        background-color: var(--br-comp-toggle-tip-pane-surface-background);
+        border-radius: var(--br-comp-toggle-tip-pane-surface-border-radius);
+        border-width: var(--br-comp-toggle-tip-pane-surface-border-width);
+        border-style: var(--br-comp-toggle-tip-pane-surface-border-style);
+        border-color: var(--br-comp-toggle-tip-pane-surface-border-colour);
         box-shadow: var(--br-comp-toggle-tip-box-shadow);
         overflow: hidden;
         max-width: max(var(--_toggle-tip-floor-width), var(--_toggle-tip-target-width));
+        //background-color: aliceblue;
 
         &[data-br-toggle-tip-position="top-left"] {
             margin-inline-start: calc(var(--br-comp-all-outline-offset) * -1);
@@ -167,6 +168,7 @@
         grid-template-rows: 1fr auto;
         max-height: max(var(--_toggle-tip-floor-height), var(--_toggle-tip-target-height));
         max-width: max(var(--_toggle-tip-floor-width), var(--_toggle-tip-target-width));
+        //border:1px solid black;
 
         @media (max-width:$break-point-width) {
             min-width: 100%;
@@ -188,6 +190,7 @@
         border-color: var(--br-comp-toggle-tip-area-content-border-colour);
         border-radius: var(--br-comp-toggle-tip-area-content-border-radius);
 
+
         &:focus-visible {
             outline-style: var(--br-comp-toggle-tip-area-content-outline-style);
             outline-width: var(--br-comp-toggle-tip-area-content-outline-width);
@@ -198,10 +201,12 @@
 
     &__footer {
         grid-row: 2/3;
-        margin-block: var(--br-unit-space-3);
-        display: inline-flex;
+        //margin-block: var(--br-unit-space-3);
+
+         display: inline-flex;
         justify-content: end;
         width: 100%;
+
 
         @media (max-width:$break-point-width) {
             justify-content: center;
@@ -211,7 +216,7 @@
     & button.br-toggle-tip__closer { // done tike this due to overrides from frameworks like bootstrap
         all: revert;
         appearance: none;
-        margin: 0;
+        
         padding-block: var(--br-unit-space-2);
         padding-inline: var(--br-unit-space-4);
         background-color: var(--br-comp-toggle-tip-button-background);
@@ -225,7 +230,8 @@
         font-weight: var(--br-comp-toggle-tip-button-font-weight);
         line-height: var(--br-comp-toggle-tip-button-line-height);
         cursor: pointer;
-        margin-top: var(--br-unit-space-3);
+        margin-top: var(--br-unit-space-5);
+        margin-bottom: calc(var(--br-unit-space-1) * -4);
         min-width: calc((var(--br-unit-wcag-reflow-2a) / 3) + var(--br-unit-space-5));
 
         &:hover {
