@@ -8,8 +8,26 @@ public static class GlobalValues
     public const string JS_Show_Modal_Dialog  = "showModalDialog";
     public const string JS_Close_Modal_Dialog = "closeModalDialog";
 
+    public const string Page_Heading_Overivew_Intro = "Introduction";
+    public const string Page_Heading_Overivew_About = "About Blazor Ramp";
 
+    public const string Page_Heading_Busy_Overview  = "Overview & Page Test";
+    public const string Page_Heading_Busy_Container = "Container Test";
+    public const string Page_Heading_Busy_Modal     = "Modal Page Test";
+    public const string Page_Heading_Busy_Short     = "Short Delay Test";
+    public const string Page_Heading_Busy_Quirks    = "Quirks & Issues";
 
+    public const string Page_Heading_Modal_Overview = "Overvew & Tests";
+    public const string Page_Heading_Modal_Quirks   = "Quirks & Issues";
+
+    public const string Page_Heading_Skipto_Overview = "Overvew & Tests";
+
+    public const string Page_Heading_Switch_Overview = "Overvew & Tests";
+    public const string Page_Heading_Switch_Quirks  = "Quirks & Issues";
+
+    public const string Page_Heading_ToggleTip_Overview = "Overvew & Tests";
+
+    public const string Page_Heading_FAQs_Final = "Final Words";
 
     public const string Page_Title_Overview_Introduction    = "Introduction";
     public const string Page_Title_Overview_About           = "About Blazor Ramp";
@@ -20,7 +38,7 @@ public static class GlobalValues
     public const string Page_Title_Busy_Short            = "Busy Indicator With Short Delay Test";
     public const string Page_Title_Busy_Quirks          = "Busy Indicator Quirks & Issues";
     public const string Page_Title_Faqs_Final_Words           = "FAQs Final Words";
-    public const string Page_Title_SkipTo_Overview_Test  = "Switch Overview & Tests";
+    public const string Page_Title_SkipTo_Overview_Test  = "Skip To Overview & Tests";
     public const string Page_Title_Switch_Overview_Test  = "Switch Overview & Tests";
     public const string Page_Title_Switch_Quirks          = "Switch Quirks & Issues";
 
