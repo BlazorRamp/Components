@@ -65,7 +65,11 @@
         outline: none;
         background-color: transparent;
         cursor: pointer;
-        vertical-align: middle;
+
+
+        &--no-label {
+            vertical-align: middle;
+        }
 
         &--reverse {
             flex-direction: row-reverse;
@@ -85,6 +89,7 @@
         display: inline-flex;
         vertical-align: middle;
         align-items: center;
+
 
         &::before {
             content: "";
@@ -120,7 +125,7 @@
         box-shadow: var(--br-comp-toggle-tip-box-shadow);
         overflow: hidden;
         max-width: max(var(--_toggle-tip-floor-width), var(--_toggle-tip-target-width));
-        //background-color: aliceblue;
+
 
         &[data-br-toggle-tip-position="top-left"] {
             margin-inline-start: calc(var(--br-comp-all-outline-offset) * -1);

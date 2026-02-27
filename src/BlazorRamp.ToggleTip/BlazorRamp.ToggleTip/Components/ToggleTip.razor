@@ -1,6 +1,6 @@
 ﻿<div @attributes="AdditionalAttributes" class="@BuildToggleTipClasses(ToggleTipSize)">
 
-    <button class="@BuildTrggerClasses(ToggleTipLabelOrder)" popovertarget="@_contentID" type="button" aria-label="@_label">
+    <button class="@BuildTrggerClasses(ToggleTipLabelOrder, ShowLabel)" popovertarget="@_contentID" type="button" aria-label="@_label">
         @if(ShowLabel)
         {
             <span class="@GlobalValues.ToggleTip_Label_Class" aria-hidden="true">@_label</span>

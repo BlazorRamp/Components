@@ -10,6 +10,7 @@ internal class GlobalValues
 
     public const string ToggleTip_Label_Class                = $"{ToggleTip_Class}__label";
     public const string ToggleTip_Trigger_Class              = $"{ToggleTip_Class}__trigger";
+    public const string ToggleTip_Trigger_No_Label_Modifier  = $"{ToggleTip_Trigger_Class}--no-label";
     public const string ToggleTip_Anchor_Class               = $"{ToggleTip_Class}__anchor";
     public const string ToggleTip_Info_Icon_Class            = $"{ToggleTip_Class}__info-icon";
     public const string ToggleTip_Popover_Class              = $"{ToggleTip_Class}__popover";

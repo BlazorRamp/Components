@@ -50,13 +50,17 @@ public partial class ToggleTip
 
         };
 
-    internal string BuildTrggerClasses(ToggleTipLabelOrder labelOrder)
+    internal string BuildTrggerClasses(ToggleTipLabelOrder labelOrder, bool showLabel)
+    {  
+        var classes = labelOrder switch
+                       {
+                           ToggleTipLabelOrder.IconFirst => $"{GlobalValues.ToggleTip_Trigger_Class} {GlobalValues.ToggleTip_Trigger_Order_Modifier_Class}",
+                           _ => GlobalValues.ToggleTip_Trigger_Class
+                       };
+
+        return showLabel ? classes : $"{classes} {GlobalValues.ToggleTip_Trigger_No_Label_Modifier}";
         
-        => labelOrder switch
-        {
-            ToggleTipLabelOrder.IconFirst => $"{GlobalValues.ToggleTip_Trigger_Class} {GlobalValues.ToggleTip_Trigger_Order_Modifier_Class}",
-            _ => GlobalValues.ToggleTip_Trigger_Class
-        };
+    }
 
     internal string BuildToggleTipClasses(ToggleTipSize toggleTipSize)
     {    

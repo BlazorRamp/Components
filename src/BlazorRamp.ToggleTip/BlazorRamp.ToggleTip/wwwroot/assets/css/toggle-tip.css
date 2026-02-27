@@ -98,6 +98,8 @@
   outline: none;
   background-color: transparent;
   cursor: pointer;
+}
+.br-toggle-tip button.br-toggle-tip__trigger--no-label {
   vertical-align: middle;
 }
 .br-toggle-tip button.br-toggle-tip__trigger--reverse {
