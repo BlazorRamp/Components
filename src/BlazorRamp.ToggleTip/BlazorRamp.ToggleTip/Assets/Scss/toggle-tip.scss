@@ -72,10 +72,10 @@
         }
 
         &:focus-within .br-toggle-tip__anchor::before {
-            outline-style: var(--br-comp-all-outline-style);
-            outline-width: var(--br-comp-all-outline-width);
-            outline-offset: var(--br-comp-all-outline-offset);
-            outline-color: var(--br-comp-all-outline-colour);
+            outline-style: var(--br-comp-toggle-tip-trigger-outline-style);
+            outline-width: var(--br-comp-toggle-tip-trigger-outline-width);
+            outline-offset: var(--br-comp-toggle-tip-trigger-outline-offset);
+            outline-color: var(--br-comp-toggle-tip-trigger-outline-colour);
         }
     }
 
@@ -99,7 +99,7 @@
     }
 
     &__info-icon {
-        color: var(--br-comp-toggle-tip-trigger-Icon-Colour);
+        color: var(--br-comp-toggle-tip-trigger-Icon-colour);
         height: var(--_icon-size);
         width: var(--_icon-size);
         @include information-icon;
@@ -203,7 +203,7 @@
         grid-row: 2/3;
         //margin-block: var(--br-unit-space-3);
 
-         display: inline-flex;
+        display: inline-flex;
         justify-content: end;
         width: 100%;
 
@@ -216,7 +216,6 @@
     & button.br-toggle-tip__closer { // done tike this due to overrides from frameworks like bootstrap
         all: revert;
         appearance: none;
-        
         padding-block: var(--br-unit-space-2);
         padding-inline: var(--br-unit-space-4);
         background-color: var(--br-comp-toggle-tip-button-background);

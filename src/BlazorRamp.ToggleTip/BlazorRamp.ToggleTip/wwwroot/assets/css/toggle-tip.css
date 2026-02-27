@@ -1,11 +1,11 @@
 ﻿:root {
   --svg-information-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10m0-2a8 8 0 1 0 0-16a8 8 0 0 0 0 16M11 7h2v2h-2zm0 4h2v6h-2z'/%3E%3C/svg%3E");
   --br-comp-toggle-tip-box-shadow: var(--br-unit-box-shadow-1);
+  --br-comp-toggle-tip-trigger-Icon-colour: var(--br-unit-colour-canvas-text);
   --br-comp-toggle-tip-trigger-outline-style: var(--br-comp-all-outline-style);
-  --br-comp-toggle-tip-trigger-outline-width: var(--br-comp-all-outline-width);
+  --br-comp-toggle-tip-trigger-outline-width: var(--br-unit-border-3);
   --br-comp-toggle-tip-trigger-outline-offset: var(--br-comp-all-outline-offset);
   --br-comp-toggle-tip-trigger-outline-colour: var(--br-comp-all-outline-colour);
-  --br-comp-toggle-tip-trigger-Icon-Colour: var(--br-unit-colour-canvas-text);
   --br-comp-toggle-tip-trigger-label-text: var(--br-unit-colour-canvas-text);
   --br-comp-toggle-tip-trigger-label-font-family: inherit;
   --br-comp-toggle-tip-trigger-label-font-size: inherit;
@@ -104,10 +104,10 @@
   flex-direction: row-reverse;
 }
 .br-toggle-tip button.br-toggle-tip__trigger:focus-within .br-toggle-tip__anchor::before {
-  outline-style: var(--br-comp-all-outline-style);
-  outline-width: var(--br-comp-all-outline-width);
-  outline-offset: var(--br-comp-all-outline-offset);
-  outline-color: var(--br-comp-all-outline-colour);
+  outline-style: var(--br-comp-toggle-tip-trigger-outline-style);
+  outline-width: var(--br-comp-toggle-tip-trigger-outline-width);
+  outline-offset: var(--br-comp-toggle-tip-trigger-outline-offset);
+  outline-color: var(--br-comp-toggle-tip-trigger-outline-colour);
 }
 .br-toggle-tip__anchor {
   position: relative;
@@ -127,7 +127,7 @@
   border-radius: 0.25rem;
 }
 .br-toggle-tip__info-icon {
-  color: var(--br-comp-toggle-tip-trigger-Icon-Colour);
+  color: var(--br-comp-toggle-tip-trigger-Icon-colour);
   height: var(--_icon-size);
   width: var(--_icon-size);
   display: inline-block;
