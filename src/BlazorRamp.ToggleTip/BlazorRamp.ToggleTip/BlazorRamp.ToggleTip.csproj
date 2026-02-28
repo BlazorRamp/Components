@@ -46,7 +46,7 @@ for displaying supplimental information, activated by click, keyobard, touch or 
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
-    <PackageReference Include="BlazorRamp.Core" Version="1.0.6" />
+    <PackageReference Include="BlazorRamp.Core" Version="1.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.24" />
   </ItemGroup>
 

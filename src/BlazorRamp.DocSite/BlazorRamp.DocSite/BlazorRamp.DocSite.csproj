@@ -14,7 +14,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="BlazorRamp.BusyIndicator" Version="1.0.2" />
-		<PackageReference Include="BlazorRamp.Core" Version="1.0.6" />
+		<PackageReference Include="BlazorRamp.Core" Version="1.0.7" />
 		<PackageReference Include="BlazorRamp.DialogFramework" Version="1.0.1" />
 		<PackageReference Include="BlazorRamp.SkipTo" Version="1.0.2" />
 		<PackageReference Include="BlazorRamp.Switch" Version="1.0.0" />

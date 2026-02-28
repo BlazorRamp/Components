@@ -46,9 +46,9 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
-    <PackageReference Include="BlazorRamp.Core" Version="1.0.6" />
+    <PackageReference Include="BlazorRamp.Core" Version="1.0.7" />
     <PackageReference Include="BuildWebCompiler2022" Version="1.14.15" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.22" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.24" />
   </ItemGroup>
 
 	<ItemGroup>
