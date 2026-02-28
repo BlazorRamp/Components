@@ -22,6 +22,7 @@
     --_toggle-tip-floor-height: 300px;
     --_toggle-tip-target-width: var( --_toggle-tip-floor-width);
     --_toggle-tip-target-height: var(--_toggle-tip-floor-height);
+    box-sizing: border-box;
     anchor-scope: --toggle-tip-anchor;
     display: inline;
     border: solid;
@@ -53,6 +54,7 @@
 
     & button.br-toggle-tip__trigger { // done tike this due to overrides from frameworks like bootstrap
         all: revert;
+        position: relative;
         appearance: none;
         margin: 0;
         padding: 0;
@@ -81,6 +83,18 @@
             outline-offset: var(--br-comp-toggle-tip-trigger-outline-offset);
             outline-color: var(--br-comp-toggle-tip-trigger-outline-colour);
         }
+
+        &:hover::after {
+            position: absolute;
+            content: "";
+            top:    calc(var(--br-unit-space-2) * -1);
+            bottom: calc(var(--br-unit-space-2) * -1);
+            left:   calc(var(--br-unit-space-3) * -1);
+            right:  calc(var(--br-unit-space-3) * -1);
+            background-color: var(--br-comp-toggle-tip-button-state-hover);
+            border-radius: 9999px; // pill shape
+            pointer-events: none; // prevent the pseudo-element intercepting mouse events
+        }
     }
 
     &__anchor {
@@ -99,7 +113,7 @@
             top: 50%;
             left: 50%;
             translate: -50% -50%;
-            border-radius: 0.25rem;
+            border-radius: var(--br-comp-toggle-tip-trigger-border-radius);
         }
     }
 
@@ -112,7 +126,7 @@
 
     &__popover {
         position: absolute;
-        padding-inline: var(--br-unit-space-4);
+        padding-inline: var(--br-unit-space-5);
         padding-block: var(--br-unit-space-6);
         margin: var(--br-unit-space-5);
         position-anchor: --toggle-tip-anchor;
@@ -122,7 +136,7 @@
         border-width: var(--br-comp-toggle-tip-pane-surface-border-width);
         border-style: var(--br-comp-toggle-tip-pane-surface-border-style);
         border-color: var(--br-comp-toggle-tip-pane-surface-border-colour);
-        box-shadow: var(--br-comp-toggle-tip-box-shadow);
+        box-shadow: var(--br-comp-toggle-tip-pane-surface-box-shadow);
         overflow: hidden;
         max-width: max(var(--_toggle-tip-floor-width), var(--_toggle-tip-target-width));
 
@@ -235,8 +249,10 @@
         line-height: var(--br-comp-toggle-tip-button-line-height);
         cursor: pointer;
         margin-top: var(--br-unit-space-5);
-        margin-bottom: calc(var(--br-unit-space-1) * -4);
+        margin-bottom: calc(var(--br-unit-space-1) * -3);
         min-width: calc((var(--br-unit-wcag-reflow-2a) / 3) + var(--br-unit-space-5));
+        min-height: var(--br-unit-wcag-target-2a);
+        white-space: normal;
 
         &:hover {
             background-color: var(--br-comp-toggle-tip-button-state-hover);
