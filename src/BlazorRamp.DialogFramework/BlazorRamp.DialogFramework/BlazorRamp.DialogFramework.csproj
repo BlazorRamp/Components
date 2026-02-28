@@ -13,11 +13,11 @@
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Modal dialog; Modal; Dialog;</PackageTags>
-    <PackageReleaseNotes>Added a dialog window min/max width cap set to 15% if the entered value was below this.</PackageReleaseNotes>
+    <PackageReleaseNotes>Amended the dialog script so if any popover is open it will get to handle the escape key first.</PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>
-	<Version>1.0.1</Version>
+    <AssemblyVersion>1.0.2</AssemblyVersion>
+    <FileVersion>1.0.2</FileVersion>
+	<Version>1.0.2</Version>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
 	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -77,7 +77,7 @@
   </ItemGroup>
 
 	<!-- section to test settings -->
-	<Target Name="PreResolveProjectStaticWebAssets" BeforeTargets="ResolveProjectStaticWebAssets">
+	<!--<Target Name="PreResolveProjectStaticWebAssets" BeforeTargets="ResolveProjectStaticWebAssets">
 		<ItemGroup>
 			<StashedContent Include="@(Content)" />
 			<Content Remove="@(Content)" />
@@ -87,7 +87,7 @@
 		<ItemGroup>
 			<Content Include="@(StashedContent)" />
 		</ItemGroup>
-	</Target>
+	</Target>-->
 
 
 </Project>

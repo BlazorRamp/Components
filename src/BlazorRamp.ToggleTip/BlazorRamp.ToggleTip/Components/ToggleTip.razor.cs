@@ -1,13 +1,13 @@
 ﻿using BlazorRamp.ToggleTip.Common.Constants;
 using Microsoft.AspNetCore.Components;
-using System.Reflection.Metadata;
+
 namespace BlazorRamp.ToggleTip.Components;
 
 /// <summary>
 /// A Blazor component that renders an accessible toggletip — a button-triggered popover
 /// displaying supplemental information in a positioned, dismissible pane.
 /// </summary>
-public partial class ToggleTip
+public sealed partial class ToggleTip
 {
     /// <summary>
     /// Gets or sets the content displayed inside the toggletip popover.
@@ -113,4 +113,5 @@ public partial class ToggleTip
 
         return $"{GlobalValues.ToggleTip_Class} {classes}";
     }
+
 }
