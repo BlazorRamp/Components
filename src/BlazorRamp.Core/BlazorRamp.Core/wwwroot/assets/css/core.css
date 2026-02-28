@@ -1,6 +1,6 @@
 ﻿@font-face {
   font-family: "Roboto Flex";
-  src: url("fonts/Roboto-VariableFont.ttf") format("truetype-variations");
+  src: url("/_content/BlazorRamp.Core/assets/css/fonts/Roboto-VariableFont.ttf") format("truetype-variations");
   font-weight: 100 900;
   font-stretch: 75% 125%;
   font-style: normal;
@@ -8,7 +8,7 @@
 }
 @font-face {
   font-family: "Roboto Flex";
-  src: url("fonts/Roboto-Italic-VariableFont.ttf") format("truetype-variations");
+  src: url("/_content/BlazorRamp.Core/assets/css/fonts/Roboto-Italic-VariableFont.ttf") format("truetype-variations");
   font-weight: 100 900;
   font-stretch: 75% 125%;
   font-style: italic;

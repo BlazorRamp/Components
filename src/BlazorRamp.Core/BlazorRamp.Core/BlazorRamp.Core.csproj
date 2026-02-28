@@ -10,11 +10,11 @@
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region;</PackageTags>
-    <PackageReleaseNotes>Change to the script file to stop an edge case issue with the modal dialog framework that did not toggle the open state of the announcement history dialog correctly. Just made the previous patch more robust.</PackageReleaseNotes>
+    <PackageReleaseNotes>Change to how the css resolves the included Roboto font file to avoid issues when including polyfills such as oddbird's css positioning polyfill.</PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <AssemblyVersion>1.0.6</AssemblyVersion>
-    <FileVersion>1.0.6</FileVersion>
-	  <Version>1.0.6</Version>
+    <AssemblyVersion>1.0.7</AssemblyVersion>
+    <FileVersion>1.0.7</FileVersion>
+	  <Version>1.0.7</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
@@ -98,7 +98,7 @@ All Blazor Ramp components reference this project.
 
 
 	<!-- section to test settings -->
-	<Target Name="PreResolveProjectStaticWebAssets" BeforeTargets="ResolveProjectStaticWebAssets">
+	<!--<Target Name="PreResolveProjectStaticWebAssets" BeforeTargets="ResolveProjectStaticWebAssets">
 		<ItemGroup>
 			<StashedContent Include="@(Content)" />
 			<Content Remove="@(Content)" />
@@ -108,6 +108,6 @@ All Blazor Ramp components reference this project.
 		<ItemGroup>
 			<Content Include="@(StashedContent)" />
 		</ItemGroup>
-	</Target>
+	</Target>-->
 
 </Project>

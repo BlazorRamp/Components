@@ -2,7 +2,7 @@
 
 internal class GlobalValues
 {
-    public const string ToggleTip_Label      = "supplimental information:";
+    public const string ToggleTip_Label      = "supplemental information:";
     public const string ToggleTip_Close_Text = "Close";
 
 

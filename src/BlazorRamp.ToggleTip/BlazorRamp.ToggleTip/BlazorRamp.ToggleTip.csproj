@@ -21,7 +21,7 @@ for displaying supplimental information, activated by click, keyobard, touch or 
 	  <Version>1.0.0</Version>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
-	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

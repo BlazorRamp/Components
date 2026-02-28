@@ -1,9 +1,13 @@
-﻿# Blazor Ramp - Switch
+﻿# Blazor Ramp - Toggletip
 
 The Blazor Ramp project aims to provide a suite of modular, accessibility-first Blazor components. 
 
-The **Switch** is a simple toggle component that is either on or off communicated to assistive technologies via the use or the `role="switch""` and the `aria-checked`
-attributed `true` or `false` for the on/off states.
+**ToggleTip** is a term coined by Heydon Pickering for a widget that displays supplemental information on click, key press, touch or voice control rather than on on mouseover/hover.
+This implmentation uses the the HTML Popover attribute API to show non-modal content.
+
+**Note:** Important: The Toggletip component uses CSS anchor positioning with fallbacks for when it wont fit in the desired location which was only baseline at the start of the year 2026. 
+Dependant on your target audience and supported browser versions, you may want to condider referencing the OddBird anchor positioning polyfill see: https://github.com/oddbird/css-anchor-positioning 
+to support older browser versions. Without CSS anchor positioning the Toggletip content will be located at the top left of the page, but with all functionality intact.
 
 ## Requirements
 It is a requirement that the Blazor Ramp Core script, Live Region Service, and associated Announcement History component are added alongside this component’s specific 
@@ -17,10 +21,10 @@ this package separately (but it can be if you only require the Live Regions Serv
 ## Installation
 
 
-1. Add the BlazorRamp.Switch nuget package to your project using the Nuget Package Manager or the dotnet CLI.
+1. Add the BlazorRamp.ToggleTip nuget package to your project using the Nuget Package Manager or the dotnet CLI.
 
 ```c#
-dotnet add package BlazorRamp.Switch
+dotnet add package BlazorRamp.ToggleTip
 ```
 2. Add the following Core and Busy Indicator stylesheet references to the `<head>` section of your application:
 - Blazor Web App / Blazor Server → App.razor
@@ -28,7 +32,7 @@ dotnet add package BlazorRamp.Switch
 ```html
 <head>
 	<link rel="stylesheet" href="_content/BlazorRamp.Core/assets/css/core.min.css" />
-	<link rel="stylesheet" href="_content/BlazorRamp.Switch/assets/css/switch.min.css" />
+	<link rel="stylesheet" href="_content/BlazorRamp.ToggleTip/assets/css/toggle-tip.min.css" />
 </head>
 ```
  
@@ -61,22 +65,31 @@ Title="Recent Announcements" TriggerVisible="true" TriggerText="Alerts" />
 <Router AppAssembly . . .
 ```
 
-## Using the Switch
+## Using the Toggletip
 
-You can use either use the `@bind:SwitchState` for two-way binding or the event, `EventCallbac<bool>` with one-way binding. By default the switch and label will be together and aligned to the right of the parent container as below. Clicking 
-on either the label or the switch with toggle it its state.
+The toggletip can be set apart from text or as placed inline such as within a paragraph as shown in the full documnations. When using the default variable values 
+the toggltips optional label and icon button will size to match. 
 
-The example below uses the `@bind-SwitchState="@_switchState"` syntax to bind the switch state variable.
+The toggletip uses light dismiss so clicking outside of the popover will close it, as will the escape key. The popover will remain open until closed, 
+and as its not modal the user can tab out of the toggletip leaving it open. Opening an other item that uses the popover api, such as the Announcement History dialog 
+will close an other open popover.
 
+Below is a simple example of the toggletip showing supplemental information about the keyboard interations for the toggletip:
 ```
-<Switch @bind-SwitchState="@_switchState" Label="Airplane mode:" AriaDisabled="@_switchDisabled" SpaceBetween="false" />
+<ToggleTip CloseText="Close Keyboard Info." Label="Keyboard info:" ShowClose="true" ShowLabel="true" 
+ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" ToggleTipSize="ToggleTipSize.Small">
+	
+	<h3 id="keyboard-info">Keyboard interaction</h3>
+	<ul aria-labelledby="id="keyboard-info"">
+		<li><kbd>Space</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
+		<li><kbd>Enter</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
+		<li><kbd>Escape</kbd> - closes the toggletip</li>
+	</ul>
 
-@code {
-
-    private bool _switchState    = false;
-    private bool _switchDisabled = false;
-}
+</ToggleTip>
 ```
+
+
 
 ## Using the Live Region Service (directly)
 

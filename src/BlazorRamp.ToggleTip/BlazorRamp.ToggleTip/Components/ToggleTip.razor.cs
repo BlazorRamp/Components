@@ -3,18 +3,54 @@ using Microsoft.AspNetCore.Components;
 using System.Reflection.Metadata;
 namespace BlazorRamp.ToggleTip.Components;
 
+/// <summary>
+/// A Blazor component that renders an accessible toggletip — a button-triggered popover
+/// displaying supplemental information in a positioned, dismissible pane.
+/// </summary>
 public partial class ToggleTip
 {
-    [Parameter] public RenderFragment? ChildContent { get; set; } 
+    /// <summary>
+    /// Gets or sets the content displayed inside the toggletip popover.
+    /// </summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
 
-    [Parameter] public string Label     { get; set; } = GlobalValues.ToggleTip_Label;
+    /// <summary>
+    /// Gets or sets the visible label text shown alongside the trigger icon. Defaults to "Supplemental information".
+    /// </summary>
+    [Parameter] public string Label { get; set; } = GlobalValues.ToggleTip_Label;
+
+    /// <summary>
+    /// Gets or sets the text for the close button inside the popover. Defaults to "Close" 
+    /// </summary>
     [Parameter] public string CloseText { get; set; } = GlobalValues.ToggleTip_Close_Text;
-    [Parameter] public bool   ShowLabel { get; set; } = true;
-    [Parameter] public bool   ShowClose { get; set; } = true;
 
+    /// <summary>
+    /// Gets or sets a value indicating whether the trigger label is visible. Defaults to <see langword="true" />.
+    /// </summary>
+    [Parameter] public bool ShowLabel { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the close button is shown inside the popover. Defaults to <see langword="true"/>.
+    /// </summary>
+    [Parameter] public bool ShowClose { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets the display order of the label and icon within the trigger button.
+    /// Defaults to <see cref="ToggleTipLabelOrder.LabelFirst"/>.
+    /// </summary>
     [Parameter] public ToggleTipLabelOrder ToggleTipLabelOrder { get; set; } = ToggleTipLabelOrder.LabelFirst;
-    [Parameter] public ToggleTipPosition   ToggleTipPosition   { get; set; } = ToggleTipPosition.TopCentre;
-    [Parameter] public ToggleTipSize       ToggleTipSize       { get; set; } = ToggleTipSize.Small;
+
+    /// <summary>
+    /// Gets or sets the position of the toggletip popover relative to the trigger.
+    /// Defaults to <see cref="ToggleTipPosition.TopCentre"/>.
+    /// </summary>
+    [Parameter] public ToggleTipPosition ToggleTipPosition { get; set; } = ToggleTipPosition.TopCentre;
+
+    /// <summary>
+    /// Gets or sets the size of the toggletip popover.
+    /// Defaults to <see cref="ToggleTipSize.Small"/>.
+    /// </summary>
+    [Parameter] public ToggleTipSize ToggleTipSize { get; set; } = ToggleTipSize.Small;
 
     /// <summary>
     /// Gets or sets additional attributes that will be applied to the component.
@@ -26,7 +62,10 @@ public partial class ToggleTip
     private string _closeText         = GlobalValues.ToggleTip_Close_Text;
     private string _toggleTipPosition = "top-centre";
 
-
+    /// <summary>
+    /// Resolves component parameters on initialisation, trimming whitespace from <see cref="Label"/> and <see cref="CloseText"/>
+    /// and falling back to defaults if either is null or empty, and converting <see cref="ToggleTipPosition"/> to its CSS modifier string.
+    /// </summary>
     protected override void OnInitialized()
     {
         _label             = String.IsNullOrWhiteSpace(Label) ? GlobalValues.ToggleTip_Label : Label.Trim();
@@ -50,7 +89,7 @@ public partial class ToggleTip
 
         };
 
-    internal string BuildTrggerClasses(ToggleTipLabelOrder labelOrder, bool showLabel)
+    internal string BuildTriggerClasses(ToggleTipLabelOrder labelOrder, bool showLabel)
     {  
         var classes = labelOrder switch
                        {
