@@ -4,7 +4,7 @@
     --br-comp-toggle-tip-pane-surface-box-shadow: var(--br-unit-box-shadow-1);
     //
     //
-    --br-comp-toggle-tip-trigger-Icon-colour: var(--br-unit-colour-canvas-text);
+    --br-comp-toggle-tip-trigger-Icon-colour: inherit;
     --br-comp-toggle-tip-trigger-outline-style: var(--br-comp-all-outline-style);
     --br-comp-toggle-tip-trigger-outline-width: var(--br-unit-border-3);
     --br-comp-toggle-tip-trigger-outline-offset: var(--br-comp-all-outline-offset);
@@ -12,7 +12,7 @@
     --br-comp-toggle-tip-trigger-border-radius: var(--br-unit-radius-2);
     ;
     //
-    --br-comp-toggle-tip-trigger-label-text: var(--br-unit-colour-canvas-text);
+    --br-comp-toggle-tip-trigger-label-text: inherit;
     --br-comp-toggle-tip-trigger-label-font-family: inherit;
     --br-comp-toggle-tip-trigger-label-font-size: inherit;
     --br-comp-toggle-tip-trigger-label-font-weight: inherit;
@@ -41,7 +41,7 @@
     --br-comp-toggle-tip-area-content-line-height: var(--br-comp-all-area-content-line-height);
     --br-comp-toggle-tip-area-content-border-style: var(--br-comp-all-area-content-border-style);
     --br-comp-toggle-tip-area-content-border-colour: var(--br-comp-all-area-content-border-colour);
-    --br-comp-toggle-tip-area-content-border-width: var(--br-comp-all-area-content-border-width);
+    --br-comp-toggle-tip-area-content-border-width: var(--br-unit-border-1);
     --br-comp-toggle-tip-area-content-border-radius: var(--br-comp-all-area-content-border-radius);
     //
     --br-comp-toggle-tip-button-background: var(--br-comp-all-button-background);

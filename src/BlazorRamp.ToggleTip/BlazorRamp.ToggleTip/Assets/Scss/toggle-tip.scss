@@ -28,7 +28,8 @@
     border: solid;
     border: 0;
     border-color: transparent;
-
+    color: inherit;
+    background-color: inherit;
 
     &--small {
         --_toggle-tip-target-width: 30vw;
@@ -46,7 +47,7 @@
     }
 
     &__label {
-        color: var(--br-comp-toggle-tip-trigger-label-text);
+        color: inherit; // var(--br-comp-toggle-tip-trigger-label-text);
         font-family: var(--br-comp-toggle-tip-trigger-label-font-family);
         font-size: var(--br-comp-toggle-tip-trigger-label-font-size);
         font-weight: var(--br-comp-toggle-tip-trigger-label-font-weight);
@@ -54,6 +55,8 @@
 
     & button.br-toggle-tip__trigger { // done tike this due to overrides from frameworks like bootstrap
         all: revert;
+        color: inherit;
+        background-color: inherit;
         position: relative;
         appearance: none;
         margin: 0;
@@ -87,10 +90,10 @@
         &:hover::after {
             position: absolute;
             content: "";
-            top:    calc(var(--br-unit-space-2) * -1);
+            top: calc(var(--br-unit-space-2) * -1);
             bottom: calc(var(--br-unit-space-2) * -1);
-            left:   calc(var(--br-unit-space-3) * -1);
-            right:  calc(var(--br-unit-space-3) * -1);
+            left: calc(var(--br-unit-space-3) * -1);
+            right: calc(var(--br-unit-space-3) * -1);
             background-color: var(--br-comp-toggle-tip-button-state-hover);
             border-radius: 9999px; // pill shape
             pointer-events: none; // prevent the pseudo-element intercepting mouse events

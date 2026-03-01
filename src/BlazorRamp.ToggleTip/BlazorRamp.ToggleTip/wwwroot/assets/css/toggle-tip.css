@@ -1,13 +1,13 @@
 ﻿:root {
   --svg-information-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10m0-2a8 8 0 1 0 0-16a8 8 0 0 0 0 16M11 7h2v2h-2zm0 4h2v6h-2z'/%3E%3C/svg%3E");
   --br-comp-toggle-tip-pane-surface-box-shadow: var(--br-unit-box-shadow-1);
-  --br-comp-toggle-tip-trigger-Icon-colour: var(--br-unit-colour-canvas-text);
+  --br-comp-toggle-tip-trigger-Icon-colour: inherit;
   --br-comp-toggle-tip-trigger-outline-style: var(--br-comp-all-outline-style);
   --br-comp-toggle-tip-trigger-outline-width: var(--br-unit-border-3);
   --br-comp-toggle-tip-trigger-outline-offset: var(--br-comp-all-outline-offset);
   --br-comp-toggle-tip-trigger-outline-colour: var(--br-comp-all-outline-colour);
   --br-comp-toggle-tip-trigger-border-radius: var(--br-unit-radius-2);
-  --br-comp-toggle-tip-trigger-label-text: var(--br-unit-colour-canvas-text);
+  --br-comp-toggle-tip-trigger-label-text: inherit;
   --br-comp-toggle-tip-trigger-label-font-family: inherit;
   --br-comp-toggle-tip-trigger-label-font-size: inherit;
   --br-comp-toggle-tip-trigger-label-font-weight: inherit;
@@ -34,7 +34,7 @@
   --br-comp-toggle-tip-area-content-line-height: var(--br-comp-all-area-content-line-height);
   --br-comp-toggle-tip-area-content-border-style: var(--br-comp-all-area-content-border-style);
   --br-comp-toggle-tip-area-content-border-colour: var(--br-comp-all-area-content-border-colour);
-  --br-comp-toggle-tip-area-content-border-width: var(--br-comp-all-area-content-border-width);
+  --br-comp-toggle-tip-area-content-border-width: var(--br-unit-border-1);
   --br-comp-toggle-tip-area-content-border-radius: var(--br-comp-all-area-content-border-radius);
   --br-comp-toggle-tip-button-background: var(--br-comp-all-button-background);
   --br-comp-toggle-tip-button-text: var(--br-comp-all-button-text);
@@ -67,6 +67,8 @@
   border: solid;
   border: 0;
   border-color: transparent;
+  color: inherit;
+  background-color: inherit;
 }
 .br-toggle-tip--small {
   --_toggle-tip-target-width: 30vw;
@@ -81,13 +83,15 @@
   --_toggle-tip-target-height: 60vh;
 }
 .br-toggle-tip__label {
-  color: var(--br-comp-toggle-tip-trigger-label-text);
+  color: inherit;
   font-family: var(--br-comp-toggle-tip-trigger-label-font-family);
   font-size: var(--br-comp-toggle-tip-trigger-label-font-size);
   font-weight: var(--br-comp-toggle-tip-trigger-label-font-weight);
 }
 .br-toggle-tip button.br-toggle-tip__trigger {
   all: revert;
+  color: inherit;
+  background-color: inherit;
   position: relative;
   appearance: none;
   margin: 0;
