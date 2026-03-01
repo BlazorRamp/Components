@@ -6,7 +6,7 @@ The Blazor Ramp project aims to provide a suite of modular, accessibility-first 
 This implmentation uses the the HTML Popover attribute API to show non-modal content.
 
 **Note:** Important: The Toggletip component uses CSS anchor positioning with fallbacks for when it wont fit in the desired location which was only baseline at the start of the year 2026. 
-Dependant on your target audience and supported browser versions, you may want to condider referencing the OddBird anchor positioning polyfill see: https://github.com/oddbird/css-anchor-positioning 
+Dependant on your target audience and supported browser versions, you may want to consider referencing the OddBird anchor positioning polyfill see: https://github.com/oddbird/css-anchor-positioning 
 to support older browser versions. Without CSS anchor positioning the Toggletip content will be located at the top left of the page, but with all functionality intact.
 
 ## Requirements
@@ -67,15 +67,19 @@ Title="Recent Announcements" TriggerVisible="true" TriggerText="Alerts" />
 
 ## Using the Toggletip
 
-The toggletip can be set apart from text or as placed inline such as within a paragraph as shown in the full documnations. When using the default variable values 
-the toggltips optional label and icon button will size to match. 
+The toggletip can be set apart from text or placed inline within a paragraph as shown on the (full) documentation page. When using the default variable values 
+the toggltips optional label and icon button will both match the size and colour of the surrounding text. 
 
 The toggletip uses light dismiss so clicking outside of the popover will close it, as will the escape key. The popover will remain open until closed, 
 and as its not modal the user can tab out of the toggletip leaving it open. Opening an other item that uses the popover api, such as the Announcement History dialog 
-will close an other open popover.
+will close any other open popover.
 
 Below is a simple example of the toggletip showing supplemental information about the keyboard interations for the toggletip:
+
 ```
+@using BlazorRamp.ToggleTip.Common.Constants
+@using BlazorRamp.ToggleTip.Components
+
 <ToggleTip CloseText="Close Keyboard Info." Label="Keyboard info:" ShowClose="true" ShowLabel="true" 
 ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" ToggleTipSize="ToggleTipSize.Small">
 	
