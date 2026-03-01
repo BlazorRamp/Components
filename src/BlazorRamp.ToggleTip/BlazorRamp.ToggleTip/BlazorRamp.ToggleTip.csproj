@@ -22,6 +22,7 @@ for displaying supplimental information, activated by click, keyobard, touch or 
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -51,6 +52,10 @@ for displaying supplimental information, activated by click, keyobard, touch or 
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include="compilerconfig.json" />
   </ItemGroup>
 
