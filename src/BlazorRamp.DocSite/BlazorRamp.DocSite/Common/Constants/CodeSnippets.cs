@@ -391,4 +391,15 @@ public class CodeSnippets
         }
         
         """;
+
+
+
+    public const string ToggleTip_Setting_Paramaters_Example = """
+        <ToggleTip CloseText="Close Keyboard Info." Label="Keyboard info:" ShowClose="true" ShowLabel="true" 
+                   ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" ToggleTipSize="ToggleTipSize.Small">
+        
+        <h3>Keyboard interaction</h3>
+        
+        </ToggleTip>
+        """;
 }

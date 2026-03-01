@@ -3,7 +3,7 @@
 
 <PageTitle>@GlobalValues.Page_Title_Frameworks_Modal_Dialog</PageTitle>
 
-<h1 class="page-heading">@GlobalValues.Page_Heading_Frameworks_Modal_Dialog</h1>
+<h1 class="page-heading">@GlobalValues.Page_Heading_Frameworks_Modal_Dialog Framework</h1>
 
 <p>
     The <span class="code-span">&lt;ModalDialogContainer /&gt;</span> component and the <span class="code-span">ModalDialogService</span> together make up a modal dialog framework that allow you to have your content placed within a an HTML dialog element, with the framework
@@ -23,7 +23,7 @@
 </p>
 
 
-<h2 id="dialog-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard Interaction</h2>
+<h2 id="dialog-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
 <ul aria-labelledby="dialog-keyboard">
     <li><kbd>Escape</kbd> - closes the top most dialog if a handler has not been specified. If one has been specified then you control whether or not the dialog should close, 
                             as this could be a popup form with unsaved changes, and you may want to get confirmation from the user first etc. 
@@ -702,6 +702,14 @@
     <h2 id="release-history">Release history</h2>
 
     <ol reversed>
+        <li>
+            <h3>
+                Version 1.0.2 — <time datetime="2026-02-28">February 28, 2026</time>
+            </h3>
+            <ul>
+                <li>Amended the dialog script so if any popover is open it will get to handle the escape key first (instead of only the announcement history popover dialog).</li>
+            </ul>
+        </li>
         <li>
             <h3>
                 Version 1.0.1 — <time datetime="2026-02-19">February 19, 2026</time>

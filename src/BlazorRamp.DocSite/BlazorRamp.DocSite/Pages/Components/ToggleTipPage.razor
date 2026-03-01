@@ -2,9 +2,7 @@
 @attribute [Route(GlobalValues.Path_Components_ToggleTip)]
 <PageTitle>@GlobalValues.Page_Title_Components_ToggleTip</PageTitle>
 
-<h1 class="page-heading">@GlobalValues.Page_Heading_Components_ToggleTip . . . docs in progress . . . not long now</h1>
-
-<p>In test . . .</p>
+<h1 class="page-heading">@GlobalValues.Page_Heading_Components_ToggleTip Compoent</h1>
 
 <p>
     ToggleTip (a term coined by Heydon Pickering) displays supplemental information on click, key press, touch or voice control rather than on on mouseover/hover. 
@@ -19,7 +17,7 @@
     you may want to condider referencing the OddBird anchor positioning polyfill see: <a class="@GlobalValues.Link_Class" target="_blank" href="https://github.com/oddbird/css-anchor-positioning">https://github.com/oddbird/css-anchor-positioning (opens in new window)</a> 
     to support older browser versions. Without CSS anchor positioning the Toggletip content will be located at the top left of the page, but with all functionality intact.
 </p>
-<h2 id="toggle-tip-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard Interaction</h2>
+<h2 id="toggle-tip-keyboard">Keyboard interaction</h2>
 <ul aria-labelledby="toggle-tip-keyboard">
     <li><kbd>Space</kbd> - when focus is on the toggletip icon, expands/collapses the toggletip popover.</li>
     <li><kbd>Enter</kbd> - when focus is on the toggletip icon, expands/collapses the toggletip popover.</li>
@@ -28,20 +26,21 @@
     <li><kbd>Tab</kbd> <b>+</b> <kbd>Shift</kbd> - moves focus to the previous focusable item in the tab sequence.</li>
 </ul>
 
+<h2 style="margin-top:var(--br-unit-space-7)">Try the toggletip.</h2>
+<p>
+    The toggletip can be set apart from text or as in the example below just put inline with extising text. When using the default variable values the
+    toggltips optional label and icon button will size to match. I have set the label (Keyboard infor:) to be shown left of the icon, using the toggletip size of small.
+    Not sure where it is, its the little icon buired in the lorum ipsum text. use the tab key to set focus on it.
+</p>
+<p>
+    The toggletip uses light dismiss so clicking outside of the popover will close it, as will the escape key. The popover will remain open until closed, and as its not modal
+    the user can tab out of the toggletip leaving it open. Opening an other item that uses the popover api, such as the Announcement History dialog will close an other open
+    popover.
+</p>
 <section class="info-box info-box--container-test" style="align-items:start;margin-top:1.5rem;">
-    <h3>Try the toggletip.</h3>
     <p>
-        The toggletip can be set apart from text or as in the example below just put inline with extising text. When using the default variable values the
-        toggltips optional label and icon button will size to match. I have set the label (Keyboard infor:) to be shown left of the icon, using the toggletip size of small.
-        Not sure where it is, its the little icon buired in the lorum ipsum text. use the tab key to set focus on it.
+        The toggletip is burried within the text, alternatively visit the test site where its placed on its own: <a class="@GlobalValues.Link_Class" href="@GlobalValues.Test_Component_Path_ToggleTip">toggletip on test site page (opens in new window)</a>
     </p>
-    <p>
-        The toggletip uses light dismiss so clicking outside of the popover will close it, as will the escape key. The popover will remain open until closed, and as its not modal
-        the user can tab out of the toggletip leaving it open. Opening an other item that uses the popover api, such as the Announcement History dialog will close an other open
-        popover.
-
-    </p>
-
     <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed metus erat. Quisque porttitor condimentum aliquam. Suspendisse 
         ultrices, urna in bibendum molestie, nunc velit rhoncus nulla, sit amet porttitor libero augue a libero. Etiam viverra metus a malesuada 
@@ -279,6 +278,17 @@
         </table>
 
     </section>
+</section>
+<section>
+    <h2 class="page-heading">Setting component parameters</h2>
+
+    <p>
+        Example showing all of the parameters being set for the toggletip. Despite all paramerters having default values, you should set the label to a unique value for the toggletip/page. 
+    </p>
+    <p>The code below is from the exmaple towards the top of the page, excluding all of its render fragment content for brevity.</p>
+
+    <CodeBox CodeBlock="@CodeSnippets.ToggleTip_Setting_Paramaters_Example" AriaLabel="Toggletip setting paramaters code example" />
+
 </section>
 <section>
     <h2 class="page-heading">CSS variables defined for the toggletip component.</h2>
@@ -714,6 +724,24 @@
     </section>
 
 </section>
+
+<section class="info-box" aria-labelledby="release-history">
+
+    <h2 id="release-history">Release history</h2>
+
+    <ol reversed>
+        <li>
+            <h3>
+                Version 1.0.0 — <time datetime="2026-03-01">March 01, 2026</time>
+            </h3>
+            <ul>
+                <li>Initial release part of the <span class="code-span">BlazorRamp.ToggleTip v1.0.0</span> NuGet package, multi-targeting <span class="code-span">.NET 8.0, NET 9.0 & .NET10.0</span></li>
+            </ul>
+        </li>
+    </ol>
+
+</section>
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Components_Switch">
         <span aria-hidden="true"></span>
