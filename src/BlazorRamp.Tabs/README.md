@@ -2,12 +2,6 @@
 
 The Blazor Ramp project aims to provide a suite of modular, accessibility-first Blazor components. 
 
-**ToggleTip** is a term coined by Heydon Pickering for a widget that displays supplemental information on click, key press, touch or voice control rather than on on mouseover/hover.
-This implmentation uses the the HTML Popover attribute API to show non-modal content.
-
-**Note:** Important: The Toggletip component uses CSS anchor positioning with fallbacks for when it wont fit in the desired location which was only baseline at the start of the year 2026. 
-Dependant on your target audience and supported browser versions, you may want to consider referencing the OddBird anchor positioning polyfill see: https://github.com/oddbird/css-anchor-positioning 
-to support older browser versions. Without CSS anchor positioning the Toggletip content will be located at the top left of the page, but with all functionality intact.
 
 ## Requirements
 It is a requirement that the Blazor Ramp Core script, Live Region Service, and associated Announcement History component are added alongside this component’s specific 
@@ -21,18 +15,18 @@ this package separately (but it can be if you only require the Live Regions Serv
 ## Installation
 
 
-1. Add the BlazorRamp.ToggleTip nuget package to your project using the Nuget Package Manager or the dotnet CLI.
+1. Add the BlazorRamp.Tabs nuget package to your project using the Nuget Package Manager or the dotnet CLI.
 
 ```c#
-dotnet add package BlazorRamp.ToggleTip
+dotnet add package BlazorRamp.Tabs
 ```
-2. Add the following Core and Toggletip stylesheet references to the `<head>` section of your application:
+2. Add the following Core and Tabs references to the `<head>` section of your application:
 - Blazor Web App / Blazor Server → App.razor
 - Blazor WebAssembly → wwwroot/index.html
 ```html
 <head>
 	<link rel="stylesheet" href="_content/BlazorRamp.Core/assets/css/core.min.css" />
-	<link rel="stylesheet" href="_content/BlazorRamp.ToggleTip/assets/css/toggle-tip.min.css" />
+	<link rel="stylesheet" href="_content/BlazorRamp.ToggleTip/assets/css/tabs.min.css" />
 </head>
 ```
  
@@ -65,33 +59,9 @@ Title="Recent Announcements" TriggerVisible="true" TriggerText="Alerts" />
 <Router AppAssembly . . .
 ```
 
-## Using the Toggletip
+## Using the Tabs component
 
-The toggletip can be set apart from text or placed inline within a paragraph as shown on the (full) documentation page. When using the default variable values 
-the toggltips optional label and icon button will both match the size and colour of the surrounding text. 
 
-The toggletip uses light dismiss so clicking outside of the popover will close it, as will the escape key. The popover will remain open until closed, 
-and as its not modal the user can tab out of the toggletip leaving it open. Opening an other item that uses the popover api, such as the Announcement History dialog 
-will close any other open popover.
-
-Below is a simple example of the toggletip showing supplemental information about the keyboard interations for the toggletip:
-
-```
-@using BlazorRamp.ToggleTip.Common.Constants
-@using BlazorRamp.ToggleTip.Components
-
-<ToggleTip CloseText="Close Keyboard Info." Label="Keyboard info:" ShowClose="true" ShowLabel="true" 
-ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" ToggleTipSize="ToggleTipSize.Small">
-	
-	<h3 id="keyboard-info">Keyboard interaction</h3>
-	<ul aria-labelledby="id="keyboard-info"">
-		<li><kbd>Space</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
-		<li><kbd>Enter</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
-		<li><kbd>Escape</kbd> - closes the toggletip</li>
-	</ul>
-
-</ToggleTip>
-```
 
 
 

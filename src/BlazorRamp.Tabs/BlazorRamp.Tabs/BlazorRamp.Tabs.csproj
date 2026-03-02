@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+	  <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>BlazorRamp.Tabs</Title>
+    <Company>Paul Kent</Company>
+    <Description>A Tabs component for the Blazor Ramp ecosystem. </Description>
+    <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
+    <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Tabs; Tab Control;</PackageTags>
+    <PackageReleaseNotes>Initial release of the Blazor Ramp Tabs component</PackageReleaseNotes>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BlazorRamp.Core" Version="1.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.24" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+</Project>
