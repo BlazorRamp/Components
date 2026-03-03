@@ -1,7 +1,32 @@
 ﻿@page "/"
+@using BlazorRamp.Tabs.Components
 
 <PageTitle>Home</PageTitle>
+
+@rendermode InteractiveServer
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+
+<Tabs ActiveTabIndex="_tabIndex" ActiveTabIndexChanged="TabChangedHandler">
+    <Tab TabTitle="Tab One">
+        <TabPanelContent>
+            Tab one panel content
+        </TabPanelContent>
+    </Tab>
+    <Tab TabTitle="Tab Two">
+        <TabPanelContent>
+            Tab two panel content
+        </TabPanelContent>
+    </Tab>
+</Tabs>
+
+@code{
+    private int _tabIndex = 1;
+
+    private void TabChangedHandler(int index)
+
+    => _tabIndex = index;
+}

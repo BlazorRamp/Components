@@ -1,3 +1,4 @@
+using BlazorRamp.Core.Common.Extensions;
 using Sandbox.Client.Pages;
 using Sandbox.Components;
 
@@ -8,6 +9,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
 
+builder.Services.AddBlazorRampCore();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,6 +1,6 @@
 ﻿<div @attributes="AdditionalAttributes" class="@BuildToggleTipClasses(ToggleTipSize)">
 
-    <button class="@BuildTriggerClasses(ToggleTipLabelOrder, ShowLabel)" popovertarget="@_contentID" type="button" aria-label="@_label">
+    <button id="@_triggerID" class="@BuildTriggerClasses(ToggleTipLabelOrder, ShowLabel)" popovertarget="@_contentID" type="button" aria-label="@_label">
         @if(ShowLabel)
         {
             <span class="@GlobalValues.ToggleTip_Label_Class" aria-hidden="true">@_label</span>
@@ -13,7 +13,7 @@
 
     <div id="@_contentID" class="@GlobalValues.ToggleTip_Popover_Class" data-br-toggle-tip-position="@_toggleTipPosition" popover="auto" >
         <div class="@GlobalValues.ToggleTip_Content_Area_Wrapper_Class">
-            <div class="@GlobalValues.ToggleTip_Content_Area_Class" tabindex="0">
+            <div class="@GlobalValues.ToggleTip_Content_Area_Class" tabindex="0" aria-labelledby="@_triggerID" role="region">
                 @if(ChildContent is not null)
                 {
                     @ChildContent

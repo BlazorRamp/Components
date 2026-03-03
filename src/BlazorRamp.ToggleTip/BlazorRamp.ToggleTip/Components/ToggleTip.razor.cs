@@ -57,6 +57,7 @@ public sealed partial class ToggleTip
     /// </summary>
     [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
 
+    private string _triggerID         = Guid.NewGuid().ToString();
     private string _contentID         = Guid.NewGuid().ToString();
     private string _label             = GlobalValues.ToggleTip_Label;
     private string _closeText         = GlobalValues.ToggleTip_Close_Text;

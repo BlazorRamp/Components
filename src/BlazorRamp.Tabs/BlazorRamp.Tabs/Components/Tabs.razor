@@ -1,5 +1,30 @@
-﻿<h3>Tabs</h3>
+﻿
+<CascadingValue Value="this" IsFixed="true">
 
-@code {
+    <div class="@GlobalValues.Tabs_Class">
+        <div role="tablist" class="@GlobalValues.Tabs_Tab_list_Class">
 
-}
+            @foreach(var tab in _tabs)
+            {
+                var capturedIndex = _tabs.IndexOf(tab);
+                var isActiveTab   = capturedIndex == _activeTabIndex;
+
+                <button id="@tab.TabID" @ref="_tabButtonRefs[tab]" type="button" role="tab" class="@GlobalValues.Tabs_Tab_Class"
+                        tabindex="@(isActiveTab ? 0 : -1)"
+                        aria-label="@tab.TabTitle" 
+                        aria-selected="@(isActiveTab ? "true" : "false")"
+                        aria-controls="@tab.TabPanelID">
+
+                    <span class="@GlobalValues.Tabs_Tab_Title_Class" aria-hidden="true">
+                        @tab.TabTitle
+                    </span>
+                </button>
+            }
+
+        </div>
+        
+        @ChildContent
+
+    </div>
+
+</CascadingValue>
