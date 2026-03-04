@@ -3,14 +3,17 @@
 .br-tabs {
     box-sizing: border-box;
     width: 100%;
-    border:1px solid grey;
+
+
 
     &__tab-list {
         display: flex;
         justify-content: start;
-        align-items: center;
+        align-items:end;
+        //align-items: center;
         border-bottom: 1px solid var(--br-comp-all-divider-colour);
         width: 100%;
+        background-color: var(--br-comp-all-button-state-hover);
     }
 
     & button.br-tabs__tab {
@@ -30,47 +33,55 @@
             outline-style: solid;
             outline-width: 2px;
             outline-color: var(--br-comp-all-focus-indicator-colour);
+            border-radius: var(--br-unit-radius-2);
         }
 
-        &[aria-selected="true"]:focus-visible {
-            border: none;
-            outline: none;
 
-            &::before {
-                position: absolute;
-                content: "";
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: calc(var(--br-unit-space-3) + 1px);
-                outline-offset: 0px;
-                outline-style: solid;
-                outline-width: 2px;
-                outline-color: var(--br-comp-all-focus-indicator-colour);
-                border-radius: var(--br-unit-radius-2);
-            }
-        }
-
-        &[aria-selected="true"] > .br-tabs__tab-title::before {
+        &[aria-selected="true"] > .br-tabs__tab-content::before {
             position: absolute;
             content: "";
             top: calc(100% - var(--br-unit-space-3) + 4px);
-            border-top: 4px solid green;
+            border-top: var(--br-unit-border-4) solid var(--br-unit-colour-primary);
             border-top-left-radius: var(--br-unit-radius-2);
             border-top-right-radius: var(--br-unit-radius-2);
             left: 0;
             right: 0;
         }
 
+
         &:hover {
             background-color: var(--br-comp-all-button-state-hover);
         }
     }
 
+    &__tab-content {
+        padding-block: var(--br-unit-space-4);
+        position: relative;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        gap: var(--br-unit-space-3);
+    }
+
+
     &__tab-title {
         display: inline-block;
-        position: relative;
-        padding-block: var(--br-unit-space-3);
+        align-self:baseline;
+    }
+
+    &__tab-icon {
+        display: inline-block;
+        width: var(--br-tabs-icon-size, 1.25em);
+        height: var(--br-tabs-icon-size, 1.25em);
+        background-color: currentColor;
+        mask-image: var(--_br-svg-tab-icon);
+        mask-repeat: no-repeat;
+        mask-size: 100% 100%;
+
+        @media (forced-colors: active) {
+            background-color: CanvasText;
+        }
     }
 
     &__tab-panel {

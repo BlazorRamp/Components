@@ -1,3 +1,13 @@
-﻿<div id="@TabPanelID" role="tabpanel" class="@_cssClasses" >
-    @TabPanelContent
+﻿
+<div id="@TabPanelID" role="tabpanel" class="@_cssClasses" aria-labelledby="@TabID">
+
+    @if (_performRender == true)
+    {
+        if (_isActiveTab || PersistContent)
+        {
+            @TabPanelContent
+        }
+    }
+
 </div>
+

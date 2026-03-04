@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorRamp.Tabs.Common.Constants;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +13,13 @@ public partial class Tabs
 {
 
     [Parameter] public RenderFragment?    ChildContent          { get; set; }
+    [Parameter] public string?            AriaLabelledBy        { get; set; }
+    [Parameter] public string?            AriaLabel             { get; set; }
     [Parameter] public EventCallback<int> ActiveTabIndexChanged { get; set; }
     [Parameter] public int                ActiveTabIndex        { get; set; } = 0;
     [Parameter] public bool               AutoActivatePanel     { get; set; } = false;
+
+    //[Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
 
     internal Tab?   ActiveTab  { get; set; } = null;
 
@@ -21,8 +27,10 @@ public partial class Tabs
     private List<Tab>                         _tabs          = [];
 
     private int _activeTabIndex = -1;
-    private int _rovingIndex    = 0;
+    private int _rovingIndex     = 0;
 
+    private string? _ariaLabelledBy = null;
+    private string? _ariaLabel      = null;
 
     internal void AddTab(Tab tab)
     {
@@ -43,7 +51,12 @@ public partial class Tabs
         if (ActiveTabIndex != _activeTabIndex) await RaiseTabChanged(ActiveTabIndex);
     }
 
-
+    protected override void OnInitialized()
+    {
+        _ariaLabelledBy = String.IsNullOrWhiteSpace(AriaLabelledBy) ? null : AriaLabelledBy.Trim();
+        _ariaLabel = _ariaLabelledBy != null ? null
+                                             : (string.IsNullOrWhiteSpace(AriaLabel) ? GlobalValues.Tabs_Default_ACC_Name : AriaLabel.Trim());
+    }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -74,5 +87,44 @@ public partial class Tabs
     {
         if (true == AutoActivatePanel) await RaiseTabChanged(tabIndex);
     }   
+
+    private async Task HandleOnKeyDown(KeyboardEventArgs keyArgs)
+    {
+        int tabCount     = _tabs.Count - 1;
+        var focusToIndex = -1;
+
+        focusToIndex = keyArgs.Key switch
+        {
+            GlobalValues.KeyBoard_Left_Arrow_Key => (_rovingIndex > 0 ? _rovingIndex - 1 : tabCount),
+            GlobalValues.KeyBoard_Right_Arrow_Key => (_rovingIndex < tabCount ? _rovingIndex + 1 : 0),
+            GlobalValues.KeyBoard_Home_Key => 0,
+            GlobalValues.KeyBoard_End_Key => tabCount,
+            _ => -1
+        };
+
+        if (focusToIndex > -1 && focusToIndex != _rovingIndex)
+        {
+            var targetTab = _tabs[focusToIndex];
+            _rovingIndex  = focusToIndex;
+            await _tabButtonRefs[targetTab].FocusAsync();
+        }
+
+        if (focusToIndex == -1 && keyArgs.Key == GlobalValues.KeyBoard_Tab_Key) _rovingIndex = _activeTabIndex;
+    }
+
+    /// <summary>
+    /// Programmatically activates a tab by index and moves browser focus to its
+    /// button so that screen readers announce the change correctly.
+    /// </summary>
+    public async Task SetActiveTab(int tabIndex)
+    {
+        if (tabIndex < 0 || tabIndex > _tabs.Count - 1 || _activeTabIndex == tabIndex) return;
+
+        await RaiseTabChanged(tabIndex);
+
+        var targetTab = _tabs[tabIndex];
+        await _tabButtonRefs[targetTab].FocusAsync();
+    }
+
 
 }

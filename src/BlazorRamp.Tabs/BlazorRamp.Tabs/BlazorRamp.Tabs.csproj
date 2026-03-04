@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <PackageReference Include="BlazorRamp.Core" Version="1.0.7" />
+    <PackageReference Include="BuildWebCompiler2022" Version="1.14.15" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.24" />
   </ItemGroup>
 
@@ -44,6 +45,10 @@
       <PackagePath>\</PackagePath>
     </None>
     <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\css\" />
   </ItemGroup>
 
 </Project>

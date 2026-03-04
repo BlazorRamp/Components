@@ -2,7 +2,7 @@
 <CascadingValue Value="this" IsFixed="true">
 
     <div class="@GlobalValues.Tabs_Class">
-        <div role="tablist" class="@GlobalValues.Tabs_Tab_list_Class">
+        <div role="tablist" aria-labelledby="@_ariaLabelledBy" aria-label="@_ariaLabel"  class="@GlobalValues.Tabs_Tab_list_Class" @onkeydown="HandleOnKeyDown">
 
             @foreach(var tab in _tabs)
             {
@@ -13,10 +13,16 @@
                         tabindex="@(isActiveTab ? 0 : -1)"
                         aria-label="@tab.TabTitle" 
                         aria-selected="@(isActiveTab ? "true" : "false")"
-                        aria-controls="@tab.TabPanelID">
+                        aria-controls="@tab.TabPanelID"
+                        @onclick="() => RaiseTabChanged(capturedIndex)"
+                        @onfocus="() => CheckRaiseTabChanged(capturedIndex)">
 
-                    <span class="@GlobalValues.Tabs_Tab_Title_Class" aria-hidden="true">
-                        @tab.TabTitle
+                    <span class="@GlobalValues.Tabs_Tab_Content_Class">
+                        @if(tab.SvgVariable is not null)
+                        {
+                            <span class="@GlobalValues.Tabs_Tab_Icon_Class" aria-hidden="true" style="@tab.SvgVariable"></span>
+                        }
+                        <span class="@GlobalValues.Tabs_Tab_Title_Class" aria-hidden="true">  @tab.TabTitle </span>
                     </span>
                 </button>
             }
