@@ -1,30 +1,25 @@
 ﻿using BlazorRamp.Tabs.Common.Constants;
-using BlazorRamp.Tabs.Common.Models;
 using Microsoft.AspNetCore.Components;
-using System.Reflection.PortableExecutable;
 
 namespace BlazorRamp.Tabs.Components;
 
 public partial class Tab : IDisposable
 {
-    [CascadingParameter]        public Tabs?           ParentControl   { get; set; } = default!;
-    [Parameter]                 public RenderFragment? TabPanelContent { get; set; } = null;
-    [Parameter, EditorRequired] public string          TabTitle        { get; set; } = default!;
-    [Parameter]                 public bool            PersistContent  { get; set; } = true;
-    [Parameter]                 public string?         SvgIcon         { get; set; } = default;
-
+    [CascadingParameter]        public Tabs?           ParentControl    { get; set; } = default!;
+    [Parameter]                 public RenderFragment? TabPanelContent  { get; set; } = null;
+    [Parameter, EditorRequired] public string          TabTitle         { get; set; } = default!;
+    [Parameter]                 public bool            PersistContent   { get; set; } = true;
+    [Parameter]                 public string?         SvgIcon          { get; set; } = default;
+    [Parameter]                 public bool            HasPanelTabIndex { get; set; } = true;
 
 
     internal string TabPanelID   { get; } = $"tab-panel-{Guid.NewGuid().ToString()}";
     internal string TabID        { get; } = $"tab-{Guid.NewGuid().ToString()}";
     internal string? SvgVariable { get; private set;}  = null;
 
-    private string _cssClasses = GlobalValues.Tabs_Tab_Panel_Class;
-
-    private bool _isActiveTab    = false;
-    private bool _performRender  = false;
-
-    private string? _svgIcon = null;
+    private string _cssClasses     = GlobalValues.Tabs_Tab_Panel_Class;
+    private bool   _isActiveTab    = false;
+    private bool   _performRender  = false;
 
     protected override void OnParametersSet()
     {
@@ -60,19 +55,17 @@ public partial class Tab : IDisposable
 
     internal string? CheckSetSvgVariable(string? svgIcon)
     {
-        var iconVariable = String.IsNullOrWhiteSpace(SvgIcon) 
+        var iconVariable = String.IsNullOrWhiteSpace(svgIcon) 
                                 ? null
-                                : SvgIcon.TrimStart().StartsWith("--") ? $"var({SvgIcon!.Trim().TrimEnd(':')})" : null;
+                                : svgIcon.TrimStart().StartsWith("--") ? $"var({svgIcon!.Trim().TrimEnd(':')})" : null;
 
         return iconVariable is null ? null : $"{GlobalValues.Tab_Svg_Css_Variable_Name}:{iconVariable};";
     }
+    
 
     public void Dispose()
-    {
-        try
-        {
-            ParentControl?.RemoveTab(this);
-        }
-        catch { }
-    }
+        
+        =>  ParentControl?.RemoveTab(this);
+
+    
 }

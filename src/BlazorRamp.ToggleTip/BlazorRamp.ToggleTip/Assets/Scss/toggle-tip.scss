@@ -47,7 +47,7 @@
     }
 
     &__label {
-        color: inherit; // var(--br-comp-toggle-tip-trigger-label-text);
+        color: var(--br-comp-toggle-tip-trigger-label-text);
         font-family: var(--br-comp-toggle-tip-trigger-label-font-family);
         font-size: var(--br-comp-toggle-tip-trigger-label-font-size);
         font-weight: var(--br-comp-toggle-tip-trigger-label-font-weight);

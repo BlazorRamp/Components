@@ -1,3 +1,25 @@
-﻿:root{
+﻿:root {
+    --br-comp-tabs-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-tabs-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-tabs-outline-offset: 0px;
+    --br-comp-tabs-outline-colour: var(--br-comp-all-outline-colour);
 
- }
+    //
+    --br-comp-tabs-area-header-background: var(--br-comp-all-area-header-background);
+    --br-comp-tabs-area-header-text: var(--br-comp-all-area-header-text);
+    --br-comp-tabs-area-header-font-family: var(--br-comp-all-area-header-font-family);
+    --br-comp-tabs-area-header-font-size: var(--br-unit-font-size-label);
+    --br-comp-tabs-area-header-font-weight: var(--br-comp-all-area-header-font-weight);
+    --br-comp-tabs-area-header-line-height: var(--br-comp-all-area-header-line-height);
+    --br-comp-tabs-area-header-border-style: var(--br-comp-all-area-header-border-style);
+    --br-comp-tabs-area-header-border-colour: var(--br-comp-all-divider-colour);
+    --br-comp-tabs-area-header-border-width: var(--br-unit-border-1);
+    --br-comp-tabs-area-header-border-radius: var(--br-comp-all-area-header-border-radius);
+    //
+    --br-comp-tabs-area-content-background: transparent;
+    --br-comp-tabs-area-content-text: var(--br-comp-all-area-content-text);
+    --br-comp-tabs-area-content-font-family: var(--br-comp-all-area-content-font-family);
+    --br-comp-tabs-area-content-font-size: var(--br-unit-font-size-label);
+    --br-comp-tabs-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
+    --br-comp-tabs-area-content-line-height: var(--br-comp-all-area-content-line-height);
+}

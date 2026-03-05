@@ -1,6 +1,5 @@
 ﻿
-<div id="@TabPanelID" role="tabpanel" class="@_cssClasses" aria-labelledby="@TabID">
-
+<div id="@TabPanelID" role="tabpanel" class="@_cssClasses" aria-labelledby="@TabID" tabindex="@(HasPanelTabIndex ? 0 : null)">
     @if (_performRender == true)
     {
         if (_isActiveTab || PersistContent)
@@ -8,6 +7,5 @@
             @TabPanelContent
         }
     }
-
 </div>
 

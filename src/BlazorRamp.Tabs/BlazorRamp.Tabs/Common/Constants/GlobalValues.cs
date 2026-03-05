@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BlazorRamp.Tabs.Common.Constants;
+﻿namespace BlazorRamp.Tabs.Common.Constants;
 
 internal class GlobalValues
 {
@@ -21,10 +15,19 @@ internal class GlobalValues
     public const string Tabs_Tab_Icon_Class    = $"{Tabs_Class}__tab-icon";
     public const string Tabs_Tab_Content_Class = $"{Tabs_Class}__tab-content";
 
+    public const string Tabs_Tab_Content_Icon_Top_Mdoifier    =  $"{Tabs_Tab_Content_Class}--icon-top";
+    public const string Tabs_Tab_Content_Icon_Right_Mdoifier  = $"{Tabs_Tab_Content_Class}--icon-right";
+    public const string Tabs_Tab_Content_Icon_Bottom_Mdoifier = $"{Tabs_Tab_Content_Class}--icon-bottom";
+    public const string Tabs_Tab_Content_Icon_Left_Mdoifier   = $"{Tabs_Tab_Content_Class}--icon-left";
+
+    public const string Tabs_Tab_Popover_Class = $"{Tabs_Class}__tab-popover";
+
     public const string Tabs_Tab_Panel_Active_Modifier = $"{Tabs_Tab_Panel_Class}--active";
 
     public const string KeyBoard_Left_Arrow_Key  = "ArrowLeft";
     public const string KeyBoard_Right_Arrow_Key = "ArrowRight";
+    public const string KeyBoard_Up_Arrow_Key    = "ArrowUp";
+    public const string KeyBoard_Down_Arrow_Key  = "ArrowDown";
     public const string KeyBoard_Home_Key        = "Home";
     public const string KeyBoard_End_Key         = "End";
     public const string KeyBoard_Tab_Key         = "Tab";

@@ -1,28 +1,32 @@
 ﻿
 <CascadingValue Value="this" IsFixed="true">
 
-    <div class="@GlobalValues.Tabs_Class">
-        <div role="tablist" aria-labelledby="@_ariaLabelledBy" aria-label="@_ariaLabel"  class="@GlobalValues.Tabs_Tab_list_Class" @onkeydown="HandleOnKeyDown">
+    <div @attributes="AdditionalAttributes" class="@GlobalValues.Tabs_Class">
+        <div role="tablist" aria-labelledby="@_ariaLabelledBy" aria-label="@_ariaLabel" class="@GlobalValues.Tabs_Tab_list_Class" @onkeydown="HandleOnKeyDown">
+             
+     
 
             @foreach(var tab in _tabs)
             {
                 var capturedIndex = _tabs.IndexOf(tab);
                 var isActiveTab   = capturedIndex == _activeTabIndex;
 
+
                 <button id="@tab.TabID" @ref="_tabButtonRefs[tab]" type="button" role="tab" class="@GlobalValues.Tabs_Tab_Class"
                         tabindex="@(isActiveTab ? 0 : -1)"
                         aria-label="@tab.TabTitle" 
                         aria-selected="@(isActiveTab ? "true" : "false")"
                         aria-controls="@tab.TabPanelID"
+
                         @onclick="() => RaiseTabChanged(capturedIndex)"
                         @onfocus="() => CheckRaiseTabChanged(capturedIndex)">
-
-                    <span class="@GlobalValues.Tabs_Tab_Content_Class">
+                        
+                    <span class="@GetTabContentClasses(TabIconPosition)">
                         @if(tab.SvgVariable is not null)
                         {
                             <span class="@GlobalValues.Tabs_Tab_Icon_Class" aria-hidden="true" style="@tab.SvgVariable"></span>
                         }
-                        <span class="@GlobalValues.Tabs_Tab_Title_Class" aria-hidden="true">  @tab.TabTitle </span>
+                        <span class="@GlobalValues.Tabs_Tab_Title_Class" aria-hidden="true">@tab.TabTitle</span>
                     </span>
                 </button>
             }
