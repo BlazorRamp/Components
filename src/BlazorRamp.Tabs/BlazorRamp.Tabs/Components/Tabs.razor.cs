@@ -1,27 +1,63 @@
 ﻿using BlazorRamp.Tabs.Common.Constants;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlazorRamp.Tabs.Components;
 
+/// <summary>
+/// A Blazor component that renders an accessible tabs widget, managing a set of
+/// <see cref="Tab"/> child components with full keyboard navigation, roving tabindex,
+/// and optional automatic panel activation.
+/// </summary>
 public partial class Tabs
 {
+    /// <summary>
+    /// Gets or sets the child content of the component, expected to contain one or more
+    /// <see cref="Tab"/> components.
+    /// </summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
 
-    [Parameter] public RenderFragment?    ChildContent          { get; set; }
-    [Parameter] public string?            AriaLabelledBy        { get; set; }
-    [Parameter] public string?            AriaLabel             { get; set; }
+    /// <summary>
+    /// Gets or sets the ID of an external element that provides an accessible label for
+    /// the tab list via <c>aria-labelledby</c>. When set, <see cref="AriaLabel"/> is ignored.
+    /// </summary>
+    [Parameter] public string? AriaLabelledBy { get; set; }
+
+    /// <summary>
+    /// Gets or sets the accessible label applied to the tab list via <c>aria-label</c>.
+    /// Ignored when <see cref="AriaLabelledBy"/> is set. Defaults to <c>"Tabs"</c>.
+    /// </summary>
+    [Parameter] public string? AriaLabel { get; set; }
+
+    /// <summary>
+    /// Gets or sets the callback invoked when the active tab index changes,
+    /// providing the zero-based index of the newly selected tab.
+    /// </summary>
     [Parameter] public EventCallback<int> ActiveTabIndexChanged { get; set; }
-    [Parameter] public int                ActiveTabIndex        { get; set; } = 0;
-    [Parameter] public bool               AutoActivatePanel     { get; set; } = false;
-    [Parameter] public TabIconPosition    TabIconPosition       { get; set; } = TabIconPosition.Left;
 
+    /// <summary>
+    /// Gets or sets the zero-based index of the initially active tab. Defaults to <c>0</c>.
+    /// </summary>
+    [Parameter] public int ActiveTabIndex { get; set; } = 0;
+
+    /// <summary>
+    /// Gets or sets a value indicating whether a tab panel is activated automatically
+    /// when its button receives focus during keyboard navigation. When <see langword="false"/>,
+    /// the user must press Enter or Space to activate. Defaults to <see langword="false"/>.
+    /// </summary>
+    [Parameter] public bool AutoActivatePanel { get; set; } = false;
+
+    /// <summary>
+    /// Gets or sets the position of the icon relative to the tab title for all tabs.
+    /// Defaults to <see cref="TabIconPosition.Left"/>.
+    /// </summary>
+    [Parameter] public TabIconPosition TabIconPosition { get; set; } = TabIconPosition.Left;
+
+    /// <summary>
+    /// Gets or sets additional attributes applied to the component's root element.
+    /// </summary>
     [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
 
     internal Tab?   ActiveTab  { get; set; } = null;
 
@@ -33,6 +69,11 @@ public partial class Tabs
     private string? _ariaLabelledBy = null;
     private string? _ariaLabel      = null;
 
+    /// <summary>
+    /// Registers a <see cref="Tab"/> with the parent <see cref="Tabs"/> component.
+    /// Called automatically during <see cref="Tab"/> initialisation.
+    /// </summary>
+    /// <param name="tab">The <see cref="Tab"/> instance to register.</param>
     internal void AddTab(Tab tab)
     {
         if (_tabs.Contains(tab)) return;
@@ -40,24 +81,31 @@ public partial class Tabs
         _tabs.Add(tab);
         _tabButtonRefs.TryAdd(tab, new ElementReference());
     }
+
+    /// <summary>
+    /// Removes a <see cref="Tab"/> from the tab list. Called automatically when a
+    /// <see cref="Tab"/> component is disposed.
+    /// </summary>
+    /// <param name="tab">The <see cref="Tab"/> instance to remove.</param>
     public void RemoveTab(Tab tab)
     {
         _tabButtonRefs.Remove(tab);
         _tabs.Remove(tab);
     }
-
+    /// <inheritdoc/>
     protected override async Task OnParametersSetAsync()
     {
         if (_tabs.Count == 0) return;
         if (ActiveTabIndex != _activeTabIndex) await RaiseTabChanged(ActiveTabIndex);
     }
-
+    /// <inheritdoc/>
     protected override void OnInitialized()
     {
         _ariaLabelledBy = String.IsNullOrWhiteSpace(AriaLabelledBy) ? null : AriaLabelledBy.Trim();
         _ariaLabel = _ariaLabelledBy != null ? null
                                              : (string.IsNullOrWhiteSpace(AriaLabel) ? GlobalValues.Tabs_Default_ACC_Name : AriaLabel.Trim());
     }
+    /// <inheritdoc/>
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -98,11 +146,9 @@ public partial class Tabs
 
         focusToIndex = keyArgs.Key switch
         {
-            GlobalValues.KeyBoard_Left_Arrow_Key or 
-            GlobalValues.KeyBoard_Up_Arrow_Key => (_rovingIndex > 0 ? _rovingIndex - 1 : tabCount),
+            GlobalValues.KeyBoard_Left_Arrow_Key => (_rovingIndex > 0 ? _rovingIndex - 1 : tabCount),
 
-            GlobalValues.KeyBoard_Right_Arrow_Key or 
-            GlobalValues.KeyBoard_Down_Arrow_Key  => (_rovingIndex < tabCount ? _rovingIndex + 1 : 0),
+            GlobalValues.KeyBoard_Right_Arrow_Key => (_rovingIndex < tabCount ? _rovingIndex + 1 : 0),
             
             GlobalValues.KeyBoard_Home_Key => 0,
             GlobalValues.KeyBoard_End_Key => tabCount,

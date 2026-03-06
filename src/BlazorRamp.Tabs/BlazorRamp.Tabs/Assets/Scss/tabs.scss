@@ -108,7 +108,7 @@
         justify-content: start;
         align-items: center;
         gap: var(--br-unit-space-3);
-
+        padding-inline:var(--br-unit-space-3);
 
         &--icon-top {
             flex-direction: column;
