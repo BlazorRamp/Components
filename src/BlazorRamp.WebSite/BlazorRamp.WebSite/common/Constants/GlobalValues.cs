@@ -22,6 +22,7 @@ public static class GlobalValues
     public const string Page_Heading_Switch_Quirks  = "Quirks & Issues";
     public const string Page_Heading_ToggleTip_Overview = "Overvew & Tests";
     public const string Page_Heading_Tabs_Overview   = "Overvew & Tests";
+    public const string Page_Heading_Tabs_Quirks     = "Quirks & Issues";
 
     public const string Page_Heading_FAQs_Final = "Final Words";
 
@@ -37,9 +38,10 @@ public static class GlobalValues
     public const string Page_Title_SkipTo_Overview_Test  = "Skip To Overview & Tests";
     public const string Page_Title_Switch_Overview_Test  = "Switch Overview & Tests";
     public const string Page_Title_Switch_Quirks          = "Switch Quirks & Issues";
-
     public const string Page_Title_Toggle_Tip_Overview_Test = "Toggletip Overview & Tests";
-    public const string Page_Title_Tabs_Overview_Test = "Tabs Overview & Tests";
+    public const string Page_Title_Tabs_Overview_Test       = "Tabs Overview & Tests";
+    public const string Page_Title_Tabs_Quirks              = "Tabs Quirks & Issues";
+
 
     public const string Page_Title_Modal_Dialog_Overview_Test = "Modal Dialog Overview & Tests";
     public const string Page_Title_Modal_Dialog_Quirks        = "Modal Dialog Quirks & Issues";
@@ -52,6 +54,7 @@ public static class GlobalValues
     public const string Path_Switch_Quirks       = "/switch/known-issues";
     public const string Path_Toggle_Tip_Overview = "/toggle-tip/overview-tests";
     public const string Path_Tabs_Overview       = "/tabs/overview-tests";
+    public const string Path_Tabs_Quirks         = "/tabs/known-issues";
 
 
 

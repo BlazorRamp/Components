@@ -204,6 +204,10 @@ public partial class Tabs : IAsyncDisposable
         await _tabButtonRefs[targetTab].FocusAsync();
     }
 
+    /// <summary>
+    /// Cleans up the component by unregistering the tab list keyboard listener
+    /// and disposing the JavaScript module reference.
+    /// </summary>
     public async ValueTask DisposeAsync()
     {
         try
