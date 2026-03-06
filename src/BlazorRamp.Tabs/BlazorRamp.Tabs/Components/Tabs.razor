@@ -2,10 +2,8 @@
 <CascadingValue Value="this" IsFixed="true">
 
     <div @attributes="AdditionalAttributes" class="@GlobalValues.Tabs_Class">
-        <div role="tablist" aria-labelledby="@_ariaLabelledBy" aria-label="@_ariaLabel" class="@GlobalValues.Tabs_Tab_list_Class" @onkeydown="HandleOnKeyDown">
+        <div id="@_tabsListID" role="tablist" aria-labelledby="@_ariaLabelledBy" aria-label="@_ariaLabel" class="@GlobalValues.Tabs_Tab_list_Class" @onkeydown="HandleOnKeyDown">
              
-     
-
             @foreach(var tab in _tabs)
             {
                 var capturedIndex = _tabs.IndexOf(tab);

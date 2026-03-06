@@ -2,6 +2,11 @@
 
 internal class GlobalValues
 {
+
+    public const string JS_Module_File_Path     = "./_content/BlazorRamp.Tabs/assets/js/tabs.js";
+    public const string JS_Register_Tabs_Func   = "registerTabs";
+    public const string JS_UnRegister_Tabs_Func = "unregisterTabs";
+
     public const string Error_Message_Needs_Tabs_Componenent = "A Tab can only exist within a valid Tabs component";
     public const string Error_Message_Tab_Title              = "The tab title cannot be null, empty or whitespace as its the accessible name";
 

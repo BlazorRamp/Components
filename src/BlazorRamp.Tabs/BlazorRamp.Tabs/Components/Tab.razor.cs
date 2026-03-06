@@ -84,7 +84,12 @@ public partial class Tab : IDisposable
                                    : GlobalValues.Tabs_Tab_Panel_Class ;
        
     }
-    /// <inheritdoc/>
+    /// <summary>
+    /// Registers this tab with the parent <see cref="Tabs"/> component.
+    /// </summary>
+    /// <exception cref="ArgumentNullException">
+    /// Thrown when the component is used outside of a <see cref="Tabs"/> component.
+    /// </exception>
     protected override void OnInitialized()
     {
         if (ParentControl == null) throw new ArgumentNullException(GlobalValues.Error_Message_Needs_Tabs_Componenent);

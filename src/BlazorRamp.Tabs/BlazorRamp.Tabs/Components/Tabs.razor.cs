@@ -1,6 +1,7 @@
 ﻿using BlazorRamp.Tabs.Common.Constants;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
 
 namespace BlazorRamp.Tabs.Components;
 
@@ -9,7 +10,7 @@ namespace BlazorRamp.Tabs.Components;
 /// <see cref="Tab"/> child components with full keyboard navigation, roving tabindex,
 /// and optional automatic panel activation.
 /// </summary>
-public partial class Tabs
+public partial class Tabs : IAsyncDisposable
 {
     /// <summary>
     /// Gets or sets the child content of the component, expected to contain one or more
@@ -58,12 +59,16 @@ public partial class Tabs
     /// </summary>
     [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
 
+    [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
+
+    private IJSObjectReference? _jsModule;
 
     internal Tab?   ActiveTab  { get; set; } = null;
 
     private Dictionary<Tab, ElementReference> _tabButtonRefs = [];
     private List<Tab>                         _tabs          = [];
 
+    private string  _tabsListID     = $"tablist-{Guid.NewGuid()}";
     private int     _activeTabIndex = -1;
     private int     _rovingIndex    = 0;
     private string? _ariaLabelledBy = null;
@@ -110,10 +115,14 @@ public partial class Tabs
     {
         if (firstRender)
         {
+            _jsModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Module_File_Path);
+            await _jsModule.InvokeVoidAsync(GlobalValues.JS_Register_Tabs_Func, _tabsListID);
+
             await RaiseTabChanged(ActiveTabIndex);
             if (false == ActiveTabIndexChanged.HasDelegate) await InvokeAsync(StateHasChanged);
         }
     }
+
     private async Task RaiseTabChanged(int tabIndex)
     {
         if (_tabs.Count == 0) return;
@@ -195,5 +204,17 @@ public partial class Tabs
         await _tabButtonRefs[targetTab].FocusAsync();
     }
 
-
+    public async ValueTask DisposeAsync()
+    {
+        try
+        {
+            if (_jsModule != null)
+            {
+                await _jsModule.InvokeVoidAsync(GlobalValues.JS_UnRegister_Tabs_Func, _tabsListID);
+                await _jsModule.DisposeAsync();
+            }
+               
+        }
+        catch { }
+    }
 }
