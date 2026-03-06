@@ -21,7 +21,6 @@ public partial class Tabs
     [Parameter] public bool               AutoActivatePanel     { get; set; } = false;
     [Parameter] public TabIconPosition    TabIconPosition       { get; set; } = TabIconPosition.Left;
 
-    [Inject] private IJSRuntime JsRuntime { get; set; } = default!;
     [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
 
     internal Tab?   ActiveTab  { get; set; } = null;
@@ -34,7 +33,6 @@ public partial class Tabs
     private string? _ariaLabelledBy = null;
     private string? _ariaLabel      = null;
 
-    private IJSObjectReference? _jsModule = default;
     internal void AddTab(Tab tab)
     {
         if (_tabs.Contains(tab)) return;

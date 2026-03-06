@@ -37,6 +37,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\BlazorRamp.Tabs\BlazorRamp.Tabs\BlazorRamp.Tabs.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Update="tsconfig.json">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
