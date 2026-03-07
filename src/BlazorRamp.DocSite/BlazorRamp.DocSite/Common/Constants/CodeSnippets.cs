@@ -402,4 +402,11 @@ public class CodeSnippets
         
         </ToggleTip>
         """;
+
+    public const string Add_Tabs_Style_Sheet = """
+        <head>
+            <link rel="stylesheet" href="_content/BlazorRamp.Core/assets/css/core.min.css" />
+            <link rel="stylesheet" href="_content/BlazorRamp.Tabs/assets/css/tabs.min.css" />
+        </head>
+        """;
 }

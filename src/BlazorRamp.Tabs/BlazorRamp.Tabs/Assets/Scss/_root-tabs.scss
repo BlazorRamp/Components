@@ -5,9 +5,9 @@
     --br-comp-tabs-outline-colour: var(--br-comp-all-outline-colour);
     --br-comp-tabs-selected-hover: var(--br-comp-all-selection-colour);
     --br-comp-tabs-hover: var(--br-comp-all-link-hover-background-colour);
-    --br-tabs-icon-size:1.5em;
+    --br-tabs-icon-size: 1.5em;
     //
-    --br-comp-tabs-area-header-background: var(--br-comp-all-area-header-background);
+    --br-comp-tabs-area-header-background: inherit;
     --br-comp-tabs-area-header-text: var(--br-comp-all-area-header-text);
     --br-comp-tabs-area-header-font-family: var(--br-comp-all-area-header-font-family);
     --br-comp-tabs-area-header-font-size: var(--br-unit-font-size-label);
@@ -21,7 +21,7 @@
     --br-comp-tabs-area-content-background: transparent;
     --br-comp-tabs-area-content-text: var(--br-comp-all-area-content-text);
     --br-comp-tabs-area-content-font-family: var(--br-comp-all-area-content-font-family);
-    --br-comp-tabs-area-content-font-size: var(--br-unit-font-size-label);
+    --br-comp-tabs-area-content-font-size: var(--br-comp-all-area-content-font-size);
     --br-comp-tabs-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
     --br-comp-tabs-area-content-line-height: var(--br-comp-all-area-content-line-height);
 }

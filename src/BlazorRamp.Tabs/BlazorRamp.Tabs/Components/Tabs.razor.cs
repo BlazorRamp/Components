@@ -44,9 +44,9 @@ public partial class Tabs : IAsyncDisposable
     /// <summary>
     /// Gets or sets a value indicating whether a tab panel is activated automatically
     /// when its button receives focus during keyboard navigation. When <see langword="false"/>,
-    /// the user must press Enter or Space to activate. Defaults to <see langword="false"/>.
+    /// the user must press Enter or Space to activate. Defaults to <see langword="true"/>.
     /// </summary>
-    [Parameter] public bool AutoActivatePanel { get; set; } = false;
+    [Parameter] public bool AutoActivatePanel { get; set; } = true;
 
     /// <summary>
     /// Gets or sets the position of the icon relative to the tab title for all tabs.

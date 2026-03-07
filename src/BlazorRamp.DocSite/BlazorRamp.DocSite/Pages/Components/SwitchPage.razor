@@ -71,7 +71,7 @@
         Please follow the instructions in the <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Overview_Getting_Started">@GlobalValues.Main_Nav_Section_Heading_About - @GlobalValues.Page_Heading_Overview_Getting_Started</a>
         ensuring that in the <span class="code-span">&lt;head&gt;</span> section you also add the Switch stylesheet as follows:
     </p>
-    <CodeBox CodeBlock="@CodeSnippets.Add_Switch_Style_Sheet" AriaLabel="Add switch to stylesheet code block" />
+    <CodeBox CodeBlock="@CodeSnippets.Add_Switch_Style_Sheet" AriaLabel="Add switch stylesheet code block" />
 
 </section>
 
@@ -122,6 +122,11 @@
                 <td>
                     An event raised when the switch is toggled indicating its current state.
                 </td>
+            </tr>
+            <tr>
+                <td>AdditionalAttributes</td>
+                <td>Dictionary&lt;string, object&gt;?</td>
+                <td>Sets additional attributes applied to the component's root element.</td>
             </tr>
         </tbody>
     </table>
