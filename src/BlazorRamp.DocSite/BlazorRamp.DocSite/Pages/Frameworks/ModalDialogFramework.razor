@@ -27,7 +27,7 @@
 <ul aria-labelledby="dialog-keyboard">
     <li><kbd>Escape</kbd> - closes the top most dialog if a handler has not been specified. If one has been specified then you control whether or not the dialog should close, 
                             as this could be a popup form with unsaved changes, and you may want to get confirmation from the user first etc. 
-                            <b>Note: </b> If the Announcement History popover (non-modal dialog) is open, then the escape key will close that first.
+                            <strong>Note: </strong> If the Announcement History popover (non-modal dialog) is open, then the escape key will close that first.
         .</li>
 </ul>
 
@@ -44,7 +44,7 @@
                 restored.
             </p>
             <p>
-                <b>Note:</b> All other browsers that I tested workd perfectly without issue, it was only this one edge case when using Safari on macOS (iPhone was not effected given its touch the buttons) I came across when 
+                <strong>Note:</strong> All other browsers that I tested workd perfectly without issue, it was only this one edge case when using Safari on macOS (iPhone was not effected given its touch the buttons) I came across when 
                 testing. I will from time to time checkup on this, but I cannot control how safari orders the top layer items.
             </p>
     </li>
@@ -54,7 +54,7 @@
     <h2 class="page-heading">Installation</h2>
 
     <p>
-        <b>Note: </b> It is a requirement that the Blazor Ramp Core <span class="code-span">core-live-region.js</span> script, <span class="code-span">LiveRegionService</span>, and
+        <strong>Note: </strong> It is a requirement that the Blazor Ramp Core <span class="code-span">core-live-region.js</span> script, <span class="code-span">LiveRegionService</span>, and
         associated <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component are added alongside this component’s specific
         requirements (a stylesheet reference in this instance). You do not need to add the BlazorRamp.Core package separately, as BlazorRamp.Core is included as a transitive package, you only need to add the packages that contain the components
         that you wish to use i.e the <b>BlazorRamp.DialogFramework</b> NuGet package.
@@ -76,7 +76,7 @@
     </p>
 
     <p>
-        <b>Important</b> Please read carefully so you understand the best place for the <span class="code-span">&lt;ModalDialogContainer /&gt;</span> which acts as the
+        <strong>Important</strong> Please read carefully so you understand the best place for the <span class="code-span">&lt;ModalDialogContainer /&gt;</span> which acts as the
         root for unlimeited nested dialogs for the specific process.
     </p>
     <p>
@@ -104,7 +104,7 @@
                     For example you can simply place two instances of the <span>ModalDialogContainer</span> in the <span class="Routes.razor"></span> file next to the
                     <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component. One using <span class="code-span">@@rendermode="InteractiveServer"</span> the othere using
                     <span class="code-span">@@rendermode="InteractiveWebAssemlby"</span> and these would handle all Server and WebAssembly page usages.<br />
-                    <b>Note: You cannot add another</b> for <span class="code-span">@@rendermode="InteractiveAuto""</span>. For your Auto pages you would place an instance of the
+                    <strong>Note: You cannot add another</strong> for <span class="code-span">@@rendermode="InteractiveAuto""</span>. For your Auto pages you would place an instance of the
                     <span class="code-span">&lt;ModalDialogContainer @@rendermode="InteractiveAuto" /&gt;</span> on each page that wants to have a dialog / nested dialogs.
                 </p>
                 <p>
@@ -117,7 +117,7 @@
                     and by default it will use the parent components <span class="code-span">@@rendermode</span>.
                 </p>
                 <p>
-                    <b>Note:</b> Unlike the <span class="code-span">&lt;AnnouncmentHistory /&gt;</span> that works without an interactive mode, the <span class="code-span">ModalDialogContainer</span>
+                    <strong>Note:</strong> Unlike the <span class="code-span">&lt;AnnouncmentHistory /&gt;</span> that works without an interactive mode, the <span class="code-span">ModalDialogContainer</span>
                     needs one to work correctly.
                 </p>
             </li>
@@ -172,13 +172,13 @@
                     <td>RegisterEscapeHandler(Func&lt;Task&gt; handler)</td>
                     <td>
                         Allows for the registering of a handler that will be called when the escape key is pressed for your dialog window.
-                        <b>Note: </b>If you do not provide a handler and the escape key is presed the dialog will close and return a cancelled result.
+                        <strong>Note: </strong>If you do not provide a handler and the escape key is presed the dialog will close and return a cancelled result.
                     </td>
                 </tr>
                 <tr>
                     <td>void</td>
                     <td>UnregisterEscapeHandler(Func&lt;Task&gt; handler)</td>
-                    <td>Unregisters the escape handler. <b>Note: </b>Weak references are used but you should call this in your components dispose method.</td>
+                    <td>Unregisters the escape handler. <strong>Note: </strong>Weak references are used but you should call this in your components dispose method.</td>
                 </tr>
                 <tr>
                     <td>Task&lt;ModalDialogResult&gt</td>

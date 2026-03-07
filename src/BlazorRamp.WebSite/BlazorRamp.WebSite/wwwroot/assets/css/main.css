@@ -468,6 +468,10 @@ b {
   font-weight: bold;
 }
 
+strong {
+  font-weight: bold;
+}
+
 kbd {
   font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
   border-radius: var(--br-unit-radius-4);
