@@ -92,7 +92,7 @@ public partial class Tabs : IAsyncDisposable
     /// <see cref="Tab"/> component is disposed.
     /// </summary>
     /// <param name="tab">The <see cref="Tab"/> instance to remove.</param>
-    public void RemoveTab(Tab tab)
+    internal void RemoveTab(Tab tab)
     {
         _tabButtonRefs.Remove(tab);
         _tabs.Remove(tab);
@@ -135,11 +135,16 @@ public partial class Tabs : IAsyncDisposable
             _ => tabIndex
         };
 
+        if (_activeTabIndex == tabIndex) return;
+
         _activeTabIndex = _rovingIndex = tabIndex;
         ActiveTab = _tabs[tabIndex];
 
-        if (true == ActiveTabIndexChanged.HasDelegate) await ActiveTabIndexChanged.InvokeAsync(tabIndex);
-    
+        if (true == ActiveTabIndexChanged.HasDelegate)
+            await ActiveTabIndexChanged.InvokeAsync(tabIndex);
+        else
+            await InvokeAsync(StateHasChanged);
+
     }
 
     
