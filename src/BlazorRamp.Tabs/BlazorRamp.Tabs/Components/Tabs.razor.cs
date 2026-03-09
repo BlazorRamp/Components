@@ -119,7 +119,6 @@ public partial class Tabs : IAsyncDisposable
             await _jsModule.InvokeVoidAsync(GlobalValues.JS_Register_Tabs_Func, _tabsListID);
 
             await RaiseTabChanged(ActiveTabIndex);
-            if (false == ActiveTabIndexChanged.HasDelegate) await InvokeAsync(StateHasChanged);
         }
     }
 

@@ -11,7 +11,7 @@
 Welcome to your new app.
 
 
-<Tabs ActiveTabIndex="_tabIndex" ActiveTabIndexChanged="TabChangedHandler" AutoActivatePanel="false">
+<Tabs ActiveTabIndex="_tabIndex" ActiveTabIndexChanged="TabChangedHandler" AutoActivatePanel="true">
     <Tab TabTitle="Tab One Food" SvgIcon="--svg-food-icon">
         <TabPanelContent>
             Tab one panel content <input type="text" />
@@ -133,7 +133,7 @@ Welcome to your new app.
 @code{
 
 
-    private int _tabIndex = 0;
+    private int _tabIndex = 1;
     private int _innerTabIndex = 0;
 
     private void TabChangedHandler(int index)

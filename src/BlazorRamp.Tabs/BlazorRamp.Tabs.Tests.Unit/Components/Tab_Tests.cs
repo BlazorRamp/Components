@@ -1,10 +1,11 @@
 ﻿using BlazorRamp.Tabs.Common.Constants;
 using Bunit;
 using FluentAssertions;
-using Newtonsoft.Json.Linq;
-using TabsComponent = BlazorRamp.Tabs.Components.Tabs;
-using TabComponent = BlazorRamp.Tabs.Components.Tab;
 using FluentAssertions.Execution;
+using Newtonsoft.Json.Linq;
+using System.Reflection.Metadata.Ecma335;
+using TabComponent = BlazorRamp.Tabs.Components.Tab;
+using TabsComponent = BlazorRamp.Tabs.Components.Tabs;
 
 namespace BlazorRamp.Tabs.Tests.Unit.Components;
 
@@ -31,6 +32,45 @@ public class Tab_Tests
     }
     public class Parameters
     {
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("  ")]
+        [InlineData("Tab1")]
+        public void Should_be_able_to_set_the_tab_title_with_an_exception_raised_if_null_empty_or_whitespace(string? tabTitle)
+        {
+            var context = new BunitContext();
+            var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Module_File_Path);
+            moduleInterop.SetupVoid("registerTabs", _ => true).SetVoidResult();
+
+            if (String.IsNullOrWhiteSpace(tabTitle))
+            {
+                FluentActions.Invoking(() =>
+                {
+                    context.Render<TabsComponent>(paramBuilder =>
+                    {
+                        paramBuilder.Add(p => p.AriaLabel, "Tabs");
+                        paramBuilder.AddChildContent<TabComponent>(compBuilder =>
+                        {
+                            compBuilder.Add(p => p.TabTitle, tabTitle);
+                        });
+                    });
+                }).Should().Throw<ArgumentNullException>();
+
+                return;
+            }
+
+            context.Render<TabsComponent>(paramBuilder =>
+            {
+                paramBuilder.Add(p => p.AriaLabel, "Tabs");
+                paramBuilder.AddChildContent<TabComponent>(compBuilder =>
+                {
+                    compBuilder.Add(p => p.TabTitle, tabTitle);
+                });
+            }).Find($".{GlobalValues.Tabs_Tab_Title_Class}").TextContent.Should().Be(tabTitle);
+
+        }
 
 
         [Theory]
