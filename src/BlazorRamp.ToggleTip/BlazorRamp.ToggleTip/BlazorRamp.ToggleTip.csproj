@@ -12,13 +12,14 @@
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; ToggleTip; Information; Dialog</PackageTags>
-    <PackageReleaseNotes>Fixed Readme typos and enhanced accessibility for scrollable content by adding role=region and aria-labelledby to ensure focusable areas are properly identified per WCAG guidelines.</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed the label colour css property that was set to inherit instead pointing to ts variable which is set to 
+inherit. </PackageReleaseNotes>
     <Description>A ToggleTip component for the Blazor Ramp ecosystem. Technically, this is a non-modal dialog
 for displaying supplimental information, activated by click, keyobard, touch or voice.
 </Description>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>
-	  <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.2</AssemblyVersion>
+    <FileVersion>1.0.2</FileVersion>
+	  <Version>1.0.2</Version>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
 	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
