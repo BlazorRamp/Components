@@ -62,7 +62,7 @@ Title="Recent Announcements" TriggerVisible="true" TriggerText="Alerts" />
 ## Using the Tabs component
 
 Add the Tabs component to your page and set the desired parameters. Each Tab can have an associated icon, the Tabs component can be set to autoactivate the
-the Tab Panel on focus or use manual activation whereby keyboard users would set focus on the tab using the enter or space key to activate it.
+Tab Panel on focus or use manual activation whereby keyboard users would set focus on the tab using the enter or space key to activate it.
 
 The example belwo is taken from the test site: https://blazorramp.uk
 
