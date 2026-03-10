@@ -20,7 +20,7 @@
         There are two Tabs Compoments below, one set to use automatic activation the other to manual.
     </p>
     <p>
-        <b>In test not yet released</b>
+        <b>Released: </b>Current version <b>v1.0.0</b> See the documentation site for more information: <a target="_blank" class="@GlobalValues.Link_Class" href="@GlobalValues.Site_Link_Docs_Tabs">Toggletip documentation (opens in new window)</a>
     </p>
 </section>
 
@@ -73,14 +73,14 @@
             Pressing the tab key again should take you to the next focusable element on the page.
         </li>
         <li>
-            Voice control users should be able to select and navigate tabs by using the visible accessible name and saying the assoicated command and key name, such as press "Left Arrow";  
+            Voice control users should be able to select and navigate tabs by using the visible accessible name and saying the assoicated command and name, such as click Food One, focus Travel One.  
         </li>
     </ul>
 </section>
 <section class="section-box">
     <h3>Tabs test automatic activation</h3>
     <Tabs @bind-ActiveTabIndex="_tabAutoindex" AriaLabel="Automatic Activation" AutoActivatePanel="true">
-    <Tab TabTitle="Food" SvgIcon="--svg-food-icon">
+    <Tab TabTitle="Food One" SvgIcon="--svg-food-icon">
         <TabPanelContent>
             <h3>Recipes</h3>
             <p>
@@ -91,7 +91,7 @@
             </p>
         </TabPanelContent>
     </Tab>
-    <Tab TabTitle="Travel" SvgIcon="--svg-airplane-icon">
+    <Tab TabTitle="Travel One" SvgIcon="--svg-airplane-icon">
 
         <TabPanelContent>
             <h3>Itinerary</h3>
@@ -104,7 +104,7 @@
 
         </TabPanelContent>
     </Tab>
-    <Tab TabTitle="Exercise" SvgIcon="--svg-runner-icon">
+    <Tab TabTitle="Exercise One" SvgIcon="--svg-runner-icon">
 
         <TabPanelContent>
             <h3>Workouts</h3>
@@ -120,7 +120,7 @@
 <section class="section-box">
     <h3>Tabs test manual activation</h3>
     <Tabs @bind-ActiveTabIndex="_tabManualindex" AriaLabel="Manual Activation" AutoActivatePanel="false" TabIconPosition="TabIconPosition.Top">
-        <Tab TabTitle="Food" SvgIcon="--svg-food-icon">
+        <Tab TabTitle="Food Two" SvgIcon="--svg-food-icon">
             <TabPanelContent>
                 <h3>Recipes</h3>
                 <p>
@@ -131,7 +131,7 @@
                 </p>
             </TabPanelContent>
         </Tab>
-        <Tab TabTitle="Travel" SvgIcon="--svg-airplane-icon">
+        <Tab TabTitle="Travel Two" SvgIcon="--svg-airplane-icon">
 
             <TabPanelContent>
                 <h3>Itinerary</h3>
@@ -144,7 +144,7 @@
 
             </TabPanelContent>
         </Tab>
-        <Tab TabTitle="Exercise" SvgIcon="--svg-runner-icon">
+        <Tab TabTitle="Exercise Two" SvgIcon="--svg-runner-icon">
 
             <TabPanelContent>
                 <h3>Workouts</h3>

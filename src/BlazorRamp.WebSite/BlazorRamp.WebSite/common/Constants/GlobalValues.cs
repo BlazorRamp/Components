@@ -116,4 +116,5 @@ public static class GlobalValues
     public const string Site_Link_Docs_SkipTo       = "https://docs.blazorramp.uk/components/skip-to";
     public const string Site_Link_Docs_Modal_Dialog = "https://docs.blazorramp.uk/frameworks/modal-dialog";
     public const string Site_Link_Docs_ToggleTip    = "https://docs.blazorramp.uk/components/toggle-tip";
+    public const string Site_Link_Docs_Tabs         = "https://docs.blazorramp.uk/components/tabs";
 }

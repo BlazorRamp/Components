@@ -23,6 +23,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <Authors>Paul Kent</Authors>
+    <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
   </PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

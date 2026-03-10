@@ -14,8 +14,10 @@
 <section class="section-box">
     <h2 id="screen-reader-quirks" class="@GlobalValues.Info_Box_Heading_Class">Screen reader quirks</h2>
     <ul aria-labelledby="screen-reader-quirks">
-        <li><b>Narrator</b> generally will not turn off scan mode when landing on the tab list, required for the supported keys.</li>
-        <li><b>Narrator</b> on all browsers. When the tabs component uses automatic activation Narrator will announce the selected tab twice.</li>
+        <li><b>Narrator</b> generally will not turn off scan mode when landing on the tab list required for the supported keys. 
+            Note, using the up arrow and down arrow keys will navigate the tabs but this requires the user to select the item with the enter or space key like manual activation.</li>
+        <li><b>Narrator</b> on all browsers. When the tabs component uses automatic activation and you turn scan mode off enabling Narrator to use the supported keys, it announces the selected tab title twice.</li>
+        <li><b>NVDA</b> on all browsers. When the tabs component uses automatic activation, althought NVDA switches automatically to focus mode and appears to only announce the select tab title once, in the speech viewer its listed twice.</li>
     </ul>
     
 </section>
