@@ -12,7 +12,7 @@
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; ToggleTip; Information; Dialog</PackageTags>
-    <PackageReleaseNotes>Fixed the label colour css property that was set to inherit instead pointing to ts variable which is set to 
+    <PackageReleaseNotes>Fixed the label colour CSS property that was set to inherit instead pointing to its own variable which is set to 
 inherit. </PackageReleaseNotes>
     <Description>A ToggleTip component for the Blazor Ramp ecosystem. Technically, this is a non-modal dialog
 for displaying supplimental information, activated by click, keyobard, touch or voice.
