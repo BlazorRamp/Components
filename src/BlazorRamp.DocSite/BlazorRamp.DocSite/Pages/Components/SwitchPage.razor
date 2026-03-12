@@ -47,7 +47,7 @@
     <Switch @bind-SwitchState="@_wifiSwitchState" Label="WiFi:" AriaDisabled="false" SpaceBetween="true" style="margin-block:1rem;" disabled />
 </section>
 
-<h3 id="screen-reader-quirks" class="@GlobalValues.Info_Box_Heading_Class">Screen reader quirks or known issues</h3>
+<h3 id="screen-reader-quirks" class="@GlobalValues.Info_Box_Heading_Class" style="margin-top:var(--br-unit-space-9);">Screen reader quirks or known issues</h3>
 <ul aria-labelledby="screen-reader-quirks">
     <li><b>Narrator</b> paired with <b>Firefox</b> announces button on/off instead of switch on/off.</li>
 </ul>
@@ -58,7 +58,7 @@
     public bool _bluetoothSwitchState = false;
 }
 
-<section>
+<section style="margin-top:var(--br-unit-space-9);">
     <h2 class="page-heading">Installation</h2>
 
     <p>
@@ -503,7 +503,7 @@
                 Version 1.0.0 — <time datetime="2026-02-08">February 08, 2026</time>
             </h3>
             <ul>
-                <li>Initial release part of the <span class="code-span">BlazorRamp.Switch v1.0.0</span> NuGet package, multi-targeting <span class="code-span">.NET 8.0, .NET 9.0 & .NET10.0</span></li>
+                <li>Initial release of the <span class="code-span">BlazorRamp.Switch v1.0.0</span> NuGet package, multi-targeting <span class="code-span">.NET 8.0, .NET 9.0 & .NET10.0</span></li>
             </ul>
         </li>
     </ol>

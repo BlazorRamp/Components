@@ -18,10 +18,11 @@
 		<PackageReference Include="BlazorRamp.DialogFramework" Version="1.0.2" />
 		<PackageReference Include="BlazorRamp.SkipTo" Version="1.0.2" />
 		<PackageReference Include="BlazorRamp.Switch" Version="1.0.0" />
+		<PackageReference Include="BlazorRamp.Tabs" Version="1.0.0" />
 		<PackageReference Include="BlazorRamp.ToggleTip" Version="1.0.2" />
 		<PackageReference Include="BuildWebCompiler2022" Version="1.14.15" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.3" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.3" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.4" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.4" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.9.3">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -34,10 +35,6 @@
 
 	<ItemGroup>
 		<None Include="compilerconfig.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\..\BlazorRamp.Tabs\BlazorRamp.Tabs\BlazorRamp.Tabs.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
