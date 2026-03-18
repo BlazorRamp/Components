@@ -1,3 +1,4 @@
+using BlazorRamp.Core.Common.Extensions;
 using Sandbox.Client.Pages;
 using Sandbox.Components;
 
@@ -5,8 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents()
+    .AddInteractiveServerComponents().AddCircuitOptions(o => o.DetailedErrors = true)
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddBlazorRampCore();
 
 var app = builder.Build();
 

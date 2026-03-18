@@ -1,7 +1,113 @@
 ﻿@page "/"
 
+
+@rendermode @(new InteractiveServerRenderMode(false))
+
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
-Welcome to your new app.
+<div style="display:flex; gap:1rem;">
+    <button class="btn-primary" @onclick="ExpandAll">Expand All</button>
+    <button class ="btn-primary" @onclick ="CollapsAll">Collapse All</button>
+    <button class="btn-primary" @onclick="() => _expandMode = _expandMode == ExpandMode.Single ? ExpandMode.Multiple : ExpandMode.Single">Toggle Expand Mode (Currently: @_expandMode.ToString())</button>
+    <button class="btn-primary" @onclick="() => ExpandPanel(1, true)">Expand Index 1</button>
+</div> 
+
+<div style="height:700px;">
+
+
+<Accordion @ref="AccRef" HeadingLevel="HeadingLevel.H2" ExpandMode="@_expandMode">
+    <AccordionItem HeadingText="Accordion One" SvgIcon="--svg-food-icon">
+        <PanelContent>
+            <pre>
+                some
+
+                panel
+
+                content
+            </pre>
+        </PanelContent>
+    </AccordionItem>
+    <AccordionItem HeadingText="Accordion Two" PanelIsRegion="true">
+        <PanelContent>
+            <pre>
+                some
+
+                panel
+
+                content
+
+
+
+
+                dd
+
+
+
+
+                dd
+
+
+
+
+
+                d
+
+
+
+
+                dd
+
+
+
+
+                dd
+
+
+
+
+
+                video
+
+
+
+                base
+
+
+            </pre>
+        </PanelContent>
+    </AccordionItem>
+    <AccordionItem HeadingText="Accordion Three" @bind-Expanded="_expandedThree" PersistContent="false">
+        <PanelContent>
+            <pre>
+                some
+
+                <input type="text" value="42" />
+
+                content
+            </pre>
+        </PanelContent>
+    </AccordionItem>
+</Accordion>
+
+</div>
+@code{
+
+    private Accordion  AccRef { get; set; }
+    private bool       _expandedThree = true;
+    private ExpandMode _expandMode = ExpandMode.Single;
+
+    private async Task CollapsAll()
+    {
+        await AccRef.CollapseAllPanels();
+    }
+    private async Task ExpandAll()
+    {
+        await AccRef.ExpandAllPanels();
+    }
+
+    private async Task ExpandPanel(int index, bool moveFocus = false)
+
+        => await AccRef.ExpandPanel(index,moveFocus);
+}

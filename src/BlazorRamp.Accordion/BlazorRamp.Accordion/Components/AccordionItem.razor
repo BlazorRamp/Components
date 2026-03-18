@@ -1,5 +1,47 @@
-﻿<h3>AccordionItem</h3>
+﻿@switch (ParentControl?.HeadingLevel)
+{
+    case HeadingLevel.H1: <h1 id="@AccordionHeadingID" class="@GlobalValues.Accordion_Heading_Class">@{GetContent();}</h1>; break;
+    case HeadingLevel.H2: <h2 id="@AccordionHeadingID" class="@GlobalValues.Accordion_Heading_Class">@{GetContent();}</h2>; break;
+    case HeadingLevel.H3: <h3 id="@AccordionHeadingID" class="@GlobalValues.Accordion_Heading_Class">@{GetContent();}</h3>; break;
+    case HeadingLevel.H4: <h4 id="@AccordionHeadingID" class="@GlobalValues.Accordion_Heading_Class">@{GetContent();}</h4>; break;
+    case HeadingLevel.H5: <h5 id="@AccordionHeadingID" class="@GlobalValues.Accordion_Heading_Class">@{GetContent();}</h5>; break;
+    case HeadingLevel.H6: <h6 id="@AccordionHeadingID" class="@GlobalValues.Accordion_Heading_Class">@{GetContent();}</h6>; break;
+    default:
+            <h3 class="@GlobalValues.Accordion_Heading_Class">@{GetContent();}</h3>
+        break;
+}
 
-@code {
+<div id="@AccordionPanelID" class="@GlobalValues.Accordion_Panel_Class" aria-labelledby="@AccordionButtonID" tabindex="@(PanelHasTabIndex ? "0" : null)" 
+role="@(PanelIsRegion ? "region" : null)" data-br-panel-expanded="@IsExpanded.ToString().ToLower()">
+    
+    @if (_performRender || _persistContent)
+    {
+        @PanelContent
+    }
 
+</div>
+
+@{
+    void GetContent()
+    {
+        <button @ref="AccordionButtonRef" id="@AccordionButtonID" type="button" class="@GetTriggerClasses(_codeFocused)"
+                aria-expanded="@IsExpanded.ToString().ToLower()"
+                aria-controls="@AccordionPanelID"
+                data-br-accordion-trigger
+                @onclick="() => RaiseHeadingClicked()" 
+                @onfocusin="HandleHeaderFocusIn"
+                @onfocusout="HandleHeaderFocusOut">
+                
+            <span class="@GlobalValues.Accordion_Trigger_Content_Class">
+                @if(_svgVariable is not null)
+                {
+                    <span class="@GlobalValues.Accordion_Heading_Icon_Class" aria-hidden="true" style="@_svgVariable"></span>
+                }    
+                <span>@_headingText</span>
+            </span>
+            <span class="@GlobalValues.Accordion_Trigger_Icon_Class">
+                <span></span>
+            </span>
+        </button>
+    }
 }

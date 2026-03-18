@@ -1,2 +1,7 @@
-﻿<h3>Accordion</h3>
+﻿
+<CascadingValue IsFixed="true" Value="this">
+    <div id="@_accordionID" @attributes="AdditionalAttributes" class="@GlobalValues.Accordion_Class" @onkeydown="HandleKeyDown">
+        @ChildContent
+    </div>
+</CascadingValue>
 
