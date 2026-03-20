@@ -19,9 +19,9 @@ public class Switch_Tests
 
 
         [Fact]
-        public void Should_be_able_to_set_the_label_param()
+        public async Task Should_be_able_to_set_the_label_param()
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var switchComponent = context.Render<SwitchComponent>(paramBuilder => paramBuilder.Add<string>(p => p.Label, "Switch_Label"));
 
@@ -31,9 +31,9 @@ public class Switch_Tests
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void Should_be_able_to_set_the_switch_state_param(bool switchState)
+        public async Task Should_be_able_to_set_the_switch_state_param(bool switchState)
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var switchComponent = CreateSwitchWithParamByName<bool>(context, nameof(SwitchComponent.SwitchState),switchState);
 
@@ -43,9 +43,9 @@ public class Switch_Tests
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void Should_be_able_to_set_the_aria_disabled_param(bool ariaDisabled)
+        public async Task Should_be_able_to_set_the_aria_disabled_param(bool ariaDisabled)
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var switchComponent = CreateSwitchWithParamByName<bool>(context, nameof(SwitchComponent.AriaDisabled), ariaDisabled);
 
@@ -55,9 +55,9 @@ public class Switch_Tests
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void Should_be_able_to_set_the_space_between_param(bool spaceBetween)
+        public async Task Should_be_able_to_set_the_space_between_param(bool spaceBetween)
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var switchComponent = CreateSwitchWithParamByName<bool>(context, nameof(SwitchComponent.SpaceBetween), spaceBetween);
 
@@ -73,9 +73,9 @@ public class Switch_Tests
         }
 
         [Fact]
-        public void Should_capture_unmatched_attributed_and_apply_to_the_component()
+        public async Task Should_capture_unmatched_attributed_and_apply_to_the_component()
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var switchComponent = context.Render<SwitchComponent>(paramBuilder => paramBuilder.Add(p => p.Label, "Switch_Label")
                                                                   .AddUnmatched("style", "color:red;"));
@@ -92,9 +92,9 @@ public class Switch_Tests
         [InlineData(null)]
         [InlineData("")]
         [InlineData(" ")]
-        public void Should_throw_an_exception_if_the_label_is_null_empty_or_whitespace(string? label)
+        public async Task Should_throw_an_exception_if_the_label_is_null_empty_or_whitespace(string? label)
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             FluentActions.Invoking(() => context.Render<SwitchComponent>(param => param.Add(p => p.Label, label))).Should().Throw<ArgumentNullException>();
         }
@@ -105,7 +105,7 @@ public class Switch_Tests
         [Fact]
         public async Task Should_invoke_callback_when_state_changes()
         {
-            using var context  = new BunitContext();
+            await using var context = new BunitContext();
             bool? receivedState = null;
 
             var switchComponent = context.Render<SwitchComponent>(param => param.Add(p => p.Label, "My Switch")
@@ -120,7 +120,7 @@ public class Switch_Tests
         [Fact]
         public async Task Should_not_invoke_the_callback_when_state_changes_when_aria_disable_is_true()
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
             bool callbackInvoked = false;
 
             var switchComponent = context.Render<SwitchComponent>(param => param.Add(p => p.Label, "My Switch")
@@ -136,7 +136,7 @@ public class Switch_Tests
         [Fact]
         public async Task Should_not_invoke_the_callback_when_state_has_not_changed()
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
             bool callbackInvoked = false;
 
             var switchComponent = context.Render<SwitchComponent>(param => param.Add(p => p.Label, "My Switch")
@@ -152,7 +152,7 @@ public class Switch_Tests
         [Fact]
         public async Task Should_not_invoke_the_callback_when_state_has_not_changed_and_aria_disabled_is_true()
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
             bool? receivedState = null;
 
             var switchComponent = context.Render<SwitchComponent>(param => param
@@ -171,7 +171,7 @@ public class Switch_Tests
     [Fact]
     public async Task Should_invoke_callback_when_the_buton_is_clicked()
     {
-        using var context   = new BunitContext();
+        await using var context = new BunitContext();
         bool? receivedState = null;
 
         var switchComponent = context.Render<SwitchComponent>(param => param

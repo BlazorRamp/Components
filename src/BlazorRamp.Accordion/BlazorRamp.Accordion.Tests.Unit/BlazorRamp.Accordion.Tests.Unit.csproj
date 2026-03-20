@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="bunit" Version="2.6.2" />
-    <PackageReference Include="coverlet.collector" Version="8.0.0">
+    <PackageReference Include="coverlet.collector" Version="8.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -21,6 +21,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="xunit.v3" Version="3.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorRamp.Accordion\BlazorRamp.Accordion.csproj" />
   </ItemGroup>
 
   <ItemGroup>

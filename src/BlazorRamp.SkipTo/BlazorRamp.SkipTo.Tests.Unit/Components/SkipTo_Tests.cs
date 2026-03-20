@@ -129,7 +129,7 @@ public class SkipTo_Tests
         [Fact]
         public async Task Should_navigate_and_invoke_the_javascript_function()
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_SkipTo_File_Path);
 
@@ -154,7 +154,7 @@ public class SkipTo_Tests
         [InlineData("   ")]
         public async Task Should_not_navigate_if_the_url_navigate_to_is_null_empty_or_whitespace(string? href)
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_SkipTo_File_Path);
 
@@ -180,7 +180,7 @@ public class SkipTo_Tests
         [Fact]
         public async Task Should_update_location_with_new_path()
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_SkipTo_File_Path);
 

@@ -17,9 +17,9 @@ public class ToggleTip_Tests
     public class Parameters()
     {
         [Fact]
-        public void Should_be_able_to_set_the_label_param()
+        public async Task Should_be_able_to_set_the_label_param()
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var toggleTipComponent = context.Render<ToggleTipComponent>(paramBuilder => paramBuilder.Add<string>(p => p.Label, "Keyboard:"));
 
@@ -30,9 +30,9 @@ public class ToggleTip_Tests
         [InlineData(null)]
         [InlineData("")]
         [InlineData("   ")]
-        public void The_default_label_value_should_be_used_if_missing_null_whitespace_or_empty(string? labelValue)
+        public async Task The_default_label_value_should_be_used_if_missing_null_whitespace_or_empty(string? labelValue)
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             IRenderedComponent<ToggleTipComponent> toggleTipComponent;
 
@@ -49,9 +49,9 @@ public class ToggleTip_Tests
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void The_label_param_should_set_the_aria_label_on_the_button(bool showLabel)
+        public async Task The_label_param_should_set_the_aria_label_on_the_button(bool showLabel)
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var toggleTipComponent = CreateToggleTipWithParamByName<string>(context, nameof(ToggleTipComponent.Label), "Keyboard:", showLabel);
 
@@ -59,9 +59,9 @@ public class ToggleTip_Tests
         }
 
         [Fact]
-        public void Should_be_able_to_set_the_close_text_param()
+        public async Task Should_be_able_to_set_the_close_text_param()
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var toggleTipComponent = CreateToggleTipWithParamByName<string>(context, nameof(ToggleTipComponent.CloseText), "Close Text");
 
@@ -72,9 +72,9 @@ public class ToggleTip_Tests
         [InlineData(null)]
         [InlineData("")]
         [InlineData("   ")]
-        public void The_default_close_text_should_be_used_if_the_close_param_is_missing_null_whitespace_or_empty(string? closeText)
+        public async Task The_default_close_text_should_be_used_if_the_close_param_is_missing_null_whitespace_or_empty(string? closeText)
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             IRenderedComponent<ToggleTipComponent> toggleTipComponent;
 
@@ -92,9 +92,9 @@ public class ToggleTip_Tests
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void Should_be_able_to_hide_the_close_button_by_setting_the_show_close_param_to_false(bool showClose)
+        public async Task Should_be_able_to_hide_the_close_button_by_setting_the_show_close_param_to_false(bool showClose)
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var toggleTipComponent = CreateToggleTipWithParamByName<string>(context, nameof(ToggleTipComponent.CloseText), "Close Text", true,showCloseButton: showClose);
 
@@ -112,9 +112,9 @@ public class ToggleTip_Tests
         [Theory]
         [InlineData(ToggleTipLabelOrder.LabelFirst)]
         [InlineData(ToggleTipLabelOrder.IconFirst)]
-        public void Should_be_able_to_switch_label_and_icon_order_using_the_toggle_tip_label_order_param(ToggleTipLabelOrder lableOrder)
+        public async Task Should_be_able_to_switch_label_and_icon_order_using_the_toggle_tip_label_order_param(ToggleTipLabelOrder lableOrder)
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var toggleTipComponent = CreateToggleTipWithParamByName<ToggleTipLabelOrder>(context, nameof(ToggleTipComponent.ToggleTipLabelOrder), lableOrder);
 
@@ -134,9 +134,9 @@ public class ToggleTip_Tests
         [InlineData(ToggleTipSize.Small, GlobalValues.ToggleTip_Small_Modifier_Class)]
         [InlineData(ToggleTipSize.Medium,GlobalValues.ToggleTip_medium_Modifier_Class)]
         [InlineData(ToggleTipSize.Large, GlobalValues.ToggleTip_large_Modifier_Class)]
-        public void Should_be_able_to_set_the_size_of_the_toggle_tip_using_the_toggle_tip_size_param(ToggleTipSize toggleTipSize, string className)
+        public async Task Should_be_able_to_set_the_size_of_the_toggle_tip_using_the_toggle_tip_size_param(ToggleTipSize toggleTipSize, string className)
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var toggleTipComponent = CreateToggleTipWithParamByName<ToggleTipSize>(context, nameof(ToggleTipComponent.ToggleTipSize), toggleTipSize);
 
@@ -146,9 +146,9 @@ public class ToggleTip_Tests
         }
 
         [Fact]
-        public void Should_use_a_default_size_if_the_toggle_tip_size_enum_is_not_matched()
+        public async Task Should_use_a_default_size_if_the_toggle_tip_size_enum_is_not_matched()
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var toggleTipComponent = CreateToggleTipWithParamByName<ToggleTipSize>(context, nameof(ToggleTipComponent.ToggleTipSize), (ToggleTipSize)99);
 
@@ -166,9 +166,9 @@ public class ToggleTip_Tests
         [InlineData(ToggleTipPosition.BottomCentre, "bottom-centre")]
         [InlineData(ToggleTipPosition.BottomLeft, "bottom-left")]
         [InlineData(ToggleTipPosition.BottomRight, "bottom-right")]
-        public void Should_be_able_to_set_the_postion_of_the_toggle_tip_using_the_toggle_tip_postion_param(ToggleTipPosition toggleTipPosition, string attribueValue)
+        public async Task Should_be_able_to_set_the_postion_of_the_toggle_tip_using_the_toggle_tip_postion_param(ToggleTipPosition toggleTipPosition, string attribueValue)
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var toggleTipComponent = CreateToggleTipWithParamByName<ToggleTipPosition>(context, nameof(ToggleTipComponent.ToggleTipPosition), toggleTipPosition);
 
@@ -179,9 +179,9 @@ public class ToggleTip_Tests
 
 
         [Fact]
-        public void Should_be_able_to_set_the_render_fragment_param()
+        public async Task Should_be_able_to_set_the_render_fragment_param()
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var toggleTipComponent = context.Render<ToggleTipComponent>(parameters => parameters.AddChildContent("<h1>Test Content</h1>"));
 
@@ -190,9 +190,9 @@ public class ToggleTip_Tests
 
 
         [Fact]
-        public void Should_capture_unmatched_attributed_and_apply_to_the_component()
+        public async Task Should_capture_unmatched_attributed_and_apply_to_the_component()
         {
-            using var context = new BunitContext();
+            await using var context = new BunitContext();
 
             var toggleTipComponent = context.Render<ToggleTipComponent>(parameters => parameters.AddUnmatched("style", "color:red;"));
 
