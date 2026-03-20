@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="../BlazorRamp.Accordion/BlazorRamp.Accordion/BlazorRamp.Accordion.csproj" />
   <Project Path="BlazorRamp.WebSite/BlazorRamp.WebSite.csproj" />
 </Solution>

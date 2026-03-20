@@ -1,6 +1,5 @@
 ﻿@switch (ParentControl?.HeadingLevel)
 {
-    case HeadingLevel.H1: <h1 id="@AccordionHeadingID" class="@GlobalValues.Accordion_Heading_Class">@{GetContent();}</h1>; break;
     case HeadingLevel.H2: <h2 id="@AccordionHeadingID" class="@GlobalValues.Accordion_Heading_Class">@{GetContent();}</h2>; break;
     case HeadingLevel.H3: <h3 id="@AccordionHeadingID" class="@GlobalValues.Accordion_Heading_Class">@{GetContent();}</h3>; break;
     case HeadingLevel.H4: <h4 id="@AccordionHeadingID" class="@GlobalValues.Accordion_Heading_Class">@{GetContent();}</h4>; break;

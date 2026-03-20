@@ -8,7 +8,6 @@ namespace BlazorRamp.Accordion.Common.Constants;
 
 public enum HeadingLevel : int
 {
-   H1 = 1, 
    H2 = 2, 
    H3 = 3, 
    H4 = 4, 

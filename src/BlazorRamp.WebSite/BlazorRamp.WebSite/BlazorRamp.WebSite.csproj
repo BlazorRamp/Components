@@ -45,6 +45,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BlazorRamp.Accordion\BlazorRamp.Accordion\BlazorRamp.Accordion.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <TypeScriptCompile Include="Assets\Scripts\test-component.ts" />
   </ItemGroup>
 

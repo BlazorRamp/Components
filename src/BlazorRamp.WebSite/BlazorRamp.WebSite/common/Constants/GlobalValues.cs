@@ -21,26 +21,30 @@ public static class GlobalValues
     public const string Page_Heading_Switch_Overview = "Overvew & Tests";
     public const string Page_Heading_Switch_Quirks  = "Quirks & Issues";
     public const string Page_Heading_ToggleTip_Overview = "Overvew & Tests";
-    public const string Page_Heading_Tabs_Overview   = "Overvew & Tests";
-    public const string Page_Heading_Tabs_Quirks     = "Quirks & Issues";
+    public const string Page_Heading_Tabs_Overview      = "Overvew & Tests";
+    public const string Page_Heading_Tabs_Quirks        = "Quirks & Issues";
+    public const string Page_Heading_Accordion_Overview = "Overvew & Tests";
+    public const string Page_Heading_Accordion_Quirks   = "Quirks & Issues";
 
     public const string Page_Heading_FAQs_Final = "Final Words";
 
     public const string Page_Title_Overview_Introduction    = "Introduction";
     public const string Page_Title_Overview_About           = "About Blazor Ramp";
 
-    public const string Page_Title_Busy_Screen           = "Busy Indicator Overview & Page Test";
-    public const string Page_Title_Busy_Container        = "Busy Indicator  Container Test";
-    public const string Page_Title_Modal_Busy_Screen     = "Busy Indicator Modal Page Test";
-    public const string Page_Title_Busy_Short            = "Busy Indicator With Short Delay Test";
-    public const string Page_Title_Busy_Quirks          = "Busy Indicator Quirks & Issues";
-    public const string Page_Title_Faqs_Final_Words           = "FAQs Final Words";
-    public const string Page_Title_SkipTo_Overview_Test  = "Skip To Overview & Tests";
-    public const string Page_Title_Switch_Overview_Test  = "Switch Overview & Tests";
-    public const string Page_Title_Switch_Quirks          = "Switch Quirks & Issues";
+    public const string Page_Title_Busy_Screen              = "Busy Indicator Overview & Page Test";
+    public const string Page_Title_Busy_Container           = "Busy Indicator  Container Test";
+    public const string Page_Title_Modal_Busy_Screen        = "Busy Indicator Modal Page Test";
+    public const string Page_Title_Busy_Short               = "Busy Indicator With Short Delay Test";
+    public const string Page_Title_Busy_Quirks              = "Busy Indicator Quirks & Issues";
+    public const string Page_Title_Faqs_Final_Words         = "FAQs Final Words";
+    public const string Page_Title_SkipTo_Overview_Test     = "Skip To Overview & Tests";
+    public const string Page_Title_Switch_Overview_Test     = "Switch Overview & Tests";
+    public const string Page_Title_Switch_Quirks            = "Switch Quirks & Issues";
     public const string Page_Title_Toggle_Tip_Overview_Test = "Toggletip Overview & Tests";
     public const string Page_Title_Tabs_Overview_Test       = "Tabs Overview & Tests";
     public const string Page_Title_Tabs_Quirks              = "Tabs Quirks & Issues";
+    public const string Page_Title_Accordion_Quirks         = "Accordion Quirks & Issues";
+    public const string Page_Title_Accordion_Overview_Test  = "Accordion Overview & Tests";
 
 
     public const string Page_Title_Modal_Dialog_Overview_Test = "Modal Dialog Overview & Tests";
@@ -55,6 +59,8 @@ public static class GlobalValues
     public const string Path_Toggle_Tip_Overview = "/toggle-tip/overview-tests";
     public const string Path_Tabs_Overview       = "/tabs/overview-tests";
     public const string Path_Tabs_Quirks         = "/tabs/known-issues";
+    public const string Path_Accordion_Overview  = "/accordion/overview-tests";
+    public const string Path_Accordion_Quirks    = "/accordion/known-issues";
 
 
 
@@ -77,6 +83,7 @@ public static class GlobalValues
     public const string Main_Nav_Section_Heading_Modal_Dialog  = "Modal Dialog";
     public const string Main_Nav_Section_Heading_Toggle_Tip    = "Toggletip";
     public const string Main_Nav_Section_Heading_Tabs          = "Tabs";
+    public const string Main_Nav_Section_Heading_Accordion     = "Accordion";
     public const string Main_Nav_Section_Heading_FAQs          = "FAQs";
 
 
@@ -117,4 +124,5 @@ public static class GlobalValues
     public const string Site_Link_Docs_Modal_Dialog = "https://docs.blazorramp.uk/frameworks/modal-dialog";
     public const string Site_Link_Docs_ToggleTip    = "https://docs.blazorramp.uk/components/toggle-tip";
     public const string Site_Link_Docs_Tabs         = "https://docs.blazorramp.uk/components/tabs";
+    public const string Site_Link_Docs_Accordion    = "https://docs.blazorramp.uk/components/accordion";
 }
