@@ -212,7 +212,7 @@
   padding-right: var(--br-unit-space-3);
   grid-column: 1/2;
   grid-row: 2/3;
-  width: 20rem;
+  width: 22rem;
   height: 100%;
   overflow-y: auto;
 }
@@ -636,7 +636,7 @@ body #app__main {
   background-color: var(--br-comp-all-button-background);
   cursor: pointer;
   padding: var(--br-unit-space-5);
-  width: 20rem;
+  width: 22rem;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -671,7 +671,7 @@ body #app__main {
   background-color: var(--br-comp-all-button-background);
   cursor: pointer;
   padding: var(--br-unit-space-5);
-  width: 20rem;
+  width: 22rem;
   display: inline-flex;
   justify-content: center;
   align-items: center;

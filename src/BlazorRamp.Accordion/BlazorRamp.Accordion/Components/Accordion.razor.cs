@@ -25,9 +25,9 @@ public partial class Accordion : IAsyncDisposable
     private List<AccordionItem> _accordionItems = [];
     private IJSObjectReference? _jsModule       = null;
 
-    private string _accordionID = $"accordion-{Guid.NewGuid()}";
-    private bool   _disposed    = false;
-    private int    _focusIndex = -1;
+    private string _accordionID     = $"accordion-{Guid.NewGuid()}";
+    private bool   _disposed        = false;
+    private int    _focusIndex      = -1;
     private bool   _triggerHasFocus = false;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

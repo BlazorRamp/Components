@@ -64,10 +64,6 @@ public partial class AccordionItem : IDisposable
     }
 
 
-    //private void HandleHeaderFocusIn()
-
-    //    => ParentControl?.UpdateFocusIndex(AccordionItemID);
-
     private void HandleHeaderFocusIn()
 
         => ParentControl?.NotifyHeadingFocusIn(AccordionItemID);

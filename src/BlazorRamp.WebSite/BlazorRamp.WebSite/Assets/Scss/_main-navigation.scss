@@ -1,4 +1,6 @@
-﻿.main-navigation {
+﻿
+.main-navigation {
+
 
     & > ul {
         all: unset;
@@ -32,12 +34,9 @@
             font-weight: var(--br-unit-font-weight-500, bold);
         }
 
-
-
         &:active {
             background-color: var(--br-comp-all-link-active-background-colour);
         }
-
 
 
         &:focus-visible {

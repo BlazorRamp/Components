@@ -36,6 +36,7 @@ namespace Sandbox
 
             app.UseStaticFiles();
             app.UseAntiforgery();
+            app.MapStaticAssets();
 
             app.MapRazorComponents<App>()
                 .AddInteractiveServerRenderMode()
