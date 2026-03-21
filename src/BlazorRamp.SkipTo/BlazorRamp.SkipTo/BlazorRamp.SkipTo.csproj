@@ -16,10 +16,10 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region;, Skip To content</PackageTags>
-    <PackageReleaseNotes>Added an additional css property to the optional icon to use the em unit so it scales up with base font-size changes.</PackageReleaseNotes>
-	<AssemblyVersion>1.0.2</AssemblyVersion>
-	<FileVersion>1.0.2</FileVersion>
-	<Version>1.0.2</Version>
+    <PackageReleaseNotes>Added requestAnimationFrame to the JavaScript to stop the page moving up and offscreen when the layouts uses a fixed-height grid with a nested scrollable container.</PackageReleaseNotes>
+	<AssemblyVersion>1.0.3</AssemblyVersion>
+	<FileVersion>1.0.3</FileVersion>
+	<Version>1.0.3</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 	 <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
@@ -90,7 +90,7 @@
 	</ItemGroup>
 
 	<!-- section to test settings -->
-	<Target Name="PreResolveProjectStaticWebAssets" BeforeTargets="ResolveProjectStaticWebAssets">
+	<!--<Target Name="PreResolveProjectStaticWebAssets" BeforeTargets="ResolveProjectStaticWebAssets">
 		<ItemGroup>
 			<StashedContent Include="@(Content)" />
 			<Content Remove="@(Content)" />
@@ -100,6 +100,6 @@
 		<ItemGroup>
 			<Content Include="@(StashedContent)" />
 		</ItemGroup>
-	</Target>
+	</Target>-->
 	
 </Project>

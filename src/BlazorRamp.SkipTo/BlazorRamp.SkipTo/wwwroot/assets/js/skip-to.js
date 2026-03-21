@@ -8,7 +8,10 @@ const scrollToView = (elementID) => {
         block: "start",
         inline: "nearest"
     });
-    element.focus();
+    element.focus({ preventScroll: true });
+    requestAnimationFrame(() => {
+        document.documentElement.scrollTop = 0;
+    });
 };
 export { scrollToView };
 //# sourceMappingURL=skip-to.js.map

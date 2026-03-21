@@ -12,7 +12,11 @@
         inline: "nearest"
     });
 
-    element.focus();
+    element.focus({ preventScroll: true });
+
+    requestAnimationFrame(() => {
+        document.documentElement.scrollTop = 0;
+    });
 }
 
 export { scrollToView };
