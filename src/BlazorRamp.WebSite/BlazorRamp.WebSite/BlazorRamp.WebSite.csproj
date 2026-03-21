@@ -20,6 +20,7 @@
     <PackageReference Include="BlazorRamp.BusyIndicator" Version="1.0.2" />
     <PackageReference Include="BlazorRamp.Core" Version="1.0.7" />
     <PackageReference Include="BlazorRamp.DialogFramework" Version="1.0.2" />
+    <PackageReference Include="BlazorRamp.SkipTo" Version="1.0.3" />
     <PackageReference Include="BlazorRamp.Switch" Version="1.0.0" />
     <PackageReference Include="BlazorRamp.Tabs" Version="1.0.0" />
     <PackageReference Include="BlazorRamp.ToggleTip" Version="1.0.2" />
@@ -45,7 +46,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\BlazorRamp.Accordion\BlazorRamp.Accordion\BlazorRamp.Accordion.csproj" />
-    <ProjectReference Include="..\..\BlazorRamp.SkipTo\BlazorRamp.SkipTo\BlazorRamp.SkipTo.csproj" />
   </ItemGroup>
 
   <ItemGroup>
