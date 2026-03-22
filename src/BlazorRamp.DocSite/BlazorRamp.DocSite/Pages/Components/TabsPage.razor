@@ -1,4 +1,4 @@
-﻿@using BlazorRamp.Tabs.Components
+﻿
 @attribute [Route(GlobalValues.Path_Components_Tabs)]
 <PageTitle>@GlobalValues.Page_Title_Components_Tabs</PageTitle>
 
@@ -126,7 +126,7 @@
                 <td>ChildContent</td>
                 <td>RenderFragment?</td>
                 <td>
-                    The render fragment used the child content (for each Tab).
+                    The render fragment used for the child content (for each Tab).
                 </td>
             </tr>
             <tr>
@@ -545,6 +545,19 @@
     </ol>
 
 </section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Components_Switch">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_Components - @GlobalValues.Page_Heading_Components_Switch</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Components_ToggleTip">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_Components - @GlobalValues.Page_Heading_Components_ToggleTip</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
 @code {
 
     private int _tabindex = 0;

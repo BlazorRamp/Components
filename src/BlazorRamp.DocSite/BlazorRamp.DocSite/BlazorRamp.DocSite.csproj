@@ -38,6 +38,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\BlazorRamp.Accordion\BlazorRamp.Accordion\BlazorRamp.Accordion.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Update="tsconfig.json">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 			<CopyToPublishDirectory>Never</CopyToPublishDirectory>

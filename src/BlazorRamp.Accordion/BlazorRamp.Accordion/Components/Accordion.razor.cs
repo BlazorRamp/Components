@@ -6,12 +6,36 @@ using Microsoft.JSInterop;
 
 namespace BlazorRamp.Accordion.Components;
 
+/// <summary>
+/// A Blazor component that renders an accessible accordion component, managing a set of
+/// <see cref="AccordionItem"/> child components with full keyboard navigation and
+/// configurable expand behaviour.
+/// </summary>
 public partial class Accordion : IAsyncDisposable
 {
+    /// <summary>
+    /// Gets or sets the child content of the component, expected to contain one or more
+    /// <see cref="AccordionItem"/> components.
+    /// </summary>
     [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// Gets or sets the expand mode controlling whether one or multiple panels can be
+    /// open simultaneously. Defaults to <see cref="ExpandMode.Multiple"/>.
+    /// </summary>
     [Parameter] public ExpandMode      ExpandMode   { get; set; } = ExpandMode.Multiple;
+
+    /// <summary>
+    /// Gets or sets the semantic heading level rendered for each accordion item trigger.
+    /// Defaults to <see cref="HeadingLevel.H3"/>.
+    /// </summary>
     [Parameter] public HeadingLevel    HeadingLevel { get; set; } = HeadingLevel.H3;
 
+    /// <summary>
+    /// Gets or sets the callback invoked when an accordion item heading is clicked,
+    /// providing an <see cref="ItemHeadingData"/> payload containing the item index,
+    /// heading text, and expanded state.
+    /// </summary>
     [Parameter] public EventCallback<ItemHeadingData> OnAccordionItemHeadingClicked { get; set; }
 
     /// <summary>
@@ -30,6 +54,10 @@ public partial class Accordion : IAsyncDisposable
     internal int   _focusIndex      = -1; //Made internal so its easy to test the keyboard navigation 
     private bool   _triggerHasFocus = false;
 
+    /// <summary>
+    /// Initialises the JavaScript module on first render and enforces single expand mode
+    /// start state if any items were pre-expanded.
+    /// </summary>
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -41,6 +69,10 @@ public partial class Accordion : IAsyncDisposable
         }
     }
 
+    /// <summary>
+    /// Ensures only one panel is expanded on initial render when <see cref="ExpandMode"/>
+    /// is <see cref="ExpandMode.Single"/>, collapsing any additional pre-expanded items.
+    /// </summary>
     private async Task CheckSetStartState(ExpandMode expandMode, List<AccordionItem> accordionItems)
     {
         if (expandMode != ExpandMode.Single) return;
@@ -54,16 +86,28 @@ public partial class Accordion : IAsyncDisposable
             if (openCount > 1 && true == accordionItem.IsExpanded) await accordionItem.ToggleExpandedState();
         }
     }
+
+    /// <summary>
+    /// Registers an <see cref="AccordionItem"/> with this accordion. Called automatically
+    /// by each child item during initialisation.
+    /// </summary>
     internal void AddAccordionItem(AccordionItem accordionItem)
     {
         if (false == _accordionItems.Contains(accordionItem)) _accordionItems.Add(accordionItem); 
     }
-    
+
+    /// <summary>
+    /// Removes an <see cref="AccordionItem"/> from this accordion. Called automatically
+    /// when a child item is disposed.
+    /// </summary>
     internal void RemoveAccordionItem(AccordionItem accordionItem)
 
         => _accordionItems.Remove(accordionItem);
 
-
+    /// <summary>
+    /// Handles a heading click from a child <see cref="AccordionItem"/>, toggling its
+    /// expanded state and enforcing single expand mode if required.
+    /// </summary>
     internal async Task NotifyHeadingClicked(Guid accordionItemID)
     {
         var accordionItem = _accordionItems.Where(a => a.AccordionItemID == accordionItemID).SingleOrDefault();
@@ -81,6 +125,10 @@ public partial class Accordion : IAsyncDisposable
         await RaiseOnAccordionItemHeadingClicked(_focusIndex, accordionItem.HeadingText, accordionItem.IsExpanded);
     }
 
+    /// <summary>
+    /// Invokes <see cref="OnAccordionItemHeadingClicked"/> if a delegate is bound,
+    /// otherwise requests a state update.
+    /// </summary>
     private async Task RaiseOnAccordionItemHeadingClicked(int itemIndex, string headingText, bool isExpanded)
     {
         if (OnAccordionItemHeadingClicked.HasDelegate)
@@ -91,6 +139,10 @@ public partial class Accordion : IAsyncDisposable
         await InvokeAsync(StateHasChanged);
     }
 
+    /// <summary>
+    /// Expands all accordion panels. In <see cref="ExpandMode.Single"/> mode, only the
+    /// last panel will remain expanded as each expansion collapses the previous.
+    /// </summary>
     public async Task ExpandAllPanels()
     {
         foreach (var accordionItem in _accordionItems)
@@ -99,6 +151,9 @@ public partial class Accordion : IAsyncDisposable
         }
     }
 
+    /// <summary>
+    /// Collapses all accordion panels.
+    /// </summary>
     public async Task CollapseAllPanels()
     {
         foreach(var accordionItem in _accordionItems)
@@ -108,6 +163,16 @@ public partial class Accordion : IAsyncDisposable
           
     }
 
+    /// <summary>
+    /// Expands the accordion panel at the specified zero-based index.
+    /// In <see cref="ExpandMode.Single"/> mode, all other panels are collapsed first.
+    /// Does nothing if the index is out of range.
+    /// </summary>
+    /// <param name="index">The zero-based index of the panel to expand.</param>
+    /// <param name="codeFocused">
+    /// When <see langword="true"/>, programmatically focuses the trigger button and applies
+    /// the code-focused visual indicator. Defaults to <see langword="false"/>.
+    /// </param>
     public async Task ExpandPanel(int index, bool codeFocused = false)
     {
         if (index < 0 || index > _accordionItems.Count - 1) return;
@@ -122,6 +187,10 @@ public partial class Accordion : IAsyncDisposable
 
        if (true == codeFocused) await SetItemFocus(index,codeFocused);
     }
+
+    /// <summary>
+    /// Updates <see cref="_focusIndex"/> to the position of the item matching the given ID.
+    /// </summary>
     private void UpdateFocusIndex(Guid accordionItemID)
     {
         var accordionItem = _accordionItems.Where(a => a.AccordionItemID == accordionItemID).SingleOrDefault();
@@ -129,28 +198,47 @@ public partial class Accordion : IAsyncDisposable
         if (accordionItem is not null) _focusIndex = _accordionItems.IndexOf(accordionItem);
     }
 
+    /// <summary>
+    /// Notifies the accordion that a heading trigger has received focus, updating the
+    /// focus index and setting the trigger focus guard.
+    /// </summary>
     internal void NotifyHeadingFocusIn(Guid accordionItemID)
     {
         UpdateFocusIndex(accordionItemID);
         _triggerHasFocus = true;
     }
 
+    /// <summary>
+    /// Notifies the accordion that a heading trigger has lost focus, clearing the
+    /// trigger focus guard to prevent keyboard navigation from firing.
+    /// </summary>
     internal void NotifyHeadingFocusOut()
         
         => _triggerHasFocus = false;
 
+    /// <summary>
+    /// Moves programmatic focus to the accordion item at the specified index.
+    /// </summary>
     private async ValueTask SetItemFocus(int itemIndex, bool codeFocused = false)
     {
         _focusIndex = itemIndex;
         await _accordionItems[itemIndex].SetFocus(codeFocused);
     }
 
+    /// <summary>
+    /// Handles the Home and End keyboard keys, moving focus to the first or last item.
+    /// </summary>
     private async Task HandleHomeEndKeys(bool isHome)
     {
         var focusIndex = isHome ? 0 : _accordionItems.Count - 1;
 
         await SetItemFocus(focusIndex);
     }
+
+    /// <summary>
+    /// Handles the Arrow Up and Arrow Down keyboard keys, moving focus to the
+    /// previous or next item with wrapping at the boundaries.
+    /// </summary>
     private async Task HandleArrowKeys(Direction direction, int focusIndex)
     {
         int maxIndex = _accordionItems.Count - 1;
@@ -167,6 +255,10 @@ public partial class Accordion : IAsyncDisposable
         await SetItemFocus(focusIndex);
     }
 
+    /// <summary>
+    /// Handles keydown events on the accordion wrapper, routing Arrow, Home, and End keys
+    /// to the appropriate navigation handlers. Ignored when no trigger has focus.
+    /// </summary>
     private async Task HandleKeyDown(KeyboardEventArgs keyArgs)
     {
         if (_focusIndex < 0 || false == _triggerHasFocus) return;
@@ -181,7 +273,9 @@ public partial class Accordion : IAsyncDisposable
         };
         await keyboardTask;
     }
-
+    /// <summary>
+    /// Unregisters the JavaScript key handler and disposes the JS module.
+    /// </summary>
     public async ValueTask DisposeAsync()
     {
         if (_jsModule == null || true == _disposed) return;

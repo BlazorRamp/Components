@@ -40,6 +40,7 @@ public class GlobalValues
     public const string Path_Components_Switch = "/components/switch";
     public const string Path_Components_ToggleTip = "/components/toggle-tip";
     public const string Path_Components_Tabs = "/components/tabs";
+    public const string Path_Components_Accordion = "/components/accordion";
     public const string Path_Theming_Overview = "/theming/overview";
     public const string Path_Theming_CSS_Base_Variables = "/theming/core-base-variables";
     public const string Path_Theming_CSS_Unit_Variables = "/theming/core-unit-variables";
@@ -59,6 +60,7 @@ public class GlobalValues
     public const string Page_Title_Components_Switch = "Components - Switch";
     public const string Page_Title_Components_ToggleTip = "Components - Toggletip";
     public const string Page_Title_Components_Tabs = "Components - Tabs";
+    public const string Page_Title_Components_Accordion = "Components - Accordion";
     public const string Page_Title_Theming_Overview = "Theming - Overview";
     public const string Page_Title_Theming_CSS_Base_Variables = "Theming - Core Base Variables";
     public const string Page_Title_Theming_CSS_Unit_Variables = "Theming - Core Unit Variables";
@@ -85,6 +87,7 @@ public class GlobalValues
     public const string Page_Heading_Components_Switch = "Switch";
     public const string Page_Heading_Components_ToggleTip = "Toggletip";
     public const string Page_Heading_Components_Tabs = "Tabs";
+    public const string Page_Heading_Components_Accordion = "Accordion";
 
     public const string Main_Nav_Section_Heading_About = "Overview";
     public const string Main_Nav_Section_Heading_Theming = "Theming";

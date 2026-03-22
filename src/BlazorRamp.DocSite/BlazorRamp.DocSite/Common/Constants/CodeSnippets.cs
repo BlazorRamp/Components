@@ -452,4 +452,12 @@ public class CodeSnippets
             </Tab>
         </Tabs>
         """;
+
+
+    public const string Add_Accordion_Style_Sheet = """
+        <head>
+            <link rel="stylesheet" href="_content/BlazorRamp.Core/assets/css/core.min.css" />
+            <link rel="stylesheet" href="_content/BlazorRamp.Accordion/assets/css/accordion.min.css" />
+        </head>
+        """;
 }
