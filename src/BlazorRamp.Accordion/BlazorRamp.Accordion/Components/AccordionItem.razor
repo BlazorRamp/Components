@@ -13,7 +13,7 @@
 <div id="@AccordionPanelID" class="@GlobalValues.Accordion_Panel_Class" aria-labelledby="@AccordionButtonID" tabindex="@(PanelHasTabIndex ? "0" : null)" 
 role="@(PanelIsRegion ? "region" : null)" data-br-panel-expanded="@IsExpanded.ToString().ToLower()">
     
-    @if (_performRender || _persistContent)
+    @if (IsExpanded || _persistContent)
     {
         @PanelContent
     }

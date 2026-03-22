@@ -18,7 +18,7 @@
 
 
 <Accordion @ref="AccRef" HeadingLevel="HeadingLevel.H2" ExpandMode="@_expandMode">
-    <AccordionItem HeadingText="Accordion One" SvgIcon="--svg-food-icon">
+    <AccordionItem HeadingText="Accordion One" SvgIcon="--svg-food-icon" PersistContent="false">
         <PanelContent>
             <pre>
                 some
@@ -78,7 +78,7 @@
             </pre>
         </PanelContent>
     </AccordionItem>
-    <AccordionItem HeadingText="Accordion Three" @bind-Expanded="_expandedThree" PersistContent="false">
+    <AccordionItem HeadingText="Accordion Three" @bind-Expanded="_expandedThree" PersistContent="true">
         <PanelContent>
             <pre>
                 some

@@ -3,6 +3,7 @@ using BlazorRamp.Accordion.Common.Models;
 using Bunit;
 using FluentAssertions;
 using FluentAssertions.Execution;
+using Microsoft.AspNetCore.Components.Web;
 using System.Runtime.CompilerServices;
 using AccordionComponennt  = BlazorRamp.Accordion.Components.Accordion;
 using AccordItemComponennt = BlazorRamp.Accordion.Components.AccordionItem;
@@ -113,7 +114,6 @@ public class Accordion_Tests
         }
     }
 
-
     public class OnAccordionItemHeadingClicked()
     {
         [Fact]
@@ -142,7 +142,6 @@ public class Accordion_Tests
             });
         }
     }
-
 
     public class ExpandAllPanels()
     {
@@ -218,7 +217,6 @@ public class Accordion_Tests
             });
         }
     }
-
 
     public class ExpandPanel
     {
@@ -344,5 +342,137 @@ public class Accordion_Tests
         }
 
 
+    }
+
+    public class KeyboardNavigation
+    {
+        private static IRenderedComponent<AccordionComponennt> CreateAccordion(BunitContext context)
+        {
+            var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Module_File_Path);
+            moduleInterop.SetupVoid(GlobalValues.JS_Register_Handler_Func, _ => true).SetVoidResult();
+
+            return context.Render<AccordionComponennt>(paramBuilder =>
+            {
+                paramBuilder.Add(p => p.ExpandMode, ExpandMode.Multiple);
+                paramBuilder.AddChildContent<AccordItemComponennt>(compBuilder => compBuilder.Add(p => p.HeadingText, "Accordion One"));
+                paramBuilder.AddChildContent<AccordItemComponennt>(compBuilder => compBuilder.Add(p => p.HeadingText, "Accordion Two"));
+                paramBuilder.AddChildContent<AccordItemComponennt>(compBuilder => compBuilder.Add(p => p.HeadingText, "Accordion Three"));
+            });
+        }
+
+        private static void FocusButton(IRenderedComponent<AccordionComponennt> accComponent, int index)
+        {
+            accComponent.FindAll($"button.{GlobalValues.Accordion_Trigger_Class}")[index].TriggerEvent("onfocusin", new FocusEventArgs());
+        }
+
+        private static void PressKey(IRenderedComponent<AccordionComponennt> accComponent, string key)
+        {
+            accComponent.Find($"div.{GlobalValues.Accordion_Class}").KeyDown(new KeyboardEventArgs { Key = key });
+        }
+
+        private static void AssertFocusIndex(IRenderedComponent<AccordionComponennt> accComponent, int expectedIndex)
+        {
+            accComponent.WaitForAssertion(() =>
+                accComponent.Instance._focusIndex.Should().Be(expectedIndex)
+            );
+        }
+
+        [Fact]
+        public async Task Arrow_down_should_move_focus_to_next_item()
+        {
+            await using var context = new BunitContext();
+            var accComponent = CreateAccordion(context);
+
+            FocusButton(accComponent, 0);
+            PressKey(accComponent, GlobalValues.KeyBoard_Down_Arrow_Key);
+
+            AssertFocusIndex(accComponent, 1);
+        }
+
+        [Fact]
+        public async Task Arrow_up_should_move_focus_to_previous_item()
+        {
+            await using var context = new BunitContext();
+            var accComponent = CreateAccordion(context);
+
+            FocusButton(accComponent, 1);
+            PressKey(accComponent, GlobalValues.KeyBoard_Up_Arrow_Key);
+
+            AssertFocusIndex(accComponent, 0);
+        }
+
+        [Fact]
+        public async Task Arrow_down_should_wrap_to_first_item_when_on_last()
+        {
+            await using var context = new BunitContext();
+            var accComponent = CreateAccordion(context);
+
+            FocusButton(accComponent, 2);
+            PressKey(accComponent, GlobalValues.KeyBoard_Down_Arrow_Key);
+
+            AssertFocusIndex(accComponent, 0);
+        }
+
+        [Fact]
+        public async Task Arrow_up_should_wrap_to_last_item_when_on_first()
+        {
+            await using var context = new BunitContext();
+            var accComponent = CreateAccordion(context);
+
+            FocusButton(accComponent, 0);
+            PressKey(accComponent, GlobalValues.KeyBoard_Up_Arrow_Key);
+
+            AssertFocusIndex(accComponent, 2);
+        }
+
+        [Fact]
+        public async Task Home_key_should_move_focus_to_first_item()
+        {
+            await using var context = new BunitContext();
+            var accComponent = CreateAccordion(context);
+
+            FocusButton(accComponent, 2);
+            PressKey(accComponent, GlobalValues.KeyBoard_Home_Key);
+
+            AssertFocusIndex(accComponent, 0);
+        }
+
+        [Fact]
+        public async Task End_key_should_move_focus_to_last_item()
+        {
+            await using var context = new BunitContext();
+            var accComponent = CreateAccordion(context);
+
+            FocusButton(accComponent, 0);
+            PressKey(accComponent, GlobalValues.KeyBoard_End_Key);
+
+            AssertFocusIndex(accComponent, 2);
+        }
+
+        [Fact]
+        public async Task Keys_should_not_fire_when_trigger_does_not_have_focus()
+        {
+            await using var context = new BunitContext();
+            var accComponent = CreateAccordion(context);
+
+            PressKey(accComponent, GlobalValues.KeyBoard_Down_Arrow_Key);
+
+            AssertFocusIndex(accComponent, -1);
+        }
+
+        [Fact]
+        public async Task Focus_out_should_clear_trigger_has_focus()
+        {
+            await using var context = new BunitContext();
+            var accComponent = CreateAccordion(context);
+
+            FocusButton(accComponent, 0);
+
+            accComponent.FindAll($"button.{GlobalValues.Accordion_Trigger_Class}")[0].TriggerEvent("onfocusout", new FocusEventArgs());
+
+            PressKey(accComponent, GlobalValues.KeyBoard_Down_Arrow_Key);
+
+            AssertFocusIndex(accComponent, 0); // unchanged — guard blocked the key
+        }
     }
 }

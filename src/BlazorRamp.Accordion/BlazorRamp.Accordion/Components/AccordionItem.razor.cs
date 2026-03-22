@@ -44,16 +44,13 @@ public partial class AccordionItem : IDisposable
     private string? _svgVariable    = null;
     private bool    _codeFocused    = false;
     private bool    _persistContent = true;
-    private bool    _performRender  = false;
     protected override void OnParametersSet()
     {
         _svgVariable = CheckSetSvgVariable(SvgIcon);
         _headingText = (false == String.IsNullOrWhiteSpace(HeadingText)) ? HeadingText.Trim() : throw new ArgumentNullException(nameof(HeadingText), GlobalValues.Heading_Text_Exception_Message);
 
         _persistContent = PersistContent;
-        _performRender  = this.IsExpanded;
-
-     
+    
     }
 
     protected override void OnInitialized()

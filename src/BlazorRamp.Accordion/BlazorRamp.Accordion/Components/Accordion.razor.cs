@@ -27,7 +27,7 @@ public partial class Accordion : IAsyncDisposable
 
     private string _accordionID     = $"accordion-{Guid.NewGuid()}";
     private bool   _disposed        = false;
-    private int    _focusIndex      = -1;
+    internal int   _focusIndex      = -1; //Made internal so its easy to test the keyboard navigation 
     private bool   _triggerHasFocus = false;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

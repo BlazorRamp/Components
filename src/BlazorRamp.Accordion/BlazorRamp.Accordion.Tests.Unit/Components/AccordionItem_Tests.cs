@@ -99,5 +99,110 @@ public class AccordionItem_Tests
             }
            
         }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public async Task Should_be_able_to_set_persistence_to_either_keep_or_clear_panel_conent_from_the_dome(bool persistConent)
+        {
+            await using var context = new BunitContext();
+            var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Module_File_Path);
+
+            moduleInterop.SetupVoid(GlobalValues.JS_Register_Handler_Func, _ => true).SetVoidResult();
+
+            var accComponent = context.Render<AccordionComponennt>(paramBuilder =>
+            {
+                paramBuilder.Add(p => p.ExpandMode, ExpandMode.Multiple);
+                paramBuilder.AddChildContent<AccordItemComponennt>(compBuilder =>
+                {
+                    compBuilder.Add(p => p.HeadingText, "Accordion One");
+                    compBuilder.Add(p => p.PersistContent, persistConent);
+                    compBuilder.Add(p => p.PanelContent, "<p>Panel One Content</p>");
+                });
+            });
+            
+            await accComponent.Instance.ExpandAllPanels();
+
+            accComponent.WaitForAssertion(() =>
+            {
+                var button   = accComponent.Find($"button.{GlobalValues.Accordion_Trigger_Class}");
+                var divPanel = accComponent.Find($"div.{GlobalValues.Accordion_Panel_Class}");
+
+                using (new AssertionScope())
+                {
+                    button.GetAttribute("aria-expanded").Should().Be("true");
+                    divPanel.InnerHtml.Should().NotBeEmpty();
+                }
+            });
+
+            await accComponent.Instance.CollapseAllPanels();
+
+            accComponent.WaitForAssertion(() =>
+            {
+                var button = accComponent.Find($"button.{GlobalValues.Accordion_Trigger_Class}");
+                var divPanel = accComponent.Find($"div.{GlobalValues.Accordion_Panel_Class}");
+
+                using (new AssertionScope())
+                {
+                    button.GetAttribute("aria-expanded").Should().Be("false");
+
+                    if(true == persistConent)
+                    {
+                        divPanel.InnerHtml.Should().NotBeEmpty();
+                        return;
+                    }
+
+                    divPanel.InnerHtml.Should().BeEmpty();
+                }
+            });
+
+        }
+
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public async Task Should_be_able_to_set_the_panal_as_an_aria_region(bool panelIsRegion)
+        {
+            await using var context = new BunitContext();
+
+            var accComponent = CreateAccordionWithParamByName<bool>(context, nameof(AccordItemComponennt.PanelIsRegion), panelIsRegion);
+
+            var role = accComponent.Find($"div.{GlobalValues.Accordion_Panel_Class}").GetAttribute("role");
+
+            if (true == panelIsRegion)
+            {
+                role.Should().Be("region");
+                return;
+            }
+
+            role.Should().BeNull();
+        }
+
+        [Theory]
+        [InlineData("--svg-icon")]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("  ")]
+        public async Task Should_be_able_to_set_the_optional_svg_icon_paramater_which_must_start_with_a_double_dash(string? svgIconVariable)
+        {
+            await using var context = new BunitContext();
+
+            var accComponent = CreateAccordionWithParamByName(context, nameof(AccordItemComponennt.SvgIcon), svgIconVariable);
+
+            if (String.IsNullOrWhiteSpace(svgIconVariable))
+            {
+                accComponent.FindAll($"span.{GlobalValues.Accordion_Heading_Icon_Class}").Should().BeEmpty();
+                return;
+            }
+
+            if (svgIconVariable.StartsWith("--"))
+            {
+                accComponent.Find($"span.{GlobalValues.Accordion_Heading_Icon_Class}").GetAttribute("style").Should().NotBeEmpty();
+                return;
+            }
+
+            accComponent.FindAll($"span.{GlobalValues.Accordion_Heading_Icon_Class}").Should().BeEmpty();
+        }
     }
 }
