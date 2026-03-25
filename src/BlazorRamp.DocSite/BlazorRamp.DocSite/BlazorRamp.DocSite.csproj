@@ -13,6 +13,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="BlazorRamp.Accordion" Version="1.0.0" />
 		<PackageReference Include="BlazorRamp.BusyIndicator" Version="1.0.2" />
 		<PackageReference Include="BlazorRamp.Core" Version="1.0.7" />
 		<PackageReference Include="BlazorRamp.DialogFramework" Version="1.0.2" />
@@ -21,8 +22,8 @@
 		<PackageReference Include="BlazorRamp.Tabs" Version="1.0.0" />
 		<PackageReference Include="BlazorRamp.ToggleTip" Version="1.0.2" />
 		<PackageReference Include="BuildWebCompiler2022" Version="1.14.15" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.4" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.4" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.5" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.9.3">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -35,10 +36,6 @@
 
 	<ItemGroup>
 		<None Include="compilerconfig.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\..\BlazorRamp.Accordion\BlazorRamp.Accordion\BlazorRamp.Accordion.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
