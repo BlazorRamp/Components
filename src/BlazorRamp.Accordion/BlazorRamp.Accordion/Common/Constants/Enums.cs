@@ -19,16 +19,16 @@ public enum HeadingLevel : int
     /// Renders the trigger inside an <c>&lt;h3&gt;</c> element.
     /// </summary>
     H3 = 3,
-    /// <summary
-    /// >Renders the trigger inside an <c>&lt;h4&gt;</c> element.
+    /// <summary>
+    /// Renders the trigger inside an <c>&lt;h4&gt;</c> element.
     /// </summary>
     H4 = 4,
     /// <summary>
     /// Renders the trigger inside an <c>&lt;h5&gt;</c> element.
     /// </summary>
     H5 = 5,
-    /// <summary
-    /// >Renders the trigger inside an <c>&lt;h6&gt;</c> element.
+    /// <summary>
+    /// Renders the trigger inside an <c>&lt;h6&gt;</c> element.
     /// </summary>
     H6 = 6,
 }
@@ -42,8 +42,8 @@ public enum ExpandMode : int
     /// Only one panel can be open at a time. Opening a panel collapses all others.
     /// </summary>
     Single = 1,
-    /// <summary
-    /// >Any number of panels can be open at the same time.
+    /// <summary>
+    /// Any number of panels can be open at the same time.
     /// </summary>
     Multiple = 2,
 }
@@ -56,9 +56,9 @@ internal enum Direction : int
     /// <summary>
     /// Navigate to the previous accordion item.
     /// </summary>
-    Up,
+    Up = 0,
     /// <summary>
     /// Navigate to the next accordion item.
     /// </summary>
-    Down
+    Down = 1
 }

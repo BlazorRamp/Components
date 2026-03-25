@@ -18,9 +18,9 @@ this package separately (but it can be if you only require the Live Regions Serv
 1. Add the BlazorRamp.Accordion nuget package to your project using the Nuget Package Manager or the dotnet CLI.
 
 ```c#
-dotnet add package BlazorRamp.Tabs
+dotnet add package BlazorRamp.Accordion
 ```
-2. Add the following Core and Tabs references to the `<head>` section of your application:
+2. Add the following Core and Accordion style references to the `<head>` section of your application:
 - Blazor Web App / Blazor Server → App.razor
 - Blazor WebAssembly → wwwroot/index.html
 ```html

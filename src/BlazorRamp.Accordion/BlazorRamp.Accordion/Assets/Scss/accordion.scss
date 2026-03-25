@@ -75,8 +75,10 @@
         cursor: pointer;
 
         &:focus-visible {
+            position: relative;
+            z-index: 1;
             color: var(--br-comp-accordion-area-header-text);
-            border-radius: var(--br-unit-radius-3);
+            border-radius: var(--br-comp-accordion-area-header-border-radius);
             outline-offset: var(--br-comp-accordion-outline-offset);
             outline-style: var(--br-comp-accordion-outline-style);
             outline-width: var(--br-comp-accordion-outline-width);
@@ -105,7 +107,9 @@
 
 
         &--code-focused {
-            border-radius: var(--br-unit-radius-3);
+            position: relative;
+            z-index: 1;
+            border-radius: var(--br-comp-accordion-area-header-border-radius);
             outline-offset: var(--br-comp-accordion-outline-offset);
             outline-style: var(--br-comp-accordion-outline-style);
             outline-width: var(--br-comp-accordion-outline-width);
@@ -156,7 +160,7 @@
         border-bottom-style: var(--br-comp-accordion-area-content-border-style);
 
         &:focus-visible {
-            border-radius: var(--br-unit-radius-3);
+            border-radius: var(--br-comp-accordion-area-content-border-radius);
             outline-offset: var(--br-comp-accordion-outline-offset);
             outline-style: var(--br-comp-accordion-outline-style);
             outline-width: var(--br-comp-accordion-outline-width);
@@ -166,6 +170,5 @@
         &[data-br-panel-expanded="true"] {
             display: block;
         }
-
     }
 }

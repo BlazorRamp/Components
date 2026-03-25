@@ -140,8 +140,7 @@ public partial class Accordion : IAsyncDisposable
     }
 
     /// <summary>
-    /// Expands all accordion panels. In <see cref="ExpandMode.Single"/> mode, only the
-    /// last panel will remain expanded as each expansion collapses the previous.
+    /// Expands all accordion panels irrespective of the <see cref="ExpandMode"/> .
     /// </summary>
     public async Task ExpandAllPanels()
     {
