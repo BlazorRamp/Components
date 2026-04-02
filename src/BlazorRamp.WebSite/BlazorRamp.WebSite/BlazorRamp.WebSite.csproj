@@ -32,6 +32,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Validated.Blazor" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +44,10 @@
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BlazorRamp.Inputs\BlazorRamp.Inputs\BlazorRamp.Inputs.csproj" />
   </ItemGroup>
 
   <ItemGroup>

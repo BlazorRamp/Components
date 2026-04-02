@@ -1,0 +1,16 @@
+﻿@use "_functions" as *;
+
+.br-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(var(--br-unit-space-5), min-content);
+    gap:0 var(--br-unit-space-3);
+    container-type: inline-size;
+    margin-block:var(--br-unit-space-3);
+
+    & [class*=br-col-] {
+        grid-column: span 12;
+    }
+}
+@include generate-grid-column-classes();

@@ -1,0 +1,33 @@
+﻿:root {
+    --br-svg-valid-state-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21 21'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' d='m5.5 11.5l3 3l8.028-8'/%3E%3C/svg%3E");
+    --br-svg-invalid-state-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21 21'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' d='m15.5 15.5l-10-10zm0-10l-10 10'/%3E%3C/svg%3E");
+    //
+    //
+    --br-comp-input-error-colour: var(--br-unit-colour-danger);
+    --br-comp-input-success-colour: var(--br-unit-colour-success);
+    //
+    --br-comp-input-pane-base-background-colour: inherit;
+    --br-comp-input-pane-base-border-style: var(--br-comp-all-pane-base-border-style);
+    --br-comp-input-pane-base-border-colour: var(--br-comp-all-pane-base-border-colour);
+    --br-comp-input-pane-base-border-width: var(--br-comp-all-pane-base-border-width);
+    --br-comp-input-pane-base-border-radius: var(--br-comp-all-pane-base-border-radius);
+    //
+    --br-comp-input-area-content-background: inherit;
+    --br-comp-input-area-content-colour: var(--br-comp-all-area-content-text);
+    --br-comp-input-area-content-font-family: var(--br-comp-all-area-content-font-family);
+    --br-comp-input-area-content-font-size: var(--br-comp-all-area-content-font-size);
+    --br-comp-input-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
+    --br-comp-input-area-content-line-height: var(--br-comp-all-area-content-line-height);
+    //
+
+    --br-comp-input-label-font-size: var(--br-unit-font-size-label);
+    --br-comp-input-label-font-weight: var(--br-unit-font-weight-500);
+    --br-comp-input-label-color: inherit;
+    --br-comp-input-label-background-color: inherit;
+    //
+    --br-comp-input-hint-font-size: var(--br-unit-font-size-label);
+    --br-comp-input-hint-font-weight: var(--br-unit-font-weight-400);
+    --br-comp-input-hint-color: inherit;
+    --br-comp-input-hint-background-color: inherit;
+    --br-comp-input-hint-opacity: 0.8;
+}

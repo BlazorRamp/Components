@@ -1,0 +1,77 @@
+﻿@page "/"
+
+
+
+<PageTitle>Home</PageTitle>
+
+@rendermode InteractiveServer
+
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+<br />
+
+
+
+<EditForm EditContext="@_editContext" OnValidSubmit="HandleSubmit" novalidate>
+
+@*     <ValidationSummary />
+
+    <DataAnnotationsValidator /> *@
+
+     <BlazorValidated TEntity="ContactDto" BoxedValidators="_contactBoxedValidators" AddDisplayName="true"  />
+
+    <div class="br-row">
+
+        <TextInput class="br-col-xs-12 br-col-sm-6" HintText="Required - Some hint text about the type of entry" @bind-Value="_contactData.GivenName" UpdateOnInput="false" 
+                   AriaDisabled="false" ReadOnly="false" SvgIcon="--svg-information-icon" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedbyHintSuppressed" />
+                   
+        <TextInput class="br-col-xs-12 br-col-sm-6" HintText="Required - Some hint text about the type of entry"
+                  @bind-Value="_contactData.FamilyName" UpdateOnInput="false" AriaDisabled="false" SvgIcon="--svg-food-icon"  ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+    </div>
+    <div class="br-row">
+
+
+
+
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</EditForm>
+
+
+
+@code{
+
+    private EditContext _editContext = default!;
+    private ContactDto _contactData = StaticData.CreateContactObjectGraph();
+
+    private ImmutableDictionary<string, BoxedValidator> _contactBoxedValidators = default!;
+
+    protected override void OnInitialized()
+    {
+        _editContext = new EditContext(_contactData);
+
+        var builder = BlazorValidationBuilder<ContactDto>.Create()
+                        .ForMember(c => c.Title, ContactValidators.TitleValidator)                      //< using a ready built title member validator
+                        .ForMember(c => c.GivenName, ContactValidators.GivenNameValidator)
+                        .ForMember(c => c.FamilyName, ContactValidators.FamilyNameValidator);            // << This validator (function) combines two functions a regex and a separate length validator
+        // .ForMember(c => c.Age, ContactValidators.AgeValidator)
+                        // .ForComparisonWithValue(c => c.DOB, ContactValidators.DOBValidator)
+                        // .ForComparisonWithMember(c => c.CompareDOB, ContactValidators.CompareDOBValidator)
+                        // .ForNestedMember(c => c.Address, AddressValidators.GetBoxedAddressValidators())// << Getting all the address validators from a pre-created builder.
+                        // .ForEachCollectionMember(c => c.ContactMethods, ContactMethodValidators.GetBoxedContactMethodValidators())
+                        // .ForCollection(c => c.ContactMethods, MemberValidators.CreateCollectionLengthValidator<List<ContactMethodDto>>(1, 3, "ContactMethods", "Contact methods", "Must have at least 1 contact method but no more than 3"));// << created on the fly
+
+
+        _contactBoxedValidators = builder.GetBoxedValidators();
+
+        _contactData.ContactMethods = [];
+    }
+
+    public async Task HandleSubmit()
+    {
+
+    }
+
+}

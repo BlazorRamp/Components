@@ -1,0 +1,151 @@
+﻿@use "_functions" as *;
+
+.br-text-input {
+    --_icon-size: 1em;
+    --_br-svg-text-input-icon: none;
+    width: 100%;
+    display: inline-grid;
+    grid-template-rows: auto auto auto minmax(var(--br-unit-space-5), auto);
+    grid-template-columns: min-content 1fr 1.5rem;
+    padding: var(--br-unit-space-3);
+    background-color: var(--br-comp-input-pane-base-background-colour);
+    border-style: var(--br-comp-input-pane-base-border-style);
+    border-color: var(--br-comp-input-pane-base-border-colour);
+    border-width: var(--br-comp-input-pane-base-border-width);
+    border-radius: var(--br-comp-input-pane-base-border-radius);
+
+    .br-row & {
+        grid-row: span 4;
+        grid-template-rows: subgrid;
+    }
+
+    &:focus-within {
+        outline-offset: 0px;
+        outline: 2px solid silver;
+
+        .br-text-input__error-wrapper {
+            border-top: 1px solid var(--br-unit-colour-primary);
+        }
+    }
+
+    &:has(input[aria-disabled="true"]) {
+        cursor: not-allowed;
+
+        .br-text-input__field,
+        .br-text-input__label {
+            opacity: var(--br-unit-state-disabled-opacity);
+            cursor: not-allowed;
+        }
+    }
+
+
+    ul {
+        margin: 0;
+        padding-left: 0;
+        list-style-type: none;
+        list-style-position: inside;
+    }
+
+
+    &__label {
+        grid-row: 1/2;
+        grid-column: 1/-1;
+        font-size: var(--br-comp-input-label-font-size);
+        font-weight: var(--br-comp-input-label-font-weight);
+        color: var(--br-comp-input-label-color);
+        background-color: var(--br-comp-input-label-background-color);
+    }
+
+    &__hint {
+        grid-row: 2/3;
+        grid-column: 1/-1;
+        font-size: var(--br-comp-input-hint-font-size);
+        font-weight: var(--br-comp-input-hint-font-weight);
+        color: var(--br-comp-input-hint-color);
+        background-color: var(--br-comp-input-hint-background-color);
+        opacity: var(--br-comp-input-hint-opacity);
+        padding-bottom: var(--br-unit-space-3);
+    }
+
+    &__icon {
+        grid-row: 3/4;
+        grid-column: 1/2;
+        align-self: center;
+        display: inline-block;
+        background-color: currentColor;
+        mask-image: var(--_br-svg-text-input-icon);
+        mask-repeat: no-repeat;
+        mask-size: 100% 100%;
+        min-height: calc(var(--_icon-size) * 1.25);
+        aspect-ratio: 1/1;
+        margin-inline-end: var(--br-unit-space-2);
+
+        @media (forced-colors: active) {
+            background-color: CanvasText;
+        }
+    }
+
+    &__state-icon {
+        grid-row: 3/4;
+        grid-column: 3/4;
+        min-height: var(--_icon-size);
+        aspect-ratio: 1/1;
+
+        &--valid {
+            @include valid-state-icon;
+            color: var(--br-comp-input-success-colour);
+        }
+
+        &--invalid {
+            @include invalid-state-icon;
+            color: var(--br-comp-input-error-colour);
+        }
+    }
+
+    &__field {
+        appearance: none;
+        border: none;
+        background-color: var(--br-comp-input-area-content-background);
+        color: var(--br-comp-input-area-content-colour);
+        font-family: var(--br-comp-input-area-content-font-family);
+        font-size: var(--br-comp-input-area-content-font-size);
+        font-weight: var(--br-comp-input-area-content-font-weight);
+        grid-row: 3/4;
+        grid-column: 2/3;
+        //transition: background-color calc(infinity * 1s) step-end, color calc(infinity * 1s) step-end;
+
+
+        &:is([type="text"], [type="email"], [type="url"], [type="password"], [type="tel"]) {
+            border: none;
+            outline: none;
+        }
+    }
+
+    &__error-wrapper {
+        grid-row: 4/5;
+        grid-column: 1/-1;
+        border-top: var(--br-unit-border-1) solid var(--br-comp-all-divider-colour);
+        color: var(--br-comp-input-error-colour);
+
+        &:has(.br-text-input__error:focus-visible) {
+            border-top: none;
+        }
+    }
+
+    &__error {
+        padding: var(--br-unit-space-3);
+
+        &:focus-visible {
+            border-radius: var(--br-unit-radius-3);
+            outline-offset: 0px;
+            outline: 2px solid var(--br-comp-input-error-colour);
+        }
+    }
+
+    &__asterix {
+        color: var(--br-comp-input-error-colour);
+        font-size: var(--br-comp-input-label-font-size);
+        font-weight: var(--br-comp-input-label-font-weight);
+        background-color: var(--br-comp-input-label-background-color);
+    }
+}

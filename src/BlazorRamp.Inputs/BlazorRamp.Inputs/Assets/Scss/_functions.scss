@@ -1,0 +1,53 @@
+﻿
+@use "_configuration" as *;
+
+@mixin generate-grid-column-classes($breakpoint-map: $breakpoints, $number-of-columns: 12, $grid-container-class: ".br-row") {
+    @each $key, $value in $breakpoint-map {
+
+        @if $value == 0px {
+            @include _column-classes($key,$number-of-columns,$grid-container-class);
+        }
+        @else {
+            @container (min-width: #{$value}) {
+                @include _column-classes($key,$number-of-columns,$grid-container-class);
+            }
+        }
+    }
+}
+
+@mixin _column-classes($key-size, $number-of-columns: 12, $grid-container-class: "") {
+
+    @for $counter from 1 through $number-of-columns {
+        #{$grid-container-class} .br-col-#{$key-size}-#{$counter} {
+            grid-column: span $counter;
+        }
+    }
+}
+
+@mixin valid-state-icon {
+    display: inline-block;
+    background-color: currentColor;
+    mask-image: var(--br-svg-valid-state-icon);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    mask-position: center;
+
+    @media (forced-colors: active) {
+        background-color: CanvasText;
+        color: Canvas;
+    }
+}
+
+@mixin invalid-state-icon {
+    display: inline-block;
+    background-color: currentColor;
+    mask-image: var(--br-svg-invalid-state-icon);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    mask-position: center;
+
+    @media (forced-colors: active) {
+        background-color: CanvasText;
+        color: Canvas;
+    }
+}
