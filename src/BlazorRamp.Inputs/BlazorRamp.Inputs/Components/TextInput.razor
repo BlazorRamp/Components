@@ -5,7 +5,7 @@
         @LabelText
         @if (Required)
         {
-            <span aria-hidden="true" class="@GlobalValues.Text_Input_Asterix_Class"> *</span>
+            <span aria-hidden="true" class="@GlobalValues.Text_Input_Asterisk_Class"> *</span>
         }
     </label>
     <span id="@HintTextID" class="@GlobalValues.Text_Input_Hint_Class">
@@ -23,11 +23,11 @@
            aria-describedby="@(AriaDescribedByID)"
            aria-required="@(Required ? "true" : null)"
            aria-disabled="@(base.IsDisabled ? "true" : null)"
-           readonly="@(base.IsDisabled || base.ReadOnly ? "readonly" : null)"
+           readonly="@(base.ReadOnly ? "readonly" : null)"
            @bind-value:get="@CurrentValueAsString"
            @bind-value:event="@(UpdateOnInput ? "oninput" : "onchange")"
            @bind-value:set="HandlePropertySet" 
-     />
+ />
 
 
     <span class="@StateIconClasses" aria-hidden="true"></span>

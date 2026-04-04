@@ -24,11 +24,11 @@ Welcome to your new app.
 
     <div class="br-row">
 
-        <TextInput class="br-col-xs-12 br-col-sm-6" HintText="Required - Some hint text about the type of entry" @bind-Value="_contactData.GivenName" UpdateOnInput="false" 
-                   AriaDisabled="false" ReadOnly="false" SvgIcon="--svg-information-icon" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedbyHintSuppressed" />
+        <TextInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" @bind-Value="_contactData.GivenName" UpdateOnInput="false"  
+                   AriaDisabled="true" ReadOnly="false" SvgIcon="--svg-information-icon" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedbyHintSuppressed" />
                    
-        <TextInput class="br-col-xs-12 br-col-sm-6" HintText="Required - Some hint text about the type of entry"
-                  @bind-Value="_contactData.FamilyName" UpdateOnInput="false" AriaDisabled="false" SvgIcon="--svg-food-icon"  ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+        <TextInput autocomplete="given-name" class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry"
+                  @bind-Value="_contactData.FamilyName" UpdateOnInput="true" AriaDisabled="false" SvgIcon="--svg-food-icon"  ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
     </div>
     <div class="br-row">
 
@@ -51,6 +51,8 @@ Welcome to your new app.
     protected override void OnInitialized()
     {
         _editContext = new EditContext(_contactData);
+
+        _contactData.FamilyName = null;
 
         var builder = BlazorValidationBuilder<ContactDto>.Create()
                         .ForMember(c => c.Title, ContactValidators.TitleValidator)                      //< using a ready built title member validator

@@ -6,7 +6,14 @@
     --br-comp-input-error-colour: var(--br-unit-colour-danger);
     --br-comp-input-success-colour: var(--br-unit-colour-success);
     //
-    --br-comp-input-pane-base-background-colour: inherit;
+    --br-comp-input-disabled-opacity: var(--br-unit-state-disabled-opacity);
+    //
+    --br-comp-input-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-input-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-input-outline-offset: 0px;
+    --br-comp-input-outline-colour: var(--br-comp-all-outline-colour);
+    //
+    --br-comp-input-pane-base-background: inherit;
     --br-comp-input-pane-base-border-style: var(--br-comp-all-pane-base-border-style);
     --br-comp-input-pane-base-border-colour: var(--br-comp-all-pane-base-border-colour);
     --br-comp-input-pane-base-border-width: var(--br-comp-all-pane-base-border-width);
@@ -23,11 +30,11 @@
     --br-comp-input-label-font-size: var(--br-unit-font-size-label);
     --br-comp-input-label-font-weight: var(--br-unit-font-weight-500);
     --br-comp-input-label-color: inherit;
-    --br-comp-input-label-background-color: inherit;
+    --br-comp-input-label-background: inherit;
     //
     --br-comp-input-hint-font-size: var(--br-unit-font-size-label);
     --br-comp-input-hint-font-weight: var(--br-unit-font-weight-400);
     --br-comp-input-hint-color: inherit;
-    --br-comp-input-hint-background-color: inherit;
+    --br-comp-input-hint-background: inherit;
     --br-comp-input-hint-opacity: 0.8;
 }
