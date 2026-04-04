@@ -59,7 +59,7 @@ namespace BlazorRamp.Inputs.Components
 
             AriaDescribedByID = SetDescribedby(HasErrors,ValidationDisplayMode);
 
-            TabbableError = (ValidationDisplayMode == ValidationDisplayMode.TabbableWithHint || ValidationDisplayMode == ValidationDisplayMode.TabbableHintSuppressed);
+            TabbableError = (ValidationDisplayMode == ValidationDisplayMode.TabbableWithHint);
 
             base.OnParametersSet();
         }
@@ -71,11 +71,10 @@ namespace BlazorRamp.Inputs.Components
                 (true,  ValidationDisplayMode.DescribedbyWithHint)       => $"{ErrorMessageID} {HintTextID}",
                 (true,  ValidationDisplayMode.DescribedbyHintSuppressed) => ErrorMessageID,
                 (true,  ValidationDisplayMode.TabbableWithHint)          => HintTextID,
-                (true,  ValidationDisplayMode.TabbableHintSuppressed)    => null,
                 (false, ValidationDisplayMode.DescribedbyWithHint)       => HintTextID,
                 (false, ValidationDisplayMode.DescribedbyHintSuppressed) => HintTextID,
                 (false, ValidationDisplayMode.TabbableWithHint)          => HintTextID,
-                (false, ValidationDisplayMode.TabbableHintSuppressed)    => HintTextID,
+
 
                 _ => HintTextID 
             };
@@ -133,7 +132,7 @@ namespace BlazorRamp.Inputs.Components
 
             if (!IsDisabled && _disabledHandlerRegistered)
             {
-                await RegisterDisabledHandlers();
+                await UnRegisterDisabledHandlers();
                 _disabledHandlerRegistered = false;
             }
                 

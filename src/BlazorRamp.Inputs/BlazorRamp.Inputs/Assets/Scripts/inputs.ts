@@ -34,8 +34,8 @@ const unregisterAriaDisabledHandlers = (inputElement: HTMLElement): void => {
     if (!inputElement) return;
 
     inputElement.removeEventListener("keydown", _ariaDisabledKeyHandler);
-    inputElement.removeEventListener("cut", _preventAction)
-    inputElement.removeEventListener("paste", _preventAction)
+    inputElement.removeEventListener("cut", _preventAction);
+    inputElement.removeEventListener("paste", _preventAction);
 }
 
 export { registerAriaDisabledHandlers, unregisterAriaDisabledHandlers};

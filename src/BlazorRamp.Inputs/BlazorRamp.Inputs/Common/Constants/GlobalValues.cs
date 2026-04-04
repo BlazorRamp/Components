@@ -5,7 +5,7 @@ internal class GlobalValues
 
     public const string JS_Inputs_File_Path                        = "./_content/BlazorRamp.Inputs/assets/js/inputs.js";
     public const string JS_Inputs_Register_Aria_Disabled_Handlers   = "registerAriaDisabledHandlers";
-    public const string JS_Inputs_Unregister_Aria_Disabled_Handlers = "urregisterAriaDisabledHandlers";
+    public const string JS_Inputs_Unregister_Aria_Disabled_Handlers = "unregisterAriaDisabledHandlers";
 
 
     public const string Text_Input_Class = "br-text-input";

@@ -15,7 +15,6 @@ public enum ValidationDisplayMode: int
 {
     DescribedbyWithHint       = 0,
     DescribedbyHintSuppressed = 1,
-    TabbableWithHint          = 2,
-    TabbableHintSuppressed    = 3
+    TabbableWithHint          = 2
 
 }
