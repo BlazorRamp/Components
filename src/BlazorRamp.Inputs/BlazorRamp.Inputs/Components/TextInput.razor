@@ -8,9 +8,12 @@
             <span aria-hidden="true" class="@GlobalValues.Text_Input_Asterisk_Class"> *</span>
         }
     </label>
-    <span id="@HintTextID" class="@GlobalValues.Text_Input_Hint_Class">
-        @HintNormalised
-     </span>
+    @if (HintNormalised is not null)
+    {
+        <span id="@HintTextID" class="@GlobalValues.Text_Input_Hint_Class">
+            @HintNormalised
+        </span>
+    }
     
     @if (false == String.IsNullOrWhiteSpace(SvgVariable))
     {

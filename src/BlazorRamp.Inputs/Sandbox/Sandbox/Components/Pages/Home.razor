@@ -25,14 +25,15 @@ Welcome to your new app.
     <div class="br-row">
 
         <TextInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" @bind-Value="_contactData.GivenName" UpdateOnInput="false"  
-                   AriaDisabled="true" ReadOnly="false" SvgIcon="--svg-information-icon" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedbyHintSuppressed" />
+                   AriaDisabled="false" ReadOnly="false" SvgIcon="--svg-information-icon" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedbyHintSuppressed" />
                    
         <TextInput autocomplete="given-name" class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry"
                   @bind-Value="_contactData.FamilyName" UpdateOnInput="true" AriaDisabled="false" SvgIcon="--svg-food-icon"  ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
     </div>
     <div class="br-row">
 
-
+        <PasswordInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry"
+                   @bind-Value="_contactData.Password" UpdateOnInput="true" AriaDisabled="false" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
 
 
     </div>
@@ -57,7 +58,8 @@ Welcome to your new app.
         var builder = BlazorValidationBuilder<ContactDto>.Create()
                         .ForMember(c => c.Title, ContactValidators.TitleValidator)                      //< using a ready built title member validator
                         .ForMember(c => c.GivenName, ContactValidators.GivenNameValidator)
-                        .ForMember(c => c.FamilyName, ContactValidators.FamilyNameValidator);            // << This validator (function) combines two functions a regex and a separate length validator
+                        .ForMember(c => c.FamilyName, ContactValidators.FamilyNameValidator)            // << This validator (function) combines two functions a regex and a separate length validator
+                        .ForMember(c => c.Password, ContactValidators.PasswordValidator);            // << This validator (function) combines two functions a regex and a separate length validator
         // .ForMember(c => c.Age, ContactValidators.AgeValidator)
                         // .ForComparisonWithValue(c => c.DOB, ContactValidators.DOBValidator)
                         // .ForComparisonWithMember(c => c.CompareDOB, ContactValidators.CompareDOBValidator)

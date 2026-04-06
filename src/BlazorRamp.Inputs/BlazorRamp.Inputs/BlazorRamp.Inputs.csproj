@@ -24,6 +24,15 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
+	  
+	  <!-- 
+		It seems having the typesript msbuild causes the static asset errors. The compiler works without it
+		but you cannot debug - so include it when debugging.
+	  -->
+	  <!--<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="6.0.3">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>-->
   </ItemGroup>
 
   <ItemGroup>

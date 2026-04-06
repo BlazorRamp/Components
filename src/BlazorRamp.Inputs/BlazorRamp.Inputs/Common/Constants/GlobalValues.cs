@@ -8,8 +8,7 @@ internal class GlobalValues
     public const string JS_Inputs_Unregister_Aria_Disabled_Handlers = "unregisterAriaDisabledHandlers";
 
 
-    public const string Text_Input_Class = "br-text-input";
-
+    public const string Text_Input_Class                = "br-text-input";
     public const string Text_Input_Label_Class          = $"{Text_Input_Class}__label";
     public const string Text_Input_Hint_Class           = $"{Text_Input_Class}__hint";
     public const string Text_Input_Error_Wrapper_Class  = $"{Text_Input_Class}__error-wrapper";
@@ -19,12 +18,32 @@ internal class GlobalValues
     public const string Text_Input_Icon_Class           = $"{Text_Input_Class}__icon";
     public const string Text_Input_State_Icon_Class     = $"{Text_Input_Class}__state-icon";
 
-
     public const string Text_Input_State_Icon_Valid_Modifier   = $"{Text_Input_State_Icon_Class}--valid";
     public const string Text_Input_State_Icon_Invalid_Modifier = $"{Text_Input_State_Icon_Class}--invalid";
 
-
     public const string Text_Input_Svg_Css_Variable_Name = "--_br-svg-text-input-icon";
+
+
+    public const string Password_Input_Class                = "br-password-input";
+    public const string Password_Input_Label_Class          = $"{Password_Input_Class}__label";
+    public const string Password_Input_Hint_Class           = $"{Password_Input_Class}__hint";
+    public const string Password_Input_Error_Wrapper_Class  = $"{Password_Input_Class}__error-wrapper";
+    public const string Password_Input_Error_Class          = $"{Password_Input_Class}__error";
+    public const string Password_Input_Asterisk_Class       = $"{Password_Input_Class}__asterisk";
+    public const string Password_Input_Field_Class          = $"{Password_Input_Class}__field";
+    public const string Password_Input_Show_Password_Class  = $"{Password_Input_Class}__show-password";
+    public const string Password_Input_Icon_Class           = $"{Password_Input_Class}__icon";
+    public const string Password_Input_State_Icon_Class     = $"{Password_Input_Class}__state-icon";
+
+    public const string Passwrod_Input_State_Icon_Valid_Modifier   = $"{Password_Input_State_Icon_Class}--valid";
+    public const string Password_Input_State_Icon_Invalid_Modifier = $"{Password_Input_State_Icon_Class}--invalid";
+
+    public const string Password_Input_Svg_Css_Variable_Name = "--_br-svg-password-input-icon";
+
+    public const string Password_Input_Show_Password_Text = "Show Password";
+
+
+
 
     public const string Default_Errors_label = "Errors";
 

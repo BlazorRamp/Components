@@ -5,9 +5,7 @@ public enum TextInputType : int
     Text = 0,
     Email = 1,
     Url = 2, 
-    Tel = 3,
-    Password = 4
-
+    Tel = 3
 }
 
 
@@ -17,4 +15,10 @@ public enum ValidationDisplayMode: int
     DescribedbyHintSuppressed = 1,
     TabbableWithHint          = 2
 
+}
+public enum PasswordAutoComplete
+{
+    CurrentPassword,
+    NewPassword,
+    Off
 }

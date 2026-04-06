@@ -107,7 +107,14 @@ namespace BlazorRamp.Inputs.Components
         
         protected virtual void OnValidationStateChanged()
         {
-            if(!EditContext.IsModified(FieldIdentifier)) return;
+            if (!EditContext.IsModified(FieldIdentifier))
+            {
+                InvalidMessages = [];
+                HasErrors = false;
+                StateIconClasses = GlobalValues.Text_Input_State_Icon_Class;
+                AriaDescribedByID = SetDescribedby(false, ValidationDisplayMode);
+                return;
+            }
 
             var hasMessages   = EditContext.GetValidationMessages(FieldIdentifier).Any();
             StateIconClasses  = GetStateIconClasses(hasMessages);
@@ -115,9 +122,6 @@ namespace BlazorRamp.Inputs.Components
             HasErrors         = InvalidMessages.Count > 0;
             AriaDescribedByID = SetDescribedby(HasErrors, ValidationDisplayMode);
         }
-        public override Task SetParametersAsync(ParameterView parameters)
-
-            => base.SetParametersAsync(parameters);
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -135,7 +139,7 @@ namespace BlazorRamp.Inputs.Components
                 await UnRegisterDisabledHandlers();
                 _disabledHandlerRegistered = false;
             }
-                
+
         }
 
         private string GetStateIconClasses(bool? invalid)
@@ -177,19 +181,21 @@ namespace BlazorRamp.Inputs.Components
 
         public async ValueTask DisposeAsync()
         {
-            if (_jsModule == null || true == _disposed) return;
-
-            try
+            if (_disposed) return;
+            
+            if (_jsModule is not null)
             {
-                await UnRegisterDisabledHandlers();
-                await _jsModule.DisposeAsync();
+                try
+                {
+                    await UnRegisterDisabledHandlers();
+                    await _jsModule.DisposeAsync();
+                }
+                catch { }
             }
-            catch { }
-
             Dispose(true);
 
             GC.SuppressFinalize(this);
-
+            _disposed = true;
         }
     }
 }

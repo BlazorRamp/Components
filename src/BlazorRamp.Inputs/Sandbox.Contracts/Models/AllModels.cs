@@ -34,7 +34,7 @@ public record class ContactDto
     public string?  NullableMobile { get; set; } 
     public int?     NullableAge    { get; set; }
     public int      Age            { get; set; }
-
+    public string   Password       { get; set; } = default!;
     public List<string> Entries { get; set; } = [];
 
     public AddressDto  Address         { get; set; } = default!;

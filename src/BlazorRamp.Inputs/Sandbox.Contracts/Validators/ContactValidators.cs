@@ -14,6 +14,8 @@ public static class ContactValidators
     public static MemberValidator<string> TitleValidator { get; }
     public static MemberValidator<string> GivenNameValidator { get; }
     public static MemberValidator<string> FamilyNameValidator { get; }
+
+    public static MemberValidator<string> PasswordValidator { get; }
     public static MemberValidator<int> AgeValidator { get; }
     public static MemberValidator<ContactDto> CompareDOBValidator { get; }
     public static MemberValidator<DateOnly> DOBValidator { get; }
@@ -37,6 +39,7 @@ public static class ContactValidators
 
         DOBValidator = MemberValidators.CreateCompareToValidator<DateOnly>(DateOnly.Parse("2022-01-01"), CompareType.EqualTo, "DOB", "Date of birth", "Must be equal to 2022-01-01");
 
+        PasswordValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,50}$)[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]+$", "Password", "Password", "Must start with a capital letter and be between 2 and 50 characters in length");
 
     }
 }
