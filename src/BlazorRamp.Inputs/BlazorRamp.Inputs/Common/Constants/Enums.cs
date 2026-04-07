@@ -19,6 +19,5 @@ public enum ValidationDisplayMode: int
 public enum PasswordAutoComplete
 {
     CurrentPassword,
-    NewPassword,
-    Off
+    NewPassword
 }

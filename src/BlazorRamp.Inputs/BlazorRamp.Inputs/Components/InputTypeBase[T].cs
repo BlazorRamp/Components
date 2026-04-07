@@ -42,14 +42,12 @@ namespace BlazorRamp.Inputs.Components
         protected string? AriaDescribedByID { get; private set; } = String.Empty;
         protected string  ErrorsText        { get; set; } = GlobalValues.Default_Errors_label;
         protected  bool   TabbableError     { get; set; } = false;
-        protected Dictionary<string, object> MutableAttributes { get; private set; } = [];
 
         private bool _disposed                  = false;
         private bool _disabledHandlerRegistered = false;
 
         protected override void OnParametersSet()
         {
-            MutableAttributes = AdditionalAttributes?.ToDictionary(k => k.Key, v => v.Value) ?? [];
 
             IsDisabled = AriaDisabled && !ReadOnly;
 
@@ -84,7 +82,7 @@ namespace BlazorRamp.Inputs.Components
         {
             base.OnInitialized(); 
 
-            InputID   = String.IsNullOrWhiteSpace(ControlID) ? Guid.NewGuid().ToString() : ControlID;
+            InputID   = String.IsNullOrWhiteSpace(ControlID) ? Guid.NewGuid().ToString() : ControlID.Trim();
             LabelText = String.IsNullOrWhiteSpace(LabelText) ? FieldIdentifier.FieldName : LabelText;
             ErrorsText = String.IsNullOrWhiteSpace(ErrorsLabel) ? GlobalValues.Default_Errors_label : ErrorsLabel.Trim();
 

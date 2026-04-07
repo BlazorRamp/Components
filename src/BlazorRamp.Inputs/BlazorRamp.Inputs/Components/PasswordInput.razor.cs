@@ -11,15 +11,15 @@ public class PasswordTypeInput : InputTypeBase<string>
     [Parameter] public string               ShowPasswordText    { get; set; } = default!;
     [Parameter] public PasswordAutoComplete PasswordAutoComplete { get; set; } = PasswordAutoComplete.CurrentPassword;
 
-    protected string InputClasses { get; private set; } = String.Empty;
-    protected string InputType    { get; private set; } = "password";
-    protected string ShowText     { get; private set; } = GlobalValues.Password_Input_Show_Password_Text;
+    protected string PasswordInputClasses { get; private set; } = String.Empty;
+    protected string InputType            { get; private set; } = "password";
+    protected string ShowText             { get; private set; } = GlobalValues.Password_Input_Show_Password_Text;
 
     protected string AutoComplete { get; private set; } = "current-password";
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        InputClasses = GetInputClasses(MutableAttributes);
+        PasswordInputClasses = GetInputClasses(base.AdditionalAttributes);
         AutoComplete = PasswordAutoComplete == PasswordAutoComplete.CurrentPassword ? "current-password" : "new-password";
     }
 
@@ -49,19 +49,20 @@ public class PasswordTypeInput : InputTypeBase<string>
         CurrentValueAsString = value;
     }
 
-    protected string GetInputClasses(Dictionary<string, object> additionalAttributes)
+    protected string GetInputClasses(IReadOnlyDictionary<string, object>? additionalAttributes)
     {
         var classData = additionalAttributes?.TryGetValue("class", out var extraClass) == true ? extraClass.ToString() : "";
 
         if (false == String.IsNullOrWhiteSpace(classData))
         {
-            additionalAttributes?.Remove("class");
-
             return $"{@GlobalValues.Password_Input_Class} {classData}";
         }
 
         return @GlobalValues.Password_Input_Class;
     }
 
+    protected IReadOnlyDictionary<string, object>? GetAttributes(IReadOnlyDictionary<string, object>? additionalAttributes)
+
+        => additionalAttributes?.Where(kv => kv.Key != "class").ToDictionary();
 
 }

@@ -9,13 +9,13 @@ public class TextTypeInput : InputTypeBase<string>
 
     [Parameter] public bool          UpdateOnInput  { get; set; } = false;
     [Parameter] public TextInputType TextInputType  { get; set; } = TextInputType.Text;
-    protected string InputClasses { get; private set; } = String.Empty;
+    protected string TextInputClasses { get; private set; } = String.Empty;
     protected string InputType    { get; private set; } = "text";
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        InputClasses = GetInputClasses(MutableAttributes);
-      
+        TextInputClasses = GetInputClasses(base.AdditionalAttributes);
+        
     }
 
     protected override void OnInitialized()
@@ -40,19 +40,21 @@ public class TextTypeInput : InputTypeBase<string>
         CurrentValueAsString = value;
     }
 
-    protected string GetInputClasses(Dictionary<string, object> additionalAttributes)
+
+    protected string GetInputClasses(IReadOnlyDictionary<string, object>? additionalAttributes)
     {
         var classData = additionalAttributes?.TryGetValue("class", out var extraClass) == true ? extraClass.ToString() : "";
 
         if (false == String.IsNullOrWhiteSpace(classData))
         {
-            additionalAttributes?.Remove("class");
-
             return $"{@GlobalValues.Text_Input_Class} {classData}";
         }
 
         return @GlobalValues.Text_Input_Class;
     }
 
+    protected IReadOnlyDictionary<string, object>? GetAttributes(IReadOnlyDictionary<string, object>? additionalAttributes)
+
+        => additionalAttributes?.Where(kv => kv.Key != "class").ToDictionary();
 
 }
