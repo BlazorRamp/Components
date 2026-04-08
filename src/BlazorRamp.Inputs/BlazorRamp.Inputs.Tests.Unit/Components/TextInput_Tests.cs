@@ -290,6 +290,7 @@ public class TextInput_Tests
 
             }
         }
+
         [Fact]
         public async Task Should_capture_unmatched_attributes_and_add_class_to_the_text_input_class_list()
         {
@@ -320,6 +321,7 @@ public class TextInput_Tests
 
             }
         }
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
@@ -366,7 +368,80 @@ public class TextInput_Tests
             inputComponent.Find("input").GetAttribute("type").Should().Be("text");
 
         }
+
+
+        [Fact]
+        public async Task Should_be_able_to_set_the_error_label_used_for_tabbable_error_regions()
+        {
+            await using var context = new BunitContext();
+
+            var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);
+
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, _ => true).SetVoidResult();
+
+            var model = new TestModel();
+            var editContext = new EditContext(model);
+
+            editContext.EnableDataAnnotationsValidation(context.Services);
+
+            var component = context.Render<TextInputComponent>(
+                builder => builder
+                    .AddCascadingValue(editContext)
+                    .Add(p => p.Value, model.PropertyValue)
+                    .Add(p => p.ValueChanged, EventCallback.Factory.Create<string>(context, v => model.PropertyValue = v))
+                    .Add(p => p.ValueExpression, () => model.PropertyValue)
+                    .Add(p => p.Required, true)
+                    .Add(p => p.ValidationDisplayMode,ValidationDisplayMode.TabbableWithHint)
+                    .Add(p => p.ErrorsLabel, "My Errors"));
+
+
+
+            var input = component.Find("input");//tried editContext.Validate but that did not get the markup to render 
+
+            input.Change("");
+
+            component.WaitForAssertion(() =>
+            {
+                // Use FindAll first to debug if it exists at all
+                var errorDiv = component.Find($"div.{GlobalValues.Text_Input_Error_Class}");
+
+                using (new AssertionScope())
+                {
+                    component.Instance.ErrorsLabel.Should().Be("My Errors");
+                    errorDiv.GetAttribute("aria-label").Should().Contain("My Errors");
+                }
+            });
+        }
+
+
+        [Theory]
+        [InlineData("--svg-icon")]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("  ")]
+        public async Task Should_be_able_to_set_the_optional_svg_icon_paramater_which_must_start_with_a_double_dash(string? svgIconVariable)
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateInputWithParamByName<string?>(context, nameof(TextInputComponent.SvgIcon), svgIconVariable);
+
+            if (String.IsNullOrWhiteSpace(svgIconVariable))
+            {
+                inputComponent.FindAll($"span.{GlobalValues.Text_Input_Icon_Class}").Should().BeEmpty();
+                return;
+            }
+
+            if (svgIconVariable.StartsWith("--"))
+            {
+                inputComponent.Find($"span.{GlobalValues.Text_Input_Icon_Class}").GetAttribute("style").Should().NotBeEmpty();
+                return;
+            }
+
+            inputComponent.FindAll($"span.{GlobalValues.Text_Input_Icon_Class}").Should().BeEmpty();
+        }
     }
+
+
     public class Properties()
     {
         [Fact]
@@ -394,6 +469,7 @@ public class TextInput_Tests
 
 
 }
+
 
 
 
