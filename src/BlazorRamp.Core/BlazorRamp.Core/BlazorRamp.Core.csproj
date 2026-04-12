@@ -10,11 +10,11 @@
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region;</PackageTags>
-    <PackageReleaseNotes>Change to how the css resolves the included Roboto font file to avoid issues when including polyfills such as oddbird's css positioning polyfill.</PackageReleaseNotes>
+    <PackageReleaseNotes>Force JS module to load early for global server and global auto. </PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <AssemblyVersion>1.0.7</AssemblyVersion>
-    <FileVersion>1.0.7</FileVersion>
-	  <Version>1.0.7</Version>
+    <AssemblyVersion>1.0.8</AssemblyVersion>
+    <FileVersion>1.0.8</FileVersion>
+	  <Version>1.0.8</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
@@ -49,8 +49,8 @@ All Blazor Ramp components reference this project.
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.24" />
-		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.9.3">
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.25" />
+		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="6.0.3">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
