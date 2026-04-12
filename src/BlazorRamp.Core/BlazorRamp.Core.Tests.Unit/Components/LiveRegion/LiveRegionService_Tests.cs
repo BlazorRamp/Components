@@ -46,7 +46,7 @@ public class LiveRegionService_Tests
         }
 
         [Fact]
-        public async Task Should_not_pass_announcement_and_invoke_js_module_if_the_announcement_is_null()
+        public async Task Should_load_js_module_even_if_the_announcement_is_null_or_empty()
         {
             using var context = new BunitContext();
 
@@ -59,10 +59,14 @@ public class LiveRegionService_Tests
 
             moduleInterop.SetupVoid(CoreGlobalValues.JS_Live_Region_Announce_Func, announcement)
                             .SetVoidResult();
-
+            /*
+                * Needed to reorder the actual code so it loads the module and then checks if it should make an
+                * announcmement os the module gets loaded at the start for global server or global auto.
+                * Need the module for the alerts button and shortcut keys.
+            */ 
             await liveService.MakeAnnouncement(null!);
 
-            jsInterop.Invocations.Count.Should().Be(0);
+            jsInterop.Invocations.Count.Should().Be(1);
 
         }
 

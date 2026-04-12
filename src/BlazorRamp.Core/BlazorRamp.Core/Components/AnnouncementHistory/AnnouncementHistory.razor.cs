@@ -1,5 +1,6 @@
 ﻿
 using BlazorRamp.Core.Common.Constants;
+using BlazorRamp.Core.Common.Models;
 using BlazorRamp.Core.Common.Utilities;
 using BlazorRamp.Core.Services;
 using Microsoft.AspNetCore.Components;
@@ -83,6 +84,18 @@ public partial class AnnouncementHistory
         _triggerClasses    = TriggerVisible ? CoreGlobalValues.AH_Trigger_Class : CoreUtilities.CreateClassList(CoreGlobalValues.AH_Trigger_Class, CoreGlobalValues.AH_Trigger_Modifier);
     }
 
+    /// <inheritdoc/>
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(true == firstRender)
+        {
+            /*
+                * Need to force js module to load for global server or auto, empty messages are ignored so this just
+                * causes the module to load. Need the module for the wiring of the alerts button to the dialog.
+            */
+            await LiveRegionService.MakeAnnouncement(new Announcement(String.Empty));
+        }
+    }
 }
 
 

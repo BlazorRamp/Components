@@ -34,12 +34,15 @@ public sealed class LiveRegionService : ILiveRegionService, IAsyncDisposable
     /// <inheritdoc />
     public async Task MakeAnnouncement(Announcement announcement)
     {
-        if (announcement == null || String.IsNullOrWhiteSpace(announcement.Message)) return;
+        
+         var jsLiveRegionModule = await GetJSLiveRegionModule(CoreGlobalValues.JS_Live_Region_File_Path);
 
-        var jsLiveRegionModule = await GetJSLiveRegionModule(CoreGlobalValues.JS_Live_Region_File_Path);
+        if (announcement == null || String.IsNullOrWhiteSpace(announcement.Message)) return;
 
         await jsLiveRegionModule.InvokeVoidAsync(CoreGlobalValues.JS_Live_Region_Announce_Func, announcement);
     }
+
+
 
     /// <summary>
     /// Lazily imports and retrieves the JavaScript module for live region operations.

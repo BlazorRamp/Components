@@ -85,9 +85,9 @@
             outline-color: var(--br-comp-accordion-outline-colour);
         }
 
-            &:focus-visible .br-accordion__trigger-icon, &:hover .br-accordion__trigger-icon {
-                box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
-            }
+        &:focus-visible .br-accordion__trigger-icon, &:hover .br-accordion__trigger-icon {
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
+        }
 
         &[aria-expanded="true"] > .br-accordion__trigger-icon {
             transform: rotate(180deg);
