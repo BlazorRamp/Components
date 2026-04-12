@@ -43,12 +43,12 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <PackageReference Include="BlazorRamp.Core" Version="1.0.7" />
+	  <PackageReference Include="BlazorRamp.Core" Version="1.0.8" />
 	  <PackageReference Include="BuildWebCompiler2022" Version="1.14.15">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.24" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.25" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.9.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
