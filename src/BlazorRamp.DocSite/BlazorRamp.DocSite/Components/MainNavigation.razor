@@ -1,4 +1,5 @@
-﻿<nav id="@GlobalValues.Main_Navigation_ID" class="main-navigation" aria-label="@GlobalValues.Main_Navigation_Aria_Title">
+﻿
+<nav id="@GlobalValues.Main_Navigation_ID" class="main-navigation" aria-label="@GlobalValues.Main_Navigation_Aria_Title">
     <h2 id="overview-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_About</h2>
     <ul aria-labelledby="overview-section">
         <li>
@@ -67,6 +68,15 @@
         </li>
     </ul>
     <h2 id="components-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Components</h2>
+    
+    <NavGroup AriaLabelledby="components-section">
+        <NavSeparator />
+        <NavSection Title="Accordion">
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Accordion" LinkText="@GlobalValues.Common_Page_Title_Overview" />
+        </NavSection>
+    </NavGroup>
+    
+    
     <ul aria-labelledby="components-section">
         <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Components_Accordion" Match="NavLinkMatch.All">

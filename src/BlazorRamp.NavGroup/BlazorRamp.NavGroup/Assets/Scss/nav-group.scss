@@ -94,8 +94,9 @@
         }
 
         &:focus-visible .br-nav-group__trigger-icon, &:hover .br-nav-group__trigger-icon {
-            border-color: var(--br-comp-nav-group-area-content-border-colour);
-            border-style: var(--br-comp-nav-group-area-content-border-style);
+            /*            border-color: var(--br-comp-nav-group-area-content-border-colour);
+            border-style: var(--br-comp-nav-group-area-content-border-style);*/
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
         }
     }
 
@@ -115,7 +116,7 @@
         border-radius: 50%;
         transition: transform 200ms ease;
         grid-column: 3/4;
-        border-width: var(--br-comp-nav-group-area-content-border-width);
+        //border-width: var(--br-comp-nav-group-area-content-border-width);
 
         & > span {
             height: calc(var(--_icon-size) * 1.25);

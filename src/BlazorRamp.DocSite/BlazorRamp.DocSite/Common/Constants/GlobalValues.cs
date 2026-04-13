@@ -1,4 +1,5 @@
 ﻿using BlazorRamp.DocSite.Pages;
+using System.Data.Common;
 
 namespace BlazorRamp.DocSite.Common.Constants;
 
@@ -95,6 +96,60 @@ public class GlobalValues
     public const string Main_Nav_Section_Heading_Services = "Services";
     public const string Main_Nav_Section_Heading_Components = "Components";
     public const string Main_Nav_Section_Heading_FAQs = "FAQs";
+
+
+
+
+    public const string Root_path_Overview = "/";
+    public const string Root_path_Components = "/components";
+    public const string Root_path_Theming = "/theming";
+    public const string Root_path_Services = "/services";
+    public const string Root_path_Frameworks = "/frameworks";
+    public const string Root_path_Faqs = "/faqs";
+
+
+
+    public const string Nav_Group_Overview = "Overview";
+    public const string Nav_Group_Components = "Components";
+    public const string Nav_Group_Theming = "Theming";
+    public const string Nav_Group_Services = "Services";
+    public const string Nav_Group_Frameworks = "Frameworks";
+    public const string Nav_Group_Faqs = "FAQs";
+
+    public const string Common_Page_Path_Overview = "overview";
+    public const string Common_Page_Path_Api = "api";
+    public const string Common_Page_Path_Installation = "installation";
+    public const string Common_Page_Path_Accessibility = "accessibility";
+    public const string Common_Page_Path_Usage = "usage";
+
+    public const string Common_Page_Title_Overview = "overview";
+    public const string Common_Page_Title_Api = "api reference";
+    public const string Common_Page_Title_Installation = "installation & release history";
+    public const string Common_Page_Title_Accessibility = "accessibility";
+    public const string Common_Page_Title_Usage = "usage";
+
+    public const string Component_Name_Accordion    = "Accordion";
+    public const string Component_Name_Announcement = "Announcement history";
+    public const string Component_Name_Busy         = "Busy indicator";
+    public const string Component_Name_NavGroup     = "Nav group";
+    public const string Component_Name_SkipTo       = "Skip to";
+    public const string Component_Name_Switch       = "Switch";
+    public const string Component_Name_Tabs         = "Tabs";
+    public const string Component_Name_Toggletip    = "Toggletip";
+
+    public const string Component_Path_Part_Accordion    = "accordion";
+    public const string Component_Path_Part_Announcement = "announcement-history";
+    public const string Component_Path_Part_Busy         = "busy-indicator";
+    public const string Component_Path_Part_SkipTo       = "skip-to";
+    public const string Component_Path_Part_Switch       = "switch";
+    public const string Component_Path_Part_Tabs         = "tabs";
+    public const string Component_Path_Part_Toggletip    = "toggletip";
+    public const string Component_Path_Part_NavGroup     = "nav-group";
+or";
+
+
+
+
 
 
 
