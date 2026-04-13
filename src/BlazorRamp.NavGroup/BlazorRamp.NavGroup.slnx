@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/01 - Component Source/">
+    <Project Path="BlazorRamp.NavGroup/BlazorRamp.NavGroup.csproj" />
+  </Folder>
+  <Folder Name="/02 - Sandbox/">
+    <Project Path="Sandbox/Sandbox.csproj" />
+  </Folder>
+</Solution>

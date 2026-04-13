@@ -1,0 +1,35 @@
+﻿
+
+<CascadingValue Value="this" IsFixed="true">
+    <CascadingValue Name="NavDepth" Value="ChildDepth">
+        @BuildContent
+    </CascadingValue>
+</CascadingValue>
+
+@code {
+    private RenderFragment BuildContent => __builder =>
+    {
+        <li style="@GlobalValues.GetDepthStyleVariable(Depth)">
+
+            <button id="@_buttonID" class="@GlobalValues.Nav_Group_Trigger_Class"
+            aria-expanded="@(_expanded ? "true" : "false")" 
+            aria-controls="@_contentID" 
+            @onclick="() => SetExpandedState(!_expanded)">
+                
+                @if(_sectionSvgIcon is not null)
+                {
+                    <span class="@(_sectionSvgIcon is not null ? GlobalValues.Nav_Group_Icon_Class : null)" style="@_sectionSvgIcon"></span>
+                }
+                <span class="@GlobalValues.Nav_Group_Title_Class">
+                    @CheckedTitle
+                </span>
+                <span class="@GlobalValues.Nav_Group_Trigger_Icon_Class">
+                    <span></span>
+                </span>
+            </button>
+            <ul id="@_contentID" class="@GlobalValues.Nav_Group_Content_Class" aria-labelledby="@_buttonID">
+                @ChildContent
+            </ul>
+        </li>
+    };
+}

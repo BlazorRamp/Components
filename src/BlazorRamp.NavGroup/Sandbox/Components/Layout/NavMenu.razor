@@ -1,0 +1,95 @@
+﻿@using BlazorRamp.NavGroup.Components
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Sandbox</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="nav flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="weather">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+            </NavLink>
+        </div>
+    </nav>
+
+<style>
+    nav h2{
+        font-size: var(--br-unit-font-size-2);
+        font-weight: var(--br-unit-font-weight-500);
+        margin-bottom: var(--br-unit-space-3);
+        margin-inline: var(--br-unit-space-4);
+        color: var(--br-comp-all-area-header-text);
+    }
+</style>
+
+    <nav style="background-color:white;">
+        <h2 id="overiew">Overview</h2>
+        <NavGroup AriaLabelledby="overview">
+            <NavSeparator />
+            <NavGroupLink Href="/" LinkText="Introduction" />
+            <NavGroupLink Href="/about" LinkText="About Blazor Ramp" />
+        </NavGroup>
+        <h2 id="components">Components</h2>
+        <NavGroup AriaLabelledby="components">
+            <NavSeparator />
+            <NavSection Title="Accordion">
+                <NavGroupLink Href="weather" LinkText="Link One" />
+
+                <NavSection Title="Toggle Tip">
+                    <NavGroupLink Href="weather" LinkText="Link One" />
+                </NavSection>
+  
+                <NavGroupLink Href="weather" LinkText="Link One" />
+            </NavSection>
+
+            <NavSection Title="Busy Indicator">
+                <NavGroupLink Href="weather" LinkText="Link One" />
+            </NavSection>
+
+            <NavSection Title="Modal Dialog Framework">
+                <NavGroupLink Href="weather" LinkText="Link One" />
+            </NavSection>
+
+            <NavSection Title="Skip To">
+                <NavGroupLink Href="weather" LinkText="Link One" VisuallyHiddenPrefix="My link -" />
+            </NavSection>
+
+            <NavSection Title="Switch">
+                <NavGroupLink Href="weather" LinkText="Link One" />
+            </NavSection>
+
+            <NavSection Title="Tabs">
+                <NavGroupLink Href="weather" LinkText="Link One" />
+            </NavSection>
+
+            <NavSection Title="Toggle Tip">
+                <NavGroupLink Href="weather" LinkText="Link One" />
+            </NavSection>
+
+        </NavGroup>
+        <h2 id="faqs">FAQS</h2>
+        <NavGroup AriaLabelledby="faqs">
+            <NavSeparator />
+            <NavGroupLink Href="Fake" LinkText="Overview test" />
+        </NavGroup>
+
+    </nav>
+
+</div>
+

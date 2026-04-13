@@ -1,0 +1,26 @@
+﻿:root {
+    --svg-chevron-down-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' fill-rule='evenodd' d='M4.13 9.16a.5.5 0 0 1 .707-.024l7.16 6.68l7.16-6.68a.5.5 0 0 1 .683.731l-7.5 7a.5.5 0 0 1-.682 0l-7.5-7a.5.5 0 0 1-.025-.707z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    //
+
+    --br-comp-nav-group-icon-size: 1.5em;
+    --br-comp-nav-group-current-page-background: var(--br-comp-all-link-current-page-background-colour);
+    --br-comp-nav-group-hover-background: var(--br-comp-all-link-hover-background-colour);
+    --br-comp-nav-group-active-background: var(--br-comp-all-link-active-background-colour);
+    --br-comp-nav-group-selected-hover: var(--br-comp-all-selection-colour);
+    //
+    --br-comp-nav-group-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-nav-group-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-nav-group-outline-offset: var(--br-comp-all-outline-offset);
+    --br-comp-nav-group-outline-colour: var(--br-comp-all-outline-colour);
+    //
+    --br-comp-nav-group-area-content-background: var(--br-comp-all-area-content-background);
+    --br-comp-nav-group-area-content-text: var(--br-comp-all-area-content-text);
+    --br-comp-nav-group-area-content-font-family: var(--br-comp-all-area-content-font-family);
+    --br-comp-nav-group-area-content-font-size: var(--br-unit-font-size-label);
+    --br-comp-nav-group-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
+    --br-comp-nav-group-area-content-line-height: var(--br-comp-all-area-content-line-height);
+    --br-comp-nav-group-area-content-border-style: var(--br-comp-all-area-content-border-style);
+    --br-comp-nav-group-area-content-border-colour: var(--br-comp-all-divider-colour);
+    --br-comp-nav-group-area-content-border-width: var(--br-unit-border-1);
+    --br-comp-nav-group-area-content-border-radius: var(--br-comp-all-area-content-border-radius);
+}

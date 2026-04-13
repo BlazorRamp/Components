@@ -1,0 +1,20 @@
+﻿<li style="@GlobalValues.GetDepthStyleVariable(Depth)">
+    <a class="@GlobalValues.Nav_Group_Link_Class" href="@CheckedHref" aria-current="@(IsCurrentPage ? "page" : null)">
+
+        @if(_linkSvgIcon is not null)
+        {
+            <span class="@(_linkSvgIcon is not null ? GlobalValues.Nav_Group_Icon_Class : null)" style="@_linkSvgIcon"></span>
+        }
+       
+        <span class="@GlobalValues.Nav_Group_Link_Text_Class">
+            @if (false == String.IsNullOrWhiteSpace(VisuallyHiddenPrefix))
+            {
+                <span class="br-visually-hidden">@VisuallyHiddenPrefix.Trim() &nbsp;</span>
+            }
+                
+            @CheckedLinkText
+        </span>
+       
+    </a>
+</li>
+
