@@ -1,0 +1,65 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_Getting_Started}")]
+
+<PageTitle>@GlobalValues.Common_Page_Title_Introduction</PageTitle>
+
+<h1>@GlobalValues.Common_Page_Title_Introduction</h1>
+
+<p>
+    Blazor Ramp is an open-source project that aims to provide a set of free, accessibility-first Blazor components, each delivered individually via NuGet.
+    While each component is self-contained, they all utilise the Blazor Ramp Core package. This core dependency provides a centralised Live Region service that ensures
+    stable, consistent announcements via the ARIA Live API. Additionally, the Core package includes an Announcement History component, which maintains a
+    rolling log of the last twenty live region announcements for user review.
+</p>
+<p>
+    Each component or NuGet package is designed to be both agnostic and self-contained, with no dependencies on third-party scripts or CSS libraries. To continue
+    this theme of self-reliance, this documentation site also avoids third-party scripts or CSS libraries; it is a Blazor WASM standalone project hosted on
+    GitHub Pages.
+</p>
+
+<p>
+    This site provides all the documentation for Blazor Ramp, from installation and usage to theming the components. It will be continuously updated as the project
+    progresses — so please check back regularly.
+</p>
+<p>
+    Currently, this project is developed solely by myself, Paul Kent (aka code-dispenser).
+</p>
+<p>
+    If there is anything you would like to see in the future, or features you feel are missing from released components, please submit a request via the
+    <a class="@GlobalValues.Link_Class" target="_blank" href="@GlobalValues.Web_Site_Path_GitHub_Repo">Blazor Ramp GitHub repository (opens in new window)</a> issues.
+    Alternatively, make a post on Reddit and I will generally chime in.
+</p>
+
+<p>
+    Please spread the word about the project; the more developers who start using the components, the more accessible Blazor sites will hopefully become - a step in the
+    right direction.
+</p>
+<p>
+    I am going to leave the <a target="_blank" class="@GlobalValues.Link_Class" href="@GlobalValues.Web_Site_Path_Component_Test">Blazor Ramp Component Test (opens in new window)</a> site running for future components and, time permitting, will restructure it to house both past and present components.
+    This will allow developers and end users alike to see if the components work for their particular device setup at anytime.
+</p>
+<p>
+    Thanks for stopping by.
+    <br />
+    <br />
+    <i>Paul Kent</i>
+</p>
+<p>
+    <b>Thank you</b> to TestingBot for providing an open-source plan so I can access a variety of real devices when testing. Please pay them a visit to see the services they offer.
+</p>
+<p>
+    <a href="https://testingbot.com/" target="_blank" class="@GlobalValues.Link_Class @GlobalValues.Link_Bot_Modifier">
+        <img src="/assets/img/testingbot-logo.svg" width="200" alt="" />
+        <span>Testingbot home page (opens in new window)</span>
+    </a>
+</p>
+
+<div class="flex-content flex-content justify-content-end">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Installation}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Common_Page_Title_Installation</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}

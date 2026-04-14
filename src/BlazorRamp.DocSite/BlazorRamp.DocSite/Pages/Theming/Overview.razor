@@ -1,10 +1,11 @@
-﻿@attribute [Route(GlobalValues.Path_Theming_Overview)]
+﻿@attribute [Route($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Overview}")]
 
-<PageTitle>@GlobalValues.Page_Title_Theming_Overview</PageTitle>
+<PageTitle>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Overview</PageTitle>
+
 
 <section class="info-box info-box--coloured">
 
-<h1>@GlobalValues.Page_Heading_Theming_Overview</h1>
+    <h1>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Overview</h1>
 
 <p>
     This section of the documentation provides you with all of the necessary details to be able to style any or all components to meet your needs.
@@ -144,14 +145,14 @@
 </section>
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Overview_Roadmap">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Services}/{GlobalValues.Serivce_Path_Part_Live_Region}/{GlobalValues.Common_Page_Path_Usage}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_About - @GlobalValues.Page_Heading_Overview_Roadmap</span>
+        <span>@GlobalValues.Service_Name_Live_Region - @GlobalValues.Common_Page_Title_Usage</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Theming_CSS_Base_Variables">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_CSS_Variables}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_Theming - @GlobalValues.Page_Heading_Theming_CSS_Base_Variables</span>
+        <span>@GlobalValues.Theming_Name - @GlobalValues.Common_Page_Title_Core_Variables</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

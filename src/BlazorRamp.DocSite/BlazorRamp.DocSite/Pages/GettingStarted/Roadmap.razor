@@ -1,6 +1,9 @@
-﻿@attribute [Route(GlobalValues.Path_Overview_Roadmap)]
+﻿@attribute [Route($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Roadmap}")]
 
-<PageTitle>@GlobalValues.Page_Title_Overview_Roadmap</PageTitle>
+<PageTitle>@GlobalValues.Component_Name_Accordion @GlobalValues.Common_Page_Title_Usage</PageTitle>
+
+<h1>@GlobalValues.Common_Page_Title_Roadmap</h1>
+
 
 <section class="info-box info-box--coloured">
 
@@ -11,7 +14,7 @@
         are the ones that in my opinion can have the most impact on accessibility given how poorly they are generally implemented, if at all (from an accessibility standpoint), given there usage.
     </p>
     <p>
-        I will also be building child components first, for example the DataTable will require a Pager, a TextDebounce Filter, a DropDownMenuButton for row actions etc but all of these components can be used 
+        I will also be building child components first, for example the DataTable will require a Pager, a TextDebounce Filter, a DropDownMenuButton for row actions etc but all of these components can be used
         individually. The other factor I take into account is what I need for the site, for example at some point I will need some collapsing section for the left hand navigation.
     </p>
     <p>
@@ -65,16 +68,18 @@
     </p>
 
 </section>
-
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Overview_Accessibility">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Accessibility}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_About - @GlobalValues.Page_Heading_Overview_Accessibility</span>
+        <span>@GlobalValues.Common_Page_Title_Accessibility</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Theming_Overview">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Overview}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_Theming - @GlobalValues.Page_Heading_Theming_Overview</span>
+        <span>@GlobalValues.Component_Name_Accordion - @GlobalValues.Common_Page_Title_Overview</span>
         <span aria-hidden="true"></span>
     </a>
 </div>
+@code {
+
+}

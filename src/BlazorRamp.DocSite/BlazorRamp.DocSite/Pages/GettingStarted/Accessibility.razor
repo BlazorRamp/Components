@@ -1,6 +1,9 @@
-﻿@attribute [Route(GlobalValues.Path_Overview_Accessibility)]
+﻿@attribute [Route($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Accessibility}")]
 
-<PageTitle>@GlobalValues.Page_Title_Overview_Accessibility</PageTitle>
+<PageTitle>@GlobalValues.Common_Page_Title_Accessibility</PageTitle>
+
+<h1>@GlobalValues.Common_Page_Title_Accessibility</h1>
+
 
 <section class="info-box info-box--coloured">
     <h1>@GlobalValues.Page_Heading_Overview_Accessibility</h1>
@@ -39,31 +42,35 @@
         meeting specific WCAG requirements.
     </p>
     <p>
-        Once I'm happy that the components meet user expectations through extensive manual testing, especially keyboard best practices (which WCAG doesn't specify requirements for on 
+        Once I'm happy that the components meet user expectations through extensive manual testing, especially keyboard best practices (which WCAG doesn't specify requirements for on
         most components, only guidelines), I then use browser extensions such WebAIM Wave and Deque Systems' axe DevTools which I set to its highest setting, currently WCAG 2.2 AAA with best practices.
     </p>
     <p>
-        I should also point out that I use this tool to conduct checks on both light and dark modes. You would be amazed at how many sites I come across that claim WCAG compliance, which I don't doubt 
+        I should also point out that I use this tool to conduct checks on both light and dark modes. You would be amazed at how many sites I come across that claim WCAG compliance, which I don't doubt
         they met in light mode, but they forgot to check dark mode, in which they would fail miserably if audited.
     </p>
     <p>
         <strong>NOTE: Never</strong> blindly trust anyone or any company with regards to accessibility, including me — please conduct your own tests. Install something like the free WebAIM Wave extension and run it on pages (right click - Wave this page) / sites that contain components
-        that you are interested in. And when testing keyboard support for any component, check the following guidelines for information on what is considered best practices: 
+        that you are interested in. And when testing keyboard support for any component, check the following guidelines for information on what is considered best practices:
         <a target="_blank" class="@GlobalValues.Link_Class" href="https://www.w3.org/WAI/ARIA/apg/patterns">ARIA Authoring Practices Guide (APG - opens in new window)</a>.
     </p>
 
 
 </section>
 
+
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Overview_Getting_Started">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Installation}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_About - @GlobalValues.Page_Heading_Overview_Getting_Started</span>
+        <span>@GlobalValues.Common_Page_Title_Installation</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Overview_Roadmap">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Roadmap}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_About - @GlobalValues.Page_Heading_Overview_Roadmap</span>
+        <span>@GlobalValues.Common_Page_Title_Roadmap</span>
         <span aria-hidden="true"></span>
     </a>
 </div>
+@code {
+
+}

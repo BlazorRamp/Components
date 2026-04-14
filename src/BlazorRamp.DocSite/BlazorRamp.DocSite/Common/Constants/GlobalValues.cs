@@ -100,39 +100,53 @@ public class GlobalValues
 
 
 
-    public const string Root_path_Overview = "/";
+    public const string Main_Nav_Heading_Getting_Started = "Getting Started";
+    public const string Main_Nav_Heading_Theming    = "Theming";
+    public const string Main_Nav_Heading_Frameworks = "Frameworks";
+    public const string Main_Nav_Heading_Services   = "Services";
+    public const string Main_Nav_Heading_Components = "Components";
+    public const string Main_Nav_Heading_FAQs       = "FAQs";
+
+    public const string Root_path_Getting_Started = "/";
     public const string Root_path_Components = "/components";
     public const string Root_path_Theming = "/theming";
     public const string Root_path_Services = "/services";
     public const string Root_path_Frameworks = "/frameworks";
-    public const string Root_path_Faqs = "/faqs";
+    public const string Root_path_FAQS = "/faqs";
 
-
-
-    public const string Nav_Group_Overview = "Overview";
+    public const string Nav_Group_Overview = "Getting Started";
     public const string Nav_Group_Components = "Components";
     public const string Nav_Group_Theming = "Theming";
     public const string Nav_Group_Services = "Services";
     public const string Nav_Group_Frameworks = "Frameworks";
     public const string Nav_Group_Faqs = "FAQs";
 
-    public const string Common_Page_Path_Overview = "overview";
-    public const string Common_Page_Path_Api = "api";
-    public const string Common_Page_Path_Installation = "installation";
-    public const string Common_Page_Path_Accessibility = "accessibility";
-    public const string Common_Page_Path_Usage = "usage";
+    public const string Common_Page_Path_Introduction   = "introduction";
+    public const string Common_Page_Path_Roadmap        = "roadmap";
+    public const string Common_Page_Path_Overview       = "overview";
+    public const string Common_Page_Path_Api            = "api";
+    public const string Common_Page_Path_Installation   = "installation";
+    public const string Common_Page_Path_Accessibility  = "accessibility";
+    public const string Common_Page_Path_Usage          = "usage";
+    public const string Common_Page_Path_CSS_Variables  = "css-variables";
+    public const string Common_Page_Path_Questions      = "questions";
 
-    public const string Common_Page_Title_Overview = "overview";
-    public const string Common_Page_Title_Api = "api reference";
-    public const string Common_Page_Title_Installation = "installation & release history";
-    public const string Common_Page_Title_Accessibility = "accessibility";
-    public const string Common_Page_Title_Usage = "usage";
+    public const string Common_Page_Title_Introduction   = "Introduction";
+    public const string Common_Page_Title_Roadmap        = "Raodmap";
+    public const string Common_Page_Title_Overview       = "Overview";
+    public const string Common_Page_Title_Api            = "API Reference";
+    public const string Common_Page_Title_Installation   = "Installation";
+    public const string Common_Page_Title_Accessibility  = "Accessibility";
+    public const string Common_Page_Title_Usage          = "Usage";
+    public const string Common_Page_Title_Core_Variables = "Core CSS Variables";
+
+    public const string Common_Page_Title_FAQ_Questions = "Fequently Asked Questions";
 
     public const string Component_Name_Accordion    = "Accordion";
-    public const string Component_Name_Announcement = "Announcement history";
+    public const string Component_Name_Announcement = "Announcement History";
     public const string Component_Name_Busy         = "Busy indicator";
-    public const string Component_Name_NavGroup     = "Nav group";
-    public const string Component_Name_SkipTo       = "Skip to";
+    public const string Component_Name_NavGroup     = "Nav Group";
+    public const string Component_Name_SkipTo       = "Skip To";
     public const string Component_Name_Switch       = "Switch";
     public const string Component_Name_Tabs         = "Tabs";
     public const string Component_Name_Toggletip    = "Toggletip";
@@ -145,13 +159,15 @@ public class GlobalValues
     public const string Component_Path_Part_Tabs         = "tabs";
     public const string Component_Path_Part_Toggletip    = "toggletip";
     public const string Component_Path_Part_NavGroup     = "nav-group";
-or";
 
+    public const string Service_Name_Live_Region = "Live Region";
+    public const string Serivce_Path_Part_Live_Region  = "live-region";
 
+    public const string Framework_Name_Modal         = "Modal Dialog";
+    public const string Framework_Path_Part_Modal   = "modal dialog";
 
-
-
-
+    public const string Theming_Name = "Theming";
+    public const string Faqs_Name    = "FAQ";
 
     public const string Link_Button_Class = $"link-button";
     public const string Link_Class = $"link";

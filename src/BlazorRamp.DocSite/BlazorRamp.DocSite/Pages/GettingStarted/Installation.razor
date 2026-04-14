@@ -1,11 +1,13 @@
-﻿@attribute [Route(GlobalValues.Path_Overview_Getting_Started)]
+﻿@attribute [Route($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Installation}")]
 
-<PageTitle>@GlobalValues.Page_Title_Overview_Getting_Started</PageTitle>
+<PageTitle>@GlobalValues.Common_Page_Title_Installation</PageTitle>
 
-<h1 class="page-heading">@GlobalValues.Page_Heading_Overview_Getting_Started</h1>
+<h1>@GlobalValues.Common_Page_Title_Installation</h1>
+
+
 
 <p>
-    Every component NuGet package references the BlazorRamp.Core package. This Core package contains the "Live Region Service" and "Announcement History" component, but you can of course use 
+    Every component NuGet package references the BlazorRamp.Core package. This Core package contains the "Live Region Service" and "Announcement History" component, but you can of course use
     this NuGet package on its own if you are only interested in its contents.
 </p>
 <p>
@@ -22,12 +24,12 @@
     </li>
     <li>
         <p>
-           Add the following Core stylesheet reference to the <span class="code-span">&lt;head&gt;</span> section of your applications
+            Add the following Core stylesheet reference to the <span class="code-span">&lt;head&gt;</span> section of your applications
             <span class="code-span">index.html</span> or <span class="code-span">App.razor</span> file dependent on the project type:
         </p>
         <CodeBox CodeBlock="@CodeSnippets.Add_Core_Style_Sheet" AriaLabel="Add Core stylesheet code block" />
         <p>
-            <strong>Note: </strong>Additional component specific stylesheets would then follow for each installed package. 
+            <strong>Note: </strong>Additional component specific stylesheets would then follow for each installed package.
         </p>
     </li>
 
@@ -61,19 +63,23 @@
 <p>
     That's it you good to go. For usage of the services or components please see the relevant section for more details.
 </p>
-<p>For information about using the Live Region Service see: <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Services_Live_Region">@GlobalValues.Page_Heading_Services_Live_Region</a> 
+<p>
+    For information about using the Live Region Service see: <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Services_Live_Region">@GlobalValues.Page_Heading_Services_Live_Region</a>
     and for using the Announcement History component see:  <a class="link" href="@GlobalValues.Path_Components_Announcement_History">@GlobalValues.Page_Heading_Components_Announcement_History</a>
 </p>
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Overview_Introduction">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Getting_Started}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_About - @GlobalValues.Page_Heading_Overview_Introduction</span>
+        <span>@GlobalValues.Common_Page_Title_Overview</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Overview_Accessibility">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Accessibility}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_About - @GlobalValues.Page_Heading_Overview_Accessibility</span>
+        <span>@GlobalValues.Common_Page_Title_Accessibility</span>
         <span aria-hidden="true"></span>
     </a>
 </div>
+@code {
+
+}

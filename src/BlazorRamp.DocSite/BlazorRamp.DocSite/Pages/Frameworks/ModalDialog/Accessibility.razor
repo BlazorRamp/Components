@@ -1,0 +1,22 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Accessibility}")]
+
+<PageTitle>@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Accessibility</PageTitle>
+
+<h1>@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Accessibility</h1>
+
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Installation}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Framework_Name_Modal - @GlobalValues.Common_Page_Title_Installation</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Framework_Name_Modal - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}

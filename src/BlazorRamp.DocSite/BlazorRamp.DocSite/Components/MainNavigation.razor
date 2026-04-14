@@ -1,28 +1,112 @@
 ﻿
 <nav id="@GlobalValues.Main_Navigation_ID" class="main-navigation" aria-label="@GlobalValues.Main_Navigation_Aria_Title">
-    <h2 id="overview-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_About</h2>
-    <ul aria-labelledby="overview-section">
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Overview_Introduction" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_About &nbsp;</span>@GlobalValues.Page_Heading_Overview_Introduction
-            </NavLink>
-        </li>
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Overview_Getting_Started" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_About &nbsp;</span>@GlobalValues.Page_Heading_Overview_Getting_Started
-            </NavLink>
-        </li>
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Overview_Accessibility" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_About &nbsp;</span>@GlobalValues.Page_Heading_Overview_Accessibility
-            </NavLink>
-        </li>
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Overview_Roadmap" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_About &nbsp;</span>@GlobalValues.Page_Heading_Overview_Roadmap
-            </NavLink>
-        </li>
-    </ul>
+
+    <h2 id="getting-started" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_Getting_Started</h2>
+    <NavGroup AriaLabelledby="getting-started">
+        <NavGroupLink Href="@($"{GlobalValues.Root_path_Getting_Started}")" LinkText="@GlobalValues.Common_Page_Title_Introduction" />
+        <NavGroupLink Href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Installation}")" LinkText="@GlobalValues.Common_Page_Title_Installation" />
+        <NavGroupLink Href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Accessibility}")" LinkText="@GlobalValues.Common_Page_Title_Accessibility" />
+        <NavGroupLink Href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Roadmap}")" LinkText="@GlobalValues.Common_Page_Title_Roadmap" />
+    </NavGroup>
+        
+    <h2 id="components-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_Components</h2>
+    <NavGroup AriaLabelledby="components-section">
+        <NavSeparator />
+        <NavSection Title="@GlobalValues.Component_Name_Accordion">
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Accordion" LinkText="@GlobalValues.Common_Page_Title_Overview" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Installation}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Accordion" LinkText="@GlobalValues.Common_Page_Title_Installation" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Accessibility}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Accordion" LinkText="@GlobalValues.Common_Page_Title_Accessibility" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Api}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Accordion" LinkText="@GlobalValues.Common_Page_Title_Api" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Usage}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Accordion" LinkText="@GlobalValues.Common_Page_Title_Usage" />
+        </NavSection>
+        <NavSection Title="@GlobalValues.Component_Name_Announcement">
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Announcement}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Announcement" LinkText="@GlobalValues.Common_Page_Title_Overview" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Announcement}/{GlobalValues.Common_Page_Path_Installation}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Announcement" LinkText="@GlobalValues.Common_Page_Title_Installation" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Announcement}/{GlobalValues.Common_Page_Path_Accessibility}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Announcement" LinkText="@GlobalValues.Common_Page_Title_Accessibility" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Announcement}/{GlobalValues.Common_Page_Path_Api}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Announcement" LinkText="@GlobalValues.Common_Page_Title_Api" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Announcement}/{GlobalValues.Common_Page_Path_Usage}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Announcement" LinkText="@GlobalValues.Common_Page_Title_Usage" />
+        </NavSection>
+        <NavSection Title="@GlobalValues.Component_Name_Busy">
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Busy" LinkText="@GlobalValues.Common_Page_Title_Overview" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Installation}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Busy" LinkText="@GlobalValues.Common_Page_Title_Installation" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Accessibility}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Busy" LinkText="@GlobalValues.Common_Page_Title_Accessibility" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Api}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Busy" LinkText="@GlobalValues.Common_Page_Title_Api" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Usage}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Busy" LinkText="@GlobalValues.Common_Page_Title_Usage" />
+        </NavSection>
+        <NavSection Title="@GlobalValues.Component_Name_SkipTo">
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_SkipTo}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_SkipTo" LinkText="@GlobalValues.Common_Page_Title_Overview" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_SkipTo}/{GlobalValues.Common_Page_Path_Installation}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_SkipTo" LinkText="@GlobalValues.Common_Page_Title_Installation" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_SkipTo}/{GlobalValues.Common_Page_Path_Accessibility}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_SkipTo" LinkText="@GlobalValues.Common_Page_Title_Accessibility" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_SkipTo}/{GlobalValues.Common_Page_Path_Api}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_SkipTo" LinkText="@GlobalValues.Common_Page_Title_Api" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_SkipTo}/{GlobalValues.Common_Page_Path_Usage}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_SkipTo" LinkText="@GlobalValues.Common_Page_Title_Usage" />
+        </NavSection>
+        <NavSection Title="@GlobalValues.Component_Name_Switch">
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Switch}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Switch" LinkText="@GlobalValues.Common_Page_Title_Overview" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Switch}/{GlobalValues.Common_Page_Path_Installation}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Switch" LinkText="@GlobalValues.Common_Page_Title_Installation" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Switch}/{GlobalValues.Common_Page_Path_Accessibility}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Switch" LinkText="@GlobalValues.Common_Page_Title_Accessibility" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Switch}/{GlobalValues.Common_Page_Path_Api}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Switch" LinkText="@GlobalValues.Common_Page_Title_Api" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Switch}/{GlobalValues.Common_Page_Path_Usage}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Switch" LinkText="@GlobalValues.Common_Page_Title_Usage" />
+        </NavSection>
+        <NavSection Title="@GlobalValues.Component_Name_Tabs">
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tabs}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Tabs" LinkText="@GlobalValues.Common_Page_Title_Overview" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tabs}/{GlobalValues.Common_Page_Path_Installation}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Tabs" LinkText="@GlobalValues.Common_Page_Title_Installation" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tabs}/{GlobalValues.Common_Page_Path_Accessibility}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Tabs" LinkText="@GlobalValues.Common_Page_Title_Accessibility" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tabs}/{GlobalValues.Common_Page_Path_Api}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Tabs" LinkText="@GlobalValues.Common_Page_Title_Api" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tabs}/{GlobalValues.Common_Page_Path_Usage}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Tabs" LinkText="@GlobalValues.Common_Page_Title_Usage" />
+        </NavSection>
+        <NavSection Title="@GlobalValues.Component_Name_Toggletip">
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Toggletip}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Toggletip" LinkText="@GlobalValues.Common_Page_Title_Overview" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Toggletip}/{GlobalValues.Common_Page_Path_Installation}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Toggletip" LinkText="@GlobalValues.Common_Page_Title_Installation" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Toggletip}/{GlobalValues.Common_Page_Path_Accessibility}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Toggletip" LinkText="@GlobalValues.Common_Page_Title_Accessibility" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Toggletip}/{GlobalValues.Common_Page_Path_Api}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Toggletip" LinkText="@GlobalValues.Common_Page_Title_Api" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Toggletip}/{GlobalValues.Common_Page_Path_Usage}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Toggletip" LinkText="@GlobalValues.Common_Page_Title_Usage" />
+        </NavSection>
+    </NavGroup>
+
+    <h2 id="framework-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_Frameworks</h2>
+
+    <NavGroup AriaLabelledby="framework-section">
+        <NavSection Title="@GlobalValues.Framework_Name_Modal">
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Framework_Name_Modal" LinkText="@GlobalValues.Common_Page_Title_Overview" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Installation}")" VisuallyHiddenPrefix="@GlobalValues.Framework_Name_Modal" LinkText="@GlobalValues.Common_Page_Title_Installation" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Accessibility}")" VisuallyHiddenPrefix="@GlobalValues.Framework_Name_Modal" LinkText="@GlobalValues.Common_Page_Title_Accessibility" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Api}")" VisuallyHiddenPrefix="@GlobalValues.Framework_Name_Modal" LinkText="@GlobalValues.Common_Page_Title_Api" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Usage}")" VisuallyHiddenPrefix="@GlobalValues.Framework_Name_Modal" LinkText="@GlobalValues.Common_Page_Title_Usage" />
+        </NavSection>    
+    </NavGroup>
+
+    <h2 id="services-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_Services</h2>
+
+    <NavGroup AriaLabelledby="framework-section">
+        <NavSection Title="@GlobalValues.Service_Name_Live_Region">
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Services}/{GlobalValues.Serivce_Path_Part_Live_Region}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Service_Name_Live_Region" LinkText="@GlobalValues.Common_Page_Title_Overview" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Services}/{GlobalValues.Serivce_Path_Part_Live_Region}/{GlobalValues.Common_Page_Path_Installation}")" VisuallyHiddenPrefix="@GlobalValues.Service_Name_Live_Region" LinkText="@GlobalValues.Common_Page_Title_Installation" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Services}/{GlobalValues.Serivce_Path_Part_Live_Region}/{GlobalValues.Common_Page_Path_Accessibility}")" VisuallyHiddenPrefix="@GlobalValues.Service_Name_Live_Region" LinkText="@GlobalValues.Common_Page_Title_Accessibility" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Services}/{GlobalValues.Serivce_Path_Part_Live_Region}/{GlobalValues.Common_Page_Path_Api}")" VisuallyHiddenPrefix="@GlobalValues.Service_Name_Live_Region" LinkText="@GlobalValues.Common_Page_Title_Api" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Services}/{GlobalValues.Serivce_Path_Part_Live_Region}/{GlobalValues.Common_Page_Path_Usage}")" VisuallyHiddenPrefix="@GlobalValues.Service_Name_Live_Region" LinkText="@GlobalValues.Common_Page_Title_Usage" />
+        </NavSection>
+    </NavGroup>
+
+    <h2 id="theming-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_Theming</h2>
+    
+    <NavGroup AriaLabelledby="theming-section">
+        <NavSection Title="@GlobalValues.Theming_Name">
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Theming_Name" LinkText="@GlobalValues.Common_Page_Title_Overview" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_CSS_Variables}")" VisuallyHiddenPrefix="@GlobalValues.Theming_Name" LinkText="@GlobalValues.Common_Page_Title_Core_Variables" />
+        </NavSection>
+    </NavGroup>
+
+    <h2 id="faq-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_FAQs</h2>
+    <NavGroup AriaLabelledby="faq-section">
+        <NavSection Title="@GlobalValues.Faqs_Name">
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_FAQS}")" VisuallyHiddenPrefix="@GlobalValues.Faqs_Name" LinkText="@GlobalValues.Common_Page_Path_Questions" />
+        </NavSection>
+    </NavGroup>
+
+
+
+
+
     <h2 id="theming-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Theming</h2>
     <ul aria-labelledby="theming-section">
         <li>
@@ -67,16 +151,9 @@
             </NavLink>
         </li>
     </ul>
-    <h2 id="components-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Components</h2>
+  
     
-    <NavGroup AriaLabelledby="components-section">
-        <NavSeparator />
-        <NavSection Title="Accordion">
-            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Accordion" LinkText="@GlobalValues.Common_Page_Title_Overview" />
-        </NavSection>
-    </NavGroup>
-    
-    
+    @* 
     <ul aria-labelledby="components-section">
         <li>
             <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Components_Accordion" Match="NavLinkMatch.All">
@@ -121,7 +198,7 @@
                 <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_FAQs &nbsp;</span>@GlobalValues.Page_Heading_FAQs_Questions
             </NavLink>
         </li>
-    </ul>
+    </ul> *@
 </nav>
 
 @code {
