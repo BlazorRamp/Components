@@ -4,7 +4,9 @@
 
 <h1>@GlobalValues.Component_Name_Announcement @GlobalValues.Common_Page_Title_Accessibility</h1>
 
-
+<p>
+    The annoucement history was built using the HTML Popover API and follows all best practices for non-modal dialogs.
+</p>
 
 <h2 id="history-dialog-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
 <p>
@@ -20,10 +22,26 @@
     <li><kbd>Space</kbd> - activates the focused button.</li>
 </ul>
 <p>
-    The dialog remains open, if focus is moved to an element outside of the dialog.
+    The dialog remains open when focus is moved to an element outside of the dialog.
     <strong>Note:</strong> Clicking outside of the dialog with the mouse closes the dialog.
-    
 </p>
+
+
+<h2 id="device-testing" class="info-box__heading">Accessibility device testing</h2>
+
+<ul aria-labelledby="device-testing">
+    <li>JAWS, Narrator and NVDA on Windows were each paired with every one of the following browsers: Google Chrome, Microsoft Edge and Mozilla Firefox.</li>
+    <li>VoiceOver on macOS was paired with Apple's Safari.</li>
+    <li>VoiceOver on iPhone was paired with mobile Safari.</li>
+    <li>Talkback on Android was paired with mobile Google Chrome.</li>
+    <li>Voice access on Windows 11</li>
+</ul>
+
+<p>
+    <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were availabale at the time of testing (see release history on the installation page for approximate testing dates)
+</p>
+
+
 <p>
     <b>Try it:</b> Click the Theme button (top right of the screen, really an aria switch) which uses the live region service, then use the short cut keys or click the alerts button at the bottom
     right of the screen to see the entry made.

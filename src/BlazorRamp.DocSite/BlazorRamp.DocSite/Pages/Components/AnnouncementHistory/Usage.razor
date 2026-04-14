@@ -5,6 +5,32 @@
 <h1>@GlobalValues.Component_Name_Announcement @GlobalValues.Common_Page_Title_Usage . . . In Progess . . .</h1>
 
 
+<section>
+    <h2 class="page-heading">Setting component parameters</h2>
+
+    <p>Example showing all of the parameters being set:</p>
+
+    <CodeBox CodeBlock="@CodeSnippets.Add_Configure_Announcement_History_Component" AriaLabel="Component parameter code block" />
+
+    <p>
+        The announcement history will display the following information as a single string entry separated by semi-colons for each
+        list item in its list, starting with the most recent announcement:
+    </p>
+    <ul>
+        <li>
+            The elapsed time since the announcement was made.
+        </li>
+        <li>The page title of the page where the announcement was made; blank if there was no page title.</li>
+        <li>The triggering element such as "Save Customer Button"; blank if the information was not provided.</li>
+        <li>The message provided.</li>
+    </ul>
+    <p>
+        The page title and triggering element provide context for the user, so I would ensure that your pages have titles and that you
+        provide the name of the triggering element such as "Save Customer Button".
+    </p>
+</section>
+
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Announcement}/{GlobalValues.Common_Page_Path_Api}")">
         <span aria-hidden="true"></span>

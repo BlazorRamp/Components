@@ -10,15 +10,15 @@
 </p>
 
 <p>
-    Below is an example of the accordion component in a section with a heading of "Lifestyle Accordion". I have included heading icons, I have set the <span class="code-span">ExpandMode</span>
-    to mulitple that allows muliple panels open at the same time and have set the <span class="code-span">PersistContent</span>
+    Below is an example of the accordion component in a section with a heading of "Lifestyle Accordion". I have included heading icons (optional), and set the <span class="code-span">ExpandMode</span>
+    to mulitple which allows muliple panels to be open at the same time. I have also set the <span class="code-span">PersistContent</span> parameter
     to true so the content remains (hidded) in the DOM when the panels are collapsed.
 </p>
 <section class="section-box">
     <h2 style="margin-bottom:var(--br-unit-space-9);">Lifestyle Accordion</h2>
 
     <Accordion HeadingLevel="HeadingLevel.H3" ExpandMode="ExpandMode.Multiple" style="margin-bottom:var(--br-unit-space-7)">
-        <AccordionItem HeadingText="Food" PanelHasTabIndex="true" PanelIsRegion="false" SvgIcon="--svg-food-icon">
+        <AccordionItem HeadingText="Food" PanelHasTabIndex="true" PanelIsRegion="false" SvgIcon="--svg-food-icon" PersistContent="true">
             <PanelContent>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet sem vulputate, interdum justo vitae, sagittis nulla. Ut lectus augue, consectetur ut massa id,
@@ -28,7 +28,7 @@
                 </p>
             </PanelContent>
         </AccordionItem>
-        <AccordionItem HeadingText="Travel" PanelHasTabIndex="true" PanelIsRegion="false" SvgIcon="--svg-airplane-icon">
+        <AccordionItem HeadingText="Travel" PanelHasTabIndex="true" PanelIsRegion="false" SvgIcon="--svg-airplane-icon" PersistContent="true">
             <PanelContent>
                 <p>
                     Nulla eu est lacus. Mauris sodales tortor in sem viverra porta. Nam in dapibus massa. Vivamus et augue quis mauris luctus pretium eu eu dolor. Maecenas gravida nisl non
@@ -38,7 +38,7 @@
                 </p>
             </PanelContent>
         </AccordionItem>
-        <AccordionItem HeadingText="Exercise" PanelHasTabIndex="true" PanelIsRegion="false" SvgIcon="--svg-runner-icon">
+        <AccordionItem HeadingText="Exercise" PanelHasTabIndex="true" PanelIsRegion="false" SvgIcon="--svg-runner-icon" PersistContent="true">
             <PanelContent>
                 <p>
                     Mauris imperdiet nisi nec pulvinar porta. Sed semper viverra venenatis. Sed accumsan, erat condimentum ornare malesuada, erat mauris tincidunt enim, non interdum quam sem
@@ -48,8 +48,10 @@
             </PanelContent>
         </AccordionItem>
     </Accordion>
-
 </section>
+
+<h3>Source code for the accordion example</h3>
+<CodeBox CodeBlock="@AccordionSnippets.Accordion_Setting_Parameters_Example" AriaLabel="Accordion code example" />
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Getting_Started}/{GlobalValues.Common_Page_Path_Roadmap}")">
