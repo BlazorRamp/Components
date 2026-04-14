@@ -5,6 +5,71 @@
 <h1>@GlobalValues.Component_Name_Toggletip @GlobalValues.Common_Page_Title_Overview</h1>
 
 
+<p>
+    ToggleTip (a term coined by Heydon Pickering) displays supplemental information on click, key press, touch or voice control rather than on on mouseover/hover.
+</p>
+<p>
+    The component has been designed so it can be placed inlne within a paragraph of text and usless overriden its label and icon will size accordingly. The label visibility is optional
+    as its still used for the components accessible name. You can also reverse the ordering of the label and icon. As the component has a <span class="code-span">RenderFragement</span>
+    parameter for child content, you can include whatever html content you like.  You provide the content and set the desired size and position of the Toggletip and the component does the rest.
+</p>
+<p>
+    <strong>Important: </strong>The Toggletip component uses CSS anchor positioning with fallbacks for when it wont fit in the desired location which was only baseline at the start of the year 2026. Dependant on your target audience and supported browser versions,
+    you may want to condider referencing the OddBird anchor positioning polyfill see: <a class="@GlobalValues.Link_Class" target="_blank" href="https://github.com/oddbird/css-anchor-positioning">https://github.com/oddbird/css-anchor-positioning (opens in new window)</a>
+    to support older browser versions. Without CSS anchor positioning the Toggletip content will be located at the top left of the page, but with all functionality intact.
+</p>
+
+
+<h2 style="margin-top:var(--br-unit-space-7)">Try the toggletip.</h2>
+<p>
+    The toggletip can be set apart from text or as in the example below just put inline with extising text. When using the default variable values the
+    toggltips optional label and icon button will size to match. I have set the label (Keyboard infor:) to be shown left of the icon, using the toggletip size of small.
+    Not sure where it is, its the little icon buired in the lorum ipsum text. use the tab key to set focus on it.
+</p>
+<p>
+    The toggletip uses light dismiss so clicking outside of the popover will close it, as will the escape key. The popover will remain open until closed, and as its not modal
+    the user can tab out of the toggletip leaving it open. Opening an other item that uses the popover api, such as the Announcement History dialog will close an other open
+    popover.
+</p>
+<section class="info-box info-box--container-test" style="align-items:start;margin-top:1.5rem;">
+    <p>
+        The toggletip is burried within the text, alternatively visit the test site where its placed on its own: <a class="@GlobalValues.Link_Class" href="@GlobalValues.Test_Component_Path_ToggleTip">toggletip on test site page (opens in new window)</a>
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed metus erat. Quisque porttitor condimentum aliquam. Suspendisse
+        ultrices, urna in bibendum molestie, nunc velit rhoncus nulla, sit amet porttitor libero augue a libero. Etiam viverra metus a malesuada
+        gravida. Nam at gravida purus. Donec in dui dignissim <ToggleTip CloseText="Close Keyboard Info." Label="Keyboard info:" ShowClose="true" ShowLabel="true" ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" ToggleTipSize="ToggleTipSize.Small">
+        <h3 id="toggletip-demo" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h3>
+        <ul aria-labelledby="toggletip-demo">
+            <li><kbd>Space</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
+            <li><kbd>Enter</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
+            <li><kbd>Escape</kbd> - closes the toggletip</li>
+        </ul>
+
+        <p>Lorem ipsum text below to force a scroll bar. The toggletip is responsive so if you do not see a scrollbar, just make your window narrower.</p>
+
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum massa, feugiat id sapien
+            non, egestas vestibulum dolor. Nulla luctus est ac urna imperdiet tristique. Vestibulum ante
+            ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent egestas massa
+            nec sem sagittis, at efficitur urna rutrum. Nunc et.
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum massa, feugiat id sapien
+            non, egestas vestibulum dolor. Nulla luctus est ac urna imperdiet tristique. Vestibulum ante
+            ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent egestas massa
+            nec sem sagittis, at efficitur urna rutrum. Nunc et.
+        </p>
+    </ToggleTip>sollicitudin felis sed, dignissim lacus. Vestibulum euismod consectetur odio. Nunc
+    accumsan mi convallis nulla ornare, at vestibulum odio eleifend. Nulla iaculis libero scelerisque laoreet suscipit. Morbi consectetur, lectus
+    eget consectetur commodo, tellus tellus tincidunt justo, eget rhoncus risus elit consequat lectus. Donec porta, magna id vestibulum commodo, lacus arcu eleifend dui, ut hendrerit.
+</p>
+
+<p>
+    <b>Now try</b> moving the page so the icon goes nearer the top and then open it to see the positioning fallback.
+</p>
+</section>
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tabs}/{GlobalValues.Common_Page_Path_Usage}")">
         <span aria-hidden="true"></span>

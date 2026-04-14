@@ -5,6 +5,49 @@
 <h1>@GlobalValues.Component_Name_SkipTo @GlobalValues.Common_Page_Title_Overview</h1>
 
 
+<p>
+    The Skip To component is designed with two use cases in mind. The first will probably cover 90% of cases, where it simply sits at the top-right corner of the site and always targets the main content element.
+    In the case of Blazor, that main content is most likely fixed, with the <span class="code-span">&#64;Body</span> injecting the content.
+</p>
+<p>
+    Given that a skip to for the site may be on a non-interactive area, the Skip To has been designed to work with or without interactivity at the (<span class="code-span">SkipToType.Site</span>) level.
+    Currently, I only support having one Skip to at the Site level which it positioned top (LTR/RTL).
+</p>
+<p>
+    The skip to given a valid target will scroll to, and set focus on the target. If the user has reduced motion set on their device then rather that a scroll the target will snap into position.
+</p>
+<p>
+    To try the skip to at the Site level (its at the top left of the page), keep pressing the tab key and eventually it will become <span class="code-span">:focus-visible</span>
+    Pressing the enter key will then put the focus the on the container that this content is inside.
+</p>
+<p>
+    The second use case is where you have a block of repeated items on each interactive page and need to skip this content i.e. a secondary skip to.
+    You can have multiple skip to components on a page at this level (<span class="code-span">SkipToType.Section</span>). Each skip to for a section uses absolute positioning
+    relative to its parent (that has a position set, such as relative) and will be position top (LTR/RTL) within its parent.
+</p>
+<p>
+    <strong>Note: </strong>For either use case as mentioned above don't forget to add tabindex="-1" on the target element.
+</p>
+<h2 id="skip-to-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
+<ul aria-labelledby="skip-to-keyboard">
+    <li><kbd>Enter</kbd> - activates the link and moves focus to the target element.</li>
+</ul>
+<p>
+    There is a skip to inside the section below that will jump to its target, the container of: "The content you wand to get to.". Use your tab key to find it.
+</p>
+<div class="info-box">
+    <SkipTo IconVisible="true" SkipToText="Skip to section content" SkipToType="SkipToType.Section" TargetID="section-one" />
+    <div class="section-box">
+        The skip to is hiding here in this container that has a CSS <spoan class="code-span">position:relative;</spoan> set on it.
+    </div>
+    <div class="section-box">
+        Some block you want to skip.
+    </div>
+    <div style="width:320px;" class="section-box" tabindex="-1" id="section-one">
+        The content you want to get to.
+    </div>
+</div>
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_NavGroup}/{GlobalValues.Common_Page_Path_Usage}")">
         <span aria-hidden="true"></span>

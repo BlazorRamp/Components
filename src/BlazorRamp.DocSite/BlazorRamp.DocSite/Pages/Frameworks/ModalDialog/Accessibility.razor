@@ -5,6 +5,35 @@
 <h1>@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Accessibility</h1>
 
 
+<h2 id="dialog-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
+<ul aria-labelledby="dialog-keyboard">
+    <li>
+        <kbd>Escape</kbd> - closes the top most dialog if a handler has not been specified. If one has been specified then you control whether or not the dialog should close,
+        as this could be a popup form with unsaved changes, and you may want to get confirmation from the user first etc.
+        <strong>Note: </strong> If the Announcement History popover (non-modal dialog) is open, then the escape key will close that first.
+        .
+    </li>
+</ul>
+
+<h2 id="screen-reader-quirks" class="@GlobalValues.Info_Box_Heading_Class">Screen reader quirks or known issues</h2>
+<ul aria-labelledby="screen-reader-quirks">
+    <li>
+        <p>
+            <b>Safari browser.</b> Safari has, at the time of writing multiple issues regarding using a popover inside of nested modal dialogs and from my investigations, reordering issues of nested modal dialogs.
+        </p>
+        <p>
+            What does this mean, there is an edge case that I cannot do anything about. Lets say you open a dialog and then launch another dialog, everything will work perfectly.
+            Lets say now in the second nested dialog (it works fine in a single dialog), you open a popover (non-modal dialog) such as the Announcmenet History component. At this point it all works fine, and
+            if you use the buttons to close the popover, its OK. But if you use the escape key, the popover will close but then Safari puts the dialogs in the wrong order. You then tab and the ordering is
+            restored.
+        </p>
+        <p>
+            <strong>Note:</strong> All other browsers that I tested workd perfectly without issue, it was only this one edge case when using Safari on macOS (iPhone was not effected given its touch the buttons) I came across when
+            testing. I will from time to time checkup on this, but I cannot control how safari orders the top layer items.
+        </p>
+    </li>
+</ul>
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Installation}")">
         <span aria-hidden="true"></span>

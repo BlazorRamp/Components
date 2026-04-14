@@ -5,6 +5,576 @@
 <h1>@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Api</h1>
 
 
+<section>
+    <h2>Dialog service & assoicated classes</h2>
+    <p>
+        The following provides details of the dialog service and all related classes
+    </p>
+    <section class="code-table" style="margin-top:1.5rem;">
+
+        <h3 id="dialog-service" class="code-table__heading">ModalDialogService</h3>
+
+        <table aria-labelledby="dialog-service">
+
+            <thead>
+                <tr>
+                    <th scope="col">Returns</th>
+                    <th scope="col">Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>Task</td>
+                    <td>CloseDialog(ModalDialogResult dialogResult)</td>
+                    <td>
+                        Closes the dialog and sets the opening task as completed, in order for the <span class="code-span">ModalDialogResult</span>  to be returned from the awaited
+                        <span class="code-span">ShowModal</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>GetAriaLabelledByID()</td>
+                    <td>
+                        Property to get the unique string value that was added to the <span class="code-span">aria-labelledby</span> attribute on the
+                        HTML <span class="code-span">dialog</span> elenent. Uss this value for the <span class="code-span">id</span> attribute on your heading to give the dialog an accessible
+                        name
+                    </td>
+                </tr>
+                <tr>
+                    <td>void</td>
+                    <td>RegisterEscapeHandler(Func&lt;Task&gt; handler)</td>
+                    <td>
+                        Allows for the registering of a handler that will be called when the escape key is pressed for your dialog window.
+                        <strong>Note: </strong>If you do not provide a handler and the escape key is presed the dialog will close and return a cancelled result.
+                    </td>
+                </tr>
+                <tr>
+                    <td>void</td>
+                    <td>UnregisterEscapeHandler(Func&lt;Task&gt; handler)</td>
+                    <td>Unregisters the escape handler. <strong>Note: </strong>Weak references are used but you should call this in your components dispose method.</td>
+                </tr>
+                <tr>
+                    <td>Task&lt;ModalDialogResult&gt</td>
+                    <td>ShowDialog&lt;TDialog&gt;()</td>
+                    <td>
+                        Shows the dialog containing your component (<span>TDialog</span>) with no paramater data (<sapn class="code-span">ModalDialogParameters&lt;TDialog&gt;</sapn>) and uses the
+                        default values for the dialog options, <span class="code-span">ModalDialogOptions</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Task&lt;ModalDialogResult&gt;</td>
+                    <td>ShowDialog&lt;TDialog&gt;(ModalDialogOptions dialogOptions)</td>
+                    <td>
+                        Shows the dialog containing your component (<span>TDialog</span>) with no paramater data, but with <span class="code-span">ModalDialogOptions</span> specified.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Task&lt;ModalDialogResult&gt;</td>
+                    <td>ShowDialog&lt;TDialog&gt;(ModalDialogParameters&lt;TDialog&gt; dialogParameters)</td>
+                    <td>
+                        Shows the dialog containing your component (<span>TDialog</span>) with <span class="code-span">ModalDialogParameters&lt;TDialog&gt;</span> data, using the default values
+                        for the dialog otpions, <span class="code-span">ModalDialogOptions</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Task&lt;ModalDialogResult&gt;</td>
+                    <td>ShowDialog&lt;TDialog&gt;(ModalDialogParameters&lt;TDialog&gt; dialogParameters, ModalDialogOptions dialogOptions)</td>
+                    <td>
+                        Shows the dialog containing your component (<span>TDialog</span>) with both <span class="code-span">ModalDialogParameters&lt;TDialog&gt;</span> data
+                        andd ialog otpions, <span class="code-span">ModalDialogOptions</span>.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table two-col-descriptive" style="margin-top:1.5rem;">
+
+        <h3 id="dialog-options" class="code-table__heading">ModalDialogOptions class</h3>
+
+        <table aria-labelledby="dialog-options">
+
+            <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Property</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>string</td>
+                    <td>HorizonalPosition</td>
+                    <td>
+                        Retruns a value such as <span class="code-span">start</span>, <span class="code-span">center</span> or <span class="code-span">end</span>
+                        used for an inline style that sets the horizontal alignment.
+                    </td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>VerticalPosition</td>
+                    <td>
+                        Retruns a value such as <span class="code-span">start</span>, <span class="code-span">center</span> or <span class="code-span">end</span>
+                        used for an inline style that sets the vertical alignment.
+                    </td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>MaxWidth</td>
+                    <td>
+                        Returns a string value with the % sign appended for use in an inline style that sets the maximum width
+                        of the dialog window.
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <b>Constructor:</b><br />
+                        ModalDialogOptions (HorizontalAlignment horizontalAlignment = HorizontalAlignment.Centre, VerticalAlignment verticalAlignment = VerticalAlignment.Centre, int maxWidthPercent = 70)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table two-col-descriptive" style="margin-top:1.5rem;">
+
+        <h3 id="dialog-parameters" class="code-table__heading">ModalDialogParameter&lt;TDialog&gt; class</h3>
+
+        <table aria-labelledby="dialog-parameters">
+
+            <thead>
+                <tr>
+                    <th scope="col">Returns</th>
+                    <th scope="col">Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>void</td>
+                    <td>Add&lt;TData&gt;(Expression&lt;Func&lt;TDialog, object&gt;&gt; dialogParam, TData? data)</td>
+                    <td>
+                        Adds a parameter by name and value. Duplicate keys are silently ignored.
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <b>Parameterless constructor (initialise with the your component type): </b>
+                        new ModalDialogParameters&lt;MyComponentType&gt;()
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table two-col-descriptive" style="margin-top:1.5rem;">
+
+        <h3 id="dialog-result" class="code-table__heading">ModalDialogResult class</h3>
+
+        <table aria-labelledby="dialog-result">
+
+            <thead>
+                <tr>
+                    <th scope="col">Type/Return</th>
+                    <th scope="col">Property/Static Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>DialogResultButtons (enum)</td>
+                    <td>ButtonClicked</td>
+                    <td>Returns the type of button used to close the dilaog.</td>
+                </tr>
+                <tr>
+                    <td>object</td>
+                    <td>Data</td>
+                    <td>Data returned when the dialog is closed.</td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td>DataType</td>
+                    <td>The type of data that was cast as object.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>ButtonText</td>
+                    <td>
+                        The text on the button, used for Other when you want more than just OK and Cancel.
+                        The <span class="code-span">ButtonText</span> allows you to differentiate between Other buttons.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ModalDialogResult</td>
+                    <td>Cancel&ltT&gt;()</td>
+                    <td>Returns a cancelled result with a payload of type <span class="code-span">NoReturnValue</span></td>
+                </tr>
+                <tr>
+                    <td>ModalDialogResult</td>
+                    <td>OK&ltT&gt;()</td>
+                    <td>Returns a successful result with a payload of type <span class="code-span">NoReturnValue</span></td>
+                </tr>
+                <tr>
+                    <td>ModalDialogResult</td>
+                    <td>OK&ltT&gt;(T data)</td>
+                    <td>Returns a successful result with a payload of type <span class="code-span">T</span></td>
+                </tr>
+                <tr>
+                    <td>ModalDialogResult</td>
+                    <td>Other&ltT&gt;(string buttonText)</td>
+                    <td>Returns an Other result with a payload of type <span class="code-span">NoReturnValue</span></td>
+                </tr>
+                <tr>
+                    <td>ModalDialogResult</td>
+                    <td>Other&ltT&gt;(string buttonText, T data)</td>
+                    <td>Returns an Other result with a payload of type <span class="code-span">T</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table two-col-descriptive" style="margin-top:1.5rem;">
+
+        <h3 id="dialog-result" class="code-table__heading">NoReturnValue record (Unit)</h3>
+
+        <table aria-labelledby="dialog-result">
+
+            <thead>
+                <tr>
+                    <th scope="col">Type/Return</th>
+                    <th scope="col">Public Field</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>NoReturnValue</td>
+                    <td>Value</td>
+                    <td>Returns a Unit type of <span class="code-span">NoReturnValue</span> to indicate the return has no meaningful value</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting enums</h2>
+
+    <section class="code-table">
+
+        <h3 id="horizontal-alignment-enum" class="code-table__heading">HorizontalAlignment enum</h3>
+
+        <table aria-labelledby="horizontal-alignment-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Left</td>
+                    <td>Indicates the dialog window should be aligned to the left.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Centre</td>
+                    <td>Indicates the dialog window should be horizontally centred.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Left</td>
+                    <td>Indicates the dialog window should be aligned to the right.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="vertical-alignment-enum" class="code-table__heading">VerticalAlignment enum</h3>
+
+        <table aria-labelledby="vertical-alignment-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Top</td>
+                    <td>Indicates the dialog window should be aligned to the top.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Centre</td>
+                    <td>Indicates the dialog window should be vertically centred.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Left</td>
+                    <td>Indicates the dialog window should be aligned to the bottom.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="dialog-result-buttons-enum" class="code-table__heading">DialogResultButtons enum</h3>
+
+        <table aria-labelledby="dialog-result-buttons-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>OK</td>
+                    <td>Indicates a successful result</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Cancel</td>
+                    <td>Indicates a cancelled (or failed result)</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Other</td>
+                    <td>
+                        Indicates some other result, could be failed, errored etc. You can use the
+                        <span class="code-span">ButtonText</span> on the <span class="code-span">ModalDialogResult</span> class
+                        for a specific meaning/type.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+</section>
+<section>
+    <h2 class="page-heading">CSS variables defined for the dialog framework component.</h2>
+
+    <p>
+        The following sections outline all of the css variables that can be set to alter the styling of the dialog framework component.
+        You can of course also override its style classes directly.
+    </p>
+
+    <section class="code-table">
+
+        <h3 id="dialog-framework-outline-variables" class="code-table__heading">Dialog framework outline variables</h3>
+        <p>
+            The outline on <span class="code-span">:focus-visible</span> is what you will see around where you place your content
+        </p>
+        <table aria-labelledby="dialog-framework-outline-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> --br-comp-mdframe-outline-style:</td>
+                    <td>var(--br-comp-all-outline-style)</td>
+                    <td>Style of the outline around the component on focus - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-outline-width</td>
+                    <td>var(--br-comp-all-outline-width)</td>
+                    <td>Width of the outline - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-outline-offset</td>
+                    <td>var(--br-unit-outline-offset-0)</td>
+                    <td>Outline offset - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-outline-colour</td>
+                    <td>var(--br-comp-all-outline-colour)</td>
+                    <td>The outline colour - uses the shared component variable.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="pane-base-variables" class="code-table__heading">Pane base variables</h3>
+
+        <table aria-labelledby="pane-base-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-mdframe-pane-base-background-colour</td>
+                    <td>var(--br-comp-all-overlay-colour)</td>
+                    <td>This is the background colour of the dialog backdrop/overlay - <b>does not use the shared component variable</b>.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="content-area-variables" class="code-table__heading">Content area variables</h3>
+        <p>
+            The content area in the dialog framework is where you component will go.
+        </p>
+        <table aria-labelledby="content-area-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-mdframe-area-content-background</td>
+                    <td>var(--br-comp-all-area-content-background)</td>
+                    <td>The background colour of the content areas - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-area-content-border-style</td>
+                    <td>var(--br-comp-all-area-content-border-style)</td>
+                    <td>The border style - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-area-content-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The border width - <b>does not use the shared component variable</b>.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-area-content-border-colour</td>
+                    <td>var(--br-comp-all-area-content-border-colour)</td>
+                    <td>The border colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-area-content-border-radius</td>
+                    <td>var(--br-unit-radius-7)</td>
+                    <td>The radius of each border corner - <b>does not use the shared component variable</b>.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="misc-variables" class="code-table__heading">Miscellaneous variables</h3>
+
+        <table aria-labelledby="misc-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-mdframe-dialog-padding</td>
+                    <td>var(--br-unit-space-5)</td>
+                    <td>The padding between the browser window and the content area when used with maximum dimensions - <b>No shared variable for this property.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-box-shadow</td>
+                    <td>var(--br-comp-history-box-shadow)</td>
+                    <td>Box shadow areound the content areas - <b>No shared variable for this property.</b></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
+        <p>
+            The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
+            by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
+        </p>
+
+        <table aria-labelledby="unmapped-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-mdframe-outline-offset</td>
+                    <td>var(--br-unit-outline-offset-0)</td>
+                    <td>Outline offset - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-pane-base-background-colour</td>
+                    <td>var(--br-comp-all-overlay-colour)</td>
+                    <td>This is the background colour of the dialog backdrop/overlay - <b>does not use the shared component variable</b>.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-area-content-border-radius</td>
+                    <td>var(--br-unit-radius-7)</td>
+                    <td>The radius of each border corner - <b>does not use the shared component variable</b>.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-area-content-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The border width - <b>does not use the shared component variable</b>.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-dialog-padding</td>
+                    <td>var(--br-unit-space-5)</td>
+                    <td>The padding between the browser window and the content area when used with maximum dimensions - <b>No shared variable for this property.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-mdframe-box-shadow</td>
+                    <td>var(--br-comp-history-box-shadow)</td>
+                    <td>Box shadow areound the content areas - <b>No shared variable for this property.</b></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+</section>
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Accessibility}")">
         <span aria-hidden="true"></span>

@@ -5,6 +5,19 @@
 <h1>@GlobalValues.Component_Name_Accordion @GlobalValues.Common_Page_Title_Usage</h1>
 
 
+<section>
+    <h2 class="page-heading">Making announcements</h2>
+
+    <p>
+        Please keep your messages short and to the point, for example on completion of saving a customer entry "Saved Successfully" would be sufficient.
+        Provide context when necessary; the "Theme" button on this site uses the live regions service as follows:
+    </p>
+    <CodeBox CodeBlock="@CodeSnippets.Make_Announcement" AriaLabel="Making an announcement code block" />
+    <p>
+        <strong>Note: </strong> The <span class="code-span">AnnouncementTypo</span> is currently not exposed but in the future may be used for filtering announcements.
+    </p>
+</section>
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Services}/{GlobalValues.Serivce_Path_Part_Live_Region}/{GlobalValues.Common_Page_Path_Api}")">
         <span aria-hidden="true"></span>

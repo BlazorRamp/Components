@@ -5,6 +5,644 @@
 <h1>@GlobalValues.Component_Name_Toggletip @GlobalValues.Common_Page_Title_Api</h1>
 
 
+<section class="code-table">
+
+    <h2 id="toggle-tip-component-parameters" class="code-table__heading">Toggletip component parameters</h2>
+
+    <table aria-labelledby="toggle-tip-component-parameters">
+
+        <thead>
+            <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Label</td>
+                <td>string</td>
+                <td>
+                    Text shown next to the icon button and is used as an aria-label for the icon button when not shown.
+                    Defaults to "supplemental information" if not entered.
+                </td>
+            </tr>
+            <tr>
+                <td>CloseText</td>
+                <td>string</td>
+                <td>Text shown on the optional close button. Defaults to "Close" if not entered.</td>
+            </tr>
+            <tr>
+                <td>ShowLabel</td>
+                <td>bool</td>
+                <td>Removes the label and reclaims its space when set to false. Defaults to true.</td>
+            </tr>
+            <tr>
+                <td>ShowClose</td>
+                <td>bool</td>
+                <td>Removes the button and reclaims its space when set to false. Defaults to true.</td>
+            </tr>
+            <tr>
+                <td>ToggleTipLabelOrder</td>
+                <td>ToggleTipLabelOrder (enum)</td>
+                <td>Value that determines whether the label is to the left or right of the icon. Defaults to <span class="code-span">ToggleTipLabelOrder.LabelFirst</span></td>
+            </tr>
+            <tr>
+                <td>ToggleTipPosition</td>
+                <td>ToggleTipPosition (enum)</td>
+                <td>Value that determins the position of the toggletip popover in relation to the icon button. Defaults to <span class="code-span">ToggleTipPosition.TopCentre</span></td>
+            </tr>
+            <tr>
+                <td>ToggleTipSize</td>
+                <td>ToggleTipSize (enum)</td>
+                <td>Determines the size of the toggletip popover. Defaults to <span class="code-span">ToggleTipSize.Small</span>. See note below.</td>
+            </tr>
+            <tr>
+                <td>AdditionalAttributes</td>
+                <td>Dictionary&lt;string, object&gt;?</td>
+                <td>Sets additional attributes applied to the component's root element.</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        <strong>Note: </strong>The size sets the maximum widths and heights in viewport units with all sharing the fixed minimums of 320px for width (W) and 300px for height (H).
+        Like everything these can be changed if necessary. The defaults for small are W:30vw H:40vh, medium W:40vw H:50vh and large W:50vw H:60vh.
+    </p>
+</section>
+<section>
+    <h2 class="page-heading">Supporting enums</h2>
+
+    <section class="code-table">
+
+        <h3 id="toggletiplabelorder-enum" class="code-table__heading">ToggleTipLabelOrder enum</h3>
+
+        <table aria-labelledby="toggletiplabelorder-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>LabelFirst</td>
+                    <td>Determines if the label comes before the icon button.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>IconFirst</td>
+                    <td>Determines if the icon button comes before the label..</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Left</td>
+                    <td>Indicates the dialog window should be aligned to the right.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="toggletipsize-enum" class="code-table__heading">ToggleTipSize enum</h3>
+
+        <table aria-labelledby="toggletipsize-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Small</td>
+                    <td>Determines the sizing of the overral popover size. The smallest viewport units will be used, W:30vh H:40vh.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Medium</td>
+                    <td>Determines the sizing of the overral popover size.The medium viewport units will be bused, W:40vh H:50vh.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Large</td>
+                    <td>Determines the sizing of the overral popover size.The largest viewport units will be set used W:30vh H:40vh.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="toggletipposition-enum" class="code-table__heading">ToggleTipPosition enum</h3>
+
+        <table aria-labelledby="toggletipposition-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>TopCentre</td>
+                    <td>Horizonally centred above the icon button.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>TopLeft</td>
+                    <td>Starts aligned to the top left of the icon button extending to the right.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>TopRight</td>
+                    <td>Ends aligned to the top right of the icon button so extends to the left.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>CentreLeft</td>
+                    <td>Ends at the left side of the icon, vertically aligned with the icon buttons centre.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>CentreRight</td>
+                    <td>Starts at the rights side of the icon, vertically aligned with the icon buttons centre.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>BottomCentre</td>
+                    <td>Horizonally centred below the icon button.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>BottomLeft</td>
+                    <td>Starts aligned to the bottom left of the icon button extending to the right.</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>BottomRight</td>
+                    <td>Ends aligned to the bottom right of the icon button so extends to the left.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+</section>
+<section>
+    <h2 class="page-heading">Setting component parameters</h2>
+
+    <p>
+        Example showing all of the parameters being set for the toggletip. Despite all paramerters having default values, you should set the label to a unique value for the toggletip/page.
+    </p>
+    <p>The code below is from the exmaple towards the top of the page, excluding all of its render fragment content for brevity.</p>
+
+    <CodeBox CodeBlock="@CodeSnippets.ToggleTip_Setting_Paramaters_Example" AriaLabel="Toggletip setting paramaters code example" />
+
+</section>
+<section>
+    <h2 class="page-heading">CSS variables defined for the toggletip component.</h2>
+
+    <p>
+        The following sections outline all of the css variables that can be set to alter the styling of the toggletip component.
+        You can of course also override its style classes directly.
+    </p>
+    <p>
+        <strong>Note: </strong> The toggletip is split into three stylying sections, the (optional) label, the trigger (icon button) and the toggletip contents which uses panes.
+    </p>
+    <section class="code-table">
+
+        <h3 id="toggle-tip-label-variables" class="code-table__heading">Toggletip label variables</h3>
+
+        <table aria-labelledby="toggle-tip-label-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-toggle-tip-trigger-label-text</td>
+                    <td></td>
+                    <td>The font colour of the label text - <b>no shared component variable so uses a unit value directly.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-trigger-label-font-family</td>
+                    <td>inherit</td>
+                    <td>The Font-family - <b>no shared component variable so uses a unit value directly.</b></td>
+                </tr>
+                <tr>
+                    <td>-br-comp-toggle-tip-trigger-label-font-size</td>
+                    <td>inherit</td>
+                    <td>The font size of the label text - <b>no shared component variable so uses a unit value directly.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-trigger-label-font-weight</td>
+                    <td>inherit</td>
+                    <td>The font weight of the label text - <b>no shared component variable so uses a unit value directly.</b></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    
+    <section class="code-table">
+
+        <h3 id="toggle-tip-trigger-variables" class="code-table__heading">Toggletip trigger (icon button) variables</h3>
+
+        <table aria-labelledby="toggle-tip-trigger-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-toggle-tip-trigger-colour</td>
+                    <td>inherit</td>
+                    <td>The colour of the icon - <b>no shared component variable so uses a unit value directly.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-trigger-border-radius</td>
+                    <td>var(--br-unit-radius-2)</td>
+                    <td>The border radious of the icon button - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-trigger-outline-style</td>
+                    <td>var(--br-comp-all-outline-style)</td>
+                    <td>The style of the outline - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-trigger-outline-width</td>
+                    <td>var(--br-unit-border-3)</td>
+                    <td>The outline width - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-trigger-outline-offset</td>
+                    <td>var(--br-comp-all-outline-offset)</td>
+                    <td>The outline offset - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-trigger-outline-colour</td>
+                    <td>var(--br-comp-all-outline-colour)</td>
+                    <td>The outline colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--svg-information-icon</td>
+                    <td> url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10m0-2a8 8 0 1 0 0-16a8 8 0 0 0 0 16M11 7h2v2h-2zm0 4h2v6h-2z'/%3E%3C/svg%3E");</td>
+                    <td>The svg icon used - <b>no shared component variable</b></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="toggle-tip-surface-pane-variables" class="code-table__heading">Pane surface variables</h3>
+
+        <table aria-labelledby="toggle-tip-surface-pane-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-toggle-tip-pane-surface-background</td>
+                    <td>var(--br-comp-all-pane-surface-background)</td>
+                    <td>The bacground colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-pane-surface-border-style</td>
+                    <td>var(--br-comp-all-pane-surface-border-style)</td>
+                    <td>The border style around the pane - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-pane-surface-border-colour</td>
+                    <td>var(--br-comp-all-pane-surface-border-colour)</td>
+                    <td>The border colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-pane-surface-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The border width - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-pane-surface-border-radius</td>
+                    <td> var(--br-unit-radius-7)</td>
+                    <td>The border radius of each corner - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-pane-surface-box-shadow</td>
+                    <td>var(--br-unit-box-shadow-1)</td>
+                    <td>A box shadow around the popober - <b>no shared component variable so use a unit value directly.</b></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="toggle-tip-content-area-variables" class="code-table__heading">Content area variables</h3>
+
+        <table aria-labelledby="toggle-tip-content-area-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-toggle-tip-area-content-outline-style</td>
+                    <td>var(--br-comp-all-outline-style)</td>
+                    <td>Outline style around the content area  - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-area-content-outline-width</td>
+                    <td>var(--br-comp-all-outline-width)</td>
+                    <td>The outline width - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-area-content-outline-offset</td>
+                    <td>var(--br-comp-all-outline-offset)</td>
+                    <td>The outline offeste - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-area-content-outline-colour</td>
+                    <td>var(--br-comp-all-outline-colour)</td>
+                    <td>The outline colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-area-content-background</td>
+                    <td>var(--br-comp-all-area-content-background)</td>
+                    <td>The background colour for the content - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-area-content-text</td>
+                    <td>var(--br-comp-all-area-content-text)</td>
+                    <td>The content text colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-area-content-font-family</td>
+                    <td>var(--br-comp-all-area-content-font-family)</td>
+                    <td>The font family used - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-area-content-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The size of the font - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-area-content-font-weight</td>
+                    <td>var(--br-comp-all-area-content-font-weight)</td>
+                    <td>The font weight- uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-area-content-line-height</td>
+                    <td>var(--br-comp-all-area-content-line-height)</td>
+                    <td>The line height used - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-area-content-border-style</td>
+                    <td>var(--br-comp-all-area-content-border-style)</td>
+                    <td>The border style for the content- uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-area-content-border-colour</td>
+                    <td>var(--br-comp-all-area-content-border-colour)</td>
+                    <td>The border colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-area-content-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The border width - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-area-content-border-radius</td>
+                    <td>var(--br-comp-all-area-content-border-radius)</td>
+                    <td>The border radius of all corners - uses the shared component variable.</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="toggle-tip-footer-button-variables" class="code-table__heading">Close button (optional), variables</h3>
+
+        <table aria-labelledby="toggle-tip-footer-button-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-toggle-tip-button-background</td>
+                    <td>var(--br-comp-all-button-background)</td>
+                    <td>The background colour for the button - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-button-text</td>
+                    <td>var(--br-comp-all-button-text)</td>
+                    <td>The text colour for the button - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-button-font-family</td>
+                    <td>var(--br-comp-all-button-font-family)</td>
+                    <td>The font family used - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-button-font-size</td>
+                    <td>var(--br-comp-all-button-font-size)</td>
+                    <td>The font size - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-button-font-weight</td>
+                    <td>var(--br-comp-all-button-font-weight)</td>
+                    <td>The font weight - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-button-line-height</td>
+                    <td>var(--br-comp-all-button-line-height)</td>
+                    <td>The line height - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-button-border-style</td>
+                    <td>var(--br-comp-all-button-border-style)</td>
+                    <td>The border style for the button - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-button-border-colour</td>
+                    <td>var(--br-comp-all-button-border-colour)</td>
+                    <td>The border colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-button-border-width</td>
+                    <td>var(--br-comp-all-button-border-width)</td>
+                    <td>The border width - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-button-border-radius</td>
+                    <td>var(--br-comp-all-button-border-radius)</td>
+                    <td>The border radius - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-button-outline-style</td>
+                    <td>var(--br-comp-all-outline-style)</td>
+                    <td>The outline style around the button - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-button-outline-width</td>
+                    <td>var(--br-comp-all-outline-width)</td>
+                    <td>The outline width - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-button-outline-offset</td>
+                    <td>var(--br-comp-all-outline-offset)</td>
+                    <td>The outnline offest - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-button-outline-colour</td>
+                    <td>var(--br-comp-all-outline-colour)</td>
+                    <td>The outline colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-button-state-hover</td>
+                    <td>var(--br-comp-all-button-state-hover)</td>
+                    <td>The background colour, effect used on hover - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-button-state-active-brightness</td>
+                    <td>var(--br-comp-all-button-state-active-brightness)</td>
+                    <td>The brightness filter value used when active - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-button-state-active-scale</td>
+                    <td>var(--br-comp-all-button-state-active-scale)</td>
+                    <td>The values used for a sligth scale transfrom when active - uses the shared component variable.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
+        <p>
+            The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
+            by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
+        </p>
+
+        <table aria-labelledby="unmapped-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-toggle-tip-trigger-label-text</td>
+                    <td>inherit</td>
+                    <td>The font colour of the label text - <b>no shared component variable so uses a unit value directly.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-trigger-label-font-family</td>
+                    <td>inherit</td>
+                    <td>The Font-family - <b>no shared component variable so uses a unit value directly.</b></td>
+                </tr>
+                <tr>
+                    <td>-br-comp-toggle-tip-trigger-label-font-size</td>
+                    <td>inherit</td>
+                    <td>The font size of the label text - <b>no shared component variable so uses a unit value directly.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-trigger-label-font-weight</td>
+                    <td>inherit</td>
+                    <td>The font weight of the label text - <b>no shared component variable so uses a unit value directly.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-trigger-colour</td>
+                    <td>inherit</td>
+                    <td>The colour of the icon - <b>no shared component variable so uses a unit value directly.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-trigger-border-radius</td>
+                    <td>var(--br-unit-radius-2)</td>
+                    <td>The border radious of the icon button - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-trigger-outline-width</td>
+                    <td>var(--br-unit-border-3)</td>
+                    <td>The outline width - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--svg-information-icon</td>
+                    <td> url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10m0-2a8 8 0 1 0 0-16a8 8 0 0 0 0 16M11 7h2v2h-2zm0 4h2v6h-2z'/%3E%3C/svg%3E");</td>
+                    <td>The svg icon used - <b>no shared component variable</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-pane-surface-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The border width - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-pane-surface-border-radius</td>
+                    <td> var(--br-unit-radius-7)</td>
+                    <td>The border radius of each corner - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-pane-surface-box-shadow</td>
+                    <td>var(--br-unit-box-shadow-1)</td>
+                    <td>A box shadow around the popober - <b>no shared component variable so use a unit value directly.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-area-content-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The size of the font - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-toggle-tip-area-content-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The border width - <b>does not use the shared variable.</b></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </section>
+
+</section>
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Toggletip}/{GlobalValues.Common_Page_Path_Accessibility}")">
         <span aria-hidden="true"></span>

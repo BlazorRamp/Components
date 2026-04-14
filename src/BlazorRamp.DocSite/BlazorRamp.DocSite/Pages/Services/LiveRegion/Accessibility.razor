@@ -5,6 +5,17 @@
 <h1>@GlobalValues.Service_Name_Live_Region @GlobalValues.Common_Page_Title_Accessibility</h1>
 
 
+<h2 id="screen-reader-quirks" class="@GlobalValues.Info_Box_Heading_Class">Screen reader quirks or known issues</h2>
+<ul aria-labelledby="screen-reader-quirks">
+    <li>
+        <b>macOS/iPhone</b> paired with <b>Safari.</b> When tested via the Busy Indicator component. The first of two messages got clipped when there was only a 1 second delay between the messages.
+        All other screen reader browser pairing that I tested handled this short delay, not that I would advise using such a short delay between messages.
+        <p>
+            <strong>Note:</strong> I currently have no plans on addressing this as its more of an edge case and the messages can be read in full from using the announcement history dialog.
+        </p>
+    </li>
+</ul>
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Services}/{GlobalValues.Serivce_Path_Part_Live_Region}/{GlobalValues.Common_Page_Path_Installation}")">
         <span aria-hidden="true"></span>

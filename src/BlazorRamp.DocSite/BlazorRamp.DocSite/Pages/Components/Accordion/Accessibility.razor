@@ -4,6 +4,44 @@
 
 <h1>@GlobalValues.Component_Name_Accordion @GlobalValues.Common_Page_Title_Accessibility</h1>
 
+<p>
+
+</p>
+
+<h2 id="accordion-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
+<ul aria-labelledby="accordion-keyboard">
+    <li>
+        <kbd>Tab</kbd> - when focus moves into the accordion, places focus onto the the first or last accordion item heading / button.
+        <br />When the accordion item is expanded focus moves to the first focusable element within the accordion panel or focus is set on the panel itself.
+        <br />When the accordion item is collapsed focus moves to the next accordion heading or off the accordion going to the next focusable element on the page.
+    </li>
+    <li><kbd>Shift + Tab</kbd> reverses tab direction. See above.</li>
+    <li><kbd>Up Arrow</kbd> - moves focus to the previous accordion heading. If the focus is on the first heading, moves focus to the last heading.</li>
+    <li><kbd>Down Arrow</kbd> - moves focus to the next accordion heading. If the focus is on the last tab, moves focus to the first heading.</li>
+    <li><kbd>Space or Enter</kbd> - expands or collapses the selected accordion item.</li>
+    <li><kbd>Home</kbd> - moves focus to the first according heading.</li>
+    <li><kbd>End</kbd> - moves focus to the last accordiong heading.</li>
+</ul>
+
+
+
+<h3 id="screen-reader-quirks" class="@GlobalValues.Info_Box_Heading_Class">Screen reader quirks or known issues</h3>
+<ul aria-labelledby="screen-reader-quirks">
+    <li>
+        <b>Narrator</b> more often than not will not announce that the accordion item has been expanded after clicking the heading when
+        paried with either Edge or Chrome, but is fine when paired with Firefox.
+    </li>
+    <li>
+        <b>NVDA</b> on all browsers. When in Browse mode on clicking a collapsed accordion header it will announce that its expanded, twice.
+        In Focus mode it works as expected.
+    </li>
+    <li>
+        <b>JAWS</b> paired with Firefox will sometimes repeat accordion heading names and actions, expanded/collapsed.
+    </li>
+    <li>
+        <b>VoiceOver</b> on the macOS paired with Safari seems to stutter on expanding accordion items.
+    </li>
+</ul>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Installation}")">

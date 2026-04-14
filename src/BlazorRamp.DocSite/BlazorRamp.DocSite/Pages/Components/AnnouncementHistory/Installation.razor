@@ -5,6 +5,98 @@
 <h1>@GlobalValues.Component_Name_Announcement @GlobalValues.Common_Page_Title_Installation</h1>
 
 
+
+
+<section class="info-box" aria-labelledby="release-history">
+
+    <h2 id="release-history">Release history</h2>
+
+    <ol reversed>
+        <li>
+            <h3>
+                Version 1.0.7 — <time datetime="2026-02-28">February 28, 2026</time>
+            </h3>
+            <ul>
+                <li>
+                    Change to how the CSS resolves the included Roboto font file to avoid issues if including polyfills such as oddbird's css anchor positioning polyfill.
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h3>
+                Version 1.0.6 — <time datetime="2026-02-14">February 14, 2026</time>
+            </h3>
+            <ul>
+                <li>
+                    Change to the script file to stop an edge case issue with the modal dialog framework that did not toggle the open state of the announcement history dialog correctly.
+                    Just made the previous patch more robust.
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h3>
+                Version 1.0.5 — <time datetime="2026-02-13">February 13, 2026</time>
+            </h3>
+            <ul>
+                <li>
+                    Amended the Core script file to stop an edge case issue with the modal dialog framework that did not toggle the open state of the announcement history dialog correctly.
+                    This meant clicking twice on the alert button to open it
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h3>
+                Version 1.0.4 — <time datetime="2026-02-10">February 10, 2026</time>
+            </h3>
+            <ul>
+                <li>
+                    Updated the script file so it that works with nested dialogs in preparation for the modal dialog framework. On the close of a dialog if there is another still
+                    open the announcement dialog and live regions will move to it.
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h3>
+                Version 1.0.3 — <time datetime="2026-02-05">February 05, 2026</time>
+            </h3>
+            <ul>
+                <li>
+                    Added an additional css variable to the core package required by the switch, and amended two
+                    unused variable values.
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h3>
+                Version 1.0.2 — <time datetime="2026-02-01">February 02, 2026</time>
+            </h3>
+            <ul>
+                <li>
+                    Resolved JSDisconnectedException in the live region service disposal that could appear when debugging
+                    when quickly switching between server and wasm
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h3>
+                Version 1.0.1 — <time datetime="2026-02-01">February 01, 2026</time>
+            </h3>
+            <ul>
+                <li>Added additional target support for <span class="code-span">.NET 9.0 & .NET10.0</span></li>
+            </ul>
+        </li>
+        <li>
+            <h3>
+                Version 1.0.0 — <time datetime="2026-01-25">January 25, 2026</time>
+            </h3>
+            <ul>
+                <li>Initial release part of the <span class="code-span">BlazorRamp.Core v1.0.0</span> NuGet package, only targeting <span class="code-span">.NET 8.0</span></li>
+            </ul>
+        </li>
+    </ol>
+
+</section>
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Announcement}/{GlobalValues.Common_Page_Path_Overview}")">
         <span aria-hidden="true"></span>

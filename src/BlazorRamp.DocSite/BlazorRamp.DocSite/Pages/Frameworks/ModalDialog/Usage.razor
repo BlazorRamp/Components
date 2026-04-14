@@ -5,6 +5,89 @@
 <h1>@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Usage</h1>
 
 
+
+<p>
+    This page assumes you have read up to the start of the previous Modal Dialog page so you understand how to set things up and the capabilities of the dialog framework.
+</p>
+<p>
+    For this example we will fake a common scenario:
+    <ol>
+        <li>
+            We want an accessible modal popup form that makes all content beneath inert so it is inaccessible to all users whilst the user is completing the form.
+        </li>
+        <li>
+            We want to pass the data into the popup form that the user can then edit.
+        </li>
+        <li>
+            If the user presses the escape key (an accessible requirement) whilst the form is dirty, we want to ask the user for confirmation as they will lose their changes without saving.
+        </li>
+        <li>
+            At any level for nested dialogs the user should be able to use the announcement history dialog either via the alerts button (which I keep visible, but it can be hidden
+            <span class="code-span">:focus-visible</span> ) or via the shortcut key.
+        </li>
+        <li>
+            Pressing the escape key whilst the announcement history dialog is open should only close that, otherwise the top nested dialog should be closed or confirmation requested
+            dependent on the state of the form.
+        </li>
+        <li>
+            We want the result of the process. Either the user cancelled the process or the data was saved. If the data was saved we want the refreshed view data (from the api) to be
+            returned in the OK result.
+        </li>
+    </ol>
+</p>
+<p>
+    <strong>Note: </strong>For accessibility, if the user cancels any dialog via the escape key then the focus must be returned to the triggering element.
+</p>
+
+<p>
+    As this site just uses Blazor WASM it only needs a single instance of the <span class="code-span">&lt;ModalDialogContainer /&gt; </span> which I placed next to the
+    <span class="code-span">&lt;Router /&gt;</span> component.
+</p>
+<p>
+    <b>Don't forget: </b> The framwork handles the infrastructure, you provide your styled component as the window is just a blank canvas (with <span class="code-span">:focus-visible </span> indicator).
+    These dialog stylings are just
+    for the demo. The inital popup form has had its options set so it has a maximum width of 70vh, positioned top center. The confirmation dialog has had it options set to have
+    a maximum width of 50vh positioned centre centre (see the code below).
+</p>
+<section class="info-box info-box--container-test">
+    <button @ref="ButtonRef" class="test-button" @onclick="ShowDialog">Show the Popup Form</button>
+
+    @if (_outputVisible)
+    {
+        <p style="margin-top:2rem;">
+            <b>The result: </b> @_outputMessage
+        </p>
+    }
+</section>
+
+<p>
+    The code below shows all the code used and it should be fairly explanatory, but I am always lurking on Reddit if you need help.
+</p>
+<p>
+    The code that launches our form component <span class="code-span">&lt;SomeForm /&gt;</span>. The form component only has one parameter for the data but it can have as many as you need, it's just a regular component.
+</p>
+<p>
+    All the code does is set the dialog options to have our dialog window placed top centre, pass the data to it for its parameter and await the results. Once the result is returned
+    it updates the output message to display on screen and sets the focus back to the trigger button.
+
+</p>
+
+<CodeBox CodeBlock="@CodeSnippets.Modal_Dialog_Starting" AriaLabel="Showing the popup dialog form" />
+
+<p>
+    The code for the form component, <span class="code-span">&lt;SomeForm /&gt;</span>, shown next, just registers to be notified when the escape key has been pressed for its dialog and can then decide what to do. If you do not provide a handler the
+    default escape key action will occur and the form will close with a cancelled result.
+</p>
+
+<CodeBox CodeBlock="@CodeSnippets.Modal_Dialog_Some_Form" AriaLabel="Code for the some form component" />
+
+<p style="margin-top:var(--br-unit-space-7);">
+    The code for the confirmation dialog component, <span class="code-span">&lt;ConfirmationDialog /&gt;</span> below, again registers a handler for the escape key, and returns either a Cancelled or an Ok
+    result to the caller.
+</p>
+
+<CodeBox CodeBlock="@CodeSnippets.Modal_Dialog_Confirmation_Form" AriaLabel="Code for the confirmation dialog" />
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Api}")">
         <span aria-hidden="true"></span>
@@ -17,6 +100,40 @@
         <span aria-hidden="true"></span>
     </a>
 </div>
+
 @code {
 
+    private ElementReference ButtonRef { get; set; }
+
+    private bool _outputVisible = false;
+
+    private string _outputMessage = String.Empty;
+    private string _location = String.Empty;
+
+    public async Task ShowDialog()
+    {
+        _outputVisible = false;
+        SomePersonData somePersonData = new("John", "Doe", 42, "United Kingdom");
+
+        var dialogOptions = new ModalDialogOptions(HorizontalAlignment.Centre, VerticalAlignment.Top);
+        var dialogParameters = new ModalDialogParameters<SomeForm>();
+
+        dialogParameters.Add(x => x.SomePersonData, somePersonData);//The parameter/type and the data
+
+        var dialogResult = await _dialogService.ShowDialog<SomeForm>(dialogParameters, dialogOptions);
+
+        if (dialogResult.ButtonClicked == DialogResultButtons.Ok)
+        {
+            _outputMessage = "The data returned was:" + dialogResult.Data.ToString();
+        }
+        else
+        {
+            _outputMessage = "The operation was cancelled.";
+        }
+        _outputVisible = true;
+        await ButtonRef.FocusAsync();
+    }
 }
+
+
+

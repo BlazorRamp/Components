@@ -5,6 +5,554 @@
 <h1>@GlobalValues.Component_Name_Accordion @GlobalValues.Common_Page_Title_Api</h1>
 
 
+
+
+<section class="code-table">
+
+    <h2 id="accordion-component-parameters" class="code-table__heading">Accordion component (parent) parameters</h2>
+
+    <table aria-labelledby="accordion-component-parameters">
+
+        <thead>
+            <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ChildContent</td>
+                <td>RenderFragment?</td>
+                <td>
+                    The render fragment used for the child content (for each AccordionItem).
+                </td>
+            </tr>
+            <tr>
+                <td>ExpandMode</td>
+                <td>ExpandMode (enum)?</td>
+                <td>
+                    Gets or sets the expand mode controlling whether one or multiple panels can be
+                    open simultaneously. Defaults to <span class="code-span">ExpandMode.Multiple</span>.
+                </td>
+            </tr>
+            <tr>
+                <td>HeadingLevel</td>
+                <td>HeadingLevel (enum)</td>
+                <td>
+                    Gets or sets the semantic heading level rendered for each accordion item trigger.
+                    Defaults to <span class="code-span">HeadingLevel.H3</span>.
+                </td>
+            </tr>
+
+            <tr>
+                <td>OnAccordionItemHeadingClicked</td>
+                <td>EventCallback&lt;ItemHeadingData&gt;</td>
+                <td>
+                    Gets or sets the callback invoked when an accordion item heading is clicked,
+                    providing an <span class="code-span">ItemHeadingData</span> payload containing the item index,
+                    heading text, and expanded state.
+                </td>
+            </tr>
+            <tr>
+                <td>AdditionalAttributes</td>
+                <td>Dictionary&lt;string, object&gt;?</td>
+                <td>Sets additional attributes applied to the component's root element.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 id="accordion-component-methods" class="code-table__heading">Accordion component methods</h2>
+
+    <table aria-labelledby="accordion-component-methods">
+
+        <thead>
+            <tr>
+                <th scope="col">Return</th>
+                <th scope="col">Method</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Task</td>
+                <td>ExpandAllPanels()</td>
+                <td>
+                    Expands all accordion panels irrespective of the <span class="code-span">ExpandMode</span>.
+                </td>
+            </tr>
+            <tr>
+                <td>Task</td>
+                <td>CollapseAllPanels()</td>
+                <td>
+                    Collapses all accordion panels.
+                </td>
+            </tr>
+            <tr>
+                <td>Task</td>
+                <td>ExpandPanel(int index, bool codeFocused = false)</td>
+                <td>
+                    Expands the accordion panel at the specified zero-based index.
+                    <br />In <span class="code-span">ExpandMode.Single</span>, all other panels are collapsed first.
+                    <br />Does nothing if the index is out of range.
+                    Setting the <span class="code-span">codeFocused</span> argument to <span class="code-span">true</span>
+                    programmatically moves focus to the trigger button (accordion heading) and applies a style that mimics
+                    <span class="code-span">:focus-visible</span>. The default of <span class="code-span">false</span> only
+                    expands the panel without moving focus.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 id="accordion-item-component-parameters" class="code-table__heading">AccordionItem component (child) parameters</h2>
+
+    <table aria-labelledby="accordion-item-component-parameters">
+
+        <thead>
+            <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>PanelContent</td>
+                <td>RenderFragment?</td>
+                <td>
+                    The content for accordion items panel.
+                </td>
+            </tr>
+            <tr>
+                <td>HeadingText</td>
+                <td>string</td>
+                <td>
+                    Gets or sets the visible label for the accordion trigger button, which is the contest for the heading. Also used as the
+                    accessible name. This parameter is required and cannot be null, empty, or whitespace.
+                </td>
+            </tr>
+            <tr>
+                <td>PanelIsRegion</td>
+                <td>bool</td>
+                <td>
+                    Gets or sets a value indicating whether the panel element is given a <span class="code-span">role="region"</span>, making it
+                    a landmark navigable by screen readers. <strong>
+                    Only set to true when the panel contains sufficiently important content to
+                    warrant landmark navigation.
+                </strong> Defaults to <span class="code-span">false"</span>.
+            </td>
+        </tr>
+        <tr>
+            <td>Expanded</td>
+            <td>bool</td>
+            <td>
+                Gets or sets a value indicating whether the panel is expanded or collapsed.
+                Supports two-way binding via <span class="code-span">ExpandedChanged</span>. Defaults to <span class="code-span">false</span>.
+            </td>
+        </tr>
+        <tr>
+            <td>ExpandedChanged</td>
+            <td>EventCallback&lt;bool&gt;</td>
+            <td>
+                Gets or sets the callback invoked when the expanded state changes, supporting
+                two-way binding with <span class="code-span">@@bind-Expanded</span>.
+            </td>
+        </tr>
+
+        <tr>
+            <td>PanelHasTabIndex</td>
+            <td>bool</td>
+            <td>
+                Gets or sets a value indicating whether <span class="code-span">tabindex="0"</span> is applied to the
+                accordion panel, enabling keyboard focus and arrow key scrolling if the panel has a constrained height. Defaults to <span class="code-span">true</span>.
+            </td>
+        </tr>
+        <tr>
+            <td>PersistContent</td>
+            <td>bool</td>
+            <td>
+                Determine whether the accordion item panel content is retained in the DOM when the accordion itme is collapsed. Defaults to
+                <span class="code-span">false</span>.
+            </td>
+        </tr>
+        <tr>
+            <td>SvgIcon</td>
+            <td>string?</td>
+            <td>
+                Optional, the name of the css svg variable. As its a css variable it must start with a double dash (--).
+                The airplane icon used in the example above has the name --svg-airplane-icon. <br />
+                The details in the :root pseudo-class is: --svg-airplane-icon: url("data:image/svg+xml,%3Csvg . . .
+            </td>
+        </tr>
+    </tbody>
+</table>
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting enums</h2>
+
+    <section class="code-table">
+
+        <h3 id="Headinglevel-enum" class="code-table__heading">HeadingLevel enum</h3>
+
+        <table aria-labelledby="Headinglevel-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2</td>
+                    <td>H2</td>
+                    <td>Renders the trigger inside <span class="code-span">&lt;h2&gt;</span> element.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>H3</td>
+                    <td>Renders the trigger inside <span class="code-span">&lt;h3&gt;</span> element.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>H4</td>
+                    <td>Renders the trigger inside <span class="code-span">&lt;h4&gt;</span> element.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>H5</td>
+                    <td>Renders the trigger inside <span class="code-span">&lt;h5&gt;</span> element.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>H6</td>
+                    <td>Renders the trigger inside <span class="code-span">&lt;h6&gt;</span> element.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="expandmode-enum" class="code-table__heading">ExpandMode enum</h3>
+
+        <table aria-labelledby="expandmode-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Single</td>
+                    <td>Only one panel can be open at a time. Opening a panel collapses all others.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Multiple</td>
+                    <td>Any number of panels can be open at the same time.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting models</h2>
+
+    <section class="code-table two-col-descriptive">
+
+        <h3 id="itemheadingdata-parameters" class="code-table__heading">ItemHeadingData class</h3>
+
+        <table aria-labelledby="itemheadingdata-parameters">
+
+            <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Property</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>int</td>
+                    <td>ItemIndex</td>
+                    <td>The zero-based index of the accordion item that was clicked</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>HeadingText</td>
+                    <td>he heading text of the accordion item that was clicked.</td>
+                </tr>
+                <tr>
+                    <td>IsExpanded</td>
+                    <td>bool</td>
+                    <td>if the panel is expanded after the click.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Setting component parameters</h2>
+
+    <p>
+        Example, taken from the Accordion towards the top of the page. The example uses <span class="code-span">ExpandMode.Muliple</span>
+        so all panels can be expanded. The example does not bind to any of the accordions items <span class="code-span">Expanded</span> parameter
+        as unlike the Tabs component that requires a single index to be bound, the accordion can be used without any bindings.
+    </p>
+    <p>The code below is from the exmaple towards the top of the page, excluding all of its render fragment content for brevity.</p>
+
+    <CodeBox CodeBlock="@CodeSnippets.Accordion_Setting_Parameters_Example" AriaLabel="Accordion setting paramaters code example" />
+
+</section>
+<section>
+    <h2 class="page-heading">CSS variables defined for the accordion component.</h2>
+
+    <p>
+        The following sections outline all of the css variables that can be set to alter the styling of the Accordion component.
+        You can of course also override its style classes directly.
+    </p>
+
+    <section class="code-table">
+
+        <h3 id="outline-misc-variables" class="code-table__heading">Accordion heading/accordion item panel outline/miscellaneous variables</h3>
+        <p>
+            There are focus indicators (outlines) applied using <span class="code-span">:focus-visible</span> for the Accordion heading
+            and for the actual accordion item panels if it uses <span class="code-span">tabindex=0</span>
+        </p>
+        <table aria-labelledby="outline-misc-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-accordion-outline-style</td>
+                    <td>var(--br-comp-all-outline-style)</td>
+                    <td>The style of the outline - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-outline-width</td>
+                    <td>var(--br-comp-all-outline-width)</td>
+                    <td>The outline colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-outline-offset</td>
+                    <td>0px</td>
+                    <td>The outline offest - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-outline-colour</td>
+                    <td>var(--br-comp-all-outline-colour)</td>
+                    <td>The outline colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-selected-hover</td>
+                    <td>var(--br-comp-all-selection-colour)</td>
+                    <td>The background colour on hover of a selected tab - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-hover</td>
+                    <td>var(--br-comp-all-link-hover-background-colour)</td>
+                    <td>
+                        The background colour on hover of an unselected accordion header - uses the shared component variable.
+                        <strong>Note:</strong> According headings are buttons not links, but this exisiting css variable was suitable.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section class="code-table">
+
+        <h3 id="accordion-header-variables" class="code-table__heading">Header area variables</h3>
+        <table aria-labelledby="accordion-header-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-accordion-area-header-background</td>
+                    <td>inherit</td>
+                    <td>The backgound colour of the accordiong headding - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-header-text</td>
+                    <td>var(--br-comp-all-area-header-text)</td>
+                    <td>The text colour used for the according headings and icons - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-header-font-family</td>
+                    <td>var(--br-comp-all-area-header-font-family)</td>
+                    <td>The font family used - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-header-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The size of the accordion heading font - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-header-font-weight</td>
+                    <td>var(--br-comp-all-area-header-font-weight)</td>
+                    <td>The font weight - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-header-line-height</td>
+                    <td>var(--br-comp-all-area-header-line-height)</td>
+                    <td>The line height - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-header-border-style</td>
+                    <td>var(--br-comp-all-area-header-border-style)</td>
+                    <td>The border style - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-header-border-colour</td>
+                    <td>var(--br-comp-all-divider-colour)</td>
+                    <td>The colour of the bottom border which forms the dividing line between the accordion heading and its panel content - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-header-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The border width - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-header-border-radius</td>
+                    <td>var(--br-comp-all-area-header-border-radius)</td>
+                    <td>The radius applied to each border corner - uses the shared component variable.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="accordion-content-area-variables" class="code-table__heading">Content area (accordion item panel) variables</h3>
+
+        <table aria-labelledby="accordion-content-area-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-accordion-area-content-background</td>
+                    <td>var(--br-comp-all-area-content-background)</td>
+                    <td>The backgound colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-content-text</td>
+                    <td>var(--br-comp-all-area-content-text)</td>
+                    <td>The text/content colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-content-font-family</td>
+                    <td>var(--br-comp-all-area-content-font-family)</td>
+                    <td>The font family - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-content-font-size</td>
+                    <td>var(--br-comp-all-area-content-text)</td>
+                    <td>The font size - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-content-font-weight</td>
+                    <td>var(--br-comp-all-area-content-font-weight)</td>
+                    <td>The font weight - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-content-line-height</td>
+                    <td>var(--br-comp-all-area-content-line-height)</td>
+                    <td>The line height - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-content-border-style</td>
+                    <td>var(--br-comp-all-area-content-border-style)</td>
+                    <td>The border style - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-content-border-colour</td>
+                    <td>var(--br-comp-all-divider-colour)</td>
+                    <td>The colour of the bottom border which forms the dividing line between the panel content and next accordion heading - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-content-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The border width - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-content-border-radius</td>
+                    <td>var(--br-comp-all-area-content-border-radius)</td>
+                    <td>The radius applied to each border corner - uses the shared component variable.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
+        <p>
+            The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
+            by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
+        </p>
+
+        <table aria-labelledby="unmapped-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-accordion-outline-offset</td>
+                    <td>0px</td>
+                    <td>The outline offest - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-header-background</td>
+                    <td>inherit</td>
+                    <td>The backgound colour of the accordiong headding - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-accordion-area-header-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The border width - <b>does not use the shared variable.</b></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+</section>
+
+
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Accessibility}")">
         <span aria-hidden="true"></span>

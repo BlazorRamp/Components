@@ -5,6 +5,23 @@
 <h1>@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Overview</h1>
 
 
+<p>
+    The <span class="code-span">&lt;ModalDialogContainer /&gt;</span> component and the <span class="code-span">ModalDialogService</span> together make up a modal dialog framework that allow you to have your content placed within a an HTML dialog element, with the framework
+    taking care of all interactions with the HTML Dialog API.
+</p>
+<p>
+    This content is in the form of a standard blazor component and as such you just define your <span class="code-span">[Parameter]</span> properties as normal as the means of
+    passing data into your component. When you want to show your component in a dialog you just invoke the methods on the service providing it with the values for your component parameters.
+</p>
+<p>
+    The framework allows for nested dialogs and as it overrides the default HTML Dialog API escape key mechanism, via a subscription mechanism on the service, it gives you the ability
+    to close the dialog when the escape key is pressed, or perhaps open another dialog asking for confirmation if the current dialog was a pop up form with unsaved changes etc.
+</p>
+<p>
+    As the HTML dialog makes everything beneath it inert, this also makes any centralised aria live regions inert. However, the announcement history component and its associated live regions
+    react to dialog openings and are moved, so the live regions are always available via the live region service.
+</p>
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Toggletip}/{GlobalValues.Common_Page_Path_Usage}")">
         <span aria-hidden="true"></span>

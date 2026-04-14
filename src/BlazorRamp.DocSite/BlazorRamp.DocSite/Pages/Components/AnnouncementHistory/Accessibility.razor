@@ -5,6 +5,36 @@
 <h1>@GlobalValues.Component_Name_Announcement @GlobalValues.Common_Page_Title_Accessibility</h1>
 
 
+
+<h2 id="history-dialog-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
+<p>
+    The following key are used for both the alerts button and the announcement history dialog.
+</p>
+<h2 id="history-dialog-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Announcement history dialog keys</h2>
+<ul aria-labelledby="history-dialog-keyboard">
+    <li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd> - short cut keys to open the dialog.</li>
+    <li><kbd>Escape</kbd> - closes the dialog. Returns focus to the alerts button if opened with the button.</li>
+    <li><kbd>Tab</kbd> - moves focus to the next focusable item in the tab sequence.</li>
+    <li><kbd>Tab</kbd> <b>+</b> <kbd>Shift</kbd> - moves focus to the previous focusable item in the tab sequence.</li>
+    <li><kbd>Enter</kbd> - activates the focused button.</li>
+    <li><kbd>Space</kbd> - activates the focused button.</li>
+</ul>
+<p>
+    The dialog remains open, if focus is moved to an element outside of the dialog.
+    <strong>Note:</strong> Clicking outside of the dialog with the mouse closes the dialog.
+    
+</p>
+<p>
+    <b>Try it:</b> Click the Theme button (top right of the screen, really an aria switch) which uses the live region service, then use the short cut keys or click the alerts button at the bottom
+    right of the screen to see the entry made.
+</p>
+<h3 id="alert-button-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Alert button keys</h3>
+<ul aria-labelledby="alert-button-keyboard">
+    <li><kbd>Space</kbd> - when focus is on the button, opens the announcement history dialog.</li>
+    <li><kbd>Enter</kbd> - when focus is on the button, opens the announcement history dialog.</li>
+</ul>
+
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Announcement}/{GlobalValues.Common_Page_Path_Installation}")">
         <span aria-hidden="true"></span>

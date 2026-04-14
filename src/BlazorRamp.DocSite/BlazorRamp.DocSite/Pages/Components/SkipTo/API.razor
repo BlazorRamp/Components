@@ -5,6 +5,341 @@
 <h1>@GlobalValues.Component_Name_SkipTo @GlobalValues.Common_Page_Title_Api</h1>
 
 
+<section class="code-table">
+
+    <h2 id="skip-to-component-parameters" class="code-table__heading">SkipTo component parameters</h2>
+
+    <table aria-labelledby="skip-to-component-parameters">
+
+        <thead>
+            <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>SkipToText</td>
+                <td>string</td>
+                <td>The text displayed by the skip to link. Defaults to "Skip to content".</td>
+            </tr>
+            <tr>
+                <td>TargetID</td>
+                <td>string</td>
+                <td>The ID of the target element to move focus to. Defaults to "main-content".</td>
+            </tr>
+            <tr>
+                <td>SkipToType</td>
+                <td>SkipToType (enum)</td>
+                <td>
+                    Sets whether the skip link is positioned for the entire page or a specific section.
+                    Defaults to <span class="code-span">SkipToType.Site</span>.
+                </td>
+            </tr>
+            <tr>
+                <td>IconVisible</td>
+                <td>bool</td>
+                <td>Indicates whether to display the skip link icon (person running). Defaults to true. </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2 class="page-heading">Setting component parameters</h2>
+
+    <p>Example showing the parameters being set for the skip to link on this site.</p>
+
+    <CodeBox CodeBlock="@CodeSnippets.Skip_To_Params_Example" AriaLabel="Skip to example code block" />
+
+    <p>
+        For something that is site wide <span class="code-span">SkipToType.Site</span>, I just place the component inside the
+        <span class="code-span">Routes.razor</span> file or <span class="code-span">App.razor</span> file above the router with the
+        <span class="code-span">AnnouncementHistory</span> component.
+    </p>
+
+    <p>The following example is the skip to on this page using the <span class="code-span">SkipToType.Section</span></p>
+
+    <CodeBox CodeBlock="@CodeSnippets.Skip_To_Section_Example" AriaLabel="Skip to section example code block" />
+
+</section>
+
+<section>
+    <h2 class="page-heading">CSS variables defined for the skip to component.</h2>
+
+    <p>
+        The following sections outline all of the css variables that can be set to alter the styling of the skip to component.
+        You can of course also override its style classes directly.
+    </p>
+
+    <section class="code-table">
+
+        <h3 id="skip-to-outline-variables" class="code-table__heading">Skip to outline variables</h3>
+
+        <table aria-labelledby="skip-to-outline-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-skip-to-outline-style</td>
+                    <td>var(--br-comp-all-outline-style)</td>
+                    <td>Style of the outline around the component on focus - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-outline-width</td>
+                    <td>var(--br-comp-all-outline-width)</td>
+                    <td>Width of the outline - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-outline-offset</td>
+                    <td>var(--br-unit-outline-offset-0)</td>
+                    <td>Outline offset - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-outline-colour</td>
+                    <td>var(--br-comp-all-outline-colour)</td>
+                    <td>The outline colour - uses the shared component variable.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>
+            <strong>Note: </strong> Given that the Skip To is likely to be placed top left, there was more risk of contrast violations with an offset outline.
+            To simulate just the outline and its offset, a border is used that has the same colour as the canvas and then an outline is applied without an offset.
+        </p>
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="pane-surface-variables" class="code-table__heading">Pane surface variables</h3>
+
+        <table aria-labelledby="pane-surface-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-skip-to-pane-surface-background</td>
+                    <td>var(--br-unit-colour-canvas-inverted)</td>
+                    <td>The background colour of the surface pane - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-pane-surface-border-style</td>
+                    <td>var(--br-comp-all-area-header-border-style:)</td>
+                    <td>The border style - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-pane-surface-border-width</td>
+                    <td>var(--br-comp-all-outline-offset)</td>
+                    <td>
+                        The border width - <b>does not use the shared component variable</b> It uses the outline offset as its using
+                        an outline without an offset. In this instance the border is the acting as an offset.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-pane-surface-border-colour</td>
+                    <td>var(--br-unit-colour-canvas)</td>
+                    <td>The border colour - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-pane-surface-border-radius-top-right</td>
+                    <td>var(--br-unit-radius-5)</td>
+                    <td>The border radius of the top right corner - <b>no shared variable so uses the unit value directly.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-pane-surface-border-radius-top-left</td>
+                    <td>var(--br-unit-radius-5)</td>
+                    <td>The border radius of the top left corner - <b>no shared variable so uses the unit value directly.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-pane-surface-border-radius-bottom-right</td>
+                    <td>var(--br-unit-radius-5)</td>
+                    <td>The border radius of the bottom right corner - <b>no shared variable so uses the unit value directly.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-pane-surface-border-radius-bottom-left</td>
+                    <td>var(--br-unit-radius-5)</td>
+                    <td>The border radius of the bottom left corner - <b>no shared variable so uses the unit value directly.</b></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="content-area-variables" class="code-table__heading">Content area variables</h3>
+        <p>
+            The content area in the busy indicator is just for the optional text part.
+        </p>
+        <table aria-labelledby="content-area-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-skip-to-area-content-background</td>
+                    <td>var(--br-unit-colour-canvas-inverted)</td>
+                    <td>The background colour of the content areas - <b>does not use the shared component variable</b>.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-area-content-text</td>
+                    <td>var(--br-unit-colour-canvas-text-inverted)</td>
+                    <td>The text colour on the content area - <b>does not use the shared component variable</b>.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-area-content-font-family</td>
+                    <td>var(--br-comp-all-area-content-font-family)</td>
+                    <td>The font family used - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-area-content-font-weight</td>
+                    <td>var(--br-comp-al-area-content-font-weight)</td>
+                    <td>The font weight - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-area-content-font-size</td>
+                    <td>var(--br-comp-all-area-content-font-size)</td>
+                    <td>The font size - uses the shared component variable.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="misc-variables" class="code-table__heading">Miscellaneous variables</h3>
+
+        <table aria-labelledby="misc-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-skip-to-z-index</td>
+                    <td>999</td>
+                    <td>The z-index of the component - <b>No shared variable for this property.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-margin</td>
+                    <td>var(--br-unit-space-5)</td>
+                    <td>The margin all around the component - <b>No shared variable for this property.</b></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
+        <p>
+            The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
+            by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
+        </p>
+
+        <table aria-labelledby="unmapped-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-skip-to-outline-offset</td>
+                    <td>var(--br-unit-outline-offset-0)</td>
+                    <td>Outline offset - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-pane-surface-border-width</td>
+                    <td>var(--br-comp-all-outline-offset)</td>
+                    <td>
+                        The border width - <b>does not use the shared component variable</b> It uses the outline offset as its using
+                        an outline without an offset. In this instance the border is the acting as an offset.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-pane-surface-background</td>
+                    <td>var(--br-unit-colour-canvas-inverted)</td>
+                    <td>The background colour of the surface pane - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-pane-surface-border-colour</td>
+                    <td>var(--br-unit-colour-canvas)</td>
+                    <td>The border colour - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-pane-surface-border-radius-top-right</td>
+                    <td>var(--br-unit-radius-5)</td>
+                    <td>The border radius of the top right corner - <b>no shared variable so uses the unit value directly.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-pane-surface-border-radius-top-left</td>
+                    <td>var(--br-unit-radius-5)</td>
+                    <td>The border radius of the top left corner - <b>no shared variable so uses the unit value directly.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-pane-surface-border-radius-bottom-right</td>
+                    <td>var(--br-unit-radius-5)</td>
+                    <td>The border radius of the bottom right corner - <b>no shared variable so uses the unit value directly.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-pane-surface-border-radius-bottom-left</td>
+                    <td>var(--br-unit-radius-5)</td>
+                    <td>The border radius of the bottom left corner - <b>no shared variable so uses the unit value directly.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-area-content-background</td>
+                    <td>var(--br-unit-colour-canvas-inverted)</td>
+                    <td>The background colour of the content areas - <b>does not use the shared component variable</b>.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-area-content-text</td>
+                    <td>var(--br-unit-colour-canvas-text-inverted)</td>
+                    <td>The text colour on the content area - <b>does not use the shared component variable</b>.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-z-index</td>
+                    <td>999</td>
+                    <td>The z-index of the component - <b>No shared variable for this property.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-skip-to-margin</td>
+                    <td>var(--br-unit-space-5)</td>
+                    <td>The margin all around the component - <b>No shared variable for this property.</b></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+</section>
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_SkipTo}/{GlobalValues.Common_Page_Path_Accessibility}")">
         <span aria-hidden="true"></span>
