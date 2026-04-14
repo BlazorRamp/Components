@@ -27,79 +27,6 @@ public class GlobalValues
 
     public const int Start_Width_For_Collapsed_Menu = 576;
 
-
-    public const string Path_Overview_Introduction = "/";
-    public const string Path_Overview_Getting_Started = "/getting-started";
-    public const string Path_Overview_Accessibility = "accessibility";
-    public const string Path_Overview_Roadmap = "/roadmap";
-    public const string Path_Services_Live_Region = "/services/live-region";
-    public const string Path_Frameworks_Modal_Dialog = "/frameworks/modal-dialog";
-    public const string Path_Frameworks_Modal_Dialog_Using = "/frameworks/modal-dialog-using";
-    public const string Path_Components_Announcement_History = "/components/announcement-history";
-    public const string Path_Components_Busy_Indicator = "/components/busy-indicator";
-    public const string Path_Components_Skip_To = "/components/skip-to";
-    public const string Path_Components_Switch = "/components/switch";
-    public const string Path_Components_ToggleTip = "/components/toggle-tip";
-    public const string Path_Components_Tabs = "/components/tabs";
-    public const string Path_Components_Accordion = "/components/accordion";
-    public const string Path_Theming_Overview = "/theming/overview";
-    public const string Path_Theming_CSS_Base_Variables = "/theming/core-base-variables";
-    public const string Path_Theming_CSS_Unit_Variables = "/theming/core-unit-variables";
-    public const string Path_Theming_CSS_Colour_Variables = "/theming/core-colour-variables";
-    public const string Path_FAQs_Questions = "/faqs/questions";
-
-    public const string Page_Title_Overview_Introduction = "Overview - Introduction";
-    public const string Page_Title_Overview_Getting_Started = "Overview - Getting Started";
-    public const string Page_Title_Overview_Accessibility = "Overview - Accessibility";
-    public const string Page_Title_Overview_Roadmap = "Overview - Roadmap";
-    public const string Page_Title_Services_Live_Region = "Services - Live Regions";
-    public const string Page_Title_Frameworks_Modal_Dialog = "Frameworks - Modal Dialog";
-    public const string Page_Title_Frameworks_Modal_Dialog_Using = "Frameworks - Modal Dialog (using)";
-    public const string Page_Title_Components_Announcement_History = "Components - Announcement History";
-    public const string Page_Title_Components_Busy_Indicator = "Components - Busy Indicator";
-    public const string Page_Title_Components_Skip_To = "Components - Skip To";
-    public const string Page_Title_Components_Switch = "Components - Switch";
-    public const string Page_Title_Components_ToggleTip = "Components - Toggletip";
-    public const string Page_Title_Components_Tabs = "Components - Tabs";
-    public const string Page_Title_Components_Accordion = "Components - Accordion";
-    public const string Page_Title_Theming_Overview = "Theming - Overview";
-    public const string Page_Title_Theming_CSS_Base_Variables = "Theming - Core Base Variables";
-    public const string Page_Title_Theming_CSS_Unit_Variables = "Theming - Core Unit Variables";
-    public const string Page_Title_Theming_CSS_Colour_Variables = "Theming - Core Colour Variables";
-    public const string Page_Title_FAQs_Questions = "FAQs - Frequently Asked Questions";
-
-    public const string Page_Heading_Overview_Introduction = "Introduction";
-    public const string Page_Heading_Overview_Getting_Started = "Getting Started";
-    public const string Page_Heading_Overview_Accessibility = "Accessibility & Inclusivity";
-    public const string Page_Heading_Overview_Roadmap = "Roadmap";
-    public const string Page_Heading_FAQs_Questions = "Frequently Asked Questions";
-
-    public const string Page_Heading_Theming_Overview = "Overview";
-    public const string Page_Heading_Theming_CSS_Base_Variables = "Core Base CSS Variables";
-    public const string Page_Heading_Theming_CSS_Unit_Variables = "Core Unit CSS Variables";
-    public const string Page_Heading_Theming_CSS_Colour_Variables = "Core Colour CSS Variables";
-
-    public const string Page_Heading_Services_Live_Region = "Live Region Service";
-    public const string Page_Heading_Frameworks_Modal_Dialog = "Modal Dialog";
-    public const string Page_Heading_Frameworks_Modal_Dialog_Using = "Modal Dialog (using)";
-    public const string Page_Heading_Components_Announcement_History = "Announcement History";
-    public const string Page_Heading_Components_Busy_Indicator = "Busy Indicator";
-    public const string Page_Heading_Components_Skip_To = "Skip To";
-    public const string Page_Heading_Components_Switch = "Switch";
-    public const string Page_Heading_Components_ToggleTip = "Toggletip";
-    public const string Page_Heading_Components_Tabs = "Tabs";
-    public const string Page_Heading_Components_Accordion = "Accordion";
-
-    public const string Main_Nav_Section_Heading_About = "Overview";
-    public const string Main_Nav_Section_Heading_Theming = "Theming";
-    public const string Main_Nav_Section_Heading_Frameworks = "Frameworks";
-    public const string Main_Nav_Section_Heading_Services = "Services";
-    public const string Main_Nav_Section_Heading_Components = "Components";
-    public const string Main_Nav_Section_Heading_FAQs = "FAQs";
-
-
-
-
     public const string Main_Nav_Heading_Getting_Started = "Getting Started";
     public const string Main_Nav_Heading_Theming    = "Theming";
     public const string Main_Nav_Heading_Frameworks = "Frameworks";
@@ -166,6 +93,7 @@ public class GlobalValues
     public const string Framework_Name_Modal         = "Modal Dialog";
     public const string Framework_Path_Part_Modal   = "modal dialog";
 
+    public const string Getting_Started_Name = "Gettting Started";
     public const string Theming_Name = "Theming";
     public const string Faqs_Name    = "FAQ";
 

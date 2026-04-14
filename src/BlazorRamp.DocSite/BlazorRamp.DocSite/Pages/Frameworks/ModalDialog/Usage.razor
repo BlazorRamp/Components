@@ -1,4 +1,6 @@
-﻿@attribute [Route($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Usage}")]
+﻿@inject ModalDialogService _dialogService
+
+@attribute [Route($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Usage}")]
 
 <PageTitle>@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Usage</PageTitle>
 

@@ -3,6 +3,7 @@
 
     <h2 id="getting-started" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_Getting_Started</h2>
     <NavGroup AriaLabelledby="getting-started">
+        <NavSeparator />
         <NavGroupLink Href="@($"{GlobalValues.Root_path_Getting_Started}")" LinkText="@GlobalValues.Common_Page_Title_Introduction" />
         <NavGroupLink Href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Installation}")" LinkText="@GlobalValues.Common_Page_Title_Installation" />
         <NavGroupLink Href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Accessibility}")" LinkText="@GlobalValues.Common_Page_Title_Accessibility" />
@@ -64,8 +65,8 @@
     </NavGroup>
 
     <h2 id="framework-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_Frameworks</h2>
-
     <NavGroup AriaLabelledby="framework-section">
+        <NavSeparator />
         <NavSection Title="@GlobalValues.Framework_Name_Modal">
             <NavGroupLink Href="@($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Framework_Name_Modal" LinkText="@GlobalValues.Common_Page_Title_Overview" />
             <NavGroupLink Href="@($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Installation}")" VisuallyHiddenPrefix="@GlobalValues.Framework_Name_Modal" LinkText="@GlobalValues.Common_Page_Title_Installation" />
@@ -76,8 +77,8 @@
     </NavGroup>
 
     <h2 id="services-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_Services</h2>
-
-    <NavGroup AriaLabelledby="framework-section">
+    <NavGroup AriaLabelledby="services-section">
+        <NavSeparator />
         <NavSection Title="@GlobalValues.Service_Name_Live_Region">
             <NavGroupLink Href="@($"{GlobalValues.Root_path_Services}/{GlobalValues.Serivce_Path_Part_Live_Region}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Service_Name_Live_Region" LinkText="@GlobalValues.Common_Page_Title_Overview" />
             <NavGroupLink Href="@($"{GlobalValues.Root_path_Services}/{GlobalValues.Serivce_Path_Part_Live_Region}/{GlobalValues.Common_Page_Path_Installation}")" VisuallyHiddenPrefix="@GlobalValues.Service_Name_Live_Region" LinkText="@GlobalValues.Common_Page_Title_Installation" />
@@ -88,8 +89,8 @@
     </NavGroup>
 
     <h2 id="theming-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_Theming</h2>
-    
     <NavGroup AriaLabelledby="theming-section">
+        <NavSeparator />
         <NavSection Title="@GlobalValues.Theming_Name">
             <NavGroupLink Href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Theming_Name" LinkText="@GlobalValues.Common_Page_Title_Overview" />
             <NavGroupLink Href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_CSS_Variables}")" VisuallyHiddenPrefix="@GlobalValues.Theming_Name" LinkText="@GlobalValues.Common_Page_Title_Core_Variables" />
@@ -98,107 +99,10 @@
 
     <h2 id="faq-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_FAQs</h2>
     <NavGroup AriaLabelledby="faq-section">
-        <NavSection Title="@GlobalValues.Faqs_Name">
-            <NavGroupLink Href="@($"{GlobalValues.Root_path_FAQS}")" VisuallyHiddenPrefix="@GlobalValues.Faqs_Name" LinkText="@GlobalValues.Common_Page_Path_Questions" />
-        </NavSection>
+        <NavSeparator />
+         <NavGroupLink Href="@($"{GlobalValues.Root_path_FAQS}/{GlobalValues.Common_Page_Path_Questions}")" VisuallyHiddenPrefix="@GlobalValues.Faqs_Name" LinkText="@GlobalValues.Common_Page_Title_FAQ_Questions" />
     </NavGroup>
 
-
-
-
-
-    <h2 id="theming-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Theming</h2>
-    <ul aria-labelledby="theming-section">
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Theming_Overview" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Theming &nbsp;</span>@GlobalValues.Page_Heading_Theming_Overview
-            </NavLink>
-        </li>
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Theming_CSS_Base_Variables" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Theming &nbsp;</span>@GlobalValues.Page_Heading_Theming_CSS_Base_Variables
-            </NavLink>
-        </li>
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Theming_CSS_Unit_Variables" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Theming &nbsp;</span>@GlobalValues.Page_Heading_Theming_CSS_Unit_Variables
-            </NavLink>
-        </li>
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Theming_CSS_Colour_Variables" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Theming &nbsp;</span>@GlobalValues.Page_Heading_Theming_CSS_Colour_Variables
-            </NavLink>
-        </li>
-    </ul>
-    <h2 id="services-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Services</h2>
-    <ul aria-labelledby="services-section">
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Services_Live_Region" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Services &nbsp;</span>@GlobalValues.Page_Heading_Services_Live_Region
-            </NavLink>
-        </li>
-    </ul>
-    <h2 id="framework-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_Frameworks</h2>
-    <ul aria-labelledby="framework-section">
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Frameworks_Modal_Dialog" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Frameworks &nbsp;</span>@GlobalValues.Page_Heading_Frameworks_Modal_Dialog
-            </NavLink>
-        </li>
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Frameworks_Modal_Dialog_Using" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Frameworks &nbsp;</span>@GlobalValues.Page_Heading_Frameworks_Modal_Dialog_Using
-            </NavLink>
-        </li>
-    </ul>
-  
-    
-    @* 
-    <ul aria-labelledby="components-section">
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Components_Accordion" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Components &nbsp;</span>@GlobalValues.Page_Heading_Components_Accordion
-            </NavLink>
-        </li>
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Components_Announcement_History" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Components &nbsp;</span>@GlobalValues.Page_Heading_Components_Announcement_History
-            </NavLink>
-        </li>
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Components_Busy_Indicator" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Components &nbsp;</span>@GlobalValues.Page_Heading_Components_Busy_Indicator
-            </NavLink>
-        </li>
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Components_Skip_To" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Components &nbsp;</span>@GlobalValues.Page_Heading_Components_Skip_To
-            </NavLink>
-        </li>
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Components_Switch" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Components &nbsp;</span>@GlobalValues.Page_Heading_Components_Switch
-            </NavLink>
-        </li>
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Components_Tabs" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Components &nbsp;</span>@GlobalValues.Page_Heading_Components_Tabs
-            </NavLink>
-        </li>
-       <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_Components_ToggleTip" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_Components &nbsp;</span>@GlobalValues.Page_Heading_Components_ToggleTip
-            </NavLink>
-        </li>
-    </ul>
-    <h2 id="faq-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Section_Heading_FAQs</h2>
-    <ul aria-labelledby="faq-section">
-        <li>
-            <NavLink class="@GlobalValues.Main_Navigation_Link_Class" href="@GlobalValues.Path_FAQs_Questions" Match="NavLinkMatch.All">
-                <span class="br-visually-hidden">@GlobalValues.Main_Nav_Section_Heading_FAQs &nbsp;</span>@GlobalValues.Page_Heading_FAQs_Questions
-            </NavLink>
-        </li>
-    </ul> *@
 </nav>
 
 @code {

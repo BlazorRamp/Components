@@ -15,7 +15,7 @@
     to true so the content remains (hidded) in the DOM when the panels are collapsed.
 </p>
 <section class="section-box">
-    <h3 style="margin-bottom:var(--br-unit-space-9);">Lifestyle Accordion</h3>
+    <h2 style="margin-bottom:var(--br-unit-space-9);">Lifestyle Accordion</h2>
 
     <Accordion HeadingLevel="HeadingLevel.H3" ExpandMode="ExpandMode.Multiple" style="margin-bottom:var(--br-unit-space-7)">
         <AccordionItem HeadingText="Food" PanelHasTabIndex="true" PanelIsRegion="false" SvgIcon="--svg-food-icon">
@@ -52,9 +52,9 @@
 </section>
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Getting_Started}/{GlobalValues.Common_Page_Path_Roadmap}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_Frameworks - @GlobalValues.Page_Heading_Frameworks_Modal_Dialog_Using</span>
+        <span>@GlobalValues.Getting_Started_Name - @GlobalValues.Common_Page_Title_Roadmap</span>
         <span aria-hidden="true"></span>
     </a>
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Installation}")">
