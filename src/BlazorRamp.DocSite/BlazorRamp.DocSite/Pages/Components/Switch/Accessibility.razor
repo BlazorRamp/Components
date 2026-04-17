@@ -4,18 +4,43 @@
 
 <h1>@GlobalValues.Component_Name_Switch @GlobalValues.Common_Page_Title_Accessibility</h1>
 
+<p>
+    This Switch component was built following the W3C ARIA Authoring Practices Guide (APG). By adhering to standardised patterns, we ensure that the component
+    behaves predictably across different browsers and assistive technologies.
+</p>
 
 <h2 id="switch-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
-<ul aria-labelledby="switch-keyboard">
+<ul aria-labelledby="switch-keyboard" class="keyboard-list">
     <li><kbd>Space</kbd> - when focus is on the Switch, toggles the state of the switch.</li>
     <li><kbd>Enter</kbd> - when focus is on the Switch, toggles the state of the switch.</li>
 </ul>
 
-<h3 id="screen-reader-quirks" class="@GlobalValues.Info_Box_Heading_Class" style="margin-top:var(--br-unit-space-9);">Screen reader quirks or known issues</h3>
-<ul aria-labelledby="screen-reader-quirks">
-    <li><b>Narrator</b> paired with <b>Firefox</b> announces button on/off instead of switch on/off.</li>
+<p>
+    <strong>Note: </strong>These keyboard interactions are primarily aimed at keyboard-only users. Screen reader users will often navigate differently using their assistive technology's
+    built-in commands, though the patterns also apply when a screen reader is operating in interaction mode.
+</p>
+
+<h2 id="device-testing" class="info-box__heading">Accessibility device testing</h2>
+
+<ul aria-labelledby="device-testing">
+    <li>JAWS, Narrator and NVDA on Windows were each paired with every one of the following browsers: Google Chrome, Microsoft Edge and Mozilla Firefox.</li>
+    <li>VoiceOver on macOS was paired with Apple's Safari.</li>
+    <li>VoiceOver on iPhone was paired with mobile Safari.</li>
+    <li>Talkback on Android was paired with mobile Google Chrome.</li>
+    <li>Voice access on Windows 11</li>
 </ul>
 
+<p>
+    <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were availabale at the time of testing (see release history on the installation page for approximate testing dates)
+</p>
+
+<h3 id="screen-reader-quirks" class="@GlobalValues.Info_Box_Heading_Class">Screen reader quirks or known issues</h3>
+<ul aria-labelledby="screen-reader-quirks" class="quirks-list">
+    <li><b>Narrator</b> paired with <b>Firefox</b> announces button on/off instead of switch on/off.</li>
+</ul>
+<p>
+    <strong>Note: </strong> The same quirks were also noted on the APG example.
+</p>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Switch}/{GlobalValues.Common_Page_Path_Installation}")">

@@ -5,7 +5,13 @@
 <h1>@GlobalValues.Component_Name_Announcement @GlobalValues.Common_Page_Title_Overview</h1>
 
 <p>
-    The Announcement History component is part of the BlazorRamp.Core NuGet package and allows the user to view a rolling list of the 20 announcement made via the live region service.
+    The Announcement History component is part of the BlazorRamp.Core NuGet package and allows the user to view a rolling list of the 20 announcement made via a live region service
+    which populate a hidden page element that is marked with the ARIA live attribute.
+</p>
+<p>
+    An ARIA live region is a designated area of a page that assistive technologies such as screen readers monitor for changes. When content within a live region is updated dynamically, 
+    the change is automatically announced to the user without them needing to navigate to that part of the page. This makes live regions particularly useful for communicating status messages, 
+    notifications, alerts, and other time-sensitive information that appears outside of the user's current focus.
 </p>
 <p>
     This component was primarily designed for screen reader users, as transient announcements made via live regions cam be misheard or get clipped by the screen reader, and thus provides

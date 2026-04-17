@@ -3,10 +3,13 @@
 <PageTitle>@GlobalValues.Component_Name_Tabs @GlobalValues.Common_Page_Title_Accessibility</PageTitle>
 
 <h1>@GlobalValues.Component_Name_Tabs @GlobalValues.Common_Page_Title_Accessibility</h1>
-
+<p>
+    This Tabs component was built following the W3C ARIA Authoring Practices Guide (APG). By adhering to standardised patterns, we ensure that the component
+    behaves predictably across different browsers and assistive technologies.
+</p>
 
 <h2 id="tabs-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
-<ul aria-labelledby="tabs-keyboard">
+<ul aria-labelledby="tabs-keyboard" class="keyboard-list">
     <li>
         <kbd>Tab</kbd> - when focus moves into the tab list, places focus on the active tab element
         <br />When the tab list contains the focus, moves focus to the next element in the page tab sequence outside the tablist, which is the
@@ -18,7 +21,24 @@
     <li><kbd>Home</kbd> - moves focus to the first tab.</li>
     <li><kbd>End</kbd> - moves focus to the last tab..</li>
 </ul>
+<p>
+    <strong>Note: </strong>These keyboard interactions are primarily aimed at keyboard-only users. Screen reader users will often navigate differently using their assistive technology's
+    built-in commands, though the patterns also apply when a screen reader is operating in interaction mode.
+</p>
 
+<h2 id="device-testing" class="info-box__heading">Accessibility device testing</h2>
+
+<ul aria-labelledby="device-testing">
+    <li>JAWS, Narrator and NVDA on Windows were each paired with every one of the following browsers: Google Chrome, Microsoft Edge and Mozilla Firefox.</li>
+    <li>VoiceOver on macOS was paired with Apple's Safari.</li>
+    <li>VoiceOver on iPhone was paired with mobile Safari.</li>
+    <li>Talkback on Android was paired with mobile Google Chrome.</li>
+    <li>Voice access on Windows 11</li>
+</ul>
+
+<p>
+    <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were availabale at the time of testing (see release history on the installation page for approximate testing dates)
+</p>
 
 <h3 id="screen-reader-quirks" class="@GlobalValues.Info_Box_Heading_Class">Screen reader quirks or known issues</h3>
 <ul aria-labelledby="screen-reader-quirks">
@@ -30,6 +50,10 @@
     <li><b>Narrator</b> on all browsers. When the tabs component uses automatic activation and you turn scan mode off enabling Narrator to use the supported keys, it announces the selected tab title twice.</li>
     <li><b>NVDA</b> on all browsers. When the tabs component uses automatic activation, althought NVDA switches automatically to focus mode and appears to only announce the select tab title once, in the speech viewer its listed twice.</li>
 </ul>
+
+<p>
+    <strong>Note: </strong> The same quirks were also noted on the APG example.
+</p>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tabs}/{GlobalValues.Common_Page_Path_Installation}")">

@@ -74,21 +74,21 @@
 
 </p>
 
-<CodeBox CodeBlock="@CodeSnippets.Modal_Dialog_Starting" AriaLabel="Showing the popup dialog form" />
+<CodeBox CodeBlock="@ModalSnippets.Modal_Dialog_Starting" AriaLabel="Showing the popup dialog form" />
 
 <p>
     The code for the form component, <span class="code-span">&lt;SomeForm /&gt;</span>, shown next, just registers to be notified when the escape key has been pressed for its dialog and can then decide what to do. If you do not provide a handler the
     default escape key action will occur and the form will close with a cancelled result.
 </p>
 
-<CodeBox CodeBlock="@CodeSnippets.Modal_Dialog_Some_Form" AriaLabel="Code for the some form component" />
+<CodeBox CodeBlock="@ModalSnippets.Modal_Dialog_Some_Form" AriaLabel="Code for the some form component" />
 
 <p style="margin-top:var(--br-unit-space-7);">
     The code for the confirmation dialog component, <span class="code-span">&lt;ConfirmationDialog /&gt;</span> below, again registers a handler for the escape key, and returns either a Cancelled or an Ok
     result to the caller.
 </p>
 
-<CodeBox CodeBlock="@CodeSnippets.Modal_Dialog_Confirmation_Form" AriaLabel="Code for the confirmation dialog" />
+<CodeBox CodeBlock="@ModalSnippets.Modal_Dialog_Confirmation_Form" AriaLabel="Code for the confirmation dialog" />
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Api}")">

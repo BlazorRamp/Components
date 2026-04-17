@@ -498,6 +498,18 @@ body #app__main {
   text-align: center;
 }
 
+.history-list {
+  margin-bottom: var(--br-unit-space-9);
+}
+
+.quirks-list {
+  margin-bottom: var(--br-unit-space-9);
+}
+
+.keyboard-list {
+  margin-bottom: var(--br-unit-space-9);
+}
+
 .main-navigation > ul {
   all: unset;
   box-sizing: border-box;

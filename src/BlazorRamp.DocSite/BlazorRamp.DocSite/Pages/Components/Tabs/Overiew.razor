@@ -7,23 +7,14 @@
 <p>
     Tabs is a simple component that organises content into separate sections (tab panels), each accessible via a clickable tab.
 </p>
-<p>
-    The component was built following the W3C ARIA Authoring Practices Guide (APG) tabs pattern and provides a fully keyboard navigable tabs component
-    with correct ARIA semantics, roving tabindex, and support for both automatic and manual (the default) panel activation.
-</p>
-<p>
-    As with all BlazorRamp components, it has been tested with multiple browser and screen reader pairings as well as voice control software.
-    Any quirks or issues found are documented below. Where applicable these have been verified against other implementations of the same pattern and
-    confirmed to be quirks/issues with the assistive technology rather than the component itself.
-</p>
 
 <p>
     Below is an example of the tabs component in a section with a heading of "Lifestyle Tabs" which is used to give the tabs an accessible name via the <span class="code-span">aria-labelledby</span> attribute.
     You can also set the component to use an <span class="code-span">aria-label</span> attribute when its not possible to use the <span class="code-span">aria-labelledby</span> attribute.
 </p>
 <p>
-    Given the quirks found with Narrator (see below) the default tab panel activation has been set to manual. In manual activation mode keyboard users navigate to the tab they are interested in and then activate
-    it as oposed to the tab panel just automatically being displayed on tab focus.
+The following example of the Tabs component has its <span class="code-span">AutoActivatePanel</span> parameter set to faise, which means when using the keyboard you first set focus on a tab using the 
+    <kbd>Left Arrow</kbd> or <kbd>Right Arrow</kbd> keys., and then use the <kbd>Enter or Space</kbd> key to activate it (show the panel);
 </p>
 
 <section class="section-box" style="margin-top:var(--br-unit-space-7);">

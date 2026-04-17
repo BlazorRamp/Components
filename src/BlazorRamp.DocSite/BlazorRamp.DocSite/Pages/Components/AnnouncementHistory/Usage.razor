@@ -2,33 +2,35 @@
 
 <PageTitle>@GlobalValues.Component_Name_Announcement @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Announcement @GlobalValues.Common_Page_Title_Usage . . . In Progess . . .</h1>
+<h1>@GlobalValues.Component_Name_Announcement @GlobalValues.Common_Page_Title_Usage</h1>
 
+<p>
+    The majority of the Announcment History dialogs parameter are for the text that appears for the heading and buttons. The only noteoworty parameters are
+    "TriggerText" which is the text that appears on the separate tiggering button (shown bottom right on each page) and the "TriggerVisible" parameter that
+    determins if this button is visible whilst not in focus.
+</p>
+<p>
+    All parameters have default values. The following examples shows all of the parameters being supplied with the default values.
+</p>
 
-<section>
-    <h2 class="page-heading">Setting component parameters</h2>
+<CodeBox CodeBlock="@AnnouncementHistorySnippets.Add_Configure_Announcement_History_Component" AriaLabel="Announcement History code block" />
 
-    <p>Example showing all of the parameters being set:</p>
-
-    <CodeBox CodeBlock="@CodeSnippets.Add_Configure_Announcement_History_Component" AriaLabel="Component parameter code block" />
-
-    <p>
-        The announcement history will display the following information as a single string entry separated by semi-colons for each
-        list item in its list, starting with the most recent announcement:
-    </p>
-    <ul>
-        <li>
-            The elapsed time since the announcement was made.
-        </li>
-        <li>The page title of the page where the announcement was made; blank if there was no page title.</li>
-        <li>The triggering element such as "Save Customer Button"; blank if the information was not provided.</li>
-        <li>The message provided.</li>
-    </ul>
-    <p>
-        The page title and triggering element provide context for the user, so I would ensure that your pages have titles and that you
-        provide the name of the triggering element such as "Save Customer Button".
-    </p>
-</section>
+<p>
+    The announcement history will display the following information as a single string entry separated by semi-colons for each
+    list item in its list, starting with the most recent announcement:
+</p>
+<ul>
+    <li>
+        The elapsed time since the announcement was made.
+    </li>
+    <li>The page title of the page where the announcement was made; blank if there was no page title.</li>
+    <li>The triggering element such as "Save Customer Button"; blank if the information was not provided.</li>
+    <li>The message provided.</li>
+</ul>
+<p>
+    The page title and triggering element provide context for the user, so please ensure that your pages have titles (also needed for WCAG) and that you
+    provide the name of the triggering element such as "Save Customer Button".
+</p>
 
 
 <div class="flex-content justify-content-between">

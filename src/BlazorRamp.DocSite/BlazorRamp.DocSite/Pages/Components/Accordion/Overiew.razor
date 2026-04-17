@@ -5,12 +5,15 @@
 <h1>@GlobalValues.Component_Name_Accordion @GlobalValues.Common_Page_Title_Overview</h1>
 
 <p>
-    The accordion is a component that displays a list of items where each item has a header (the trigger) and a content panel.
-    Clicking the header toggles the panel open or closed, showing or hiding the content beneath it
+    The accordion is a component that displays a list of items where each item has a header and a content panel.
+    Clicking the header expands or collapses ts associated panel.
 </p>
-
 <p>
-    Below is an example of the accordion component in a section with a heading of "Lifestyle Accordion". I have included heading icons (optional), and set the <span class="code-span">ExpandMode</span>
+    This implemenation of the Accordion pattern has options that allow you to expand or collapse multiple panels or configure it
+    to only allow only one panel be open at a time.
+</p>
+<p>
+    Below is an example of the accordion component in a section with a heading of "Lifestyle Accordion". I have included heading icons (which are optional), and set the <span class="code-span">ExpandMode</span>
     to mulitple which allows muliple panels to be open at the same time. I have also set the <span class="code-span">PersistContent</span> parameter
     to true so the content remains (hidded) in the DOM when the panels are collapsed.
 </p>

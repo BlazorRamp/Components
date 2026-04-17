@@ -3,9 +3,43 @@
 <PageTitle>@GlobalValues.Component_Name_Toggletip @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
 <h1>@GlobalValues.Component_Name_Toggletip @GlobalValues.Common_Page_Title_Usage . . . In Progess . . .</h1>
+<p>
+    Practical examples showing the Toggletip component configured with various parameters.
+</p>
+<p>
+    Example showing all of the parameters being set for the toggletip. Despite all paramerters having default values, you should set the label to a unique value for the toggletip/page.
+</p>
 
+<CodeBox CodeBlock="@ToggletipSnippets.Usage_Example" AriaLabel="Tabs setting paramaters code example" />
 
-<div class="flex-content justify-content-between">
+<p>
+    Set focus on and press enter or use your mosue to open the Keyboard Info Toggletip below:
+</p>
+<ToggleTip CloseText="Close Keyboard Info." Label="Keyboard info:" ShowClose="true" ShowLabel="true" ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" ToggleTipSize="ToggleTipSize.Small">
+    <h2 id="toggletip-demo" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
+    <ul aria-labelledby="toggletip-demo">
+        <li><kbd>Space</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
+        <li><kbd>Enter</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
+        <li><kbd>Escape</kbd> - closes the toggletip</li>
+    </ul>
+
+    <p>Lorem ipsum text below to force a scroll bar. The toggletip is responsive so if you do not see a scrollbar, just make your window narrower.</p>
+
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum massa, feugiat id sapien
+        non, egestas vestibulum dolor. Nulla luctus est ac urna imperdiet tristique. Vestibulum ante
+        ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent egestas massa
+        nec sem sagittis, at efficitur urna rutrum. Nunc et.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum massa, feugiat id sapien
+        non, egestas vestibulum dolor. Nulla luctus est ac urna imperdiet tristique. Vestibulum ante
+        ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent egestas massa
+        nec sem sagittis, at efficitur urna rutrum. Nunc et.
+    </p>
+</ToggleTip>
+
+<div class="flex-content justify-content-between" style="margin-top:2rem;">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Toggletip}/{GlobalValues.Common_Page_Path_Api}")">
         <span aria-hidden="true"></span>
         <span>@GlobalValues.Component_Name_Toggletip - @GlobalValues.Common_Page_Title_Api</span>

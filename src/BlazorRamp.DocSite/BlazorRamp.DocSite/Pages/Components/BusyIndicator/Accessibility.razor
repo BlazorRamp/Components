@@ -4,7 +4,43 @@
 
 <h1>@GlobalValues.Component_Name_Busy @GlobalValues.Common_Page_Title_Accessibility</h1>
 
+<p>
+    The Busy Indicator component was built with accessibility and usability in mind, ensuring that all users are informed when an action is in progress and notified when it completes.
+</p>
 
+<p>
+    <strong>Inert content: </strong> While the indicator is active, all content beneath it (excluding the trigger button) is made inert, preventing keyboard and assistive technology 
+    users from interacting with or navigating to elements that are temporarily unavailable.
+</p>
+
+<p>
+    <strong>Screen reader announcements: </strong> The component relies on the Live Region Service, part of the BlazorRamp.Core package, to communicate status to screen reader users. You are 
+    required to provide a message for the completion of the action (optional start message); these are dispatched to hidden ARIA live regions and announced automatically without the user needing 
+    to move their focus.
+</p>
+
+<p>
+    <strong>Reduced motion: </strong> Users who have the reduced motion preference enabled on their device will see a static hourglass instead of the animated spinning circle, respecting their 
+    system-level accessibility settings.
+</p>
+<p>
+    <strong>Note: </strong>These keyboard interactions are primarily aimed at keyboard-only users. Screen reader users will often navigate differently using their assistive technology's
+    built-in commands, though the patterns also apply when a screen reader is operating in interaction mode.
+</p>
+
+<h2 id="device-testing" class="info-box__heading">Accessibility device testing</h2>
+
+<ul aria-labelledby="device-testing">
+    <li>JAWS, Narrator and NVDA on Windows were each paired with every one of the following browsers: Google Chrome, Microsoft Edge and Mozilla Firefox.</li>
+    <li>VoiceOver on macOS was paired with Apple's Safari.</li>
+    <li>VoiceOver on iPhone was paired with mobile Safari.</li>
+    <li>Talkback on Android was paired with mobile Google Chrome.</li>
+    <li>Voice access on Windows 11</li>
+</ul>
+
+<p>
+    <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were availabale at the time of testing (see release history on the installation page for approximate testing dates)
+</p>
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Installation}")">
         <span aria-hidden="true"></span>

@@ -4,41 +4,39 @@
 
 <h1>@GlobalValues.Component_Name_Tabs @GlobalValues.Common_Page_Title_Installation</h1>
 
-<section>
-    <h2 class="page-heading">Installation</h2>
 
-    <p>
-        <strong>Note: </strong> It is a requirement that the Blazor Ramp Core <span class="code-span">core-live-region.js</span> script, <span class="code-span">LiveRegionService</span>, and
-        associated <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component are added alongside this component’s specific
-        requirements (a stylesheet reference in this instance). You do not need to add the BlazorRamp.Core package separately, as BlazorRamp.Core is included as a transitive package, you only need to add the packages that contain the components
-        that you wish to use i.e the <b>BlazorRamp.Tabs</b> NuGet package.
-    </p>
-    <p>
-        Please follow the instructions in the <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Installation}")">@GlobalValues.Getting_Started_Name - @GlobalValues.Common_Page_Title_Installation</a>
-        ensuring that in the <span class="code-span">&lt;head&gt;</span> section you also add the Tabs stylesheet as follows:
-    </p>
-    <CodeBox CodeBlock="@CodeSnippets.Add_Tabs_Style_Sheet" AriaLabel="Add Tabs stylesheet code block" />
+<p>
+    <strong>Note: </strong> It is a requirement that the Blazor Ramp Core <span class="code-span">core-live-region.js</span> script, <span class="code-span">LiveRegionService</span>, and
+    associated <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component are added alongside this component’s specific
+    requirements (a stylesheet reference in this instance).
+        
+</p>
+<p>
+    You do not need to add the BlazorRamp.Core package separately, as BlazorRamp.Core is included as a transitive package, you only need to add the packages that contain the components
+    that you wish to use i.e the <b>BlazorRamp.Tabs</b> NuGet package.
+</p>
+<p>
+    Please follow the instructions in the <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Installation}")">@GlobalValues.Getting_Started_Name - @GlobalValues.Common_Page_Title_Installation</a>
+    ensuring that in the <span class="code-span">&lt;head&gt;</span> section you also add the Tabs stylesheet as follows:
+</p>
+<CodeBox CodeBlock="@TabsSnippets.Add_Tabs_Style_Sheet" AriaLabel="Add Tabs stylesheet code block" />
 
-</section>
 
 
+<h2 id="release-history">Release history</h2>
 
-<section class="info-box" aria-labelledby="release-history">
+<ol reversed class="history-list">
+    <li>
+        <h3>
+            Version 1.0.0 — <time datetime="2026-03-10">March 10, 2026</time>
+        </h3>
+        <ul>
+            <li>Initial release of the <span class="code-span">BlazorRamp.Tabs v1.0.0</span> NuGet package, multi-targeting <span class="code-span">.NET 8.0, .NET 9.0 & .NET10.0</span></li>
+        </ul>
+    </li>
+</ol>
 
-    <h2 id="release-history">Release history</h2>
 
-    <ol reversed>
-        <li>
-            <h3>
-                Version 1.0.0 — <time datetime="2026-03-10">March 10, 2026</time>
-            </h3>
-            <ul>
-                <li>Initial release of the <span class="code-span">BlazorRamp.Tabs v1.0.0</span> NuGet package, multi-targeting <span class="code-span">.NET 8.0, .NET 9.0 & .NET10.0</span></li>
-            </ul>
-        </li>
-    </ol>
-
-</section>
 
 
 <div class="flex-content justify-content-between">

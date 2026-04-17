@@ -3,17 +3,35 @@
 <PageTitle>@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Accessibility</PageTitle>
 
 <h1>@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Accessibility</h1>
-
+<p>
+    The Modal Dialog was built using the HTML Dialog API and follows all best practices for modal dialogs. As the framework uses the native HTML Dialog, when open, all
+    content behind its backdrop is effectively made inert, dissallowing any user the ability to navigate to, or interact with that content whilst the dialog reamins open.
+</p>
 
 <h2 id="dialog-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
 <ul aria-labelledby="dialog-keyboard">
     <li>
         <kbd>Escape</kbd> - closes the top most dialog if a handler has not been specified. If one has been specified then you control whether or not the dialog should close,
         as this could be a popup form with unsaved changes, and you may want to get confirmation from the user first etc.
-        <strong>Note: </strong> If the Announcement History popover (non-modal dialog) is open, then the escape key will close that first.
+        <br /><strong>Note: </strong> If the Announcement History popover (non-modal dialog) is open, then the escape key will close that first.
         .
     </li>
 </ul>
+
+<h2 id="device-testing" class="info-box__heading">Accessibility device testing</h2>
+
+<ul aria-labelledby="device-testing">
+    <li>JAWS, Narrator and NVDA on Windows were each paired with every one of the following browsers: Google Chrome, Microsoft Edge and Mozilla Firefox.</li>
+    <li>VoiceOver on macOS was paired with Apple's Safari.</li>
+    <li>VoiceOver on iPhone was paired with mobile Safari.</li>
+    <li>Talkback on Android was paired with mobile Google Chrome.</li>
+    <li>Voice access on Windows 11</li>
+</ul>
+
+<p>
+    <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were availabale at the time of testing (see release history on the installation page for approximate testing dates)
+</p>
+
 
 <h2 id="screen-reader-quirks" class="@GlobalValues.Info_Box_Heading_Class">Screen reader quirks or known issues</h2>
 <ul aria-labelledby="screen-reader-quirks">

@@ -5,39 +5,37 @@
 <h1>@GlobalValues.Component_Name_Switch @GlobalValues.Common_Page_Title_Installation</h1>
 
 
-<section style="margin-top:var(--br-unit-space-9);">
-    <h2 class="page-heading">Installation</h2>
+<p>
+    <strong>Note: </strong> It is a requirement that the Blazor Ramp Core <span class="code-span">core-live-region.js</span> script, <span class="code-span">LiveRegionService</span>, and
+    associated <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component are added alongside this component’s specific
+    requirements (a stylesheet reference in this instance).
+</p>
+<p>
+    You do not need to add the BlazorRamp.Core package separately, as BlazorRamp.Core is included as a transitive package, you only need to add the packages that contain the components
+    that you wish to use i.e the <b>BlazorRamp.Switch</b> NuGet package.
+</p>
+<p>
+    Please follow the instructions in the <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Installation}")">@GlobalValues.Getting_Started_Name - @GlobalValues.Common_Page_Title_Installation</a>
+    ensuring that in the <span class="code-span">&lt;head&gt;</span> section you also add the Switch stylesheet as follows:
+</p>
+<CodeBox CodeBlock="@SwitchSnippets.Add_Switch_Style_Sheet" AriaLabel="Add switch stylesheet code block" />
 
-    <p>
-        <strong>Note: </strong> It is a requirement that the Blazor Ramp Core <span class="code-span">core-live-region.js</span> script, <span class="code-span">LiveRegionService</span>, and
-        associated <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component are added alongside this component’s specific
-        requirements (a stylesheet reference in this instance). You do not need to add the BlazorRamp.Core package separately, as BlazorRamp.Core is included as a transitive package, you only need to add the packages that contain the components
-        that you wish to use i.e the <b>BlazorRamp.Switch</b> NuGet package.
-    </p>
-    <p>
-        Please follow the instructions in the <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Installation}")">@GlobalValues.Getting_Started_Name - @GlobalValues.Common_Page_Title_Installation</a>
-        ensuring that in the <span class="code-span">&lt;head&gt;</span> section you also add the Switch stylesheet as follows:
-    </p>
-    <CodeBox CodeBlock="@CodeSnippets.Add_Switch_Style_Sheet" AriaLabel="Add switch stylesheet code block" />
 
-</section>
 
-<section class="info-box" aria-labelledby="release-history">
+<h2 id="release-history">Release history</h2>
 
-    <h2 id="release-history">Release history</h2>
+<ol reversed class="history-list">
+    <li>
+        <h3>
+            Version 1.0.0 — <time datetime="2026-02-08">February 08, 2026</time>
+        </h3>
+        <ul>
+            <li>Initial release of the <span class="code-span">BlazorRamp.Switch v1.0.0</span> NuGet package, multi-targeting <span class="code-span">.NET 8.0, .NET 9.0 & .NET10.0</span></li>
+        </ul>
+    </li>
+</ol>
 
-    <ol reversed>
-        <li>
-            <h3>
-                Version 1.0.0 — <time datetime="2026-02-08">February 08, 2026</time>
-            </h3>
-            <ul>
-                <li>Initial release of the <span class="code-span">BlazorRamp.Switch v1.0.0</span> NuGet package, multi-targeting <span class="code-span">.NET 8.0, .NET 9.0 & .NET10.0</span></li>
-            </ul>
-        </li>
-    </ol>
 
-</section>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Switch}/{GlobalValues.Common_Page_Path_Overview}")">

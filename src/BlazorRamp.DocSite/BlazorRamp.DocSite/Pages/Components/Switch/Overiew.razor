@@ -41,6 +41,7 @@
     <Switch @bind-SwitchState="@_bluetoothSwitchState" Label="Bluetooth:" AriaDisabled="true" SpaceBetween="true" style="margin-block:1rem;" />
     <Switch @bind-SwitchState="@_wifiSwitchState" Label="WiFi:" AriaDisabled="false" SpaceBetween="true" style="margin-block:1rem;" disabled />
 </section>
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_SkipTo}/{GlobalValues.Common_Page_Path_Usage}")">
         <span aria-hidden="true"></span>
