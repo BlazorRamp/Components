@@ -91,7 +91,7 @@ public class GlobalValues
     public const string Serivce_Path_Part_Live_Region  = "live-region";
 
     public const string Framework_Name_Modal         = "Modal Dialog";
-    public const string Framework_Path_Part_Modal   = "modal dialog";
+    public const string Framework_Path_Part_Modal   = "modal-dialog";
 
     public const string Getting_Started_Name = "Gettting Started";
     public const string Theming_Name = "Theming";
