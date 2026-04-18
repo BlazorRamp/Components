@@ -32,6 +32,10 @@
     access to lists (of shortcuts) to items on a page such as links, and without this prefix in that list would be serveral links all just called overview, which is not helpful. 
 </p>
 
+<p>
+    The NavGroup has been coded so that if the current page matches a link within a closed NavSection, that all sections will open so the link is visible.
+</p>
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Usage}")">
         <span aria-hidden="true"></span>

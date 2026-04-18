@@ -2,9 +2,23 @@
 
 <PageTitle>@GlobalValues.Component_Name_NavGroup @GlobalValues.Common_Page_Title_Installation</PageTitle>
 
-<h1>@GlobalValues.Component_Name_NavGroup @GlobalValues.Common_Page_Title_Installation . . . In Progess . . .</h1>
+<h1>@GlobalValues.Component_Name_NavGroup @GlobalValues.Common_Page_Title_Installation</h1>
 
 
+<p>
+    <strong>Note: </strong> It is a requirement that the Blazor Ramp Core <span class="code-span">core-live-region.js</span> script, <span class="code-span">LiveRegionService</span>, and
+    associated <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component are added alongside this component’s specific
+    requirements (a stylesheet reference in this instance).
+</p>
+<p>
+    You do not need to add the BlazorRamp.Core package separately, as BlazorRamp.Core is included as a transitive package, you only need to add the packages that contain the components
+    that you wish to use i.e the <b>BlazorRamp.NavGroup</b> NuGet package.
+</p>
+<p>
+    Please follow the instructions in the <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Installation}")">@GlobalValues.Getting_Started_Name - @GlobalValues.Common_Page_Title_Installation</a>
+    ensuring that in the <span class="code-span">&lt;head&gt;</span> section you also add the Nav Group stylesheet as follows:
+</p>
+<CodeBox CodeBlock="@NavGroupSnippets.Add_Style_Sheet" AriaLabel="Add Nav Group stylesheet code block" />
 
 
 @* <h2 id="release-history">Release history</h2>
@@ -13,7 +27,7 @@
 
     <li>
         <h3>
-            Version 1.0.0 — <time datetime="2026-04-25">April 25, 2026</time>
+            Version 1.0.0 — <time datetime="2026-04-22">April 22, 2026</time>
         </h3>
         <ul>
             <li>Initial release of the <span class="code-span">BlazorRamp.NavGroup v1.0.0</span> NuGet package, multi-targeting <span class="code-span">.NET 8.0, .NET 9.0 & .NET10.0</span></li>

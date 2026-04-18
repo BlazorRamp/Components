@@ -2,6 +2,14 @@
 
 public class NavGroupSnippets
 {
+
+    public const string Add_Style_Sheet = """
+        <head>
+            <link rel="stylesheet" href="_content/BlazorRamp.Core/assets/css/core.min.css" />
+            <link rel="stylesheet" href="_content/BlazorRamp.NavGroup/assets/css/nav-group.min.css" />
+        </head>
+        """;
+
     public const string Framework_Section = """
         <h2 id="framework-section" class="main-menu__heading">Frameworks</h2>
         <NavGroup AriaLabelledby="framework-section">

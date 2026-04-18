@@ -51,6 +51,12 @@ public partial class NavGroupLink :IDisposable
     /// For example: <c>--svg-my-icon</c>.
     /// </summary>
     [Parameter] public string? SvgIcon { get; set; } = default;
+
+    /// <summary>
+    /// Gets or sets additional attributes applied to the anchor element.
+    /// </summary>
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
     [Inject] private NavigationManager? NavigationManager { get; set; }
 
 

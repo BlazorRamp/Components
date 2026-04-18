@@ -7,6 +7,301 @@
 <p>
     Everything you need to work with the Nav Group component: parameters, methods, models, enums, and CSS variables for styling.
 </p>
+<section class="code-table">
+
+    <h2 id="nav-group-component-parameters" class="code-table__heading">NavGroup component (container) parameters</h2>
+
+    <table aria-labelledby="accordion-component-parameters">
+
+        <thead>
+            <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ChildContent</td>
+                <td>RenderFragment?</td>
+                <td>
+                    The render fragment used for the child content, <b>NavGroupLink, NavSection & NavSeparator</b> components.
+                </td>
+            </tr>
+            <tr>
+                <td>AriaLabelledby</td>
+                <td>string?</td>
+                <td>
+                    Gets or sets the id of an external element that labels this navigation group. When set, an
+                    <span class="code-span">aria-labelledby</span> attribute referencing that element is applied to the root &lt;ul&gt;
+                    providing an accessible name for screen. Leading and trailing whitespace is trimmed before use.
+                </td>
+            </tr>
+            <tr>
+                <td>AdditionalAttributes</td>
+                <td>Dictionary&lt;string, object&gt;?</td>
+                <td>Sets additional attributes applied to the component's root element.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 id="nav-section-component-parameters" class="code-table__heading">NavSection component parameters</h2>
+
+    <table aria-labelledby="nav-section-component-parameters">
+
+        <thead>
+            <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ChildContent</td>
+                <td>RenderFragment?</td>
+                <td>
+                    Gets or sets the child content rendered inside the section's collapsible <span class="code-span">ul</span> element,
+                    expected to contain one or more <b>NavGroupLink, NavSeparator or NavSection</b> components.
+                </td>
+            </tr>
+            <tr>
+                <td>Title</td>
+                <td>string</td>
+                <td>
+                    Gets or sets the visible label rendered in the section trigger button.
+                </td>
+            </tr>
+            <tr>
+                <td>Expanded</td>
+                <td>bool</td>
+                <td>
+                    Gets or sets a value indicating whether the section is expanded on initial render. Defaults to false.
+                </td>
+            </tr>
+            <tr>
+                <td>SvgIcon</td>
+                <td>string?</td>
+                <td>
+                    Gets or sets the name of a CSS custom property that resolves to an SVG data URI, used as a mask-image icon 
+                    next to the item text. Must begin with a double dash -- for example: --svg-my-icon.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 id="nav-group-link-component-parameters" class="code-table__heading">NavGroupLink component parameters</h2>
+
+    <table aria-labelledby="nav-group-link-component-parameters">
+
+        <thead>
+            <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>LinkText</td>
+                <td>string</td>
+                <td>
+                    Gets or sets the visible label rendered inside the link. This parameter is required and cannot be null, empty, or whitespace.
+                </td>
+            </tr>
+            <tr>
+                <td>Href</td>
+                <td>string</td>
+                <td>
+                    Gets or sets the URL the link navigates to. This parameter is required and cannot be null, empty, or whitespace.
+                </td>
+            </tr>
+            <tr>
+                <td>VisuallyHiddenPrefix</td>
+                <td>string</td>
+                <td>
+                    Gets or sets an optional prefix rendered as visually hidden text before the main link label, providing additional context for screen reader users. Defaults to String.Empty.
+                </td>
+            </tr>
+            <tr>
+                <td>SvgIcon</td>
+                <td>string?</td>
+                <td>
+                    Gets or sets the name of a CSS custom property that resolves to an SVG data URI, used as a mask-image icon
+                    next to the item text. Must begin with a double dash -- for example: --svg-my-icon.
+                </td>
+            </tr>
+            <tr>
+                <td>AdditionalAttributes</td>
+                <td>Dictionary&lt;string, object&gt;?</td>
+                <td>Sets additional attributes applied to the anchor element.</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2 class="page-heading">CSS variables defined for the nav group component.</h2>
+
+    <p>
+        The following sections outline all of the css variables that can be set to alter the styling of the Accordion component.
+        You can of course also override its style classes directly.
+    </p>
+
+    <section class="code-table">
+
+        <h3 id="outline-variables" class="code-table__heading">Outline variables</h3>
+        <p>
+            There are focus indicators (outlines) applied using <span class="code-span">:focus-visible</span> for the NavSection and NavGroupLinks.
+        </p>
+        <table aria-labelledby="outline-misc-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-nav-group-outline-style</td>
+                    <td>var(--br-comp-all-outline-style)</td>
+                    <td>The style of the outline - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-outline-width</td>
+                    <td>var(--br-comp-all-outline-width)</td>
+                    <td>The outline colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-outline-offset</td>
+                    <td>var(--br-comp-all-outline-offset)</td>
+                    <td>The outline offest - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-outline-colour</td>
+                    <td>var(--br-comp-all-outline-colour)</td>
+                    <td>The outline colour - uses the shared component variable.</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </section>
+    <section class="code-table">
+
+        <h3 id="hover-variables" class="code-table__heading">Hover & selected variables</h3>
+        <p>
+            There are backgrounds applied to the NavSection (button) and NavGroupLinks when hovered, focused
+            and when the NavGroupLink matches the current page.
+        </p>
+        <table aria-labelledby="outline-misc-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>--br-comp-nav-group-current-page-background</td>
+                    <td>var(--br-comp-all-link-current-page-background-colour)</td>
+                    <td>Background colour of the NavGroupLink when its the current page.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-hover-background</td>
+                    <td>var(--br-comp-all-link-hover-background-colour)</td>
+                    <td>
+                        Bacground colour of the NavSection button or NavGroupLink for the hover state. And used as the background colour 
+                        of the NavGroup when focused.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-active-background</td>
+                    <td>var(--br-comp-all-link-active-background-colour)</td>
+                    <td>Background colour of the NavGroupLink when in the active state.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-selected-hover</td>
+                    <td>var(--br-comp-all-selection-colour)</td>
+                    <td>Bacground colour of the NavSection button when its expanded and is hovered.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-link-focused-background</td>
+                    <td>var(--br-comp-all-link-focused-background-colour)</td>
+                    <td>Background colour of the NavGroupLink when its focused.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+
+
+    <section class="code-table">
+
+        <h3 id="accordion-header-variables" class="code-table__heading">Header area variables</h3>
+        <table aria-labelledby="accordion-header-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="accordion-content-area-variables" class="code-table__heading">Content area (accordion item panel) variables</h3>
+
+        <table aria-labelledby="accordion-content-area-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
+        <p>
+            The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
+            by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
+        </p>
+
+        <table aria-labelledby="unmapped-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+    </section>
+</section>
+
+
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_NavGroup}/{GlobalValues.Common_Page_Path_Accessibility}")">
