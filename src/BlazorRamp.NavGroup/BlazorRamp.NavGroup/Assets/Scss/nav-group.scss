@@ -114,7 +114,6 @@
         border-radius: 50%;
         transition: transform 200ms ease;
         grid-column: 3/4;
-        //border-width: var(--br-comp-nav-group-area-content-border-width);
 
         & > span {
             height: calc(var(--_icon-size) * 1.25);
@@ -152,12 +151,16 @@
         display: grid;
         grid-template-columns: var(--_icon-column-size) auto;
         font-size: var(--br-comp-nav-group-area-content-font-size);
+        font-weight: var(--br-comp-nav-group-area-content-font-weight);
+        font-family: var(--br-comp-nav-group-area-content-font-family);
+        line-height: var(--br-comp-nav-group-area-content-line-height);
         align-items: center;
         padding-inline-start: calc(var(--_br-svg-nav-group-depth) * var(--_padding-gap));
         text-align: start;
         justify-content: start;
         border-radius: var(--br-comp-nav-group-area-content-border-radius);
         color: var(--br-comp-nav-group-area-content-text);
+        background-color: var(--br-comp-nav-group-area-content-background);
 
         &:hover {
             background-color: var(--br-comp-nav-group-hover-background);
@@ -171,7 +174,7 @@
             outline-style: var(--br-comp-nav-group-outline-style);
             outline-width: var(--br-comp-nav-group-outline-width);
             outline-color: var(--br-comp-nav-group-outline-colour);
-            background-color: var(--br-comp-nav-group-link-focused-background   );
+            background-color: var(--br-comp-nav-group-link-focused-background);
         }
 
         &[aria-current="page"] {

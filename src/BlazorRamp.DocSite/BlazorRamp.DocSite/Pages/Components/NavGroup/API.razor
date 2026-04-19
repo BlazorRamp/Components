@@ -112,7 +112,7 @@
                 <td>Href</td>
                 <td>string</td>
                 <td>
-                    Gets or sets the URL the link navigates to. This parameter is required and cannot be null, empty, or whitespace.
+                    Gets or sets the URL the link navigates to. This parameter is required but will be set to "missing-href" if not entered.
                 </td>
             </tr>
             <tr>
@@ -140,10 +140,10 @@
 </section>
 
 <section>
-    <h2 class="page-heading">CSS variables defined for the nav group component.</h2>
+    <h2 class="page-heading">CSS variables defined for the nav group components.</h2>
 
     <p>
-        The following sections outline all of the css variables that can be set to alter the styling of the Accordion component.
+        The following sections outline all of the css variables that can be set to alter the styling of the Nav Group components.
         You can of course also override its style classes directly.
     </p>
 
@@ -151,7 +151,7 @@
 
         <h3 id="outline-variables" class="code-table__heading">Outline variables</h3>
         <p>
-            There are focus indicators (outlines) applied using <span class="code-span">:focus-visible</span> for the NavSection and NavGroupLinks.
+            There are the focus indicators (outlines) applied using <span class="code-span">:focus-visible</span> for the NavSection and NavGroupLinks.
         </p>
         <table aria-labelledby="outline-misc-variables">
 
@@ -191,7 +191,7 @@
 
         <h3 id="hover-variables" class="code-table__heading">Hover & selected variables</h3>
         <p>
-            There are backgrounds applied to the NavSection (button) and NavGroupLinks when hovered, focused
+            There are hte backgrounds applied to the NavSection (button) and NavGroupLink components when hovered, focused
             and when the NavGroupLink matches the current page.
         </p>
         <table aria-labelledby="outline-misc-variables">
@@ -242,9 +242,12 @@
 
     <section class="code-table">
 
-        <h3 id="accordion-header-variables" class="code-table__heading">Header area variables</h3>
-        <table aria-labelledby="accordion-header-variables">
-
+        <h3 id="nav-seaction-header-variables" class="code-table__heading">Header area variables</h3>
+        <p>
+            I treat the NavSection (button) as the header area area as it acts as the heading for its
+            contents.
+        </p>
+        <table aria-labelledby="nav-seaction-header-variables">
             <thead>
                 <tr>
                     <th scope="col">Variable Name</th>
@@ -253,15 +256,69 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-text</td>
+                    <td>var(--br-comp-all-area-header-text)</td>
+                    <td>The text colour used for the heading and icons - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-background</td>
+                    <td>inherit</td>
+                    <td>The backgound colour of the headding area - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-font-family</td>
+                    <td>var(--br-comp-all-area-header-font-family)</td>
+                    <td>The font family used - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The size of the heading font - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-font-weight</td>
+                    <td>var(--br-comp-all-area-header-font-weight)</td>
+                    <td>The font weight - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-line-height</td>
+                    <td>var(--br-comp-all-area-header-line-height)</td>
+                    <td>The line height - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-border-style</td>
+                    <td>var(--br-comp-all-area-header-border-style)</td>
+                    <td>The border style - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-border-colour</td>
+                    <td>var(--br-comp-all-divider-colour)</td>
+                    <td>The colour of the border -  <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-border-width</td>
+                    <td>var(--br-unit-border-0)</td>
+                    <td>The border width - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-border-radius</td>
+                    <td>var(--br-comp-all-area-header-border-radius)</td>
+                    <td>The radius applied to each border corner - uses the shared component variable.</td>
+                </tr>
             </tbody>
         </table>
 
     </section>
     <section class="code-table">
 
-        <h3 id="accordion-content-area-variables" class="code-table__heading">Content area (accordion item panel) variables</h3>
+        <h3 id="nav-group-content-area-variables" class="code-table__heading">Content area variables</h3>
+        <p>
+            Used for the NavGroupLink and NavSeperator. The NavGroupLink uses the border radius for the 
+            focus indicator outline, the other border properties are used for the decorative NavSeparator.
+        </p>
 
-        <table aria-labelledby="accordion-content-area-variables">
+        <table aria-labelledby="nav-group-content-area-variables">
 
             <thead>
                 <tr>
@@ -271,7 +328,57 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-background</td>
+                    <td>inherit</td>
+                    <td>The backgound colour - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-text</td>
+                    <td>var(--br-comp-all-area-content-text)</td>
+                    <td>The text colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-font-family</td>
+                    <td>var(--br-comp-all-area-content-font-family)</td>
+                    <td>The font family - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The font size - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-font-weight</td>
+                    <td>var(--br-comp-all-area-content-font-weight)</td>
+                    <td>The font weight - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-line-height</td>
+                    <td>var(--br-comp-all-area-content-line-height)</td>
+                    <td>The line height - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-border-style</td>
+                    <td>var(--br-comp-all-area-content-border-style)</td>
+                    <td>The border style - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-border-colour</td>
+                    <td>var(--br-comp-all-divider-colour)</td>
+                    <td>The colour border which uses the shared component variable - <b>does not use the shared variable.</b></td>
 
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The border width - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-border-radius</td>
+                    <td>var(--br-comp-all-area-content-border-radius)</td>
+                    <td>The radius applied to each border corner - uses the shared component variable.</td>
+                </tr>
             </tbody>
         </table>
 
@@ -294,7 +401,47 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-background</td>
+                    <td>inherit</td>
+                    <td>The backgound colour of the headding area - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The size of the heading font - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-border-colour</td>
+                    <td>var(--br-comp-all-divider-colour)</td>
+                    <td>The colour of the border -  <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-border-width</td>
+                    <td>var(--br-unit-border-0)</td>
+                    <td>The border width - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-background</td>
+                    <td>inherit</td>
+                    <td>The backgound colour - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The font size -  <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-border-colour</td>
+                    <td>var(--br-comp-all-divider-colour)</td>
+                    <td>The colour border which uses the shared component variable - <b>does not use the shared variable.</b></td>
 
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The border width - <b>does not use the shared variable.</b></td>
+                </tr>
             </tbody>
         </table>
 

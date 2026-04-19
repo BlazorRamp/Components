@@ -89,7 +89,7 @@ public partial class NavSection : IDisposable
     protected override void OnInitialized()
     {
         ParentControl?.AddChildSection(this);
-
+        _expanded = Expanded;
         if (NavigationManager is not null) NavigationManager.LocationChanged += NavigationManager_LocationChanged;
     }
 

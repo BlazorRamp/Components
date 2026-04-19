@@ -33,8 +33,8 @@ public partial class NavGroupLink :IDisposable
     [Parameter] public required string LinkText     { get; set; }
 
     /// <summary>
-    /// Gets or sets the URL the link navigates to. This parameter is required and
-    /// cannot be null, empty, or whitespace.
+    /// Gets or sets the URL the link navigates to. This parameter is required 
+    /// but will be set to "missing-href" if null, empty, or whitespace.
     /// </summary>
     [Parameter] public required string Href         { get; set; }
 
@@ -81,7 +81,7 @@ public partial class NavGroupLink :IDisposable
         _linkSvgIcon = GlobalValues.CheckSetSvgVariable(SvgIcon);
 
         CheckedLinkText = String.IsNullOrWhiteSpace(LinkText) ? throw new ArgumentNullException(nameof(NavGroupLink.LinkText),GlobalValues.LinkText_Missing_Message) : LinkText.Trim();
-        CheckedHref     = String.IsNullOrWhiteSpace(Href)     ? throw new ArgumentNullException(nameof(NavGroupLink.Href), GlobalValues.LinkHref_Missing_Message) : Href.Trim();
+        CheckedHref = String.IsNullOrWhiteSpace(Href) ? "missing-href" : Href.Trim();
     }
 
     /// <summary>
@@ -91,7 +91,6 @@ public partial class NavGroupLink :IDisposable
     protected override void OnInitialized()
     {
         ParentControl?.AddGroupLink(this);
-
         if (NavigationManager is not null)
         {
             NavigationManager.LocationChanged += NavigationManager_LocationChanged;
