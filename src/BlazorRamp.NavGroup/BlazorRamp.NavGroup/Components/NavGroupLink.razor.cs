@@ -60,12 +60,10 @@ public partial class NavGroupLink :IDisposable
     [Inject] private NavigationManager? NavigationManager { get; set; }
 
 
-    internal string CheckedHref     { get; set; } = String.Empty;
-    internal string CheckedLinkText { get; set; } = String.Empty;
-
-
-    private string? _linkSvgIcon = null;
-    private bool   IsCurrentPage { get; set; } = false;
+    private string _checkedHref      = String.Empty;
+    private string  _checkedLinkText = String.Empty;
+    private string? _linkSvgIcon     = null;
+    private bool    _isCurrentPage   = false;
 
     /// <summary>
     /// Validates parameters on each render cycle, throwing if <see cref="LinkText"/>
@@ -80,8 +78,8 @@ public partial class NavGroupLink :IDisposable
     {
         _linkSvgIcon = GlobalValues.CheckSetSvgVariable(SvgIcon);
 
-        CheckedLinkText = String.IsNullOrWhiteSpace(LinkText) ? throw new ArgumentNullException(nameof(NavGroupLink.LinkText),GlobalValues.LinkText_Missing_Message) : LinkText.Trim();
-        CheckedHref = String.IsNullOrWhiteSpace(Href) ? GlobalValues.Missing_Href_Value : Href.Trim();
+        _checkedLinkText = String.IsNullOrWhiteSpace(LinkText) ? throw new ArgumentNullException(nameof(NavGroupLink.LinkText),GlobalValues.LinkText_Missing_Message) : LinkText.Trim();
+        _checkedHref     = String.IsNullOrWhiteSpace(Href) ? GlobalValues.Missing_Href_Value : Href.Trim();
     }
 
     /// <summary>
@@ -107,7 +105,7 @@ public partial class NavGroupLink :IDisposable
     {
         var target = NavigationManager?.ToAbsoluteUri(Href);
 
-        IsCurrentPage = (location.AbsolutePath.Equals(target?.AbsolutePath, StringComparison.OrdinalIgnoreCase)) ? true : false;
+        _isCurrentPage = (location.AbsolutePath.Equals(target?.AbsolutePath, StringComparison.OrdinalIgnoreCase)) ? true : false;
         StateHasChanged();
     }
 

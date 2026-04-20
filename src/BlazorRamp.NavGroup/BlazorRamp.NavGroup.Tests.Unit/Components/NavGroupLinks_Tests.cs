@@ -2,6 +2,7 @@
 using BlazorRamp.NavGroup.Common.Constants;
 using Bunit;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using NavGroupLinkComponent = BlazorRamp.NavGroup.Components.NavGroupLink;
@@ -117,5 +118,20 @@ public class NavGroupLinks_Tests
             navLink.Find($".{GlobalValues.Nav_Group_Link_Class}").GetAttribute("aria-current").Should().Be("page");
         }
 
+        [Fact]
+        public void Should_capture_unmatched_attributed_and_apply_to_the_component()
+        {
+            using var context = new BunitContext();
+
+            var navLinkComponent = context.Render<NavGroupLinkComponent>(parameters => parameters.Add(p => p.LinkText, "My Link Text").AddUnmatched("style", "color:red;"));
+
+            using (new AssertionScope())
+            {
+                navLinkComponent.Find("a").GetAttribute("style").Should().Be("color:red;");
+                navLinkComponent.Instance.AdditionalAttributes.Should().ContainKey("style").WhoseValue.Should().Be("color:red;");
+
+            }
+
+        }
     }
 }

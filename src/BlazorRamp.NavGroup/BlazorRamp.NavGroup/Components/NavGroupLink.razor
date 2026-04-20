@@ -1,5 +1,5 @@
 ﻿<li style="@GlobalValues.GetDepthStyleVariable(Depth)">
-    <a class="@GlobalValues.Nav_Group_Link_Class" href="@CheckedHref" aria-current="@(IsCurrentPage ? "page" : null)">
+    <a l @attributes="AdditionalAttributes" class="@GlobalValues.Nav_Group_Link_Class" href="@_checkedHref" aria-current="@(_isCurrentPage ? "page" : null)">
 
         @if(_linkSvgIcon is not null)
         {
@@ -12,7 +12,7 @@
                 <span class="br-visually-hidden">@VisuallyHiddenPrefix.Trim()&nbsp;</span>
             }
                 
-            @CheckedLinkText
+            @_checkedLinkText
         </span>
        
     </a>

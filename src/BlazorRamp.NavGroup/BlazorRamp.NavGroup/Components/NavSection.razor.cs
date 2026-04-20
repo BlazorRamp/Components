@@ -38,7 +38,7 @@ public partial class NavSection : IDisposable
     /// <summary>
     /// Gets or sets the visible label rendered in the section trigger button.
     /// </summary>
-    [Parameter] public string?         Title        { get; set; }
+    [Parameter] public required string  Title       { get; set; }
 
     /// <summary>
     /// Gets or sets a value indicating whether the section is expanded on initial
@@ -55,12 +55,12 @@ public partial class NavSection : IDisposable
    
     [Inject] NavigationManager? NavigationManager { get; set; }
 
-    internal string CheckedTitle { get; set; } = String.Empty;
     private int ChildDepth => Depth + 1;
 
     private List<NavSection>   _childSections = [];
     private List<NavGroupLink> _groupLinks  = [];
 
+    private string  _checkedTitle   = String.Empty;
     private string  _contentID      = Guid.NewGuid().ToString();
     private string  _buttonID       = Guid.NewGuid().ToString();
     private bool    _expanded       = false;
@@ -77,7 +77,7 @@ public partial class NavSection : IDisposable
     protected override void OnParametersSet()
     {
         _sectionSvgIcon = GlobalValues.CheckSetSvgVariable(SvgIcon);
-        CheckedTitle    = String.IsNullOrWhiteSpace(Title) ? throw new ArgumentNullException(nameof(NavSection.Title), GlobalValues.SectionTitle_Missing_Message) : Title.Trim();
+        _checkedTitle    = String.IsNullOrWhiteSpace(Title) ? throw new ArgumentNullException(nameof(NavSection.Title), GlobalValues.SectionTitle_Missing_Message) : Title.Trim();
 
     }
 
@@ -117,7 +117,7 @@ public partial class NavSection : IDisposable
     /// Registers a child <see cref="NavSection"/> with this section. Called
     /// automatically by each direct child section during initialisation.
     /// </summary>
-    internal void AddChildSection(NavSection childSection)
+    private void AddChildSection(NavSection childSection)
     {
         if (false == _childSections.Contains(childSection)) _childSections.Add(childSection);
     }
