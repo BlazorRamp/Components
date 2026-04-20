@@ -12,7 +12,7 @@ public class NavGroupSnippets
 
     public const string Framework_Section = """
         <h2 id="framework-section" class="main-menu__heading">Frameworks</h2>
-        <NavGroup AriaLabelledby="framework-section">
+        <NavGroup AriaLabelledBy="framework-section">
             <NavSeparator />
             <NavSection Title="Modal Dialog">
                 <NavGroupLink Href="/frameworks/modal-dialog/overview" VisuallyHiddenPrefix="Modal Dialogl" LinkText="Overview" />

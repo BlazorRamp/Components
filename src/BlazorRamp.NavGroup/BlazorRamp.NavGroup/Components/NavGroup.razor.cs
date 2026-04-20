@@ -22,7 +22,7 @@ public partial class NavGroup
     /// applied to the root <c>&lt;ul&gt;</c>, providing an accessible name for screen
     /// readers. Leading and trailing whitespace is trimmed before use.
     /// </summary>
-    [Parameter] public string?         AriaLabelledby { get; set; }
+    [Parameter] public string?         AriaLabelledBy { get; set; }
 
 
     /// <summary>

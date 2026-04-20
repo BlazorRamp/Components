@@ -36,14 +36,14 @@ public partial class NavGroupLink :IDisposable
     /// Gets or sets the URL the link navigates to. This parameter is required 
     /// but will be set to "missing-href" if null, empty, or whitespace.
     /// </summary>
-    [Parameter] public required string Href         { get; set; }
+    [Parameter] public required string Href { get; set; } = GlobalValues.Missing_Href_Value;
 
     /// <summary>
     /// Gets or sets an optional prefix rendered as visually hidden text before the
     /// main link label, providing additional context for screen reader users.
     /// Defaults to <see cref="String.Empty"/>.
     /// </summary>
-    [Parameter] public string VisuallyHiddenPrefix  { get; set; } = String.Empty;
+    [Parameter] public string? VisuallyHiddenPrefix  { get; set; } = default;
 
     /// <summary>
     /// Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
@@ -81,7 +81,7 @@ public partial class NavGroupLink :IDisposable
         _linkSvgIcon = GlobalValues.CheckSetSvgVariable(SvgIcon);
 
         CheckedLinkText = String.IsNullOrWhiteSpace(LinkText) ? throw new ArgumentNullException(nameof(NavGroupLink.LinkText),GlobalValues.LinkText_Missing_Message) : LinkText.Trim();
-        CheckedHref = String.IsNullOrWhiteSpace(Href) ? "missing-href" : Href.Trim();
+        CheckedHref = String.IsNullOrWhiteSpace(Href) ? GlobalValues.Missing_Href_Value : Href.Trim();
     }
 
     /// <summary>

@@ -5,4 +5,7 @@
   <Folder Name="/02 - Sandbox/">
     <Project Path="Sandbox/Sandbox.csproj" />
   </Folder>
+  <Folder Name="/03 - Tests/">
+    <Project Path="BlazorRamp.NavGroup.Tests.Unit/BlazorRamp.NavGroup.Tests.Unit.csproj" Id="751ef86d-255d-47b2-a562-0e237399edba" />
+  </Folder>
 </Solution>

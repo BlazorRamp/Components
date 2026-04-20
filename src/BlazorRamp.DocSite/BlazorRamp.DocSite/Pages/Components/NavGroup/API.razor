@@ -2,7 +2,7 @@
 
 <PageTitle>@GlobalValues.Component_Name_NavGroup @GlobalValues.Common_Page_Title_Api</PageTitle>
 
-<h1>@GlobalValues.Component_Name_NavGroup @GlobalValues.Common_Page_Title_Api . . . In Progess . . .</h1>
+<h1>@GlobalValues.Component_Name_NavGroup @GlobalValues.Common_Page_Title_Api</h1>
 
 <p>
     Everything you need to work with the Nav Group component: parameters, methods, models, enums, and CSS variables for styling.
@@ -11,7 +11,7 @@
 
     <h2 id="nav-group-component-parameters" class="code-table__heading">NavGroup component (container) parameters</h2>
 
-    <table aria-labelledby="accordion-component-parameters">
+    <table aria-labelledby="nav-group-component-parameters">
 
         <thead>
             <tr>
@@ -29,7 +29,7 @@
                 </td>
             </tr>
             <tr>
-                <td>AriaLabelledby</td>
+                <td>AriaLabelledBy</td>
                 <td>string?</td>
                 <td>
                     Gets or sets the id of an external element that labels this navigation group. When set, an
@@ -117,9 +117,9 @@
             </tr>
             <tr>
                 <td>VisuallyHiddenPrefix</td>
-                <td>string</td>
+                <td>string?</td>
                 <td>
-                    Gets or sets an optional prefix rendered as visually hidden text before the main link label, providing additional context for screen reader users. Defaults to String.Empty.
+                    Gets or sets an optional prefix rendered as visually hidden text before the main link label, providing additional context for screen reader users.
                 </td>
             </tr>
             <tr>
@@ -153,7 +153,7 @@
         <p>
             There are the focus indicators (outlines) applied using <span class="code-span">:focus-visible</span> for the NavSection and NavGroupLinks.
         </p>
-        <table aria-labelledby="outline-misc-variables">
+        <table aria-labelledby="outline-variables">
 
             <thead>
                 <tr>
@@ -194,7 +194,7 @@
             There are hte backgrounds applied to the NavSection (button) and NavGroupLink components when hovered, focused
             and when the NavGroupLink matches the current page.
         </p>
-        <table aria-labelledby="outline-misc-variables">
+        <table aria-labelledby="hover-variables">
 
             <thead>
                 <tr>

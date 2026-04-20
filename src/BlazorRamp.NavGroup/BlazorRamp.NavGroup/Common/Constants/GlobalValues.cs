@@ -20,6 +20,7 @@ internal class GlobalValues
     public const string LinkHref_Missing_Message = "Href is required and cannot be null, empty or whitespace";
     public const string SectionTitle_Missing_Message = "Title is required and cannot be null, empty or whitespace";
 
+    public const string Missing_Href_Value = "missing-href";
 
     /// <summary>
     /// Validates that a SvgIcon parameter and returns a CSS inline style string
