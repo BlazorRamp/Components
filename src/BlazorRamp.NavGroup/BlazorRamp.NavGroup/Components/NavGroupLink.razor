@@ -1,5 +1,8 @@
 ﻿<li style="@GlobalValues.GetDepthStyleVariable(Depth)">
-    <a l @attributes="AdditionalAttributes" class="@GlobalValues.Nav_Group_Link_Class" href="@_checkedHref" aria-current="@(_isCurrentPage ? "page" : null)">
+    <a @attributes="AdditionalAttributes" class="@GlobalValues.Nav_Group_Link_Class" 
+        href="@_checkedHref" 
+        aria-current="@(_isCurrentPage ? "page" : null)"
+        target="@_targetType">
 
         @if(_linkSvgIcon is not null)
         {

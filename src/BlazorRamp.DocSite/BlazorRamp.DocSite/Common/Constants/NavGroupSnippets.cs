@@ -30,7 +30,8 @@ public class NavGroupSnippets
             <NavGroup>
                 <NavSection SvgIcon="--svg-component-icon" Title="Components" Expanded="true">
                     <NavSection SvgIcon="--svg-open-book-icon" Title="Documentaion" Expanded="true">
-                            <NavGroupLink SvgIcon="--svg-article-icon" Href="" LinkText="Fake article" VisuallyHiddenPrefix="Documentation" />
+                            <NavGroupLink SvgIcon="--svg-article-icon" Href="" LinkText="Fake article" VisuallyHiddenPrefix="Documentation" 
+                                TargetType="TargetType.Self" />
                     </NavSection>
                 </NavSection>
             </NavGroup>

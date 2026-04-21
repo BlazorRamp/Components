@@ -131,7 +131,62 @@ public class NavGroupLinks_Tests
                 navLinkComponent.Instance.AdditionalAttributes.Should().ContainKey("style").WhoseValue.Should().Be("color:red;");
 
             }
+        }
+
+
+        [Theory]
+        [InlineData(TargetType.Self)]
+        [InlineData(TargetType.Blank)]
+        [InlineData(TargetType.Parent)]
+        [InlineData(TargetType.Top)]
+        [InlineData((TargetType)99)]
+        public void Should_be_able_to_set_the_target_type_with_the_default_of_self(TargetType targetType)
+        {
+            using var context = new BunitContext();
+
+            var navLink = CreateNavGroupLinkWithParamByName<TargetType>(context, nameof(NavGroupLinkComponent.TargetType), targetType);
+
+            var targetTypeAttribute = navLink.Find("a").GetAttribute("target");
+
+            if ((int)targetType == 99)
+            {
+                targetTypeAttribute.Should().Be($"_{TargetType.Self.ToString().ToLower()}");
+                return;
+            }
+
+            targetTypeAttribute.Should().Be($"_{Enum.GetName<TargetType>(targetType)!.ToLower()}");
+        }
+
+
+
+        [Theory]
+        [InlineData("--svg-icon")]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("  ")]
+
+        public async Task Should_be_able_to_set_the_optional_svg_icon_paramater_which_must_start_with_a_double_dash(string svgIconVariable)
+        {
+            await using var context = new BunitContext();
+            
+            var navLink = CreateNavGroupLinkWithParamByName<string?>(context, nameof(NavGroupLinkComponent.SvgIcon), svgIconVariable);
+
+            if (String.IsNullOrWhiteSpace(svgIconVariable))
+            {
+                navLink.FindAll($"a > span.{GlobalValues.Nav_Group_Icon_Class}").Should().BeEmpty();
+                return;
+            }
+
+            if (svgIconVariable.StartsWith("--"))
+            {
+                navLink.FindAll($"a > span.{GlobalValues.Nav_Group_Icon_Class}")[0].GetAttribute("style").Should().NotBeEmpty();
+            }
+            else
+            {
+                navLink.FindAll($"a > span.{GlobalValues.Nav_Group_Icon_Class}").Should().BeEmpty();
+            }
 
         }
+
     }
 }

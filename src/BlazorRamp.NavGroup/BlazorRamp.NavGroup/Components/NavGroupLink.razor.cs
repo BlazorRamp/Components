@@ -53,6 +53,12 @@ public partial class NavGroupLink :IDisposable
     [Parameter] public string? SvgIcon { get; set; } = default;
 
     /// <summary>
+    /// Gets or sets the browsing context in which the link is opened, mapped to the HTML
+    /// <c>target</c> attribute. Defaults to <see cref="TargetType.Self"/>.
+    /// </summary>
+    [Parameter] public TargetType TargetType { get; set; } = TargetType.Self;
+
+    /// <summary>
     /// Gets or sets additional attributes applied to the anchor element.
     /// </summary>
     [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
@@ -60,11 +66,11 @@ public partial class NavGroupLink :IDisposable
     [Inject] private NavigationManager? NavigationManager { get; set; }
 
 
-    private string _checkedHref      = String.Empty;
-    private string  _checkedLinkText = String.Empty;
-    private string? _linkSvgIcon     = null;
-    private bool    _isCurrentPage   = false;
-
+    private string  _checkedHref      = String.Empty;
+    private string  _checkedLinkText  = String.Empty;
+    private string? _linkSvgIcon      = null;
+    private bool    _isCurrentPage    = false;
+    private string  _targetType       = $"_{TargetType.Self.ToString().ToLower()}";
     /// <summary>
     /// Validates parameters on each render cycle, throwing if <see cref="LinkText"/>
     /// or <see cref="Href"/> is null, empty, or whitespace, and resolving the SVG
@@ -80,6 +86,7 @@ public partial class NavGroupLink :IDisposable
 
         _checkedLinkText = String.IsNullOrWhiteSpace(LinkText) ? throw new ArgumentNullException(nameof(NavGroupLink.LinkText),GlobalValues.LinkText_Missing_Message) : LinkText.Trim();
         _checkedHref     = String.IsNullOrWhiteSpace(Href) ? GlobalValues.Missing_Href_Value : Href.Trim();
+        _targetType      = GetTargetType(TargetType);
     }
 
     /// <summary>
@@ -109,6 +116,16 @@ public partial class NavGroupLink :IDisposable
         StateHasChanged();
     }
 
+    private string GetTargetType(TargetType targetType)
+
+        => targetType switch
+        {
+            TargetType.Self   => "_self",
+            TargetType.Blank  => "_blank",
+            TargetType.Parent => "_parent",
+            TargetType.Top    => "_top",
+            _                 => "_self" 
+        };
 
     /// <summary>
     /// Unsubscribes from <see cref="NavigationManager.LocationChanged"/> to prevent
