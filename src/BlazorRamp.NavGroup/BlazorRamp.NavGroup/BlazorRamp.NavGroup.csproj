@@ -44,7 +44,10 @@ ideal for sections within a vertical navigation section</Description>
 
   <ItemGroup>
     <PackageReference Include="BlazorRamp.Core" Version="1.0.8" />
-    <PackageReference Include="BuildWebCompiler2022" Version="1.14.15" />
+	  <PackageReference Include="BuildWebCompiler2022" Version="1.14.15">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.25" />
   </ItemGroup>
 
