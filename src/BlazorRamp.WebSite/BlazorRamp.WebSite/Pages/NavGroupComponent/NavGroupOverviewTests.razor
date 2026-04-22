@@ -11,23 +11,25 @@
         eech section being able to contain links or other sections and so on.
     </p>
     <p>
-        Each expanding section (an un-ordered list of links or other sections) is based on the disclosure pattern and as such uses a button to show or hide its content. As the content just pushes content below it out of the way
-        as opposed to being a dropdown that obsures content beneath it no special keyboard support has been added.
+        Each expanding section (an un-ordered list of links or other sections) is based on the disclosure pattern and as such uses a button to show or hide its content. As the content just pushes content below it out of the way,
+        as opposed to being a dropdown that obscures content, no additional keyboard support has been added as the standard <b>Tab, Enter and Space</b> keys are sufficient.
     </p>
     <p>
-        <b>Released: </b>Current version <b>v1.0.0</b> See the documentation site for more information: <a target="_blank" class="@GlobalValues.Link_Class" href="@GlobalValues.Site_Link_Docs_Nav_Group">Nav Group documentation (opens in new window)</a>
+        <b>Released: </b>Current version <b>v1.0.1</b> See the documentation site for more information: <a target="_blank" class="@GlobalValues.Link_Class" href="@GlobalValues.Site_Link_Docs_Nav_Group">Nav Group documentation (opens in new window)</a>
     </p>
 </section>
 <section class="@GlobalValues.Info_Box_Class">
 
     <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
     <p>
-        Below is a single Nav Group component which, in this instance has been configured with two nested sections, Components and Nav Group. The only content within the Components section is the 
-        Nav Group section. This section only contains two links, Nav Group Overview & Tests (which has the url to this, the current page) and the Nav Group Quirks & Issues link which if activated 
-        would take you to that page on this site. 
+        Below is a single Nav Group component which, in this instance has been configured with two nested sections, named Components and Tests. The only content within the Components section is the 
+        Test section. This section just contains two links, Nav Group Overview & Tests (which has the url to this, the current page) and the Nav Group Quirks & Issues link which points to that page 
+        on this site. 
+        <br />
+        <strong>As the Nav Group Overview & Tests link url matches this page (the current page), by default, the sections will have be in an expanded stated to reveal that link.</strong>
     </p>
     <p>
-        Using the keys as descirbed below, navigate to each section and to the links. As not to be taken away from the page do not activate the links.
+        Using the keys as descirbed below, navigate to each section and to the links. As not to be taken away from the page do not activate the links, but do try the enter or space key whilst on the secions.
     </p>
     <h2 id="tabs-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
     <ul aria-labelledby="tabs-keyboard">
@@ -35,18 +37,41 @@
             <kbd>Tab</kbd> - when focus moves into the Nav Group, places focus onto the the first focusable element which could be a link or a section (button for the disclosure).
         </li>
         <li><kbd>Shift + Tab</kbd> reverses tab direction.</li>
-        <li><kbd>Up Arrow</kbd> - moves focus to the previous accordion heading. If the focus is on the first heading, moves focus to the last heading.</li>
         <li><kbd>Space or Enter</kbd> - when on a section expands or collapses that section.</li>
         <li><kbd>Enter</kbd> - when on a link activates it.</li>
     </ul>
 
 </section>
+<section class="@GlobalValues.Info_Box_Class">
 
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+    <ul>
+        <li>
+            Tabbing to the component should set focus on the first section named Components.
+        </li>
+        <li>
+            Tabbing again should take you to the second section,named Nav Group.
+        </li>
+        <li>
+            Using the enter or space key should expand or collapse whilst on a section header should expand or collapse that section.Screen reader users should be advised of the state, expanded/collapsed.
+        </li>
+        <li>
+            You should be able to navigate to the links. As the first link, Nav Group Overview & Tests has the url that matches the current page, screen reader users should be advised that its the current page.
+        </li>
+        <li>
+            If sections are collapsed then pressing the Tab key should take you to the next focusable element in the Nav Group component or to the next focusable element in the page sequence.
+        </li>
+        <li>
+            Voice control users should be able to navigate, expand or collapse accordion items by using the visible accessible name with the assoicated commands, such as click, collapse, expand etc.
+        </li>
+    </ul>
+</section>
 <section class="section-box">
     <nav aria-label="navigation example">
     <NavGroup>
         <NavSection SvgIcon="--svg-component-icon" Title="Components" Expanded="false">
-            <NavSection SvgIcon="--svg-open-book-icon" Title="Documentaion" Expanded="false">
+            <NavSection SvgIcon="--svg-experiment-icon" Title="Tests" Expanded="false">
                     <NavGroupLink SvgIcon="--svg-article-icon" Href="@GlobalValues.Path_Nav_Group_Overview" LinkText="Nav Group Overview & Tests" TargetType="TargetType.Self" />
                     <NavGroupLink SvgIcon="--svg-article-icon" Href="@GlobalValues.Path_Nav_Group_Quirks" LinkText="Nav Group Quirks & Issues" TargetType="TargetType.Self" />
             </NavSection>

@@ -15,9 +15,11 @@
 <h2 id="nav-group-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
 <ul aria-labelledby="nav-group-keyboard" class="keyboard-list">
     <li>
-        <kbd>Tab</kbd> Moves keyboard focus to the disclosure button and then to its children, the links or nested disclosure buttons and then then the next focusable element.
+        <kbd>Tab</kbd> - when focus moves into the Nav Group, places focus onto the the first focusable element which could be a link or a section (button for the disclosure).
     </li>
-    <li><kbd>Space or Enter</kbd> - shows or hides the sections contents.</li>
+    <li><kbd>Shift + Tab</kbd> reverses tab direction.</li>
+    <li><kbd>Space or Enter</kbd> - when on a section expands or collapses that section.</li>
+    <li><kbd>Enter</kbd> - when on a link activates it.</li>
 </ul>
 
 <h2 id="device-testing" class="info-box__heading">Accessibility device testing</h2>
@@ -32,6 +34,20 @@
 
 <p>
     <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were availabale at the time of testing (see release history on the installation page for approximate testing dates)
+</p>
+<h3 id="screen-reader-quirks" class="@GlobalValues.Info_Box_Heading_Class">Screen reader quirks or known issues</h3>
+<ul aria-labelledby="screen-reader-quirks">
+    <li>
+        <b>Narrator</b> more often than not will not announce that the section item has been expanded after activation when
+        paried with either Edge or Chrome, but is fine when paired with Firefox.
+    </li>
+    <li>
+        <b>JAWS</b> paired with Firefox will sometimes repeat section names and actions (expanded/collapsed).
+    </li>
+</ul>
+
+<p>
+    <strong>Note: </strong> The same quirks were also noted in the ARIA Authoring Practices Guide (APG) disclosure examples.
 </p>
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_NavGroup}/{GlobalValues.Common_Page_Path_Installation}")">
