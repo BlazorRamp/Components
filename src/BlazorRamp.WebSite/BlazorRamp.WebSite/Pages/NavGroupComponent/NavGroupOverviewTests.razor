@@ -1,0 +1,72 @@
+﻿
+@attribute [Route(GlobalValues.Path_Nav_Group_Overview)]
+
+<PageTitle>@GlobalValues.Page_Title_Nav_Group_Overview_Test</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">Nav Group Overview & Tests</h1>
+
+    <p>
+        This Nav Group component is designed to be used in a side navigation HTML <strong>nav</strong> element. It provides the ability to create 'N'-level deep navigation systems, with 
+        eech section being able to contain links or other sections and so on.
+    </p>
+    <p>
+        Each expanding section (an un-ordered list of links or other sections) is based on the disclosure pattern and as such uses a button to show or hide its content. As the content just pushes content below it out of the way
+        as opposed to being a dropdown that obsures content beneath it no special keyboard support has been added.
+    </p>
+    <p>
+        <b>Released: </b>Current version <b>v1.0.0</b> See the documentation site for more information: <a target="_blank" class="@GlobalValues.Link_Class" href="@GlobalValues.Site_Link_Docs_Nav_Group">Nav Group documentation (opens in new window)</a>
+    </p>
+</section>
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
+    <p>
+        Below is a single Nav Group component which, in this instance has been configured with two nested sections, Components and Nav Group. The only content within the Components section is the 
+        Nav Group section. This section only contains two links, Nav Group Overview & Tests (which has the url to this, the current page) and the Nav Group Quirks & Issues link which if activated 
+        would take you to that page on this site. 
+    </p>
+    <p>
+        Using the keys as descirbed below, navigate to each section and to the links. As not to be taken away from the page do not activate the links.
+    </p>
+    <h2 id="tabs-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
+    <ul aria-labelledby="tabs-keyboard">
+        <li>
+            <kbd>Tab</kbd> - when focus moves into the Nav Group, places focus onto the the first focusable element which could be a link or a section (button for the disclosure).
+        </li>
+        <li><kbd>Shift + Tab</kbd> reverses tab direction.</li>
+        <li><kbd>Up Arrow</kbd> - moves focus to the previous accordion heading. If the focus is on the first heading, moves focus to the last heading.</li>
+        <li><kbd>Space or Enter</kbd> - when on a section expands or collapses that section.</li>
+        <li><kbd>Enter</kbd> - when on a link activates it.</li>
+    </ul>
+
+</section>
+
+<section class="section-box">
+    <nav aria-label="navigation example">
+    <NavGroup>
+        <NavSection SvgIcon="--svg-component-icon" Title="Components" Expanded="false">
+            <NavSection SvgIcon="--svg-open-book-icon" Title="Documentaion" Expanded="false">
+                    <NavGroupLink SvgIcon="--svg-article-icon" Href="@GlobalValues.Path_Nav_Group_Overview" LinkText="Nav Group Overview & Tests" TargetType="TargetType.Self" />
+                    <NavGroupLink SvgIcon="--svg-article-icon" Href="@GlobalValues.Path_Nav_Group_Quirks" LinkText="Nav Group Quirks & Issues" TargetType="TargetType.Self" />
+            </NavSection>
+        </NavSection>
+    </NavGroup>
+</nav>
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Modal_Dialog_Quirks">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_Modal_Dialog - @GlobalValues.Page_Heading_Modal_Quirks</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Nav_Group_Quirks">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Main_Nav_Section_Heading_Nav_Group - @GlobalValues.Page_Heading_Nav_Group_Quirks</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}

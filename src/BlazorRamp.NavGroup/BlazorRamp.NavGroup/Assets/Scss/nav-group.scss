@@ -38,7 +38,7 @@
         margin: 0;
         width: 100%;
         background-color: var(--br-comp-nav-group-area-header-background);
-        color: var(--br-comp-nav-group-area-header-text);
+        color: inherit;
         text-align: start;
         border: none;
         outline: none;
@@ -70,6 +70,7 @@
             outline-style: var(--br-comp-nav-group-outline-style);
             outline-width: var(--br-comp-nav-group-outline-width);
             outline-color: var(--br-comp-nav-group-outline-colour);
+            color: var(--br-comp-nav-group-area-header-text);
         }
 
         &[aria-expanded="true"] > .br-nav-group__trigger-icon {
@@ -82,7 +83,7 @@
 
         &[aria-expanded="true"] {
             font-weight: bold;
-            //color: var(--br-comp-nav-group-area-content-text);
+            color: var(--br-comp-nav-group-area-header-text);
         }
 
             &[aria-expanded="true"] + .br-nav-group__content {

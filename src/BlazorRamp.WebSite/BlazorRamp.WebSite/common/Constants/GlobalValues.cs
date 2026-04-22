@@ -25,7 +25,8 @@ public static class GlobalValues
     public const string Page_Heading_Tabs_Quirks        = "Quirks & Issues";
     public const string Page_Heading_Accordion_Overview = "Overvew & Tests";
     public const string Page_Heading_Accordion_Quirks   = "Quirks & Issues";
-
+    public const string Page_Heading_Nav_Group_Overview = "Overvew & Tests";
+    public const string Page_Heading_Nav_Group_Quirks = "Quirks & Issues";
     public const string Page_Heading_FAQs_Final = "Final Words";
 
     public const string Page_Title_Overview_Introduction    = "Introduction";
@@ -45,7 +46,8 @@ public static class GlobalValues
     public const string Page_Title_Tabs_Quirks              = "Tabs Quirks & Issues";
     public const string Page_Title_Accordion_Quirks         = "Accordion Quirks & Issues";
     public const string Page_Title_Accordion_Overview_Test  = "Accordion Overview & Tests";
-
+    public const string Page_Title_Nav_Group_Quirks         = "Nav Group Quirks & Issues";
+    public const string Page_Title_Nav_Group_Overview_Test  = "Nav Group Overview & Tests";
 
     public const string Page_Title_Modal_Dialog_Overview_Test = "Modal Dialog Overview & Tests";
     public const string Page_Title_Modal_Dialog_Quirks        = "Modal Dialog Quirks & Issues";
@@ -61,7 +63,8 @@ public static class GlobalValues
     public const string Path_Tabs_Quirks         = "/tabs/known-issues";
     public const string Path_Accordion_Overview  = "/accordion/overview-tests";
     public const string Path_Accordion_Quirks    = "/accordion/known-issues";
-
+    public const string Path_Nav_Group_Overview  = "/nav-group/overview-tests";
+    public const string Path_Nav_Group_Quirks    = "/nav-group/known-issues";
 
 
     public const string Path_Busy_Screen        = "/busy-indicator/busy-page";
@@ -84,6 +87,7 @@ public static class GlobalValues
     public const string Main_Nav_Section_Heading_Toggle_Tip    = "Toggletip";
     public const string Main_Nav_Section_Heading_Tabs          = "Tabs";
     public const string Main_Nav_Section_Heading_Accordion     = "Accordion";
+    public const string Main_Nav_Section_Heading_Nav_Group     = "Nav Group";
     public const string Main_Nav_Section_Heading_FAQs          = "FAQs";
 
 
@@ -125,4 +129,5 @@ public static class GlobalValues
     public const string Site_Link_Docs_ToggleTip    = "https://docs.blazorramp.uk/components/toggletip/overview";
     public const string Site_Link_Docs_Tabs         = "https://docs.blazorramp.uk/components/tabs/overview";
     public const string Site_Link_Docs_Accordion    = "https://docs.blazorramp.uk/components/accordion/overview";
+    public const string Site_Link_Docs_Nav_Group    = "https://docs.blazorramp.uk/components/nav-group/overview";
 }
