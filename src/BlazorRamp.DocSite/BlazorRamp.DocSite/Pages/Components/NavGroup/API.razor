@@ -131,6 +131,14 @@
                 </td>
             </tr>
             <tr>
+                <td>TargetType</td>
+                <td>TargetType (enum)</td>
+                <td>
+                    Gets or sets the browsing context in which the link is opened, mapped to the HTML <span class="code-span">target</span> attribute. 
+                    Defaults to <span class="code-span">TargetType.Self</span>.
+                </td>
+            </tr>
+            <tr>
                 <td>AdditionalAttributes</td>
                 <td>Dictionary&lt;string, object&gt;?</td>
                 <td>Sets additional attributes applied to the anchor element.</td>
@@ -332,7 +340,12 @@
                 <tr>
                     <td>--br-comp-nav-group-area-header-text</td>
                     <td>var(--br-comp-all-area-header-text)</td>
-                    <td>The text colour used for the heading and icons - uses the shared component variable.</td>
+                    <td>
+                        The text colour used for the heading and icons - uses the shared component variable.
+                        <br /><strong>Note: </strong>This colour is only applied when the section is focused or expanded
+                        otherwise the colour is inherited which means it will use the page text colour.
+                
+                    </td>
                 </tr>
                 <tr>
                     <td>--br-comp-nav-group-area-header-background</td>
