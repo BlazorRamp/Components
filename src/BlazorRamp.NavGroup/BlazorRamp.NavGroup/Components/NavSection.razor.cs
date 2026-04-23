@@ -38,13 +38,19 @@ public partial class NavSection : IDisposable
     /// <summary>
     /// Gets or sets the visible label rendered in the section trigger button.
     /// </summary>
-    [Parameter] public required string  Title       { get; set; }
+    [Parameter] public required string Title { get; set; }
 
     /// <summary>
     /// Gets or sets a value indicating whether the section is expanded on initial
     /// render. Defaults to <see langword="false"/>.
     /// </summary>
-    [Parameter] public bool            Expanded     { get; set; }
+    [Parameter] public bool Expanded { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether section is adding to the indent
+    /// Defaults to <see langword="false"/>.
+    /// </summary>
+    [Parameter] public bool NoIndent { get; set; } = false;
 
     /// <summary>
     /// Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
@@ -52,10 +58,10 @@ public partial class NavSection : IDisposable
     /// For example: <c>--svg-my-icon</c>.
     /// </summary>
     [Parameter] public string? SvgIcon { get; set; } = default;
-   
+
     [Inject] NavigationManager? NavigationManager { get; set; }
 
-    private int ChildDepth => Depth + 1;
+    private int ChildDepth => Depth + (NoIndent ? 0 : 1);
 
     private List<NavSection>   _childSections = [];
     private List<NavGroupLink> _groupLinks  = [];

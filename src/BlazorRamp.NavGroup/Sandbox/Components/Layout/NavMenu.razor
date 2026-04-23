@@ -48,19 +48,22 @@
         <h2 id="components">Components</h2>
         <NavGroup AriaLabelledby="components">
             <NavSeparator />
-            <NavSection Title="Accordion">
+            <NavSection Title="Accordion" NoIndent="true">
                 <NavGroupLink Href="weather" LinkText="Link One" TargetType="TargetType.Blank" />
 
                 <NavSection Title="Toggle Tip">
                     <NavGroupLink Href="weather" LinkText="Link One" />
                 </NavSection>
-  
+                <NavSection Title="Busy Indicator">
+                    <NavGroupLink Href="weather" LinkText="Link One" />
+                    <NavSection Title="Toggle Tip">
+                        <NavGroupLink Href="" LinkText="Link One two" />
+                    </NavSection>
+                </NavSection>
                 <NavGroupLink Href="weather" LinkText="Link One" />
             </NavSection>
 
-            <NavSection Title="Busy Indicator">
-                <NavGroupLink Href="weather" LinkText="Link One" />
-            </NavSection>
+
 
             <NavSection Title="Modal Dialog Framework">
                 <NavGroupLink Href="weather" LinkText="Link One" />

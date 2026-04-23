@@ -129,6 +129,45 @@ public class NavSection_Tests
                 endState.Should().Be((isExpanded).ToString().ToLower());
             }
         }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void Should_be_able_to_turn_indenting_on_or_off_for_the_section(bool noIdent)
+        {
+            using var context = new BunitContext();
+     
+            var navSection = context.Render<NavSectionComponent>(paramBuilder =>
+            {
+                paramBuilder.Add(p => p.Title, "Nav Section").Add(p => p.NoIndent, noIdent);
+                paramBuilder.AddChildContent<NavGroupLink>(innerBuilder =>
+                {
+                    innerBuilder.Add(p => p.LinkText, "Link Text");
+                });
+            });
+
+            var navGroupLink = navSection.FindComponent<NavGroupLink>();
+
+            var liStyle     = navGroupLink.Find("li").GetAttribute("style");
+            var indentValue = int.Parse(liStyle!.Split(':')[1].TrimEnd(';'));
+
+            using (new AssertionScope())
+            {
+                navSection.Instance.NoIndent.Should().Be(noIdent);
+
+                if(true == noIdent)
+                {
+                    indentValue.Should().Be(0);
+                }
+                else
+                {
+                   indentValue.Should().Be(1);
+                }
+ 
+            }
+
+        }
+
     }
 
     public class Internal_ExpandParent
