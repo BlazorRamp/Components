@@ -7,7 +7,18 @@
     This Tabs component was built following the W3C ARIA Authoring Practices Guide (APG). By adhering to standardised patterns, we ensure that the component
     behaves predictably across different browsers and assistive technologies.
 </p>
-
+<p>
+    Each Tab has a <span class="code-span">HasPanelTabIndex</span> parameter, which by default is true. When true a <span class="code-span">tabindex="0"</span> is added to the associated Tab Panel.
+    If you know there will be no focusable elements in the panel or the panel is scrollable then you should leave this set to true. 
+    Without this, when the user is on a Tab and presses the Tab key they would go past the panel and onto the next focusable element on the page and/or may not be able to scroll the panel content.
+</p>
+<p>
+    If you know there will be a focusable element at the start of the Tab Panel content or there is a heading at the start of the panel and it's not scrollable, 
+    then you can set the <span class="code-span">HasPanelTabIndex</span> parameter to false to omit the tabindex on the Tab Panel.
+</p>
+<p>
+    If the first focusable element is in the middle of the panel, past important content, then I would retain the tabindex on the Tab Panel, so a screen reader user can read from the start of the panel content.
+</p>
 <h2 id="tabs-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
 <ul aria-labelledby="tabs-keyboard" class="keyboard-list">
     <li>
