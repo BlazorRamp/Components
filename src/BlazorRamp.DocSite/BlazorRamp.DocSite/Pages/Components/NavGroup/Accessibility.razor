@@ -10,7 +10,7 @@
 </p>
 <p>
     In this instance, given the component is designed to be part of a vertical list structure, without obscuring any content when sections are expanded no additional keyboard support was added, and
-    it only uses the standard keys such as Tab, Space and Eneter.
+    it only uses the standard keys such as Tab, Space and Enter.
 </p>
 <p>
     The container component, the NavGroup, has an <span class="code-span">AriaLabelledBy</span> parameter that allows you to associate one or more elements by their <span class="code-span">id</span> attribute to form the accessible name for the root <span class="code-span">ul</span> element via its <span class="code-span">aria-labelledby</span> attribute.
@@ -18,7 +18,7 @@
 </p>
 <p>
     A unique <span class="code-span">id</span> attribute is generated for each NavSection <span class="code-span">button</span> element and is associated with its disclosed <span class="code-span">ul</span> element via <span class="code-span">aria-labelledby</span>. This means the <span class="code-span">Title</span> parameter value provided for the section becomes the accessible name for that nested list, giving screen reader users the same contextual announcement as they navigate deeper into the hierarchy.
-</p?
+</p>
 <h2 id="nav-group-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
 <ul aria-labelledby="nav-group-keyboard" class="keyboard-list">
     <li>

@@ -69,9 +69,15 @@ public class GlobalValues
 
     public const string Common_Page_Title_FAQ_Questions = "Fequently Asked Questions";
 
+
     public const string Component_Name_Accordion    = "Accordion";
     public const string Component_Name_Announcement = "Announcement History";
     public const string Component_Name_Busy         = "Busy indicator";
+    
+    public const string Component_Name_Inputs         = "Inputs";
+    public const string Component_Name_Text_Input     = "Text Input";
+    public const string Component_Name_Password_Input = "Password Input";
+
     public const string Component_Name_NavGroup     = "Nav Group";
     public const string Component_Name_SkipTo       = "Skip To";
     public const string Component_Name_Switch       = "Switch";
@@ -81,11 +87,15 @@ public class GlobalValues
     public const string Component_Path_Part_Accordion    = "accordion";
     public const string Component_Path_Part_Announcement = "announcement-history";
     public const string Component_Path_Part_Busy         = "busy-indicator";
+    public const string Component_Path_Part_Inputs        = "inputs";
+    public const string Component_Path_Part_TextInput     = "text-input";
+    public const string Component_Path_Part_PasswordInput = "password-input";
     public const string Component_Path_Part_SkipTo       = "skip-to";
     public const string Component_Path_Part_Switch       = "switch";
     public const string Component_Path_Part_Tabs         = "tabs";
     public const string Component_Path_Part_Toggletip    = "toggletip";
     public const string Component_Path_Part_NavGroup     = "nav-group";
+
 
     public const string Service_Name_Live_Region = "Live Region";
     public const string Serivce_Path_Part_Live_Region  = "live-region";
