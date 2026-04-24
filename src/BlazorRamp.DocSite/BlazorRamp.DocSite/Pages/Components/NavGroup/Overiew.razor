@@ -24,7 +24,7 @@
     <strong>Note: </strong>The NavGroup component is designed to be used on an interactive page.
 </p>
 <p>
-    The code below shows the "Frameworks" section of the left side navigaion on this site, which is compried of a <span class="code-span">h2</span> element connect to a <b>NavGrooup</b>  component that contains a <b>NavSeparator</b> followed by a <b>NavSection</b> containing <b>NavGroupLink</b> components.
+    The code below shows the "Frameworks" section of the left side navigation on this site, which is comprised of a <span class="code-span">h2</span> element connect to a <b>NavGroup</b>  component that contains a <b>NavSeparator</b> followed by a <b>NavSection</b> containing <b>NavGroupLink</b> components.
 </p>
 
 <CodeBox CodeBlock="@NavGroupSnippets.Framework_Section" AriaLabel="Nav group code example" />
@@ -32,7 +32,7 @@
 <p>
     <strong>Note: </strong>You may be wondering what the <span class="code-span">VisuallyHiddenPrefix</span> Parameter is for. To give more context to screen reader users, when the link title is read out to them, 
     they will hear announcements such as "Modal Dialog Overview" in stead of just overview as each section has the same page names. Another reason for why I do this is that screen reader users also have
-    access to lists (of shortcuts) to items on a page such as links, and without this prefix in that list would be serveral links all just called overview, which is not helpful. 
+    access to lists (of shortcuts) to items on a page such as links, and without this prefix in that list would be several links all just called overview, which is not helpful. 
 </p>
 
 <p>
@@ -40,9 +40,9 @@
 </p>
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Usage}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextInput}/{GlobalValues.Common_Page_Path_Usage}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Component_Name_Busy - @GlobalValues.Common_Page_Title_Usage</span>
+        <span>@GlobalValues.Component_Name_Text_Input - @GlobalValues.Common_Page_Title_Usage</span>
         <span aria-hidden="true"></span>
     </a>
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_NavGroup}/{GlobalValues.Common_Page_Path_Installation}")">

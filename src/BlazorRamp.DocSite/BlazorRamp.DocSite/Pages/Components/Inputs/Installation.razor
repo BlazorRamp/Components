@@ -1,4 +1,22 @@
-﻿<h3>Installation</h3>
+﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Installation}")]
+
+<PageTitle>@GlobalValues.Component_Name_Inputs @GlobalValues.Common_Page_Title_Installation</PageTitle>
+
+<h1>@GlobalValues.Component_Name_Inputs @GlobalValues.Common_Page_Title_Installation . . . In Progress . . . </h1>
+
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Overview}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Inputs - @GlobalValues.Common_Page_Title_Overview</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Accessibility}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Inputs - @GlobalValues.Common_Page_Title_Installation</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
 
 @code {
 
