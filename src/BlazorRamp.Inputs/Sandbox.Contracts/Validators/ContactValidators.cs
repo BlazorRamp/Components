@@ -16,7 +16,7 @@ public static class ContactValidators
     public static MemberValidator<string> FamilyNameValidator { get; }
 
     public static MemberValidator<string> PasswordValidator { get; }
-    public static MemberValidator<int> AgeValidator { get; }
+    public static MemberValidator<decimal> AgeValidator { get; }
     public static MemberValidator<ContactDto> CompareDOBValidator { get; }
     public static MemberValidator<DateOnly> DOBValidator { get; }
 
@@ -33,7 +33,7 @@ public static class ContactValidators
         FamilyNameValidator = MemberValidators.CreateStringRegexValidator(@"^[A-Z].*$", "FamilyName", "Surname", "Must start with a capital letter")
                                 .AndThen(MemberValidators.CreateStringLengthValidator(2, 50, "FamilyName", "Surname", "Must be between 2 and 50 characters in length"));
 
-        AgeValidator = MemberValidators.CreateRangeValidator(25, 50, "Age", "Age", "Must be between 25 and 50");
+        AgeValidator = MemberValidators.CreateRangeValidator<decimal>(25, 50, "Age", "Age", "Must be between 25 and 50");
 
         CompareDOBValidator = MemberValidators.CreateMemberComparisonValidator<ContactDto, DateOnly>(c => c.CompareDOB, c => c.DOB, CompareType.LessThan, "Compare DOB", "Must be less than Date of birth");
 

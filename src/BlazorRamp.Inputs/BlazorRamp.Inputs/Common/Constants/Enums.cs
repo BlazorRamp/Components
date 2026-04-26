@@ -7,12 +7,18 @@ public enum TextInputType : int
     Url = 2, 
     Tel = 3
 }
+public enum NumericInputModeType : int
+{
+    Numeric = 0,
+    Decimal = 1
+
+}
 
 
 public enum ValidationDisplayMode: int
 {
-    DescribedbyWithHint       = 0,
-    DescribedbyHintSuppressed = 1,
+    DescribedByWithHint       = 0,
+    DescribedByHintSuppressed = 1,
     TabbableWithHint          = 2
 
 }

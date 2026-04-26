@@ -16,7 +16,7 @@ namespace BlazorRamp.Inputs.Components
         [Parameter] public bool   Required      { get; set; } = true;
         [Parameter] public string ErrorsLabel   { get; set; } = GlobalValues.Default_Errors_label;
 
-        [Parameter] public ValidationDisplayMode ValidationDisplayMode { get; set; } = ValidationDisplayMode.DescribedbyWithHint;
+        [Parameter] public ValidationDisplayMode ValidationDisplayMode { get; set; } = ValidationDisplayMode.DescribedByWithHint;
 
 
         /// <summary>
@@ -27,7 +27,8 @@ namespace BlazorRamp.Inputs.Components
         [Parameter] public string? SvgIcon { get; set; } = default;
         [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
 
-        private IJSObjectReference? _jsModule = null;
+        private IJSObjectReference? _jSModule = null;
+
         public ElementReference  ControlReference { get; set; }
 
         protected List<string> InvalidMessages  { get; private set; } = [];
@@ -55,29 +56,29 @@ namespace BlazorRamp.Inputs.Components
 
             HintNormalised = String.IsNullOrWhiteSpace(HintText) ? null : (HintText.EndsWith('.') ? HintText : HintText.Trim() + ".");
 
-            AriaDescribedByID = SetDescribedby(HasErrors,ValidationDisplayMode);
+            AriaDescribedByID = SetDescribedBy(HasErrors,ValidationDisplayMode);
 
             TabbableError = (ValidationDisplayMode == ValidationDisplayMode.TabbableWithHint);
 
             base.OnParametersSet();
         }
 
-        private string? SetDescribedby(bool hasErrors, ValidationDisplayMode validationMode)
+        private string? SetDescribedBy(bool hasErrors, ValidationDisplayMode validationMode)
 
             => (hasErrors, validationMode) switch
             {
-                (true,  ValidationDisplayMode.DescribedbyWithHint)       => $"{ErrorMessageID} {HintTextID}",
-                (true,  ValidationDisplayMode.DescribedbyHintSuppressed) => ErrorMessageID,
+                (true,  ValidationDisplayMode.DescribedByWithHint)       => $"{ErrorMessageID} {HintTextID}",
+                (true,  ValidationDisplayMode.DescribedByHintSuppressed) => ErrorMessageID,
                 (true,  ValidationDisplayMode.TabbableWithHint)          => HintTextID,
-                (false, ValidationDisplayMode.DescribedbyWithHint)       => HintTextID,
-                (false, ValidationDisplayMode.DescribedbyHintSuppressed) => HintTextID,
+                (false, ValidationDisplayMode.DescribedByWithHint)       => HintTextID,
+                (false, ValidationDisplayMode.DescribedByHintSuppressed) => HintTextID,
                 (false, ValidationDisplayMode.TabbableWithHint)          => HintTextID,
 
 
                 _ => HintTextID 
             };
 
-        
+
         protected override void OnInitialized()
         {
             base.OnInitialized(); 
@@ -97,7 +98,7 @@ namespace BlazorRamp.Inputs.Components
             StateIconClasses  = GetStateIconClasses(EditContext.GetValidationMessages(FieldIdentifier).Any());
             InvalidMessages   = GetValidationMessages();
             HasErrors         = InvalidMessages.Count > 0;
-            AriaDescribedByID = SetDescribedby(HasErrors, ValidationDisplayMode);
+            AriaDescribedByID = SetDescribedBy(HasErrors, ValidationDisplayMode);
         }
         private void EditContext_OnValidationStateChanged(object? sender, ValidationStateChangedEventArgs e)
         
@@ -110,7 +111,7 @@ namespace BlazorRamp.Inputs.Components
                 InvalidMessages = [];
                 HasErrors = false;
                 StateIconClasses = GlobalValues.Text_Input_State_Icon_Class;
-                AriaDescribedByID = SetDescribedby(false, ValidationDisplayMode);
+                AriaDescribedByID = SetDescribedBy(false, ValidationDisplayMode);
                 return;
             }
 
@@ -118,12 +119,12 @@ namespace BlazorRamp.Inputs.Components
             StateIconClasses  = GetStateIconClasses(hasMessages);
             InvalidMessages   = hasMessages ? GetValidationMessages() : [];
             HasErrors         = InvalidMessages.Count > 0;
-            AriaDescribedByID = SetDescribedby(HasErrors, ValidationDisplayMode);
+            AriaDescribedByID = SetDescribedBy(HasErrors, ValidationDisplayMode);
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if (firstRender) _jsModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Inputs_File_Path);
+            if (firstRender) _jSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Inputs_File_Path);
 
             if (IsDisabled && !_disabledHandlerRegistered)
             {
@@ -140,14 +141,14 @@ namespace BlazorRamp.Inputs.Components
 
         }
 
-        private string GetStateIconClasses(bool? invalid)
+        private static string GetStateIconClasses(bool? invalid)
         {
             var classes = GlobalValues.Text_Input_State_Icon_Class;
 
             return invalid == null ? classes : $"{classes} {(invalid == true ? GlobalValues.Text_Input_State_Icon_Invalid_Modifier : GlobalValues.Text_Input_State_Icon_Valid_Modifier)}";
         }
 
-        internal string? CheckSetSvgVariable(string? svgIcon)
+        private static string? CheckSetSvgVariable(string? svgIcon)
         {
             var iconVariable = String.IsNullOrWhiteSpace(svgIcon)
                                     ? null
@@ -156,15 +157,17 @@ namespace BlazorRamp.Inputs.Components
             return iconVariable is null ? null : $"{GlobalValues.Text_Input_Svg_Css_Variable_Name}:{iconVariable};";
         }
 
-        private List<string> GetValidationMessages() => EditContext.GetValidationMessages(FieldIdentifier).Select(s => s.EndsWith('.') ? s : $"{s}.").ToList();
+        private List<string> GetValidationMessages() 
+            
+            => EditContext.GetValidationMessages(FieldIdentifier).Where(s => !String.IsNullOrWhiteSpace(s)).Select(s => s.EndsWith('.') ? s : $"{s}.").ToList();
 
         private async Task RegisterDisabledHandlers()
         {
-            if (_jsModule is not null) await _jsModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, ControlReference);
+            if (_jSModule is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, ControlReference);
         }
         private async Task UnRegisterDisabledHandlers()
         {
-            if (_jsModule is not null)  await _jsModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Unregister_Aria_Disabled_Handlers, ControlReference);
+            if (_jSModule is not null)  await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Unregister_Aria_Disabled_Handlers, ControlReference);
         }
         protected override void Dispose(bool disposing)
         {
@@ -177,16 +180,16 @@ namespace BlazorRamp.Inputs.Components
             base.Dispose(disposing);
         }
 
-        public async ValueTask DisposeAsync()
+        public virtual async ValueTask DisposeAsync()
         {
             if (_disposed) return;
             
-            if (_jsModule is not null)
+            if (_jSModule is not null)
             {
                 try
                 {
                     await UnRegisterDisabledHandlers();
-                    await _jsModule.DisposeAsync();
+                    await _jSModule.DisposeAsync();
                 }
                 catch { }
             }
