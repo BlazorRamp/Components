@@ -15,10 +15,10 @@ ideal for sections within a vertical navigation section</Description>
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Navigation; Nav;</PackageTags>
-    <PackageReleaseNotes>Amended unfocused/unselected section style to match accordion and tabs.</PackageReleaseNotes>
-    <Version>1.0.1</Version>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>
+    <PackageReleaseNotes>Enabled the NoIndent parameter on the NavSection so each section can turn off its child indenting if necessary.</PackageReleaseNotes>
+    <Version>1.0.2</Version>
+    <AssemblyVersion>1.0.2</AssemblyVersion>
+    <FileVersion>1.0.2</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
