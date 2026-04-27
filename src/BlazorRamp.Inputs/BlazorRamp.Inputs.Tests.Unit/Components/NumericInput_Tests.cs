@@ -561,6 +561,8 @@ public class NumericInput_Tests
                     .Add(p => p.ValueExpression, () => model.DecimalValue)
                     .Add(p => p.Required, true));
 
+
+            await component.Find("input").ChangeAsync("");
             await component.InvokeAsync(() => editContext.Validate());
 
             component.WaitForAssertion(() =>
