@@ -3,8 +3,8 @@
 
 <div class="@NumericInputClasses">
     <label class="@GlobalValues.Numeric_Input_Label_Class" for="@InputID">
-        @LabelText
-        @if (_required)
+        @DisplayNameText
+        @if (base.Required)
         {
             <span aria-hidden="true" class="@GlobalValues.Numeric_Input_Asterisk_Class"> *</span>
         }
@@ -26,7 +26,7 @@
            inputmode="@InputMode"
            aria-invalid="@(base.HasErrors ? "true" : null)"
            aria-describedby="@(base.AriaDescribedByID)"
-           aria-required="@(_required ? "true" : null)"
+           aria-required="@(base.Required ? "true" : null)"
            aria-disabled="@(base.IsDisabled ? "true" : null)"
            readonly="@(base.ReadOnly ? "readonly" : null)"
            @onblur="HandleOnBlur"
@@ -40,7 +40,7 @@
         
         @if (HasErrors)
         {
-            <div id="@ErrorMessageID" class="@GlobalValues.Numeric_Input_Error_Class" tabindex="@(TabbableError ? "0" : null)" aria-label="@(TabbableError ? $"{LabelText.TrimEnd(':')} {ErrorsText}" : null)" role="@(TabbableError ? "region" : null)">
+            <div id="@ErrorMessageID" class="@GlobalValues.Numeric_Input_Error_Class" tabindex="@(TabbableError ? "0" : null)" aria-label="@(TabbableError ? $"{DisplayNameText.TrimEnd(':')} {ErrorsText}" : null)" role="@(TabbableError ? "region" : null)">
 
                 <ul>
                     @foreach (var errorMessage in InvalidMessages)

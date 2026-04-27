@@ -12,6 +12,10 @@ internal class GlobalValues
 
     public const string JS_Inputs_Set_Value = "setInputValue";
 
+
+    public const string Input_Parse_Error_Message = "Invalid format.";
+
+
     public const string Text_Input_Class                = "br-text-input";
     public const string Text_Input_Label_Class          = $"{Text_Input_Class}__label";
     public const string Text_Input_Hint_Class           = $"{Text_Input_Class}__hint";

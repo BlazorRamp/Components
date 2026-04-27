@@ -11,37 +11,28 @@ namespace BlazorRamp.Inputs.Components
     public class NumericTypeInput<TValue> : InputTypeBase<TValue> , IAsyncDisposable
     {
 
-        [Parameter] public bool UpdateOnInput { get; set; } = false;
-        [Parameter] public string? Format { get; set; } = null;
+        [Parameter] public bool     UpdateOnInput { get; set; } = false;
+        [Parameter] public string?  Format        { get; set; } = null;
+        
         [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
 
         private IJSObjectReference? _jSModule = null;
 
         protected string NumericInputClasses { get; private set; } = String.Empty;
-        protected string InputMode { get; private set; } = NumericInputModeType.Numeric.ToString().ToLower();
+        protected string InputMode           { get; private set; } = NumericInputModeType.Numeric.ToString().ToLower();
 
         private readonly bool _isWholeNumber = true;
-        private readonly Type _dataType;
-        private readonly bool _typeIsNullable;
-
-        protected string? _stringValue = null;
-        protected bool _required       = false;
-        
-        private TValue? _lastParsedValue = default;
+        protected string?     _stringValue = null;
+        private TValue?       _lastParsedValue = default;
 
         public NumericTypeInput()
         {
-            _dataType       = Nullable.GetUnderlyingType(typeof(TValue)) ?? typeof(TValue);
-            _typeIsNullable = Nullable.GetUnderlyingType(typeof(TValue)) != null;
-
-            _isWholeNumber = !(_dataType == typeof(decimal) || _dataType == typeof(double) || _dataType == typeof(float));
+            _isWholeNumber = !(base.DataType == typeof(decimal) || base.DataType == typeof(double) || base.DataType == typeof(float));
         }
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
             NumericInputClasses = GetInputClasses(AdditionalAttributes);
-
-            _required = _typeIsNullable ? false : base.Required;
 
             if (!Equals(CurrentValue, _lastParsedValue))
             {
@@ -57,7 +48,7 @@ namespace BlazorRamp.Inputs.Components
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            InputMode = (_dataType == typeof(int) || _dataType == typeof(long)) 
+            InputMode = (base.DataType == typeof(int) || base.DataType == typeof(long)) 
                         ? NumericInputModeType.Numeric.ToString().ToLower() 
                         : NumericInputModeType.Decimal.ToString().ToLower();
 
@@ -80,14 +71,14 @@ namespace BlazorRamp.Inputs.Components
         {
             validationErrorMessage = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(value) && _typeIsNullable)
+            if (string.IsNullOrWhiteSpace(value) && base.IsNullableType)
             {
                 result = default!;//stop the green squiggle
                 return true;
             }
 
 
-            switch (_dataType)
+            switch (base.DataType)
             {
                 case Type t when t == typeof(int)     && int.TryParse(value, NumberStyles.Any, null, out int intValue):             { result = (TValue)(object)intValue;     return true; }
                 case Type t when t == typeof(long)    && long.TryParse(value, NumberStyles.Any, null, out long longValue):          { result = (TValue)(object)longValue;    return true; }
@@ -98,6 +89,7 @@ namespace BlazorRamp.Inputs.Components
             }
 
             result = default;
+            validationErrorMessage = String.Concat(base.DisplayNameText.TrimEnd(':').Trim(), " - ", base.ParseErrorsText);
             return false;
         }
 

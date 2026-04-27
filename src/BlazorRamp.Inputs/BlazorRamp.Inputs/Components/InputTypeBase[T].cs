@@ -8,13 +8,14 @@ namespace BlazorRamp.Inputs.Components
 {
     public abstract class InputTypeBase<TValue> : InputBase<TValue>, IAsyncDisposable
     {
-        [Parameter] public string LabelText     { get; set; } = String.Empty;
         [Parameter] public string ControlID     { get; set; } = String.Empty;
         [Parameter] public string HintText      { get; set; } = String.Empty;
         [Parameter] public bool   ReadOnly      { get; set; } = false;
         [Parameter] public bool   AriaDisabled  { get; set; } = false;
         [Parameter] public bool   Required      { get; set; } = true;
         [Parameter] public string ErrorsLabel   { get; set; } = GlobalValues.Default_Errors_label;
+
+        [Parameter] public string ParseErrorMessage { get; set; } = GlobalValues.Input_Parse_Error_Message; 
 
         [Parameter] public ValidationDisplayMode ValidationDisplayMode { get; set; } = ValidationDisplayMode.DescribedByWithHint;
 
@@ -41,11 +42,22 @@ namespace BlazorRamp.Inputs.Components
         protected string? SvgVariable       { get; private set; } = null;
         protected bool    HasErrors         { get; private set; } = false;
         protected string? AriaDescribedByID { get; private set; } = String.Empty;
-        protected string  ErrorsText        { get; set; } = GlobalValues.Default_Errors_label;
-        protected  bool   TabbableError     { get; set; } = false;
+        protected string  ErrorsText        { get; private set; } = GlobalValues.Default_Errors_label;
+        protected string  ParseErrorsText   { get; private set; } = GlobalValues.Input_Parse_Error_Message;
+
+        protected string DisplayNameText    { get; private set; }
+        protected bool   TabbableError      { get; set; } = false;
+        protected bool   IsNullableType     { get; } 
+        protected Type   DataType           { get; }
 
         private bool _disposed                  = false;
         private bool _disabledHandlerRegistered = false;
+
+        protected InputTypeBase()
+        {
+            IsNullableType = Nullable.GetUnderlyingType(typeof(TValue)) != null;
+            DataType       = Nullable.GetUnderlyingType(typeof(TValue)) ?? typeof(TValue);
+        }
 
         protected override void OnParametersSet()
         {
@@ -83,10 +95,10 @@ namespace BlazorRamp.Inputs.Components
         {
             base.OnInitialized(); 
 
-            InputID   = String.IsNullOrWhiteSpace(ControlID) ? Guid.NewGuid().ToString() : ControlID.Trim();
-            LabelText = String.IsNullOrWhiteSpace(LabelText) ? FieldIdentifier.FieldName : LabelText;
-            ErrorsText = String.IsNullOrWhiteSpace(ErrorsLabel) ? GlobalValues.Default_Errors_label : ErrorsLabel.Trim();
-
+            InputID         = String.IsNullOrWhiteSpace(ControlID) ? Guid.NewGuid().ToString() : ControlID.Trim();
+            DisplayNameText       = String.IsNullOrWhiteSpace(DisplayName) ? FieldIdentifier.FieldName : DisplayName.Trim();
+            ErrorsText      = String.IsNullOrWhiteSpace(ErrorsLabel) ? GlobalValues.Default_Errors_label : ErrorsLabel.Trim();
+            ParseErrorsText = String.IsNullOrWhiteSpace(ParseErrorMessage) ? GlobalValues.Input_Parse_Error_Message : ParseErrorMessage.Trim();
 
             EditContext.OnValidationStateChanged += EditContext_OnValidationStateChanged;
             EditContext.OnValidationRequested += EditContext_OnValidationRequested;

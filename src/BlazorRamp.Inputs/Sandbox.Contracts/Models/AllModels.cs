@@ -33,6 +33,8 @@ public record class ContactDto
     public string   Email          { get; set; } = default!;
     public string?  NullableMobile { get; set; } 
     public decimal?     NullableAge    { get; set; }
+
+    [Range(20, 50,ErrorMessage = "Not in range")]
     public int      Age            { get; set; }
     public string   Password       { get; set; } = default!;
     public List<string> Entries { get; set; } = [];
