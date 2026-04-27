@@ -113,13 +113,13 @@ public class TextInput_Tests
 
 
             var readonlyAttribute = component.Find("input").GetAttribute("readonly");
-            var ariaDisabledyAttribute = component.Find("input").GetAttribute("aria-disabled");
+            var ariaDisabledAttribute = component.Find("input").GetAttribute("aria-disabled");
 
 
             using (new AssertionScope())
             {
                 readonlyAttribute.Should().Be("readonly");
-                ariaDisabledyAttribute.Should().BeNull();
+                ariaDisabledAttribute.Should().BeNull();
             }
         }
 
@@ -148,7 +148,7 @@ public class TextInput_Tests
         [InlineData("")]
         [InlineData(" ")]
         [InlineData("MyControl")]
-        public async Task Should_be_able_to_set_the_label_text_which_will_used_the_field_identity_if_null_empty_or_whitespace(string? labelText)
+        public async Task Should_be_able_to_set_the_display_dame_which_will_used_the_field_identity_if_null_empty_or_whitespace(string? labelText)
         {
             await using var context = new BunitContext();
 
@@ -349,12 +349,12 @@ public class TextInput_Tests
 
             var (inputComponent, _) = CreateInputWithParamByName<TextInputType?>(context, nameof(TextInputComponent.TextInputType), inputType);
 
-            var inputTypeAttribue = inputComponent.Find("input").GetAttribute("type");
+            var inputTypeAttribute = inputComponent.Find("input").GetAttribute("type");
 
             using (new AssertionScope())
             {
                 inputComponent.Instance.TextInputType.Should().Be(inputType);
-                inputTypeAttribue.Should().Be(Enum.GetName<TextInputType>(inputType)?.ToLower());
+                inputTypeAttribute.Should().Be(Enum.GetName<TextInputType>(inputType)?.ToLower());
             }
         }
 
@@ -419,7 +419,7 @@ public class TextInput_Tests
         [InlineData(null)]
         [InlineData("")]
         [InlineData("  ")]
-        public async Task Should_be_able_to_set_the_optional_svg_icon_paramater_which_must_start_with_a_double_dash(string? svgIconVariable)
+        public async Task Should_be_able_to_set_the_optional_svg_icon_parameter_which_must_start_with_a_double_dash(string? svgIconVariable)
         {
             await using var context = new BunitContext();
 
@@ -445,7 +445,7 @@ public class TextInput_Tests
     public class Properties()
     {
         [Fact]
-        public async Task Should_be_able_to_get_the_contol_reference_for_the_underlying_input()
+        public async Task Should_be_able_to_get_the_control_reference_for_the_underlying_input()
         {
             await using var context = new BunitContext();
 

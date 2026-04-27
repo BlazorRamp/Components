@@ -15,7 +15,7 @@ namespace BlazorRamp.Inputs.Components
         [Parameter] public bool   Required      { get; set; } = true;
         [Parameter] public string ErrorsLabel   { get; set; } = GlobalValues.Default_Errors_label;
 
-        [Parameter] public string ParseErrorMessage { get; set; } = GlobalValues.Input_Parse_Error_Message; 
+
 
         [Parameter] public ValidationDisplayMode ValidationDisplayMode { get; set; } = ValidationDisplayMode.DescribedByWithHint;
 
@@ -43,7 +43,7 @@ namespace BlazorRamp.Inputs.Components
         protected bool    HasErrors         { get; private set; } = false;
         protected string? AriaDescribedByID { get; private set; } = String.Empty;
         protected string  ErrorsText        { get; private set; } = GlobalValues.Default_Errors_label;
-        protected string  ParseErrorsText   { get; private set; } = GlobalValues.Input_Parse_Error_Message;
+
 
         protected string DisplayNameText    { get; private set; }
         protected bool   TabbableError      { get; set; } = false;
@@ -98,7 +98,6 @@ namespace BlazorRamp.Inputs.Components
             InputID         = String.IsNullOrWhiteSpace(ControlID) ? Guid.NewGuid().ToString() : ControlID.Trim();
             DisplayNameText       = String.IsNullOrWhiteSpace(DisplayName) ? FieldIdentifier.FieldName : DisplayName.Trim();
             ErrorsText      = String.IsNullOrWhiteSpace(ErrorsLabel) ? GlobalValues.Default_Errors_label : ErrorsLabel.Trim();
-            ParseErrorsText = String.IsNullOrWhiteSpace(ParseErrorMessage) ? GlobalValues.Input_Parse_Error_Message : ParseErrorMessage.Trim();
 
             EditContext.OnValidationStateChanged += EditContext_OnValidationStateChanged;
             EditContext.OnValidationRequested += EditContext_OnValidationRequested;

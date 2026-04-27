@@ -11,15 +11,17 @@ namespace BlazorRamp.Inputs.Components
     public class NumericTypeInput<TValue> : InputTypeBase<TValue> , IAsyncDisposable
     {
 
-        [Parameter] public bool     UpdateOnInput { get; set; } = false;
-        [Parameter] public string?  Format        { get; set; } = null;
-        
+        [Parameter] public bool     UpdateOnInput   { get; set; } = false;
+        [Parameter] public string?  Format          { get; set; } = null;
+        [Parameter] public string ParseErrorMessage { get; set; } = GlobalValues.Input_Parse_Error_Message;
+
         [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
 
         private IJSObjectReference? _jSModule = null;
 
         protected string NumericInputClasses { get; private set; } = String.Empty;
         protected string InputMode           { get; private set; } = NumericInputModeType.Numeric.ToString().ToLower();
+        protected string ParseErrorsText     { get; private set; } = GlobalValues.Input_Parse_Error_Message;
 
         private readonly bool _isWholeNumber = true;
         protected string?     _stringValue = null;
@@ -52,6 +54,7 @@ namespace BlazorRamp.Inputs.Components
                         ? NumericInputModeType.Numeric.ToString().ToLower() 
                         : NumericInputModeType.Decimal.ToString().ToLower();
 
+            ParseErrorsText = String.IsNullOrWhiteSpace(ParseErrorMessage) ? GlobalValues.Input_Parse_Error_Message : ParseErrorMessage.Trim();
         }
 
 
@@ -89,7 +92,7 @@ namespace BlazorRamp.Inputs.Components
             }
 
             result = default;
-            validationErrorMessage = String.Concat(base.DisplayNameText.TrimEnd(':').Trim(), " - ", base.ParseErrorsText);
+            validationErrorMessage = String.Concat(base.DisplayNameText.TrimEnd(':').Trim(), " - ", ParseErrorsText);
             return false;
         }
 

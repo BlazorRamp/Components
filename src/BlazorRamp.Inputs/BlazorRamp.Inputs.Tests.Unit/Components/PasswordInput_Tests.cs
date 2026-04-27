@@ -113,13 +113,13 @@ public class PasswordInput_Tests
 
 
             var readonlyAttribute = component.Find("input").GetAttribute("readonly");
-            var ariaDisabledyAttribute = component.Find("input").GetAttribute("aria-disabled");
+            var ariaDisabledAttribute = component.Find("input").GetAttribute("aria-disabled");
 
 
             using (new AssertionScope())
             {
                 readonlyAttribute.Should().Be("readonly");
-                ariaDisabledyAttribute.Should().BeNull();
+                ariaDisabledAttribute.Should().BeNull();
             }
         }
 
@@ -324,13 +324,13 @@ public class PasswordInput_Tests
 
             var (inputComponent, _) = CreateInputWithParamByName<PasswordAutoComplete?>(context, nameof(PasswordInputComponent.PasswordAutoComplete), autoCompleteValue);
 
-            var inputTypeAttribue = inputComponent.Find("input").GetAttribute("autocomplete");
+            var inputTypeAttribute = inputComponent.Find("input").GetAttribute("autocomplete");
 
             using (new AssertionScope())
             {
                 var enumText = autoCompleteValue == PasswordAutoComplete.CurrentPassword ? "current-password" : "new-password";
                 inputComponent.Instance.PasswordAutoComplete.Should().Be(autoCompleteValue);
-                inputTypeAttribue.Should().Be(enumText);
+                inputTypeAttribute.Should().Be(enumText);
             }
         }
 
@@ -429,7 +429,7 @@ public class PasswordInput_Tests
         [InlineData(null)]
         [InlineData("")]
         [InlineData("  ")]
-        public async Task Should_be_able_to_set_the_optional_svg_icon_paramater_which_must_start_with_a_double_dash(string? svgIconVariable)
+        public async Task Should_be_able_to_set_the_optional_svg_icon_parameter_which_must_start_with_a_double_dash(string? svgIconVariable)
         {
             await using var context = new BunitContext();
 
@@ -457,7 +457,7 @@ public class PasswordInput_Tests
     public class Properties()
     {
         [Fact]
-        public async Task Should_be_able_to_get_the_contol_reference_for_the_underlying_input()
+        public async Task Should_be_able_to_get_the_control_reference_for_the_underlying_input()
         {
             await using var context = new BunitContext();
 
@@ -479,10 +479,10 @@ public class PasswordInput_Tests
         }
     }
 
-    public class Methodd()
+    public class Method()
     {
         [Fact]
-        public async Task Clicking_the_show_password_button_should_call_toggle_show_passwor_and_toggle_the_input_type_text_or_password()
+        public async Task Clicking_the_show_password_button_should_call_toggle_show_password_and_toggle_the_input_type_text_or_password()
         {
             await using var context = new BunitContext();
 
