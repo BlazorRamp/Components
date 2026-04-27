@@ -67,7 +67,7 @@ public class GlobalValues
     public const string Common_Page_Title_Usage          = "Usage";
     public const string Common_Page_Title_Core_Variables = "Core CSS Variables";
 
-    public const string Common_Page_Title_FAQ_Questions = "Fequently Asked Questions";
+    public const string Common_Page_Title_FAQ_Questions = "Frequently Asked Questions";
 
 
     public const string Component_Name_Accordion    = "Accordion";
@@ -77,6 +77,7 @@ public class GlobalValues
     public const string Component_Name_Inputs         = "Inputs";
     public const string Component_Name_Text_Input     = "Text Input";
     public const string Component_Name_Password_Input = "Password Input";
+    public const string Component_Name_Numeric_Input  = "Numeric Input";
 
     public const string Component_Name_NavGroup     = "Nav Group";
     public const string Component_Name_SkipTo       = "Skip To";
@@ -84,17 +85,18 @@ public class GlobalValues
     public const string Component_Name_Tabs         = "Tabs";
     public const string Component_Name_Toggletip    = "Toggletip";
 
-    public const string Component_Path_Part_Accordion    = "accordion";
-    public const string Component_Path_Part_Announcement = "announcement-history";
-    public const string Component_Path_Part_Busy         = "busy-indicator";
+    public const string Component_Path_Part_Accordion     = "accordion";
+    public const string Component_Path_Part_Announcement  = "announcement-history";
+    public const string Component_Path_Part_Busy          = "busy-indicator";
     public const string Component_Path_Part_Inputs        = "inputs";
     public const string Component_Path_Part_TextInput     = "text-input";
     public const string Component_Path_Part_PasswordInput = "password-input";
-    public const string Component_Path_Part_SkipTo       = "skip-to";
-    public const string Component_Path_Part_Switch       = "switch";
-    public const string Component_Path_Part_Tabs         = "tabs";
-    public const string Component_Path_Part_Toggletip    = "toggletip";
-    public const string Component_Path_Part_NavGroup     = "nav-group";
+    public const string Component_Path_Part_NumericInput  = "numeric-input";
+    public const string Component_Path_Part_SkipTo        = "skip-to";
+    public const string Component_Path_Part_Switch        = "switch";
+    public const string Component_Path_Part_Tabs          = "tabs";
+    public const string Component_Path_Part_Toggletip     = "toggletip";
+    public const string Component_Path_Part_NavGroup      = "nav-group";
 
 
     public const string Service_Name_Live_Region = "Live Region";
@@ -116,6 +118,10 @@ public class GlobalValues
 
     public const string Web_Site_Path_Component_Test = "https://blazorramp.uk";
     public const string Web_Site_Path_GitHub_Repo = "https://github.com/BlazorRamp/Components";
+
+
+    public const string Validated_Repo_Site = "https://github.com/code-dispenser/Validated";
+    public const string Validated_Blazor_Repo_Site = "https://github.com/code-dispenser/Validated-Blazor";
 
     public const string Test_Component_Path_ToggleTip = $"{Web_Site_Path_Component_Test}/toggle-tip/overview-tests";
 }

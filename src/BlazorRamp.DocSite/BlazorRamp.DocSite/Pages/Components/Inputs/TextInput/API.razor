@@ -3,6 +3,170 @@
 <PageTitle>@GlobalValues.Component_Name_Text_Input @GlobalValues.Common_Page_Title_Api</PageTitle>
 
 <h1>@GlobalValues.Component_Name_Text_Input @GlobalValues.Common_Page_Title_Api . . . In Progress . . . </h1>
+<p>
+    Everything you need to work with the TextInput component: parameters, methods, models, enums, and CSS variables for styling.
+</p>
+
+<section class="code-table">
+
+    <h2 id="text-input-component-parameters" class="code-table__heading">TextInput component parameters</h2>
+
+    <table aria-labelledby="text-input-component-parameters">
+
+        <thead>
+            <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ChildContent</td>
+                <td>RenderFragment?</td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>AriaLabelledBy</td>
+                <td>string?</td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>AdditionalAttributes</td>
+                <td>Dictionary&lt;string, object&gt;?</td>
+                <td>
+t.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 id="text-input-component-methods" class="code-table__heading">TextInput component methods</h2>
+
+    <table aria-labelledby="accordion-component-methods">
+
+        <thead>
+            <tr>
+                <th scope="col">Return</th>
+                <th scope="col">Method</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="code-table">
+
+    <h2 class="code-table__heading">Supporting enums</h2>
+
+
+    <h3 id="text-input-type-enum" class="code-table__heading">TextInputType enum</h3>
+
+    <table aria-labelledby="text-input-type-enum">
+
+        <thead>
+            <tr>
+                <th scope="col">Value</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0</td>
+                <td>Text</td>
+                <td>
+                    Plain text input.
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Email</td>
+                <td>
+                    Email address input. Provides email keyboard on mobile devices.
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Url</td>
+                <td>
+                    URL input. Provides URL keyboard on mobile devices.
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Tel</td>
+                <td>
+                    Telephone number input. Provides numeric keyboard on mobile devices.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <h3 id="validation-display-mode-enum" class="code-table__heading">ValidationDisplayMode enum</h3>
+
+    <table aria-labelledby="validation-display-mode-enum">
+
+        <thead>
+            <tr>
+                <th scope="col">Value</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0</td>
+                <td>DescribedByWithHint</td>
+                <td>
+                    Error message ID and hint text ID are both included in <span class="code-span">aria-describedby</span>.
+                    Error region is not tabbable. This is the default mode.
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>DescribedByHintSuppressed</td>
+                <td>
+                    Only the error message ID is included in <span class="code-span">aria-describedby</span> when errors
+                    are present, suppressing the hint text association. Error region is not tabbable.
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>TabbableWithHint</td>
+                <td>
+                    The error region is rendered as a tabbable <span class="code-span">role="region"</span> element with a
+                    <span class="code-span">tabindex="0"</span>, allowing keyboard users to navigate directly to the errors.
+                    Only the hint text ID is included in <span class="code-span">aria-describedby</span>.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</section>
 
 
 <div class="flex-content justify-content-between">
