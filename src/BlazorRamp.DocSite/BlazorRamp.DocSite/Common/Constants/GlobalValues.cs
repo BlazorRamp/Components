@@ -66,6 +66,7 @@ public class GlobalValues
     public const string Common_Page_Title_Accessibility  = "Accessibility";
     public const string Common_Page_Title_Usage          = "Usage";
     public const string Common_Page_Title_Core_Variables = "Core CSS Variables";
+    public const string Common_Page_Title_Shared_CSS     = "Shared CSS Variables";
 
     public const string Common_Page_Title_FAQ_Questions = "Frequently Asked Questions";
 

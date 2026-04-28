@@ -7,7 +7,10 @@
 <p>
     Everything you need to work with the TextInput component: parameters, methods, models, enums, and CSS variables for styling.
 </p>
-
+<p>
+    <strong>Note: </strong>This Input component only uses the shared Input CSS variables as defined on the
+    <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_CSS_Variables}")">@GlobalValues.Component_Name_Inputs - @GlobalValues.Common_Page_Title_Shared_CSS</a> page.
+</p>
 <section>
     <h2 class="page-heading">
         Component parameters, methods, supporting classes and enums.
@@ -31,9 +34,12 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>DisplayName</td>
-                    <td></td>
-                    <td></td>
+                    <td>LabelText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the name used for the input control label.
+                        If the value is null, empty, or whitespace then the field name is used.
+                    </td>
                 </tr>
                 <tr>
                     <td>ControlID</td>
@@ -105,52 +111,58 @@
                 </tr>
                 <tr>
                     <td>UpdateOnInput</td>
-                    <td>bool?</td>
+                    <td>bool</td>
                     <td>
+                        Gets or sets whether the input value is updated on every keystroke via the
+                        <span class="code-span">oninput</span> event. When <span class="code-span">false</span> the value updates on <span class="code-span">onchange</span>
+                        (i.e. when the field loses focus). Defaults to <span class="code-span">false</span>.
                     </td>
                 </tr>
                 <tr>
                     <td>TextInputType</td>
-                    <td>TextInputType (enum)?</td>
+                    <td>TextInputType (enum)</td>
                     <td>
+                        Gets or sets the HTML input type. Supports <span class="code-span">TextInputType.Text</span>,
+                        <span class="code-span">TextInputType.Email</span>, <span class="code-span">TextInputType.Url</span>, and
+                        <span class="code-span">TextInputType.Tel</span>. Defaults to <span class="code-span">TextInputType.Text</span>.
                     </td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
                 <tr>
                     <td>AdditionalAttributes</td>
                     <td>Dictionary&lt;string, object&gt;?</td>
                     <td>
-                        .
+                        Sets additional attributes applied to the input element.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Value</td>
+                    <td>string</td>
+                    <td>
+                        
+                        Gets or sets the value of the input field, bound to a property on your model. Typically provided automatically when using 
+                        <span class="code-span">@@bind-Value="Model.PropertyName</span> syntax.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ValueChanged</td>
+                    <td>ValueChanged&lt;string&gt;></td>
+                    <td>
+                        Gets or sets a callback invoked when the bound value changes. Used for both one-way binding, where you handle the new value directly in the event callback, and two-way binding via
+                        <span class="code-span">@@bind-Value="Model.PropertyName</span> where it is provided and managed automatically by the framework.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ValueExpresson</td>
+                    <td>Expression&lt;Func&lt;string&gt;&gt;</td>
+                    <td>
+                        Gets or sets an expression that identifies the bound model property.
+                    </td>
+                </tr>
+                <tr>
+                    <td>DisplayName</td>
+                    <td>string</td>
+                    <td>
+                        Inherited from <span class="code-span">InputBase&lt;TValue&gt;</span> but is <strong>not used by the Blazor Ramp inputs</strong>.
                     </td>
                 </tr>
             </tbody>
@@ -158,34 +170,23 @@
     </section>
     
     <section class="code-table">
-        <h3 id="text-input-component-methods" class="code-table__heading">TextInput component methods</h3>
+        <h3 id="text-input-component-methods" class="code-table__heading">TextInput component properties and methods</h3>
 
-        <table aria-labelledby="accordion-component-methods">
+        <table aria-labelledby="text-input-component-methods">
 
             <thead>
                 <tr>
-                    <th scope="col">Return</th>
-                    <th scope="col">Method</th>
+                    <th scope="col">Type/Return</th>
+                    <th scope="col">Property/Method</th>
                     <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td>ElementReference</td>
+                    <td>ControlReference</td>
                     <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>
+                        Property that returns the underlying <span class="code-span">ElementReference</span> for the input control.
                     </td>
                 </tr>
             </tbody>
@@ -287,12 +288,6 @@
     </section>
 
 </section>
-
-
-
-
-
-
 
 
 <div class="flex-content justify-content-between">

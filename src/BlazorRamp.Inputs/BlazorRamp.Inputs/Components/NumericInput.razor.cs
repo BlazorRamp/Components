@@ -41,7 +41,7 @@ namespace BlazorRamp.Inputs.Components
         /// <summary>
         /// Gets or sets the error message displayed when the input value cannot be parsed
         /// to <typeparamref name="TValue"/>. The message is prefixed with the field's
-        /// display name. When null, empty, or whitespace defaults to <c>"Invalid format."</c>.
+        /// display name (label text). When null, empty, or whitespace defaults to <c>"Invalid format."</c>.
         /// </summary>
         [Parameter] public string ParseErrorMessage { get; set; } = GlobalValues.Input_Parse_Error_Message;
 

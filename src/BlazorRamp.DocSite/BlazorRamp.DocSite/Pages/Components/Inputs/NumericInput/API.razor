@@ -2,11 +2,14 @@
 
 <PageTitle>@GlobalValues.Component_Name_Numeric_Input @GlobalValues.Common_Page_Title_Api</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Numeric_Input @GlobalValues.Common_Page_Title_Api . . . In Progress . . . </h1>
+<h1>@GlobalValues.Component_Name_Numeric_Input @GlobalValues.Common_Page_Title_Api</h1>
 <p>
     Everything you need to work with the TextInput component: parameters, methods, models, enums, and CSS variables for styling.
 </p>
-
+<p>
+    <strong>Note: </strong>This Input component only uses the shared Input CSS variables as defined on the 
+    <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_CSS_Variables}")">@GlobalValues.Component_Name_Inputs - @GlobalValues.Common_Page_Title_Shared_CSS</a> page.
+</p>
 <section>
     <h2 class="page-heading">
         Component parameters, methods, supporting classes and enums.
@@ -17,9 +20,9 @@
     </p>
     <section class="code-table">
 
-        <h3 id="text-input-component-parameters" class="code-table__heading">TextInput component parameters</h3>
+        <h3 id="numeric-input-component-parameters" class="code-table__heading">NumericInput component parameters</h3>
 
-        <table aria-labelledby="text-input-component-parameters">
+        <table aria-labelledby="numeric-input-component-parameters">
 
             <thead>
                 <tr>
@@ -30,57 +33,174 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>ChildContent</td>
-                    <td>RenderFragment?</td>
+                    <td>Format</td>
+                    <td>string</td>
                     <td>
+                        Gets or sets a .NET numeric format string applied to the display value when
+                        the input loses focus. For example <span class="code-span">"F2"</span> displays two decimal places.
+                        Only applies to non-integer types. When the field is focused the raw unformatted
+                        value is shown to allow free editing.
+
                     </td>
                 </tr>
                 <tr>
-                    <td>AriaLabelledBy</td>
-                    <td>string?</td>
+                    <td>ParseErrorMessage</td>
+                    <td>string</td>
                     <td>
+                        Gets or sets the error message displayed when the input value cannot be parsed by the framework.
+                        The message is prefixed with the field's associated <span class="code-span">labelText</span> or the field name is used. When null, empty, 
+                        or whitespace defaults to <span class="code-span">"Invalid format."</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>LabelText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the name used for the input control label.
+                        If the value is null, empty, or whitespace then the field name is used.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ControlID</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the <span class="code-span">id</span> attribute applied to the underlying <span class="code-span">&lt;input&gt;</span>
+                        element. When null, empty, or whitespace a <span class="code-span">Guid</span> string is generated automatically. Leading and trailing whitespace is trimmed before use.
+                    </td>
+                </tr>
+                <tr>
+                    <td>HintText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the hint text rendered below the label and above the input field. When set, the text is normalised so it always ends with a full stop, and is
+                        associated to the input via <span class="code-span">aria-describedby</span>. When null, empty, or whitespace no hint element is rendered.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ReadOnly</td>
+                    <td>bool</td>
+                    <td>
+                        Gets or sets whether the input is read-only. When <span class="code-span">true</span>, the HTML <span class="code-span">readonly</span> attribute is applied
+                        to the underlying <span class="code-span">&lt;input&gt;</span> element. Takes precedence over the <span class="code-span">AriaDisabled</span> parameter when
+                        both are set.
+                    </td>
+                </tr>
+                <tr>
+                    <td>AriaDisabled</td>
+                    <td>bool</td>
+                    <td>
+                        Gets or sets whether the input is aria-disabled. When <span class="code-span">true</span>, the input is visually and functionally disabled via <span class="code-span">aria-disabled="true"</span> without
+                        using the native <span class="code-span">disabled</span> attribute, keeping the field focusable and readable by screen readers. JavaScript handlers block keyboard input and paste.
+                        Has no effect when <span class="code-span">ReadOnly</span> is also <span class="code-span">true</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Required</td>
+                    <td>bool</td>
+                    <td>
+                        Gets or sets whether the field is required. When <span class="code-span">true</span>, <span class="code-span">aria-required="true"</span>
+                        is applied to the input and a visually hidden asterisk is appended to the label. Defaults to <span class="code-span">true</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ErrorsLabel</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the accessible label for the tabbable error region, used when
+                        <span class="code-span">ValidationDisplayMode</span> is set to <span class="code-span">ValidationDisplayMode.TabbableWithHint</span>.
+                        Defaults to <span class="code-span">Errors</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ValidationDisplayMode</td>
+                    <td>ValidationDisplayMode</td>
+                    <td>
+                        Gets or sets the validation display mode which controls how <span class="code-span">aria-describedby</span>
+                        is set and whether the error region is tabbable. Defaults to <span class="code-span">ValidationDisplayMode.DescribedByWithHint</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>SvgIcon</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
+                        used as a mask-image icon alongside the tab title. Must begin with <span class="code-span">--</span>.
+                        For example: <span class="code-span">--svg-my-icon</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>UpdateOnInput</td>
+                    <td>bool</td>
+                    <td>
+                        Gets or sets whether the input value is updated on every keystroke via the
+                        <span class="code-span">oninput</span> event. When <span class="code-span">false</span> the value updates on <span class="code-span">onchange</span>
+                        (i.e. when the field loses focus). Defaults to <span class="code-span">false</span>.
                     </td>
                 </tr>
                 <tr>
                     <td>AdditionalAttributes</td>
                     <td>Dictionary&lt;string, object&gt;?</td>
                     <td>
-                        .
+                        Sets additional attributes applied to the input element.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Value</td>
+                    <td>string</td>
+                    <td>
+                        
+                        Gets or sets the value of the input field, bound to a property on your model. Typically provided automatically when using
+                        <span class="code-span">@@bind-Value="Model.PropertyName</span> syntax.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ValueChanged</td>
+                    <td>ValueChanged&lt;string&gt;></td>
+                    <td>
+                        Gets or sets a callback invoked when the bound value changes. Used for both one-way binding, where you handle the new value directly in the event callback, and two-way binding via
+                        <span class="code-span">@@bind-Value="Model.PropertyName</span> where it is provided and managed automatically by the framework.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ValueExpresson</td>
+                    <td>Expression&lt;Func&lt;string&gt;&gt;</td>
+                    <td>
+                        Gets or sets an expression that identifies the bound model property.
+                    </td>
+                </tr>
+                <tr>
+                    <td>DisplayName</td>
+                    <td>string</td>
+                    <td>
+                        Inherited from <span class="code-span">InputBase&lt;TValue&gt;</span> but is <strong>not used by the Blazor Ramp inputs</strong>.
                     </td>
                 </tr>
             </tbody>
         </table>
+        <p>
+            <b>Note: </b>The HTML type and inputmode attributes are set to <span class="code-span">type="text"</span>, with <span class="code-span">inputmode="numeric"</span> 
+             for when the datatype is an integer otherwise <span class="code-span">inputmode="decimal"</span> is used.   
+        </p>
     </section>
     
     <section class="code-table">
-        <h3 id="text-input-component-methods" class="code-table__heading">TextInput component methods</h3>
+        <h3 id="numeric-input-component-methods" class="code-table__heading">NumericInput component properties and methods</h3>
 
-        <table aria-labelledby="accordion-component-methods">
+        <table aria-labelledby="numeric-input-component-methods">
 
             <thead>
                 <tr>
-                    <th scope="col">Return</th>
-                    <th scope="col">Method</th>
+                    <th scope="col">Type/Return</th>
+                    <th scope="col">Property/Method</th>
                     <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td>ElementReference</td>
+                    <td>ControlReference</td>
                     <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>
+                        Property that returns the underlying <span class="code-span">ElementReference</span> for the input control.
                     </td>
                 </tr>
             </tbody>
@@ -91,51 +211,6 @@
 
         <h2 class="code-table__heading">Supporting enums</h2>
 
-        <section class="code-table">
-
-            <h3 id="text-input-type-enum" class="code-table__heading">TextInputType enum</h3>
-
-            <table aria-labelledby="text-input-type-enum">
-
-                <thead>
-                    <tr>
-                        <th scope="col">Value</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>Text</td>
-                        <td>
-                            Plain text input.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Email</td>
-                        <td>
-                            Email address input. Provides email keyboard on mobile devices.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Url</td>
-                        <td>
-                            URL input. Provides URL keyboard on mobile devices.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Tel</td>
-                        <td>
-                            Telephone number input. Provides numeric keyboard on mobile devices.
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
         <section class="code-table">
 
             <h3 id="validation-display-mode-enum" class="code-table__heading">ValidationDisplayMode enum</h3>
@@ -186,9 +261,9 @@
 
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Accessibility}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_CSS_Variables}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Component_Name_Inputs - @GlobalValues.Common_Page_Title_Accessibility</span>
+        <span>@GlobalValues.Component_Name_Inputs - @GlobalValues.Common_Page_Title_Shared_CSS</span>
         <span aria-hidden="true"></span>
     </a>
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_NumericInput}/{GlobalValues.Common_Page_Path_Usage}")">

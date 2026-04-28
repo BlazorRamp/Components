@@ -4,9 +4,6 @@
 
 <h1>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Core_Variables</h1>
 
-
-<h1 class="page-heading">"Core Base CSS Variables</h1>
-
 <p>The following css custom properties (variables) are used for all components.</p>
 <p>
     A component may define its own variables which can accept the base variable values
@@ -19,1710 +16,1726 @@
 <p>
     <strong>Note: </strong>More base variables may be added and/or some default values may be changed but only if they are not currently in use by a released component.
 </p>
-<section class="code-table">
 
-    <h2 id="base-outline-variables" class="code-table__heading">Base outline variables</h2>
+<section>
 
-    <table aria-labelledby="base-outline-variables" >
+    <h2 class="page-heading">Core Component Shared CSS Variables</h2>
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-comp-all-outline-style</td>
-                <td>solid</td>
-                <td>The style type of the outline.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-outline-width</td>
-                <td>var(--br-unit-outline-2)</td>
-                <td>The width of the outline.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-outline-offset</td>
-                <td>var(--br-unit-outline-offset-2)</td>
-                <td>Any offset applied to the outline.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-outline-colour</td>
-                <td>var(--br-comp-all-focus-indicator-colour)</td>
-                <td>The outline colour.</td>
-            </tr>
-        </tbody>
-    </table>
-
-</section>
-
-<section class="code-table">
-
-    <h2 class="code-table__heading">Pane base variables</h2>
     <p>
-        For any component that may conceptually have 3 layers like a sandwich, I call each of these layers a 'Pane'.
-        I found having these 3 conceptual layers made it easier to reason when creating and setting variables. Especially when you have say a hole cut out of the surface to expose
-        a panel or further down to the base.
+        The following tables contain all of the shared component css variables.
     </p>
+
+    <section class="code-table">
+
+        <h3 id="base-outline-variables" class="code-table__heading">Base outline variables</h3>
+
+        <table aria-labelledby="base-outline-variables" >
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-all-outline-style</td>
+                    <td>solid</td>
+                    <td>The style type of the outline.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-outline-width</td>
+                    <td>var(--br-unit-outline-2)</td>
+                    <td>The width of the outline.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-outline-offset</td>
+                    <td>var(--br-unit-outline-offset-2)</td>
+                    <td>Any offset applied to the outline.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-outline-colour</td>
+                    <td>var(--br-comp-all-focus-indicator-colour)</td>
+                    <td>The outline colour.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 class="code-table__heading">Pane base variables</h3>
+        <p>
+            For any component that may conceptually have 3 layers like a sandwich, I call each of these layers a 'Pane'.
+            I found having these 3 conceptual layers made it easier to reason when creating and setting variables. Especially when you have say a hole cut out of the surface to expose
+            a panel or further down to the base.
+        </p>
     
-    <table>
-        <caption>Base, the first pane.</caption>
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-comp-all-pane-base-background</td>
-                <td>var(--br-unit-colour-neutral-10)</td>
-                <td>The background colour for the base pane.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-pane-base-border-style</td>
-                <td>solid</td>
-                <td>The style type for the border.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-pane-base-border-colour</td>
-                <td>transparent</td>
-                <td>The border colour.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-pane-base-border-width</td>
-                <td>var(--br-unit-border-0)</td>
-                <td>The width of the border.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-pane-base-border-radius</td>
-                <td>var(--br-unit-radius-3)</td>
-                <td>The radius applied to all four corners.</td>
-            </tr>
-        </tbody>
-    </table>
+        <table>
+            <caption>Base, the first pane.</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-all-pane-base-background</td>
+                    <td>var(--br-unit-colour-neutral-10)</td>
+                    <td>The background colour for the base pane.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-pane-base-border-style</td>
+                    <td>solid</td>
+                    <td>The style type for the border.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-pane-base-border-colour</td>
+                    <td>transparent</td>
+                    <td>The border colour.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-pane-base-border-width</td>
+                    <td>var(--br-unit-border-0)</td>
+                    <td>The width of the border.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-pane-base-border-radius</td>
+                    <td>var(--br-unit-radius-3)</td>
+                    <td>The radius applied to all four corners.</td>
+                </tr>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 class="code-table__heading">Pane panel variables</h2>
+        <h3 class="code-table__heading">Pane panel variables</h3>
     
-    <table>
-        <caption>Panel, the middle pane.</caption>
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-comp-all-pane-panel-background</td>
-                <td>var(--br-unit-colour-neutral-10)</td>
-                <td>The background colour for the panel pane.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-pane-panel-border-style</td>
-                <td>solid</td>
-                <td>The style type for the border.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-pane-panel-border-colour</td>
-                <td>transparent</td>
-                <td>The border colour.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-pane-panel-border-width</td>
-                <td>var(--br-unit-border-0)</td>
-                <td>The width of the border.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-pane-panel-border-radius</td>
-                <td>var(--br-unit-radius-3)</td>
-                <td>The radius applied to all four corners.</td>
-            </tr>
-        </tbody>
-    </table>
+        <table>
+            <caption>Panel, the middle pane.</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-all-pane-panel-background</td>
+                    <td>var(--br-unit-colour-neutral-10)</td>
+                    <td>The background colour for the panel pane.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-pane-panel-border-style</td>
+                    <td>solid</td>
+                    <td>The style type for the border.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-pane-panel-border-colour</td>
+                    <td>transparent</td>
+                    <td>The border colour.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-pane-panel-border-width</td>
+                    <td>var(--br-unit-border-0)</td>
+                    <td>The width of the border.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-pane-panel-border-radius</td>
+                    <td>var(--br-unit-radius-3)</td>
+                    <td>The radius applied to all four corners.</td>
+                </tr>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 class="code-table__heading">Pane surface variables</h2>
+        <h3 class="code-table__heading">Pane surface variables</h3>
     
-    <table>
-        <caption>Surface, the pane on top.</caption>
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-comp-all-pane-surface-background</td>
-                <td>var(--br-unit-colour-neutral-20)</td>
-                <td>The background colour of the surface pane.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-pane-surface-text</td>
-                <td>inherit</td>
-                <td>The text colour</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-pane-surface-font-family</td>
-                <td>inherit</td>
-                <td>The font family used.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-pane-surface-font-size</td>
-                <td>inherit</td>
-                <td>The size of the font.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-pane-surface-font-weight</td>
-                <td>inherit</td>
-                <td>The weight of the font.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-pane-surface-line-height</td>
-                <td>inherit</td>
-                <td>The line height.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-pane-surface-border-style</td>
-                <td>solid</td>
-                <td>The style type for the border.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-pane-surface-border-colour</td>
-                <td>transparent</td>
-                <td>The border colour.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-pane-surface-border-width</td>
-                <td>var(--br-unit-border-0)</td>
-                <td>The width of the border.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-pane-surface-border-radius</td>
-                <td>var(--br-unit-radius-3)</td>
-                <td>The radius applied to all four corners.</td>
-            </tr>
-        </tbody>
-    </table>
+        <table>
+            <caption>Surface, the pane on top.</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-all-pane-surface-background</td>
+                    <td>var(--br-unit-colour-neutral-20)</td>
+                    <td>The background colour of the surface pane.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-pane-surface-text</td>
+                    <td>inherit</td>
+                    <td>The text colour</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-pane-surface-font-family</td>
+                    <td>inherit</td>
+                    <td>The font family used.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-pane-surface-font-size</td>
+                    <td>inherit</td>
+                    <td>The size of the font.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-pane-surface-font-weight</td>
+                    <td>inherit</td>
+                    <td>The weight of the font.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-pane-surface-line-height</td>
+                    <td>inherit</td>
+                    <td>The line height.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-pane-surface-border-style</td>
+                    <td>solid</td>
+                    <td>The style type for the border.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-pane-surface-border-colour</td>
+                    <td>transparent</td>
+                    <td>The border colour.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-pane-surface-border-width</td>
+                    <td>var(--br-unit-border-0)</td>
+                    <td>The width of the border.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-pane-surface-border-radius</td>
+                    <td>var(--br-unit-radius-3)</td>
+                    <td>The radius applied to all four corners.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="area-header-variables" class="code-table__heading">Area header variables</h3>
+        <p>
+            Panes, covered our conceptual depths, areas are just sections of the component.
+        </p>
+
+        <p>Header, for any component that has a heading area like the Announcement History dialog</p>
+
+        <table aria-labelledby="area-header-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-all-area-header-background</td>
+                    <td>var(--br-unit-colour-neutral-20)</td>
+                    <td>The background colour of the heading area, which may sit on the surface.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-header-text</td>
+                    <td>var(--br-unit-colour-primary-text-dark)</td>
+                    <td>The text colour.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-header-font-family</td>
+                    <td>inherit</td>
+                    <td>The font family used.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-header-font-size</td>
+                    <td>var(--br-unit-font-size-2)</td>
+                    <td>The size of the font.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-header-font-weight</td>
+                    <td>inherit</td>
+                    <td>The weight of the font.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-header-line-height</td>
+                    <td>inherit</td>
+                    <td>The line height.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-header-border-style</td>
+                    <td>solid</td>
+                    <td>The style type for the border.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-header-border-colour</td>
+                    <td>transparent</td>
+                    <td>The border colour.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-header-border-width</td>
+                    <td>var(--br-unit-border-0)</td>
+                    <td>The width of the border.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-header-border-radius</td>
+                    <td>var(--br-unit-radius-3)</td>
+                    <td>The radius applied to all four corners.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="area-content-variables" class="code-table__heading">Area content variables</h3>
+
+        <p>
+            Content,for any component that has some area for textual content, such as the list of announcements within the Announcement
+            History dialog.
+        </p>
+        <table aria-labelledby="area-content-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-all-area-content-background</td>
+                    <td>var(--br-unit-colour-canvas)</td>
+                    <td>The background colour of the content area.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-content-text</td>
+                    <td>inherit</td>
+                    <td>The text colour.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-content-font-family</td>
+                    <td>inherit</td>
+                    <td>The font family used.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-content-font-size</td>
+                    <td>var(--br-unit-font-size-1)</td>
+                    <td>The size of the font.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-content-font-weight</td>
+                    <td>inherit</td>
+                    <td>The weight of the font.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-content-line-height</td>
+                    <td>inherit</td>
+                    <td>The line height.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-content-border-style</td>
+                    <td>solid</td>
+                    <td>The style type for the border.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-content-border-colour</td>
+                    <td>transparent</td>
+                    <td>The border colour.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-content-border-width</td>
+                    <td>var(--br-unit-border-0)</td>
+                    <td>The width of the border.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-content-border-radius</td>
+                    <td>var(--br-unit-radius-3)</td>
+                    <td>The radius applied to all four corners.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="area-footer-variables" class="code-table__heading">Area footer variables</h3>
+
+        <p>
+            footer, area towards the bottom of the component. The Announcement History dialog has its buttons
+            in this area.
+        </p>
+        <table aria-labelledby="area-footer-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-all-area-footer-background</td>
+                    <td>transparent</td>
+                    <td>The background colour of the footer area.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-footer-text</td>
+                    <td>inherit</td>
+                     <td>The text colour.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-footer-font-family</td>
+                    <td>inherit</td>
+                    <td>The font family used.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-footer-font-size</td>
+                    <td>var(--br-unit-font-size-1)</td>
+                   <td>The size of the font.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-footer-font-weight</td>
+                    <td>inherit</td>
+                    <td>The weight of the font.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-footer-line-height</td>
+                    <td>inherit</td>
+                    <td>The line height.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-footer-border-style</td>
+                    <td>solid</td>
+                    <td>The style type for the border.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-footer-border-colour</td>
+                    <td>transparent</td>
+                    <td>The border colour.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-footer-border-width</td>
+                    <td>var(--br-unit-border-0)</td>
+                    <td>The width of the border.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-area-footer-border-radius</td>
+                    <td>var(--br-unit-radius-3)</td>
+                    <td>The radius applied to all four corners.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="internal-button-variables" class="code-table__heading">Internal button variables</h3>
+
+        <p>
+            Variables to style buttons that live inside components such as the buttons in the footer area of the Announcement 
+            History dialog.
+        </p>
+
+        <table aria-labelledby="internal-button-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-all-button-background</td>
+                    <td>transparent</td>
+                    <td>The background colour for the button.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-button-text</td>
+                    <td>var(--br-unit-colour-primary-text-dark)</td>
+                    <td>The text colour.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-button-font</td>
+                    <td>inherit</td>
+                    <td>The font used.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-button-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The size of the font.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-button-font-weight</td>
+                    <td>var(--br-unit-font-weight-400,inherit)</td>
+                    <td>The weight of the font.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-button-line-height</td>
+                    <td>inherit</td>
+                      <td>The line height.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-button-border-style</td>
+                    <td>solid</td>
+                    <td>The style type for the border.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-button-border-colour</td>
+                    <td>var(--br-unit-colour-primary-40)</td>
+                    <td>The border colour.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-button-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The width of the border.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-button-border-radius</td>
+                    <td>var(--br-unit-radius-full)</td>
+                    <td>The radius applied to all four corners. Full causes buttons to have rounded ends.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-button-state-hover</td>
+                    <td>hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10))</td>
+                    <td>The colour used for the pseudo class hover</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-button-state-active-brightness</td>
+                    <td>var(--br-unit-state-active-brightness)</td>
+                    <td>Any filter brightness applied for the pseudo class active</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-button-state-active-scale</td>
+                    <td>var(--br-unit-state-active-scale)</td>
+                    <td>A value that may be used in a transform to scale the button when its in the active state.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="track-related-variables" class="code-table__heading">Track related variables</h3>
+        <p>
+            Variables used for tracks, that have thumbs or sliders.
+        </p>
+        <table aria-labelledby="track-related-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-all-track-colour</td>
+                    <td>var(--br-unit-colour-neutral-10)</td>
+                    <td>The background colour of tracks used for thumbs and sliders</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-track-active-colour</td>
+                    <td>var(--br-unit-colour-neutral-30)</td>
+                    <td>The background colour when the track is active.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-track-inactive-colour</td>
+                    <td>var(--br-unit-colour-neutral-30)</td>
+                    <td>The background colour when the track is inactive.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-thumb-colour</td>
+                    <td>var(--br-unit-colour-neutral-20)</td>
+                    <td>The thumb or slider colour.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="focus-related-variables" class="code-table__heading">Focus, selection related variables</h3>
+
+        <table aria-labelledby="focus-related-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-all-focus-indicator-colour</td>
+                    <td>var(--br-unit-colour-primary-70)</td>
+                    <td>Colour used for focus indicators.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-focus-indicator-text</td>
+                    <td>var(--br-unit-colour-primary-5)</td>
+                    <td>Text colour if on top of an item using the focus indicator colour.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-selection-colour</td>
+                    <td>hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10));</td>
+                    <td>Background colour modifier for a selection such as a row in a table.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+        <h3 id="link-related-variables" class="code-table__heading">Link related variables</h3>
+
+        <table class="code-table">
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-all-link-current-page-background-colour</td>
+                    <td>var(--br-unit-colour-secondary-lighter)</td>
+                    <td>Link background colour for the link that is the current page.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-link-hover-background-colour</td>
+                    <td>hsl(from var(--br-unit-colour-secondary) h s l / 0.15)</td>
+                    <td>Colour for the pseudo hover class.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-link-active-background-colour</td>
+                    <td>hsl(from var(--br-unit-colour-secondary) h s l / 0.3)</td>
+                    <td>The links background colour for the active state pseudo class.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-link-focused-background-colour</td>
+                    <td>var(--br-unit-colour-secondary-lighter)</td>
+                    <td>The links background colour when it has the focus.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="miscellaneous-variables" class="code-table__heading">Miscellaneous variables</h3>
+
+        <table aria-labelledby="miscellaneous-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-all-overlay-colour</td>
+                    <td>hsl(from var(--br-unit-colour-secondary) h s l / 0.15)</td>
+                    <td>Overlay colour (backdrop) as used by busy indicators and modal dialogs</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-border-interactive-colour</td>
+                    <td>var(--br-unit-colour-primary-40)</td>
+                    <td>Border colour for interactive controls such as text inputs.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-hint-text-brightness</td>
+                    <td>85%</td>
+                    <td>Brightness filter value applied to hint text.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-all-divider-colour</td>
+                    <td>var(--br-unit-colour-neutral-30)</td>
+                    <td>General purpose divider colour.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
 
 </section>
 
-<section class="code-table">
+<section>
 
-    <h2 id="area-header-variables" class="code-table__heading">Area header variables</h2>
-    <p>
-        Panes, covered our conceptual depths, areas are just sections of the component.
-    </p>
-
-    <p>Header, for any component that has a heading area like the Announcement History dialog</p>
-
-    <table aria-labelledby="area-header-variables">
-
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-comp-all-area-header-background</td>
-                <td>var(--br-unit-colour-neutral-20)</td>
-                <td>The background colour of the heading area, which may sit on the surface.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-header-text</td>
-                <td>var(--br-unit-colour-primary-text-dark)</td>
-                <td>The text colour.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-header-font-family</td>
-                <td>inherit</td>
-                <td>The font family used.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-header-font-size</td>
-                <td>var(--br-unit-font-size-2)</td>
-                <td>The size of the font.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-header-font-weight</td>
-                <td>inherit</td>
-                <td>The weight of the font.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-header-line-height</td>
-                <td>inherit</td>
-                <td>The line height.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-header-border-style</td>
-                <td>solid</td>
-                <td>The style type for the border.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-header-border-colour</td>
-                <td>transparent</td>
-                <td>The border colour.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-header-border-width</td>
-                <td>var(--br-unit-border-0)</td>
-                <td>The width of the border.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-header-border-radius</td>
-                <td>var(--br-unit-radius-3)</td>
-                <td>The radius applied to all four corners.</td>
-            </tr>
-        </tbody>
-    </table>
-
-</section>
-
-<section class="code-table">
-
-    <h2 id="area-content-variables" class="code-table__heading">Area content variables</h2>
-
-    <p>
-        Content,for any component that has some area for textual content, such as the list of announcements within the Announcement
-        History dialog.
-    </p>
-    <table aria-labelledby="area-content-variables">
-
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-comp-all-area-content-background</td>
-                <td>var(--br-unit-colour-canvas)</td>
-                <td>The background colour of the content area.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-content-text</td>
-                <td>inherit</td>
-                <td>The text colour.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-content-font-family</td>
-                <td>inherit</td>
-                <td>The font family used.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-content-font-size</td>
-                <td>var(--br-unit-font-size-1)</td>
-                <td>The size of the font.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-content-font-weight</td>
-                <td>inherit</td>
-                <td>The weight of the font.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-content-line-height</td>
-                <td>inherit</td>
-                <td>The line height.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-content-border-style</td>
-                <td>solid</td>
-                <td>The style type for the border.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-content-border-colour</td>
-                <td>transparent</td>
-                <td>The border colour.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-content-border-width</td>
-                <td>var(--br-unit-border-0)</td>
-                <td>The width of the border.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-content-border-radius</td>
-                <td>var(--br-unit-radius-3)</td>
-                <td>The radius applied to all four corners.</td>
-            </tr>
-        </tbody>
-    </table>
-
-</section>
-
-<section class="code-table">
-
-    <h2 id="area-footer-variables" class="code-table__heading">Area footer variables</h2>
-
-    <p>
-        footer, area towards the bottom of the component. The Announcement History dialog has its buttons
-        in this area.
-    </p>
-    <table aria-labelledby="area-footer-variables">
-
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-comp-all-area-footer-background</td>
-                <td>transparent</td>
-                <td>The background colour of the footer area.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-footer-text</td>
-                <td>inherit</td>
-                 <td>The text colour.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-footer-font-family</td>
-                <td>inherit</td>
-                <td>The font family used.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-footer-font-size</td>
-                <td>var(--br-unit-font-size-1)</td>
-               <td>The size of the font.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-footer-font-weight</td>
-                <td>inherit</td>
-                <td>The weight of the font.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-footer-line-height</td>
-                <td>inherit</td>
-                <td>The line height.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-footer-border-style</td>
-                <td>solid</td>
-                <td>The style type for the border.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-footer-border-colour</td>
-                <td>transparent</td>
-                <td>The border colour.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-footer-border-width</td>
-                <td>var(--br-unit-border-0)</td>
-                <td>The width of the border.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-area-footer-border-radius</td>
-                <td>var(--br-unit-radius-3)</td>
-                <td>The radius applied to all four corners.</td>
-            </tr>
-        </tbody>
-    </table>
-
-</section>
-
-<section class="code-table">
-
-    <h2 id="internal-button-variables" class="code-table__heading">Internal button variables</h2>
-
-    <p>
-        Variables to style buttons that live inside components such as the buttons in the footer area of the Announcement 
-        History dialog.
-    </p>
-
-    <table aria-labelledby="internal-button-variables">
-
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-comp-all-button-background</td>
-                <td>transparent</td>
-                <td>The background colour for the button.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-button-text</td>
-                <td>var(--br-unit-colour-primary-text-dark)</td>
-                <td>The text colour.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-button-font</td>
-                <td>inherit</td>
-                <td>The font used.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-button-font-size</td>
-                <td>var(--br-unit-font-size-label)</td>
-                <td>The size of the font.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-button-font-weight</td>
-                <td>var(--br-unit-font-weight-400,inherit)</td>
-                <td>The weight of the font.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-button-line-height</td>
-                <td>inherit</td>
-                  <td>The line height.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-button-border-style</td>
-                <td>solid</td>
-                <td>The style type for the border.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-button-border-colour</td>
-                <td>var(--br-unit-colour-primary-40)</td>
-                <td>The border colour.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-button-border-width</td>
-                <td>var(--br-unit-border-1)</td>
-                <td>The width of the border.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-button-border-radius</td>
-                <td>var(--br-unit-radius-full)</td>
-                <td>The radius applied to all four corners. Full causes buttons to have rounded ends.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-button-state-hover</td>
-                <td>hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10))</td>
-                <td>The colour used for the pseudo class hover</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-button-state-active-brightness</td>
-                <td>var(--br-unit-state-active-brightness)</td>
-                <td>Any filter brightness applied for the pseudo class active</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-button-state-active-scale</td>
-                <td>var(--br-unit-state-active-scale)</td>
-                <td>A value that may be used in a transform to scale the button when its in the active state.</td>
-            </tr>
-        </tbody>
-    </table>
-
-</section>
-
-<section class="code-table">
-
-    <h2 id="track-related-variables" class="code-table__heading">Track related variables</h2>
-    <p>
-        Variables used for tracks, that have thumbs or sliders.
-    </p>
-    <table aria-labelledby="track-related-variables">
-
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-comp-all-track-colour</td>
-                <td>var(--br-unit-colour-neutral-10)</td>
-                <td>The background colour of tracks used for thumbs and sliders</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-track-active-colour</td>
-                <td>var(--br-unit-colour-neutral-30)</td>
-                <td>The background colour when the track is active.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-track-inactive-colour</td>
-                <td>var(--br-unit-colour-neutral-30)</td>
-                <td>The background colour when the track is inactive.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-thumb-colour</td>
-                <td>var(--br-unit-colour-neutral-20)</td>
-                <td>The thumb or slider colour.</td>
-            </tr>
-        </tbody>
-    </table>
-
-</section>
-
-<section class="code-table">
-
-    <h2 id="focus-related-variables" class="code-table__heading">Focus, selection related variables</h2>
-
-    <table aria-labelledby="focus-related-variables">
-
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-comp-all-focus-indicator-colour</td>
-                <td>var(--br-unit-colour-primary-70)</td>
-                <td>Colour used for focus indicators.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-focus-indicator-text</td>
-                <td>var(--br-unit-colour-primary-5)</td>
-                <td>Text colour if on top of an item using the focus indicator colour.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-selection-colour</td>
-                <td>hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10));</td>
-                <td>Background colour modifier for a selection such as a row in a table.</td>
-            </tr>
-        </tbody>
-    </table>
-
-</section>
-
-<section class="code-table">
-    <h2 id="link-related-variables" class="code-table__heading">Link related variables</h2>
-
-    <table class="code-table">
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-comp-all-link-current-page-background-colour</td>
-                <td>var(--br-unit-colour-secondary-lighter)</td>
-                <td>Link background colour for the link that is the current page.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-link-hover-background-colour</td>
-                <td>hsl(from var(--br-unit-colour-secondary) h s l / 0.15)</td>
-                <td>Colour for the pseudo hover class.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-link-active-background-colour</td>
-                <td>hsl(from var(--br-unit-colour-secondary) h s l / 0.3)</td>
-                <td>The links background colour for the active state pseudo class.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-link-focused-background-colour</td>
-                <td>var(--br-unit-colour-secondary-lighter)</td>
-                <td>The links background colour when it has the focus.</td>
-            </tr>
-        </tbody>
-    </table>
-
-</section>
-
-<section class="code-table">
-
-    <h2 id="miscellaneous-variables" class="code-table__heading">Miscellaneous variables</h2>
-
-    <table aria-labelledby="miscellaneous-variables">
-
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-comp-all-overlay-colour</td>
-                <td>hsl(from var(--br-unit-colour-secondary) h s l / 0.15)</td>
-                <td>Overlay colour (backdrop) as used by busy indicators and modal dialogs</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-border-interactive-colour</td>
-                <td>var(--br-unit-colour-primary-40)</td>
-                <td>Border colour for interactive controls such as text inputs.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-hint-text-brightness</td>
-                <td>85%</td>
-                <td>Brightness filter value applied to hint text.</td>
-            </tr>
-            <tr>
-                <td>--br-comp-all-divider-colour</td>
-                <td>var(--br-unit-colour-neutral-30)</td>
-                <td>General purpose divider colour.</td>
-            </tr>
-        </tbody>
-    </table>
-
-</section>
-
-
-<h1 class="page-heading">Core Unit CSS Variables</h1>
+<h2 class="page-heading">Core Unit CSS Variables</h2>
 
 <p>
     The following tables contain all of the unit type css variables that can be used by the base variables.
     Theses included such things as the units for border widths, font-sizes, weights, colours, opacity values etc.
 </p>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="spacing-variables" class="code-table__heading">Spacing variables</h2>
+        <h3 id="spacing-variables" class="code-table__heading">Spacing variables</h3>
 
-    <p>
-        Variables used to set spacing such as padding and margins.
-    </p>
-    <table aria-labelledby="spacing-variables">
+        <p>
+            Variables used to set spacing such as padding and margins.
+        </p>
+        <table aria-labelledby="spacing-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-space-0</td>
-                <td>0rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-space-1</td>
-                <td>0.125rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-space-2</td>
-                <td>0.25rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-space-3</td>
-                <td>0.5rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-space-4</td>
-                <td>0.75rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-space-5</td>
-                <td>1rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-space-6</td>
-                <td>1.25rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-space-7</td>
-                <td>1.5rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-space-8</td>
-                <td>1.75rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-space-9</td>
-                <td>2rem</td>
-            </tr>
-        </tbody>
-    </table>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-space-0</td>
+                    <td>0rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-space-1</td>
+                    <td>0.125rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-space-2</td>
+                    <td>0.25rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-space-3</td>
+                    <td>0.5rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-space-4</td>
+                    <td>0.75rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-space-5</td>
+                    <td>1rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-space-6</td>
+                    <td>1.25rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-space-7</td>
+                    <td>1.5rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-space-8</td>
+                    <td>1.75rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-space-9</td>
+                    <td>2rem</td>
+                </tr>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="border-radius-variables" class="code-table__heading">Radius variables</h2>
-    <p>Radius values used for such things as the border corners.</p>
-    <table aria-labelledby="border-radius-variables">
+        <h3 id="border-radius-variables" class="code-table__heading">Radius variables</h3>
+        <p>Radius values used for such things as the border corners.</p>
+        <table aria-labelledby="border-radius-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-radius-0</td>
-                <td>0rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-radius-1</td>
-                <td>0.125rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-radius-2</td>
-                <td>0.25rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-radius-3</td>
-                <td>0.5rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-radius-4</td>
-                <td>0.75rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-radius-5</td>
-                <td>1rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-radius-6</td>
-                <td>1.25rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-radius-7</td>
-                <td>1.5rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-radius-8</td>
-                <td>1.75rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-radius-9</td>
-                <td>2rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-radius-full</td>
-                <td>9999px</td>
-            </tr>
-        </tbody>
-    </table>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-radius-0</td>
+                    <td>0rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-radius-1</td>
+                    <td>0.125rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-radius-2</td>
+                    <td>0.25rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-radius-3</td>
+                    <td>0.5rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-radius-4</td>
+                    <td>0.75rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-radius-5</td>
+                    <td>1rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-radius-6</td>
+                    <td>1.25rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-radius-7</td>
+                    <td>1.5rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-radius-8</td>
+                    <td>1.75rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-radius-9</td>
+                    <td>2rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-radius-full</td>
+                    <td>9999px</td>
+                </tr>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="border-width-variables" class="code-table__heading">Border width variables</h2>
+        <h3 id="border-width-variables" class="code-table__heading">Border width variables</h3>
 
-    <table aria-labelledby="border-width-variables">
+        <table aria-labelledby="border-width-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-border-0</td>
-                <td>0px</td>
-            </tr>
-            <tr>
-                <td>--br-unit-border-1</td>
-                <td>1px</td>
-            </tr>
-            <tr>
-                <td>--br-unit-border-2</td>
-                <td>2px</td>
-            </tr>
-            <tr>
-                <td>--br-unit-border-3</td>
-                <td>3px</td>
-            </tr>
-            <tr>
-                <td>--br-unit-border-4</td>
-                <td>4px</td>
-            </tr>
-            <tr>
-                <td>--br-unit-border-5</td>
-                <td>5px</td>
-            </tr>
-        </tbody>
-    </table>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-border-0</td>
+                    <td>0px</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-border-1</td>
+                    <td>1px</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-border-2</td>
+                    <td>2px</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-border-3</td>
+                    <td>3px</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-border-4</td>
+                    <td>4px</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-border-5</td>
+                    <td>5px</td>
+                </tr>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="outline-widths-and-offset-variables" class="code-table__heading">Outline width & offset variables</h2>
+        <h3 id="outline-widths-and-offset-variables" class="code-table__heading">Outline width & offset variables</h3>
 
-    <table aria-labelledby="outline-widths-and-offset-variables">
+        <table aria-labelledby="outline-widths-and-offset-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-outline-0</td>
-                <td>0px</td>
-            </tr>
-            <tr>
-                <td>--br-unit-outline-1</td>
-                <td>1px</td>
-            </tr>
-            <tr>
-                <td>--br-unit-outline-2</td>
-                <td>2px</td>
-            </tr>
-            <tr>
-                <td>--br-unit-outline-3</td>
-                <td>3px</td>
-            </tr>
-            <tr>
-                <td>--br-unit-outline-4</td>
-                <td>4px</td>
-            </tr>
-            <tr>
-                <td>--br-unit-outline-5</td>
-                <td>5px</td>
-            </tr>
-            <tr>
-                <td>--br-unit-outline-offset-0</td>
-                <td>0rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-outline-offset-1</td>
-                <td>0.125rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-outline-offset-2</td>
-                <td>0.25rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-outline-offset-3</td>
-                <td>0.5rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-outline-offset-4</td>
-                <td>0.75rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-outline-offset-5</td>
-                <td>1rem</td>
-            </tr>
-        </tbody>
-    </table>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-outline-0</td>
+                    <td>0px</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-outline-1</td>
+                    <td>1px</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-outline-2</td>
+                    <td>2px</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-outline-3</td>
+                    <td>3px</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-outline-4</td>
+                    <td>4px</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-outline-5</td>
+                    <td>5px</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-outline-offset-0</td>
+                    <td>0rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-outline-offset-1</td>
+                    <td>0.125rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-outline-offset-2</td>
+                    <td>0.25rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-outline-offset-3</td>
+                    <td>0.5rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-outline-offset-4</td>
+                    <td>0.75rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-outline-offset-5</td>
+                    <td>1rem</td>
+                </tr>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="font-related-variables" class="code-table__heading">Font related variables</h2>
+        <h3 id="font-related-variables" class="code-table__heading">Font related variables</h3>
 
-    <table aria-labelledby="font-related-variables">
+        <table aria-labelledby="font-related-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-font-size-sm-3</td>
-                <td>0.51rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-font-size-sm-2</td>
-                <td>0.64rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-font-size-sm-1</td>
-                <td>0.8rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-font-size-label</td>
-                <td>0.875rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-font-size-1</td>
-                <td>1rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-font-size-2</td>
-                <td>1.25rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-font-size-3</td>
-                <td>1.56rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-font-size-4</td>
-                <td>1.95rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-font-size-5</td>
-                <td>2.44rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-font-size-6</td>
-                <td>3.05rem</td>
-            </tr>
-            <tr>
-                <td>--br-unit-font-weight-100</td>
-                <td>100</td>
-            </tr>
-            <tr>
-                <td>--br-unit-font-weight-200</td>
-                <td>200</td>
-            </tr>
-            <tr>
-                <td>--br-unit-font-weight-300</td>
-                <td>300</td>
-            </tr>
-            <tr>
-                <td>--br-unit-font-weight-400</td>
-                <td>400</td>
-            </tr>
-            <tr>
-                <td>--br-unit-font-weight-500</td>
-                <td>500</td>
-            </tr>
-            <tr>
-                <td>--br-unit-font-weight-600</td>
-                <td>600</td>
-            </tr>
-            <tr>
-                <td>--br-unit-font-weight-700</td>
-                <td>700</td>
-            </tr>
-            <tr>
-                <td>--br-unit-font-family-default</td>
-                <td>"Roboto Flex", sans-serif</td>
-            </tr>
-            <tr>
-                <td>--br-unit-line-height-1</td>
-                <td>1.5</td>
-            </tr>
-            <tr>
-                <td>--br-unit-line-height-2</td>
-                <td>1.6</td>
-            </tr>
-            <tr>
-                <td>--br-unit-line-height-3</td>
-                <td>1.7</td>
-            </tr>
-            <tr>
-                <td>--br-unit-line-height-4</td>
-                <td>1.8</td>
-            </tr>
-            <tr>
-                <td>--br-unit-line-height-5</td>
-                <td>1.9</td>
-            </tr>
-        </tbody>
-    </table>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-font-size-sm-3</td>
+                    <td>0.51rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-font-size-sm-2</td>
+                    <td>0.64rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-font-size-sm-1</td>
+                    <td>0.8rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-font-size-label</td>
+                    <td>0.875rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-font-size-1</td>
+                    <td>1rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-font-size-2</td>
+                    <td>1.25rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-font-size-3</td>
+                    <td>1.56rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-font-size-4</td>
+                    <td>1.95rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-font-size-5</td>
+                    <td>2.44rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-font-size-6</td>
+                    <td>3.05rem</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-font-weight-100</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-font-weight-200</td>
+                    <td>200</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-font-weight-300</td>
+                    <td>300</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-font-weight-400</td>
+                    <td>400</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-font-weight-500</td>
+                    <td>500</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-font-weight-600</td>
+                    <td>600</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-font-weight-700</td>
+                    <td>700</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-font-family-default</td>
+                    <td>"Roboto Flex", sans-serif</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-line-height-1</td>
+                    <td>1.5</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-line-height-2</td>
+                    <td>1.6</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-line-height-3</td>
+                    <td>1.7</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-line-height-4</td>
+                    <td>1.8</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-line-height-5</td>
+                    <td>1.9</td>
+                </tr>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="opacity-value-variables" class="code-table__heading">Opacity value variables</h2>
+        <h3 id="opacity-value-variables" class="code-table__heading">Opacity value variables</h3>
 
-    <table aria-labelledby="opacity-value-variables">
+        <table aria-labelledby="opacity-value-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-opacity-val-0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-5</td>
-                <td>0.05</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-10</td>
-                <td>0.10</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-15</td>
-                <td>0.15</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-20</td>
-                <td>0.20</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-25</td>
-                <td>0.25</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-30</td>
-                <td>0.30</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-35</td>
-                <td>0.35</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-40</td>
-                <td>0.40</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-45</td>
-                <td>0.45</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-50</td>
-                <td>0.50</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-55</td>
-                <td>0.55</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-60</td>
-                <td>0.60</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-65</td>
-                <td>0.65</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-70</td>
-                <td>0.70</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-75</td>
-                <td>0.75</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-80</td>
-                <td>0.80</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-85</td>
-                <td>0.85</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-90</td>
-                <td>0.90</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-95</td>
-                <td>0.95</td>
-            </tr>
-            <tr>
-                <td>--br-unit-opacity-val-100</td>
-                <td>1</td>
-            </tr>
-        </tbody>
-    </table>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-opacity-val-0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-5</td>
+                    <td>0.05</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-10</td>
+                    <td>0.10</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-15</td>
+                    <td>0.15</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-20</td>
+                    <td>0.20</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-25</td>
+                    <td>0.25</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-30</td>
+                    <td>0.30</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-35</td>
+                    <td>0.35</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-40</td>
+                    <td>0.40</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-45</td>
+                    <td>0.45</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-50</td>
+                    <td>0.50</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-55</td>
+                    <td>0.55</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-60</td>
+                    <td>0.60</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-65</td>
+                    <td>0.65</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-70</td>
+                    <td>0.70</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-75</td>
+                    <td>0.75</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-80</td>
+                    <td>0.80</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-85</td>
+                    <td>0.85</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-90</td>
+                    <td>0.90</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-95</td>
+                    <td>0.95</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-opacity-val-100</td>
+                    <td>1</td>
+                </tr>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="wcag-related-variables" class="code-table__heading">WCAG related variables</h2>
+        <h3 id="wcag-related-variables" class="code-table__heading">WCAG related variables</h3>
     
-    <p>Variables for any WCAG measurements such as target size and reflow widths.</p>
+        <p>Variables for any WCAG measurements such as target size and reflow widths.</p>
 
-    <table aria-labelledby="wcag-related-variables">
+        <table aria-labelledby="wcag-related-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-wcag-target-2a</td>
-                <td>24px</td>
-            </tr>
-            <tr>
-                <td>--br-unit-wcag-target-3a</td>
-                <td>48px</td>
-            </tr>
-            <tr>
-                <td>--br-unit-wcag-reflow-2a</td>
-                <td>320px</td>
-            </tr>
-        </tbody>
-    </table>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-wcag-target-2a</td>
+                    <td>24px</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-wcag-target-3a</td>
+                    <td>48px</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-wcag-reflow-2a</td>
+                    <td>320px</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="state-related-variables" class="code-table__heading">State related variables</h3>
+
+        <table aria-labelledby="state-related-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-state-disabled-opacity</td>
+                    <td>var(--br-unit-opacity-val-50)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-state-disabled-brightness</td>
+                    <td>75%</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-state-hover-opacity</td>
+                    <td>0.1</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-state-active-brightness</td>
+                    <td>95%</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-state-active-scale</td>
+                    <td>0.95</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
 
 </section>
 
-<section class="code-table">
+<section>
 
-    <h2 id="state-related-variables" class="code-table__heading">State related variables</h2>
-
-    <table aria-labelledby="state-related-variables">
-
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-state-disabled-opacity</td>
-                <td>var(--br-unit-opacity-val-50)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-state-disabled-brightness</td>
-                <td>75%</td>
-            </tr>
-            <tr>
-                <td>--br-unit-state-hover-opacity</td>
-                <td>0.1</td>
-            </tr>
-            <tr>
-                <td>--br-unit-state-active-brightness</td>
-                <td>95%</td>
-            </tr>
-            <tr>
-                <td>--br-unit-state-active-scale</td>
-                <td>0.95</td>
-            </tr>
-        </tbody>
-    </table>
-
-</section>
-
-
-
-<h1 class="page-heading">Core Colour CSS Variables</h1>
+<h2 class="page-heading">Core Colour CSS Variables</h2>
 
 <p>
     The following tables contain all of the colour unit css variables that can be used by the base variables.
 </p>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="primary-colour-variables" class="code-table__heading">Primary colour variables</h2>
+        <h3 id="primary-colour-variables" class="code-table__heading">Primary colour variables</h3>
 
-    <table aria-labelledby="primary-colour-variables">
+        <table aria-labelledby="primary-colour-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-colour-primary</td>
-                <td>hsl(220, 44%, 48%)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-primary-0</td>
-                <td>hsl(0, 0%, 0%)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-primary-5</td>
-                <td>hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.9))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-primary-10</td>
-                <td>hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.8))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-primary-20</td>
-                <td>hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.6))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-primary-30</td>
-                <td>hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.4))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-primary-40</td>
-                <td>hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.2))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-primary-50</td>
-                <td>var(--br-unit-colour-primary)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-primary-60</td>
-                <td>hsl(from var(--br-unit-colour-primary) h s calc(l * 0.8))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-primary-70</td>
-                <td>hsl(from var(--br-unit-colour-primary) h s calc(l * 0.6))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-primary-80</td>
-                <td>hsl(from var(--br-unit-colour-primary) h s calc(l * 0.4))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-primary-90</td>
-                <td>hsl(from var(--br-unit-colour-primary) h s calc(l * 0.2))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-primary-100</td>
-                <td>hsl(0, 0%, 100%)</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-colour-primary</td>
+                    <td>hsl(220, 44%, 48%)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-primary-0</td>
+                    <td>hsl(0, 0%, 0%)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-primary-5</td>
+                    <td>hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.9))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-primary-10</td>
+                    <td>hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.8))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-primary-20</td>
+                    <td>hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.6))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-primary-30</td>
+                    <td>hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.4))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-primary-40</td>
+                    <td>hsl(from var(--br-unit-colour-primary) h s calc(l + (100 - l) * 0.2))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-primary-50</td>
+                    <td>var(--br-unit-colour-primary)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-primary-60</td>
+                    <td>hsl(from var(--br-unit-colour-primary) h s calc(l * 0.8))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-primary-70</td>
+                    <td>hsl(from var(--br-unit-colour-primary) h s calc(l * 0.6))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-primary-80</td>
+                    <td>hsl(from var(--br-unit-colour-primary) h s calc(l * 0.4))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-primary-90</td>
+                    <td>hsl(from var(--br-unit-colour-primary) h s calc(l * 0.2))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-primary-100</td>
+                    <td>hsl(0, 0%, 100%)</td>
+                </tr>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="neutral-colour-variables" class="code-table__heading">Neutral colour variables</h2>
-    <p>
-        <strong>Note: </strong> The <span class="code-span">--br-unit-colour-neutral-saturation</span> variable is used to increase or decrease the amount of
-        primary colour in the neutral colour.
-    </p>
-    <table aria-labelledby="neutral-colour-variables">
+        <h3 id="neutral-colour-variables" class="code-table__heading">Neutral colour variables</h3>
+        <p>
+            <strong>Note: </strong> The <span class="code-span">--br-unit-colour-neutral-saturation</span> variable is used to increase or decrease the amount of
+            primary colour in the neutral colour.
+        </p>
+        <table aria-labelledby="neutral-colour-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-colour-neutral</td>
-                <td>hsl(from var(--br-unit-colour-primary) h var(--br-unit-colour-neutral-saturation) 70%)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-neutral-saturation</td>
-                <td>10</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-neutral-0</td>
-                <td>hsl(0, 0%, 100%)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-neutral-5</td>
-                <td>hsl(from var(--br-unit-colour-neutral) h calc(var(--br-unit-colour-neutral-saturation) + 8) calc(l + (100 - l) * 0.95))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-neutral-10</td>
-                <td>hsl(from var(--br-unit-colour-neutral) h calc(var(--br-unit-colour-neutral-saturation) + 13) calc(l + (100 - l) * 0.85))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-neutral-20</td>
-                <td>hsl(from var(--br-unit-colour-neutral) h calc(var(--br-unit-colour-neutral-saturation) + 16) calc(l + (100 - l) * 0.80))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-neutral-30</td>
-                <td>hsl(from var(--br-unit-colour-neutral) h s calc(l + (100 - l) * 0.4))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-neutral-40</td>
-                <td>hsl(from var(--br-unit-colour-neutral) h s calc(l + (100 - l) * 0.2))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-neutral-50</td>
-                <td>var(--br-unit-colour-neutral)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-neutral-60</td>
-                <td>hsl(from var(--br-unit-colour-neutral) h s calc(l * 0.5))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-neutral-70</td>
-                <td>hsl(from var(--br-unit-colour-neutral) h s calc(l * 0.30))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-neutral-80</td>
-                <td>hsl(from var(--br-unit-colour-neutral) h s calc(l * 0.20))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-neutral-90</td>
-                <td>hsl(from var(--br-unit-colour-neutral) h s calc(l * 0.15))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-neutral-100</td>
-                <td>hsl(0, 0%, 0%)</td>
-            </tr>
-        </tbody>
-    </table>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-colour-neutral</td>
+                    <td>hsl(from var(--br-unit-colour-primary) h var(--br-unit-colour-neutral-saturation) 70%)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-neutral-saturation</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-neutral-0</td>
+                    <td>hsl(0, 0%, 100%)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-neutral-5</td>
+                    <td>hsl(from var(--br-unit-colour-neutral) h calc(var(--br-unit-colour-neutral-saturation) + 8) calc(l + (100 - l) * 0.95))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-neutral-10</td>
+                    <td>hsl(from var(--br-unit-colour-neutral) h calc(var(--br-unit-colour-neutral-saturation) + 13) calc(l + (100 - l) * 0.85))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-neutral-20</td>
+                    <td>hsl(from var(--br-unit-colour-neutral) h calc(var(--br-unit-colour-neutral-saturation) + 16) calc(l + (100 - l) * 0.80))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-neutral-30</td>
+                    <td>hsl(from var(--br-unit-colour-neutral) h s calc(l + (100 - l) * 0.4))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-neutral-40</td>
+                    <td>hsl(from var(--br-unit-colour-neutral) h s calc(l + (100 - l) * 0.2))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-neutral-50</td>
+                    <td>var(--br-unit-colour-neutral)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-neutral-60</td>
+                    <td>hsl(from var(--br-unit-colour-neutral) h s calc(l * 0.5))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-neutral-70</td>
+                    <td>hsl(from var(--br-unit-colour-neutral) h s calc(l * 0.30))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-neutral-80</td>
+                    <td>hsl(from var(--br-unit-colour-neutral) h s calc(l * 0.20))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-neutral-90</td>
+                    <td>hsl(from var(--br-unit-colour-neutral) h s calc(l * 0.15))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-neutral-100</td>
+                    <td>hsl(0, 0%, 0%)</td>
+                </tr>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="secondary-colour-variables" class="code-table__heading">Secondary colour variables</h2>
+        <h3 id="secondary-colour-variables" class="code-table__heading">Secondary colour variables</h3>
 
-    <table aria-labelledby="secondary-colour-variables">
+        <table aria-labelledby="secondary-colour-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-colour-secondary-lighter</td>
-                <td>hsl(from var(--br-unit-colour-secondary) h s calc((l + (100 - l) * 0.80)))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-secondary-light</td>
-                <td>hsl(from var(--br-unit-colour-secondary) h s calc((l + (100 - l) * 0.40)))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-secondary-dark</td>
-                <td>hsl(from var(--br-unit-colour-secondary) h s calc(l * 0.80))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-secondary</td>
-                <td>hsl(from var(--br-unit-colour-primary) calc(h + 10) 15% 60%)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-secondary-darker</td>
-                <td>hsl(from var(--br-unit-colour-secondary) h s calc(l * 0.40))</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-colour-secondary-lighter</td>
+                    <td>hsl(from var(--br-unit-colour-secondary) h s calc((l + (100 - l) * 0.80)))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-secondary-light</td>
+                    <td>hsl(from var(--br-unit-colour-secondary) h s calc((l + (100 - l) * 0.40)))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-secondary-dark</td>
+                    <td>hsl(from var(--br-unit-colour-secondary) h s calc(l * 0.80))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-secondary</td>
+                    <td>hsl(from var(--br-unit-colour-primary) calc(h + 10) 15% 60%)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-secondary-darker</td>
+                    <td>hsl(from var(--br-unit-colour-secondary) h s calc(l * 0.40))</td>
+                </tr>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="accent-colour-variables" class="code-table__heading">Accent colour variables</h2>
+        <h3 id="accent-colour-variables" class="code-table__heading">Accent colour variables</h3>
 
-    <table aria-labelledby="accent-colour-variables">
+        <table aria-labelledby="accent-colour-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-colour-accent-lighter</td>
-                <td>hsl(from var(--br-unit-colour-accent) h s calc((l + (100 - l) * 0.80)))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-accent-light</td>
-                <td>hsl(from var(--br-unit-colour-accent) h s calc((l + (100 - l) * 0.40)))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-accent</td>
-                <td>hsl(from var(--br-unit-colour-primary) calc(h + 80) 15% 60%)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-accent-dark</td>
-                <td>hsl(from var(--br-unit-colour-accent) h s calc(l * 0.80))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-accent-darker</td>
-                <td>hsl(from var(--br-unit-colour-accent) h s calc(l * 0.40))</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-colour-accent-lighter</td>
+                    <td>hsl(from var(--br-unit-colour-accent) h s calc((l + (100 - l) * 0.80)))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-accent-light</td>
+                    <td>hsl(from var(--br-unit-colour-accent) h s calc((l + (100 - l) * 0.40)))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-accent</td>
+                    <td>hsl(from var(--br-unit-colour-primary) calc(h + 80) 15% 60%)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-accent-dark</td>
+                    <td>hsl(from var(--br-unit-colour-accent) h s calc(l * 0.80))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-accent-darker</td>
+                    <td>hsl(from var(--br-unit-colour-accent) h s calc(l * 0.40))</td>
+                </tr>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="success-colour-variables" class="code-table__heading">Success colour variables</h2>
+        <h3 id="success-colour-variables" class="code-table__heading">Success colour variables</h3>
 
-    <table aria-labelledby="success-colour-variables">
+        <table aria-labelledby="success-colour-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-colour-success-lighter</td>
-                <td>hsl(from var(--br-unit-colour-success) h s calc((l + (100 - l) * 0.80)))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-success-light</td>
-                <td>hsl(from var(--br-unit-colour-success) h s calc((l + (100 - l) * 0.40)))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-success</td>
-                <td>hsl(100, 35%, 40%)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-success-dark</td>
-                <td>hsl(from var(--br-unit-colour-success) h s calc(l * 0.80))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-success-darker</td>
-                <td>hsl(from var(--br-unit-colour-success) h s calc(l * 0.40))</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-colour-success-lighter</td>
+                    <td>hsl(from var(--br-unit-colour-success) h s calc((l + (100 - l) * 0.80)))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-success-light</td>
+                    <td>hsl(from var(--br-unit-colour-success) h s calc((l + (100 - l) * 0.40)))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-success</td>
+                    <td>hsl(100, 35%, 40%)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-success-dark</td>
+                    <td>hsl(from var(--br-unit-colour-success) h s calc(l * 0.80))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-success-darker</td>
+                    <td>hsl(from var(--br-unit-colour-success) h s calc(l * 0.40))</td>
+                </tr>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="danger-colour-variables" class="code-table__heading">Danger colour variables</h2>
+        <h3 id="danger-colour-variables" class="code-table__heading">Danger colour variables</h3>
 
-    <table aria-labelledby="danger-colour-variables">
+        <table aria-labelledby="danger-colour-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-colour-danger-lighter</td>
-                <td>hsl(from var(--br-unit-colour-danger) h s calc((l + (100 - l) * 0.80)))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-danger-light</td>
-                <td>hsl(from var(--br-unit-colour-danger) h s calc((l + (100 - l) * 0.40)))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-danger</td>
-                <td>hsl(0, 70%, 40%)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-danger-dark</td>
-                <td>hsl(from var(--br-unit-colour-danger) h s calc(l * 0.80))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-danger-darker</td>
-                <td>hsl(from var(--br-unit-colour-danger) h s calc(l * 0.40))</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-colour-danger-lighter</td>
+                    <td>hsl(from var(--br-unit-colour-danger) h s calc((l + (100 - l) * 0.80)))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-danger-light</td>
+                    <td>hsl(from var(--br-unit-colour-danger) h s calc((l + (100 - l) * 0.40)))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-danger</td>
+                    <td>hsl(0, 70%, 40%)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-danger-dark</td>
+                    <td>hsl(from var(--br-unit-colour-danger) h s calc(l * 0.80))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-danger-darker</td>
+                    <td>hsl(from var(--br-unit-colour-danger) h s calc(l * 0.40))</td>
+                </tr>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="info-colour-variables" class="code-table__heading">Information colour variables</h2>
+        <h3 id="info-colour-variables" class="code-table__heading">Information colour variables</h3>
 
-    <table aria-labelledby="info-colour-variables">
+        <table aria-labelledby="info-colour-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-colour-info-lighter</td>
-                <td>hsl(from var(--br-unit-colour-info) h s calc((l + (100 - l) * 0.80)))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-info-light</td>
-                <td>hsl(from var(--br-unit-colour-info) h s calc((l + (100 - l) * 0.40)))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-info</td>
-                <td>hsl(200, 60%, 40%)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-info-dark</td>
-                <td>hsl(from var(--br-unit-colour-info) h s calc(l * 0.80))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-info-darker</td>
-                <td>hsl(from var(--br-unit-colour-info) h s calc(l * 0.40))</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-colour-info-lighter</td>
+                    <td>hsl(from var(--br-unit-colour-info) h s calc((l + (100 - l) * 0.80)))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-info-light</td>
+                    <td>hsl(from var(--br-unit-colour-info) h s calc((l + (100 - l) * 0.40)))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-info</td>
+                    <td>hsl(200, 60%, 40%)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-info-dark</td>
+                    <td>hsl(from var(--br-unit-colour-info) h s calc(l * 0.80))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-info-darker</td>
+                    <td>hsl(from var(--br-unit-colour-info) h s calc(l * 0.40))</td>
+                </tr>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="warning-colour-variables" class="code-table__heading">Warning colour variables</h2>
+        <h3 id="warning-colour-variables" class="code-table__heading">Warning colour variables</h3>
 
-    <table aria-labelledby="warning-colour-variables">
+        <table aria-labelledby="warning-colour-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-colour-warning-lighter</td>
-                <td>hsl(from var(--br-unit-colour-warning) h s calc((l + (100 - l) * 0.80)))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-warning-light</td>
-                <td>hsl(from var(--br-unit-colour-warning) h s calc((l + (100 - l) * 0.40)))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-warning</td>
-                <td>hsl(45, 100%, 50%)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-warning-dark</td>
-                <td>hsl(from var(--br-unit-colour-warning) h s calc(l * 0.55))</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-warning-darker</td>
-                <td>hsl(from var(--br-unit-colour-warning) h s calc(l * 0.35))</td>
-            </tr>
-        </tbody>
-    </table>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-colour-warning-lighter</td>
+                    <td>hsl(from var(--br-unit-colour-warning) h s calc((l + (100 - l) * 0.80)))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-warning-light</td>
+                    <td>hsl(from var(--br-unit-colour-warning) h s calc((l + (100 - l) * 0.40)))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-warning</td>
+                    <td>hsl(45, 100%, 50%)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-warning-dark</td>
+                    <td>hsl(from var(--br-unit-colour-warning) h s calc(l * 0.55))</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-warning-darker</td>
+                    <td>hsl(from var(--br-unit-colour-warning) h s calc(l * 0.35))</td>
+                </tr>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="canvas-colour-variables" class="code-table__heading">Canvas colour variables</h2>
+        <h3 id="canvas-colour-variables" class="code-table__heading">Canvas colour variables</h3>
 
-    <p>Colours used for the page (canvas) background colour.</p>
+        <p>Colours used for the page (canvas) background colour.</p>
 
-    <table aria-labelledby="canvas-colour-variables">
+        <table aria-labelledby="canvas-colour-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-colour-canvas</td>
-                <td>var(--br-unit-colour-neutral-5)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-canvas-inverted</td>
-                <td>var(--br-unit-colour-neutral-90)</td>
-            </tr>
-        </tbody>
-    </table>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-colour-canvas</td>
+                    <td>var(--br-unit-colour-neutral-5)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-canvas-inverted</td>
+                    <td>var(--br-unit-colour-neutral-90)</td>
+                </tr>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="box-shadow-variables" class="code-table__heading">Box shadow variables</h2>
+        <h3 id="box-shadow-variables" class="code-table__heading">Box shadow variables</h3>
 
-    <table aria-labelledby="box-shadow-variables">
+        <table aria-labelledby="box-shadow-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-box-shadow-1</td>
-                <td>0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-box-shadow-2</td>
-                <td>0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2)</td>
-            </tr>
-        </tbody>
-    </table>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-box-shadow-1</td>
+                    <td>0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-box-shadow-2</td>
+                    <td>0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2)</td>
+                </tr>
+            </tbody>
+        </table>
 
-</section>
+    </section>
 
-<section class="code-table">
+    <section class="code-table">
 
-    <h2 id="text-colour-variables" class="code-table__heading">Text colour variables</h2>
+        <h3 id="text-colour-variables" class="code-table__heading">Text colour variables</h3>
 
-    <table aria-labelledby="text-colour-variables">
+        <table aria-labelledby="text-colour-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-unit-colour-primary-text-dark</td>
-                <td>var(--br-unit-colour-primary-70)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-primary-text-light</td>
-                <td>var(--br-unit-colour-primary-10)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-secondary-text-light</td>
-                <td>var(--br-unit-colour-secondary-lighter)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-secondary-text-dark</td>
-                <td>var(--br-unit-colour-secondary-lighter)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-accent-text-light</td>
-                <td>var(--br-unit-colour-accent-lighter)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-accent-text-dark</td>
-                <td>var(--br-unit-colour-accent-darker)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-success-text-light</td>
-                <td>var(--br-unit-colour-success-lighter)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-success-text-dark</td>
-                <td>var(--br-unit-colour-success-darker)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-danger-text-light</td>
-                <td>var(--br-unit-colour-danger-lighter)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-danger-text-dark</td>
-                <td>var(--br-unit-colour-danger-darker)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-info-text-light</td>
-                <td>var(--br-unit-colour-info-lighter)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-info-text-dark</td>
-                <td>var(--br-unit-colour-info-darker)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-warning-text-light</td>
-                <td>var(--br-unit-colour-warning-lighter)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-warning-text-dark</td>
-                <td>var(--br-unit-colour-warning-darker)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-canvas-text</td>
-                <td>var(--br-unit-colour-neutral-90)</td>
-            </tr>
-            <tr>
-                <td>--br-unit-colour-canvas-text-inverted</td>
-                <td>var(--br-unit-colour-neutral-5)</td>
-            </tr>
-        </tbody>
-    </table>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-unit-colour-primary-text-dark</td>
+                    <td>var(--br-unit-colour-primary-70)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-primary-text-light</td>
+                    <td>var(--br-unit-colour-primary-10)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-secondary-text-light</td>
+                    <td>var(--br-unit-colour-secondary-lighter)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-secondary-text-dark</td>
+                    <td>var(--br-unit-colour-secondary-lighter)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-accent-text-light</td>
+                    <td>var(--br-unit-colour-accent-lighter)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-accent-text-dark</td>
+                    <td>var(--br-unit-colour-accent-darker)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-success-text-light</td>
+                    <td>var(--br-unit-colour-success-lighter)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-success-text-dark</td>
+                    <td>var(--br-unit-colour-success-darker)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-danger-text-light</td>
+                    <td>var(--br-unit-colour-danger-lighter)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-danger-text-dark</td>
+                    <td>var(--br-unit-colour-danger-darker)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-info-text-light</td>
+                    <td>var(--br-unit-colour-info-lighter)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-info-text-dark</td>
+                    <td>var(--br-unit-colour-info-darker)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-warning-text-light</td>
+                    <td>var(--br-unit-colour-warning-lighter)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-warning-text-dark</td>
+                    <td>var(--br-unit-colour-warning-darker)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-canvas-text</td>
+                    <td>var(--br-unit-colour-neutral-90)</td>
+                </tr>
+                <tr>
+                    <td>--br-unit-colour-canvas-text-inverted</td>
+                    <td>var(--br-unit-colour-neutral-5)</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
 
 </section>
 

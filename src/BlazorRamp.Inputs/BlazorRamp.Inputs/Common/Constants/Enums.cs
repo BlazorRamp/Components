@@ -68,18 +68,18 @@ public enum ValidationDisplayMode : int
 /// <summary>
 /// Specifies the <c>autocomplete</c> attribute value for a <see cref="PasswordInput"/> component.
 /// </summary>
-public enum PasswordAutoComplete
+public enum PasswordAutoComplete : int
 {
     /// <summary>
     /// Maps to <c>autocomplete="current-password"</c>. Use on login forms to allow
     /// password managers to fill existing credentials.
     /// </summary>
-    CurrentPassword,
+    CurrentPassword = 0,
 
     /// <summary>
     /// Maps to <c>autocomplete="new-password"</c>. Use on registration or change
     /// password forms to prevent password managers from filling existing credentials
     /// and to prompt generation of a new password.
     /// </summary>
-    NewPassword
+    NewPassword = 1
 }
