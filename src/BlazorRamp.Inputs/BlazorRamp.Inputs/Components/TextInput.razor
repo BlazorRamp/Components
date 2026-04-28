@@ -2,7 +2,7 @@
 
 <div class="@TextInputClasses">
     <label class="@GlobalValues.Text_Input_Label_Class" for="@InputID">
-        @DisplayNameText
+        @LabelNameText
         @if (Required)
         {
             <span aria-hidden="true" class="@GlobalValues.Text_Input_Asterisk_Class"> *</span>
@@ -38,7 +38,7 @@
         
         @if (HasErrors)
         {
-            <div id="@ErrorMessageID" class="@GlobalValues.Text_Input_Error_Class" tabindex="@(TabbableError ? "0" : null)" aria-label="@(TabbableError ? $"{DisplayNameText.TrimEnd(':')} {ErrorsText}" : null)" role="@(TabbableError ? "region" : null)">
+            <div id="@ErrorMessageID" class="@GlobalValues.Text_Input_Error_Class" tabindex="@(TabbableError ? "0" : null)" aria-label="@(TabbableError ? $"{LabelNameText.TrimEnd(':')} {ErrorsText}" : null)" role="@(TabbableError ? "region" : null)">
 
             <ul>
                 @foreach (var errorMessage in InvalidMessages)

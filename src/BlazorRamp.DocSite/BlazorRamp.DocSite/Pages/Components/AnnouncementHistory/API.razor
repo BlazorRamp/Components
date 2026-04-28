@@ -7,82 +7,92 @@
     Everything you need to work with the Announcement History component: parameters, methods, models, enums, and CSS variables for styling.
 </p>
 
-<section class="code-table">
+<section>
+    
+    <h2 class="page-heading">
+        Component parameters, methods, supporting classes and enums.
+    </h2>
+    <p>
+        The following sections cover all components that make up this feature, including their parameters,
+        public methods, and any supporting classes or enumerations required for use.
+    </p>
+    <section class="code-table">
 
-    <h2 id="announcement-history-component" class="code-table__heading">AnnouncementHistory component</h2>
+        <h3 id="announcement-history-component" class="code-table__heading">AnnouncementHistory component</h3>
 
-    <table aria-labelledby="announcement-history-component">
+        <table aria-labelledby="announcement-history-component">
 
-        <thead>
-            <tr>
-                <th scope="col">Parameter</th>
-                <th scope="col">Type</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Title</td>
-                <td>string</td>
-                <td>
-                    The h2 heading text displayed for the announcement history dialog and used for the aria-labelledby attribute.
-                    A default value of "Recent Announcements" will be used if omitted.
-                </td>
-            </tr>
-            <tr>
-                <td>CloseText</td>
-                <td>string</td>
-                <td>
-                    The text for the button that closes the history dialog.
-                    A default value of "Close" will be used if omitted.
-                </td>
-            </tr>
-            <tr>
-                <td>ClearCloseText</td>
-                <td>string</td>
-                <td>
-                    The text for the button that clears the announcement history logs and closes the dialog.
-                    A default value of "Clear & Close" will be used if omitted.
-                </td>
-            </tr>
-            <tr>
-                <td>RefreshText</td>
-                <td>string</td>
-                <td>
-                    The text for the button that refreshes the history list displayed in the dialog.
-                    A default value of "Refresh" will be used if omitted.
-                </td>
-            </tr>
-            <tr>
-                <td>NoDataText</td>
-                <td>string</td>
-                <td>
-                    The text displayed when there are no announcements in the history.
-                    A default value of "No Announcements" will be used if omitted.
-                </td>
-            </tr>
-            <tr>
-                <td>TriggerText</td>
-                <td>string</td>
-                <td>
-                    The text for the trigger button that opens the history dialog.
-                    A default value of "Alerts" will be used if omitted.
-                </td>
-            </tr>
-            <tr>
-                <td>TriggerVisible</td>
-                <td>bool</td>
-                <td>
-                    Determines if the trigger button is always visible or only visible when focused via the keyboard.
-                    <b>The default value is false, so it will be hidden by default</b>. Please ensure to advise users of the
-                    short cut keys.
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            <thead>
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Title</td>
+                    <td>string</td>
+                    <td>
+                        The h2 heading text displayed for the announcement history dialog and used for the aria-labelledby attribute.
+                        A default value of "Recent Announcements" will be used if omitted.
+                    </td>
+                </tr>
+                <tr>
+                    <td>CloseText</td>
+                    <td>string</td>
+                    <td>
+                        The text for the button that closes the history dialog.
+                        A default value of "Close" will be used if omitted.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ClearCloseText</td>
+                    <td>string</td>
+                    <td>
+                        The text for the button that clears the announcement history logs and closes the dialog.
+                        A default value of "Clear & Close" will be used if omitted.
+                    </td>
+                </tr>
+                <tr>
+                    <td>RefreshText</td>
+                    <td>string</td>
+                    <td>
+                        The text for the button that refreshes the history list displayed in the dialog.
+                        A default value of "Refresh" will be used if omitted.
+                    </td>
+                </tr>
+                <tr>
+                    <td>NoDataText</td>
+                    <td>string</td>
+                    <td>
+                        The text displayed when there are no announcements in the history.
+                        A default value of "No Announcements" will be used if omitted.
+                    </td>
+                </tr>
+                <tr>
+                    <td>TriggerText</td>
+                    <td>string</td>
+                    <td>
+                        The text for the trigger button that opens the history dialog.
+                        A default value of "Alerts" will be used if omitted.
+                    </td>
+                </tr>
+                <tr>
+                    <td>TriggerVisible</td>
+                    <td>bool</td>
+                    <td>
+                        Determines if the trigger button is always visible or only visible when focused via the keyboard.
+                        <b>The default value is false, so it will be hidden by default</b>. Please ensure to advise users of the
+                        short cut keys.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
 
 </section>
-
 
 <section>
 
@@ -761,8 +771,7 @@
 
 </section>
 
-
-<section class="code-table">
+<section>
 
     <h2 class="page-heading">CSS variables from the above not mapped to the <span class="code-span code-span--h2-sizing">--br-comp-all</span> variables.</h2>
     
@@ -771,78 +780,84 @@
         by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
     </p>
 
-    <h3 id="unmapped-variables" class="code-table__heading">Unmapped variables</h3>
+    <section class="code-table">
+        <h3 id="unmapped-variables" class="code-table__heading">Unmapped variables</h3>
 
-    <table aria-labelledby="unmapped-variables">
+        <table aria-labelledby="unmapped-variables">
 
-        <thead>
-            <tr>
-                <th scope="col">Variable Name</th>
-                <th scope="col">Default Value</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>--br-comp-history-outline-offset</td>
-                <td>0px</td>
-                <td>Outline offset - <b>sets its own value of 0px to turn off the outline.</b></td>
-            </tr>
-            <tr>
-                <td>--br-comp-history-pane-base-border-width</td>
-                <td>var(--br-unit-border-1)</td>
-                <td>The border width - <b>does not use the shared component variable</b></td>
-            </tr>
-            <tr>
-                <td>--br-comp-history-pane-base-border-radius</td>
-                <td>var(--br-unit-radius-7)</td>
-                <td>The border radius - <b>does not use the shared component variable</b></td>
-            </tr>
-            <tr>
-                <td>--br-comp-history-pane-panel-border-radius</td>
-                <td>var(--br-unit-radius-7)</td>
-                <td>The border radius - <b>does not use the shared component variable.</b> </td>
-            </tr>
-            <tr>
-                <td>--br-comp-history-area-content-font-size</td>
-                <td>var(--br-unit-font-size-label)</td>
-                <td>The font size - <b>does not use the shared component value.</b></td>
-            </tr>
-            <tr>
-                <td>--br-comp-history-area-content-border-width</td>
-                <td>var(--br-unit-border-2)</td>
-                <td>The border width - <b>does not use the shared component variable</b></td>
-            </tr>
-            <tr>
-                <td>--br-comp-history-trigger-pane-surface-background</td>
-                <td>var(--br-unit-colour-canvas-inverted)</td>
-                <td>The background colour uses for the surface pane - <b>does not use the shared component variable</b></td>
-            </tr>
-            <tr>
-                <td>--br-comp-history-trigger-pane-surface-text</td>
-                <td>var(--br-unit-colour-canvas-text-inverted)</td>
-                <td>The text colour used on the surface area - <b>does not use the shared component variable.</b></td>
-            </tr>
-            <tr>
-                <td>--br-comp-history-trigger-pane-surface-font-size</td>
-                <td>var(--br-unit-font-size-label)</td>
-                <td>The font size - <b>does not use the shared component variable.</b></td>
-            </tr>
-            <tr>
-                <td>--br-comp-history-trigger-pane-surface-border-width</td>
-                <td>var(--br-unit-border-1)</td>
-                <td>The border width - <b>does not use the shared component variable.</b></td>
-            </tr>
-            <tr>
-                <td>--br-comp-history-trigger-pane-surface-border-radius</td>
-                <td>var(--br-unit-radius-7)</td>
-                <td>The border width - <b>does not use the shared component variable.</b></td>
-            </tr>
-        </tbody>
-    </table>
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-history-outline-offset</td>
+                    <td>0px</td>
+                    <td>Outline offset - <b>sets its own value of 0px to turn off the outline.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-pane-base-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The border width - <b>does not use the shared component variable</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-pane-base-border-radius</td>
+                    <td>var(--br-unit-radius-7)</td>
+                    <td>The border radius - <b>does not use the shared component variable</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-pane-panel-border-radius</td>
+                    <td>var(--br-unit-radius-7)</td>
+                    <td>The border radius - <b>does not use the shared component variable.</b> </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-area-content-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The font size - <b>does not use the shared component value.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-area-content-border-width</td>
+                    <td>var(--br-unit-border-2)</td>
+                    <td>The border width - <b>does not use the shared component variable</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-trigger-pane-surface-background</td>
+                    <td>var(--br-unit-colour-canvas-inverted)</td>
+                    <td>The background colour uses for the surface pane - <b>does not use the shared component variable</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-trigger-pane-surface-text</td>
+                    <td>var(--br-unit-colour-canvas-text-inverted)</td>
+                    <td>The text colour used on the surface area - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-trigger-pane-surface-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The font size - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-trigger-pane-surface-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The border width - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-trigger-pane-surface-border-radius</td>
+                    <td>var(--br-unit-radius-7)</td>
+                    <td>The border width - <b>does not use the shared component variable.</b></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
 
 
 </section>
+
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Announcement}/{GlobalValues.Common_Page_Path_Accessibility}")">
         <span aria-hidden="true"></span>

@@ -165,7 +165,7 @@ public class PasswordInput_Tests
                     .Add(p => p.ValueChanged, EventCallback.Factory.Create<string>(context, v => model.PropertyValue = v))
                     .Add(p => p.ValueExpression, () => model.PropertyValue)
                     .Add(p => p.Required, false) // Setting this to false otherwise a * is appended
-                    .Add(p => p.DisplayName, labelText));
+                    .Add(p => p.LabelText, labelText));
 
             var labelContent = component.Find("label").TextContent;
 
@@ -199,7 +199,7 @@ public class PasswordInput_Tests
                     .Add(p => p.ValueChanged, EventCallback.Factory.Create<string>(context, v => model.PropertyValue = v))
                     .Add(p => p.ValueExpression, () => model.PropertyValue)
                     .Add(p => p.Required, true)
-                    .Add(p => p.DisplayName, labelText));
+                    .Add(p => p.LabelText, labelText));
 
             var labelContent = component.Find("label").TextContent;
 

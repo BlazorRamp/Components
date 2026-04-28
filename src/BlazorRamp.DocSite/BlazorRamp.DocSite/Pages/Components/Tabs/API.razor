@@ -1,4 +1,5 @@
-﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tabs}/{GlobalValues.Common_Page_Path_Api}")]
+﻿@using Microsoft.AspNetCore.Components.Sections
+@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tabs}/{GlobalValues.Common_Page_Path_Api}")]
 
 <PageTitle>@GlobalValues.Component_Name_Tabs @GlobalValues.Common_Page_Title_Api</PageTitle>
 
@@ -8,75 +9,86 @@
     Everything you need to work with the Tabs component: parameters, methods, models, enums, and CSS variables for styling.
 </p>
 
-<section class="code-table">
+<section>
+    <h2 class="page-heading">
+        Component parameters, methods, supporting classes and enums.
+    </h2>
+    <p>
+        The following sections cover all components that make up this feature, including their parameters,
+        public methods, and any supporting classes or enumerations required for use.
+    </p>
+    <section class="code-table">
 
-    <h2 id="tabs-component-parameters" class="code-table__heading">Tabs component (parent) parameters</h2>
+        <h3 id="tabs-component-parameters" class="code-table__heading">Tabs component (parent) parameters</h3>
 
-    <table aria-labelledby="tabs-component-parameters">
+        <table aria-labelledby="tabs-component-parameters">
 
-        <thead>
-            <tr>
-                <th scope="col">Parameter</th>
-                <th scope="col">Type</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>ChildContent</td>
-                <td>RenderFragment?</td>
-                <td>
-                    The render fragment used for the child content (for each Tab).
-                </td>
-            </tr>
-            <tr>
-                <td>AriaLabelledBy</td>
-                <td>string?</td>
-                <td>
-                    You can give the Tabs component an accessible name by either providing an ID of an element such
-                    as a heading to use, or by setting the <span class="code-span">AriaLabel</span> paramater.
-                </td>
-            </tr>
-            <tr>
-                <td>AriaLabel</td>
-                <td>string?</td>
-                <td>
-                    Used for the accessible name if the <span class="code-span">AriaLabelledBy</span> parameter was not provided.
-                    <strong>Note:</strong> if neither value is provided a default of "Tabs" will be used for the <span class="code-span">aria-label</span> attribute.
-                </td>
-            </tr>
-            <tr>
-                <td>ActiveTabIndex</td>
-                <td>int</td>
-                <td>Gets or sets the zero-based index of the active tab. Defaults to 0.</td>
-            </tr>
-            <tr>
-                <td>ActiveTabIndexChanged</td>
-                <td>EventCallback&lt;int&gt;</td>
-                <td>Event to recieve the active index manually or used for two-way binding for the active index.</td>
-            </tr>
-            <tr>
-                <td>AutoActivatePanel</td>
-                <td>bool</td>
-                <td>
-                    Determines if the tab panels are shown automatically when its associated tab recieves the focus, or has to be
-                    activated manually using the space or enter key after recieving the focus. Defauts to <span class="code-span">false</span>, manual activation.
-                </td>
-            </tr>
-            <tr>
-                <td>TabIconPosition</td>
-                <td>TabIconPosition (enum)</td>
-                <td>Determines the location of any optional icon used on Tabs. Defaults to <span class="code-span">TabIconPosition.Left</span></td>
-            </tr>
-            <tr>
-                <td>AdditionalAttributes</td>
-                <td>Dictionary&lt;string, object&gt;?</td>
-                <td>Sets additional attributes applied to the component's root element.</td>
-            </tr>
-        </tbody>
-    </table>
+            <thead>
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ChildContent</td>
+                    <td>RenderFragment?</td>
+                    <td>
+                        The render fragment used for the child content (for each Tab).
+                    </td>
+                </tr>
+                <tr>
+                    <td>AriaLabelledBy</td>
+                    <td>string?</td>
+                    <td>
+                        You can give the Tabs component an accessible name by either providing an ID of an element such
+                        as a heading to use, or by setting the <span class="code-span">AriaLabel</span> paramater.
+                    </td>
+                </tr>
+                <tr>
+                    <td>AriaLabel</td>
+                    <td>string?</td>
+                    <td>
+                        Used for the accessible name if the <span class="code-span">AriaLabelledBy</span> parameter was not provided.
+                        <strong>Note:</strong> if neither value is provided a default of "Tabs" will be used for the <span class="code-span">aria-label</span> attribute.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ActiveTabIndex</td>
+                    <td>int</td>
+                    <td>Gets or sets the zero-based index of the active tab. Defaults to 0.</td>
+                </tr>
+                <tr>
+                    <td>ActiveTabIndexChanged</td>
+                    <td>EventCallback&lt;int&gt;</td>
+                    <td>Event to recieve the active index manually or used for two-way binding for the active index.</td>
+                </tr>
+                <tr>
+                    <td>AutoActivatePanel</td>
+                    <td>bool</td>
+                    <td>
+                        Determines if the tab panels are shown automatically when its associated tab recieves the focus, or has to be
+                        activated manually using the space or enter key after recieving the focus. Defauts to <span class="code-span">false</span>, manual activation.
+                    </td>
+                </tr>
+                <tr>
+                    <td>TabIconPosition</td>
+                    <td>TabIconPosition (enum)</td>
+                    <td>Determines the location of any optional icon used on Tabs. Defaults to <span class="code-span">TabIconPosition.Left</span></td>
+                </tr>
+                <tr>
+                    <td>AdditionalAttributes</td>
+                    <td>Dictionary&lt;string, object&gt;?</td>
+                    <td>Sets additional attributes applied to the component's root element.</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <h2 id="tabs-component-methods" class="code-table__heading">Tabs component methods</h2>
+    </section>
+    <section class="code-table">
+
+    <h3 id="tabs-component-methods" class="code-table__heading">Tabs component methods</h3>
 
     <table aria-labelledby="tabs-component-methods">
 
@@ -99,57 +111,62 @@
         </tbody>
     </table>
 
-    <h2 id="tab-component-parameters" class="code-table__heading">Tab component (child) parameters</h2>
+</section>
 
-    <table aria-labelledby="tab-component-parameters">
+    <section class="code-table">
 
-        <thead>
-            <tr>
-                <th scope="col">Parameter</th>
-                <th scope="col">Type</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>TabPanelContent</td>
-                <td>RenderFragment?</td>
-                <td>
-                    The content for tab panel.
-                </td>
-            </tr>
-            <tr>
-                <td>TabTitle</td>
-                <td>string</td>
-                <td>
-                    The tab title but also its accessible name. An exception is raised if a value is not provided.
-                </td>
-            </tr>
-            <tr>
-                <td>PersistContent</td>
-                <td>bool</td>
-                <td>
-                    Determine whether the tab panel content is retained in the DOM when the tab is not active. Defaults to true.
-                </td>
-            </tr>
-            <tr>
-                <td>SvgIcon</td>
-                <td>string?</td>
-                <td>
-                    Optional, the name of the css svg variable. As its a css variable it must start with a double dash (--).
-                    The airplane icon used in the example above has the name --svg-airplane-icon. <br />
-                    The details in the :root pseudo-class is: --svg-airplane-icon: url("data:image/svg+xml,%3Csvg . . .
-                </td>
-            </tr>
-            <tr>
-                <td>HasPanelTabIndex</td>
-                <td>bool</td>
-                <td>
-                    Determines whether a <span class="code-span">tabindex=0</span> is added to the tab panel. If the
-                    tab panel does not contain focusable elements then this should be set to true, otherwise it
-                    can be set to false. The default value is true.<br ./>
-                    For more details see: <a class="@GlobalValues.Link_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tabs}/{GlobalValues.Common_Page_Path_Accessibility}")">
-                    @GlobalValues.Component_Name_Tabs - @GlobalValues.Common_Page_Title_Accessibility</a> 
+        <h3 id="tab-component-parameters" class="code-table__heading">Tab component (child) parameters</h3>
+
+        <table aria-labelledby="tab-component-parameters">
+
+            <thead>
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>TabPanelContent</td>
+                    <td>RenderFragment?</td>
+                    <td>
+                        The content for tab panel.
+                    </td>
+                </tr>
+                <tr>
+                    <td>TabTitle</td>
+                    <td>string</td>
+                    <td>
+                        The tab title but also its accessible name. An exception is raised if a value is not provided.
+                    </td>
+                </tr>
+                <tr>
+                    <td>PersistContent</td>
+                    <td>bool</td>
+                    <td>
+                        Determine whether the tab panel content is retained in the DOM when the tab is not active. Defaults to true.
+                    </td>
+                </tr>
+                <tr>
+                    <td>SvgIcon</td>
+                    <td>string?</td>
+                    <td>
+                        Optional, the name of the css svg variable. As its a css variable it must start with a double dash (--).
+                        The airplane icon used in the example above has the name --svg-airplane-icon. <br />
+                        The details in the :root pseudo-class is: --svg-airplane-icon: url("data:image/svg+xml,%3Csvg . . .
+                    </td>
+                </tr>
+                <tr>
+                    <td>HasPanelTabIndex</td>
+                    <td>bool</td>
+                    <td>
+                        Determines whether a <span class="code-span">tabindex=0</span> is added to the tab panel. If the
+                        tab panel does not contain focusable elements then this should be set to true, otherwise it
+                        can be set to false. The default value is true.<br . />
+                        For more details see: <a class="@GlobalValues.Link_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tabs}/{GlobalValues.Common_Page_Path_Accessibility}")">
+                        @GlobalValues.Component_Name_Tabs - @GlobalValues.Common_Page_Title_Accessibility
+                    </a>
                 </td>
             </tr>
 
@@ -157,7 +174,7 @@
     </table>
 </section>
 
-<section>
+    <section>
     <h2 class="page-heading">Supporting enums</h2>
 
     <section class="code-table">
@@ -200,6 +217,9 @@
     </section>
 
 </section>
+
+</section>
+
 
 <section>
     <h2 class="page-heading">CSS variables defined for the tabs component.</h2>

@@ -7,227 +7,246 @@
 <p>
     Everything you need to work with the Nav Group component: parameters, methods, models, enums, and CSS variables for styling.
 </p>
-<section class="code-table">
 
-    <h2 id="nav-group-component-parameters" class="code-table__heading">NavGroup component (container) parameters</h2>
-
-    <table aria-labelledby="nav-group-component-parameters">
-
-        <thead>
-            <tr>
-                <th scope="col">Parameter</th>
-                <th scope="col">Type</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>ChildContent</td>
-                <td>RenderFragment?</td>
-                <td>
-                    The render fragment used for the child content, <b>NavGroupLink, NavSection & NavSeparator</b> components.
-                </td>
-            </tr>
-            <tr>
-                <td>AriaLabelledBy</td>
-                <td>string?</td>
-                <td>
-                    Gets or sets the id of an external element that labels this navigation group. When set, an
-                    <span class="code-span">aria-labelledby</span> attribute referencing that element is applied to the root &lt;ul&gt;
-                    providing an accessible name for screen. Leading and trailing whitespace is trimmed before use.
-                </td>
-            </tr>
-            <tr>
-                <td>AdditionalAttributes</td>
-                <td>Dictionary&lt;string, object&gt;?</td>
-                <td>Sets additional attributes applied to the component's root element.</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h2 id="nav-section-component-parameters" class="code-table__heading">NavSection component parameters</h2>
-
-    <table aria-labelledby="nav-section-component-parameters">
-
-        <thead>
-            <tr>
-                <th scope="col">Parameter</th>
-                <th scope="col">Type</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>ChildContent</td>
-                <td>RenderFragment?</td>
-                <td>
-                    Gets or sets the child content rendered inside the section's collapsible <span class="code-span">ul</span> element,
-                    expected to contain one or more <b>NavGroupLink, NavSeparator or NavSection</b> components.
-                </td>
-            </tr>
-            <tr>
-                <td>Title</td>
-                <td>string</td>
-                <td>
-                    Gets or sets the visible label rendered in the section trigger button. An exception is raised if not provided.
-                </td>
-            </tr>
-            <tr>
-                <td>Expanded</td>
-                <td>bool</td>
-                <td>
-                    Gets or sets a value indicating whether the section is expanded on initial render. Defaults to false.
-                </td>
-            </tr>
-            <tr>
-                <td>NoIndent</td>
-                <td>bool</td>
-                <td>
-                    Gets or sets a value indicating whether each section is adding to the indent. When false there is no
-                    indenting on the sections direct children.Defaults to false.
-                </td>
-            </tr>
-            <tr>
-                <td>SvgIcon</td>
-                <td>string?</td>
-                <td>
-                    Gets or sets the name of a CSS custom property that resolves to an SVG data URI, used as a mask-image icon 
-                    next to the item text. Must begin with a double dash -- for example: --svg-my-icon.
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <h2 id="nav-group-link-component-parameters" class="code-table__heading">NavGroupLink component parameters</h2>
-
-    <table aria-labelledby="nav-group-link-component-parameters">
-
-        <thead>
-            <tr>
-                <th scope="col">Parameter</th>
-                <th scope="col">Type</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>LinkText</td>
-                <td>string</td>
-                <td>
-                    Gets or sets the visible label rendered inside the link. This parameter is required and cannot be null, empty, or whitespace.
-                </td>
-            </tr>
-            <tr>
-                <td>Href</td>
-                <td>string</td>
-                <td>
-                    Gets or sets the URL the link navigates to. This parameter is required but will be set to "missing-href" if not entered.
-                </td>
-            </tr>
-            <tr>
-                <td>VisuallyHiddenPrefix</td>
-                <td>string?</td>
-                <td>
-                    Gets or sets an optional prefix rendered as visually hidden text before the main link label, providing additional context for screen reader users.
-                </td>
-            </tr>
-            <tr>
-                <td>SvgIcon</td>
-                <td>string?</td>
-                <td>
-                    Gets or sets the name of a CSS custom property that resolves to an SVG data URI, used as a mask-image icon
-                    next to the item text. Must begin with a double dash -- for example: --svg-my-icon.
-                </td>
-            </tr>
-            <tr>
-                <td>TargetType</td>
-                <td>TargetType (enum)</td>
-                <td>
-                    Gets or sets the browsing context in which the link is opened, mapped to the HTML <span class="code-span">target</span> attribute. 
-                    Defaults to <span class="code-span">TargetType.Self</span>.
-                </td>
-            </tr>
-            <tr>
-                <td>AdditionalAttributes</td>
-                <td>Dictionary&lt;string, object&gt;?</td>
-                <td>Sets additional attributes applied to the anchor element.</td>
-            </tr>
-        </tbody>
-    </table>
-</section>
 <section>
-    <h2 class="page-heading">Supporting enums</h2>
-
+    <h2 class="page-heading">
+        Component parameters, methods, supporting classes and enums.
+    </h2>
+    <p>
+        The following sections cover all components that make up this feature, including their parameters,
+        public methods, and any supporting classes or enumerations required for use.
+    </p>
     <section class="code-table">
 
-        <h3 id="target-type-enum" class="code-table__heading">TargetType enum</h3>
+        <h3 id="nav-group-component-parameters" class="code-table__heading">NavGroup component (container) parameters</h3>
 
-        <table aria-labelledby="target-type-enum">
+        <table aria-labelledby="nav-group-component-parameters">
 
             <thead>
                 <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
                     <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>0</td>
-                    <td>Self</td>
+                    <td>ChildContent</td>
+                    <td>RenderFragment?</td>
                     <td>
-                        Opens the link in the same browsing context. Equivalent to <span class="code-span">target="_self"</span>
-                        This is the default value.
+                        The render fragment used for the child content, <b>NavGroupLink, NavSection & NavSeparator</b> components.
                     </td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>Blank</td>
-                    <td>Opens the link in a new tab or window. Equivalent to <span class="code-span">target="_blank"</span></td>
+                    <td>AriaLabelledBy</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the id of an external element that labels this navigation group. When set, an
+                        <span class="code-span">aria-labelledby</span> attribute referencing that element is applied to the root &lt;ul&gt;
+                        providing an accessible name for screen. Leading and trailing whitespace is trimmed before use.
+                    </td>
                 </tr>
                 <tr>
-                    <td>2</td>
-                    <td>Parent</td>
-                    <td>Opens the link in the parent browsing context. Equivalent to <span class="code-span">target="_parent"</span></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Top</td>
-                    <td>Opens the link in the topmost browsing context.Equivalent to <span class="code-span">target="_top"</span></td>
+                    <td>AdditionalAttributes</td>
+                    <td>Dictionary&lt;string, object&gt;?</td>
+                    <td>Sets additional attributes applied to the component's root element.</td>
                 </tr>
             </tbody>
         </table>
 
     </section>
-
     <section class="code-table">
 
-        <h3 id="expandmode-enum" class="code-table__heading">ExpandMode enum</h3>
+        <h3 id="nav-section-component-parameters" class="code-table__heading">NavSection component parameters</h3>
 
-        <table aria-labelledby="expandmode-enum">
+        <table aria-labelledby="nav-section-component-parameters">
 
             <thead>
                 <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
                     <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>1</td>
-                    <td>Single</td>
-                    <td>Only one panel can be open at a time. Opening a panel collapses all others.</td>
+                    <td>ChildContent</td>
+                    <td>RenderFragment?</td>
+                    <td>
+                        Gets or sets the child content rendered inside the section's collapsible <span class="code-span">ul</span> element,
+                        expected to contain one or more <b>NavGroupLink, NavSeparator or NavSection</b> components.
+                    </td>
                 </tr>
                 <tr>
-                    <td>2</td>
-                    <td>Multiple</td>
-                    <td>Any number of panels can be open at the same time.</td>
+                    <td>Title</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the visible label rendered in the section trigger button. An exception is raised if not provided.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Expanded</td>
+                    <td>bool</td>
+                    <td>
+                        Gets or sets a value indicating whether the section is expanded on initial render. Defaults to false.
+                    </td>
+                </tr>
+                <tr>
+                    <td>NoIndent</td>
+                    <td>bool</td>
+                    <td>
+                        Gets or sets a value indicating whether each section is adding to the indent. When false there is no
+                        indenting on the sections direct children.Defaults to false.
+                    </td>
+                </tr>
+                <tr>
+                    <td>SvgIcon</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the name of a CSS custom property that resolves to an SVG data URI, used as a mask-image icon
+                        next to the item text. Must begin with a double dash -- for example: --svg-my-icon.
+                    </td>
                 </tr>
             </tbody>
         </table>
 
     </section>
+    <section class="code-table">
+        <h3 id="nav-group-link-component-parameters" class="code-table__heading">NavGroupLink component parameters</h3>
+
+        <table aria-labelledby="nav-group-link-component-parameters">
+
+            <thead>
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>LinkText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the visible label rendered inside the link. This parameter is required and cannot be null, empty, or whitespace.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Href</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the URL the link navigates to. This parameter is required but will be set to "missing-href" if not entered.
+                    </td>
+                </tr>
+                <tr>
+                    <td>VisuallyHiddenPrefix</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets an optional prefix rendered as visually hidden text before the main link label, providing additional context for screen reader users.
+                    </td>
+                </tr>
+                <tr>
+                    <td>SvgIcon</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the name of a CSS custom property that resolves to an SVG data URI, used as a mask-image icon
+                        next to the item text. Must begin with a double dash -- for example: --svg-my-icon.
+                    </td>
+                </tr>
+                <tr>
+                    <td>TargetType</td>
+                    <td>TargetType (enum)</td>
+                    <td>
+                        Gets or sets the browsing context in which the link is opened, mapped to the HTML <span class="code-span">target</span> attribute.
+                        Defaults to <span class="code-span">TargetType.Self</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>AdditionalAttributes</td>
+                    <td>Dictionary&lt;string, object&gt;?</td>
+                    <td>Sets additional attributes applied to the anchor element.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2 class="page-heading">Supporting enums</h2>
+
+        <section class="code-table">
+
+            <h3 id="target-type-enum" class="code-table__heading">TargetType enum</h3>
+
+            <table aria-labelledby="target-type-enum">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Self</td>
+                        <td>
+                            Opens the link in the same browsing context. Equivalent to <span class="code-span">target="_self"</span>
+                            This is the default value.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Blank</td>
+                        <td>Opens the link in a new tab or window. Equivalent to <span class="code-span">target="_blank"</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Parent</td>
+                        <td>Opens the link in the parent browsing context. Equivalent to <span class="code-span">target="_parent"</span></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Top</td>
+                        <td>Opens the link in the topmost browsing context.Equivalent to <span class="code-span">target="_top"</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
+
+        <section class="code-table">
+
+            <h3 id="expandmode-enum" class="code-table__heading">ExpandMode enum</h3>
+
+            <table aria-labelledby="expandmode-enum">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Single</td>
+                        <td>Only one panel can be open at a time. Opening a panel collapses all others.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Multiple</td>
+                        <td>Any number of panels can be open at the same time.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
+
+    </section>
 </section>
+
 <section>
     <h2 class="page-heading">CSS variables defined for the nav group components.</h2>
 
@@ -303,7 +322,7 @@
                     <td>--br-comp-nav-group-hover-background</td>
                     <td>var(--br-comp-all-link-hover-background-colour)</td>
                     <td>
-                        Bacground colour of the NavSection button or NavGroupLink for the hover state. And used as the background colour 
+                        Bacground colour of the NavSection button or NavGroupLink for the hover state. And used as the background colour
                         of the NavGroup when focused.
                     </td>
                 </tr>
@@ -408,7 +427,7 @@
 
         <h3 id="nav-group-content-area-variables" class="code-table__heading">Content area variables</h3>
         <p>
-            Used for the NavGroupLink and NavSeperator. The NavGroupLink uses the border radius for the 
+            Used for the NavGroupLink and NavSeperator. The NavGroupLink uses the border radius for the
             focus indicator outline, the other border properties are used for the decorative NavSeparator.
         </p>
 

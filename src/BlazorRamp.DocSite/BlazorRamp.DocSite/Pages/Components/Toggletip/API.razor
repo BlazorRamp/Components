@@ -8,197 +8,209 @@
     Everything you need to work with the Toggletip component: parameters, methods, models, enums, and CSS variables for styling.
 </p>
 
-<section class="code-table">
-
-    <h2 id="toggle-tip-component-parameters" class="code-table__heading">Toggletip component parameters</h2>
-
-    <table aria-labelledby="toggle-tip-component-parameters">
-
-        <thead>
-            <tr>
-                <th scope="col">Parameter</th>
-                <th scope="col">Type</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Label</td>
-                <td>string</td>
-                <td>
-                    Text shown next to the icon button and is used as an aria-label for the icon button when not shown.
-                    Defaults to "supplemental information" if not entered.
-                </td>
-            </tr>
-            <tr>
-                <td>CloseText</td>
-                <td>string</td>
-                <td>Text shown on the optional close button. Defaults to "Close" if not entered.</td>
-            </tr>
-            <tr>
-                <td>ShowLabel</td>
-                <td>bool</td>
-                <td>Removes the label and reclaims its space when set to false. Defaults to true.</td>
-            </tr>
-            <tr>
-                <td>ShowClose</td>
-                <td>bool</td>
-                <td>Removes the button and reclaims its space when set to false. Defaults to true.</td>
-            </tr>
-            <tr>
-                <td>ToggleTipLabelOrder</td>
-                <td>ToggleTipLabelOrder (enum)</td>
-                <td>Value that determines whether the label is to the left or right of the icon. Defaults to <span class="code-span">ToggleTipLabelOrder.LabelFirst</span></td>
-            </tr>
-            <tr>
-                <td>ToggleTipPosition</td>
-                <td>ToggleTipPosition (enum)</td>
-                <td>Value that determins the position of the toggletip popover in relation to the icon button. Defaults to <span class="code-span">ToggleTipPosition.TopCentre</span></td>
-            </tr>
-            <tr>
-                <td>ToggleTipSize</td>
-                <td>ToggleTipSize (enum)</td>
-                <td>Determines the size of the toggletip popover. Defaults to <span class="code-span">ToggleTipSize.Small</span>. See note below.</td>
-            </tr>
-            <tr>
-                <td>AdditionalAttributes</td>
-                <td>Dictionary&lt;string, object&gt;?</td>
-                <td>Sets additional attributes applied to the component's root element.</td>
-            </tr>
-        </tbody>
-    </table>
-    <p>
-        <strong>Note: </strong>The size sets the maximum widths and heights in viewport units with all sharing the fixed minimums of 320px for width (W) and 300px for height (H).
-        Like everything these can be changed if necessary. The defaults for small are W:30vw H:40vh, medium W:40vw H:50vh and large W:50vw H:60vh.
-    </p>
-</section>
 <section>
-    <h2 class="page-heading">Supporting enums</h2>
-
+    <h2 class="page-heading">
+        Component parameters, methods, supporting classes and enums.
+    </h2>
+    <p>
+        The following sections cover all components that make up this feature, including their parameters,
+        public methods, and any supporting classes or enumerations required for use.
+    </p>
+    
     <section class="code-table">
 
-        <h3 id="toggletiplabelorder-enum" class="code-table__heading">ToggleTipLabelOrder enum</h3>
+        <h3 id="toggle-tip-component-parameters" class="code-table__heading">Toggletip component parameters</h3>
 
-        <table aria-labelledby="toggletiplabelorder-enum">
+        <table aria-labelledby="toggle-tip-component-parameters">
 
             <thead>
                 <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
                     <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>0</td>
-                    <td>LabelFirst</td>
-                    <td>Determines if the label comes before the icon button.</td>
+                    <td>Label</td>
+                    <td>string</td>
+                    <td>
+                        Text shown next to the icon button and is used as an aria-label for the icon button when not shown.
+                        Defaults to "supplemental information" if not entered.
+                    </td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>IconFirst</td>
-                    <td>Determines if the icon button comes before the label..</td>
+                    <td>CloseText</td>
+                    <td>string</td>
+                    <td>Text shown on the optional close button. Defaults to "Close" if not entered.</td>
                 </tr>
                 <tr>
-                    <td>2</td>
-                    <td>Left</td>
-                    <td>Indicates the dialog window should be aligned to the right.</td>
+                    <td>ShowLabel</td>
+                    <td>bool</td>
+                    <td>Removes the label and reclaims its space when set to false. Defaults to true.</td>
+                </tr>
+                <tr>
+                    <td>ShowClose</td>
+                    <td>bool</td>
+                    <td>Removes the button and reclaims its space when set to false. Defaults to true.</td>
+                </tr>
+                <tr>
+                    <td>ToggleTipLabelOrder</td>
+                    <td>ToggleTipLabelOrder (enum)</td>
+                    <td>Value that determines whether the label is to the left or right of the icon. Defaults to <span class="code-span">ToggleTipLabelOrder.LabelFirst</span></td>
+                </tr>
+                <tr>
+                    <td>ToggleTipPosition</td>
+                    <td>ToggleTipPosition (enum)</td>
+                    <td>Value that determins the position of the toggletip popover in relation to the icon button. Defaults to <span class="code-span">ToggleTipPosition.TopCentre</span></td>
+                </tr>
+                <tr>
+                    <td>ToggleTipSize</td>
+                    <td>ToggleTipSize (enum)</td>
+                    <td>Determines the size of the toggletip popover. Defaults to <span class="code-span">ToggleTipSize.Small</span>. See note below.</td>
+                </tr>
+                <tr>
+                    <td>AdditionalAttributes</td>
+                    <td>Dictionary&lt;string, object&gt;?</td>
+                    <td>Sets additional attributes applied to the component's root element.</td>
                 </tr>
             </tbody>
         </table>
-
+        <p>
+            <strong>Note: </strong>The size sets the maximum widths and heights in viewport units with all sharing the fixed minimums of 320px for width (W) and 300px for height (H).
+            Like everything these can be changed if necessary. The defaults for small are W:30vw H:40vh, medium W:40vw H:50vh and large W:50vw H:60vh.
+        </p>
     </section>
-    <section class="code-table">
 
-        <h3 id="toggletipsize-enum" class="code-table__heading">ToggleTipSize enum</h3>
+    <section>
+        <h2 class="page-heading">Supporting enums</h2>
 
-        <table aria-labelledby="toggletipsize-enum">
+        <section class="code-table">
 
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>Small</td>
-                    <td>Determines the sizing of the overall popover size. The smallest viewport units will be used, W:30vh H:40vh.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Medium</td>
-                    <td>Determines the sizing of the overral popover size.The medium viewport units will be bused, W:40vh H:50vh.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Large</td>
-                    <td>Determines the sizing of the overall popover size.The largest viewport units will be set used W:30vh H:40vh.</td>
-                </tr>
-            </tbody>
-        </table>
+            <h3 id="toggletiplabelorder-enum" class="code-table__heading">ToggleTipLabelOrder enum</h3>
 
+            <table aria-labelledby="toggletiplabelorder-enum">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>LabelFirst</td>
+                        <td>Determines if the label comes before the icon button.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>IconFirst</td>
+                        <td>Determines if the icon button comes before the label..</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Left</td>
+                        <td>Indicates the dialog window should be aligned to the right.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
+        <section class="code-table">
+
+            <h3 id="toggletipsize-enum" class="code-table__heading">ToggleTipSize enum</h3>
+
+            <table aria-labelledby="toggletipsize-enum">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Small</td>
+                        <td>Determines the sizing of the overall popover size. The smallest viewport units will be used, W:30vh H:40vh.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Medium</td>
+                        <td>Determines the sizing of the overral popover size.The medium viewport units will be bused, W:40vh H:50vh.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Large</td>
+                        <td>Determines the sizing of the overall popover size.The largest viewport units will be set used W:30vh H:40vh.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
+        <section class="code-table">
+
+            <h3 id="toggletipposition-enum" class="code-table__heading">ToggleTipPosition enum</h3>
+
+            <table aria-labelledby="toggletipposition-enum">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>TopCentre</td>
+                        <td>Horizontally centred above the icon button.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>TopLeft</td>
+                        <td>Starts aligned to the top left of the icon button extending to the right.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>TopRight</td>
+                        <td>Ends aligned to the top right of the icon button so extends to the left.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>CentreLeft</td>
+                        <td>Ends at the left side of the icon, vertically aligned with the icon buttons centre.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>CentreRight</td>
+                        <td>Starts at the rights side of the icon, vertically aligned with the icon buttons centre.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>BottomCentre</td>
+                        <td>Horizonally centred below the icon button.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>BottomLeft</td>
+                        <td>Starts aligned to the bottom left of the icon button extending to the right.</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>BottomRight</td>
+                        <td>Ends aligned to the bottom right of the icon button so extends to the left.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
     </section>
-    <section class="code-table">
 
-        <h3 id="toggletipposition-enum" class="code-table__heading">ToggleTipPosition enum</h3>
-
-        <table aria-labelledby="toggletipposition-enum">
-
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>TopCentre</td>
-                    <td>Horizontally centred above the icon button.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>TopLeft</td>
-                    <td>Starts aligned to the top left of the icon button extending to the right.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>TopRight</td>
-                    <td>Ends aligned to the top right of the icon button so extends to the left.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>CentreLeft</td>
-                    <td>Ends at the left side of the icon, vertically aligned with the icon buttons centre.</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>CentreRight</td>
-                    <td>Starts at the rights side of the icon, vertically aligned with the icon buttons centre.</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>BottomCentre</td>
-                    <td>Horizonally centred below the icon button.</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>BottomLeft</td>
-                    <td>Starts aligned to the bottom left of the icon button extending to the right.</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>BottomRight</td>
-                    <td>Ends aligned to the bottom right of the icon button so extends to the left.</td>
-                </tr>
-            </tbody>
-        </table>
-
-    </section>
 </section>
 
 <section>

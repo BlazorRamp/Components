@@ -164,7 +164,7 @@ namespace BlazorRamp.Inputs.Components
             }
 
             result = default;
-            validationErrorMessage = String.Concat(base.DisplayNameText.TrimEnd(':').Trim(), " - ", ParseErrorsText);
+            validationErrorMessage = String.Concat(base.LabelNameText.TrimEnd(':').Trim(), " - ", ParseErrorsText);
             return false;
         }
 

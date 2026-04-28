@@ -8,61 +8,72 @@
     Everything you need to work with the Switch component: parameters, methods, models, enums, and CSS variables for styling.
 </p>
 
-<section class="code-table">
+<section>
+    <h2 class="page-heading">
+        Component parameters, methods, supporting classes and enums.
+    </h2>
+    <p>
+        The following sections cover all components that make up this feature, including their parameters,
+        public methods, and any supporting classes or enumerations required for use.
+    </p>
+    
+    <section class="code-table">
 
-    <h2 id="switch-component-parameters" class="code-table__heading">Switch component parameters</h2>
+        <h3 id="switch-component-parameters" class="code-table__heading">Switch component parameters</h3>
 
-    <table aria-labelledby="switch-component-parameters">
+        <table aria-labelledby="switch-component-parameters">
 
-        <thead>
-            <tr>
-                <th scope="col">Parameter</th>
-                <th scope="col">Type</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Label</td>
-                <td>string</td>
-                <td>The text displayed to the left of the switch.</td>
-            </tr>
-            <tr>
-                <td>SwitchState</td>
-                <td>bool</td>
-                <td>Indicates the state of the switch on/off (true/false).</td>
-            </tr>
-            <tr>
-                <td>AriaDisabled</td>
-                <td>bool</td>
-                <td>
-                    Indicates if the switch is in a disabled state using the <span class="code-span">aria-disabled</span> attribute.
-                    <strong>Note: </strong> Both this attribute and the disabled attribute whill have the same styling applied but with <span class="code-span">aria-disabled</span>
-                    the switch will still receive focus with the normal focus indicator intact.
-                </td>
-            </tr>
-            <tr>
-                <td>SpaceBetween</td>
-                <td>bool</td>
-                <td>
-                    The switch is a block element and will take the width of its container, and b default the label will sit next to the switch.
-                    Setting SpaceBetween to true will force the label and switch to opposite ends of its container.
-                </td>
-            </tr>
-            <tr>
-                <td>SwitchStateChanged</td>
-                <td>EventCallbac&lt;bool&gt;</td>
-                <td>
-                    An event raised when the switch is toggled indicating its current state.
-                </td>
-            </tr>
-            <tr>
-                <td>AdditionalAttributes</td>
-                <td>Dictionary&lt;string, object&gt;?</td>
-                <td>Sets additional attributes applied to the component's root element.</td>
-            </tr>
-        </tbody>
-    </table>
+            <thead>
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Label</td>
+                    <td>string</td>
+                    <td>The text displayed to the left of the switch.</td>
+                </tr>
+                <tr>
+                    <td>SwitchState</td>
+                    <td>bool</td>
+                    <td>Indicates the state of the switch on/off (true/false).</td>
+                </tr>
+                <tr>
+                    <td>AriaDisabled</td>
+                    <td>bool</td>
+                    <td>
+                        Indicates if the switch is in a disabled state using the <span class="code-span">aria-disabled</span> attribute.
+                        <strong>Note: </strong> Both this attribute and the disabled attribute whill have the same styling applied but with <span class="code-span">aria-disabled</span>
+                        the switch will still receive focus with the normal focus indicator intact.
+                    </td>
+                </tr>
+                <tr>
+                    <td>SpaceBetween</td>
+                    <td>bool</td>
+                    <td>
+                        The switch is a block element and will take the width of its container, and b default the label will sit next to the switch.
+                        Setting SpaceBetween to true will force the label and switch to opposite ends of its container.
+                    </td>
+                </tr>
+                <tr>
+                    <td>SwitchStateChanged</td>
+                    <td>EventCallbac&lt;bool&gt;</td>
+                    <td>
+                        An event raised when the switch is toggled indicating its current state.
+                    </td>
+                </tr>
+                <tr>
+                    <td>AdditionalAttributes</td>
+                    <td>Dictionary&lt;string, object&gt;?</td>
+                    <td>Sets additional attributes applied to the component's root element.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
 </section>
 
 

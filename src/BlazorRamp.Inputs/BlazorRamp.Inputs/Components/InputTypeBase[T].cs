@@ -15,6 +15,11 @@ namespace BlazorRamp.Inputs.Components
     public abstract class InputTypeBase<TValue> : InputBase<TValue>, IAsyncDisposable
     {
         /// <summary>
+        /// Gets or sets the name used for the input control label.
+        /// If the value is null, empty, or whitespace then the field name is used.
+        /// </summary>
+        [Parameter] public string LabelText { get; set; } = String.Empty;
+        /// <summary>
         /// Gets or sets the <c>id</c> attribute applied to the underlying <c>&lt;input&gt;</c>
         /// element. When null, empty, or whitespace a <see cref="Guid"/> string is generated
         /// automatically. Leading and trailing whitespace is trimmed before use.
@@ -149,11 +154,10 @@ namespace BlazorRamp.Inputs.Components
         protected string  ErrorsText        { get; private set; } = GlobalValues.Default_Errors_label;
 
         /// <summary>
-        /// Gets the resolved display name for the field, derived from <see cref="InputBase{TValue}.DisplayName"/>
-        /// when set, or the <see cref="Microsoft.AspNetCore.Components.Forms.FieldIdentifier.FieldName"/>
+        /// Gets the label name for the field when set, or the <see cref="Microsoft.AspNetCore.Components.Forms.FieldIdentifier.FieldName"/>
         /// as a fallback.
         /// </summary>
-        protected string DisplayNameText { get; private set; } = default!;
+        protected string LabelNameText { get; private set; } = default!;
 
         /// <summary>
         /// Gets a value indicating whether the error region is rendered as a tabbable
@@ -235,7 +239,7 @@ namespace BlazorRamp.Inputs.Components
             base.OnInitialized(); 
 
             InputID          = String.IsNullOrWhiteSpace(ControlID) ? Guid.NewGuid().ToString() : ControlID.Trim();
-            DisplayNameText  = String.IsNullOrWhiteSpace(DisplayName) ? FieldIdentifier.FieldName : DisplayName.Trim();
+            LabelNameText  = String.IsNullOrWhiteSpace(LabelText) ? FieldIdentifier.FieldName : LabelText.Trim();
             ErrorsText       = String.IsNullOrWhiteSpace(ErrorsLabel) ? GlobalValues.Default_Errors_label : ErrorsLabel.Trim();
 
             EditContext.OnValidationStateChanged += EditContext_OnValidationStateChanged;

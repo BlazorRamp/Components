@@ -3,7 +3,7 @@
 
 <div class="@NumericInputClasses">
     <label class="@GlobalValues.Numeric_Input_Label_Class" for="@InputID">
-        @DisplayNameText
+        @LabelNameText
         @if (base.Required)
         {
             <span aria-hidden="true" class="@GlobalValues.Numeric_Input_Asterisk_Class"> *</span>
@@ -40,7 +40,7 @@
         
         @if (HasErrors)
         {
-            <div id="@ErrorMessageID" class="@GlobalValues.Numeric_Input_Error_Class" tabindex="@(TabbableError ? "0" : null)" aria-label="@(TabbableError ? $"{DisplayNameText.TrimEnd(':')} {ErrorsText}" : null)" role="@(TabbableError ? "region" : null)">
+            <div id="@ErrorMessageID" class="@GlobalValues.Numeric_Input_Error_Class" tabindex="@(TabbableError ? "0" : null)" aria-label="@(TabbableError ? $"{LabelNameText.TrimEnd(':')} {ErrorsText}" : null)" role="@(TabbableError ? "region" : null)">
 
                 <ul>
                     @foreach (var errorMessage in InvalidMessages)

@@ -184,7 +184,7 @@ public class NumericInput_Tests
                     .Add(p => p.ValueChanged, EventCallback.Factory.Create<decimal>(context, v => model.DecimalValue = v))
                     .Add(p => p.ValueExpression, () => model.DecimalValue)
                     .Add(p => p.Required, false) // Setting this to false otherwise a * is appended
-                    .Add(p => p.DisplayName, labelText));
+                    .Add(p => p.LabelText, labelText));
 
             var labelContent = component.Find("label").TextContent;
 
@@ -220,7 +220,7 @@ public class NumericInput_Tests
                     .Add(p => p.ValueChanged, EventCallback.Factory.Create<decimal>(context, v => model.DecimalValue = v))
                     .Add(p => p.ValueExpression, () => model.DecimalValue)
                     .Add(p => p.Required, true)
-                    .Add(p => p.DisplayName, labelText));
+                    .Add(p => p.LabelText, labelText));
 
             var labelContent = component.Find("label").TextContent;
 
@@ -485,7 +485,7 @@ public class NumericInput_Tests
                     .Add(p => p.Value, model.DecimalValue)
                     .Add(p => p.ValueChanged, EventCallback.Factory.Create<decimal>(context, v => model.DecimalValue = v))
                     .Add(p => p.ValueExpression, () => model.DecimalValue)
-                    .Add(p => p.DisplayName, "MyField")
+                    .Add(p => p.LabelText, "MyField")
                     .Add(p => p.ParseErrorMessage, parseErrorText));
 
             var input = component.Find("input");
