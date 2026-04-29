@@ -1,11 +1,14 @@
-﻿
+﻿@using BlazorRamp.DocSite.Pages.Components.AnnouncementHistory
+@using BlazorRamp.DocSite.Pages.Components.Inputs.NumericInput
+@using BlazorRamp.DocSite.Pages.Components.NavGroup
+
 
 
 @attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Overview}")]
 
 <PageTitle>@GlobalValues.Component_Name_Inputs @GlobalValues.Common_Page_Title_Overview</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Inputs @GlobalValues.Common_Page_Title_Overview . . . In Progress . . .</h1>
+<h1>@GlobalValues.Component_Name_Inputs @GlobalValues.Common_Page_Title_Overview</h1>
 
 <p>
     The <b>BlazorRamp.Inputs</b> package contains a set of basic input components that are to be used with the Blazor <span class="code-span">EditForm</span> component and its <span class="code-span">EditContext</span> which
@@ -18,11 +21,14 @@
 </p>
 
 <p>
-    As explained on the Accessibility page, all of the inputs follow the same format, there are all self-contained units comprising a label, an optional hint text area, the input field itself, and a validation message area.
+    As explained on the Accessibility page, all of the inputs follow the same format, they are all self-contained units comprising a label, an optional hint text area, the input field itself, and a validation message area.
 </p>
 
 <p>
-    Below is an example of the <b>TextInput</b> component, that uses a single data annotation
+    Below is an example of the <b>TextInput</b> component, that uses a data annotations on each field. Both fields have been set to use "oninput" for immediate validation, with the First name field using the tabbable errors region 
+    instead of adding the error element id to the <span class="code-span">aria-describedby</span> attribute, and with the Surname field having the element id added to the  <span class="code-span">aria-describedby</span> attribute. 
+    You would need to try this with a screen reader to understand the difference if its unclear, but if you use you tab key the First name errors region has a tab stop when the error is present. The element has also been promoted to
+    a landmark with the accessible name of "First name errors", the combination of the <span class="code-span">LabelText</span> and the <span class="code-span">ErrorsLabel</span> parameters.
 </p>
 
 <section class="section-box">
@@ -32,18 +38,43 @@
         <DataAnnotationsValidator />
 
         <div class="br-input-row">
-            <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name:" Required = "true" ErrorsLabel="Errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" 
+            <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name:" Required = "true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" 
             @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" />
 
-            <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname:" Required="true" ErrorsLabel="Errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"
-                       @bind-Value="_contactData.Surname" HintText="The name you use on official documents" />
+            <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname:" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"
+                       @bind-Value="_contactData.Surname" HintText="The surname you use on official documents" />
         </div>
 
     </EditForm>
 
-
-
+    <p>
+        <b>Please note: </b>In the example above the <span class="code-span">Required</span> parameter was set to true for both fields, which added a red asterisk to the label. This is hidden from screen reader users as
+        otherwise they would hear First name (asterisk or star) and Surname (asterisk or star) when entering the input. Setting this parameter also adds <span class="code-span">aria-required="true"</span> to the input so screen reader users will be
+        advised that its a required field.
+    </p>
+    <p>
+        If you do not want the red asterisk but the field is required, then set the required parameter to false and just add required at the start of the hint text as the hint text is read out immediately after the label.
+        Do not use both as otherwise the screen reader user would hear announcements such as First name required, required.
+    </p>
 </section>
+<p>
+    The following was the code used for the above example.
+</p>
+<CodeBox CodeBlock="@InputSnippets.Inputs_Overview_Example" AriaLabel="Input code example" />
+
+
+<p>
+    <b>Note:</b> As each Input component is a single unit comprised of rows, the <b>BlazorRamp.Inputs</b> stylesheet also contains a 12 column grid layout container with
+    familiar row and col classes to help with alignments. The Input component detects if its inside a Blazor Ramp <span class="code-span">.br-input-row</span> and switches to using a css sub-grid to keep inputs aligned that are in adjacent
+    columns. Without this, if one input was showing an error message and an input in an adjacent column was not, the heights would be different.
+</p>
+<p>
+    The grid system employed uses a container query with common breakpoints of <span class="code-span">"xs": 0px, "sm": 576px, "md": 768px, "lg": 992px, "xl": 1280px, "xxl": 1536px</span>
+</p>
+<p>
+    As seen in the code above, a <span class="code-span">&lt;div class=".br-input-row"&gt;</span> was added for a row and then the appropriate classes were added on the
+    input directly, in this instance they were <span class="code-span">&lt;NumericInput class="br-col-xs-12 br-col-sm-6"&gt;</span>. 
+</p>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Usage}")">
@@ -65,11 +96,13 @@
 
     public class ContactDto
     {
-        [Required(AllowEmptyStrings =false, ErrorMessage = "First name is required.")]
+        [Required(ErrorMessage = "First name is a required field.")]
         [StringLength(maximumLength:20,ErrorMessage ="First name must be between 2 and 20 characters in length", MinimumLength = 2)]
         public string FirstName { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "name is required.")]
+        
+        [Required(ErrorMessage = "Surname is a required field.")]
+        [StringLength(maximumLength: 20, ErrorMessage = "Surname must be between 2 and 20 characters in length", MinimumLength = 2)]
         public string Surname   { get; set; }
     }
 
