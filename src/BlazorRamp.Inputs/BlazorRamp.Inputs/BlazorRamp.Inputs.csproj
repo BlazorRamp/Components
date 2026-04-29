@@ -15,7 +15,7 @@
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; TextIInput; PasswordInput; NumericInput; Input;</PackageTags>
-    <PackageReleaseNotes>Added  min-width: 0; to the grid field to stop overflowing through the outline at very small sizes</PackageReleaseNotes>
+    <PackageReleaseNotes>Added min-width: 0; to the grid CSS (field column) to stop overflowing through the outline at very small sizes</PackageReleaseNotes>
     <AssemblyVersion>1.0.1</AssemblyVersion>
     <FileVersion>1.0.1</FileVersion>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
