@@ -15,7 +15,7 @@
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; TextIInput; PasswordInput; NumericInput; Input;</PackageTags>
-    <PackageReleaseNotes>Initial realse of BlazorRamp.Inputs containing the TextInput, PasswrodInput and
+    <PackageReleaseNotes>Initial release of BlazorRamp.Inputs containing the TextInput, PasswrodInput and
 NumericInput components.</PackageReleaseNotes>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <FileVersion>1.0.0</FileVersion>
