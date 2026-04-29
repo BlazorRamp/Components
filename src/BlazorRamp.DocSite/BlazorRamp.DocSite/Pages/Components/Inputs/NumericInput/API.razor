@@ -4,8 +4,22 @@
 
 <h1>@GlobalValues.Component_Name_Numeric_Input @GlobalValues.Common_Page_Title_Api</h1>
 <p>
-    Everything you need to work with the TextInput component: parameters, methods, models, enums, and CSS variables for styling.
+    Everything you need to work with the NumericInput component: parameters, methods, models, enums, and CSS variables for styling.
 </p>
+<p>
+    As each Input component is a single unit that contains both the input, its label and regions for both hint and error text the <b>BlazorRamp.Inputs</b> stylesheet also contains a 12 column grid layout container with
+    familiar row and col classes to help with alignments. The Input component detects if its inside a Blazor Ramp <span class="code-span">.br-input-row</span> and switches to using a css sub-grid to keep inputs aligned that are in adjacent 
+    columns. Without this, if one input was showing an error message and an input in an adjacent column was not, the heights would be different.
+</p>
+<p>
+    The grid system employed uses a container query with common breakpoints of <span class="code-span">"xs": 0px, "sm": 576px, "md": 768px, "lg": 992px, "xl": 1280px, "xxl": 1536px</span>
+</p>
+<p>
+    The usage page shows these in action but simply add a row class on your container such as <span class="code-span">&lt;div class=".br-input-row"&gt;</span> and then add the appropriate classes on the 
+    input directly such as <span class="code-span">&lt;NumericInput class="br-col-xs-12 br-col-sm-6"&gt;</span>. For each column class/breakpoint size just add the number 1 through 12 for the
+    number of columns that are spanned from the 12 fractional units to form the width.
+</p>
+
 <p>
     <strong>Note: </strong>This Input component only uses the shared Input CSS variables as defined on the 
     <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_CSS_Variables}")">@GlobalValues.Component_Name_Inputs - @GlobalValues.Common_Page_Title_Shared_CSS</a> page.

@@ -18,7 +18,7 @@
     border-width: var(--br-comp-input-pane-base-border-width);
     border-radius: var(--br-comp-input-pane-base-border-radius);
 
-    .br-row & {
+    .br-input-row & {
         grid-row: span 4;
         grid-template-rows: subgrid;
     }

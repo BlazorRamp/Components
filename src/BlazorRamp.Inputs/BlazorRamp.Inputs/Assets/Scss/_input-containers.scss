@@ -1,6 +1,6 @@
 ﻿@use "_functions" as *;
 
-.br-row {
+.br-input-row {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -13,4 +13,4 @@
         grid-column: span 12;
     }
 }
-@include generate-grid-column-classes();
+@include generate-grid-column-classes($grid-container-class: ".br-input-row");

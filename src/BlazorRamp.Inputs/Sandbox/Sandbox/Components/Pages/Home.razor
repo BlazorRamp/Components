@@ -24,21 +24,23 @@ Welcome to your new app.
 
 
 
-    <div class="br-row">
+    <div class="br-input-row">
         <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry"
                       @bind-Value="_contactData.Age" UpdateOnInput="true" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" Format="F2" />
 
     </div>
 
-    <div class="br-row">
+    <div class="br-input-row">
 
-        <TextInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.GivenName" UpdateOnInput="false"  
-                   AriaDisabled="false" ReadOnly="false" SvgIcon="--svg-information-icon" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed"/>
+            <TextInput class="br-col-xs-12 br-col-sm-6"  @bind-Value="_contactData.GivenName" UpdateOnInput="false"
+                       AriaDisabled="false" ReadOnly="false" SvgIcon="--svg-information-icon" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" />
+
+            <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.FamilyName" UpdateOnInput="true" AriaDisabled="false" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
                    
-        <TextInput autocomplete="given-name" class="br-col-xs-12 br-col-sm-6" 
-                  @bind-Value="_contactData.FamilyName" UpdateOnInput="true" AriaDisabled="true" SvgIcon="--svg-food-icon"  ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
     </div> 
-     <div class="br-row">
+
+     <div class="br-input-row">
 
         <PasswordInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry"
                    @bind-Value="_contactData.Password" UpdateOnInput="true" AriaDisabled="false" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"  />
