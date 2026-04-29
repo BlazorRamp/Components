@@ -466,6 +466,12 @@ h3 {
   margin-bottom: var(--br-unit-space-4);
 }
 
+h4, h5, h6 {
+  font-size: var(--br-unit-font-size-1);
+  font-weight: var(--br-unit-font-weight-500);
+  margin-bottom: var(--br-unit-space-3);
+}
+
 @media (max-width: 576px) {
   .page-heading {
     text-align: center;
@@ -647,6 +653,7 @@ body #app__main {
   margin-bottom: var(--br-unit-space-5);
   border-radius: var(--br-unit-radius-5);
   border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
+  overflow: clip;
 }
 @media (max-width: 576px) {
   .section-box h2 {

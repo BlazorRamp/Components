@@ -106,6 +106,7 @@
     &__field {
         grid-area: field;
         appearance: none;
+        min-width: 0;
         border: none;
         background-color: var(--br-comp-input-area-content-background);
         color: var(--br-comp-input-area-content-colour);

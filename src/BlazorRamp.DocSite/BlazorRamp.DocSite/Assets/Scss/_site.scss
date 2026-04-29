@@ -122,7 +122,11 @@ h3 {
     margin-bottom: var(--br-unit-space-4); 
     
 }
-
+h4, h5, h6 {
+    font-size: var(--br-unit-font-size-1);
+    font-weight: var(--br-unit-font-weight-500);
+    margin-bottom: var(--br-unit-space-3);
+}
 .page-heading {
     @include media-device-sm(max-width) {
         text-align: center;

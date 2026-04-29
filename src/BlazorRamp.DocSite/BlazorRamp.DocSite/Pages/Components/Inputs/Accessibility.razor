@@ -2,8 +2,91 @@
 
 <PageTitle>@GlobalValues.Component_Name_Inputs @GlobalValues.Common_Page_Title_Accessibility</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Inputs @GlobalValues.Common_Page_Title_Accessibility . . . In Progress . . . </h1>
+<h1>@GlobalValues.Component_Name_Inputs @GlobalValues.Common_Page_Title_Accessibility</h1>
+<p>
+    All BlazorRamp input components share a consistent accessibility foundation, ensuring a predictable and inclusive experience across your forms regardless of which input type you use
+</p>
 
+<h2>Structure</h2>
+<p>
+    Every input is provided as a self-contained unit comprising a label, an optional hint text area, the input field itself, and a validation message area. This consistent structure means
+    that regardless of the input type, screen reader users always encounter information in a logical, predictable order.
+</p>
+
+
+
+<h2>Validation announcements</h2>
+<p>
+    None of the BlazorRamp inputs use ARIA live regions for validation feedback. Whilst live regions may seem an obvious choice, they can introduce confusion and verbosity in practice. When using
+    <span class="code-span">oninput</span> for immediate validation, live region announcements would fire on every keystroke as the field transitions between valid and invalid states, which quickly becomes disruptive. When using
+    <span class="code-span">onchange</span>, a screen reader user moving to the next field may hear the name of their newly focused field immediately followed by a validation announcement relating to the field they just left, which
+    can be disorienting.
+</p>
+<p>
+    Instead, validation messages are surfaced via aria-describedby and the <span class="code-span">ValidationDisplayMode</span> parameter, giving you precise control over how and when error information is presented.
+</p>
+
+
+
+
+<h2>Hint text and validation messages</h2>
+<p>
+    When hint text is provided, it is automatically associated with the input via <span class="code-span">aria-describedby</span>. When validation errors are present, retrieved via the Blazor <span class="code-span">EditContext</span>,
+    the error area's id is also added to the <span class="code-span">aria-describedby</span> attribute. When a user focuses the input, the screen reader announces the content of all associated elements in the order they appear - label first,
+    then hint text, then any validation errors.
+</p>
+
+
+
+
+<h2>ValidationDisplayMode options</h2>
+<p>
+    The <span class="code-span">ValidationDisplayMode</span> parameter gives you three options for how hint text and validation messages are presented to screen reader users.
+</p>
+
+
+<h3>DescribedByWithHint</h3>
+<p>
+    This the default mode. Both the hint text and any validation errors are associated via <span class="code-span">aria-describedby</span> and announced when the input receives focus. This is appropriate when
+    both the hint and the error message together provide the most complete guidance.
+</p>
+
+<h3>DescribedByHintSuppressed</h3>
+<p>
+    This removes the hint text from <span class="code-span">aria-describedby</span> when validation errors are present. This reduces verbosity for screen reader users in cases where the error message alone contains
+    sufficient information to correct the problem, avoiding the repetition of hearing the hint text on every focus.
+</p>
+
+<h3>TabbableWithHint</h3>
+<p>
+    takes a different approach entirely. Rather than relying on the user refocusing the input to hear validation errors, this mode renders the error area as a focusable landmark region with a tab stop. When the user tabs
+    away from an invalid field, their next stop is the error area itself, where they can read the error information directly. All error areas also appear in the user's landmark list, making it straightforward to review and
+    navigate between all errors on the page.
+</p>
+
+
+<h2>Recommended approac</h2>
+<p>
+    My recommended configuration is to use <span class="code-span">UpdateOnInput="true"</span> combined with <span class="hint">ValidationDisplayMode="TabbableWithHint"</span>. This gives sighted users immediate visual feedback
+    as they type, whilst ensuring screen reader users land on the error area when they tab away from an invalid field - providing timely, contextual feedback without relying on the user retracing their steps or submitting the
+    form to discover errors.
+</p>
+
+
+
+<h2 id="device-testing">Accessibility device testing</h2>
+
+<ul aria-labelledby="device-testing">
+    <li>JAWS, Narrator and NVDA on Windows were each paired with every one of the following browsers: Google Chrome, Microsoft Edge and Mozilla Firefox.</li>
+    <li>VoiceOver on macOS was paired with Apple's Safari.</li>
+    <li>VoiceOver on iPhone was paired with mobile Safari.</li>
+    <li>Talkback on Android was paired with mobile Google Chrome.</li>
+    <li>Voice access on Windows 11</li>
+</ul>
+
+<p>
+    <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were availabale at the time of testing (see release history on the installation page for approximate testing dates)
+</p>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Installation}")">

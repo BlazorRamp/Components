@@ -1,19 +1,49 @@
-﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Overview}")]
+﻿
+
+
+@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Overview}")]
 
 <PageTitle>@GlobalValues.Component_Name_Inputs @GlobalValues.Common_Page_Title_Overview</PageTitle>
 
 <h1>@GlobalValues.Component_Name_Inputs @GlobalValues.Common_Page_Title_Overview . . . In Progress . . .</h1>
 
 <p>
-    The <b>BlazorRamp.Inputs</b> package contains a set of basic input components that are used with the Blazor <span class="code-span">EditForm</span> component and its <span class="code-span">EditContext</span> which
+    The <b>BlazorRamp.Inputs</b> package contains a set of basic input components that are to be used with the Blazor <span class="code-span">EditForm</span> component and its <span class="code-span">EditContext</span> which
     coordinates state and validation between the form and input components such as these and/or Blazors own input components.
 </p>
 <p>
-    As these components work with Blazors <span class="code-span">EditContext</span> they will work whichever validation framework you choose such as Data Annotations, Fluid Validation Blazor integration packages
-    or my own Validation framework <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Repo_Site" target="_blank" >Validated.Core (opens in new window)</a> and its Blazor NuGet package 
+    As these components work with Blazors <span class="code-span">EditContext</span> they will work with the validation framework you have chosen to use with the  <span class="code-span">EditContext</span> such as Data Annotations, 
+    Fluid Validation Blazor integration packages or my own Validation framework <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Repo_Site" target="_blank" >Validated.Core (opens in new window)</a> and its Blazor NuGet package 
     <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
 </p>
 
+<p>
+    As explained on the Accessibility page, all of the inputs follow the same format, there are all self-contained units comprising a label, an optional hint text area, the input field itself, and a validation message area.
+</p>
+
+<p>
+    Below is an example of the <b>TextInput</b> component, that uses a single data annotation
+</p>
+
+<section class="section-box">
+
+    <EditForm Model="@_contactData">
+        
+        <DataAnnotationsValidator />
+
+        <div class="br-input-row">
+            <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name:" Required = "true" ErrorsLabel="Errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" 
+            @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" />
+
+            <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname:" Required="true" ErrorsLabel="Errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"
+                       @bind-Value="_contactData.Surname" HintText="The name you use on official documents" />
+        </div>
+
+    </EditForm>
+
+
+
+</section>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Usage}")">
@@ -30,5 +60,18 @@
 
 
 @code {
+
+    private ContactDto _contactData = new();
+
+    public class ContactDto
+    {
+        [Required(AllowEmptyStrings =false, ErrorMessage = "First name is required.")]
+        [StringLength(maximumLength:20,ErrorMessage ="First name must be between 2 and 20 characters in length", MinimumLength = 2)]
+        public string FirstName { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "name is required.")]
+        public string Surname   { get; set; }
+    }
+
 
 }
