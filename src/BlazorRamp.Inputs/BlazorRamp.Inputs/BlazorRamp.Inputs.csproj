@@ -8,16 +8,16 @@
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
     <Title>BlazorRamp.Inputs</Title>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>Paul Kent</Authors>
     <Description>Base set of the simple inputs for the Blazor Ramp ecosystem</Description>
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; TextIInput; PasswordInput; NumericInput; Input;</PackageTags>
-    <PackageReleaseNotes>Added min-width: 0; to the grid CSS (field column) to stop overflowing through the outline at very small sizes</PackageReleaseNotes>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>
+    <PackageReleaseNotes>Changed non-nullable numeric inputs to return 0 when null or empty.</PackageReleaseNotes>
+    <AssemblyVersion>1.0.2</AssemblyVersion>
+    <FileVersion>1.0.2</FileVersion>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>

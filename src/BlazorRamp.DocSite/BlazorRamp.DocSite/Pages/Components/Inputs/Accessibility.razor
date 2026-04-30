@@ -65,14 +65,17 @@
 </p>
 
 
-<h2>Recommended approac</h2>
+<h2>Recommended approach</h2>
 <p>
     My recommended configuration is to use <span class="code-span">UpdateOnInput="true"</span> combined with <span class="hint">ValidationDisplayMode="TabbableWithHint"</span>. This gives sighted users immediate visual feedback
     as they type, whilst ensuring screen reader users land on the error area when they tab away from an invalid field - providing timely, contextual feedback without relying on the user retracing their steps or submitting the
     form to discover errors.
 </p>
 
-
+<p>
+    <strong>Important: </strong>For WCAG dependant on the context you should ensure that the inputs have the appropriate autocomplete values specified. 
+    You can add any of these to the Input component directly as attribute splatting will place these on the underlying input element.
+</p>
 
 <h2 id="device-testing">Accessibility device testing</h2>
 
@@ -85,7 +88,7 @@
 </ul>
 
 <p>
-    <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were availabale at the time of testing (see release history on the installation page for approximate testing dates)
+    <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were available at the time of testing (see release history on the installation page for approximate testing dates)
 </p>
 
 <div class="flex-content justify-content-between">

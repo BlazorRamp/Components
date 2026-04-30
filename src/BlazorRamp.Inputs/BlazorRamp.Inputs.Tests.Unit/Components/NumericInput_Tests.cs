@@ -391,7 +391,7 @@ public class NumericInput_Tests
 
             var input = component.Find("input");//tried editContext.Validate but that did not get the markup to render 
 
-            input.Change("");
+            input.Change("abc");
 
             component.WaitForAssertion(() =>
             {
@@ -443,7 +443,7 @@ public class NumericInput_Tests
             var (inputComponent, editContext) = CreateDecimalInputWithParamByName<ValidationDisplayMode?>(context, nameof(NumericInput<decimal>.ValidationDisplayMode), ValidationDisplayMode.TabbableWithHint);
 
             var input = inputComponent.Find("input");//tried editContext.Validate but that did not get the markup to render 
-            input.Change("");
+            input.Change("abc");
 
             inputComponent.WaitForAssertion(() =>
             {
@@ -562,7 +562,7 @@ public class NumericInput_Tests
                     .Add(p => p.Required, true));
 
 
-            await component.Find("input").ChangeAsync("");
+            await component.Find("input").ChangeAsync("abc");
             await component.InvokeAsync(() => editContext.Validate());
 
             component.WaitForAssertion(() =>

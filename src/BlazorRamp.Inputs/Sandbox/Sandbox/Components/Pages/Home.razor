@@ -28,6 +28,8 @@ Welcome to your new app.
         <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry"
                       @bind-Value="_contactData.Age" UpdateOnInput="true" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" Format="F2" />
 
+        <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Nullable Age"
+                      @bind-Value="_contactData.NullableAge" UpdateOnInput="true" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" Format="F2" />
     </div>
 
     <div class="br-input-row">

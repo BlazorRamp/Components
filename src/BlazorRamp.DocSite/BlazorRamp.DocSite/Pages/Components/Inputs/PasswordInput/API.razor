@@ -20,9 +20,9 @@
     number of columns that are spanned from the 12 fractional units to form the width.
 </p>
 <p>
-    <strong>Note: </strong>This Input component only uses the shared Input CSS variables as defined on the
-    <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_CSS_Variables}")">@GlobalValues.Component_Name_Inputs - @GlobalValues.Common_Page_Title_Shared_CSS</a> page.
+    <strong>Note: </strong>The input components do not define parameters for the common input attributes. You can add any of these to the Input component directly as attribute splatting will place these on the underlying input element.
 </p>
+
 <section>
     <h2 class="page-heading">
         Component parameters, methods, supporting classes and enums.
@@ -299,7 +299,10 @@
     </section>
 
 </section>
-
+<p>
+    <strong>Note: </strong>This Input component only uses the shared Input CSS variables as defined on the
+    <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_CSS_Variables}")">@GlobalValues.Component_Name_Inputs - @GlobalValues.Common_Page_Title_Shared_CSS</a> page.
+</p>
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_NumericInput}/{GlobalValues.Common_Page_Path_Usage}")">
         <span aria-hidden="true"></span>

@@ -1,9 +1,20 @@
-﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_NumericInput}/{GlobalValues.Common_Page_Path_Usage}")]
+﻿
+
+@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_NumericInput}/{GlobalValues.Common_Page_Path_Usage}")]
 
 <PageTitle>@GlobalValues.Component_Name_Numeric_Input @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
 <h1>@GlobalValues.Component_Name_Numeric_Input @GlobalValues.Common_Page_Title_Usage . . . In Progress . . . </h1>
 
+
+<EditForm Model="@_inventoryData">
+    <BlazorValidated TEntity="InventoryDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+    <div class="br-input-row">
+        <NumericInput maxlength="4" class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryData.UnitsInStock" Required="false" LabelText="Units in stock" ErrorsLabel="errors" HintText="Required, the number in stock." UpdateOnInput="true"></NumericInput>
+    </div>
+    
+</EditForm>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_NumericInput}/{GlobalValues.Common_Page_Path_Api}")">
@@ -17,3 +28,29 @@
         <span aria-hidden="true"></span>
     </a>
 </div>
+
+@code {
+
+    public InventoryDto _inventoryData = new();
+    private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+    public class InventoryDto
+    {
+        public decimal Price { get; set; }
+        public int UnitsInStock { get; set; }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var unitValidator = MemberValidators.CreateNotNullOrEmptyValidator<int>("UnitsInStock", "Units in stock", "Cannot not be empty");
+
+        //var unitValidator = MemberValidators.CreateRangeValidator<int>(1, 99, "UnitsInStock", "Units in stock", "Must be between 1 and 999");
+
+        _boxedValidators = BlazorValidationBuilder<InventoryDto>.Create()
+                                .ForMember(c => c.UnitsInStock, unitValidator)
+                                 .GetBoxedValidators();
+
+        base.OnInitialized();
+    }
+}

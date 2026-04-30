@@ -146,7 +146,7 @@ namespace BlazorRamp.Inputs.Components
         {
             validationErrorMessage = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(value) && base.IsNullableType)
+            if (string.IsNullOrWhiteSpace(value))
             {
                 result = default!;//stop the green squiggle
                 return true;
