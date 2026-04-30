@@ -74,7 +74,7 @@ namespace BlazorRamp.Inputs.Components
         /// </summary>
         protected string?     _stringValue = null;
         private readonly bool _isWholeNumber = true;
-        private TValue?       _lastParsedValue = default;
+        private TValue? _lastParsedValue = default;
 
         /// <summary>
         /// Initialises <c>_isWholeNumber</c> by inspecting <see cref="InputTypeBase{TValue}.DataType"/>
@@ -95,7 +95,7 @@ namespace BlazorRamp.Inputs.Components
             base.OnParametersSet();
             NumericInputClasses = GetInputClasses(AdditionalAttributes);
 
-            if (!Equals(CurrentValue, _lastParsedValue))
+            if (!Equals(CurrentValue, _lastParsedValue) || (Equals(default(TValue), CurrentValue) && Equals(default(TValue), _lastParsedValue)))
             {
                 _lastParsedValue = CurrentValue;
 

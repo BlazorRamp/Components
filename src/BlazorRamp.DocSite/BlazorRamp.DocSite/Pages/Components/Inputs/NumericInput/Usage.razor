@@ -7,13 +7,17 @@
 <h1>@GlobalValues.Component_Name_Numeric_Input @GlobalValues.Common_Page_Title_Usage . . . In Progress . . . </h1>
 
 
-<EditForm Model="@_inventoryData">
+<EditForm Model="@_inventoryData" OnValidSubmit="HandleSubmit">
     <BlazorValidated TEntity="InventoryDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
     <div class="br-input-row">
-        <NumericInput maxlength="4" class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryData.UnitsInStock" Required="false" LabelText="Units in stock" ErrorsLabel="errors" HintText="Required, the number in stock." UpdateOnInput="true"></NumericInput>
+        <NumericInput maxlength="3" class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryData.UnitsInStock" Required="false" LabelText="Units in stock" ErrorsLabel="errors" HintText="Required, the number in stock." UpdateOnInput="false"></NumericInput>
     </div>
     
+    <div class="br-input-row">
+        <button class="br-col-xs-12 test-button" type="submit">Fake Submit</button>
+    </div>
+
 </EditForm>
 
 <div class="flex-content justify-content-between">
@@ -42,15 +46,19 @@
 
     protected override async Task OnInitializedAsync()
     {
+        _inventoryData.UnitsInStock = 0;
 
-        var unitValidator = MemberValidators.CreateNotNullOrEmptyValidator<int>("UnitsInStock", "Units in stock", "Cannot not be empty");
-
-        //var unitValidator = MemberValidators.CreateRangeValidator<int>(1, 99, "UnitsInStock", "Units in stock", "Must be between 1 and 999");
+        var unitValidator = MemberValidators.CreateRangeValidator<int>(1, 999, "UnitsInStock", "Units in stock", "Must be between 1 and 999");
 
         _boxedValidators = BlazorValidationBuilder<InventoryDto>.Create()
                                 .ForMember(c => c.UnitsInStock, unitValidator)
                                  .GetBoxedValidators();
 
         base.OnInitialized();
+    }
+
+    private void HandleSubmit()
+    {
+        
     }
 }
