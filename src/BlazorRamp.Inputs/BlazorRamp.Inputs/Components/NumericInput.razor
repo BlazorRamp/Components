@@ -32,7 +32,8 @@
            @onblur="HandleOnBlur"
            @bind-value:get="@_stringValue"
            @bind-value:event="@(UpdateOnInput ? "oninput" : "onchange")"
-           @bind-value:set="HandlePropertySet" />
+           @bind-value:set="HandlePropertySet" 
+           data-br-input-position="@DataPosition.ToString().ToLower()" />
 
     <span class="@StateIconClasses" aria-hidden="true"></span>
 

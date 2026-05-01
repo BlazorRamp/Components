@@ -26,6 +26,13 @@ public class TextTypeInput : InputTypeBase<string>
     /// </summary>
     [Parameter] public TextInputType TextInputType  { get; set; } = TextInputType.Text;
 
+
+    /// <summary>
+    /// Gets or sets the text/data alignment in the input. Defaults to <see cref="DataPosition.Start"/>.
+    /// </summary>
+    [Parameter] public DataPosition DataPosition { get; set; } = DataPosition.Start;
+
+
     /// <summary>
     /// Gets the resolved CSS class string applied to the root element of the text input,
     /// including any additional classes passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.

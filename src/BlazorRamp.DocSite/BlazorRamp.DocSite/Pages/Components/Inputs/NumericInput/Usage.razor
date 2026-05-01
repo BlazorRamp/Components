@@ -11,7 +11,7 @@
     <BlazorValidated TEntity="InventoryDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
     <div class="br-input-row">
-        <NumericInput maxlength="3" class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryData.UnitsInStock" Required="false" LabelText="Units in stock" ErrorsLabel="errors" HintText="Required, the number in stock." UpdateOnInput="false"></NumericInput>
+        <NumericInput maxlength="3" class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryData.UnitsInStock" Required="false" LabelText="Units in stock" ErrorsLabel="errors" HintText="Required, the number in stock." UpdateOnInput="true"></NumericInput>
     </div>
     
     <div class="br-input-row">
@@ -46,7 +46,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _inventoryData.UnitsInStock = 0;
 
         var unitValidator = MemberValidators.CreateRangeValidator<int>(1, 999, "UnitsInStock", "Units in stock", "Must be between 1 and 999");
 

@@ -1,4 +1,5 @@
 ﻿using BlazorRamp.Inputs.Common.Constants;
+using BlazorRamp.Inputs.Components;
 using Bunit;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -40,6 +41,21 @@ public class PasswordInput_Tests
 
     public class Parameters()
     {
+        [Theory]
+        [InlineData(DataPosition.End)]
+        [InlineData(DataPosition.Centre)]
+        [InlineData(DataPosition.Start)]
+        public void Should_be_able_to_set_the_data_position(DataPosition dataPosition)
+        {
+            using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateInputWithParamByName<DataPosition>(context, nameof(NumericInput<decimal>.DataPosition), dataPosition);
+
+            var dataAttribute = inputComponent.Find("input").GetAttribute("data-br-input-position");
+
+            dataAttribute.Should().Be(dataPosition.ToString().ToLower());
+        }
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]

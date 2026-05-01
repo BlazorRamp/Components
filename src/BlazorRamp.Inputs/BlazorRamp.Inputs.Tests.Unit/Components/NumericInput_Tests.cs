@@ -56,6 +56,21 @@ public class NumericInput_Tests
     public class Parameters()
     {
         [Theory]
+        [InlineData(DataPosition.End)]
+        [InlineData(DataPosition.Centre)]
+        [InlineData(DataPosition.Start)]
+        public void Should_be_able_to_set_the_data_position(DataPosition dataPosition)
+        {
+            using var context = new BunitContext();
+            
+            var (inputComponent, _) = CreateDecimalInputWithParamByName<DataPosition>(context, nameof(NumericInput<decimal>.DataPosition), dataPosition);
+
+            var dataAttribute = inputComponent.Find("input").GetAttribute("data-br-input-position");
+
+            dataAttribute.Should().Be(dataPosition.ToString().ToLower());
+        }
+
+        [Theory]
         [InlineData(true)]
         [InlineData(false)]
         public async Task Should_be_able_to_set_required_which_uses_aria_required_if_true(bool required)

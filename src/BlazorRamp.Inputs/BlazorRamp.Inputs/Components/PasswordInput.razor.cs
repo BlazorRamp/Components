@@ -35,6 +35,12 @@ public class PasswordTypeInput : InputTypeBase<string>
     [Parameter] public PasswordAutoComplete PasswordAutoComplete { get; set; } = PasswordAutoComplete.CurrentPassword;
 
     /// <summary>
+    /// Gets or sets the text/data alignment in the input. Defaults to <see cref="DataPosition.Start"/>.
+    /// </summary>
+    [Parameter] public DataPosition DataPosition { get; set; } = DataPosition.Start;
+
+
+    /// <summary>
     /// Gets the resolved CSS class string applied to the root element of the password input,
     /// including any additional classes passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.
     /// </summary>

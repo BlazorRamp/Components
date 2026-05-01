@@ -45,6 +45,11 @@ namespace BlazorRamp.Inputs.Components
         /// </summary>
         [Parameter] public string ParseErrorMessage { get; set; } = GlobalValues.Input_Parse_Error_Message;
 
+        /// <summary>
+        /// Gets or sets the text/data alignment in the input. Defaults to <see cref="DataPosition.Start"/>.
+        /// </summary>
+        [Parameter] public DataPosition DataPosition { get; set; } = DataPosition.End;
+
         [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
 
         private IJSObjectReference? _jSModule = null;
