@@ -17,16 +17,17 @@
 
         <div class="br-input-row">
 
-            <PasswordInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_registrationData.Password" Required="true" LabelText="Password" ErrorsLabel="errors" HintText="Choose something only you know" UpdateOnInput="true"
-                           ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+            <PasswordInput class="br-col-xs-12 br-col-sm-6"  @bind-Value="_registrationData.Password" Required="true" LabelText="Password" ErrorsLabel="errors" HintText="Choose something only you know" UpdateOnInput="true"
+                           ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" SvgIcon="--svg-food-icon" />
 
-            <PasswordInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_registrationData.ConfirmPassword" Required="true"
+
+
+            <PasswordInput class="br-col-xs-12 br-col-sm-6" " @bind-Value="_registrationData.ConfirmPassword" Required="true" 
                            LabelText="Unit Price" ErrorsLabel="errors" HintText="Must match the password entered." UpdateOnInput="true"
                            ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+     </div>
 
-        </div>
-    
-        <div class="br-input-row">
+<div class="br-input-row">
             <button class="br-col-xs-12 test-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
         </div>
 

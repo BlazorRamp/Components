@@ -20,7 +20,11 @@
     {
         <span aria-hidden="true" class="@GlobalValues.Numeric_Input_Icon_Class" style="@SvgVariable"></span>
     }
-   
+    else
+    {
+        <span aria-hidden="true"></span>
+    }
+
     <input @ref="ControlReference" @attributes="@GetAttributes(AdditionalAttributes)" class="@GlobalValues.Numeric_Input_Field_Class" id="@InputID"
            type="text"
            inputmode="@InputMode"

@@ -19,7 +19,10 @@
     {
         <span aria-hidden="true" class="@GlobalValues.Text_Input_Icon_Class" style="@SvgVariable"></span>
     }
-   
+    else
+    {
+        <span aria-hidden="true"></span>
+    }
     <input @ref="ControlReference" @attributes="@GetAttributes(AdditionalAttributes)" class="@GlobalValues.Text_Input_Field_Class" id="@InputID"
            type="@InputType" 
            aria-invalid="@(HasErrors ? "true" : null)" 
