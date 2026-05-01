@@ -1,4 +1,6 @@
-﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_PasswordInput}/{GlobalValues.Common_Page_Path_Usage}")]
+﻿@using Microsoft.AspNetCore.Components.Sections
+
+@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_PasswordInput}/{GlobalValues.Common_Page_Path_Usage}")]
 
 <PageTitle>@GlobalValues.Component_Name_Password_Input @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
@@ -6,8 +8,31 @@
 
 
 <p>
-    Dependant on the data type the underlying <span class="code-span">inputmode</span> attribute will be set to <span class="code-span">inputmode="number"</span> for integers or <span class="code-span">inputmode="decimal"</span> for non integers.
+    <b>Note: </b>I have used my open source Validated.Blazor library package for the validation, but you can use any validators that work with Blazors <span class="code-span">EditContext</span>.
 </p>
+<section>
+    <EditForm Model="@_registrationData" OnValidSubmit="HandleSubmit">
+
+        <BlazorValidated TEntity="UserRegistrationDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+        <div class="br-input-row">
+
+            <PasswordInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_registrationData.Password" Required="true" LabelText="Password" ErrorsLabel="errors" HintText="Choose something only you know" UpdateOnInput="true"
+                           ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
+            <PasswordInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_registrationData.ConfirmPassword" Required="true"
+                           LabelText="Unit Price" ErrorsLabel="errors" HintText="Must match the password entered." UpdateOnInput="true"
+                           ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
+        </div>
+    
+        <div class="br-input-row">
+            <button class="br-col-xs-12 test-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
+        </div>
+
+    </EditForm>
+</section>
+
 
 
 
@@ -25,3 +50,28 @@
     </a>
 </div>
 
+@code {
+
+    public UserRegistrationDto _registrationData = new();
+    private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var passwordValidator = MemberValidators.CreateStringLengthValidator(7, 25, "Password", "Password", "Must be between 7 and 25 characters in length");
+        var compareValidator  = MemberValidators.CreateMemberComparisonValidator<UserRegistrationDto, string>(c => c.Password, c => c.ConfirmPassword, Validated.Core.Common.Constants.CompareType.EqualTo, "Confirm Password", "Passwords do not match")
+    ;
+        _boxedValidators = BlazorValidationBuilder<UserRegistrationDto>.Create()
+                                .ForMember(c => c.Password, passwordValidator)
+                                .ForComparisonWithMember(c => c.ConfirmPassword, compareValidator)
+                                .GetBoxedValidators();
+    }
+
+    private void HandleSubmit() { }
+
+    public class UserRegistrationDto
+    {
+        public string Password        { get; set; }
+        public string ConfirmPassword { get; set; }
+    }
+}

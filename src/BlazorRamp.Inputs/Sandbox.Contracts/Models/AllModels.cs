@@ -39,6 +39,7 @@ public record class ContactDto
     [Range(20, 50,ErrorMessage = "Not in range")]
     public int      Age            { get; set; }
     public string   Password       { get; set; } = default!;
+    public string ConfirmPassword { get; set; } = default!;
     public List<string> Entries { get; set; } = [];
 
     public AddressDto  Address         { get; set; } = default!;

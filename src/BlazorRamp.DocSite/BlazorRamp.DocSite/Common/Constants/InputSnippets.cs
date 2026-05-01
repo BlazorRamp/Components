@@ -46,4 +46,59 @@ public class InputSnippets
 
         }
         """;
+
+
+    public const string Numeric_Code_Example = """
+
+        <EditForm Model="@_inventoryData" OnValidSubmit="HandleSubmit">
+
+            <BlazorValidated TEntity="InventoryDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <div class="br-input-row">
+
+                <NumericInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryData.UnitsInStock" Required="false" 
+                    LabelText="Units in stock" ErrorsLabel="errors" HintText="Required, the number of units currently in stock." UpdateOnInput="true" 
+                        ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" ParseErrorMessage="Please enter a valid number for this field type."/>
+
+                <NumericInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryData.UnitPrice" Required="true" Format="C"
+                    LabelText="Unit Price" ErrorsLabel="errors" HintText="The price per unit." UpdateOnInput="true"
+                        ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
+            </div>
+
+            <div class="br-input-row">
+                <button class="br-col-xs-12 test-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
+            </div>
+
+        </EditForm>
+
+        @code {
+
+            public InventoryDto _inventoryData = new();
+            private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+            protected override async Task OnInitializedAsync()
+            {
+
+                var unitValidator   = MemberValidators.CreateRangeValidator<int>(1, 999, "UnitsInStock", "Units in stock", "Must be between 1 and 999");
+
+                var priceValidation = MemberValidators.CreatePrecisionScaleValidator<decimal>(5, 2, "UnitPrice", "Unit price", "Cannot be more than than one hundred thousand with a maximum of 2 decimal places")
+                                        .AndThen(MemberValidators.CreatePredicateValidator<decimal>(c => c > 1M, "UnitPrice", "Unit Price", "Must be greater than " + String.Format("{0:C}", 1)));
+
+                _boxedValidators = BlazorValidationBuilder<InventoryDto>.Create()
+                                        .ForMember(c => c.UnitsInStock, unitValidator)
+                                        .ForMember(c => c.UnitPrice, priceValidation)
+                                        .GetBoxedValidators();
+            }
+
+            private void HandleSubmit() { }
+
+            public class InventoryDto
+            {
+                public decimal UnitPrice    { get; set; }
+                public int     UnitsInStock { get; set; }
+            }
+        }
+        """;
+
 }

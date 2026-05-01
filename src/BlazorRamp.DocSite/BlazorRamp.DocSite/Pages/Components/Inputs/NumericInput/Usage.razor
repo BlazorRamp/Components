@@ -1,36 +1,60 @@
-﻿
+﻿@using Validated.Core.Extensions
+
 
 @attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_NumericInput}/{GlobalValues.Common_Page_Path_Usage}")]
 
 <PageTitle>@GlobalValues.Component_Name_Numeric_Input @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Numeric_Input @GlobalValues.Common_Page_Title_Usage . . . In Progress . . . </h1>
+<h1>@GlobalValues.Component_Name_Numeric_Input @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
-    In the following example, both input values are required, but in the first input requiring an integer value I have set the <span class="code-span">Required</span> parameter
-    to false as I opted to put "Required" in the <span class="code-span">HintText</span>. As mentioned on the Inputs Accessibility page, setting the <span class="code-span">Required</span> parameter
-    to false does not add the <span class="code-span">aria-required</span> attribute to negate a screen reader user hearing "Required" repeated.
+    In the following example, both input values are required, but in the first input requiring an integer value the <span class="code-span">Required</span> parameter has been set to
+    to false as the text "Required" has been placed in the <span class="code-span">HintText</span>. As mentioned on the Inputs Accessibility page, setting the <span class="code-span">Required</span> parameter
+    to false does not add the <span class="code-span">aria-required</span> attribute in order for a screen reader user not to have "Required" repeatedly.
 </p>
 <p>
-    The first input has its <span class="code-span">UpdateOnInput</span> parameter set to true,so validation runs on input (after the field is dirty) which for whole numbers is fine. For the decimal I have opted
-    to set the <span class="code-span">UpdateOnInput</span> parameter to false as well as 
+    Both inputs have the <span class="code-span">UpdateOnInput</span> parameter set to true so validation runs on input, after the field is dirty. Neither input has a <span class="code-span">maxlength</span> attribute as these
+    can be problematic for some screen readers as it silently stops the user typing with no feedback, so it's better to catch issues with validation. For example, if the UnitsInStock field only allowed 3 digits and the user entered 1000,
+    only 100 would be recorded and without validation the user would be unaware that their intended value was not recorded.
+
 </p>
-<EditForm Model="@_inventoryData" OnSubmit="HandleSubmit">
+<p>
+    Personally, I prefer immediate validation, however for numeric inputs it requires a little more consideration. Because a number must be fully formed before it can be parsed, there are moments mid-entry where the field
+    will be in a temporarily invalid state — for example, when typing a negative number the leading minus sign alone is not a valid number, and the field will show as invalid until the digits are entered. In most cases
+    this is a minor cosmetic issue that resolves itself as the user continues typing. This is where providing a clear <span class="code-span">ParseErrorMessage</span> helps — rather than leaving the user confused by a
+    generic error, a descriptive message such as "Please enter a valid number" reassures them that they simply need to complete their entry.
+</p>
+<p>
+    The Unit Price field is using the C standard numeric format specifier, which formats the value as currency using the current culture's currency symbol and decimal conventions.
+</p>
+<p>
+    <b>Note: </b>I have used my open source Validated.Blazor library package for the validation, but you can use any validators that work with Blazors <span class="code-span">EditContext</span>.
+</p>
+<EditForm Model="@_inventoryData" OnValidSubmit="HandleSubmit">
     <BlazorValidated TEntity="InventoryDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
     <div class="br-input-row">
-        <NumericInput maxlength="3" class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryData.UnitsInStock" Required="false" 
-            LabelText="Units in stock" ErrorsLabel="errors" HintText="Required, the number of units currently in stock." UpdateOnInput="true"></NumericInput>
 
-        <NumericInput maxlength="10" class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryData.UnitPrice" Required="true" Format="F2"
-                      LabelText="Unit Price" ErrorsLabel="errors" HintText="The price per unit." UpdateOnInput="true"></NumericInput>
+        <NumericInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryData.UnitsInStock" Required="false" 
+            LabelText="Units in stock" ErrorsLabel="errors" HintText="Required, the number of units currently in stock." UpdateOnInput="true" 
+                ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" ParseErrorMessage="Please enter a valid number for this field type."/>
+
+        <NumericInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryData.UnitPrice" Required="true" Format="C"
+            LabelText="Unit Price" ErrorsLabel="errors" HintText="The price per unit." UpdateOnInput="true"
+                ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
     </div>
     
     <div class="br-input-row">
-        <button class="br-col-xs-12 test-button" type="submit">Fake Submit</button>
+        <button class="br-col-xs-12 test-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
     </div>
 
 </EditForm>
+
+<p style="padding-block:1rem;">
+    Below is the code that was used for the example. Please note that in general when using the Validated library the validators would be in a shared library so they could be used in any part of your application.
+</p>
+<CodeBox CodeBlock="@InputSnippets.Numeric_Code_Example" AriaLabel="Numeric input code example" />
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_NumericInput}/{GlobalValues.Common_Page_Path_Api}")">
@@ -50,28 +74,25 @@
     public InventoryDto _inventoryData = new();
     private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
 
-    public class InventoryDto
-    {
-        public decimal UnitPrice { get; set; }
-        public int UnitsInStock { get; set; }
-    }
-
     protected override async Task OnInitializedAsync()
     {
 
-        var unitValidator = MemberValidators.CreateRangeValidator<int>(1, 999, "UnitsInStock", "Units in stock", "Must be between 1 and 999");
-        var priceValidation = MemberValidators.CreatePrecisionScaleValidator<decimal>(7, 2, "UnitPrice", "Unit price", "The price is wrong");
+        var unitValidator   = MemberValidators.CreateRangeValidator<int>(1, 999, "UnitsInStock", "Units in stock", "Must be between 1 and 999");
+
+        var priceValidation = MemberValidators.CreatePrecisionScaleValidator<decimal>(5, 2, "UnitPrice", "Unit price", "Cannot be more than than one hundred thousand with a maximum of 2 decimal places")
+                                .AndThen(MemberValidators.CreatePredicateValidator<decimal>(c => c > 1M, "UnitPrice", "Unit Price", "Must be greater than " + String.Format("{0:C}", 1)));
 
         _boxedValidators = BlazorValidationBuilder<InventoryDto>.Create()
                                 .ForMember(c => c.UnitsInStock, unitValidator)
                                 .ForMember(c => c.UnitPrice, priceValidation)
                                 .GetBoxedValidators();
-
-        base.OnInitialized();
     }
 
-    private void HandleSubmit()
+    private void HandleSubmit() { }
+
+    public class InventoryDto
     {
-        
+        public decimal UnitPrice    { get; set; }
+        public int     UnitsInStock { get; set; }
     }
 }
