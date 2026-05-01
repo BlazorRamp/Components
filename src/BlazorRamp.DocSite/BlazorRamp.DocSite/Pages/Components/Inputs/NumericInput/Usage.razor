@@ -6,12 +6,24 @@
 
 <h1>@GlobalValues.Component_Name_Numeric_Input @GlobalValues.Common_Page_Title_Usage . . . In Progress . . . </h1>
 
-
-<EditForm Model="@_inventoryData" OnValidSubmit="HandleSubmit">
+<p>
+    In the following example, both input values are required, but in the first input requiring an integer value I have set the <span class="code-span">Required</span> parameter
+    to false as I opted to put "Required" in the <span class="code-span">HintText</span>. As mentioned on the Inputs Accessibility page, setting the <span class="code-span">Required</span> parameter
+    to false does not add the <span class="code-span">aria-required</span> attribute to negate a screen reader user hearing "Required" repeated.
+</p>
+<p>
+    The first input has its <span class="code-span">UpdateOnInput</span> parameter set to true,so validation runs on input (after the field is dirty) which for whole numbers is fine. For the decimal I have opted
+    to set the <span class="code-span">UpdateOnInput</span> parameter to false as well as 
+</p>
+<EditForm Model="@_inventoryData" OnSubmit="HandleSubmit">
     <BlazorValidated TEntity="InventoryDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
     <div class="br-input-row">
-        <NumericInput maxlength="3" class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryData.UnitsInStock" Required="false" LabelText="Units in stock" ErrorsLabel="errors" HintText="Required, the number in stock." UpdateOnInput="true"></NumericInput>
+        <NumericInput maxlength="3" class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryData.UnitsInStock" Required="false" 
+            LabelText="Units in stock" ErrorsLabel="errors" HintText="Required, the number of units currently in stock." UpdateOnInput="true"></NumericInput>
+
+        <NumericInput maxlength="10" class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryData.UnitPrice" Required="true" Format="F2"
+                      LabelText="Unit Price" ErrorsLabel="errors" HintText="The price per unit." UpdateOnInput="true"></NumericInput>
     </div>
     
     <div class="br-input-row">
@@ -40,7 +52,7 @@
 
     public class InventoryDto
     {
-        public decimal Price { get; set; }
+        public decimal UnitPrice { get; set; }
         public int UnitsInStock { get; set; }
     }
 
@@ -48,10 +60,12 @@
     {
 
         var unitValidator = MemberValidators.CreateRangeValidator<int>(1, 999, "UnitsInStock", "Units in stock", "Must be between 1 and 999");
+        var priceValidation = MemberValidators.CreatePrecisionScaleValidator<decimal>(7, 2, "UnitPrice", "Unit price", "The price is wrong");
 
         _boxedValidators = BlazorValidationBuilder<InventoryDto>.Create()
                                 .ForMember(c => c.UnitsInStock, unitValidator)
-                                 .GetBoxedValidators();
+                                .ForMember(c => c.UnitPrice, priceValidation)
+                                .GetBoxedValidators();
 
         base.OnInitialized();
     }

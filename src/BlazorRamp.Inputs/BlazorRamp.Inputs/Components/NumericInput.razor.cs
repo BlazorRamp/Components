@@ -46,7 +46,7 @@ namespace BlazorRamp.Inputs.Components
         [Parameter] public string ParseErrorMessage { get; set; } = GlobalValues.Input_Parse_Error_Message;
 
         /// <summary>
-        /// Gets or sets the text/data alignment in the input. Defaults to <see cref="DataPosition.Start"/>.
+        /// Gets or sets the text/data alignment in the input. Defaults to <see cref="DataPosition.End"/>.
         /// </summary>
         [Parameter] public DataPosition DataPosition { get; set; } = DataPosition.End;
 
@@ -100,14 +100,23 @@ namespace BlazorRamp.Inputs.Components
             base.OnParametersSet();
             NumericInputClasses = GetInputClasses(AdditionalAttributes);
 
-            if (!Equals(CurrentValue, _lastParsedValue) || (Equals(default(TValue), CurrentValue) && Equals(default(TValue), _lastParsedValue)))
+            //if (!Equals(CurrentValue, _lastParsedValue) || (Equals(default(TValue), CurrentValue) && Equals(default(TValue), _lastParsedValue)))
+            //{
+            //    _lastParsedValue = CurrentValue;
+
+            //    _stringValue = !string.IsNullOrWhiteSpace(Format) && CurrentValue is not null && false == _isWholeNumber
+            //               ? string.Format(CultureInfo.CurrentCulture, $"{{0:{Format}}}", CurrentValue)
+            //               : CurrentValueAsString;
+
+            //}
+
+            if (!Equals(CurrentValue, _lastParsedValue))
             {
                 _lastParsedValue = CurrentValue;
 
-                _stringValue = !string.IsNullOrWhiteSpace(Format) && CurrentValue is not null && false == _isWholeNumber
+                _stringValue = !string.IsNullOrWhiteSpace(Format) && CurrentValue is not null && !_isWholeNumber && !HasErrors
                            ? string.Format(CultureInfo.CurrentCulture, $"{{0:{Format}}}", CurrentValue)
                            : CurrentValueAsString;
-
             }
         }
 
@@ -122,6 +131,12 @@ namespace BlazorRamp.Inputs.Components
                         : NumericInputModeType.Decimal.ToString().ToLower();
 
             ParseErrorsText = String.IsNullOrWhiteSpace(ParseErrorMessage) ? GlobalValues.Input_Parse_Error_Message : ParseErrorMessage.Trim();
+
+            _stringValue = !string.IsNullOrWhiteSpace(Format) && CurrentValue is not null && !_isWholeNumber
+                   ? string.Format(CultureInfo.CurrentCulture, $"{{0:{Format}}}", CurrentValue)
+                   : CurrentValueAsString;
+
+            _lastParsedValue = CurrentValue;
         }
 
         /// <summary>
@@ -198,14 +213,25 @@ namespace BlazorRamp.Inputs.Components
         protected async Task HandleOnBlur()
         {
 
-            if (string.IsNullOrWhiteSpace(_stringValue))  CurrentValue = default;
+            //if (string.IsNullOrWhiteSpace(_stringValue))  CurrentValue = default;
 
-            if (!_isWholeNumber && !string.IsNullOrWhiteSpace(Format) && CurrentValue is not null && _jSModule is not null)
+            //if (!_isWholeNumber && !string.IsNullOrWhiteSpace(Format) && CurrentValue is not null && _jSModule is not null)
+            //{
+            //    await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Set_Value, ControlReference, string.Format(CultureInfo.CurrentCulture, $"{{0:{Format}}}", CurrentValue));
+            //    return;
+            //}
+
+            //_stringValue = CurrentValueAsString;
+
+            if (string.IsNullOrWhiteSpace(_stringValue)) CurrentValue = default;
+
+            if (!_isWholeNumber && !string.IsNullOrWhiteSpace(Format) && CurrentValue is not null && _jSModule is not null && !HasErrors)
             {
-                await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Set_Value, ControlReference, string.Format(CultureInfo.CurrentCulture, $"{{0:{Format}}}", CurrentValue));
+                _stringValue = string.Format(CultureInfo.CurrentCulture, $"{{0:{Format}}}", CurrentValue);
+                await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Set_Value, ControlReference, _stringValue);
                 return;
             }
-            
+
             _stringValue = CurrentValueAsString;
         }
 

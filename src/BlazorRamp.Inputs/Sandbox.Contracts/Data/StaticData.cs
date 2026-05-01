@@ -26,7 +26,7 @@ public class StaticData
         {
             Address = address,
             NullableAge = nullableAge,
-            Age = age,
+            //Age = age,
             ContactMethods = contactMethods,
             DOB = dob,
             CompareDOB = olderDob,
