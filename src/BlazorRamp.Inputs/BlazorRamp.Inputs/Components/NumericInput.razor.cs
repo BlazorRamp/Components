@@ -100,16 +100,6 @@ namespace BlazorRamp.Inputs.Components
             base.OnParametersSet();
             NumericInputClasses = GetInputClasses(AdditionalAttributes);
 
-            //if (!Equals(CurrentValue, _lastParsedValue) || (Equals(default(TValue), CurrentValue) && Equals(default(TValue), _lastParsedValue)))
-            //{
-            //    _lastParsedValue = CurrentValue;
-
-            //    _stringValue = !string.IsNullOrWhiteSpace(Format) && CurrentValue is not null && false == _isWholeNumber
-            //               ? string.Format(CultureInfo.CurrentCulture, $"{{0:{Format}}}", CurrentValue)
-            //               : CurrentValueAsString;
-
-            //}
-
             if (!Equals(CurrentValue, _lastParsedValue))
             {
                 _lastParsedValue = CurrentValue;
@@ -212,16 +202,6 @@ namespace BlazorRamp.Inputs.Components
         /// </summary>
         protected async Task HandleOnBlur()
         {
-
-            //if (string.IsNullOrWhiteSpace(_stringValue))  CurrentValue = default;
-
-            //if (!_isWholeNumber && !string.IsNullOrWhiteSpace(Format) && CurrentValue is not null && _jSModule is not null)
-            //{
-            //    await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Set_Value, ControlReference, string.Format(CultureInfo.CurrentCulture, $"{{0:{Format}}}", CurrentValue));
-            //    return;
-            //}
-
-            //_stringValue = CurrentValueAsString;
 
             if (string.IsNullOrWhiteSpace(_stringValue)) CurrentValue = default;
 
