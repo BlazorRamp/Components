@@ -2,8 +2,55 @@
 
 <PageTitle>@GlobalValues.Component_Name_Text_Input @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Text_Input @GlobalValues.Common_Page_Title_Usage . . . In Progress . . . </h1>
+<h1>@GlobalValues.Component_Name_Text_Input @GlobalValues.Common_Page_Title_Usage</h1>
 
+<p>
+    In the following example, both input values are required as denoted by the asterisk in each field label, screen reader users will be advised that these fields are required via the <span class="code-span">aria-required</span> attribute
+    that gets added as mentioned on the Inputs Accessibility page.
+</p>
+<p>
+    Both inputs have the <span class="code-span">UpdateOnInput</span> parameter set to true so validation runs on input, after the field is dirty. Neither input has a <span class="code-span">maxlength</span> attribute as these
+    can be problematic for some screen readers as it silently stops the user typing with no feedback, so it's better to catch issues with validation.
+</p>
+<p>
+    Personally, I prefer immediate validation by setting the parameter <span class="code-span">UpdateOnInput="true"</span> with the value of false using Blazors <span class="code-span">onchange</span> event which runs validation
+    if the value has changed and after focuse has moved away from the field. You should choose the best option for your application and intended audience..
+</p>
+
+<p>
+    <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
+    but you can use any validators that work with Blazors <span class="code-span">EditContext</span>.
+</p>
+
+<section class="section-box">
+    <h2>Text inputs example</h2>
+
+    <EditForm Model="@_contactData" OnValidSubmit="HandleSubmit">
+        
+        <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+        <div class="br-input-row">
+            <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                       @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" />
+
+            <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                       @bind-Value="_contactData.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" />
+        </div>
+        <div class="br-input-row">
+            <button class="br-col-xs-12 test-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
+        </div>
+    </EditForm>
+
+
+</section>
+<p style="padding-block:1rem;">
+    Below is the code that was used for the example. Please note that in general when using the Validated library the validators would be in a shared library so they could be used in any part of your application.
+</p>
+<CodeBox CodeBlock="@InputSnippets.Numeric_Code_Example" AriaLabel="Numeric input code example" />
+<h3 style="padding-top:1rem;">Accessibility</h3>
+<p>
+    Please ensure dependant on the context that you add the appropriate <span class="code-block">autocomplete</span> attribute to meet WCAG requirements, although there is no harm in just adding them regardless.
+</p>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextInput}/{GlobalValues.Common_Page_Path_Api}")">
@@ -17,3 +64,38 @@
         <span aria-hidden="true"></span>
     </a>
 </div>
+
+@code {
+
+    private ContactDto _contactData = new();
+    private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+    protected override void OnInitialized()
+    {
+
+        var firstNameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,50}$)[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]+$", "FirstName", "First name", "Must start with a capital letter and be between 2 and 50 characters in length");
+
+        /*
+        * Although its easy to create a regex that does everything I prefer to break things down into separate rules, so below creates a validator made up of two rules. 
+                 */
+        var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]*$", "FamilyName", "Surname", "Must start with a capital letter")
+                                .AndThen(MemberValidators.CreateStringLengthValidator(2, 50, "Surname", "Surname", "Must be between 2 and 50 characters in length"));
+
+
+        _boxedValidators = BlazorValidationBuilder<ContactDto>.Create()
+                                .ForMember(c => c.FirstName, firstNameValidator)
+                                .ForMember(c => c.Surname, surnameValidator)
+                                .GetBoxedValidators();
+    }
+
+
+    private void HandleSubmit() { }
+
+    public class ContactDto
+    {
+
+        public string FirstName { get; set; }
+        public string Surname { get; set; }
+    }
+
+}

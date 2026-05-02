@@ -28,8 +28,12 @@
     The Unit Price field is using the C standard numeric format specifier, which formats the value as currency using the current culture's currency symbol and decimal conventions.
 </p>
 <p>
-    <b>Note: </b>I have used my open source Validated.Blazor library package for the validation, but you can use any validators that work with Blazors <span class="code-span">EditContext</span>.
+    <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
+    but you can use any validators that work with Blazors <span class="code-span">EditContext</span>.
 </p>
+<section class="section-box">
+    <h2>Numeric input example</h2>
+
 <EditForm Model="@_inventoryData" OnValidSubmit="HandleSubmit">
     <BlazorValidated TEntity="InventoryDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
@@ -51,10 +55,17 @@
 
 </EditForm>
 
+</section>
+
 <p style="padding-block:1rem;">
     Below is the code that was used for the example. Please note that in general when using the Validated library the validators would be in a shared library so they could be used in any part of your application.
 </p>
 <CodeBox CodeBlock="@InputSnippets.Numeric_Code_Example" AriaLabel="Numeric input code example" />
+
+<h3 style="padding-top:1rem;">Accessibility</h3>
+<p>
+    Please ensure dependant on the context that you add the appropriate <span class="code-block">autocomplete</span> attribute to meet WCAG requirements, although there is no harm in just adding them regardless.
+</p>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_NumericInput}/{GlobalValues.Common_Page_Path_Api}")">
@@ -74,7 +85,7 @@
     public InventoryDto _inventoryData = new();
     private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
 
         var unitValidator   = MemberValidators.CreateRangeValidator<int>(1, 999, "UnitsInStock", "Units in stock", "Must be between 1 and 999");

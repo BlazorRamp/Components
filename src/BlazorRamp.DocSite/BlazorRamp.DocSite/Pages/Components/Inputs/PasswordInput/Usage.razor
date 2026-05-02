@@ -1,41 +1,60 @@
-﻿@using Microsoft.AspNetCore.Components.Sections
-
-@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_PasswordInput}/{GlobalValues.Common_Page_Path_Usage}")]
+﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_PasswordInput}/{GlobalValues.Common_Page_Path_Usage}")]
 
 <PageTitle>@GlobalValues.Component_Name_Password_Input @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Password_Input @GlobalValues.Common_Page_Title_Usage  . . . In Progress . . . </h1>
-
+<h1>@GlobalValues.Component_Name_Password_Input @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
-    <b>Note: </b>I have used my open source Validated.Blazor library package for the validation, but you can use any validators that work with Blazors <span class="code-span">EditContext</span>.
+    The example below has the <span class="code-span">UpdateOnInput</span> parameter on both fields set to false, so validation occurs when focus is lost. The ValidationDisplayMode
+    for both fields was set to <span class="code-span">ValidationDisplayMode.DescribedByHintSuppressed</span> as I felt the validation message was sufficient to reduce verbosity
+    for screen reader users.
 </p>
-<section>
+<p>
+    Optional icons were also added. All the input icons are hidden from screed reader users as they are just decorative. In the case of the state icons, green tick and red cross, screen reader
+    users are informed via the <span class="code-spane">aria-invalid</span> attribute..
+</p>
+
+<p>
+    <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
+    but you can use any validators that work with Blazors <span class="code-span">EditContext</span>.
+</p>
+<section class="section-box">
+    
+    <h2>Password input example</h2>
+
     <EditForm Model="@_registrationData" OnValidSubmit="HandleSubmit">
 
         <BlazorValidated TEntity="UserRegistrationDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
         <div class="br-input-row">
 
-            <PasswordInput class="br-col-xs-12 br-col-sm-6"  @bind-Value="_registrationData.Password" Required="true" LabelText="Password" ErrorsLabel="errors" HintText="Choose something only you know" UpdateOnInput="true"
-                           ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" SvgIcon="--svg-food-icon" />
+            <PasswordInput class="br-col-xs-12 br-col-sm-6"  @bind-Value="_registrationData.Password" Required="true" LabelText="Password" ErrorsLabel="errors" HintText="Choose something only you know"
+                            UpdateOnInput="false" PasswordAutoComplete="PasswordAutoComplete.NewPassword"  ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" SvgIcon="--svg-padlock-icon" />
 
 
 
-            <PasswordInput class="br-col-xs-12 br-col-sm-6" " @bind-Value="_registrationData.ConfirmPassword" Required="true" 
-                           LabelText="Unit Price" ErrorsLabel="errors" HintText="Must match the password entered." UpdateOnInput="true"
-                           ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+            <PasswordInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_registrationData.ConfirmPassword" Required="true" LabelText="Password Confirmation" ErrorsLabel="errors" HintText="Please confirm your password."
+                        UpdateOnInput="false" PasswordAutoComplete="PasswordAutoComplete.NewPassword" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" SvgIcon="--svg-key-icon" />
      </div>
 
-<div class="br-input-row">
-            <button class="br-col-xs-12 test-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
-        </div>
+    <div class="br-input-row">
+        <button class="br-col-xs-12 test-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
+    </div>
 
     </EditForm>
 </section>
 
+<p style="padding-block:1rem;">
+    Below is the code that was used for the example. Please note that in general when using the Validated library the validators would be in a shared library so they could be used in any part of your application.
+</p>
 
+<CodeBox CodeBlock="@InputSnippets.Password_Code_Example" AriaLabel="Password input code example" />
 
+<p style="padding-block:1rem;">
+    For those interested here is the source code for the extension method that I made that works with my libraries BlazorValidationBuilder
+</p>
+
+<CodeBox CodeBlock="@InputSnippets.Validation_Extension_Method" AriaLabel="Extension method source code" />
 
 
 <div class="flex-content justify-content-between">
@@ -56,16 +75,24 @@
     public UserRegistrationDto _registrationData = new();
     private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
 
+    private bool _disableConfirm = false;
+
     protected override async Task OnInitializedAsync()
     {
 
-        var passwordValidator = MemberValidators.CreateStringLengthValidator(7, 25, "Password", "Password", "Must be between 7 and 25 characters in length");
-        var compareValidator  = MemberValidators.CreateMemberComparisonValidator<UserRegistrationDto, string>(c => c.Password, c => c.ConfirmPassword, Validated.Core.Common.Constants.CompareType.EqualTo, "Confirm Password", "Passwords do not match")
-    ;
+
+        var passwordValidator = MemberValidators.CreateStringLengthValidator(7, 25, "Password", "Password", "Must be between 7 and 25 characters in length but you entered {ActualLength} characters");
+        var compareValidator  = MemberValidators.CreateMemberComparisonValidator<UserRegistrationDto, string>(c => c.Password, c => c.ConfirmPassword, CompareType.EqualTo, "Confirm Password", "Passwords do not match");
+        /*
+            * The ForComparisonWithMemberAndValidate is an extension I made just for this demo its not part of the Validated.Blazor library and I probably will not add it to the library
+            * as it would not be possible to add a matching BlazorTenantValidatorBuilder version, and I prefer the parity.
+         */
         _boxedValidators = BlazorValidationBuilder<UserRegistrationDto>.Create()
-                                .ForMember(c => c.Password, passwordValidator)
-                                .ForComparisonWithMember(c => c.ConfirmPassword, compareValidator)
-                                .GetBoxedValidators();
+                               .ForMember(c => c.Password, passwordValidator)
+                               .ForComparisonWithMemberAndValidate(c => c.ConfirmPassword, compareValidator, c => c.Password, passwordValidator, "Password must be valid before confirming")
+                               .GetBoxedValidators();
+
+
     }
 
     private void HandleSubmit() { }

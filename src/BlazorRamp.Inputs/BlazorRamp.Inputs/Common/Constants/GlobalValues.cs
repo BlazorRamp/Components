@@ -16,6 +16,8 @@ internal class GlobalValues
     public const string Input_Parse_Error_Message = "Invalid number.";
 
 
+    public const string Input_Svg_Css_Variable_Name = "--_br-svg-input-icon";
+
     public const string Text_Input_Class                = "br-text-input";
     public const string Text_Input_Label_Class          = $"{Text_Input_Class}__label";
     public const string Text_Input_Hint_Class           = $"{Text_Input_Class}__hint";
@@ -29,7 +31,7 @@ internal class GlobalValues
     public const string Text_Input_State_Icon_Valid_Modifier   = $"{Text_Input_State_Icon_Class}--valid";
     public const string Text_Input_State_Icon_Invalid_Modifier = $"{Text_Input_State_Icon_Class}--invalid";
 
-    public const string Text_Input_Svg_Css_Variable_Name = "--_br-svg-text-input-icon";
+   
 
 
     public const string Password_Input_Class                = "br-password-input";
@@ -46,10 +48,7 @@ internal class GlobalValues
     public const string Password_Input_State_Icon_Valid_Modifier   = $"{Password_Input_State_Icon_Class}--valid";
     public const string Password_Input_State_Icon_Invalid_Modifier = $"{Password_Input_State_Icon_Class}--invalid";
 
-    public const string Password_Input_Svg_Css_Variable_Name = "--_br-svg-password-input-icon";
     public const string Password_Input_Show_Password_Text    = "Show Password";
-
-
 
     public const string Numeric_Input_Class                 = "br-numeric-input";
     public const string Numeric_Input_Label_Class           = $"{Numeric_Input_Class}__label";
@@ -63,15 +62,6 @@ internal class GlobalValues
 
     public const string Numeric_Input_State_Icon_Valid_Modifier   = $"{Numeric_Input_State_Icon_Class}--valid";
     public const string Numeric_Input_State_Icon_Invalid_Modifier = $"{Numeric_Input_State_Icon_Class}--invalid";
-
-    public const string Numeric_Input_Svg_Css_Variable_Name = "--_br-svg-numeric-input-icon";
-
-
-
-
-
-
-
 
 
     public const string Default_Errors_label = "Errors";

@@ -258,16 +258,17 @@ namespace BlazorRamp.Inputs.Components
         
             => OnValidationStateChanged();
 
-
         /// <summary>
         /// Called when the <see cref="EditContext"/> raises a validation state change.
-        /// Clears validation state if the field is unmodified, otherwise updates
-        /// <see cref="InvalidMessages"/>, <see cref="HasErrors"/>, <see cref="StateIconClasses"/>,
-        /// and <see cref="AriaDescribedByID"/>.
+        /// Clears validation state if the field is unmodified and has no validation messages,
+        /// otherwise updates <see cref="InvalidMessages"/>, <see cref="HasErrors"/>, 
+        /// <see cref="StateIconClasses"/>, and <see cref="AriaDescribedByID"/>.
         /// </summary>
         protected virtual void OnValidationStateChanged()
         {
-            if (!EditContext.IsModified(FieldIdentifier))
+            var hasMessages = EditContext.GetValidationMessages(FieldIdentifier).Any();
+
+            if (!EditContext.IsModified(FieldIdentifier) && !hasMessages)
             {
                 InvalidMessages = [];
                 HasErrors = false;
@@ -276,11 +277,12 @@ namespace BlazorRamp.Inputs.Components
                 return;
             }
 
-            var hasMessages   = EditContext.GetValidationMessages(FieldIdentifier).Any();
-            StateIconClasses  = GetStateIconClasses(hasMessages);
-            InvalidMessages   = hasMessages ? GetValidationMessages() : [];
-            HasErrors         = InvalidMessages.Count > 0;
+            StateIconClasses = GetStateIconClasses(hasMessages);
+            InvalidMessages = hasMessages ? GetValidationMessages() : [];
+            HasErrors = InvalidMessages.Count > 0;
             AriaDescribedByID = SetDescribedBy(HasErrors, ValidationDisplayMode);
+
+
         }
 
         /// <summary>
@@ -319,7 +321,7 @@ namespace BlazorRamp.Inputs.Components
                                     ? null
                                     : svgIcon.TrimStart().StartsWith("--") ? $"var({svgIcon!.Trim().TrimEnd(':')})" : null;
 
-            return iconVariable is null ? null : $"{GlobalValues.Text_Input_Svg_Css_Variable_Name}:{iconVariable};";
+            return iconVariable is null ? null : $"{GlobalValues.Input_Svg_Css_Variable_Name}:{iconVariable};";
         }
 
         private List<string> GetValidationMessages() 

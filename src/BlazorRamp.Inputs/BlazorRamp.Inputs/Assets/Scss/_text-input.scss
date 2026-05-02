@@ -2,7 +2,7 @@
 
 .br-text-input {
     --_icon-size: 1em;
-    --_br-svg-text-input-icon: none;
+    --_br-svg-input-icon: none;
     width: 100%;
     display: inline-grid;
     grid-template-rows: auto auto auto minmax(var(--br-unit-space-5), auto);
@@ -75,7 +75,7 @@
         align-self: center;
         display: inline-block;
         background-color: currentColor;
-        mask-image: var(--_br-svg-text-input-icon);
+        mask-image: var(--_br-svg-input-icon);
         mask-repeat: no-repeat;
         mask-size: 100% 100%;
         min-height: calc(var(--_icon-size) * 1.25);

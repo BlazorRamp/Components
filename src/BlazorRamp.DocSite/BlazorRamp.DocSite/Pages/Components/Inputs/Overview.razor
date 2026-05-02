@@ -32,31 +32,37 @@
 </p>
 
 <section class="section-box">
+    <h2>inputs example</h2>
 
-    <EditForm Model="@_contactData">
+    <EditForm Model="@_contactData" OnValidSubmit="HandleSubmit">
         
         <DataAnnotationsValidator />
 
         <div class="br-input-row">
+
+
             <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required = "true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" 
-            @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" />
+            @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" />
 
             <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"
-                       @bind-Value="_contactData.Surname" HintText="The surname you use on official documents" />
+                       @bind-Value="_contactData.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" />
         </div>
-
+        <div class="br-input-row">
+            <button class="br-col-xs-12 test-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
+        </div>
     </EditForm>
 
-    <p>
-        <b>Please note: </b>In the example above the <span class="code-span">Required</span> parameter was set to true for both fields, which added a red asterisk to the label. This is hidden from screen reader users as
-        otherwise they would hear First name (asterisk or star) and Surname (asterisk or star) when entering the input. Setting this parameter also adds <span class="code-span">aria-required="true"</span> to the input so screen reader users will be
-        advised that its a required field.
-    </p>
-    <p>
-        If you do not want the red asterisk but the field is required, then set the required parameter to false and just add required at the start of the hint text as the hint text is read out immediately after the label.
-        Do not use both as otherwise the screen reader user would hear announcements such as First name required, required.
-    </p>
+
 </section>
+<p>
+    <b>Please note: </b>In the example above the <span class="code-span">Required</span> parameter was set to true for both fields, which added a red asterisk to the label. This is hidden from screen reader users as
+    otherwise they would hear First name (asterisk or star) and Surname (asterisk or star) when entering the input. Setting this parameter also adds <span class="code-span">aria-required="true"</span> to the input so screen reader users will be
+    advised that its a required field.
+</p>
+<p>
+    If you do not want the red asterisk but the field is required, then set the required parameter to false and just add required at the start of the hint text as the hint text is read out immediately after the label.
+    Do not use both as otherwise the screen reader user would hear announcements such as First name required, required.
+</p>
 <p>
     The following was the code used for the above example.
 </p>
@@ -93,6 +99,8 @@
 @code {
 
     private ContactDto _contactData = new();
+
+    private void HandleSubmit() { }
 
     public class ContactDto
     {
