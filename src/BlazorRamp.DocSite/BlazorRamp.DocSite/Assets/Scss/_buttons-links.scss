@@ -38,6 +38,13 @@
         background-color: var(--br-comp-all-button-state-hover);
     }
 }
+
+.normal-button {
+    @include buttonBase;
+    border-radius: var(--br-comp-all-pane-base-border-radius);
+    width: fit-content;
+}
+
 .test-button {
 
     @include buttonBase;

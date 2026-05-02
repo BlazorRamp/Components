@@ -27,16 +27,12 @@
 </p>
 
 
-
-
 <h2>Hint text and validation messages</h2>
 <p>
     When hint text is provided, it is automatically associated with the input via <span class="code-span">aria-describedby</span>. When validation errors are present, retrieved via the Blazor <span class="code-span">EditContext</span>,
     the error area's id is also added to the <span class="code-span">aria-describedby</span> attribute. When a user focuses the input, the screen reader announces the content of all associated elements in the order they appear - label first,
     then hint text, then any validation errors.
 </p>
-
-
 
 
 <h2>ValidationDisplayMode options</h2>
@@ -89,6 +85,23 @@
 
 <p>
     <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were available at the time of testing (see release history on the installation page for approximate testing dates)
+</p>
+
+<h2 id="screen-reader-quirks">Screen reader quirks or known issues</h2>
+<ul aria-labelledby="screen-reader-quirks">
+    <li>
+        <b>VoiceOver</b> on the macOS paired with Safari. There are numerous reported issues with <span class="code-span">aria-describedby</span>. In my own tests, it would
+        not acknowledge the the second id when I had both the hint text and error messages linked. 
+    </li>
+    <li>
+        <b>VoiceOver</b> on the iOS paired with Safari and Talkback on Android with Chrome. There are numerous reported issues with <span class="code-span">aria-describedby</span>. In my own tests, it would
+        not acknowledge the the second id when I had both the hint text and error messages linked.
+    </li>
+</ul>
+
+<p>
+    <strong>Important:</strong> To avoid these issues, I recommend prioritising form-level validation over field-level validation. Ensure a robust error summary mechanism is in place at the form level first, then layer field-level validation on top. When the user 
+    attempts to submit a form with errors, use an ARIA live region (preferably the Live Region Service) to announce that errors are present and direct the user to the error summary region to review them.
 </p>
 
 <div class="flex-content justify-content-between">

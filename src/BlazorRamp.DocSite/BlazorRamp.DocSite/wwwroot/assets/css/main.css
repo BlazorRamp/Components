@@ -675,6 +675,43 @@ body #app__main {
   outline-color: var(--br-comp-all-outline-colour);
 }
 
+.normal-button {
+  box-sizing: border-box;
+  appearance: none;
+  border-radius: var(--br-comp-all-button-border-radius);
+  border-style: var(--br-comp-all-button-border-style);
+  border-width: var(--br-comp-all-button-border-width);
+  font: var(--br-comp-all-button-font);
+  font-weight: var(--br-comp-all-button-font-weigh);
+  font-size: var(--br-comp-all-button-font-size);
+  line-height: var(--br-comp-all-button-line-height);
+  color: var(--br-comp-all-button-text);
+  background-color: var(--br-comp-all-button-background);
+  cursor: pointer;
+  padding: var(--br-unit-space-5);
+  width: 20rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--br-unit-space-5);
+  border-radius: var(--br-comp-all-pane-base-border-radius);
+  width: fit-content;
+}
+.normal-button:active {
+  transform: scale(var(--br-comp-all-button-state-active-scale));
+  filter: brightness(var(--br-comp-all-button-state-active-brightness));
+  outline: none;
+}
+.normal-button:focus-visible {
+  outline-offset: var(--br-comp-all-outline-offset);
+  outline-width: var(--br-comp-all-outline-width);
+  outline-style: var(--br-comp-all-outline-style);
+  outline-color: var(--br-comp-all-outline-colour);
+}
+.normal-button:hover {
+  background-color: var(--br-comp-all-button-state-hover);
+}
+
 .test-button {
   box-sizing: border-box;
   appearance: none;
