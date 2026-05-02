@@ -8,15 +8,16 @@
     <h1>@GlobalValues.Common_Page_Title_Roadmap</h1>
 
     <p>
-        To some, the order of the componnents that have, and are being built may seem strange, but please remember the emphasis is on accessiblity and the components released thus far (excluding the switch)
+        To some, the order of the components that have, and are being built may seem strange, but please remember the emphasis is on accessiblity and the components released thus far (excluding the switch)
         are the ones that in my opinion can have the most impact on accessibility given how poorly they are generally implemented, if at all (from an accessibility standpoint), given there usage.
     </p>
     <p>
         I will also be building child components first, for example the DataTable will require a Pager, a TextDebounce Filter, a DropDownMenuButton for row actions etc but all of these components can be used
-        individually. The other factor I take into account is what I need for the site, for example at some point I will need some collapsing section for the left hand navigation.
+        individually. The other factor I take into account is what I need for the site, for example the NavGroup component that was recently released.
     </p>
     <p>
-        Currently I am working on Input components.
+        Currently I am working on Input components and along side these will also be a Form Error Summary. I already have a separate NuGet Open Source library for Validation which works with
+        Blazor and the Blazor <span class="code-span">EditContext</span>; for those interested see: <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
     </p>
     <p>
         After the above, and in no particular order the following components will be developed. Please note all of the components will be fully functional, but may not have all the bells
@@ -38,7 +39,7 @@
             DropDownMenuButton
         </li>
         <li>
-            Inputs (started work on)
+            Inputs (working on with some released - more to be added to the BlazorRamp.Inputs NuGet package)
         </li>
         <li>
             Pager

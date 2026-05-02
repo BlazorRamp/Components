@@ -218,7 +218,7 @@ public class InputSnippets
             </div>
         </EditForm>
 
-                @code {
+        @code {
 
             private ContactDto _contactData = new();
             private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;

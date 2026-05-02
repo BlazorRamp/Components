@@ -401,6 +401,8 @@
   --br-comp-all-button-border-colour: var(--br-unit-colour-primary-30);
   --br-code-block-background-colour: var(--br-unit-colour-secondary-darker);
   --br-code-block-text: var(--br-unit-colour-info-lighter);
+  --br-comp-input-error-colour: var(--br-unit-colour-danger-light);
+  --br-comp-input-success-colour: var(--br-unit-colour-success-light);
 }
 
 *,
