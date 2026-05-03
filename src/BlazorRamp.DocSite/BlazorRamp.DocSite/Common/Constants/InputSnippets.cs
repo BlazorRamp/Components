@@ -143,7 +143,7 @@ public class InputSnippets
                  */
                 _boxedValidators = BlazorValidationBuilder<UserRegistrationDto>.Create()
                                        .ForMember(c => c.Password, passwordValidator)
-                                       .ForComparisonWithMemberAndValidate(c => c.ConfirmPassword, compareValidator, c => c.Password, passwordValidator, "Password must be valid before confirming")
+                                       .ForComparisonWithMemberAndValidate(c => c.ConfirmPassword, compareValidator, c => c.Password, passwordValidator, "Password must be valid before confirming", "Password Confirmation")
                                        .GetBoxedValidators();
             }
 
@@ -168,7 +168,7 @@ public class InputSnippets
         {
             public static BlazorValidationBuilder<TEntity> ForComparisonWithMemberAndValidate<TEntity, TMember>(this BlazorValidationBuilder<TEntity> builder, Expression<Func<TEntity, TMember>> selectorExpression,
                                                             MemberValidator<TEntity> comparisonValidator, Expression<Func<TEntity, TMember>> validateMemberSelector, 
-                                                            MemberValidator<TMember> memberValidator, string shortCircuitMessage) where TEntity : notnull where TMember : notnull
+                                                            MemberValidator<TMember> memberValidator, string shortCircuitMessage, string displayName) where TEntity : notnull where TMember : notnull
             {
                 var memberName = selectorExpression.Body switch
                 {
@@ -187,7 +187,7 @@ public class InputSnippets
 
                     if (memberResult.IsInvalid)
                         return Validated<TEntity>.Invalid(
-                            new InvalidEntry(shortCircuitMessage, path, memberName, memberName));
+                            new InvalidEntry(shortCircuitMessage, path, memberName, displayName));
 
                     return await comparisonValidator(entity, path, compareTo, cancellationToken);
                 };

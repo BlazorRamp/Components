@@ -86,21 +86,11 @@
 <p>
     <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were available at the time of testing (see release history on the installation page for approximate testing dates)
 </p>
-
-<h2 id="screen-reader-quirks">Screen reader quirks or known issues</h2>
-<ul aria-labelledby="screen-reader-quirks">
-    <li>
-        <b>VoiceOver</b> on the macOS paired with Safari. There are numerous reported issues with <span class="code-span">aria-describedby</span>. In my own tests, it would
-        not acknowledge the the second id when I had both the hint text and error messages linked. 
-    </li>
-    <li>
-        <b>VoiceOver</b> on the iOS paired with Safari and Talkback on Android with Chrome. There are numerous reported issues with <span class="code-span">aria-describedby</span>. In my own tests, it would
-        not acknowledge the the second id when I had both the hint text and error messages linked.
-    </li>
-</ul>
-
 <p>
-    <strong>Important:</strong> To avoid these issues, I recommend prioritising form-level validation over field-level validation. Ensure a robust error summary mechanism is in place at the form level first, then layer field-level validation on top. When the user 
+    <strong>Note: </strong>Not a quirk as its by design, but Talkback on Android will not read content linked by the <span class="code-span">aria-describedby</span> attribute on the input when the input had content.
+</p>
+<p>
+    <strong>Important:</strong> I recommend prioritising form-level validation over field-level validation. Ensure a robust error summary mechanism is in place at the form level first, then layer field-level validation on top. When the user 
     attempts to submit a form with errors, use an ARIA live region (preferably the Live Region Service) to announce that errors are present and direct the user to the error summary region to review them.
 </p>
 

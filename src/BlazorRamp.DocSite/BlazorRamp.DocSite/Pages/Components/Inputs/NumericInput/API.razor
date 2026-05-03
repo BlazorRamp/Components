@@ -177,7 +177,7 @@
                 </tr>
                 <tr>
                     <td>ValueChanged</td>
-                    <td>ValueChanged&lt;string&gt;></td>
+                    <td>ValueChanged&lt;TValue&gt;></td>
                     <td>
                         Gets or sets a callback invoked when the bound value changes. Used for both one-way binding, where you handle the new value directly in the event callback, and two-way binding via
                         <span class="code-span">@@bind-Value="Model.PropertyName</span> where it is provided and managed automatically by the framework.
@@ -185,7 +185,7 @@
                 </tr>
                 <tr>
                     <td>ValueExpression</td>
-                    <td>Expression&lt;Func&lt;string&gt;&gt;</td>
+                    <td>Expression&lt;Func&lt;TValue&gt;&gt;</td>
                     <td>
                         Gets or sets an expression that identifies the bound model property.
                     </td>

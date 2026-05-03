@@ -10,8 +10,8 @@
     for screen reader users.
 </p>
 <p>
-    Optional icons were also added. All the input icons are hidden from screed reader users as they are just decorative. In the case of the state icons, green tick and red cross, screen reader
-    users are informed via the <span class="code-spane">aria-invalid</span> attribute..
+    Optional icons were also added. All the input icons are hidden from screen reader users as they are just decorative. In the case of the state icons, green tick and red cross, screen reader
+    users are informed via the <span class="code-span">aria-invalid</span> attribute..
 </p>
 <p>
     The "Show Password" element is a button so its accessible to all users, the normal "Eye" icon added by the browser, is not accessible to keyboard users.
@@ -84,14 +84,14 @@
 
 
         var passwordValidator = MemberValidators.CreateStringLengthValidator(7, 25, "Password", "Password", "Must be between 7 and 25 characters in length but you entered {ActualLength} characters");
-        var compareValidator  = MemberValidators.CreateMemberComparisonValidator<UserRegistrationDto, string>(c => c.Password, c => c.ConfirmPassword, CompareType.EqualTo, "Confirm Password", "Passwords do not match");
+        var compareValidator  = MemberValidators.CreateMemberComparisonValidator<UserRegistrationDto, string>(c => c.Password, c => c.ConfirmPassword, CompareType.EqualTo, "Password Confirmation", "Passwords do not match");
         /*
             * The ForComparisonWithMemberAndValidate is an extension I made just for this demo its not part of the Validated.Blazor library and I probably will not add it to the library
             * as it would not be possible to add a matching BlazorTenantValidatorBuilder version, and I prefer the parity.
          */
         _boxedValidators = BlazorValidationBuilder<UserRegistrationDto>.Create()
                                .ForMember(c => c.Password, passwordValidator)
-                               .ForComparisonWithMemberAndValidate(c => c.ConfirmPassword, compareValidator, c => c.Password, passwordValidator, "Password must be valid before confirming")
+                               .ForComparisonWithMemberAndValidate(c => c.ConfirmPassword, compareValidator, c => c.Password, passwordValidator, "Password must be valid before confirming", "Password Confirmation")
                                .GetBoxedValidators();
 
 
