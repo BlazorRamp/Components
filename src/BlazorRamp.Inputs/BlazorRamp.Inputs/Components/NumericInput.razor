@@ -45,9 +45,9 @@
         
         @if (HasErrors)
         {
-            <div id="@ErrorMessageID" class="@GlobalValues.Numeric_Input_Error_Class" tabindex="@(TabbableError ? "0" : null)" aria-label="@(TabbableError ? $"{LabelNameText.TrimEnd(':')} {ErrorsText}" : null)" role="@(TabbableError ? "region" : null)">
+            <div class="@GlobalValues.Numeric_Input_Error_Class" tabindex="@(TabbableError ? "0" : null)" aria-label="@(TabbableError ? $"{LabelNameText.TrimEnd(':')} {ErrorsText}" : null)" role="@(TabbableError ? "region" : null)">
 
-                <ul>
+                <ul id="@ErrorMessageID">
                     @foreach (var errorMessage in InvalidMessages)
                     {
                         <li>@errorMessage</li>
