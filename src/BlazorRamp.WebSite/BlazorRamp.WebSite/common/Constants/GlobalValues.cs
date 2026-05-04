@@ -14,83 +14,6 @@ public static class GlobalValues
     public const string JS_Close_Modal_Dialog = "closeModalDialog";
 
 
-    public const string Page_Heading_Busy_Overview  = "Overview & Page Test";
-    public const string Page_Heading_Busy_Container = "Container Test";
-    public const string Page_Heading_Busy_Modal     = "Modal Page Test";
-    public const string Page_Heading_Busy_Short     = "Short Delay Test";
-    public const string Page_Heading_Busy_Quirks    = "Quirks & Issues";
-    public const string Page_Heading_Modal_Overview = "Overview & Tests";
-    public const string Page_Heading_Modal_Quirks   = "Quirks & Issues";
-    public const string Page_Heading_Skipto_Overview = "Overview & Tests";
-    public const string Page_Heading_Switch_Overview = "Overview & Tests";
-    public const string Page_Heading_Switch_Quirks  = "Quirks & Issues";
-    public const string Page_Heading_ToggleTip_Overview = "Overview & Tests";
-    public const string Page_Heading_Tabs_Overview      = "Overview & Tests";
-    public const string Page_Heading_Tabs_Quirks        = "Quirks & Issues";
-    public const string Page_Heading_Nav_Group_Overview = "Overview & Tests";
-    public const string Page_Heading_Nav_Group_Quirks = "Quirks & Issues";
-    public const string Page_Heading_FAQs_Final = "Final Words";
-
-    public const string Page_Title_Overview_Introduction    = "Introduction";
-    public const string Page_Title_Overview_About           = "About Blazor Ramp";
-
-    public const string Page_Title_Busy_Screen              = "Busy Indicator Overview & Page Test";
-    public const string Page_Title_Busy_Container           = "Busy Indicator  Container Test";
-    public const string Page_Title_Modal_Busy_Screen        = "Busy Indicator Modal Page Test";
-    public const string Page_Title_Busy_Short               = "Busy Indicator With Short Delay Test";
-    public const string Page_Title_Busy_Quirks              = "Busy Indicator Quirks & Issues";
-    public const string Page_Title_Faqs_Final_Words         = "FAQs Final Words";
-    public const string Page_Title_SkipTo_Overview_Test     = "Skip To Overview & Tests";
-    public const string Page_Title_Switch_Overview_Test     = "Switch Overview & Tests";
-    public const string Page_Title_Switch_Quirks            = "Switch Quirks & Issues";
-    public const string Page_Title_Toggle_Tip_Overview_Test = "Toggletip Overview & Tests";
-    public const string Page_Title_Tabs_Overview_Test       = "Tabs Overview & Tests";
-    public const string Page_Title_Tabs_Quirks              = "Tabs Quirks & Issues";
-    public const string Page_Title_Accordion_Quirks         = "Accordion Quirks & Issues";
-    public const string Page_Title_Accordion_Overview_Test  = "Accordion Overview & Tests";
-    public const string Page_Title_Nav_Group_Quirks         = "Nav Group Quirks & Issues";
-    public const string Page_Title_Nav_Group_Overview_Test  = "Nav Group Overview & Tests";
-
-    public const string Page_Title_Modal_Dialog_Overview_Test = "Modal Dialog Overview & Tests";
-    public const string Page_Title_Modal_Dialog_Quirks        = "Modal Dialog Quirks & Issues";
-
-
-    public const string Path_SkipTo_Overview     = "/skip-to/overview-tests";
-    public const string Path_Switch_Overview     = "/switch/overview-tests";
-    public const string Path_Switch_Quirks       = "/switch/known-issues";
-    public const string Path_Toggle_Tip_Overview = "/toggle-tip/overview-tests";
-    public const string Path_Tabs_Overview       = "/tabs/overview-tests";
-    public const string Path_Tabs_Quirks         = "/tabs/known-issues";
-    public const string Path_Accordion_Overview  = "/accordion/overview-tests";
-    public const string Path_Accordion_Quirks    = "/accordion/known-issues";
-    public const string Path_Nav_Group_Overview  = "/nav-group/overview-tests";
-    public const string Path_Nav_Group_Quirks    = "/nav-group/known-issues";
-
-
-    public const string Path_Busy_Screen        = "/busy-indicator/busy-page";
-    public const string Path_Busy_Container     = "/busy-indicator/busy-container";
-    public const string Path_Busy_Modal_Screen  = "/busy-indicator/modal-busy-page";
-    public const string Path_Busy_Short         = "/busy-indicator/busy-short";
-    public const string Path_Busy_Quirks        = "/busy-indicator/known-issues";
-
-    public const string Path_Modal_Dialog_Overview = "/modal-dialog/overview-tests";
-    public const string Path_Modal_Dialog_Quirks   = "/modal-dialog/known-issues";
-
-    public const string Path_Faqs_Final_Words   = "/faqs/final-words";
-
-
-    public const string Main_Nav_Section_Heading_Overview      = "Overview";
-    public const string Main_Nav_Section_Heading_BusyIndicator = "Busy Indicator";
-    public const string Main_Nav_Section_Heading_SkipTo        = "Skip To";
-    public const string Main_Nav_Section_Heading_Switch        = "Switch";
-    public const string Main_Nav_Section_Heading_Modal_Dialog  = "Modal Dialog";
-    public const string Main_Nav_Section_Heading_Toggle_Tip    = "Toggletip";
-    public const string Main_Nav_Section_Heading_Tabs          = "Tabs";
-    public const string Main_Nav_Section_Heading_Accordion     = "Accordion";
-    public const string Main_Nav_Section_Heading_Nav_Group     = "Nav Group";
-    public const string Main_Nav_Section_Heading_FAQs          = "FAQs";
-
-
     public const string Main_Navigation_Aria_Title = "Main Menu";
     public const string Main_Navigation_ID = "main-navigation";
 
@@ -98,9 +21,17 @@ public static class GlobalValues
     public const string Main_Navigation_Link_Class = $"{Main_Navigation_Class}__link";
     public const string Main_Navigation_Heading_Class = $"{Main_Navigation_Class}__heading";
 
-    /*
-           * 
-     */
+
+    public const string Main_Nav_Section_Heading_Overview = "Overview";
+    public const string Main_Nav_Section_Heading_BusyIndicator = "Busy Indicator";
+    public const string Main_Nav_Section_Heading_SkipTo = "Skip To";
+    public const string Main_Nav_Section_Heading_Switch = "Switch";
+    public const string Main_Nav_Section_Heading_Modal_Dialog = "Modal Dialog";
+    public const string Main_Nav_Section_Heading_Toggle_Tip = "Toggletip";
+    public const string Main_Nav_Section_Heading_Tabs = "Tabs";
+    public const string Main_Nav_Section_Heading_Accordion = "Accordion";
+    public const string Main_Nav_Section_Heading_Nav_Group = "Nav Group";
+    public const string Main_Nav_Section_Heading_FAQs = "FAQs";
 
     public const string Main_Nav_Heading_Overview    = "Overview";
     public const string Main_Nav_Heading_Frameworks  = "Frameworks";

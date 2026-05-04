@@ -63,8 +63,8 @@
     <NavGroup AriaLabelledBy="frameworks-section">
         <NavSeparator />
         <NavSection Title="@GlobalValues.Framework_Name_Modal">
-            <NavGroupLink Href="@($"{GlobalValues.Root_Path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}")" VisuallyHiddenPrefix="@GlobalValues.Framework_Name_Modal" LinkText="@GlobalValues.Common_Page_Title_Overview_Tests" />
-            <NavGroupLink Href="@($"{GlobalValues.Root_Path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}")" VisuallyHiddenPrefix="@GlobalValues.Framework_Name_Modal" LinkText="@GlobalValues.Common_Page_Title_Quirks_Issues" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_Path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Overview_Tests}")" VisuallyHiddenPrefix="@GlobalValues.Framework_Name_Modal" LinkText="@GlobalValues.Common_Page_Title_Overview_Tests" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_Path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Quirks_Issues}")" VisuallyHiddenPrefix="@GlobalValues.Framework_Name_Modal" LinkText="@GlobalValues.Common_Page_Title_Quirks_Issues" />
         </NavSection>
     </NavGroup>
        
@@ -72,7 +72,7 @@
     <h2 id="faqs-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_Faqs</h2>
     <NavGroup AriaLabelledBy="faqs-section">
         <NavSeparator />
-        <NavGroupLink Href="@($"{GlobalValues.Root_Path_FAQS}/{GlobalValues.Common_Page_Path_Final_Words}")" VisuallyHiddenPrefix="@GlobalValues.Faqs_Name" LinkText="@GlobalValues.Common_Page_Title_Overview_Tests" />
+        <NavGroupLink Href="@($"{GlobalValues.Root_Path_FAQS}/{GlobalValues.Common_Page_Path_Final_Words}")" VisuallyHiddenPrefix="@GlobalValues.Faqs_Name" LinkText="@GlobalValues.Common_Page_Title_Final_Words" />
     </NavGroup>
 
        

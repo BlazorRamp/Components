@@ -71,8 +71,8 @@
     <NavGroup>
         <NavSection SvgIcon="--svg-component-icon" Title="Components" Expanded="false">
             <NavSection SvgIcon="--svg-experiment-icon" Title="Tests" Expanded="false">
-                    <NavGroupLink SvgIcon="--svg-article-icon" Href="@GlobalValues.Path_Nav_Group_Overview" LinkText="Nav Group Overview & Tests" TargetType="TargetType.Self" />
-                    <NavGroupLink SvgIcon="--svg-article-icon" Href="@GlobalValues.Path_Nav_Group_Quirks" LinkText="Nav Group Quirks & Issues" TargetType="TargetType.Self" />
+                    <NavGroupLink SvgIcon="--svg-article-icon" Href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_NavGroup}/{GlobalValues.Common_Page_Path_Overview_Tests}")" LinkText="Nav Group Overview & Tests" TargetType="TargetType.Self" />
+                    <NavGroupLink SvgIcon="--svg-article-icon" Href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_NavGroup}/{GlobalValues.Common_Page_Path_Quirks_Issues}")" LinkText="Nav Group Quirks & Issues" TargetType="TargetType.Self" />
             </NavSection>
         </NavSection>
     </NavGroup>
