@@ -1,10 +1,9 @@
-﻿@attribute [Route(GlobalValues.Path_Busy_Short)]
+﻿@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Busy_Short_Delay_Test}")]
 
-
-<PageTitle>@GlobalValues.Page_Title_Busy_Short</PageTitle>
+<PageTitle>@GlobalValues.Component_Name_Busy @GlobalValues.Common_Page_Title_Short_Delay_Test</PageTitle>
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
-    <h1 class="@GlobalValues.Info_Box_Heading_Class">Busy Indicator With a Short Delay</h1>
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Busy @GlobalValues.Common_Page_Title_Short_Delay_Test</h1>
 
     <p>
         This portion of the test is to ensure that even with vary short tasks, that messages are announced, in full correctly, IMHO, this is arguably the most complex problem to solve, if you want good results across
@@ -74,14 +73,14 @@
 </section>
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Busy_Modal_Screen">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Busy_Modal_Page_Test}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_BusyIndicator - @GlobalValues.Page_Heading_Busy_Modal</span>
+        <span>@GlobalValues.Component_Name_Busy - @GlobalValues.Common_Page_Title_Modal_Page_Test</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Busy_Quirks">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Quirks_Issues}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_BusyIndicator - @GlobalValues.Page_Heading_Busy_Quirks</span>
+        <span>@GlobalValues.Component_Name_Busy - @GlobalValues.Common_Page_Title_Quirks_Issues</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

@@ -1,9 +1,9 @@
-﻿@attribute [Route(GlobalValues.Path_Faqs_Final_Words)]
+﻿@attribute [Route($"{GlobalValues.Root_Path_FAQS}/{GlobalValues.Common_Page_Path_Final_Words}")]
 
-<PageTitle>@GlobalValues.Page_Title_Faqs_Final_Words</PageTitle>
+<PageTitle>@GlobalValues.Faqs_Name @GlobalValues.Common_Page_Title_Final_Words</PageTitle>
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
-    <h1 class="@GlobalValues.Info_Box_Heading_Class">Final Words</h1>
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Faqs_Name @GlobalValues.Common_Page_Title_Final_Words</h1>
 
     <p>
         Before you go, I thought I would share some of the trials and tribulations I went through while creating the Busy Indicator and Live Region Service.
@@ -53,7 +53,7 @@
     <b>Update:</b> Originally, to resolve the issues I was experiencing and to make the triggering element inert like other elements, I set focus to the busy indicator and then moved it back to the triggering element. This approach resolved many issues but, in hindsight, was probably a bad decision. As it turned out, I did not have access to VoiceOver (VO) at the time, this method caused problems for VO on macOS, not on iPhone.
 
     <p>
-        Leaving focus on the triggering element works consistently across platforms with the timings. Currently, I am only aware of one minor (edge case) issue with VO on macOS/iPhone, as mentioned on the <a class="@GlobalValues.Link_Class" href="@GlobalValues.Path_Overview_Introduction"> @(GlobalValues.Page_Title_Overview_Introduction + " page")</a>.
+        Leaving focus on the triggering element works consistently across platforms with the timings. Currently, I am only aware of one minor (edge case) issue with VO on macOS/iPhone, as mentioned on the <a class="@GlobalValues.Link_Class" href="@GlobalValues.Root_Path_Overview"> @(GlobalValues.Common_Page_Title_Introduction + " page")</a>.
     </p>
 
     <p>
@@ -158,9 +158,9 @@
 </section>
 
 <div class="flex-content justify-content-start">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Toggle_Tip_Overview">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Quirks_Issues}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_Toggle_Tip - @GlobalValues.Page_Heading_ToggleTip_Overview</span>
+        <span>@GlobalValues.Framework_Name_Modal - @GlobalValues.Common_Page_Title_Quirks_Issues</span>
         <span aria-hidden="true"></span>
     </a>
 

@@ -1,9 +1,9 @@
-﻿@attribute [Route(GlobalValues.Path_Overview_About)]
+﻿@attribute [Route($"{GlobalValues.Root_Path_Overview}{GlobalValues.Common_Page_Path_About}")]
 
-<PageTitle>@GlobalValues.Page_Title_Overview_About</PageTitle>
+<PageTitle>@GlobalValues.Common_Page_Title_About</PageTitle>
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
-    <h1 class="@GlobalValues.Info_Box_Heading_Class">The Blazor Ramp Project</h1>
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Common_Page_Title_About</h1>
 
     <p>
         Blazor Ramp aims to provide a suite of modular Accessibility-First Blazor components delivered individually via NuGet.
@@ -31,14 +31,14 @@
 
 </section>
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Overview_Introduction">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Overview}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_Overview - @GlobalValues.Page_Heading_Overivew_Intro</span>
+        <span>@GlobalValues.Common_Page_Title_Introduction</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Accordion_Overview">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_Accordion - @GlobalValues.Page_Heading_Accordion_Overview</span>
+        <span>@GlobalValues.Component_Name_Accordion - @GlobalValues.Common_Page_Title_Overview_Tests</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

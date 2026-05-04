@@ -1,9 +1,9 @@
-﻿@attribute [Route(GlobalValues.Path_Busy_Quirks)]
+﻿@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Quirks_Issues}")]
 
-<PageTitle>@GlobalValues.Page_Title_Busy_Quirks</PageTitle>
+<PageTitle>@GlobalValues.Component_Name_Busy @GlobalValues.Common_Page_Title_Quirks_Issues</PageTitle>
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
-    <h1 class="@GlobalValues.Info_Box_Heading_Class">Busy Indicator Quirks & Issues</h1>
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Busy @GlobalValues.Common_Page_Title_Quirks_Issues</h1>
 
     <p>
         Below are all the quirks and/or issues that I experienced whilst testing the Live Region Services using the Busy Indicator component.
@@ -25,14 +25,14 @@
 </section>
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Busy_Short">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Busy_Short_Delay_Test}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_BusyIndicator - @GlobalValues.Page_Heading_Busy_Short</span>
+        <span>@GlobalValues.Component_Name_Busy - @GlobalValues.Common_Page_Title_Short_Delay_Test</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Modal_Dialog_Overview">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_NavGroup}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_Modal_Dialog - @GlobalValues.Page_Heading_Modal_Overview</span>
+        <span>@GlobalValues.Component_Name_NavGroup - @GlobalValues.Common_Page_Title_Overview_Tests</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

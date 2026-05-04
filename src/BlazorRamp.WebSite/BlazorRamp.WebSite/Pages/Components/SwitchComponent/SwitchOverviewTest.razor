@@ -1,10 +1,9 @@
-﻿
-@attribute [Route(GlobalValues.Path_Switch_Overview)]
+﻿@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Switch}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
 
-<PageTitle>@GlobalValues.Page_Title_Switch_Overview_Test</PageTitle>
+<PageTitle>@GlobalValues.Component_Name_Switch @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
-    <h1 class="@GlobalValues.Info_Box_Heading_Class">Switch Component Overview & Tests</h1>
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Switch @GlobalValues.Common_Page_Title_Overview_Tests</h1>
 
     <p>
         The Switch component is a simple toggle component that is either on or off communicated to assistive technologies via the use of the "switch" role.
@@ -58,17 +57,18 @@
 </section>
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_SkipTo_Overview">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_SkipTo}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_SkipTo - @GlobalValues.Page_Heading_Skipto_Overview</span>
+        <span>@GlobalValues.Component_Name_SkipTo - @GlobalValues.Common_Page_Title_Overview_Tests</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Switch_Quirks">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Switch}/{GlobalValues.Common_Page_Path_Quirks_Issues}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_Switch - @GlobalValues.Page_Heading_Switch_Quirks</span>
+        <span>@GlobalValues.Component_Name_Switch - @GlobalValues.Common_Page_Title_Quirks_Issues</span>
         <span aria-hidden="true"></span>
     </a>
 </div>
+
 
 @code {
     private bool _airplaneState = false;

@@ -1,4 +1,9 @@
-﻿namespace BlazorRamp.WebSite.common.Constants;
+﻿using BlazorRamp.WebSite.Pages.Components.AccordionComponent;
+using System.Data.Common;
+using System.Runtime.InteropServices.JavaScript;
+using static System.Net.Mime.MediaTypeNames;
+
+namespace BlazorRamp.WebSite.common.Constants;
 public static class GlobalValues
 {
 
@@ -8,24 +13,21 @@ public static class GlobalValues
     public const string JS_Show_Modal_Dialog  = "showModalDialog";
     public const string JS_Close_Modal_Dialog = "closeModalDialog";
 
-    public const string Page_Heading_Overivew_Intro = "Introduction";
-    public const string Page_Heading_Overivew_About = "About Blazor Ramp";
+
     public const string Page_Heading_Busy_Overview  = "Overview & Page Test";
     public const string Page_Heading_Busy_Container = "Container Test";
     public const string Page_Heading_Busy_Modal     = "Modal Page Test";
     public const string Page_Heading_Busy_Short     = "Short Delay Test";
     public const string Page_Heading_Busy_Quirks    = "Quirks & Issues";
-    public const string Page_Heading_Modal_Overview = "Overvew & Tests";
+    public const string Page_Heading_Modal_Overview = "Overview & Tests";
     public const string Page_Heading_Modal_Quirks   = "Quirks & Issues";
-    public const string Page_Heading_Skipto_Overview = "Overvew & Tests";
-    public const string Page_Heading_Switch_Overview = "Overvew & Tests";
+    public const string Page_Heading_Skipto_Overview = "Overview & Tests";
+    public const string Page_Heading_Switch_Overview = "Overview & Tests";
     public const string Page_Heading_Switch_Quirks  = "Quirks & Issues";
-    public const string Page_Heading_ToggleTip_Overview = "Overvew & Tests";
-    public const string Page_Heading_Tabs_Overview      = "Overvew & Tests";
+    public const string Page_Heading_ToggleTip_Overview = "Overview & Tests";
+    public const string Page_Heading_Tabs_Overview      = "Overview & Tests";
     public const string Page_Heading_Tabs_Quirks        = "Quirks & Issues";
-    public const string Page_Heading_Accordion_Overview = "Overvew & Tests";
-    public const string Page_Heading_Accordion_Quirks   = "Quirks & Issues";
-    public const string Page_Heading_Nav_Group_Overview = "Overvew & Tests";
+    public const string Page_Heading_Nav_Group_Overview = "Overview & Tests";
     public const string Page_Heading_Nav_Group_Quirks = "Quirks & Issues";
     public const string Page_Heading_FAQs_Final = "Final Words";
 
@@ -52,8 +54,6 @@ public static class GlobalValues
     public const string Page_Title_Modal_Dialog_Overview_Test = "Modal Dialog Overview & Tests";
     public const string Page_Title_Modal_Dialog_Quirks        = "Modal Dialog Quirks & Issues";
 
-    public const string Path_Overview_Introduction = "/";
-    public const string Path_Overview_About = "/about-blazor-ramp";
 
     public const string Path_SkipTo_Overview     = "/skip-to/overview-tests";
     public const string Path_Switch_Overview     = "/switch/overview-tests";
@@ -97,6 +97,85 @@ public static class GlobalValues
     public const string Main_Navigation_Class = "main-navigation";
     public const string Main_Navigation_Link_Class = $"{Main_Navigation_Class}__link";
     public const string Main_Navigation_Heading_Class = $"{Main_Navigation_Class}__heading";
+
+    /*
+           * 
+     */
+
+    public const string Main_Nav_Heading_Overview    = "Overview";
+    public const string Main_Nav_Heading_Frameworks  = "Frameworks";
+    public const string Main_Nav_Heading_Services    = "Services";
+    public const string Main_Nav_Heading_Components  = "Components";
+    public const string Main_Nav_Heading_Faqs        = "FAQs";
+
+    public const string Root_Path_Overview   = "/";
+    public const string Root_Path_Components = "/components";
+    public const string Root_Path_Services   = "/services";
+    public const string Root_Path_Frameworks = "/frameworks";
+    public const string Root_Path_FAQS       = "/faqs";
+
+
+  
+    public const string Common_Page_Path_About           = "about";
+    public const string Common_Page_Path_Overview       = "overview";
+    public const string Common_Page_Path_Overview_Tests = "overview-tests";
+    public const string Common_Page_Path_Quirks_Issues  = "quirks-issues";
+    public const string Common_Page_Path_Final_Words    = "final-words";
+
+    public const string Common_Page_Path_Busy_Overview_Page_Test = "overview-page-test";
+    public const string Common_Page_Path_Busy_Container_Test     = "container-test";
+    public const string Common_Page_Path_Busy_Modal_Page_Test    = "modal-page-test";
+    public const string Common_Page_Path_Busy_Short_Delay_Test   = "short-delay-test";
+
+    public const string Common_Page_Title_Introduction        = "Introduction";
+    public const string Common_Page_Title_About               = "About Blazor Ramp";
+    public const string Common_Page_Title_Overview_Tests      = "Overview & Tests";
+    public const string Common_Page_Title_Overview_Page_Tests = "Overview & Page Tests";
+    public const string Common_Page_Title_Quirks_Issues       = "Quirks & Issues";
+    public const string Common_Page_Title_Final_Words         = "Final Words";
+
+    public const string Common_Page_Title_Modal_Page_Test  = "Modal Page Test";
+    public const string Common_Page_Title_Container_Test   = "Container Test";
+    public const string Common_Page_Title_Short_Delay_Test = "Short Delay Test";
+
+
+    public const string Common_Page_Title_FAQ_Questions = "Frequently Asked Questions";
+
+
+
+    public const string Component_Name_Accordion    = "Accordion";
+    public const string Component_Name_Announcement = "Announcement History";
+    public const string Component_Name_Busy         = "Busy Indicator";
+
+    public const string Component_Name_Inputs         = "Inputs";
+    public const string Component_Name_Text_Input     = "Text Input";
+    public const string Component_Name_Password_Input = "Password Input";
+    public const string Component_Name_Numeric_Input  = "Numeric Input";
+
+    public const string Component_Name_NavGroup  = "Nav Group";
+    public const string Component_Name_SkipTo    = "Skip To";
+    public const string Component_Name_Switch    = "Switch";
+    public const string Component_Name_Tabs      = "Tabs";
+    public const string Component_Name_Toggletip = "Toggletip";
+
+    public const string Component_Path_Part_Accordion     = "accordion";
+    public const string Component_Path_Part_Announcement  = "announcement-history";
+    public const string Component_Path_Part_Busy          = "busy-indicator";
+    public const string Component_Path_Part_Inputs        = "inputs";
+    public const string Component_Path_Part_TextInput     = "text-input";
+    public const string Component_Path_Part_PasswordInput = "password-input";
+    public const string Component_Path_Part_NumericInput  = "numeric-input";
+    public const string Component_Path_Part_SkipTo        = "skip-to";
+    public const string Component_Path_Part_Switch        = "switch";
+    public const string Component_Path_Part_Tabs          = "tabs";
+    public const string Component_Path_Part_Toggletip     = "toggletip";
+    public const string Component_Path_Part_NavGroup      = "nav-group";
+
+    public const string Framework_Name_Modal = "Modal Dialog";
+    public const string Framework_Path_Part_Modal = "modal-dialog";
+
+    public const string Faqs_Name = "FAQ";
+
 
 
 

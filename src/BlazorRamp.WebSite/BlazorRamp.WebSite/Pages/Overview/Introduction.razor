@@ -1,9 +1,9 @@
-﻿@page "/"
+﻿@attribute [Route($"{GlobalValues.Root_Path_Overview}")]
 
-<PageTitle>Home</PageTitle>
+<PageTitle>@GlobalValues.Common_Page_Title_Introduction</PageTitle>
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
-    <h1 class="@GlobalValues.Info_Box_Heading_Class @GlobalValues.Info_Box_Heading_Primary_Modifier">Welcome</h1>
+    <h1 class="@GlobalValues.Info_Box_Heading_Class @GlobalValues.Info_Box_Heading_Primary_Modifier">@GlobalValues.Common_Page_Title_Introduction</h1>
     <p>
         Thank you for visiting the Blazor Ramp component test site. 
     </p>
@@ -120,9 +120,9 @@
 </section>
 
 <div class="flex-content justify-content-end">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Overview_About">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Overview}{GlobalValues.Common_Page_Path_About}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_Overview - @GlobalValues.Page_Title_Overview_About</span>
+        <span>@GlobalValues.Common_Page_Title_About</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

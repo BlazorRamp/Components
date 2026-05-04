@@ -41,13 +41,6 @@ public class GlobalValues
     public const string Root_path_Frameworks = "/frameworks";
     public const string Root_path_FAQS = "/faqs";
 
-    public const string Nav_Group_Overview = "Getting Started";
-    public const string Nav_Group_Components = "Components";
-    public const string Nav_Group_Theming = "Theming";
-    public const string Nav_Group_Services = "Services";
-    public const string Nav_Group_Frameworks = "Frameworks";
-    public const string Nav_Group_Faqs = "FAQs";
-
     public const string Common_Page_Path_Introduction   = "introduction";
     public const string Common_Page_Path_Roadmap        = "roadmap";
     public const string Common_Page_Path_Overview       = "overview";
@@ -73,7 +66,7 @@ public class GlobalValues
 
     public const string Component_Name_Accordion    = "Accordion";
     public const string Component_Name_Announcement = "Announcement History";
-    public const string Component_Name_Busy         = "Busy indicator";
+    public const string Component_Name_Busy         = "Busy Indicator";
     
     public const string Component_Name_Inputs         = "Inputs";
     public const string Component_Name_Text_Input     = "Text Input";

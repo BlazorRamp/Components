@@ -1,9 +1,9 @@
-﻿@attribute [Route(GlobalValues.Path_SkipTo_Overview)]
+﻿@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_SkipTo}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
 
-<PageTitle>@GlobalValues.Page_Title_SkipTo_Overview_Test</PageTitle>
+<PageTitle>@GlobalValues.Component_Name_SkipTo @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
-    <h1 class="@GlobalValues.Info_Box_Heading_Class">Skip To Component Overview & Tests</h1>
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_SkipTo @GlobalValues.Common_Page_Title_Overview_Tests</h1>
 
     <p>
         The Skip To component is designed with two use cases in mind. The first will probably cover 90% of the Blazor developers use cases, where it simply sits at the top-right corner of the site and always 
@@ -88,14 +88,14 @@
 </section>
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Nav_Group_Quirks">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_NavGroup}/{GlobalValues.Common_Page_Path_Quirks_Issues}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_Nav_Group - @GlobalValues.Page_Heading_Nav_Group_Quirks</span>
+        <span>@GlobalValues.Component_Name_NavGroup - @GlobalValues.Common_Page_Title_Quirks_Issues</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Switch_Overview">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Switch}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_Switch - @GlobalValues.Page_Heading_Switch_Overview</span>
+        <span>@GlobalValues.Component_Name_Switch - @GlobalValues.Common_Page_Title_Overview_Tests</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

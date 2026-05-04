@@ -1,11 +1,12 @@
-﻿@attribute [Route(GlobalValues.Path_Busy_Modal_Screen)]
+﻿@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Busy_Modal_Page_Test}")]
+
 @implements IAsyncDisposable
 @inject IJSRuntime _jsRuntime
 
-<PageTitle>@GlobalValues.Page_Title_Modal_Busy_Screen</PageTitle>
+<PageTitle>@GlobalValues.Component_Name_Busy @GlobalValues.Common_Page_Title_Modal_Page_Test</PageTitle>
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
-    <h1 class="@GlobalValues.Info_Box_Heading_Class">Busy Indicator in a Modal Dialog Full Fage Test</h1>
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Busy @GlobalValues.Common_Page_Title_Modal_Page_Test</h1>
 
     <p>
         This portion of the test is to ensure that, while the busy indicator is inside a modal dialog, that its overlay covers the entire page with all content beneath it, inaccessible.
@@ -93,14 +94,14 @@
 </dialog>
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Busy_Container">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Busy_Container_Test}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_BusyIndicator - @GlobalValues.Page_Heading_Busy_Container</span>
+        <span>@GlobalValues.Component_Name_Busy - @GlobalValues.Common_Page_Title_Container_Test</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Busy_Short">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Busy_Short_Delay_Test}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_BusyIndicator - @GlobalValues.Page_Heading_Busy_Short</span>
+        <span>@GlobalValues.Component_Name_Busy - @GlobalValues.Common_Page_Title_Short_Delay_Test</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

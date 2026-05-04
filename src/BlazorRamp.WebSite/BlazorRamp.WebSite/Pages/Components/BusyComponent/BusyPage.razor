@@ -1,9 +1,9 @@
-﻿@attribute [Route(GlobalValues.Path_Busy_Screen)]
+﻿@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Busy_Overview_Page_Test}")]
 
-<PageTitle>@GlobalValues.Page_Title_Busy_Screen</PageTitle>
+<PageTitle>@GlobalValues.Component_Name_Busy @GlobalValues.Common_Page_Title_Overview_Page_Tests</PageTitle>
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
-    <h1 class="@GlobalValues.Info_Box_Heading_Class">Busy Indicator Overview & Page Test</h1>
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Busy @GlobalValues.Common_Page_Title_Overview_Page_Tests</h1>
     <p>
         The busy indicator allows developers to display a spinning circle which automatically changes to a static hourglass for <b>reduced-motion schemes</b> when a task is performed that may involve a delay, such as persisting form data to a server.
     </p>
@@ -91,14 +91,14 @@
 
 
 <div class="flex-content justify-content-between flex-content--wrap">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Accordion_Quirks">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Quirks_Issues}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_Accordion - @GlobalValues.Page_Heading_Accordion_Quirks</span>
+        <span>@GlobalValues.Component_Name_Accordion - @GlobalValues.Common_Page_Title_Quirks_Issues</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Busy_Container">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Busy_Container_Test}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_BusyIndicator - @GlobalValues.Page_Heading_Busy_Container</span>
+        <span>@GlobalValues.Component_Name_Busy - @GlobalValues.Common_Page_Title_Container_Test</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

@@ -1,9 +1,9 @@
-﻿@attribute [Route(GlobalValues.Path_Modal_Dialog_Overview)]
+﻿@attribute [Route($"{GlobalValues.Root_Path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
 
-<PageTitle>@GlobalValues.Page_Title_Modal_Dialog_Overview_Test</PageTitle>
+<PageTitle>@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
-    <h1 class="@GlobalValues.Info_Box_Heading_Class">Modal Dialog Framework Overview & Test Page</h1>
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Overview_Tests</h1>
     <p>
         The modal dialog framework provides Blazor developers the ability to show modal dialogs in such a manner that data can be passed into the dialog and data returned from the dialog when closed. 
         The framework also allows for nested dialogs; for example, the first modal dialog may be a form and rather than the form just closing, potentially losing user data when the <kbd>Escape</kbd> key 
@@ -81,14 +81,14 @@
 </section>
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Busy_Quirks">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Toggletip}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_BusyIndicator - @GlobalValues.Page_Heading_Busy_Quirks</span>
+        <span>@GlobalValues.Component_Name_Toggletip - @GlobalValues.Common_Page_Title_Overview_Tests</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Modal_Dialog_Quirks">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Quirks_Issues}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_Modal_Dialog - @GlobalValues.Page_Heading_Modal_Quirks</span>
+        <span>@GlobalValues.Framework_Name_Modal - @GlobalValues.Common_Page_Title_Quirks_Issues</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

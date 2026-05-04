@@ -1,9 +1,10 @@
-﻿@attribute [Route(GlobalValues.Path_Toggle_Tip_Overview)]
+﻿@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Toggletip}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
 
-<PageTitle>@GlobalValues.Page_Title_Toggle_Tip_Overview_Test</PageTitle>
+<PageTitle>@GlobalValues.Component_Name_Toggletip @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
+
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
-    <h1 class="@GlobalValues.Info_Box_Heading_Class">Toggletip Overview & Tests</h1>
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Toggletip @GlobalValues.Common_Page_Title_Overview_Tests</h1>
 
     <p>
         The Toggletip component is a simple component based on the original idea by Heydon Pickering of a way of showing supplemental information that is revealed on click rather than on hover.
@@ -111,14 +112,14 @@
 </section>
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@GlobalValues.Path_Tabs_Quirks">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Tabs}/{GlobalValues.Common_Page_Path_Quirks_Issues}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_Tabs - @GlobalValues.Page_Heading_Tabs_Quirks</span>
+        <span>@GlobalValues.Component_Name_Tabs - @GlobalValues.Common_Page_Title_Quirks_Issues</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Path_Faqs_Final_Words">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Main_Nav_Section_Heading_FAQs - @GlobalValues.Page_Heading_FAQs_Final</span>
+        <span>@GlobalValues.Framework_Name_Modal - @GlobalValues.Common_Page_Title_Overview_Tests</span>
         <span aria-hidden="true"></span>
     </a>
 </div>
