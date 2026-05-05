@@ -160,10 +160,10 @@
             <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="false" ErrorsLabel="errors" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed"
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="true" ErrorsLabel="errors" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed"
                            @bind-Value="_contactDataFive.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name" />
 
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="false" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed"
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed"
                            @bind-Value="_contactDataFive.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
@@ -183,10 +183,10 @@
             <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="false" ErrorsLabel="errors" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="true" ErrorsLabel="errors" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
                            @bind-Value="_contactDataSix.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name" />
 
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="false" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
                            @bind-Value="_contactDataSix.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
