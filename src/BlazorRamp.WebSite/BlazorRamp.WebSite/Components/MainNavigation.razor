@@ -29,10 +29,18 @@
             <NavGroupLink Href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Quirks_Issues}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Busy" LinkText="@GlobalValues.Common_Page_Title_Quirks_Issues" />
         </NavSection>
 
-@*         <NavSection Title="@GlobalValues.Component_Name_Inputs">
-            <NavGroupLink Href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}")" VisuallyHiddenPrefix="" LinkText="@GlobalValues.Common_Page_Title_Overview_Tests" />
-            <NavGroupLink Href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}")" VisuallyHiddenPrefix="" LinkText="@GlobalValues.Common_Page_Title_Quirks_Issues" />
-        </NavSection> *@
+        <NavSection Title="@GlobalValues.Component_Name_Inputs">
+            <NavGroupLink Href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Inputs" LinkText="@GlobalValues.Common_Page_Title_Overview" />
+            <NavSection Title="@GlobalValues.Component_Name_Numeric_Input">
+                <NavGroupLink Href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_NumericInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Numeric_Input" LinkText="@GlobalValues.Common_Page_Title_Overview_Tests" />
+            </NavSection>
+            <NavSection Title="@GlobalValues.Component_Name_Password_Input">
+                <NavGroupLink Href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_PasswordInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Password_Input" LinkText="@GlobalValues.Common_Page_Title_Overview_Tests" />
+            </NavSection>
+            <NavSection Title="@GlobalValues.Component_Name_Text_Input">
+                <NavGroupLink Href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Text_Input" LinkText="@GlobalValues.Common_Page_Title_Overview_Tests" />
+            </NavSection>
+        </NavSection>
 
         <NavSection Title="@GlobalValues.Component_Name_NavGroup">
             <NavGroupLink Href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_NavGroup}/{GlobalValues.Common_Page_Path_Overview_Tests}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_NavGroup" LinkText="@GlobalValues.Common_Page_Title_Overview_Tests" />

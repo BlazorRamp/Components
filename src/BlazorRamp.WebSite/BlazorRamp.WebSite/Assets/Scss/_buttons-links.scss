@@ -39,10 +39,14 @@
     }
 }
 .test-button {
-
+    min-width:fit-content;
     @include buttonBase;
 }
-
+.normal-button {
+    @include buttonBase;
+    border-radius: var(--br-comp-all-pane-base-border-radius);
+    width: fit-content;
+}
 .link-button {
     @include buttonBase;
     border-width: 0;

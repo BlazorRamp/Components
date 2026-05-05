@@ -1,0 +1,386 @@
+﻿
+@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
+
+@inject ILiveRegionService _liveRegionService
+
+<PageTitle>@GlobalValues.Component_Name_Text_Input @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Text_Input @GlobalValues.Common_Page_Title_Overview_Tests</h1>
+
+    <p>
+        The Text Input component in this library is the combination of a label, optional hint area, an input that can have its <span class="code-span">type</span> attribute set to <b>text, tel, email or url</b>, and a region below the input for 
+        validation messages. 
+    </p>
+
+</section>
+
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
+    <p>
+        The examples below only use two fields, <b>First name</b> and <b>Surname</b>, each of which is marked as required along with having validation rules. Each entry must start with a capital letter and be more than 2 characters in length,
+        with the regex pattern used disallowing certain character sequences. The First name field just has one rule for this, where as the Surname field has had the same rule split in two, to separate the length requirement from the character requirements.
+    </p>
+    <p>
+        For the examples the following Validation Display options are used in each test so you can test the options with your chosen devices.
+    </p>
+    <ul>
+        <li>
+            Described By With Hint -  This options links the input to the hint text via the <span class="code-span">aria-describedby</span> attribute. The id of unordered list element that holds any validation errors
+            is added or removed from the <span class="code-span">aria-describedby</span> attribute, depending on the validity of the value. The id of the validation errors element is places first in the attribute.
+        </li>
+        <li>
+            Described By Hint Suppressed - This option removes the id of the hint text element from the <span class="code-span">aria-describedby</span> attribute when there are validation errors to reduce verbosity
+            for screen reader users.
+        </li>
+        <li>
+            Tabbable With Hint - This option only uses the <span class="code-span">aria-describedby</span> attribute for the hint text element which is never removed. The Validation errors area is given a tab stop
+            and is promoted to a landmark regions. In the following examples these transient regions will have the accessible name of [Label Text] + " errors" so for a "Surname" field the region would be "Surname errors".
+        </li>
+    </ul>
+    <p>
+        For each of the above options there are two examples, one that uses Blazors <span class="code-span">oninput</span> event which causes validation on every keystroke the other using the <span class="code-span">onchange</span> event
+        which occurs if the value has changed and once focus is lost.
+    </p>
+    <p>
+        Examples one to three use the "On Input" event whilst examples four to six use the "On Change" event.
+    </p>
+    <p>
+        <strong>Important: </strong>Some screen reader and browser combinations treat the <span class="code-span">aria-describedby</span> attribute similar to a live regions so when the hint text id or errors element id is added/removed
+        with validation screen reader users will get announcements which may be distracting. This behaviour may differ with the event used, for example NVDA on Firefox treats <span class="code-span">aria-describedby</span> similar to a live 
+        region when using "oninput", but when using "onchange" does not make the announcement when the focus is lost, which it does on Edge and Chrome. 
+    </p>
+    <p>
+        <strong>Note: </strong>Given the myriad combinations of screen reader, operating system, browser, validation display option and event used, I have not provided an expectations section like the tests for other components. My preferred option given
+        that the behaviour is the same for all is to use the tabbable region option with the "oninput" event, but you should choose the options that best suit your target audience.
+    </p>
+</section>
+
+<section>
+    <h2>Examples using oninput (immediate validation)</h2>
+    
+    <section class="section-box">
+        <h3>Example one - fake form using the option "Described By With Hint" and the "On Input" event.</h3>
+
+        <EditForm EditContext="@_editContextOne" OnSubmit="HandleSubmitOne">
+        
+            <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <div class="br-input-row">
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"
+                           @bind-Value="_contactDataOne.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name" />
+
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"
+                           @bind-Value="_contactDataOne.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
+            </div>
+            <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                <button class="test-button" type="submit">Submit One to trigger validation on unmodified fields</button>
+                <button @ref="ResetButtonOne" class="test-button" type="button" @onclick="ResetEditContextOne">Reset Example One</button>
+            </div>
+        </EditForm>
+
+    </section>
+
+    <section class="section-box">
+        <h3>Example two - fake form using the option "Described By Hint Suppressed" and the "On Input" event.</h3>
+        <EditForm EditContext="@_editContextTwo" OnSubmit="HandleSubmitTwo">
+        
+            <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <div class="br-input-row">
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed"
+                           @bind-Value="_contactDataTwo.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name" />
+
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed"
+                           @bind-Value="_contactDataTwo.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
+            </div>
+            <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                <button class="test-button" type="submit">Submit Two to trigger validation on unmodified fields</button>
+                <button @ref="ResetButtonTwo" class="test-button" type="button" @onclick="ResetEditContextTwo">Reset Example Two</button>
+            </div>
+        </EditForm>
+
+
+    </section>
+
+    <section class="section-box">
+        <h3>Example three - fake form using the option "Tabbable With Hint" and the "On Input" event.</h3>
+
+        <EditForm EditContext="@_editContextThree" OnSubmit="HandleSubmitThree">
+        
+            <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <div class="br-input-row">
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                           @bind-Value="_contactDataThree.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name" />
+
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                           @bind-Value="_contactDataThree.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
+            </div>
+            <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                <button class="test-button" type="submit">Submit Three to trigger validation on unmodified fields</button>
+                <button @ref="ResetButtonThree" class="test-button" type="button" @onclick="ResetEditContextThree">Reset Example Three</button>
+            </div>
+        </EditForm>
+
+    </section>
+</section>
+
+<section>
+    <h2>Examples using onchange (validation occurs when the value has changed and focus has moved)</h2>
+    
+    <section class="section-box">
+        <h3>Example four - fake form using the option "Described By With Hint" and the "On Change" event.</h3>
+
+        <EditForm EditContext="@_editContextFour" OnSubmit="HandleSubmitFour">
+        
+            <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <div class="br-input-row">
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="true" ErrorsLabel="errors" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"
+                           @bind-Value="_contactDataFour.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name" />
+
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"
+                           @bind-Value="_contactDataFour.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
+            </div>
+            <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                <button class="test-button" type="submit">Submit Four to trigger validation on unmodified fields</button>
+                <button @ref="ResetButtonFour" class="test-button" type="button" @onclick="ResetEditContextFour">Reset Example Four</button>
+            </div>
+        </EditForm>
+
+    </section>
+
+    <section class="section-box">
+        <h3>Example five - fake form using the option "Described By Hint Suppressed" and the "On Change" event.</h3>
+        <EditForm EditContext="@_editContextFive" OnSubmit="HandleSubmitFive">
+        
+            <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <div class="br-input-row">
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="false" ErrorsLabel="errors" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed"
+                           @bind-Value="_contactDataFive.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name" />
+
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="false" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed"
+                           @bind-Value="_contactDataFive.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
+            </div>
+            <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                <button class="test-button" type="submit">Submit Five to trigger validation on unmodified fields</button>
+                <button @ref="ResetButtonFive" class="test-button" type="button" @onclick="ResetEditContextFive">Reset Example Five</button>
+            </div>
+        </EditForm>
+
+
+    </section>
+
+    <section class="section-box">
+        <h3>Example six - fake form using the option "Tabbable With Hint" and the "On Change" event.</h3>
+
+        <EditForm EditContext="@_editContextSix" OnSubmit ="HandleSubmitSix">
+        
+            <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <div class="br-input-row">
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="false" ErrorsLabel="errors" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                           @bind-Value="_contactDataSix.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name" />
+
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="false" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                           @bind-Value="_contactDataSix.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
+            </div>
+            <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                <button class="test-button" type="submit">Submit Six to trigger validation on unmodified fields</button>
+                <button @ref="ResetButtonSix" class="test-button" type="button" @onclick="ResetEditContextSix">Reset Example Six</button>
+            </div>
+        </EditForm>
+
+    </section>
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_PasswordInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Password_Input - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_NavGroup}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_NavGroup - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+
+
+</div>
+
+@code {
+
+    private ContactDto _contactDataOne   = new();
+    private ContactDto _contactDataTwo   = new();
+    private ContactDto _contactDataThree = new();
+    private ContactDto _contactDataFour  = new();
+    private ContactDto _contactDataFive  = new();
+    private ContactDto _contactDataSix   = new();
+
+    private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+    private EditContext _editContextOne   = default!; 
+    private EditContext _editContextTwo   = default!;
+    private EditContext _editContextThree = default!;
+    private EditContext _editContextFour  = default!;
+    private EditContext _editContextFive  = default!;
+    private EditContext _editContextSix   = default!;
+
+    private ElementReference ResetButtonOne {get;set;}= default;
+    private ElementReference ResetButtonTwo {get;set;}= default;
+    private ElementReference ResetButtonThree {get;set;}= default;
+    private ElementReference ResetButtonFour { get; set; } = default;
+    private ElementReference ResetButtonFive { get; set; } = default;
+    private ElementReference ResetButtonSix { get; set; } = default;
+
+    protected override void OnInitialized()
+    {
+
+        var firstNameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,50}$)[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]+$", "FirstName", "First name", "Must start with a capital letter and be between 2 and 50 characters in length");
+
+        var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]*$", "FamilyName", "Surname", "Must start with a capital letter")
+            .AndThen(MemberValidators.CreateStringLengthValidator(2, 50, "Surname", "Surname", "Must be between 2 and 50 characters in length"));
+
+
+        _boxedValidators = BlazorValidationBuilder<ContactDto>.Create()
+                                .ForMember(c => c.FirstName, firstNameValidator)
+                                .ForMember(c => c.Surname, surnameValidator)
+                                .GetBoxedValidators();
+
+        _editContextOne   = new EditContext(_contactDataOne);
+        _editContextTwo   = new EditContext(_contactDataTwo);
+        _editContextThree = new EditContext(_contactDataThree);
+        _editContextFour  = new EditContext(_contactDataFour);
+        _editContextFive  = new EditContext(_contactDataFive);
+        _editContextSix   = new EditContext(_contactDataSix);
+
+
+    }
+
+
+    private async Task HandleSubmitOne()
+    {
+        _editContextOne.Validate();
+        var announcement = new Announcement("Validation invoked on example one form fields", AnnouncementType.Info, "Submit One Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+
+    }
+    private async Task HandleSubmitTwo()
+    {
+        _editContextTwo.Validate();
+        var announcement = new Announcement("Validation invoked on example two form fields", AnnouncementType.Info, "Submit Two Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+    }
+    private async Task HandleSubmitThree()
+    {
+        _editContextThree.Validate();
+        var announcement = new Announcement("Validation invoked on example three form fields", AnnouncementType.Info, "Submit Three Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+    }
+    private async Task HandleSubmitFour()
+    {
+        _editContextFour.Validate();
+        var announcement = new Announcement("Validation invoked on example four form fields", AnnouncementType.Info, "Submit Four Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+
+    }
+    private async Task HandleSubmitFive()
+    {
+        _editContextFive.Validate();
+        var announcement = new Announcement("Validation invoked on example five form fields", AnnouncementType.Info, "Submit Five Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+    }
+    private async Task HandleSubmitSix()
+    {
+        _editContextSix.Validate();
+        var announcement = new Announcement("Validation invoked on example six form fields", AnnouncementType.Info, "Submit Six Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+    }
+
+
+    private async Task ResetEditContextOne()
+    {
+        var announcement = new Announcement("Example one has been reset", AnnouncementType.Info, "Reset Example One Button");
+
+        _contactDataOne = new();
+        _editContextOne = new EditContext(_contactDataOne);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+
+        await ResetButtonOne.FocusAsync();
+
+    }
+    private async Task ResetEditContextTwo()
+    {
+        var announcement = new Announcement("Example two has been reset", AnnouncementType.Info, "Reset Example Two Button");
+       
+        _contactDataTwo = new();
+        _editContextTwo = new EditContext(_contactDataTwo);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+        await ResetButtonTwo.FocusAsync();
+    }
+    private async Task ResetEditContextThree()
+    {
+        var announcement = new Announcement("Example three has been reset", AnnouncementType.Info, "Reset Example Three Button");
+       
+        _contactDataThree = new();
+        _editContextThree = new EditContext(_contactDataThree);
+
+       await _liveRegionService.MakeAnnouncement(announcement);
+        await ResetButtonThree.FocusAsync();
+    }
+
+    private async Task ResetEditContextFour()
+    {
+        var announcement = new Announcement("Example four has been reset", AnnouncementType.Info, "Reset Example Four Button");
+
+        _contactDataFour = new();
+        _editContextFour = new EditContext(_contactDataFour);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+
+        await ResetButtonFour.FocusAsync();
+
+    }
+    private async Task ResetEditContextFive()
+    {
+        var announcement = new Announcement("Example five has been reset", AnnouncementType.Info, "Reset Example Five Button");
+       
+        _contactDataFive = new();
+        _editContextFive = new EditContext(_contactDataFive);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+        await ResetButtonFive.FocusAsync();
+    }
+    private async Task ResetEditContextSix()
+    {
+        var announcement = new Announcement("Example six has been reset", AnnouncementType.Info, "Reset Example Six Button");
+       
+        _contactDataSix = new();
+        _editContextSix = new EditContext(_contactDataSix);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+        await ResetButtonSix.FocusAsync();
+    }
+
+    public class ContactDto
+    {
+
+        public string FirstName { get; set; }
+        public string Surname { get; set; }
+    }
+
+}

@@ -60,6 +60,7 @@ public static class GlobalValues
 
     public const string Common_Page_Title_Introduction        = "Introduction";
     public const string Common_Page_Title_About               = "About Blazor Ramp";
+    public const string Common_Page_Title_Overview            = "Overview";
     public const string Common_Page_Title_Overview_Tests      = "Overview & Tests";
     public const string Common_Page_Title_Overview_Page_Tests = "Overview & Page Tests";
     public const string Common_Page_Title_Quirks_Issues       = "Quirks & Issues";
@@ -88,6 +89,7 @@ public static class GlobalValues
     public const string Component_Name_Switch    = "Switch";
     public const string Component_Name_Tabs      = "Tabs";
     public const string Component_Name_Toggletip = "Toggletip";
+
 
     public const string Component_Path_Part_Accordion     = "accordion";
     public const string Component_Path_Part_Announcement  = "announcement-history";
@@ -140,4 +142,6 @@ public static class GlobalValues
     public const string Site_Link_Docs_Tabs         = "https://docs.blazorramp.uk/components/tabs/overview";
     public const string Site_Link_Docs_Accordion    = "https://docs.blazorramp.uk/components/accordion/overview";
     public const string Site_Link_Docs_Nav_Group    = "https://docs.blazorramp.uk/components/nav-group/overview";
+
+    public const string Site_Link_Docs_Inputs = "https://docs.blazorramp.uk/components/inputs/overview";
 }

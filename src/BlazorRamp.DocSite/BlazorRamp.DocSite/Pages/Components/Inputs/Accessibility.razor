@@ -63,11 +63,13 @@
 
 <h2>Recommended approach</h2>
 <p>
-    My recommended configuration is to use <span class="code-span">UpdateOnInput="true"</span> combined with <span class="hint">ValidationDisplayMode="TabbableWithHint"</span>. This gives sighted users immediate visual feedback
-    as they type, whilst ensuring screen reader users land on the error area when they tab away from an invalid field - providing timely, contextual feedback without relying on the user retracing their steps or submitting the
-    form to discover errors.
+    My preferred configuration is to use <span class="code-span">UpdateOnInput="true"</span> combined with <span class="hint">ValidationDisplayMode="TabbableWithHint"</span>. This gives sighted users immediate visual feedback
+    as they type, whilst ensuring screen reader users land on the error area when they tab away from an invalid field - providing timely, contextual feedback without any interruptions whilst typing.
 </p>
-
+<p>
+    <strong>Note: </strong>Some screen reader browser combinations especially on Chromium browsers treat <span class="code-span">aria-describedby</span> like a live region so with the <span class="code-span">aria-describedby</span> option
+    when the field changes from valid to invalid the error message will be announced. 
+</p>    
 <p>
     <strong>Important: </strong>For WCAG dependant on the context you should ensure that the inputs have the appropriate autocomplete values specified. 
     You can add any of these to the Input component directly as attribute splatting will place these on the underlying input element.

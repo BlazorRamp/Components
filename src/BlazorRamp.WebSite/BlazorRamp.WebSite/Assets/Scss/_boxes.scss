@@ -90,3 +90,20 @@
         outline-color: var(--br-comp-all-outline-colour);
     }
 }
+.code-span {
+    padding: var(--br-unit-space-2);
+    border-radius: var(--br-unit-radius-3);
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    background-color: var(--br-code-block-background-colour);
+    overflow-x: auto;
+    color: var(--br-code-block-text);
+    border: 1px solid transparent;
+
+    &--h3-sizing {
+        font-size: var(--br-unit-font-size-1);
+    }
+
+    &--h2-sizing {
+        font-size: var(--br-unit-font-size-2);
+    }
+}

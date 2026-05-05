@@ -356,12 +356,16 @@
   --svg-food-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M3.743 2.816A.88.88 0 0 1 5.5 2.88v4.494a.625.625 0 1 0 1.25 0V2.75a.75.75 0 0 1 1.5 0v4.624a.625.625 0 1 0 1.25 0V2.88a.88.88 0 0 1 1.757-.064C11.3 3.428 11.5 6.37 11.5 8c0 1.35-.67 2.544-1.692 3.267c-.216.153-.268.315-.263.397c.123 1.878.455 7.018.455 7.833a2.5 2.5 0 0 1-5 0c0-.816.332-5.955.455-7.833c.005-.082-.047-.244-.263-.397A4 4 0 0 1 3.5 8c0-1.63.2-4.572.243-5.184M13 7.75A5.75 5.75 0 0 1 18.75 2a.75.75 0 0 1 .75.75v8.5c0 .318.106 1.895.225 3.642l.005.083c.13 1.908.27 3.983.27 4.522a2.5 2.5 0 0 1-5 0c0-.514.128-2.611.252-4.534c.062-.971.125-1.912.172-2.61l.023-.353h-.697A1.75 1.75 0 0 1 13 10.25z'/%3E%3C/svg%3E");
   --svg-airplane-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='m9.983 20.048l-2.09-3.946l-3.966-2.11l1.083-1.077l3.452.587l3.05-3.05L4.01 7.25l1.388-1.38l9.125 1.565l3.12-3.139q.42-.421 1.03-.421t1.03.421q.422.421.422 1.028t-.421 1.028l-3.145 3.125l1.566 9.12l-1.394 1.394l-3.189-7.502l-3.05 3.05l.573 3.427z'/%3E%3C/svg%3E");
   --svg-runner-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cg fill='%23000'%3E%3Cpath d='M30.5 13a4.5 4.5 0 1 0 0-9a4.5 4.5 0 0 0 0 9m-9.04 4.282c-1.247.31-2.098.776-2.785 1.354c-1.03.868-1.862 2.12-2.986 4.088a2 2 0 1 1-3.473-1.985c1.119-1.957 2.25-3.788 3.883-5.162c1.704-1.436 3.79-2.248 6.603-2.561c1.176-.13 2.47-.104 3.683.437c1.273.569 2.203 1.588 2.837 2.95c.854 1.833 1.489 2.924 1.997 3.557c.245.303.416.444.513.507c.077.05.11.054.122.056h.001c.087.01.369 0 1.197-.367c.361-.16.755-.352 1.237-.587l.115-.056a54 54 0 0 1 1.784-.84a2 2 0 0 1 1.625 3.655a49 49 0 0 0-1.653.779l-.131.064c-.461.225-.925.452-1.36.644c-.9.398-2.05.83-3.297.679c-1.316-.16-2.33-.903-3.165-1.9l-2.733 5.273l3.78 4.918a2 2 0 0 1 .403 1.012l.832 7.996a2 2 0 1 1-3.978.414l-.774-7.433l-2.296-2.988l-.02.037l-.084-.172l-4.242-5.52a2 2 0 0 1-.282-1.934z'/%3E%3Cpath d='m18.432 29.007l-1.472 3.96l-5.8-.46a2 2 0 1 0-.318 3.987l7.308.58a2 2 0 0 0 2.033-1.296l1.125-3.028z'/%3E%3C/g%3E%3C/svg%3E");
-  --svg-surname-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4'/%3E%3C/svg%3E");
   --svg-email-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M22 5.5H9c-1.1 0-2 .9-2 2v9a2 2 0 0 0 2 2h13c1.11 0 2-.89 2-2v-9a2 2 0 0 0-2-2m0 3.67l-6.5 3.33L9 9.17V7.5l6.5 3.31L22 7.5zM5 16.5c0 .17.03.33.05.5H1c-.552 0-1-.45-1-1s.448-1 1-1h4zM3 7h2.05c-.02.17-.05.33-.05.5V9H3c-.55 0-1-.45-1-1s.45-1 1-1m-2 5c0-.55.45-1 1-1h3v2H2c-.55 0-1-.45-1-1'/%3E%3C/svg%3E");
+  --svg-padlock-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 17a2 2 0 0 1-2-2c0-1.11.89-2 2-2a2 2 0 0 1 2 2a2 2 0 0 1-2 2m6 3V10H6v10zm0-12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h1V6a5 5 0 0 1 5-5a5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3'/%3E%3C/svg%3E");
+  --svg-key-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23000' d='M3 8.5a1 1 0 1 0 0-2a1 1 0 0 0 0 2'/%3E%3Cpath fill='%23000' fill-rule='evenodd' d='M4.5 3c1.56 0 2.94.794 3.75 2h5.26a1 1 0 0 1 .807.409l1.49 2.04a.99.99 0 0 1 .033 1.13l-1.26 1.95a.997.997 0 0 1-1.41.276L12.02 10l-1.19.812a1 1 0 0 1-1.13 0L8.51 10h-.258c-.808 1.21-2.18 2-3.75 2a4.5 4.5 0 0 1 0-9zm3.75 6a1 1 0 0 0-.832.444c-.63.94-1.7 1.56-2.91 1.56c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5c1.21 0 2.28.616 2.91 1.56c.186.277.498.444.832.444h5.26L15 8.048l-1.26 1.95l-1.15-.805a1 1 0 0 0-1.14-.005L10.26 10l-1.19-.812a1 1 0 0 0-.566-.175h-.258z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  --svg-user-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4'/%3E%3C/svg%3E");
   --br-unit-colour-neutral-saturation: 10;
   --br-unit-colour-primary: tomato;
   --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-darker);
   --br-kbd-background-colour: var(--br-unit-colour-info-lighter);
+  --br-code-block-background-colour: var(--br-unit-colour-secondary-lighter);
+  --br-code-block-text: var(--br-unit-colour-info-darker);
 }
 
 :root:has(#theme-toggler[aria-checked=true]) {
@@ -394,6 +398,8 @@
   --br-comp-all-area-header-background: var(--br-unit-colour-neutral-70);
   --br-comp-input-error-colour: var(--br-unit-colour-danger-light);
   --br-comp-input-success-colour: var(--br-unit-colour-success-light);
+  --br-code-block-background-colour: var(--br-unit-colour-secondary-darker);
+  --br-code-block-text: var(--br-unit-colour-info-lighter);
 }
 
 *,
@@ -626,7 +632,24 @@ body #app__main {
   outline-color: var(--br-comp-all-outline-colour);
 }
 
+.code-span {
+  padding: var(--br-unit-space-2);
+  border-radius: var(--br-unit-radius-3);
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+  background-color: var(--br-code-block-background-colour);
+  overflow-x: auto;
+  color: var(--br-code-block-text);
+  border: 1px solid transparent;
+}
+.code-span--h3-sizing {
+  font-size: var(--br-unit-font-size-1);
+}
+.code-span--h2-sizing {
+  font-size: var(--br-unit-font-size-2);
+}
+
 .test-button {
+  min-width: fit-content;
   box-sizing: border-box;
   appearance: none;
   border-radius: var(--br-comp-all-button-border-radius);
@@ -658,6 +681,43 @@ body #app__main {
   outline-color: var(--br-comp-all-outline-colour);
 }
 .test-button:hover {
+  background-color: var(--br-comp-all-button-state-hover);
+}
+
+.normal-button {
+  box-sizing: border-box;
+  appearance: none;
+  border-radius: var(--br-comp-all-button-border-radius);
+  border-style: var(--br-comp-all-button-border-style);
+  border-width: var(--br-comp-all-button-border-width);
+  font: var(--br-comp-all-button-font);
+  font-weight: var(--br-comp-all-button-font-weigh);
+  font-size: var(--br-comp-all-button-font-size);
+  line-height: var(--br-comp-all-button-line-height);
+  color: var(--br-comp-all-button-text);
+  background-color: var(--br-comp-all-button-background);
+  cursor: pointer;
+  padding: var(--br-unit-space-5);
+  width: 22rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--br-unit-space-5);
+  border-radius: var(--br-comp-all-pane-base-border-radius);
+  width: fit-content;
+}
+.normal-button:active {
+  transform: scale(var(--br-comp-all-button-state-active-scale));
+  filter: brightness(var(--br-comp-all-button-state-active-brightness));
+  outline: none;
+}
+.normal-button:focus-visible {
+  outline-offset: var(--br-comp-all-outline-offset);
+  outline-width: var(--br-comp-all-outline-width);
+  outline-style: var(--br-comp-all-outline-style);
+  outline-color: var(--br-comp-all-outline-colour);
+}
+.normal-button:hover {
   background-color: var(--br-comp-all-button-state-hover);
 }
 
