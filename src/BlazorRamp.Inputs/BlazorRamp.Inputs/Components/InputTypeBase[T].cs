@@ -79,7 +79,7 @@ namespace BlazorRamp.Inputs.Components
         /// </summary>
         [Parameter] public string? SvgIcon { get; set; } = default;
 
-        [CascadingParameter] private InputErrorsSummary InputErrorsSummary { get; set; }
+        [CascadingParameter] private InputErrorsSummary? InputErrorsSummary { get; set; }
 
 
         [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
