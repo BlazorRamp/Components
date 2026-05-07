@@ -1,4 +1,5 @@
 ﻿using BlazorRamp.Inputs.Common.Constants;
+using BlazorRamp.Inputs.Components.Summaries;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
@@ -77,6 +78,10 @@ namespace BlazorRamp.Inputs.Components
         /// For example: <c>--svg-my-icon</c>.
         /// </summary>
         [Parameter] public string? SvgIcon { get; set; } = default;
+
+        [CascadingParameter] private InputErrorsSummary InputErrorsSummary { get; set; }
+
+
         [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
 
         /// <summary>
@@ -238,9 +243,11 @@ namespace BlazorRamp.Inputs.Components
         {
             base.OnInitialized(); 
 
-            InputID          = String.IsNullOrWhiteSpace(ControlID) ? Guid.NewGuid().ToString() : ControlID.Trim();
+            InputID        = String.IsNullOrWhiteSpace(ControlID) ? Guid.NewGuid().ToString() : ControlID.Trim();
             LabelNameText  = String.IsNullOrWhiteSpace(LabelText) ? FieldIdentifier.FieldName : LabelText.Trim();
-            ErrorsText       = String.IsNullOrWhiteSpace(ErrorsLabel) ? GlobalValues.Default_Errors_label : ErrorsLabel.Trim();
+            ErrorsText     = String.IsNullOrWhiteSpace(ErrorsLabel) ? GlobalValues.Default_Errors_label : ErrorsLabel.Trim();
+
+            InputErrorsSummary?.AddToInputMap(this.FieldIdentifier,LabelNameText, InputID);
 
             EditContext.OnValidationStateChanged += EditContext_OnValidationStateChanged;
             EditContext.OnValidationRequested += EditContext_OnValidationRequested;

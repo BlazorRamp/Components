@@ -2,6 +2,7 @@
 
 
 
+
 <PageTitle>Home</PageTitle>
 
 @rendermode InteractiveServer
@@ -10,17 +11,14 @@
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
-<br />
-
-
 
 <EditForm EditContext="@_editContext" OnValidSubmit="HandleSubmit" novalidate>
-
-    <ValidationSummary  />
 
 @*     <DataAnnotationsValidator /> *@
 
      <BlazorValidated TEntity="ContactDto" BoxedValidators="_contactBoxedValidators" AddDisplayName="true"  />
+
+     <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
 
 
@@ -34,23 +32,25 @@ Welcome to your new app.
 
     <div class="br-input-row">
 
-            <TextInput class="br-col-xs-12 br-col-sm-6"  @bind-Value="_contactData.GivenName" UpdateOnInput="true" HintText="Some hint text"
+            <TextInput class="br-col-xs-12 br-col-sm-6"  @bind-Value="_contactData.GivenName" UpdateOnInput="true" HintText="Some hint text" LabelText="First Name"
                        AriaDisabled="false" ReadOnly="false" SvgIcon="--svg-information-icon" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" />
 
-            <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.FamilyName" UpdateOnInput="true" AriaDisabled="false" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+            <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.FamilyName" LabelText="Surname"
+            UpdateOnInput="true" AriaDisabled="false" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
                    
 
     </div> 
 
      <div class="br-input-row">
 
-        <PasswordInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry"
+        <PasswordInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Password"
                    @bind-Value="_contactData.Password" UpdateOnInput="true" AriaDisabled="false" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"  />
 
-        <PasswordInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry"
+        <PasswordInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Password Confirmation"
                        @bind-Value="_contactData.ConfirmPassword" UpdateOnInput="false" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
     </div>
 
+    </InputErrorsSummary>
 
     <button class="btn btn-primary" type="submit">Submit</button>
 

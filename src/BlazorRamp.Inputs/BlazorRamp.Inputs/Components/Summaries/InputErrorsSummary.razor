@@ -1,0 +1,60 @@
+﻿@using BlazorRamp.Core.Components.LiveRegion
+@using BlazorRamp.Inputs.Common.Models
+
+<CascadingValue Value="this" IsFixed="true">
+
+    @BuildContent(_summaryItems, SummaryDisplay, _modelValidated)
+
+    @if (@ChildContent is not null)
+    {
+        @ChildContent
+     
+    }
+ 
+
+</CascadingValue>
+
+
+@code {
+    private RenderFragment BuildContent(List<ErrorSummaryItem> summaryItems,SummaryDisplay summaryDisplay, bool modelValidated) => __builder =>
+    {
+        var itemCount = summaryItems.Count;
+        
+        <section id="@_summarySectionID" role="region" aria-labelledby="@_headingID" class="@GetSectionClasses(itemCount, summaryDisplay, modelValidated)">
+
+            @switch (TitleHeadingLevel)
+                {
+                    case TitleHeadingLevel.H2: <h2 id="@_headingID" class="@GlobalValues.Input_Errors_Summary_Heading">@_headingTitle</h2>; break;
+                    case TitleHeadingLevel.H3: <h3 id="@_headingID" class="@GlobalValues.Input_Errors_Summary_Heading">@_headingTitle</h3>; break;
+                    case TitleHeadingLevel.H4: <h4 id="@_headingID" class="@GlobalValues.Input_Errors_Summary_Heading">@_headingTitle</h4>; break;
+                    case TitleHeadingLevel.H5: <h5 id="@_headingID" class="@GlobalValues.Input_Errors_Summary_Heading">@_headingTitle</h5>; break;
+                    case TitleHeadingLevel.H6: <h6 id="@_headingID" class="@GlobalValues.Input_Errors_Summary_Heading">@_headingTitle</h6>; break;
+                default:
+                    <h3 id="@_headingID" class="@GlobalValues.Input_Errors_Summary_Heading">@_headingTitle</h3>
+                    break;
+            }
+
+            @if (itemCount > 0)
+            { <ul role="list">
+                @foreach(var summaryItem in summaryItems)
+                {
+                    <li>
+                        <a id="@($"input-error-summary-{summaryItem.ControlID}")" class="@GlobalValues.Input_Errors_Summary_Link" href="#@(summaryItem.ControlID)" @onclick:preventDefault="true" @onclick="() => FocusInput(summaryItem.ControlID)">
+                            @summaryItem.DisplayName @_inputSuffix
+                        </a>
+                        <ul aria-labelledby="@($"input-error-summary-{summaryItem.ControlID}")" class="@GlobalValues.Input_Errors_Summary_List" role="list">
+                            @foreach(var error in summaryItem.ValidationErrors)
+                            {
+                                <li class="@GlobalValues.Input_Errors_Summary_List_Item">@error</li>
+                            }
+                        </ul>
+                    </li>
+                }
+             </ul>
+
+            }
+
+        </section>
+
+    };
+}

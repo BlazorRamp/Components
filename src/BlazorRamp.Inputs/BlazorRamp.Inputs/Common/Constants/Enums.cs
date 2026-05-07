@@ -1,4 +1,5 @@
 ﻿using BlazorRamp.Inputs.Components;
+using BlazorRamp.Inputs.Components.Summaries;
 
 namespace BlazorRamp.Inputs.Common.Constants;
 
@@ -100,4 +101,48 @@ public enum DataPosition : int{
     /// Right aligned in LTR, left aligned in RTL
     /// </summary>
     End = 2
+}
+
+
+/// <summary>
+/// Specifies the semantic title heading level rendered for the <see cref="InputErrorsSummary"/>.
+/// </summary>
+public enum TitleHeadingLevel : int
+{
+    /// <summary>
+    /// Renders the title text inside an <c>&lt;h2&gt;</c> element.
+    /// </summary>
+    H2 = 2,
+    /// <summary>
+    /// Renders the title text inside an <c>&lt;h3&gt;</c> element.
+    /// </summary>
+    H3 = 3,
+    /// <summary>
+    /// Renders the title text inside an <c>&lt;h4&gt;</c> element.
+    /// </summary>
+    H4 = 4,
+    /// <summary>
+    /// Renders the title text inside an <c>&lt;h5&gt;</c> element.
+    /// </summary>
+    H5 = 5,
+    /// <summary>
+    /// Renders the title text inside an <c>&lt;h6&gt;</c> element.
+    /// </summary>
+    H6 = 6,
+}
+
+/// <summary>
+/// Specifies when the <see cref="InputErrorsSummary"/> should be displayed.
+/// </summary>
+public enum SummaryDisplay: int
+{
+    /// <summary>
+    /// The summary should only be displayed after a model validation has occurred.
+    /// </summary>
+    OnModelValidated = 0,
+
+    /// <summary>
+    /// The summary should always be visible when there are validation errors.
+    /// </summary>
+    Always = 1
 }

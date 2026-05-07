@@ -8,11 +8,6 @@ const ariaDisabledKeyHandler = (e) => {
         return;
     e.preventDefault();
 };
-const setInputValue = (inputElement, value) => {
-    if (!inputElement)
-        return;
-    inputElement.value = value;
-};
 const integerHandler = (e) => {
     const input = e.target;
     let cleaned = input.value.replace(/[^0-9\-]/g, '');
@@ -31,6 +26,37 @@ const decimalHandler = (e) => {
         cleaned = parts[0] + separator + parts.slice(1).join('');
     if (input.value !== cleaned)
         input.value = cleaned;
+};
+const setInputValue = (inputElement, value) => {
+    if (!inputElement)
+        return;
+    inputElement.value = value;
+};
+const setInputFocus = (elementId) => {
+    const element = document.getElementById(elementId);
+    if (!element)
+        return;
+    element.focus();
+    switch (element.type) {
+        case "text":
+        case "password":
+        case "email":
+        case "tel":
+        case "url":
+        case "search":
+            if (element.value)
+                element.setSelectionRange(element.value.length, element.value.length);
+            break;
+        // date, time, number, checkbox, radio etc - just focus, no cursor manipulation
+    }
+};
+const setSummaryFocus = (elementId) => {
+    const element = document.getElementById(elementId);
+    if (!element)
+        return;
+    element.setAttribute("tabindex", "-1");
+    element.focus();
+    element.addEventListener("blur", () => element.removeAttribute("tabindex"), { once: true });
 };
 const registerAriaDisabledHandlers = (inputElement) => {
     if (!inputElement)
@@ -62,5 +88,5 @@ const unregisterNumericHandlers = (inputElement, isWholeNumber) => {
     const handler = isWholeNumber ? integerHandler : decimalHandler;
     inputElement.removeEventListener("input", handler);
 };
-export { registerAriaDisabledHandlers, unregisterAriaDisabledHandlers, registerNumericHandlers, unregisterNumericHandlers, setInputValue };
+export { registerAriaDisabledHandlers, unregisterAriaDisabledHandlers, registerNumericHandlers, unregisterNumericHandlers, setInputValue, setInputFocus, setSummaryFocus };
 //# sourceMappingURL=inputs.js.map

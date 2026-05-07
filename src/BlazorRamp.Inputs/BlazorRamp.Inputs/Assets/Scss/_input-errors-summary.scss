@@ -1,0 +1,77 @@
+﻿
+.br-input-errors-summary {
+    display: block;
+    background-color: var(--br-comp-input-es-pane-base-background);
+    border-style: var(--br-comp-input-es-pane-basee-border-style);
+    border-color: var(--br-comp-input-es-pane-base-border-colour);
+    border-width: var(--br-comp-input-es-pane-base-border-width);
+    border-radius: var(--br-comp-input-es-pane-base-border-radius);
+    padding: var(--br-unit-space-5);
+    background-color: var(--br-comp-input-es-area-contnent-background);
+    color: var(--br-comp-input-es-area-contnent-text);
+    font-family: var(--br-comp-input-es-area-contnent-font-family);
+    font-size: var(--br-comp-input-es-area-contnent-font-size);
+    font-weight: var(--br-comp-input-es-area-contnent-font-weight);
+    line-height: var(--br-comp-input-es-area-contnent-line-height);
+
+    &:focus {
+        outline-style: var(--br-comp-input-es-outline-style);
+        outline-width: var(--br-comp-input-es-outline-width);
+        outline-offset: var(--br-comp-input-es-outline-offset);
+        outline-color: var(--br-comp-input-es-outline-colour);
+    }
+
+    & ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    &--no-errors {
+        display: none;
+    }
+
+    &__heading {
+        background-color: var(--br-comp-input-es-area-header-background);
+        color: var(--br-comp-input-es-area-header-text);
+        font-family: var(--br-comp-input-es-area-header-font-family);
+        font-size: var(--br-comp-input-es-area-header-font-size);
+        font-weight: var(--br-comp-input-es-area-header--font-weight);
+        line-height: var(--br-comp-input-es-area-header-line-height);
+        border-style: var(--br-comp-input-es-area-header-border-style);
+        border-color: var(--br-comp-input-es-area-header-border-colour);
+        border-width: var(--br-comp-input-es-area-header-border-width);
+        border-radius: var(--br-comp-input-es-area-header-border-radius);
+    }
+
+    &__sub-heading {
+    }
+
+    &__link {
+        color: var(--br-comp-input-es-link-text);
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--br-comp-input-es-link-hover-background-colour);
+        }
+
+        &:active {
+            background-color: var(--br-comp-input-es-link-active-background-colour);
+        }
+
+        &:focus-visible {
+            border-radius: var(--br-unit-radius-2);
+            text-decoration: none;
+            outline-style: var(--br-comp-input-es-outline-style);
+            outline-width: var(--br-comp-input-es-outline-width);
+            outline-offset: var(--br-comp-input-es-outline-offset);
+            outline-color: var(--br-comp-input-es-outline-colour);
+        }
+    }
+
+
+    &__list-item {
+        padding-inline-start: var(--br-unit-space-5);
+        color: inherit;
+    }
+}

@@ -1,0 +1,38 @@
+﻿:root {
+    --br-comp-input-es-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-input-es-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-input-es-outline-offset: var(--br-comp-all-outline-offset);
+    --br-comp-input-es-outline-colour: var(--br-comp-all-outline-colour);
+    //
+    --br-comp-input-es-pane-base-background: inherit;
+    --br-comp-input-es-pane-basee-border-style: var(--br-comp-all-pane-base-border-style);
+    --br-comp-input-es-pane-base-border-colour: var(--br-unit-colour-danger);
+    --br-comp-input-es-pane-base-border-width: var(--br-comp-history-pane-base-border-width);
+    --br-comp-input-es-pane-base-border-radius: var(--br-comp-all-pane-base-border-radius);
+    //
+
+
+    --br-comp-input-es-area-header-background: inherit;
+    --br-comp-input-es-area-header-text: var(--br-comp-all-area-header-text);
+    --br-comp-input-es-area-header-font-family: var(--br-comp-all-area-header-font-family);
+    --br-comp-input-es-area-header-font-size: var(--br-comp-all-area-header-font-size);
+    --br-comp-input-es-area-header--font-weight: var(--br-comp-all-area-header-font-weight);
+    --br-comp-input-es-area-header-line-height: var(--br-comp-all-area-header-line-height);
+    --br-comp-input-es-area-header-border-style: var(--br-comp-all-area-header-border-style);
+    --br-comp-input-es-area-header-border-colour: var(--br-unit-colour-danger);
+    --br-comp-input-es-area-header-border-width: var(--br-comp-all-area-header-border-width);
+    --br-comp-input-es-area-header-border-radius: var(--br-comp-all-area-header-border-radius);
+    //
+
+    --br-comp-input-es-area-contnent-background: inherit; //: var(--br-unit-colour-canvas);
+    --br-comp-input-es-area-contnent-text: var(--br-unit-colour-danger);
+    --br-comp-input-es-area-contnent-font-family: var(--br-comp-all-area-content-font-family); //: inherit;
+    --br-comp-input-es-area-contnent-font-size: var(--br-comp-all-area-content-font-size); //: var(--br-unit-font-size-1);
+    --br-comp-input-es-area-contnent-font-weight: var(--br-comp-all-area-content-font-weight); //: inherit;
+    --br-comp-input-es-area-contnent-line-height: var(--br-comp-all-area-content-line-height); //: inherit;
+    //
+
+    --br-comp-input-es-link-text: var(--br-unit-colour-canvas-text);
+    --br-comp-input-es-link-hover-background-colour: var(--br-comp-all-link-hover-background-colour);
+    --br-comp-input-es-link-active-background-colour: var(--br-comp-all-link-active-background-colour);
+}

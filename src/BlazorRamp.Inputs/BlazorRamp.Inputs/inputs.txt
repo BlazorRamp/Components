@@ -1,0 +1,2793 @@
+--- START FILE: InputTypeBase[T].cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Components\InputTypeBase[T].cs) ---
+using BlazorRamp.Inputs.Common.Constants;
+using BlazorRamp.Inputs.Components.Summaries;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.JSInterop;
+using System.Runtime.InteropServices;
+
+namespace BlazorRamp.Inputs.Components
+{
+    /// <summary>
+    /// Abstract base class for all of the basic BlazorRamp input components. Extends Blazor's
+    /// <see cref="InputBase{TValue}"/> with accessibility support, validation state
+    /// management, hint text normalisation, SVG icon support, and aria-disabled
+    /// simulation via JavaScript interop.
+    /// </summary>
+    public abstract class InputTypeBase<TValue> : InputBase<TValue>, IAsyncDisposable
+    {
+        /// <summary>
+        /// Gets or sets the name used for the input control label.
+        /// If the value is null, empty, or whitespace then the field name is used.
+        /// </summary>
+        [Parameter] public string LabelText { get; set; } = String.Empty;
+        /// <summary>
+        /// Gets or sets the <c>id</c> attribute applied to the underlying <c>&lt;input&gt;</c>
+        /// element. When null, empty, or whitespace a <see cref="Guid"/> string is generated
+        /// automatically. Leading and trailing whitespace is trimmed before use.
+        /// </summary>
+        [Parameter] public string ControlID     { get; set; } = String.Empty;
+
+        /// <summary>
+        /// Gets or sets the hint text rendered below the label and above the input field.
+        /// When set, the text is normalised so it always ends with a full stop, and is
+        /// associated to the input via <c>aria-describedby</c>. When null, empty, or
+        /// whitespace no hint element is rendered.
+        /// </summary>
+        [Parameter] public string HintText      { get; set; } = String.Empty;
+
+        /// <summary>
+        /// Gets or sets whether the input is read-only. When <c>true</c>, the HTML
+        /// <c>readonly</c> attribute is applied to the underlying <c>&lt;input&gt;</c>
+        /// element. Takes precedence over <see cref="AriaDisabled"/> when both are set.
+        /// </summary>
+        [Parameter] public bool   ReadOnly      { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets whether the input is aria-disabled. When <c>true</c>, the input
+        /// is visually and functionally disabled via <c>aria-disabled="true"</c> without
+        /// using the native <c>disabled</c> attribute, keeping the field focusable and
+        /// readable by screen readers. JavaScript handlers block keyboard input and paste.
+        /// Has no effect when <see cref="ReadOnly"/> is also <c>true</c>.
+        /// </summary>
+        [Parameter] public bool   AriaDisabled  { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets whether the field is required. When <c>true</c>, <c>aria-required="true"</c>
+        /// is applied to the input and a visually hidden asterisk is appended to the label.
+        /// Defaults to <c>true</c>.
+        /// </summary>
+        [Parameter] public bool   Required      { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets the accessible label for the tabbable error region, used when
+        /// <see cref="ValidationDisplayMode"/> is set to <see cref="ValidationDisplayMode.TabbableWithHint"/>.
+        /// Defaults to <c>"Errors"</c>.
+        /// </summary>
+        [Parameter] public string ErrorsLabel   { get; set; } = GlobalValues.Default_Errors_label;
+
+        /// <summary>
+        /// Gets or sets the validation display mode which controls how <c>aria-describedby</c>
+        /// is set and whether the error region is tabbable. Defaults to
+        /// <see cref="ValidationDisplayMode.DescribedByWithHint"/>.
+        /// </summary>
+        [Parameter] public ValidationDisplayMode ValidationDisplayMode { get; set; } = ValidationDisplayMode.DescribedByWithHint;
+
+        /// <summary>
+        /// Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
+        /// used as a mask-image icon alongside the tab title. Must begin with <c>--</c>.
+        /// For example: <c>--svg-my-icon</c>.
+        /// </summary>
+        [Parameter] public string? SvgIcon { get; set; } = default;
+
+        [CascadingParameter] private InputErrorsSummary InputErrorsSummary { get; set; }
+
+
+        [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
+
+        /// <summary>
+        /// Gets the <see cref="ElementReference"/> for the underlying <c>&lt;input&gt;</c>
+        /// element, available after the component has rendered.
+        /// </summary>
+        public ElementReference  ControlReference { get; set; }
+
+        private IJSObjectReference? _jSModule = null;
+
+        /// <summary>
+        /// Gets the current list of normalised validation error messages for this field.
+        /// Each message is guaranteed to end with a full stop.
+        /// </summary>
+        protected List<string> InvalidMessages  { get; private set; } = [];
+
+        /// <summary>
+        /// Gets the resolved <c>id</c> attribute value applied to the underlying input element.
+        /// Either the trimmed <see cref="ControlID"/> parameter or a generated <see cref="Guid"/> string.
+        /// </summary>
+        protected string  InputID           { get; private set; } = string.Empty;
+
+        /// <summary>
+        /// Gets the CSS class string applied to the state icon element, reflecting the
+        /// current validation state of the field — neutral, valid, or invalid.
+        /// </summary>
+        protected string  StateIconClasses  { get; private set; } = GlobalValues.Text_Input_State_Icon_Class;
+
+        /// <summary>
+        /// Gets a value indicating whether the input is currently in the aria-disabled state.
+        /// <c>true</c> when <see cref="AriaDisabled"/> is <c>true</c> and <see cref="ReadOnly"/> is <c>false</c>.
+        /// </summary>
+        protected bool    IsDisabled        { get; private set; } = false;
+
+        /// <summary>
+        /// Gets the unique <c>id</c> of the hint text element, used to associate hint text
+        /// to the input via <c>aria-describedby</c>.
+        /// </summary>
+        protected string  HintTextID        { get; } = Guid.NewGuid().ToString();
+
+        /// <summary>
+        /// Gets the normalised hint text, guaranteed to end with a full stop, or <c>null</c>
+        /// when <see cref="HintText"/> is null, empty, or whitespace.
+        /// </summary>
+        protected string? HintNormalised    { get; private set; } = default;
+
+        /// <summary>
+        /// Gets the unique <c>id</c> of the error message element, used to associate error
+        /// messages to the input via <c>aria-describedby</c>.
+        /// </summary>
+        protected string  ErrorMessageID    { get; } = Guid.NewGuid().ToString();
+
+        /// <summary>
+        /// Gets the resolved CSS custom property string for the SVG icon, or <c>null</c>
+        /// when no valid <see cref="SvgIcon"/> has been set.
+        /// </summary>
+        protected string? SvgVariable       { get; private set; } = null;
+
+        /// <summary>
+        /// Gets a value indicating whether the field currently has validation errors.
+        /// </summary>
+        protected bool    HasErrors         { get; private set; } = false;
+
+        /// <summary>
+        /// Gets the space-separated <c>id</c> value(s) applied to <c>aria-describedby</c>
+        /// on the input element, computed from the current validation state and
+        /// <see cref="ValidationDisplayMode"/>.
+        /// </summary>
+        protected string? AriaDescribedByID { get; private set; } = String.Empty;
+
+        /// <summary>
+        /// Gets the resolved accessible label text for the error region, derived from
+        /// <see cref="ErrorsLabel"/> or the default value when not set.
+        /// </summary>
+        protected string  ErrorsText        { get; private set; } = GlobalValues.Default_Errors_label;
+
+        /// <summary>
+        /// Gets the label name for the field when set, or the <see cref="Microsoft.AspNetCore.Components.Forms.FieldIdentifier.FieldName"/>
+        /// as a fallback.
+        /// </summary>
+        protected string LabelNameText { get; private set; } = default!;
+
+        /// <summary>
+        /// Gets a value indicating whether the error region is rendered as a tabbable
+        /// <c>role="region"</c> element. <c>true</c> when <see cref="ValidationDisplayMode"/>
+        /// is <see cref="ValidationDisplayMode.TabbableWithHint"/>.
+        /// </summary>
+        protected bool   TabbableError      { get; set; } = false;
+
+        /// <summary>
+        /// Gets a value indicating whether <typeparamref name="TValue"/> is a nullable type.
+        /// </summary>
+        protected bool   IsNullableType     { get; }
+
+        /// <summary>
+        /// Gets the underlying non-nullable <see cref="Type"/> of <typeparamref name="TValue"/>,
+        /// stripping any nullable wrapper. For example, returns <c>typeof(int)</c> for both
+        /// <c>int</c> and <c>int?</c>.
+        /// </summary>
+        protected Type   DataType           { get; }
+
+        private bool _disposed                  = false;
+        private bool _disabledHandlerRegistered = false;
+
+
+        /// <summary>
+        /// Initialises the <see cref="IsNullableType"/> and <see cref="DataType"/> properties
+        /// by inspecting <typeparamref name="TValue"/> for a nullable wrapper type.
+        /// </summary>
+        protected InputTypeBase()
+        {
+            IsNullableType = Nullable.GetUnderlyingType(typeof(TValue)) != null;
+            DataType       = Nullable.GetUnderlyingType(typeof(TValue)) ?? typeof(TValue);
+        }
+
+
+        /// <summary>
+        /// Updates component state on each parameter change, resolving the disabled state,
+        /// SVG variable, normalised hint text, <c>aria-describedby</c> value, and tabbable
+        /// error flag.
+        /// </summary>
+        protected override void OnParametersSet()
+        {
+
+            IsDisabled = AriaDisabled && !ReadOnly;
+
+            SvgVariable = CheckSetSvgVariable(SvgIcon);
+
+            HintNormalised = String.IsNullOrWhiteSpace(HintText) ? null : (HintText.EndsWith('.') ? HintText : HintText.Trim() + ".");
+
+            AriaDescribedByID = SetDescribedBy(HasErrors,ValidationDisplayMode);
+
+            TabbableError = (ValidationDisplayMode == ValidationDisplayMode.TabbableWithHint);
+
+            base.OnParametersSet();
+        }
+
+        private string? SetDescribedBy(bool hasErrors, ValidationDisplayMode validationMode)
+
+            => (hasErrors, validationMode) switch
+            {
+                (true,  ValidationDisplayMode.DescribedByWithHint)       => $"{ErrorMessageID} {HintTextID}",
+                (true,  ValidationDisplayMode.DescribedByHintSuppressed) => ErrorMessageID,
+                (true,  ValidationDisplayMode.TabbableWithHint)          => HintTextID,
+                (false, ValidationDisplayMode.DescribedByWithHint)       => HintTextID,
+                (false, ValidationDisplayMode.DescribedByHintSuppressed) => HintTextID,
+                (false, ValidationDisplayMode.TabbableWithHint)          => HintTextID,
+
+
+                _ => HintTextID 
+            };
+
+        /// <summary>
+        /// Resolves the input ID, display name text, and errors text from parameters, and
+        /// subscribes to <see cref="EditContext.OnValidationStateChanged"/> and
+        /// <see cref="EditContext.OnValidationRequested"/>.
+        /// </summary>
+        protected override void OnInitialized()
+        {
+            base.OnInitialized(); 
+
+            InputID        = String.IsNullOrWhiteSpace(ControlID) ? Guid.NewGuid().ToString() : ControlID.Trim();
+            LabelNameText  = String.IsNullOrWhiteSpace(LabelText) ? FieldIdentifier.FieldName : LabelText.Trim();
+            ErrorsText     = String.IsNullOrWhiteSpace(ErrorsLabel) ? GlobalValues.Default_Errors_label : ErrorsLabel.Trim();
+
+            InputErrorsSummary?.AddToInputMap(this.FieldIdentifier,LabelNameText, InputID);
+
+            EditContext.OnValidationStateChanged += EditContext_OnValidationStateChanged;
+            EditContext.OnValidationRequested += EditContext_OnValidationRequested;
+
+        }
+
+        private void EditContext_OnValidationRequested(object? sender, ValidationRequestedEventArgs e)
+        {
+            StateIconClasses  = GetStateIconClasses(EditContext.GetValidationMessages(FieldIdentifier).Any());
+            InvalidMessages   = GetValidationMessages();
+            HasErrors         = InvalidMessages.Count > 0;
+            AriaDescribedByID = SetDescribedBy(HasErrors, ValidationDisplayMode);
+        }
+        private void EditContext_OnValidationStateChanged(object? sender, ValidationStateChangedEventArgs e)
+        
+            => OnValidationStateChanged();
+
+        /// <summary>
+        /// Called when the <see cref="EditContext"/> raises a validation state change.
+        /// Clears validation state if the field is unmodified and has no validation messages,
+        /// otherwise updates <see cref="InvalidMessages"/>, <see cref="HasErrors"/>, 
+        /// <see cref="StateIconClasses"/>, and <see cref="AriaDescribedByID"/>.
+        /// </summary>
+        protected virtual void OnValidationStateChanged()
+        {
+            var hasMessages = EditContext.GetValidationMessages(FieldIdentifier).Any();
+
+            if (!EditContext.IsModified(FieldIdentifier) && !hasMessages)
+            {
+                InvalidMessages = [];
+                HasErrors = false;
+                StateIconClasses = GlobalValues.Text_Input_State_Icon_Class;
+                AriaDescribedByID = SetDescribedBy(false, ValidationDisplayMode);
+                return;
+            }
+
+            StateIconClasses = GetStateIconClasses(hasMessages);
+            InvalidMessages = hasMessages ? GetValidationMessages() : [];
+            HasErrors = InvalidMessages.Count > 0;
+            AriaDescribedByID = SetDescribedBy(HasErrors, ValidationDisplayMode);
+
+
+        }
+
+        /// <summary>
+        /// Loads the JavaScript module on first render and registers or unregisters
+        /// aria-disabled keyboard handlers as the <see cref="IsDisabled"/> state changes.
+        /// </summary>
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender) _jSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Inputs_File_Path);
+
+            if (IsDisabled && !_disabledHandlerRegistered)
+            {
+                await RegisterDisabledHandlers();
+                _disabledHandlerRegistered = true;
+                return;
+            }
+
+            if (!IsDisabled && _disabledHandlerRegistered)
+            {
+                await UnRegisterDisabledHandlers();
+                _disabledHandlerRegistered = false;
+            }
+
+        }
+
+        private static string GetStateIconClasses(bool? invalid)
+        {
+            var classes = GlobalValues.Text_Input_State_Icon_Class;
+
+            return invalid == null ? classes : $"{classes} {(invalid == true ? GlobalValues.Text_Input_State_Icon_Invalid_Modifier : GlobalValues.Text_Input_State_Icon_Valid_Modifier)}";
+        }
+
+        private static string? CheckSetSvgVariable(string? svgIcon)
+        {
+            var iconVariable = String.IsNullOrWhiteSpace(svgIcon)
+                                    ? null
+                                    : svgIcon.TrimStart().StartsWith("--") ? $"var({svgIcon!.Trim().TrimEnd(':')})" : null;
+
+            return iconVariable is null ? null : $"{GlobalValues.Input_Svg_Css_Variable_Name}:{iconVariable};";
+        }
+
+        private List<string> GetValidationMessages() 
+            
+            => [.. EditContext.GetValidationMessages(FieldIdentifier).Where(s => !String.IsNullOrWhiteSpace(s)).Select(s => s.EndsWith('.') ? s : $"{s}.")];
+
+        private async Task RegisterDisabledHandlers()
+        {
+            if (_jSModule is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, ControlReference);
+        }
+        private async Task UnRegisterDisabledHandlers()
+        {
+            if (_jSModule is not null)  await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Unregister_Aria_Disabled_Handlers, ControlReference);
+        }
+
+
+        /// <summary>
+        /// Unsubscribes from <see cref="EditContext.OnValidationStateChanged"/> and
+        /// <see cref="EditContext.OnValidationRequested"/> to prevent memory leaks
+        /// when the component is removed from the render tree.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                EditContext.OnValidationStateChanged -= EditContext_OnValidationStateChanged;
+                EditContext.OnValidationRequested -= EditContext_OnValidationRequested;
+            }
+
+            base.Dispose(disposing);
+        }
+
+        /// <summary>
+        /// Unregisters aria-disabled JavaScript handlers, disposes the JavaScript module
+        /// reference, and calls <see cref="Dispose(bool)"/> to release managed resources.
+        /// </summary>
+        public virtual async ValueTask DisposeAsync()
+        {
+            if (_disposed) return;
+            
+            if (_jSModule is not null)
+            {
+                try
+                {
+                    await UnRegisterDisabledHandlers();
+                    await _jSModule.DisposeAsync();
+                }
+                catch { }
+            }
+            Dispose(true);
+
+            GC.SuppressFinalize(this);
+            _disposed = true;
+        }
+    }
+}
+
+--- END FILE: InputTypeBase[T].cs ---
+
+--- START FILE: NumericInput.razor.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Components\NumericInput.razor.cs) ---
+using BlazorRamp.Inputs.Common.Constants;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.JSInterop;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Text.RegularExpressions;
+
+namespace BlazorRamp.Inputs.Components
+{
+
+    /// <summary>
+    /// Renders an accessible numeric input supporting <c>int</c>, <c>long</c>, <c>decimal</c>,
+    /// <c>double</c>, and <c>float</c> value types, as well as their nullable equivalents.
+    /// Uses <c>type="text"</c> with an appropriate <c>inputmode</c> attribute to avoid browser
+    /// spinner controls whilst providing the correct mobile keyboard. Parsing uses
+    /// <see cref="System.Globalization.NumberStyles.Any"/> with <c>CultureInfo.CurrentCulture</c>
+    /// to correctly handle locale-specific decimal and thousands separators.
+    /// Inherits validation state management, hint text, aria-disabled support, and SVG
+    /// icon support from <see cref="InputTypeBase{TValue}"/>.
+    /// </summary>
+    public class NumericTypeInput<TValue> : InputTypeBase<TValue> , IAsyncDisposable
+    {
+
+        /// <summary>
+        /// Gets or sets whether the input value is updated on every keystroke via the
+        /// <c>oninput</c> event. When <c>false</c> the value updates on <c>onchange</c>
+        /// (i.e. when the field loses focus). Defaults to <c>false</c>.
+        /// </summary>
+        [Parameter] public bool     UpdateOnInput   { get; set; } = false;
+
+        /// <summary>
+        /// Gets or sets a .NET numeric format string applied to the display value when
+        /// the input loses focus. For example <c>"F2"</c> displays two decimal places.
+        /// Only applies to non-integer types. When the field is focused the raw unformatted
+        /// value is shown to allow free editing. When null or empty no formatting is applied.
+        /// </summary>
+        [Parameter] public string?  Format          { get; set; } = null;
+
+        /// <summary>
+        /// Gets or sets the error message displayed when the input value cannot be parsed
+        /// to <typeparamref name="TValue"/>. The message is prefixed with the field's
+        /// display name (label text). When null, empty, or whitespace defaults to <c>"Invalid format."</c>.
+        /// </summary>
+        [Parameter] public string ParseErrorMessage { get; set; } = GlobalValues.Input_Parse_Error_Message;
+
+        /// <summary>
+        /// Gets or sets the text/data alignment in the input. Defaults to <see cref="DataPosition.End"/>.
+        /// </summary>
+        [Parameter] public DataPosition DataPosition { get; set; } = DataPosition.End;
+
+        [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
+
+        private IJSObjectReference? _jSModule = null;
+
+        /// <summary>
+        /// Gets the resolved CSS class string applied to the root element of the numeric input,
+        /// including any additional classes passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.
+        /// </summary>
+        protected string NumericInputClasses { get; private set; } = String.Empty;
+
+        /// <summary>
+        /// Gets the <c>inputmode</c> attribute value applied to the input element.
+        /// <c>"numeric"</c> for integer types, <c>"decimal"</c> for decimal, double, and float types.
+        /// </summary>
+        protected string InputMode           { get; private set; } = NumericInputModeType.Numeric.ToString().ToLower();
+
+        /// <summary>
+        /// Gets the resolved parse error message, derived from <see cref="ParseErrorMessage"/>
+        /// or the default value when not set.
+        /// </summary>
+        protected string ParseErrorsText     { get; private set; } = GlobalValues.Input_Parse_Error_Message;
+
+        /// <summary>
+        /// Tracks the raw string value currently displayed in the input element, independent
+        /// of the parsed <see cref="InputBase{TValue}.CurrentValue"/>. Used to preserve
+        /// mid-entry display state such as trailing decimal points and formatted values.
+        /// </summary>
+        protected string?     _stringValue = null;
+        private readonly bool _isWholeNumber = true;
+        private TValue? _lastParsedValue = default;
+
+        /// <summary>
+        /// Initialises <c>_isWholeNumber</c> by inspecting <see cref="InputTypeBase{TValue}.DataType"/>
+        /// to determine whether the numeric type supports decimal places.
+        /// </summary>
+        public NumericTypeInput()
+        {
+            _isWholeNumber = !(base.DataType == typeof(decimal) || base.DataType == typeof(double) || base.DataType == typeof(float));
+        }
+
+        /// <summary>
+        /// Updates the numeric input CSS classes and synchronises <see cref="_stringValue"/>
+        /// with the formatted or raw current value when <see cref="InputBase{TValue}.CurrentValue"/>
+        /// changes externally.
+        /// </summary>
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet();
+            NumericInputClasses = GetInputClasses(AdditionalAttributes);
+
+            if (!Equals(CurrentValue, _lastParsedValue))
+            {
+                _lastParsedValue = CurrentValue;
+
+                _stringValue = !string.IsNullOrWhiteSpace(Format) && CurrentValue is not null && !_isWholeNumber && !HasErrors
+                           ? string.Format(CultureInfo.CurrentCulture, $"{{0:{Format}}}", CurrentValue)
+                           : CurrentValueAsString;
+            }
+        }
+
+        /// <summary>
+        /// Resolves the <c>inputmode</c> attribute and parse error text from parameters.
+        /// </summary>
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+            InputMode = (base.DataType == typeof(int) || base.DataType == typeof(long)) 
+                        ? NumericInputModeType.Numeric.ToString().ToLower() 
+                        : NumericInputModeType.Decimal.ToString().ToLower();
+
+            ParseErrorsText = String.IsNullOrWhiteSpace(ParseErrorMessage) ? GlobalValues.Input_Parse_Error_Message : ParseErrorMessage.Trim();
+
+            _stringValue = !string.IsNullOrWhiteSpace(Format) && CurrentValue is not null && !_isWholeNumber
+                   ? string.Format(CultureInfo.CurrentCulture, $"{{0:{Format}}}", CurrentValue)
+                   : CurrentValueAsString;
+
+            _lastParsedValue = CurrentValue;
+        }
+
+        /// <summary>
+        /// Loads the numeric JavaScript module on first render and registers the numeric
+        /// input handlers for character stripping.
+        /// </summary>
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                 _jSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Inputs_File_Path);
+                
+                if (_jSModule is not null ) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Register_Numeric_Handlers, ControlReference, _isWholeNumber);
+            }
+        }
+
+
+        /// <summary>
+        /// Attempts to parse <paramref name="value"/> to <typeparamref name="TValue"/> using
+        /// <see cref="System.Globalization.NumberStyles.Any"/> with <c>CultureInfo.CurrentCulture</c>.
+        /// Supports <c>int</c>, <c>long</c>, <c>decimal</c>, <c>double</c>, and <c>float</c>
+        /// and their nullable equivalents. Returns <c>true</c> on success. On failure sets
+        /// <paramref name="validationErrorMessage"/> to the resolved parse error message
+        /// prefixed with the field display name.
+        /// </summary>
+        protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string? validationErrorMessage)
+        {
+            validationErrorMessage = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                result = default!;//stop the green squiggle
+                return true;
+            }
+
+
+            switch (base.DataType)
+            {
+                case Type t when t == typeof(int)     && int.TryParse(value, NumberStyles.Any, null, out int intValue):             { result = (TValue)(object)intValue;     return true; }
+                case Type t when t == typeof(long)    && long.TryParse(value, NumberStyles.Any, null, out long longValue):          { result = (TValue)(object)longValue;    return true; }
+                case Type t when t == typeof(decimal) && decimal.TryParse(value, NumberStyles.Any, null, out decimal decimalValue): { result = (TValue)(object)decimalValue; return true; }
+                case Type t when t == typeof(double)  && double.TryParse(value, NumberStyles.Any, null, out double doubleValue):    { result = (TValue)(object)doubleValue; return true; }
+                case Type t when t == typeof(float)   && float.TryParse(value, NumberStyles.Any, null, out float floatValue):       { result = (TValue)(object)floatValue; return true; }
+
+            }
+
+            result = default;
+            validationErrorMessage = String.Concat(base.LabelNameText.TrimEnd(':').Trim(), " - ", ParseErrorsText);
+            return false;
+        }
+
+
+        /// <summary>
+        /// Handles the binding set event, updating <see cref="InputBase{TValue}.CurrentValueAsString"/>
+        /// and <see cref="_stringValue"/> with the raw input value. Does nothing when
+        /// <see cref="InputTypeBase{TValue}.IsDisabled"/> is <c>true</c>.
+        /// </summary>
+        protected void HandlePropertySet(string? value)
+        {
+            if (IsDisabled) return;
+
+            CurrentValueAsString = _stringValue = value;
+            
+            _lastParsedValue = CurrentValue;
+
+        }
+
+        /// <summary>
+        /// Handles the input blur event. Sets <see cref="InputBase{TValue}.CurrentValue"/> to
+        /// <c>default</c> when the field is cleared, and applies the <see cref="Format"/> string
+        /// to the display value via JavaScript interop when a format is set and the type is
+        /// non-integer.
+        /// </summary>
+        protected async Task HandleOnBlur()
+        {
+
+            if (string.IsNullOrWhiteSpace(_stringValue)) CurrentValue = default;
+
+            if (!_isWholeNumber && !string.IsNullOrWhiteSpace(Format) && CurrentValue is not null && _jSModule is not null && !HasErrors)
+            {
+                _stringValue = string.Format(CultureInfo.CurrentCulture, $"{{0:{Format}}}", CurrentValue);
+                await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Set_Value, ControlReference, _stringValue);
+                return;
+            }
+
+            _stringValue = CurrentValueAsString;
+        }
+
+
+        /// <summary>
+        /// Builds the CSS class string for the root element by combining the base numeric input
+        /// class with any additional class passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.
+        /// </summary>
+        protected string GetInputClasses(IReadOnlyDictionary<string, object>? additionalAttributes)
+        {
+            var classData = additionalAttributes?.TryGetValue("class", out var extraClass) == true ? extraClass.ToString() : "";
+
+            if (false == String.IsNullOrWhiteSpace(classData))
+            {
+                return $"{@GlobalValues.Numeric_Input_Class} {classData}";
+            }
+
+            return @GlobalValues.Numeric_Input_Class;
+        }
+
+        /// <summary>
+        /// Returns a filtered copy of <see cref="InputBase{TValue}.AdditionalAttributes"/> with
+        /// the <c>class</c> key removed, so additional attributes can be applied to the input
+        /// element without duplicating the class handling.
+        /// </summary>
+        protected IReadOnlyDictionary<string, object>? GetAttributes(IReadOnlyDictionary<string, object>? additionalAttributes)
+
+            => additionalAttributes?.Where(kv => kv.Key != "class").ToDictionary();
+
+        /// <summary>
+        /// Unregisters numeric JavaScript handlers, disposes the JavaScript module reference,
+        /// and calls <see cref="InputTypeBase{TValue}.DisposeAsync"/> to release base resources.
+        /// </summary>
+        public override async ValueTask DisposeAsync()
+        {
+            if (_jSModule is not null)
+            {
+                try
+                {
+                    await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Unregister_Numeric_Handlers, ControlReference, _isWholeNumber);
+                    await _jSModule.DisposeAsync();
+                }
+                catch { }
+            }
+            await base.DisposeAsync();
+        }
+
+    }
+}
+
+--- END FILE: NumericInput.razor.cs ---
+
+--- START FILE: PasswordInput.razor.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Components\PasswordInput.razor.cs) ---
+using BlazorRamp.Inputs.Common.Constants;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
+using System.Diagnostics.CodeAnalysis;
+
+namespace BlazorRamp.Inputs.Components;
+
+/// <summary>
+/// Renders an accessible password input with a show/hide password toggle button.
+/// The toggle uses <c>aria-pressed</c> to communicate its state to screen readers.
+/// Inherits validation state management, hint text, aria-disabled support, and SVG
+/// icon support from <see cref="InputTypeBase{TValue}"/>.
+/// </summary>
+public class PasswordTypeInput : InputTypeBase<string>
+{
+    /// <summary>
+    /// Gets or sets whether the input value is updated on every keystroke via the
+    /// <c>oninput</c> event. When <c>false</c> the value updates on <c>onchange</c>
+    /// (i.e. when the field loses focus). Defaults to <c>false</c>.
+    /// </summary>
+    [Parameter] public bool                 UpdateOnInput       { get; set; } = false;
+
+    /// <summary>
+    /// Gets or sets the visible label for the show password toggle button.
+    /// When null, empty, or whitespace defaults to <c>"Show Password"</c>.
+    /// </summary>
+    [Parameter] public string               ShowPasswordText    { get; set; } = default!;
+
+    /// <summary>
+    /// Gets or sets the autocomplete hint applied to the password field. Maps to the
+    /// HTML <c>autocomplete</c> attribute. Use <see cref="PasswordAutoComplete.CurrentPassword"/>
+    /// for login forms and <see cref="PasswordAutoComplete.NewPassword"/> for registration
+    /// or change password forms. Defaults to <see cref="PasswordAutoComplete.CurrentPassword"/>.
+    /// </summary>
+    [Parameter] public PasswordAutoComplete PasswordAutoComplete { get; set; } = PasswordAutoComplete.CurrentPassword;
+
+    /// <summary>
+    /// Gets or sets the text/data alignment in the input. Defaults to <see cref="DataPosition.Start"/>.
+    /// </summary>
+    [Parameter] public DataPosition DataPosition { get; set; } = DataPosition.Start;
+
+
+    /// <summary>
+    /// Gets the resolved CSS class string applied to the root element of the password input,
+    /// including any additional classes passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.
+    /// </summary>
+    protected string PasswordInputClasses { get; private set; } = String.Empty;
+
+    /// <summary>
+    /// Gets the current HTML input type, either <c>"password"</c> or <c>"text"</c>,
+    /// toggled by the show password button.
+    /// </summary>
+    protected string InputType            { get; private set; } = "password";
+
+    /// <summary>
+    /// Gets the resolved show password button label, derived from <see cref="ShowPasswordText"/>
+    /// or the default value when not set.
+    /// </summary>
+    protected string ShowText             { get; private set; } = GlobalValues.Password_Input_Show_Password_Text;
+
+    /// <summary>
+    /// Gets the resolved <c>autocomplete</c> attribute value, either <c>"current-password"</c>
+    /// or <c>"new-password"</c>, derived from <see cref="PasswordAutoComplete"/>.
+    /// </summary>
+    protected string AutoComplete { get; private set; } = "current-password";
+
+
+    /// <summary>
+    /// Updates the password input CSS classes and resolves the <c>autocomplete</c>
+    /// attribute value from <see cref="PasswordAutoComplete"/>.
+    /// </summary>
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        PasswordInputClasses = GetInputClasses(base.AdditionalAttributes);
+        AutoComplete = PasswordAutoComplete == PasswordAutoComplete.CurrentPassword ? "current-password" : "new-password";
+    }
+
+    /// <summary>
+    /// Resolves the show password button label from <see cref="ShowPasswordText"/>.
+    /// </summary>
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        ShowText = String.IsNullOrWhiteSpace(ShowPasswordText) ? GlobalValues.Password_Input_Show_Password_Text : ShowPasswordText.Trim();
+
+    }
+
+
+    /// <summary>
+    /// Always returns <c>true</c> passing the raw string value through unchanged.
+    /// Validation is handled entirely by the consuming application's validator.
+    /// </summary>
+    protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out string result, [NotNullWhen(false)] out string? validationErrorMessage)
+    {
+        validationErrorMessage = String.Empty;
+
+        result = value!;
+
+        return true;
+    }
+
+    /// <summary>
+    /// Toggles the input type between <c>"password"</c> and <c>"text"</c> to show
+    /// or hide the password value.
+    /// </summary>
+    protected void ToggleShowPassword()
+
+        => InputType = InputType == "text" ? "password" : "text";
+
+    /// <summary>
+    /// Handles the binding set event, updating <see cref="InputBase{TValue}.CurrentValueAsString"/>
+    /// with the raw input value. Does nothing when <see cref="InputTypeBase{TValue}.IsDisabled"/>
+    /// is <c>true</c>.
+    /// </summary>
+    protected void HandlePropertySet(string? value)
+    {
+        if (base.IsDisabled) return;
+
+        CurrentValueAsString = value;
+    }
+
+    /// <summary>
+    /// Builds the CSS class string for the root element by combining the base password input
+    /// class with any additional class passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.
+    /// </summary>
+    protected static string GetInputClasses(IReadOnlyDictionary<string, object>? additionalAttributes)
+    {
+        var classData = additionalAttributes?.TryGetValue("class", out var extraClass) == true ? extraClass.ToString() : "";
+
+        if (false == String.IsNullOrWhiteSpace(classData))
+        {
+            return $"{@GlobalValues.Password_Input_Class} {classData}";
+        }
+
+        return @GlobalValues.Password_Input_Class;
+    }
+
+    /// <summary>
+    /// Returns a filtered copy of <see cref="InputBase{TValue}.AdditionalAttributes"/> with
+    /// the <c>class</c> key removed, so additional attributes can be applied to the input
+    /// element without duplicating the class handling.
+    /// </summary>
+    protected static IReadOnlyDictionary<string, object>? GetAttributes(IReadOnlyDictionary<string, object>? additionalAttributes)
+
+        => additionalAttributes?.Where(kv => kv.Key != "class").ToDictionary();
+
+}
+
+--- END FILE: PasswordInput.razor.cs ---
+
+--- START FILE: TextInput.razor.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Components\TextInput.razor.cs) ---
+using BlazorRamp.Inputs.Common.Constants;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
+using System.Diagnostics.CodeAnalysis;
+
+namespace BlazorRamp.Inputs.Components;
+
+/// <summary>
+/// Renders an accessible text input supporting <c>text</c>, <c>email</c>, <c>url</c>,
+/// and <c>tel</c> input types. Inherits validation state management, hint text,
+/// aria-disabled support, and SVG icon support from <see cref="InputTypeBase{TValue}"/>.
+/// </summary>
+public class TextTypeInput : InputTypeBase<string>
+{
+    /// <summary>
+    /// Gets or sets whether the input value is updated on every keystroke via the
+    /// <c>oninput</c> event. When <c>false</c> the value updates on <c>onchange</c>
+    /// (i.e. when the field loses focus). Defaults to <c>false</c>.
+    /// </summary>
+    [Parameter] public bool          UpdateOnInput  { get; set; } = false;
+
+    /// <summary>
+    /// Gets or sets the HTML input type. Supports <see cref="TextInputType.Text"/>,
+    /// <see cref="TextInputType.Email"/>, <see cref="TextInputType.Url"/>, and
+    /// <see cref="TextInputType.Tel"/>. Defaults to <see cref="TextInputType.Text"/>.
+    /// </summary>
+    [Parameter] public TextInputType TextInputType  { get; set; } = TextInputType.Text;
+
+
+    /// <summary>
+    /// Gets or sets the text/data alignment in the input. Defaults to <see cref="DataPosition.Start"/>.
+    /// </summary>
+    [Parameter] public DataPosition DataPosition { get; set; } = DataPosition.Start;
+
+
+    /// <summary>
+    /// Gets the resolved CSS class string applied to the root element of the text input,
+    /// including any additional classes passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.
+    /// </summary>
+    protected string TextInputClasses { get; private set; } = String.Empty;
+
+    /// <summary>
+    /// Gets the current HTML input type string, resolved from <see cref="TextInputType"/>
+    /// on initialisation. For example <c>"text"</c>, <c>"email"</c>, <c>"url"</c>, or <c>"tel"</c>.
+    /// </summary>
+    protected string InputType    { get; private set; } = "text";
+
+    /// <summary>
+    /// Updates the text input CSS classes on each parameter change.
+    /// </summary>
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        TextInputClasses = GetInputClasses(base.AdditionalAttributes);
+        
+    }
+
+    /// <summary>
+    /// Resolves the HTML input type string from <see cref="TextInputType"/>.
+    /// </summary>
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        InputType = Enum.GetName<TextInputType>(TextInputType)?.ToLower() ?? "text";
+    }
+
+    /// <summary>
+    /// Always returns <c>true</c> passing the raw string value through unchanged.
+    /// Validation is handled entirely by the consuming application's validator.
+    /// </summary>
+    protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out string result, [NotNullWhen(false)] out string? validationErrorMessage)
+    {
+
+        validationErrorMessage = String.Empty;
+
+        result = value!;
+
+        return true;
+    }
+
+    /// <summary>
+    /// Handles the binding set event, updating <see cref="InputBase{TValue}.CurrentValueAsString"/>
+    /// with the raw input value. Does nothing when <see cref="InputTypeBase{TValue}.IsDisabled"/>
+    /// is <c>true</c>.
+    /// </summary>
+    protected void HandlePropertySet(string? value)
+    {
+        if (base.IsDisabled)  return;
+         
+        CurrentValueAsString = value;
+    }
+
+    /// <summary>
+    /// Builds the CSS class string for the root element by combining the base text input
+    /// class with any additional class passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.
+    /// </summary>
+    protected static string GetInputClasses(IReadOnlyDictionary<string, object>? additionalAttributes)
+    {
+        var classData = additionalAttributes?.TryGetValue("class", out var extraClass) == true ? extraClass.ToString() : "";
+
+        if (false == String.IsNullOrWhiteSpace(classData))
+        {
+            return $"{@GlobalValues.Text_Input_Class} {classData}";
+        }
+
+        return @GlobalValues.Text_Input_Class;
+    }
+
+    /// <summary>
+    /// Returns a filtered copy of <see cref="InputBase{TValue}.AdditionalAttributes"/> with
+    /// the <c>class</c> key removed, so additional attributes can be applied to the input
+    /// element without duplicating the class handling.
+    /// </summary>
+    protected static IReadOnlyDictionary<string, object>? GetAttributes(IReadOnlyDictionary<string, object>? additionalAttributes)
+
+        => additionalAttributes?.Where(kv => kv.Key != "class").ToDictionary();
+
+
+}
+
+--- END FILE: TextInput.razor.cs ---
+
+--- START FILE: Enums.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Common\Constants\Enums.cs) ---
+using BlazorRamp.Inputs.Components;
+using BlazorRamp.Inputs.Components.Summaries;
+
+namespace BlazorRamp.Inputs.Common.Constants;
+
+/// <summary>
+/// Specifies the HTML input type for a <see cref="TextInput"/> component.
+/// </summary>
+public enum TextInputType : int
+{
+    /// <summary>
+    /// Plain text input.
+    /// </summary>
+    Text = 0,
+    /// <summary>
+    /// Email address input. Provides email keyboard on mobile devices.
+    /// </summary>
+    Email = 1,
+    /// <summary>
+    /// URL input. Provides URL keyboard on mobile devices.
+    /// </summary>
+    Url = 2,
+    /// <summary>
+    /// Telephone number input. Provides numeric keyboard on mobile devices.
+    /// </summary>
+    Tel = 3
+}
+/// <summary>
+/// Specifies the <c>inputmode</c> attribute value for a <see cref="NumericInput{TValue}"/> component,
+/// controlling the virtual keyboard displayed on mobile devices.
+/// </summary>
+public enum NumericInputModeType : int
+{
+    /// <summary>
+    /// Numeric keypad without a decimal point. Used for integer types.
+    /// </summary>
+    Numeric = 0,
+    /// <summary
+    /// >Numeric keypad with a decimal point. Used for decimal, double, and float types.
+    /// </summary>
+    Decimal = 1
+}
+
+/// <summary>
+/// Controls how validation error messages are associated to the input and whether
+/// the error region is keyboard navigable.
+/// </summary>
+public enum ValidationDisplayMode : int
+{
+    /// <summary>
+    /// Error message ID and hint text ID are both included in <c>aria-describedby</c>.
+    /// Error region is not tabbable. This is the default mode.
+    /// </summary>
+    DescribedByWithHint = 0,
+
+    /// <summary>
+    /// Only the error message ID is included in <c>aria-describedby</c> when errors
+    /// are present, suppressing the hint text association. Error region is not tabbable.
+    /// </summary>
+    DescribedByHintSuppressed = 1,
+
+    /// <summary>
+    /// The error region is rendered as a tabbable <c>role="region"</c> element with a
+    /// <c>tabindex="0"</c>, allowing keyboard users to navigate directly to the errors.
+    /// Only the hint text ID is included in <c>aria-describedby</c>.
+    /// </summary>
+    TabbableWithHint = 2
+}
+/// <summary>
+/// Specifies the <c>autocomplete</c> attribute value for a <see cref="PasswordInput"/> component.
+/// </summary>
+public enum PasswordAutoComplete : int
+{
+    /// <summary>
+    /// Maps to <c>autocomplete="current-password"</c>. Use on login forms to allow
+    /// password managers to fill existing credentials.
+    /// </summary>
+    CurrentPassword = 0,
+
+    /// <summary>
+    /// Maps to <c>autocomplete="new-password"</c>. Use on registration or change
+    /// password forms to prevent password managers from filling existing credentials
+    /// and to prompt generation of a new password.
+    /// </summary>
+    NewPassword = 1
+}
+/// <summary>
+/// Sets the alignment of the text/data in the input.
+/// </summary>
+public enum DataPosition : int{
+
+    /// <summary>
+    /// left aligned in LTR, right aligned in RTL
+    /// </summary>
+    Start= 0,
+    /// <summary>
+    /// The text/data is centred.
+    /// </summary>
+    Centre = 1,
+    /// <summary>
+    /// Right aligned in LTR, left aligned in RTL
+    /// </summary>
+    End = 2
+}
+
+
+/// <summary>
+/// Sets the position of the <see cref="InputErrorsSummary"/> output..
+/// </summary>
+public enum SummaryPosition : int
+{
+    /// <summary>
+    /// Outputs the input validation error summaries before the form fields.
+    /// </summary>
+    Top = 0,
+    /// <summary>
+    /// Outputs the input validation error summaries after the form fields.
+    /// </summary>
+    Bottom = 1
+}
+
+/// <summary>
+/// Specifies the semantic title heading level rendered for the <see cref="InputErrorsSummary"/>.
+/// </summary>
+public enum TitleHeadingLevel : int
+{
+    /// <summary>
+    /// Renders the title text inside an <c>&lt;h2&gt;</c> element.
+    /// </summary>
+    H2 = 2,
+    /// <summary>
+    /// Renders the title text inside an <c>&lt;h3&gt;</c> element.
+    /// </summary>
+    H3 = 3,
+    /// <summary>
+    /// Renders the title text inside an <c>&lt;h4&gt;</c> element.
+    /// </summary>
+    H4 = 4,
+    /// <summary>
+    /// Renders the title text inside an <c>&lt;h5&gt;</c> element.
+    /// </summary>
+    H5 = 5,
+    /// <summary>
+    /// Renders the title text inside an <c>&lt;h6&gt;</c> element.
+    /// </summary>
+    H6 = 6,
+}
+
+/// <summary>
+/// Specifies when the <see cref="InputErrorsSummary"/> should be displayed.
+/// </summary>
+public enum SummaryDisplay: int
+{
+    /// <summary>
+    /// The summary should only be displayed after a model validation has occurred.
+    /// </summary>
+    OnModelValidated = 0,
+
+    /// <summary>
+    /// The summary should always be visible when there are validation errors.
+    /// </summary>
+    Always = 1
+}
+
+--- END FILE: Enums.cs ---
+
+--- START FILE: GlobalValues.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Common\Constants\GlobalValues.cs) ---
+namespace BlazorRamp.Inputs.Common.Constants;
+
+internal class GlobalValues
+{
+
+    public const string JS_Inputs_File_Path                        = "./_content/BlazorRamp.Inputs/assets/js/inputs.js";
+    public const string JS_Inputs_Register_Aria_Disabled_Handlers   = "registerAriaDisabledHandlers";
+    public const string JS_Inputs_Unregister_Aria_Disabled_Handlers = "unregisterAriaDisabledHandlers";
+
+    public const string JS_Inputs_Register_Numeric_Handlers   = "registerNumericHandlers";
+    public const string JS_Inputs_Unregister_Numeric_Handlers = "unregisterNumericHandlers";
+
+    public const string JS_Inputs_Set_Value = "setInputValue";
+    public const string JS_Inputs_Set_Focus = "setFocus";
+
+
+    public const string Input_Parse_Error_Message = "Invalid number.";
+
+
+    public const string Input_Svg_Css_Variable_Name = "--_br-svg-input-icon";
+
+    public const string Text_Input_Class                = "br-text-input";
+    public const string Text_Input_Label_Class          = $"{Text_Input_Class}__label";
+    public const string Text_Input_Hint_Class           = $"{Text_Input_Class}__hint";
+    public const string Text_Input_Error_Wrapper_Class  = $"{Text_Input_Class}__error-wrapper";
+    public const string Text_Input_Error_Class          = $"{Text_Input_Class}__error";
+    public const string Text_Input_Asterisk_Class       = $"{Text_Input_Class}__asterisk";
+    public const string Text_Input_Field_Class          = $"{Text_Input_Class}__field";
+    public const string Text_Input_Icon_Class           = $"{Text_Input_Class}__icon";
+    public const string Text_Input_State_Icon_Class     = $"{Text_Input_Class}__state-icon";
+
+    public const string Text_Input_State_Icon_Valid_Modifier   = $"{Text_Input_State_Icon_Class}--valid";
+    public const string Text_Input_State_Icon_Invalid_Modifier = $"{Text_Input_State_Icon_Class}--invalid";
+
+   
+
+
+    public const string Password_Input_Class                = "br-password-input";
+    public const string Password_Input_Label_Class          = $"{Password_Input_Class}__label";
+    public const string Password_Input_Hint_Class           = $"{Password_Input_Class}__hint";
+    public const string Password_Input_Error_Wrapper_Class  = $"{Password_Input_Class}__error-wrapper";
+    public const string Password_Input_Error_Class          = $"{Password_Input_Class}__error";
+    public const string Password_Input_Asterisk_Class       = $"{Password_Input_Class}__asterisk";
+    public const string Password_Input_Field_Class          = $"{Password_Input_Class}__field";
+    public const string Password_Input_Show_Password_Class  = $"{Password_Input_Class}__show-password";
+    public const string Password_Input_Icon_Class           = $"{Password_Input_Class}__icon";
+    public const string Password_Input_State_Icon_Class     = $"{Password_Input_Class}__state-icon";
+
+    public const string Password_Input_State_Icon_Valid_Modifier   = $"{Password_Input_State_Icon_Class}--valid";
+    public const string Password_Input_State_Icon_Invalid_Modifier = $"{Password_Input_State_Icon_Class}--invalid";
+
+    public const string Password_Input_Show_Password_Text    = "Show Password";
+
+    public const string Numeric_Input_Class                 = "br-numeric-input";
+    public const string Numeric_Input_Label_Class           = $"{Numeric_Input_Class}__label";
+    public const string Numeric_Input_Hint_Class            = $"{Numeric_Input_Class}__hint";
+    public const string Numeric_Input_Error_Wrapper_Class   = $"{Numeric_Input_Class}__error-wrapper";
+    public const string Numeric_Input_Error_Class           = $"{Numeric_Input_Class}__error";
+    public const string Numeric_Input_Asterisk_Class        = $"{Numeric_Input_Class}__asterisk";
+    public const string Numeric_Input_Field_Class           = $"{Numeric_Input_Class}__field";
+    public const string Numeric_Input_Icon_Class            = $"{Numeric_Input_Class}__icon";
+    public const string Numeric_Input_State_Icon_Class      = $"{Numeric_Input_Class}__state-icon";
+
+    public const string Numeric_Input_State_Icon_Valid_Modifier   = $"{Numeric_Input_State_Icon_Class}--valid";
+    public const string Numeric_Input_State_Icon_Invalid_Modifier = $"{Numeric_Input_State_Icon_Class}--invalid";
+
+
+    public const string Input_Errors_Summary_Class = "br-input-errors-summary";
+
+    public const string Input_Errors_Summary_No_Errors_Modifier = $"{Input_Errors_Summary_Class}--no-errors";
+
+
+    public const string Input_Errors_Summary_Title = "Input Errors Summary";
+
+    public const string Default_Errors_label = "Errors";
+
+}
+
+--- END FILE: GlobalValues.cs ---
+
+--- START FILE: ErrorSummaryItem.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Common\Models\ErrorSummaryItem.cs) ---
+namespace BlazorRamp.Inputs.Common.Models;
+
+internal record ErrorSummaryItem(List<string> ValidationErrors, string DisplayName, string ControlID);
+
+
+--- END FILE: ErrorSummaryItem.cs ---
+
+--- START FILE: InputMapItem.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Common\Models\InputMapItem.cs) ---
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BlazorRamp.Inputs.Common.Models;
+
+internal record class InputMapItem(string DisplayName, string ControlID);
+
+
+--- END FILE: InputMapItem.cs ---
+
+--- START FILE: InputErrorsSummary.razor.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Components\Summaries\InputErrorsSummary.razor.cs) ---
+using BlazorRamp.Inputs.Common.Constants;
+using BlazorRamp.Inputs.Common.Models;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.JSInterop;
+using System.Diagnostics.CodeAnalysis;
+
+namespace BlazorRamp.Inputs.Components.Summaries;
+
+public partial class InputErrorsSummary : IAsyncDisposable
+{
+    [CascadingParameter] private EditContext CurrentEditContext { get; set; } = default!;
+    [Parameter] public RenderFragment?   ChildContent           { get; set; } = default!;
+    [Parameter] public string            Title                  { get; set; } = GlobalValues.Input_Errors_Summary_Title;
+    [Parameter] public SummaryPosition   SummaryPosition        { get; set; } = SummaryPosition.Top;
+    [Parameter] public SummaryDisplay   SummaryDisplay          { get; set; } = SummaryDisplay.OnModelValidated;
+    [Parameter] public TitleHeadingLevel TitleHeadingLevel      { get; set; } = TitleHeadingLevel.H2;
+
+
+    [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
+
+    private IJSObjectReference? _jSModule = null;
+
+    private string _headingID      = Guid.NewGuid().ToString();
+    private string _headingTitle   = GlobalValues.Input_Errors_Summary_Title;
+    private bool   _modelValidated = false;
+
+    private readonly Dictionary<FieldIdentifier, InputMapItem> _inputMap    = [];
+    private readonly List<ErrorSummaryItem>                   _summaryItems = [];
+
+    protected override void OnParametersSet()
+    {
+        _headingTitle = String.IsNullOrWhiteSpace(Title) ? GlobalValues.Input_Errors_Summary_Title : Title.Trim();
+    }
+
+    protected override void OnInitialized()
+    {
+        if(CurrentEditContext is not null)
+        {
+            CurrentEditContext.OnValidationRequested += CurrentEditContext_OnValidationRequested;
+            CurrentEditContext.OnValidationStateChanged += CurrentEditContext_OnValidationStateChanged;
+        }
+     
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender) _jSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Inputs_File_Path);
+    }
+
+
+    private async Task FocusInput(string controlID)
+    {
+        if (_jSModule is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Set_Focus, controlID);
+    }
+
+    private void CurrentEditContext_OnValidationStateChanged(object? sender, ValidationStateChangedEventArgs e)
+    {
+        _summaryItems.Clear();
+        _summaryItems.AddRange(BuildSummaryList(_inputMap, CurrentEditContext));
+    }
+
+    private void CurrentEditContext_OnValidationRequested(object? sender, ValidationRequestedEventArgs e)
+    {
+        _modelValidated = true;
+        _summaryItems.Clear();
+        _summaryItems.AddRange(BuildSummaryList(_inputMap, CurrentEditContext));
+    }
+
+    internal void AddToInputMap(FieldIdentifier fieldIdentifier, string displayName, string controlID)
+    {
+        if (false == _inputMap.ContainsKey(fieldIdentifier)) _inputMap[fieldIdentifier] = new(displayName,controlID);
+    }
+
+    private List<ErrorSummaryItem> BuildSummaryList(Dictionary<FieldIdentifier, InputMapItem> inputMap, EditContext currentContext)
+    {
+        List<ErrorSummaryItem> summaryList = [];
+        
+        foreach(var key in inputMap.Keys)
+        {
+            var errorList = currentContext.GetValidationMessages(key).ToList();
+            if (errorList.Count > 0)
+            {
+                var inputMapItem = inputMap[key];
+                summaryList.Add(new ErrorSummaryItem(errorList.ToList(), inputMapItem.DisplayName, inputMapItem.ControlID));
+            }
+        }
+
+        return summaryList;
+    }
+
+    private string GetSectionClasses(int errorCount, SummaryDisplay summaryDisplay, bool modelValidated)
+    
+        => (errorCount, summaryDisplay, modelValidated) switch
+        {
+            _ when errorCount > 0 && summaryDisplay == SummaryDisplay.Always                        
+                => GlobalValues.Input_Errors_Summary_Class,
+            _ when errorCount > 0 && summaryDisplay == SummaryDisplay.OnModelValidated && modelValidated    
+                => GlobalValues.Input_Errors_Summary_Class,
+            _   => $"{GlobalValues.Input_Errors_Summary_Class} {GlobalValues.Input_Errors_Summary_No_Errors_Modifier}"
+        };
+    
+
+
+
+
+    public async ValueTask DisposeAsync()
+    {
+        try
+        {
+            if (CurrentEditContext is not null)
+            {
+                CurrentEditContext.OnValidationRequested -= CurrentEditContext_OnValidationRequested;
+                CurrentEditContext.OnValidationStateChanged -= CurrentEditContext_OnValidationStateChanged;
+            }
+            if (_jSModule is not null) await _jSModule.DisposeAsync();
+        }
+        catch { }
+    }
+}
+
+--- END FILE: InputErrorsSummary.razor.cs ---
+
+--- START FILE: .NETCoreApp,Version=v10.0.AssemblyAttributes.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Debug\net10.0\.NETCoreApp,Version=v10.0.AssemblyAttributes.cs) ---
+// <autogenerated />
+using System;
+using System.Reflection;
+[assembly: global::System.Runtime.Versioning.TargetFrameworkAttribute(".NETCoreApp,Version=v10.0", FrameworkDisplayName = ".NET 10.0")]
+
+--- END FILE: .NETCoreApp,Version=v10.0.AssemblyAttributes.cs ---
+
+--- START FILE: BlazorRamp.Inputs.AssemblyInfo.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Debug\net10.0\BlazorRamp.Inputs.AssemblyInfo.cs) ---
+//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//     Runtime Version:4.0.30319.42000
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+using System;
+using System.Reflection;
+
+[assembly: System.Reflection.AssemblyCompanyAttribute("Paul Kent")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright (c) 2026 Paul Kent and BlazorRamp Contributors")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("Base set of the simple inputs for the Blazor Ramp ecosystem")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.8+5daae57c7467cf8d51c16744782399e8c146ef1b")]
+[assembly: System.Reflection.AssemblyProductAttribute("BlazorRamp.Inputs")]
+[assembly: System.Reflection.AssemblyTitleAttribute("BlazorRamp.Inputs")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.0.8")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/BlazorRamp/Components")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo(@"BlazorRamp.Inputs.Tests.Unit, PublicKey=002400000480000094000000060200000024000052534131000400000100010091764439b057aa648d9b6fae0af179aacf637c9e9eb0c53eb2d2480ebc4eadc7ad2cc8ddaca110281c6da8f466eea56e22ce7f6cada84d657f1b2e4a6c5169a03c7e272c3bc7b14930364f0c1a5c5a75a8631dd303454f3569bf32a95db99132838602a24d64b3b92124827682ee19d6df5921a6bc4bd77a999b26c9420337df")]
+
+// Generated by the MSBuild WriteCodeFragment class.
+
+
+--- END FILE: BlazorRamp.Inputs.AssemblyInfo.cs ---
+
+--- START FILE: BlazorRamp.Inputs.GlobalUsings.g.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Debug\net10.0\BlazorRamp.Inputs.GlobalUsings.g.cs) ---
+// <auto-generated/>
+global using Microsoft.Extensions.Validation.Embedded;
+global using System;
+global using System.Collections.Generic;
+global using System.IO;
+global using System.Linq;
+global using System.Net.Http;
+global using System.Threading;
+global using System.Threading.Tasks;
+
+--- END FILE: BlazorRamp.Inputs.GlobalUsings.g.cs ---
+
+--- START FILE: EmbeddedAttribute.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Debug\net10.0\EmbeddedAttribute.cs) ---
+// <auto-generated/>
+namespace Microsoft.CodeAnalysis
+{
+internal sealed partial class EmbeddedAttribute : global::System.Attribute
+{
+}
+}
+
+--- END FILE: EmbeddedAttribute.cs ---
+
+--- START FILE: ValidatableTypeAttribute.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Debug\net10.0\ValidatableTypeAttribute.cs) ---
+// <auto-generated/>
+namespace Microsoft.Extensions.Validation.Embedded
+{
+[global::Microsoft.CodeAnalysis.EmbeddedAttribute]
+[global::System.AttributeUsage(global::System.AttributeTargets.Class)]
+internal sealed class ValidatableTypeAttribute : global::System.Attribute
+{
+}
+}
+
+--- END FILE: ValidatableTypeAttribute.cs ---
+
+--- START FILE: .NETCoreApp,Version=v8.0.AssemblyAttributes.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.cs) ---
+// <autogenerated />
+using System;
+using System.Reflection;
+[assembly: global::System.Runtime.Versioning.TargetFrameworkAttribute(".NETCoreApp,Version=v8.0", FrameworkDisplayName = ".NET 8.0")]
+
+--- END FILE: .NETCoreApp,Version=v8.0.AssemblyAttributes.cs ---
+
+--- START FILE: BlazorRamp.Inputs.AssemblyInfo.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Debug\net8.0\BlazorRamp.Inputs.AssemblyInfo.cs) ---
+//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//     Runtime Version:4.0.30319.42000
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+using System;
+using System.Reflection;
+
+[assembly: System.Reflection.AssemblyCompanyAttribute("Paul Kent")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright (c) 2026 Paul Kent and BlazorRamp Contributors")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("Base set of the simple inputs for the Blazor Ramp ecosystem")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.8+5daae57c7467cf8d51c16744782399e8c146ef1b")]
+[assembly: System.Reflection.AssemblyProductAttribute("BlazorRamp.Inputs")]
+[assembly: System.Reflection.AssemblyTitleAttribute("BlazorRamp.Inputs")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.0.8")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/BlazorRamp/Components")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo(@"BlazorRamp.Inputs.Tests.Unit, PublicKey=002400000480000094000000060200000024000052534131000400000100010091764439b057aa648d9b6fae0af179aacf637c9e9eb0c53eb2d2480ebc4eadc7ad2cc8ddaca110281c6da8f466eea56e22ce7f6cada84d657f1b2e4a6c5169a03c7e272c3bc7b14930364f0c1a5c5a75a8631dd303454f3569bf32a95db99132838602a24d64b3b92124827682ee19d6df5921a6bc4bd77a999b26c9420337df")]
+
+// Generated by the MSBuild WriteCodeFragment class.
+
+
+--- END FILE: BlazorRamp.Inputs.AssemblyInfo.cs ---
+
+--- START FILE: BlazorRamp.Inputs.GlobalUsings.g.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Debug\net8.0\BlazorRamp.Inputs.GlobalUsings.g.cs) ---
+// <auto-generated/>
+global using System;
+global using System.Collections.Generic;
+global using System.IO;
+global using System.Linq;
+global using System.Net.Http;
+global using System.Threading;
+global using System.Threading.Tasks;
+
+--- END FILE: BlazorRamp.Inputs.GlobalUsings.g.cs ---
+
+--- START FILE: .NETCoreApp,Version=v9.0.AssemblyAttributes.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Debug\net9.0\.NETCoreApp,Version=v9.0.AssemblyAttributes.cs) ---
+// <autogenerated />
+using System;
+using System.Reflection;
+[assembly: global::System.Runtime.Versioning.TargetFrameworkAttribute(".NETCoreApp,Version=v9.0", FrameworkDisplayName = ".NET 9.0")]
+
+--- END FILE: .NETCoreApp,Version=v9.0.AssemblyAttributes.cs ---
+
+--- START FILE: BlazorRamp.Inputs.AssemblyInfo.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Debug\net9.0\BlazorRamp.Inputs.AssemblyInfo.cs) ---
+//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//     Runtime Version:4.0.30319.42000
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+using System;
+using System.Reflection;
+
+[assembly: System.Reflection.AssemblyCompanyAttribute("Paul Kent")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright (c) 2026 Paul Kent and BlazorRamp Contributors")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("Base set of the simple inputs for the Blazor Ramp ecosystem")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.8+5daae57c7467cf8d51c16744782399e8c146ef1b")]
+[assembly: System.Reflection.AssemblyProductAttribute("BlazorRamp.Inputs")]
+[assembly: System.Reflection.AssemblyTitleAttribute("BlazorRamp.Inputs")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.0.8")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/BlazorRamp/Components")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo(@"BlazorRamp.Inputs.Tests.Unit, PublicKey=002400000480000094000000060200000024000052534131000400000100010091764439b057aa648d9b6fae0af179aacf637c9e9eb0c53eb2d2480ebc4eadc7ad2cc8ddaca110281c6da8f466eea56e22ce7f6cada84d657f1b2e4a6c5169a03c7e272c3bc7b14930364f0c1a5c5a75a8631dd303454f3569bf32a95db99132838602a24d64b3b92124827682ee19d6df5921a6bc4bd77a999b26c9420337df")]
+
+// Generated by the MSBuild WriteCodeFragment class.
+
+
+--- END FILE: BlazorRamp.Inputs.AssemblyInfo.cs ---
+
+--- START FILE: BlazorRamp.Inputs.GlobalUsings.g.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Debug\net9.0\BlazorRamp.Inputs.GlobalUsings.g.cs) ---
+// <auto-generated/>
+global using System;
+global using System.Collections.Generic;
+global using System.IO;
+global using System.Linq;
+global using System.Net.Http;
+global using System.Threading;
+global using System.Threading.Tasks;
+
+--- END FILE: BlazorRamp.Inputs.GlobalUsings.g.cs ---
+
+--- START FILE: .NETCoreApp,Version=v10.0.AssemblyAttributes.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Release\net10.0\.NETCoreApp,Version=v10.0.AssemblyAttributes.cs) ---
+// <autogenerated />
+using System;
+using System.Reflection;
+[assembly: global::System.Runtime.Versioning.TargetFrameworkAttribute(".NETCoreApp,Version=v10.0", FrameworkDisplayName = ".NET 10.0")]
+
+--- END FILE: .NETCoreApp,Version=v10.0.AssemblyAttributes.cs ---
+
+--- START FILE: BlazorRamp.Inputs.AssemblyInfo.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Release\net10.0\BlazorRamp.Inputs.AssemblyInfo.cs) ---
+//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//     Runtime Version:4.0.30319.42000
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+using System;
+using System.Reflection;
+
+[assembly: System.Reflection.AssemblyCompanyAttribute("Paul Kent")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
+[assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright (c) 2026 Paul Kent and BlazorRamp Contributors")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("Base set of the simple inputs for the Blazor Ramp ecosystem")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.8+6680d3faf465c3c2250d10e95f3e39a4f7574fa7")]
+[assembly: System.Reflection.AssemblyProductAttribute("BlazorRamp.Inputs")]
+[assembly: System.Reflection.AssemblyTitleAttribute("BlazorRamp.Inputs")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.0.8")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/BlazorRamp/Components")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo(@"BlazorRamp.Inputs.Tests.Unit, PublicKey=002400000480000094000000060200000024000052534131000400000100010091764439b057aa648d9b6fae0af179aacf637c9e9eb0c53eb2d2480ebc4eadc7ad2cc8ddaca110281c6da8f466eea56e22ce7f6cada84d657f1b2e4a6c5169a03c7e272c3bc7b14930364f0c1a5c5a75a8631dd303454f3569bf32a95db99132838602a24d64b3b92124827682ee19d6df5921a6bc4bd77a999b26c9420337df")]
+
+// Generated by the MSBuild WriteCodeFragment class.
+
+
+--- END FILE: BlazorRamp.Inputs.AssemblyInfo.cs ---
+
+--- START FILE: BlazorRamp.Inputs.GlobalUsings.g.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Release\net10.0\BlazorRamp.Inputs.GlobalUsings.g.cs) ---
+// <auto-generated/>
+global using Microsoft.Extensions.Validation.Embedded;
+global using System;
+global using System.Collections.Generic;
+global using System.IO;
+global using System.Linq;
+global using System.Net.Http;
+global using System.Threading;
+global using System.Threading.Tasks;
+
+--- END FILE: BlazorRamp.Inputs.GlobalUsings.g.cs ---
+
+--- START FILE: EmbeddedAttribute.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Release\net10.0\EmbeddedAttribute.cs) ---
+// <auto-generated/>
+namespace Microsoft.CodeAnalysis
+{
+internal sealed partial class EmbeddedAttribute : global::System.Attribute
+{
+}
+}
+
+--- END FILE: EmbeddedAttribute.cs ---
+
+--- START FILE: ValidatableTypeAttribute.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Release\net10.0\ValidatableTypeAttribute.cs) ---
+// <auto-generated/>
+namespace Microsoft.Extensions.Validation.Embedded
+{
+[global::Microsoft.CodeAnalysis.EmbeddedAttribute]
+[global::System.AttributeUsage(global::System.AttributeTargets.Class)]
+internal sealed class ValidatableTypeAttribute : global::System.Attribute
+{
+}
+}
+
+--- END FILE: ValidatableTypeAttribute.cs ---
+
+--- START FILE: .NETCoreApp,Version=v8.0.AssemblyAttributes.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Release\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.cs) ---
+// <autogenerated />
+using System;
+using System.Reflection;
+[assembly: global::System.Runtime.Versioning.TargetFrameworkAttribute(".NETCoreApp,Version=v8.0", FrameworkDisplayName = ".NET 8.0")]
+
+--- END FILE: .NETCoreApp,Version=v8.0.AssemblyAttributes.cs ---
+
+--- START FILE: BlazorRamp.Inputs.AssemblyInfo.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Release\net8.0\BlazorRamp.Inputs.AssemblyInfo.cs) ---
+//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//     Runtime Version:4.0.30319.42000
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+using System;
+using System.Reflection;
+
+[assembly: System.Reflection.AssemblyCompanyAttribute("Paul Kent")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
+[assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright (c) 2026 Paul Kent and BlazorRamp Contributors")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("Base set of the simple inputs for the Blazor Ramp ecosystem")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.8+6680d3faf465c3c2250d10e95f3e39a4f7574fa7")]
+[assembly: System.Reflection.AssemblyProductAttribute("BlazorRamp.Inputs")]
+[assembly: System.Reflection.AssemblyTitleAttribute("BlazorRamp.Inputs")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.0.8")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/BlazorRamp/Components")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo(@"BlazorRamp.Inputs.Tests.Unit, PublicKey=002400000480000094000000060200000024000052534131000400000100010091764439b057aa648d9b6fae0af179aacf637c9e9eb0c53eb2d2480ebc4eadc7ad2cc8ddaca110281c6da8f466eea56e22ce7f6cada84d657f1b2e4a6c5169a03c7e272c3bc7b14930364f0c1a5c5a75a8631dd303454f3569bf32a95db99132838602a24d64b3b92124827682ee19d6df5921a6bc4bd77a999b26c9420337df")]
+
+// Generated by the MSBuild WriteCodeFragment class.
+
+
+--- END FILE: BlazorRamp.Inputs.AssemblyInfo.cs ---
+
+--- START FILE: BlazorRamp.Inputs.GlobalUsings.g.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Release\net8.0\BlazorRamp.Inputs.GlobalUsings.g.cs) ---
+// <auto-generated/>
+global using System;
+global using System.Collections.Generic;
+global using System.IO;
+global using System.Linq;
+global using System.Net.Http;
+global using System.Threading;
+global using System.Threading.Tasks;
+
+--- END FILE: BlazorRamp.Inputs.GlobalUsings.g.cs ---
+
+--- START FILE: .NETCoreApp,Version=v9.0.AssemblyAttributes.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Release\net9.0\.NETCoreApp,Version=v9.0.AssemblyAttributes.cs) ---
+// <autogenerated />
+using System;
+using System.Reflection;
+[assembly: global::System.Runtime.Versioning.TargetFrameworkAttribute(".NETCoreApp,Version=v9.0", FrameworkDisplayName = ".NET 9.0")]
+
+--- END FILE: .NETCoreApp,Version=v9.0.AssemblyAttributes.cs ---
+
+--- START FILE: BlazorRamp.Inputs.AssemblyInfo.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Release\net9.0\BlazorRamp.Inputs.AssemblyInfo.cs) ---
+//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//     Runtime Version:4.0.30319.42000
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+using System;
+using System.Reflection;
+
+[assembly: System.Reflection.AssemblyCompanyAttribute("Paul Kent")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
+[assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright (c) 2026 Paul Kent and BlazorRamp Contributors")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("Base set of the simple inputs for the Blazor Ramp ecosystem")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.8+6680d3faf465c3c2250d10e95f3e39a4f7574fa7")]
+[assembly: System.Reflection.AssemblyProductAttribute("BlazorRamp.Inputs")]
+[assembly: System.Reflection.AssemblyTitleAttribute("BlazorRamp.Inputs")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.0.8")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/BlazorRamp/Components")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo(@"BlazorRamp.Inputs.Tests.Unit, PublicKey=002400000480000094000000060200000024000052534131000400000100010091764439b057aa648d9b6fae0af179aacf637c9e9eb0c53eb2d2480ebc4eadc7ad2cc8ddaca110281c6da8f466eea56e22ce7f6cada84d657f1b2e4a6c5169a03c7e272c3bc7b14930364f0c1a5c5a75a8631dd303454f3569bf32a95db99132838602a24d64b3b92124827682ee19d6df5921a6bc4bd77a999b26c9420337df")]
+
+// Generated by the MSBuild WriteCodeFragment class.
+
+
+--- END FILE: BlazorRamp.Inputs.AssemblyInfo.cs ---
+
+--- START FILE: BlazorRamp.Inputs.GlobalUsings.g.cs (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\obj\Release\net9.0\BlazorRamp.Inputs.GlobalUsings.g.cs) ---
+// <auto-generated/>
+global using System;
+global using System.Collections.Generic;
+global using System.IO;
+global using System.Linq;
+global using System.Net.Http;
+global using System.Threading;
+global using System.Threading.Tasks;
+
+--- END FILE: BlazorRamp.Inputs.GlobalUsings.g.cs ---
+
+--- START FILE: _Imports.razor (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\_Imports.razor) ---
+@using Microsoft.AspNetCore.Components.Web
+@using BlazorRamp.Inputs.Common.Constants
+
+--- END FILE: _Imports.razor ---
+
+--- START FILE: NumericInput.razor (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Components\NumericInput.razor) ---
+@typeparam TValue
+@inherits NumericTypeInput<TValue>
+
+<div class="@NumericInputClasses">
+    <label class="@GlobalValues.Numeric_Input_Label_Class" for="@InputID">
+        @LabelNameText
+        @if (base.Required)
+        {
+            <span aria-hidden="true" class="@GlobalValues.Numeric_Input_Asterisk_Class"> *</span>
+        }
+    </label>
+    @if (HintNormalised is not null)
+    {
+        <span id="@HintTextID" class="@GlobalValues.Numeric_Input_Hint_Class">
+            @HintNormalised
+        </span>
+    }
+    
+    @if (false == String.IsNullOrWhiteSpace(SvgVariable))
+    {
+        <span aria-hidden="true" class="@GlobalValues.Numeric_Input_Icon_Class" style="@SvgVariable"></span>
+    }
+    else
+    {
+        <span aria-hidden="true"></span>
+    }
+
+    <input @ref="ControlReference" @attributes="@GetAttributes(AdditionalAttributes)" class="@GlobalValues.Numeric_Input_Field_Class" id="@InputID"
+           type="text"
+           inputmode="@InputMode"
+           aria-invalid="@(base.HasErrors ? "true" : null)"
+           aria-describedby="@(base.AriaDescribedByID)"
+           aria-required="@(base.Required ? "true" : null)"
+           aria-disabled="@(base.IsDisabled ? "true" : null)"
+           readonly="@(base.ReadOnly ? "readonly" : null)"
+           @onblur="HandleOnBlur"
+           @bind-value:get="@_stringValue"
+           @bind-value:event="@(UpdateOnInput ? "oninput" : "onchange")"
+           @bind-value:set="HandlePropertySet" 
+           data-br-input-position="@DataPosition.ToString().ToLower()" />
+
+    <span class="@StateIconClasses" aria-hidden="true"></span>
+
+    <div class="@GlobalValues.Numeric_Input_Error_Wrapper_Class">
+        
+        @if (HasErrors)
+        {
+            <div class="@GlobalValues.Numeric_Input_Error_Class" tabindex="@(TabbableError ? "0" : null)" aria-label="@(TabbableError ? $"{LabelNameText.TrimEnd(':')} {ErrorsText}" : null)" role="@(TabbableError ? "region" : null)">
+
+                <ul id="@ErrorMessageID">
+                    @foreach (var errorMessage in InvalidMessages)
+                    {
+                        <li>@errorMessage</li>
+                    }
+                </ul>
+
+            </div>
+        }
+
+    </div>
+
+</div>
+
+
+--- END FILE: NumericInput.razor ---
+
+--- START FILE: PasswordInput.razor (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Components\PasswordInput.razor) ---
+@inherits PasswordTypeInput
+
+<div class="@PasswordInputClasses">
+    <label class="@GlobalValues.Password_Input_Label_Class" for="@InputID">
+        @LabelNameText
+        @if (Required)
+        {
+            <span aria-hidden="true" class="@GlobalValues.Password_Input_Asterisk_Class"> *</span>
+        }
+    </label>
+    @if (HintNormalised is not null)
+    {
+        <span id="@HintTextID" class="@GlobalValues.Password_Input_Hint_Class">
+            @HintNormalised
+        </span>
+    }
+    
+    @if (false == String.IsNullOrWhiteSpace(SvgVariable))
+    {
+        <span aria-hidden="true" class="@GlobalValues.Password_Input_Icon_Class" style="@SvgVariable"></span>
+    }
+    else
+    {
+        <span aria-hidden="true"></span>
+    }
+
+    <input @ref="ControlReference" @attributes="@GetAttributes(AdditionalAttributes)" class="@GlobalValues.Password_Input_Field_Class" id="@InputID"
+           autocomplete="@AutoComplete"
+           type="@InputType"
+           aria-invalid="@(HasErrors ? "true" : null)"
+           aria-describedby="@(AriaDescribedByID)"
+           aria-required="@(Required ? "true" : null)"
+           aria-disabled="@(base.IsDisabled ? "true" : null)"
+           readonly="@(base.ReadOnly ? "readonly" : null)"
+           @bind-value:get="@CurrentValueAsString"
+           @bind-value:event="@(UpdateOnInput ? "oninput" : "onchange")"
+           @bind-value:set="HandlePropertySet" 
+           data-br-input-position="@DataPosition.ToString().ToLower()" />
+
+
+    <span class="@StateIconClasses" aria-hidden="true"></span>
+    
+    <button class="@GlobalValues.Password_Input_Show_Password_Class" @onclick="ToggleShowPassword" type="button" aria-pressed="@(InputType == "text" ? "true" : "false")" >@ShowText</button>
+
+    <div class="@GlobalValues.Password_Input_Error_Wrapper_Class">
+            @if (HasErrors)
+            {
+                <div class="@GlobalValues.Password_Input_Error_Class" tabindex="@(TabbableError ? "0" : null)" aria-label="@(TabbableError ? $"{LabelNameText.TrimEnd(':')} {ErrorsText}" : null)" role="@(TabbableError ? "region" : null)">
+
+                <ul id="@ErrorMessageID">
+                        @foreach (var errorMessage in InvalidMessages)
+                        {
+                            <li>@errorMessage</li>
+                        }
+                    </ul>
+                </div>
+            }
+
+    </div>
+
+</div>
+
+
+--- END FILE: PasswordInput.razor ---
+
+--- START FILE: TextInput.razor (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Components\TextInput.razor) ---
+@inherits TextTypeInput
+
+<div class="@TextInputClasses">
+    <label class="@GlobalValues.Text_Input_Label_Class" for="@InputID">
+        @LabelNameText
+        @if (Required)
+        {
+            <span aria-hidden="true" class="@GlobalValues.Text_Input_Asterisk_Class"> *</span>
+        }
+    </label>
+    @if (HintNormalised is not null)
+    {
+        <span id="@HintTextID" class="@GlobalValues.Text_Input_Hint_Class">
+            @HintNormalised
+        </span>
+    }
+    
+    @if (false == String.IsNullOrWhiteSpace(SvgVariable))
+    {
+        <span aria-hidden="true" class="@GlobalValues.Text_Input_Icon_Class" style="@SvgVariable"></span>
+    }
+    else
+    {
+        <span aria-hidden="true"></span>
+    }
+    <input @ref="ControlReference" @attributes="@GetAttributes(AdditionalAttributes)" class="@GlobalValues.Text_Input_Field_Class" id="@InputID"
+           type="@InputType" 
+           aria-invalid="@(HasErrors ? "true" : null)" 
+           aria-describedby="@(AriaDescribedByID)"
+           aria-required="@(Required ? "true" : null)"
+           aria-disabled="@(base.IsDisabled ? "true" : null)"
+           readonly="@(base.ReadOnly ? "readonly" : null)"
+           @bind-value:get="@CurrentValueAsString"
+           @bind-value:event="@(UpdateOnInput ? "oninput" : "onchange")"
+           @bind-value:set="HandlePropertySet" 
+           data-br-input-position="@DataPosition.ToString().ToLower()" />
+
+    <span class="@StateIconClasses" aria-hidden="true"></span>
+
+    <div class="@GlobalValues.Text_Input_Error_Wrapper_Class">
+        
+        @if (HasErrors)
+        {
+            <div class="@GlobalValues.Text_Input_Error_Class" tabindex="@(TabbableError ? "0" : null)" aria-label="@(TabbableError ? $"{LabelNameText.TrimEnd(':')} {ErrorsText}" : null)" role="@(TabbableError ? "region" : null)">
+
+            <ul id="@ErrorMessageID">
+                @foreach (var errorMessage in InvalidMessages)
+                {
+                    <li>@errorMessage</li>
+                }
+            </ul>
+
+            </div>
+        }
+
+    </div>
+
+</div>
+
+
+--- END FILE: TextInput.razor ---
+
+--- START FILE: InputErrorsSummary.razor (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Components\Summaries\InputErrorsSummary.razor) ---
+@using BlazorRamp.Core.Components.LiveRegion
+@using BlazorRamp.Inputs.Common.Models
+
+<CascadingValue Value="this" IsFixed="true">
+
+    @if(SummaryPosition == SummaryPosition.Top) { @BuildContent(_summaryItems, SummaryDisplay, _modelValidated);}
+
+    @if (@ChildContent is not null)
+    {
+        @ChildContent
+     
+    }
+    @if (SummaryPosition == SummaryPosition.Bottom) {@BuildContent(_summaryItems, SummaryDisplay, _modelValidated);}
+
+</CascadingValue>
+
+
+@code {
+    private RenderFragment BuildContent(List<ErrorSummaryItem> summaryItems,SummaryDisplay summaryDisplay, bool modelValidated) => __builder =>
+    {
+        var itemCount = summaryItems.Count;
+        
+        <section role="region" aria-labelledby="@_headingID" class="@GetSectionClasses(itemCount, summaryDisplay, modelValidated)">
+
+            @switch (TitleHeadingLevel)
+                {
+                    case TitleHeadingLevel.H2: <h2 id="@_headingID" class="">@_headingTitle</h2>; break;
+                    case TitleHeadingLevel.H3: <h3 id="@_headingID" class="">@_headingTitle</h3>; break;
+                    case TitleHeadingLevel.H4: <h4 id="@_headingID" class="">@_headingTitle</h4>; break;
+                    case TitleHeadingLevel.H5: <h5 id="@_headingID" class="">@_headingTitle</h5>; break;
+                    case TitleHeadingLevel.H6: <h6 id="@_headingID" class="">@_headingTitle</h6>; break;
+                default:<h3 class="">@_headingTitle</h3> 
+                    break;
+            }
+
+            @if (itemCount > 0)
+            { <ul>
+                @foreach(var summaryItem in summaryItems)
+                {
+                    <li>
+                        <a href="#@(summaryItem.ControlID)" @onclick:preventDefault="true" @onclick="() => FocusInput(summaryItem.ControlID)">@summaryItem.DisplayName</a>
+                            <ul aria-labelledby="@($"input-error-summary-{summaryItem.ControlID}")">
+                            @foreach(var error in summaryItem.ValidationErrors)
+                            {
+                                <li>@error</li>        
+                            }
+                        </ul>
+                    </li>
+                }
+             </ul>
+
+            }
+
+        </section>
+
+    };
+}
+
+--- END FILE: InputErrorsSummary.razor ---
+
+--- START FILE: inputs.ts (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Assets\Scripts\inputs.ts) ---
+
+
+const getDecimalSeparator = (): string => Intl.NumberFormat(navigator.language).format(1.1).charAt(1);
+
+
+const preventAction = (e) => e.preventDefault();
+
+const ariaDisabledKeyHandler = (e: KeyboardEvent): void => {
+
+    const navigationKeys = ["Tab", "Enter", "Escape", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Home", "End", "PageUp", "PageDown"];
+
+    const isNavigation = navigationKeys.includes(e.key);
+    const isCopy = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "c";
+
+    if (isNavigation || isCopy) return;
+
+    e.preventDefault();
+};
+
+
+const setInputValue = (inputElement: HTMLElement, value: string): void => {
+
+    if (!inputElement) return;
+
+    (inputElement as HTMLInputElement).value = value;
+};
+
+const integerHandler = (e: Event): void => {
+
+    const input = e.target as HTMLInputElement;
+
+    let cleaned = input.value.replace(/[^0-9\-]/g, '');
+
+    cleaned = cleaned.replace(/(?!^)-/g, '');
+
+    if (input.value !== cleaned) input.value = cleaned;
+};
+
+const decimalHandler = (e: Event): void => {
+
+    const input = e.target as HTMLInputElement;
+    const separator = getDecimalSeparator();
+
+    const escapedSeparator = separator === '.' ? '\\.' : separator;
+
+    let cleaned = input.value.replace(new RegExp(`[^0-9\\-${escapedSeparator}]`, 'g'), '');
+
+    cleaned = cleaned.replace(/(?!^)-/g, '');
+
+    const parts = cleaned.split(separator);
+
+    if (parts.length > 2) cleaned = parts[0] + separator + parts.slice(1).join('');
+
+    if (input.value !== cleaned) input.value = cleaned;
+};
+
+const setFocus = (elementId: string): void => {
+
+    const element = document.getElementById(elementId);
+
+    if (!element) return;
+
+    element.focus();
+}; 
+
+const registerAriaDisabledHandlers = (inputElement: HTMLElement): void => {
+
+    if (!inputElement) return;
+
+    inputElement.removeEventListener("keydown", ariaDisabledKeyHandler);
+    inputElement.addEventListener("keydown", ariaDisabledKeyHandler);
+
+    inputElement.removeEventListener("paste", preventAction);
+    inputElement.addEventListener("paste", preventAction);
+
+    inputElement.removeEventListener("cut", preventAction);
+    inputElement.addEventListener("cut", preventAction);
+};
+
+const unregisterAriaDisabledHandlers = (inputElement: HTMLElement): void => {
+
+    if (!inputElement) return;
+
+    inputElement.removeEventListener("keydown", ariaDisabledKeyHandler);
+    inputElement.removeEventListener("cut", preventAction);
+    inputElement.removeEventListener("paste", preventAction);
+};
+
+const registerNumericHandlers = (inputElement: HTMLElement, isWholeNumber: boolean): void => {
+
+    if (!inputElement) return;
+
+    const handler = isWholeNumber ? integerHandler : decimalHandler;
+
+    inputElement.removeEventListener("input", handler);
+    inputElement.addEventListener("input", handler);
+
+};
+
+const unregisterNumericHandlers = (inputElement: HTMLElement, isWholeNumber: boolean): void => {
+
+    if (!inputElement) return;
+
+    const handler = isWholeNumber ? integerHandler : decimalHandler;
+    inputElement.removeEventListener("input", handler);
+};
+
+
+export { registerAriaDisabledHandlers, unregisterAriaDisabledHandlers, registerNumericHandlers, unregisterNumericHandlers, setInputValue, setFocus};
+
+--- END FILE: inputs.ts ---
+
+--- START FILE: inputs.scss (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Assets\Scss\inputs.scss) ---
+@use "_root-inputs";
+@use "_input-containers";
+@use "_text-input";
+@use "_password-input";
+@use "_numeric-input";
+@use "_input-errors-summary";
+
+--- END FILE: inputs.scss ---
+
+--- START FILE: _configuration.scss (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Assets\Scss\_configuration.scss) ---
+$breakpoints: ("xs": 0px, "sm": 576px, "md": 768px, "lg": 992px, "xl": 1280px, "xxl": 1536px);
+
+--- END FILE: _configuration.scss ---
+
+--- START FILE: _functions.scss (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Assets\Scss\_functions.scss) ---
+
+@use "_configuration" as *;
+
+@mixin generate-grid-column-classes($breakpoint-map: $breakpoints, $number-of-columns: 12, $grid-container-class: ".br-row") {
+    @each $key, $value in $breakpoint-map {
+
+        @if $value == 0px {
+            @include _column-classes($key,$number-of-columns,$grid-container-class);
+        }
+        @else {
+            @container (min-width: #{$value}) {
+                @include _column-classes($key,$number-of-columns,$grid-container-class);
+            }
+        }
+    }
+}
+
+@mixin _column-classes($key-size, $number-of-columns: 12, $grid-container-class: "") {
+
+    @for $counter from 1 through $number-of-columns {
+        #{$grid-container-class} .br-col-#{$key-size}-#{$counter} {
+            grid-column: span $counter;
+        }
+    }
+}
+
+@mixin valid-state-icon {
+    display: inline-block;
+    background-color: currentColor;
+    mask-image: var(--br-svg-valid-state-icon);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    mask-position: center;
+
+    @media (forced-colors: active) {
+        background-color: CanvasText;
+        color: Canvas;
+    }
+}
+
+@mixin invalid-state-icon {
+    display: inline-block;
+    background-color: currentColor;
+    mask-image: var(--br-svg-invalid-state-icon);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    mask-position: center;
+
+    @media (forced-colors: active) {
+        background-color: CanvasText;
+        color: Canvas;
+    }
+}
+
+--- END FILE: _functions.scss ---
+
+--- START FILE: _input-containers.scss (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Assets\Scss\_input-containers.scss) ---
+@use "_functions" as *;
+
+.br-input-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(var(--br-unit-space-2), min-content);
+    gap:0 var(--br-unit-space-3);
+    container-type: inline-size;
+    margin-block:var(--br-unit-space-3);
+
+    & [class*=br-col-] {
+        grid-column: span 12;
+    }
+}
+@include generate-grid-column-classes($grid-container-class: ".br-input-row");
+
+--- END FILE: _input-containers.scss ---
+
+--- START FILE: _input-errors-summary.scss (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Assets\Scss\_input-errors-summary.scss) ---
+
+.br-input-errors-summary{
+
+    display:block;
+
+    &--no-errors{
+        display:none;
+    }
+}
+
+--- END FILE: _input-errors-summary.scss ---
+
+--- START FILE: _numeric-input.scss (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Assets\Scss\_numeric-input.scss) ---
+@use "_functions" as *;
+
+.br-numeric-input {
+    --_icon-size: 1em;
+    --_br-svg-input-icon: none;
+    width: 100%;
+    display: inline-grid;
+    grid-template-rows: auto auto auto minmax(var(--br-unit-space-5), auto);
+    grid-template-columns: min-content 1fr 1.5rem;
+    //I prefer just numbers/lines but needed this for RTL
+
+    grid-template-areas:
+        "label      label   label" "hint       hint    hint" "icon       field   state" "errors     errors  errors";
+    padding: var(--br-unit-space-3);
+    background-color: var(--br-comp-input-pane-base-background);
+    border-style: var(--br-comp-input-pane-base-border-style);
+    border-color: var(--br-comp-input-pane-base-border-colour);
+    border-width: var(--br-comp-input-pane-base-border-width);
+    border-radius: var(--br-comp-input-pane-base-border-radius);
+
+    .br-input-row & {
+        grid-row: span 4;
+        grid-template-rows: subgrid;
+    }
+
+    &:focus-within {
+        outline-offset: var(--br-comp-input-outline-offset);
+        outline-width: var(--br-comp-input-outline-width);
+        outline-style: var(--br-comp-input-outline-style);
+        outline-color: var(--br-comp-input-outline-colour);
+
+        .br-numeric-input__error-wrapper {
+            border-top: 1px solid var(--br-comp-all-outline-colour);
+        }
+    }
+
+    &:has(input[aria-disabled="true"]) {
+        cursor: not-allowed;
+
+        .br-numeric-input__field,
+        .br-numeric-input__label {
+            opacity: var(--br-comp-input-disabled-opacity);
+            cursor: not-allowed;
+        }
+    }
+
+    ul {
+        margin: 0;
+        padding-left: 0;
+        list-style-type: none;
+        list-style-position: inside;
+    }
+
+
+    &__label {
+        grid-area: label;
+        font-size: var(--br-comp-input-label-font-size);
+        font-weight: var(--br-comp-input-label-font-weight);
+        color: var(--br-comp-input-label-color);
+        background-color: var(--br-comp-input-label-background);
+    }
+
+    &__hint {
+        grid-area: hint;
+        font-size: var(--br-comp-input-hint-font-size);
+        font-weight: var(--br-comp-input-hint-font-weight);
+        color: var(--br-comp-input-hint-color);
+        background-color: var(--br-comp-input-hint-background);
+        opacity: var(--br-comp-input-hint-opacity);
+        padding-block-end: var(--br-unit-space-3);
+    }
+
+    &__icon {
+        grid-area: icon;
+        align-self: center;
+        display: inline-block;
+        background-color: currentColor;
+        mask-image: var(--_br-svg-input-icon);
+        mask-repeat: no-repeat;
+        mask-size: 100% 100%;
+        min-height: calc(var(--_icon-size) * 1.25);
+        aspect-ratio: 1/1;
+        margin-inline-end: var(--br-unit-space-2);
+
+        @media (forced-colors: active) {
+            background-color: CanvasText;
+        }
+    }
+
+    &__state-icon {
+        grid-area: state;
+        min-height: var(--_icon-size);
+        aspect-ratio: 1/1;
+
+        &--valid {
+            @include valid-state-icon;
+            color: var(--br-comp-input-success-colour);
+        }
+
+        &--invalid {
+            @include invalid-state-icon;
+            color: var(--br-comp-input-error-colour);
+        }
+    }
+
+    &__field {
+        grid-area: field;
+        appearance: none;
+        min-width: 0;
+        border: none;
+        background-color: var(--br-comp-input-area-content-background);
+        color: var(--br-comp-input-area-content-colour);
+        font-family: var(--br-comp-input-area-content-font-family);
+        font-size: var(--br-comp-input-area-content-font-size);
+        font-weight: var(--br-comp-input-area-content-font-weight);
+
+        &[type="text"] {
+            border: none;
+            outline: none;
+        }
+
+        &:is(:autofill, :-webkit-autofill) {
+            -webkit-background-clip: text; // prevents autofill colours reappearing on viewport resize/reflow
+            -webkit-box-shadow: 0 0 0 1000px var(--br-comp-input-area-content-background) inset !important;
+            -webkit-text-fill-color: var(--br-comp-input-area-content-colour) !important;
+            caret-color: var(--br-comp-input-area-content-colour);
+        }
+    }
+
+    &__error-wrapper {
+        grid-area: errors;
+        border-top: var(--br-unit-border-1) solid var(--br-comp-all-divider-colour);
+        color: var(--br-comp-input-error-colour);
+        min-height: var(--br-unit-space-5);
+
+        &:has(.br-numeric-input__error:focus-visible) {
+            border-top: var(--br-unit-border-1) solid transparent;
+            border-radius: var(--br-comp-input-pane-base-border-radius);
+        }
+    }
+
+    &__error {
+        padding: var(--br-unit-space-3);
+
+        &:focus-visible {
+            border-radius: var(--br-comp-input-pane-base-border-radius);
+            outline-offset: var(--br-comp-input-outline-offset);
+            outline-width: var(--br-comp-input-outline-width);
+            outline-style: var(--br-comp-input-outline-style);
+            outline-color: var(--br-comp-input-error-colour);
+        }
+    }
+
+    &__asterisk {
+        color: var(--br-comp-input-error-colour);
+        font-size: var(--br-comp-input-label-font-size);
+        font-weight: var(--br-comp-input-label-font-weight);
+        background-color: var(--br-comp-input-label-background);
+    }
+
+    & > input[data-br-input-position="start"] {
+        text-align: start;
+    }
+
+    & > input[data-br-input-position="centre"] {
+        text-align: center;
+    }
+
+    & > input[data-br-input-position="end"] {
+        text-align: end;
+    }
+}
+
+--- END FILE: _numeric-input.scss ---
+
+--- START FILE: _password-input.scss (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Assets\Scss\_password-input.scss) ---
+@use "_functions" as *;
+
+.br-password-input {
+    --_icon-size: 1em;
+    --_br-svg-input-icon: none;
+    width: 100%;
+    display: inline-grid;
+    grid-template-rows: auto auto auto minmax(var(--br-unit-space-5), auto);
+    grid-template-columns: min-content 1fr 1.5rem auto;
+    //I prefer just numbers/lines but needed this for RTL
+
+    grid-template-areas:
+        "label   label   label   label" "hint    hint    hint    hint" "icon    field   state  button" "errors  errors  errors  errors";
+    padding: var(--br-unit-space-3);
+    background-color: var(--br-comp-input-pane-base-background);
+    border-style: var(--br-comp-input-pane-base-border-style);
+    border-color: var(--br-comp-input-pane-base-border-colour);
+    border-width: var(--br-comp-input-pane-base-border-width);
+    border-radius: var(--br-comp-input-pane-base-border-radius);
+
+    .br-input-row & {
+        grid-row: span 4;
+        grid-template-rows: subgrid;
+    }
+
+    &:focus-within {
+        outline-offset: var(--br-comp-input-outline-offset);
+        outline-width: var(--br-comp-input-outline-width);
+        outline-style: var(--br-comp-input-outline-style);
+        outline-color: var(--br-comp-input-outline-colour);
+
+        .br-text-input__error-wrapper {
+            border-top: 1px solid var(--br-comp-all-outline-colour);
+        }
+    }
+
+    &:has(input[aria-disabled="true"]) {
+        cursor: not-allowed;
+
+        .br-text-input__field,
+        .br-text-input__label {
+            opacity: var(--br-comp-input-disabled-opacity);
+            cursor: not-allowed;
+        }
+    }
+
+    ul {
+        margin: 0;
+        padding-left: 0;
+        list-style-type: none;
+        list-style-position: inside;
+    }
+
+
+    &__label {
+        grid-area: label;
+        font-size: var(--br-comp-input-label-font-size);
+        font-weight: var(--br-comp-input-label-font-weight);
+        color: var(--br-comp-input-label-color);
+        background-color: var(--br-comp-input-label-background);
+    }
+
+    &__hint {
+        grid-area: hint;
+        font-size: var(--br-comp-input-hint-font-size);
+        font-weight: var(--br-comp-input-hint-font-weight);
+        color: var(--br-comp-input-hint-color);
+        background-color: var(--br-comp-input-hint-background);
+        opacity: var(--br-comp-input-hint-opacity);
+        padding-block-end: var(--br-unit-space-3);
+    }
+
+    &__icon {
+        grid-area: icon;
+        align-self: center;
+        display: inline-block;
+        background-color: currentColor;
+        mask-image: var(--_br-svg-input-icon);
+        mask-repeat: no-repeat;
+        mask-size: 100% 100%;
+        min-height: calc(var(--_icon-size) * 1.25);
+        aspect-ratio: 1/1;
+        margin-inline-end: var(--br-unit-space-2);
+
+        @media (forced-colors: active) {
+            background-color: CanvasText;
+        }
+    }
+
+    &__state-icon {
+        grid-area: state;
+        min-height: var(--_icon-size);
+        aspect-ratio: 1/1;
+
+        &--valid {
+            @include valid-state-icon;
+            color: var(--br-comp-input-success-colour);
+        }
+
+        &--invalid {
+            @include invalid-state-icon;
+            color: var(--br-comp-input-error-colour);
+        }
+    }
+
+    &__field {
+        grid-area: field;
+        appearance: none;
+        min-width: 0;
+        border: none;
+        background-color: var(--br-comp-input-area-content-background);
+        color: var(--br-comp-input-area-content-colour);
+        font-family: var(--br-comp-input-area-content-font-family);
+        font-size: var(--br-comp-input-area-content-font-size);
+        font-weight: var(--br-comp-input-area-content-font-weight);
+
+        &:is([type="password"], [type="text"]) {
+            border: none;
+            outline: none;
+        }
+
+        &[type="password"]::-ms-reveal {
+            display: none;
+        }
+
+        &:is(:autofill, :-webkit-autofill) {
+            -webkit-background-clip: text; // prevents autofill colours reappearing on viewport resize/reflow
+            -webkit-box-shadow: 0 0 0 1000px var(--br-comp-input-area-content-background) inset !important;
+            -webkit-text-fill-color: var(--br-comp-input-area-content-colour) !important;
+            caret-color: var(--br-comp-input-area-content-colour);
+        }
+    }
+
+    &__error-wrapper {
+        grid-area: errors;
+        border-top: var(--br-unit-border-1) solid var(--br-comp-input-divider-colour);
+        color: var(--br-comp-input-error-colour);
+        min-height: var(--br-unit-space-5);
+
+        &:has(.br-text-input__error:focus-visible) {
+            border-top: var(--br-unit-border-1) solid transparent;
+            border-radius: var(--br-comp-input-pane-base-border-radius);
+        }
+    }
+
+    &__error {
+        padding: var(--br-unit-space-3);
+
+        &:focus-visible {
+            border-radius: var(--br-comp-input-pane-base-border-radius);
+            outline-offset: var(--br-comp-input-outline-offset);
+            outline-width: var(--br-comp-input-outline-width);
+            outline-style: var(--br-comp-input-outline-style);
+            outline-color: var(--br-comp-input-error-colour);
+        }
+    }
+
+    & button.br-password-input__show-password {
+        appearance: none;
+        border: none;
+        outline: none;
+        margin: 0;
+        padding-inline: var(--br-unit-space-3);
+        background-color: var(--br-comp-input-button-background);
+        border-radius: var(--br-comp-input-button-border-radius);
+        font-family: var(--br-comp-input-button-font-family);
+        font-weight: var(--br-comp-input-button-font-weight);
+        font-size: var(--br-comp-input-button-font-size);
+        line-height: var(--br-comp-input-button-line-height);
+        border-style: none;
+        border-color: var(--br-comp-input-button-border-colour);
+        border-width: var(--br-comp-input-button-border-width);
+        border-radius: var(--br-comp-input-button-border-radius);
+        white-space: nowrap;
+        color: var(--br-comp-input-button-text);
+
+        &:focus-visible {
+            outline-offset: -2px;
+            outline-width: var(--br-comp-input-outline-width);
+            outline-style: var(--br-comp-input-outline-style);
+            outline-color: var(--br-comp-input-outline-colour);
+        }
+
+        &:active {
+            transform: scale(var(--br-comp-input-button-state-active-scale));
+            filter: brightness(var(--br-comp-input-button-state-active-brightness));
+            outline: none;
+        }
+
+        &:hover {
+            background-color: var(--br-comp-input-button-state-hover);
+        }
+    }
+
+    &__asterisk {
+        color: var(--br-comp-input-error-colour);
+        font-size: var(--br-comp-input-label-font-size);
+        font-weight: var(--br-comp-input-label-font-weight);
+        background-color: var(--br-comp-input-label-background);
+    }
+
+    & > input[data-br-input-position="start"] {
+        text-align: start;
+    }
+
+    & > input[data-br-input-position="centre"] {
+        text-align: center;
+    }
+
+    & > input[data-br-input-position="end"] {
+        text-align: end;
+    }
+}
+
+--- END FILE: _password-input.scss ---
+
+--- START FILE: _root-inputs.scss (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Assets\Scss\_root-inputs.scss) ---
+:root {
+    --br-svg-valid-state-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21 21'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' d='m5.5 11.5l3 3l8.028-8'/%3E%3C/svg%3E");
+    --br-svg-invalid-state-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21 21'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' d='m15.5 15.5l-10-10zm0-10l-10 10'/%3E%3C/svg%3E");
+    //
+    //
+    --br-comp-input-error-colour: var(--br-unit-colour-danger);
+    --br-comp-input-success-colour: var(--br-unit-colour-success);
+    //
+    --br-comp-input-disabled-opacity: var(--br-unit-state-disabled-opacity);
+    --br-comp-input-divider-colour: var(--br-comp-all-divider-colour);
+    //
+    --br-comp-input-button-background: var(--br-comp-all-button-background);
+    --br-comp-input-button-text: var(--br-comp-all-button-text);
+    --br-comp-input-button-font-family: var(--br-comp-all-button-font-family);
+    --br-comp-input-button-font-size: var(--br-comp-all-button-font-size);
+    --br-comp-input-button-font-weight: var(--br-comp-all-button-font-weight);
+    --br-comp-input-button-line-height: var(--br-comp-all-button-line-height);
+    --br-comp-input-button-border-style: var(--br-comp-all-button-border-style);
+    --br-comp-input-button-border-colour: var(--br-comp-all-button-border-colour);
+    --br-comp-input-button-border-width: var(--br-comp-all-button-border-width);
+    --br-comp-input-button-border-radius: var(--br-comp-all-button-border-radius);
+    --br-comp-input-button-state-hover: var(--br-comp-all-button-state-hover);
+    --br-comp-input-button-state-active-brightness: var(--br-comp-all-button-state-active-brightness);
+    --br-comp-input-button-state-active-scale: var(--br-comp-all-button-state-active-scale);
+    //
+    --br-comp-input-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-input-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-input-outline-offset: 0px;
+    --br-comp-input-outline-colour: var(--br-comp-all-outline-colour);
+    //
+    --br-comp-input-pane-base-background: inherit;
+    --br-comp-input-pane-base-border-style: var(--br-comp-all-pane-base-border-style);
+    --br-comp-input-pane-base-border-colour: var(--br-comp-all-pane-base-border-colour);
+    --br-comp-input-pane-base-border-width: var(--br-comp-all-pane-base-border-width);
+    --br-comp-input-pane-base-border-radius: var(--br-comp-all-pane-base-border-radius);
+    //
+    --br-comp-input-area-content-background: inherit;
+    --br-comp-input-area-content-colour: var(--br-comp-all-area-content-text);
+    --br-comp-input-area-content-font-family: var(--br-comp-all-area-content-font-family);
+    --br-comp-input-area-content-font-size: var(--br-comp-all-area-content-font-size);
+    --br-comp-input-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
+    --br-comp-input-area-content-line-height: var(--br-comp-all-area-content-line-height);
+    //
+
+    --br-comp-input-label-font-size: var(--br-unit-font-size-label);
+    --br-comp-input-label-font-weight: var(--br-unit-font-weight-500);
+    --br-comp-input-label-color: inherit;
+    --br-comp-input-label-background: inherit;
+    //
+    --br-comp-input-hint-font-size: var(--br-unit-font-size-label);
+    --br-comp-input-hint-font-weight: var(--br-unit-font-weight-400);
+    --br-comp-input-hint-color: inherit;
+    --br-comp-input-hint-background: inherit;
+    --br-comp-input-hint-opacity: var(--br-unit-opacity-val-80);
+}
+
+--- END FILE: _root-inputs.scss ---
+
+--- START FILE: _text-input.scss (D:\Development\Projects\BlazorRamp\src\BlazorRamp.Inputs\BlazorRamp.Inputs\Assets\Scss\_text-input.scss) ---
+@use "_functions" as *;
+
+.br-text-input {
+    --_icon-size: 1em;
+    --_br-svg-input-icon: none;
+    width: 100%;
+    display: inline-grid;
+    grid-template-rows: auto auto auto minmax(var(--br-unit-space-5), auto);
+    grid-template-columns: min-content 1fr 1.5rem;
+    //I prefer just numbers/lines but needed this for RTL
+
+    grid-template-areas:
+        "label      label   label" "hint       hint    hint" "icon       field   state" "errors     errors  errors";
+    padding: var(--br-unit-space-3);
+    background-color: var(--br-comp-input-pane-base-background);
+    border-style: var(--br-comp-input-pane-base-border-style);
+    border-color: var(--br-comp-input-pane-base-border-colour);
+    border-width: var(--br-comp-input-pane-base-border-width);
+    border-radius: var(--br-comp-input-pane-base-border-radius);
+
+    .br-input-row & {
+        grid-row: span 4;
+        grid-template-rows: subgrid;
+    }
+
+    &:focus-within {
+        outline-offset: var(--br-comp-input-outline-offset);
+        outline-width: var(--br-comp-input-outline-width);
+        outline-style: var(--br-comp-input-outline-style);
+        outline-color: var(--br-comp-input-outline-colour);
+
+        .br-text-input__error-wrapper {
+            border-top: 1px solid var(--br-comp-all-outline-colour);
+        }
+    }
+
+    &:has(input[aria-disabled="true"]) {
+        cursor: not-allowed;
+
+        .br-text-input__field,
+        .br-text-input__label {
+            opacity: var(--br-comp-input-disabled-opacity);
+            cursor: not-allowed;
+        }
+    }
+
+    ul {
+        margin: 0;
+        padding-left: 0;
+        list-style-type: none;
+        list-style-position: inside;
+    }
+
+
+    &__label {
+        grid-area: label;
+        font-size: var(--br-comp-input-label-font-size);
+        font-weight: var(--br-comp-input-label-font-weight);
+        color: var(--br-comp-input-label-color);
+        background-color: var(--br-comp-input-label-background);
+    }
+
+    &__hint {
+        grid-area: hint;
+        font-size: var(--br-comp-input-hint-font-size);
+        font-weight: var(--br-comp-input-hint-font-weight);
+        color: var(--br-comp-input-hint-color);
+        background-color: var(--br-comp-input-hint-background);
+        opacity: var(--br-comp-input-hint-opacity);
+        padding-block-end: var(--br-unit-space-3);
+    }
+
+    &__icon {
+        grid-area: icon;
+        align-self: center;
+        display: inline-block;
+        background-color: currentColor;
+        mask-image: var(--_br-svg-input-icon);
+        mask-repeat: no-repeat;
+        mask-size: 100% 100%;
+        min-height: calc(var(--_icon-size) * 1.25);
+        aspect-ratio: 1/1;
+        margin-inline-end: var(--br-unit-space-2);
+
+        @media (forced-colors: active) {
+            background-color: CanvasText;
+        }
+    }
+
+    &__state-icon {
+        grid-area: state;
+        min-height: var(--_icon-size);
+        aspect-ratio: 1/1;
+
+        &--valid {
+            @include valid-state-icon;
+            color: var(--br-comp-input-success-colour);
+        }
+
+        &--invalid {
+            @include invalid-state-icon;
+            color: var(--br-comp-input-error-colour);
+        }
+    }
+
+    &__field {
+        grid-area: field;
+        appearance: none;
+        min-width: 0;
+        border: none;
+        background-color: var(--br-comp-input-area-content-background);
+        color: var(--br-comp-input-area-content-colour);
+        font-family: var(--br-comp-input-area-content-font-family);
+        font-size: var(--br-comp-input-area-content-font-size);
+        font-weight: var(--br-comp-input-area-content-font-weight);
+
+        &:is([type="text"], [type="email"], [type="url"], [type="tel"]) {
+            border: none;
+            outline: none;
+        }
+
+        &:is(:autofill, :-webkit-autofill) {
+            -webkit-background-clip: text; // prevents autofill colours reappearing on viewport resize/reflow
+            -webkit-box-shadow: 0 0 0 1000px var(--br-comp-input-area-content-background) inset !important;
+            -webkit-text-fill-color: var(--br-comp-input-area-content-colour) !important;
+            caret-color: var(--br-comp-input-area-content-colour);
+        }
+    }
+
+    &__error-wrapper {
+        grid-area: errors;
+        border-top: var(--br-unit-border-1) solid var(--br-comp-all-divider-colour);
+        color: var(--br-comp-input-error-colour);
+        min-height: var(--br-unit-space-5);
+
+        &:has(.br-text-input__error:focus-visible) {
+            border-top: var(--br-unit-border-1) solid transparent;
+            border-radius: var(--br-comp-input-pane-base-border-radius);
+        }
+    }
+
+    &__error {
+        padding: var(--br-unit-space-3);
+
+        &:focus-visible {
+            border-radius: var(--br-comp-input-pane-base-border-radius);
+            outline-offset: var(--br-comp-input-outline-offset);
+            outline-width: var(--br-comp-input-outline-width);
+            outline-style: var(--br-comp-input-outline-style);
+            outline-color: var(--br-comp-input-error-colour);
+        }
+    }
+
+    &__asterisk {
+        color: var(--br-comp-input-error-colour);
+        font-size: var(--br-comp-input-label-font-size);
+        font-weight: var(--br-comp-input-label-font-weight);
+        background-color: var(--br-comp-input-label-background);
+    }
+
+    & > input[data-br-input-position="start"] {
+        text-align: start;
+    }
+
+    & > input[data-br-input-position="centre"] {
+        text-align: center;
+    }
+
+    & > input[data-br-input-position="end"] {
+        text-align: end;
+    }
+}
+
+
+--- END FILE: _text-input.scss ---
+

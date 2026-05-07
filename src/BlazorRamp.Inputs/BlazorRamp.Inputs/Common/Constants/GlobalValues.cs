@@ -10,8 +10,9 @@ internal class GlobalValues
     public const string JS_Inputs_Register_Numeric_Handlers   = "registerNumericHandlers";
     public const string JS_Inputs_Unregister_Numeric_Handlers = "unregisterNumericHandlers";
 
-    public const string JS_Inputs_Set_Value = "setInputValue";
-
+    public const string JS_Inputs_Set_Value         = "setInputValue";
+    public const string JS_Inputs_Set_Input_Focus   = "setInputFocus";
+    public const string JS_Inputs_Set_Summary_Focus  = "setSummaryFocus";
 
     public const string Input_Parse_Error_Message = "Invalid number.";
 
@@ -63,6 +64,19 @@ internal class GlobalValues
     public const string Numeric_Input_State_Icon_Valid_Modifier   = $"{Numeric_Input_State_Icon_Class}--valid";
     public const string Numeric_Input_State_Icon_Invalid_Modifier = $"{Numeric_Input_State_Icon_Class}--invalid";
 
+
+    public const string Input_Errors_Summary_Class = "br-input-errors-summary";
+
+    public const string Input_Errors_Summary_No_Errors_Modifier = $"{Input_Errors_Summary_Class}--no-errors";
+
+    public const string Input_Errors_Summary_Heading     = $"{Input_Errors_Summary_Class}__heading";
+    public const string Input_Errors_Summary_Sub_Heading = $"{Input_Errors_Summary_Class}__sub-heading";
+    public const string Input_Errors_Summary_List        = $"{Input_Errors_Summary_Class}__list";
+    public const string Input_Errors_Summary_List_Item   = $"{Input_Errors_Summary_Class}__list-item";
+    public const string Input_Errors_Summary_Link        = $"{Input_Errors_Summary_Class}__link";
+
+    public const string Input_Errors_Summary_Title        = "There is a problem with your entries";
+    public const string Input_Errors_Summary_Input_Suffix = "field";
 
     public const string Default_Errors_label = "Errors";
 
