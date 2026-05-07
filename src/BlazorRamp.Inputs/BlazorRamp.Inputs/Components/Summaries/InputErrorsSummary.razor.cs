@@ -41,14 +41,13 @@ public partial class InputErrorsSummary : IAsyncDisposable
 
     /// <summary>
     /// Gets or sets the heading text rendered at the top of the error summary section.
-    /// When null, empty, or whitespace defaults to <see cref="GlobalValues.Input_Errors_Summary_Title"/>.
+    /// When null, empty, or whitespace defaults to "There is a problem with your entries".
     /// </summary>
     [Parameter] public string            Title                  { get; set; } = GlobalValues.Input_Errors_Summary_Title;
 
     /// <summary>
     /// Gets or sets the suffix appended to each field link in the summary list.
-    /// For example <c>"- go to field"</c>. When null, empty, or whitespace defaults to
-    /// <see cref="GlobalValues.Input_Errors_Summary_Input_Suffix"/>.
+    /// When null, empty, or whitespace defaults to "field"
     /// </summary>
     [Parameter] public string            InputSuffix            { get; set; } = GlobalValues.Input_Errors_Summary_Input_Suffix;
 

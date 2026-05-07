@@ -33,7 +33,7 @@
 
 <p>
     <strong>Important</strong> Please read carefully so you understand the best place for the <span class="code-span">&lt;ModalDialogContainer /&gt;</span> which acts as the
-    root for unlimeited nested dialogs for the specific process.
+    root for unlimited nested dialogs for the specific process.
 </p>
 <p>
     <b>Adding</b> the <span class="code-span">&lt;ModalDialogContainer /&gt;</span>
@@ -58,8 +58,8 @@
             </p>
             <p>
                 For example you can simply place two instances of the <span>ModalDialogContainer</span> in the <span class="Routes.razor"></span> file next to the
-                <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component. One using <span class="code-span">@@rendermode="InteractiveServer"</span> the othere using
-                <span class="code-span">@@rendermode="InteractiveWebAssemlby"</span> and these would handle all Server and WebAssembly page usages.<br />
+                <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component. One using <span class="code-span">@@rendermode="InteractiveServer"</span> the other using
+                <span class="code-span">@@rendermode="InteractiveWebAssembly"</span> and these would handle all Server and WebAssembly page usages.<br />
                 <strong>Note: You cannot add another</strong> for <span class="code-span">@@rendermode="InteractiveAuto""</span>. For your Auto pages you would place an instance of the
                 <span class="code-span">&lt;ModalDialogContainer @@rendermode="InteractiveAuto" /&gt;</span> on each page that wants to have a dialog / nested dialogs.
             </p>
@@ -73,7 +73,7 @@
                 and by default it will use the parent components <span class="code-span">@@rendermode</span>.
             </p>
             <p>
-                <strong>Note:</strong> Unlike the <span class="code-span">&lt;AnnouncmentHistory /&gt;</span> that works without an interactive mode, the <span class="code-span">ModalDialogContainer</span>
+                <strong>Note:</strong> Unlike the <span class="code-span">&lt;AnnouncementHistory /&gt;</span> that works without an interactive mode, the <span class="code-span">ModalDialogContainer</span>
                 needs one to work correctly.
             </p>
         </li>

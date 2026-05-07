@@ -9,7 +9,7 @@
 </p>
 
 <section>
-    <h2>Dialog service & assoicated classes</h2>
+    <h2>Dialog service & associated classes</h2>
     <p>
         The following provides details of the dialog service and all related classes
     </p>
@@ -41,7 +41,7 @@
                     <td>GetAriaLabelledByID()</td>
                     <td>
                         Get the unique string value that was added to the <span class="code-span">aria-labelledby</span> attribute on the
-                        HTML <span class="code-span">dialog</span> elenent. Uss this value for the <span class="code-span">id</span> attribute on your heading to give the dialog an accessible
+                        HTML <span class="code-span">dialog</span> element. Uss this value for the <span class="code-span">id</span> attribute on your heading to give the dialog an accessible
                         name
                     </td>
                 </tr>
@@ -50,7 +50,7 @@
                     <td>RegisterEscapeHandler(Func&lt;Task&gt; handler)</td>
                     <td>
                         Allows for the registering of a handler that will be called when the escape key is pressed for your dialog window.
-                        <strong>Note: </strong>If you do not provide a handler and the escape key is presed the dialog will close and return a cancelled result.
+                        <strong>Note: </strong>If you do not provide a handler and the escape key is pressed the dialog will close and return a cancelled result.
                     </td>
                 </tr>
                 <tr>
@@ -62,7 +62,7 @@
                     <td>Task&lt;ModalDialogResult&gt</td>
                     <td>ShowDialog&lt;TDialog&gt;()</td>
                     <td>
-                        Shows the dialog containing your component (<span>TDialog</span>) with no paramater data (<sapn class="code-span">ModalDialogParameters&lt;TDialog&gt;</sapn>) and uses the
+                        Shows the dialog containing your component (<span>TDialog</span>) with no parameter data (<sapn class="code-span">ModalDialogParameters&lt;TDialog&gt;</sapn>) and uses the
                         default values for the dialog options, <span class="code-span">ModalDialogOptions</span>.
                     </td>
                 </tr>
@@ -70,7 +70,7 @@
                     <td>Task&lt;ModalDialogResult&gt;</td>
                     <td>ShowDialog&lt;TDialog&gt;(ModalDialogOptions dialogOptions)</td>
                     <td>
-                        Shows the dialog containing your component (<span>TDialog</span>) with no paramater data, but with <span class="code-span">ModalDialogOptions</span> specified.
+                        Shows the dialog containing your component (<span>TDialog</span>) with no parameter data, but with <span class="code-span">ModalDialogOptions</span> specified.
                     </td>
                 </tr>
                 <tr>
@@ -78,7 +78,7 @@
                     <td>ShowDialog&lt;TDialog&gt;(ModalDialogParameters&lt;TDialog&gt; dialogParameters)</td>
                     <td>
                         Shows the dialog containing your component (<span>TDialog</span>) with <span class="code-span">ModalDialogParameters&lt;TDialog&gt;</span> data, using the default values
-                        for the dialog otpions, <span class="code-span">ModalDialogOptions</span>.
+                        for the dialog options, <span class="code-span">ModalDialogOptions</span>.
                     </td>
                 </tr>
                 <tr>
@@ -86,7 +86,7 @@
                     <td>ShowDialog&lt;TDialog&gt;(ModalDialogParameters&lt;TDialog&gt; dialogParameters, ModalDialogOptions dialogOptions)</td>
                     <td>
                         Shows the dialog containing your component (<span>TDialog</span>) with both <span class="code-span">ModalDialogParameters&lt;TDialog&gt;</span> data
-                        andd ialog otpions, <span class="code-span">ModalDialogOptions</span>.
+                        andd dialog options, <span class="code-span">ModalDialogOptions</span>.
                     </td>
                 </tr>
             </tbody>
@@ -113,7 +113,7 @@
                     <td>string</td>
                     <td>HorizonalPosition</td>
                     <td>
-                        Retruns a value such as <span class="code-span">start</span>, <span class="code-span">center</span> or <span class="code-span">end</span>
+                        Returns a value such as <span class="code-span">start</span>, <span class="code-span">center</span> or <span class="code-span">end</span>
                         used for an inline style that sets the horizontal alignment.
                     </td>
                 </tr>
@@ -121,7 +121,7 @@
                     <td>string</td>
                     <td>VerticalPosition</td>
                     <td>
-                        Retruns a value such as <span class="code-span">start</span>, <span class="code-span">center</span> or <span class="code-span">end</span>
+                        Returns a value such as <span class="code-span">start</span>, <span class="code-span">center</span> or <span class="code-span">end</span>
                         used for an inline style that sets the vertical alignment.
                     </td>
                 </tr>

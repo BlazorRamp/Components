@@ -73,6 +73,8 @@ public class GlobalValues
     public const string Component_Name_Password_Input = "Password Input";
     public const string Component_Name_Numeric_Input  = "Numeric Input";
 
+    public const string Component_Name_Input_Errors_Summary = "Input Errors Summary";
+
     public const string Component_Name_NavGroup     = "Nav Group";
     public const string Component_Name_SkipTo       = "Skip To";
     public const string Component_Name_Switch       = "Switch";
@@ -86,6 +88,7 @@ public class GlobalValues
     public const string Component_Path_Part_TextInput     = "text-input";
     public const string Component_Path_Part_PasswordInput = "password-input";
     public const string Component_Path_Part_NumericInput  = "numeric-input";
+    public const string Component_Path_Part_InputErrors   = "input-errors-summary";
     public const string Component_Path_Part_SkipTo        = "skip-to";
     public const string Component_Path_Part_Switch        = "switch";
     public const string Component_Path_Part_Tabs          = "tabs";

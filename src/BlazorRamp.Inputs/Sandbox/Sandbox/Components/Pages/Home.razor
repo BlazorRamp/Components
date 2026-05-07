@@ -21,9 +21,9 @@ Welcome to your new app.
      <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
 
-
+    <InputNumber @bind-Value="_contactData.Age" />
     <div class="br-input-row">
-        <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry"
+        <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" DataPosition="DataPosition.Start"
                       @bind-Value="_contactData.Age" UpdateOnInput="true" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" Format="F2" />
 
         <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Nullable Age" DataPosition="DataPosition.End" SvgIcon="--svg-food-icon"

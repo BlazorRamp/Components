@@ -1,0 +1,440 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_InputErrors}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.Component_Name_Input_Errors_Summary @GlobalValues.Common_Page_Title_Api</PageTitle>
+
+<h1>@GlobalValues.Component_Name_Input_Errors_Summary @GlobalValues.Common_Page_Title_Api</h1>
+<p>
+    Everything you need to work with the InputErrorsSummary component: parameters, methods, models, enums, and CSS variables for styling.
+</p>
+<section>
+    <h2 class="page-heading">
+        Component parameters, methods, supporting classes and enums.
+    </h2>
+    <p>
+        The following sections cover all components that make up this feature, including their parameters,
+        public methods, and any supporting classes or enumerations required for use.
+    </p>
+    <section class="code-table">
+
+        <h3 id="input-errors-component-parameters" class="code-table__heading">InputErrorsSummary component parameters</h3>
+
+        <table aria-labelledby="input-errors-component-parameters">
+
+            <thead>
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ChildContent</td>
+                    <td>RenderFragment?</td>
+                    <td>
+                        Gets or sets the child content rendered inside the cascading value scope. Typically contains the form's input controls.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Title</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the heading text rendered at the top of the error summary section.
+                        Defaults to "There is a problem with your entries" when null, empty, or whitespace.
+                    </td>
+                </tr>
+                <tr>
+                    <td>InputSuffix</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the suffix appended to each field link in the summary list.
+                        Defaults to "field" when null, empty, or whitespace
+                    </td>
+                </tr>
+                <tr>
+                    <td>SummaryDisplay</td>
+                    <td>SummaryDisplay (enum)</td>
+                    <td>
+                        Gets or sets when the error summary is displayed. Either after the first full model validation (i.e form submit) or always, as soon as any validation
+                        failure occurs.Defaults to <span class=code-span>SummaryDisplay.OnModelValidated</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>TitleHeadingLevel</td>
+                    <td>TitleHeadingLevel (enum)</td>
+                    <td>
+                        Gets or sets the heading level used for the error summary title.
+                        Allows the heading to fit correctly within the page's heading hierarchy.
+                        Defaults to <span class="code-span">TitleHeadingLevel.H2</span>.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section>
+
+    <h2 class="code-table__heading">Supporting enums</h2>
+
+    <section class="code-table">
+
+        <h3 id="title-heading-level-enum" class="code-table__heading">TitleHeadingLevel enum</h3>
+
+        <table aria-labelledby="title-heading-level-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2</td>
+                    <td>H2</td>
+                    <td>Renders the title inside <span class="code-span">&lt;h2&gt;</span> element.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>H3</td>
+                    <td>Renders the title inside <span class="code-span">&lt;h3&gt;</span> element.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>H4</td>
+                    <td>Renders the title inside <span class="code-span">&lt;h4&gt;</span> element.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>H5</td>
+                    <td>Renders the title inside <span class="code-span">&lt;h5&gt;</span> element.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>H6</td>
+                    <td>Renders the title inside <span class="code-span">&lt;h6&gt;</span> element.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="summary-dsplay-enum" class="code-table__heading">SummaryDisplay enum</h3>
+
+        <table aria-labelledby="summary-display-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>OnModelValidated</td>
+                    <td>The summary should only be displayed after a model validation has occurred.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Always</td>
+                    <td>The summary should always be visible when there are validation errors.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">CSS variables defined for the input errors summary component.</h2>
+
+    <p>
+        The following sections outline all of the css variables that can be set to alter the styling of the input errors summary component.
+        You can of course also override its style classes directly.
+    </p>
+
+    <section class="code-table">
+
+        <h3 id="input-errors-summary-outline-variables" class="code-table__heading">Dialog framework outline variables</h3>
+        <p>
+            The outline on <span class="code-span">:focus</span> is what you will see only when the focus is automatically
+            set on the input errors summary component when the model is validated.
+        </p>
+        <table aria-labelledby="input-errors-summary-outline-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-input-es-outline-style</td>
+                    <td>var(--br-comp-all-outline-style)</td>
+                    <td>Style of the outline around the component on focus - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-outline-width</td>
+                    <td>var(--br-comp-all-outline-width)</td>
+                    <td>Width of the outline - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-outline-offset</td>
+                    <td>var(--br-comp-all-outline-offset)</td>
+                    <td>Outline offset - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-outline-colour</td>
+                    <td>var(--br-comp-all-outline-colour)</td>
+                    <td>The outline colour - uses the shared component variable.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="pane-base-variables" class="code-table__heading">Pane base variables</h3>
+
+        <table aria-labelledby="pane-base-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-input-es-pane-base-background</td>
+                    <td>inherit</td>
+                    <td>This is the background colour of the component - <b>does not use the shared component variable</b>.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-pane-base-border-style</td>
+                    <td>var(--br-comp-all-pane-base-border-style)</td>
+                    <td>The border style - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-pane-base-border-colour</td>
+                    <td>var(--br-unit-colour-danger)</td>
+                    <td>The border colour - <b> does not use the shared component variable</b>.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-pane-base-border-width</td>
+                    <td>var(--br-unit-border-2)</td>
+                    <td>The border width - <b>does not use the shared component variable</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-pane-base-border-radius</td>
+                    <td>var(--br-comp-all-pane-base-border-radius)</td>
+                    <td>The border radius - uses the shared component variable</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="header-area-variables" class="code-table__heading">Header area variables</h3>
+
+        <table aria-labelledby="header-area-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-history-area-header-background</td>
+                    <td>var(--br-comp-all-area-header-background)</td>
+                    <td>The background colour of the header area - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-area-header-text</td>
+                    <td>var(--br-comp-all-area-header-text)</td>
+                    <td>The text colour used on the header area - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-area-header-font-family</td>
+                    <td>var(--br-comp-all-area-header-font-family)</td>
+                    <td>The font family used - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-area-header-font-size</td>
+                    <td>var(--br-comp-all-area-header-font-size)</td>
+                    <td>The font size - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-area-header-font-weight</td>
+                    <td>var(--br-comp-all-area-header-font-weight)</td>
+                    <td>The font weight - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-area-header-line-height</td>
+                    <td>var(--br-comp-all-area-header-line-height)</td>
+                    <td>The line height - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-area-header-border-style</td>
+                    <td>var(--br-comp-all-area-header-border-style)</td>
+                    <td>The border style - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-area-header-border-colour</td>
+                    <td>var(--br-comp-all-area-header-border-colour)</td>
+                    <td>The border colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-area-header-border-width</td>
+                    <td>var(--br-comp-all-area-header-border-width)</td>
+                    <td>The border width - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-history-area-header-border-radius</td>
+                    <td>var(--br-comp-all-area-header-border-radius)</td>
+                    <td>The border radius - uses the shared component variable.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+
+    <section class="code-table">
+
+        <h3 id="content-area-variables" class="code-table__heading">Content area variables</h3>
+        <p>
+            The content area in the component is everything excluding the heading and is where all
+            the links and error messages appear.
+        </p>
+        <table aria-labelledby="content-area-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-input-es-area-content-background</td>
+                    <td>inherit</td>
+                    <td>The background colour of the content area - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-area-content-text</td>
+                    <td>var(--br-unit-colour-danger)</td>
+                    <td>The colour of the the text - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-area-content-font-family</td>
+                    <td>var(--br-comp-all-area-content-font-size)</td>
+                    <td>The font family - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-area-content-font-size</td>
+                    <td>var(--br-comp-all-area-content-font-size)</td>
+                    <td>The size of the font -- uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-area-content-font-weight</td>
+                    <td>var(--br-comp-all-area-content-font-weight)</td>
+                    <td>The font weight - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-area-content-line-height</td>
+                    <td>var(--br-comp-all-area-content-line-height)</td>
+                    <td>The line height - uses the shared component variable.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="misc-variables" class="code-table__heading">Miscellaneous variables</h3>
+
+        <table aria-labelledby="misc-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-input-es-link-text</td>
+                    <td>var(--br-unit-colour-canvas-text)</td>
+                    <td>The text colour of the link text - <b>No shared variable for this property.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-link-hover-background-colour</td>
+                    <td>var(--br-comp-all-link-hover-background-colour)</td>
+                    <td>Background colour on mouse hover - uses the shared component variable</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-link-active-background-colour</td>
+                    <td>var(--br-comp-all-link-active-background-colour)</td>
+                    <td>The background colour when active/being clicked</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
+        <p>
+            The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
+            by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
+        </p>
+
+        <table aria-labelledby="unmapped-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+    </section>
+
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextInput}/{GlobalValues.Common_Page_Path_Usage}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Text_Input - @GlobalValues.Common_Page_Title_Usage</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_InputErrors}/{GlobalValues.Common_Page_Path_Usage}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Input_Errors_Summary - @GlobalValues.Common_Page_Title_Usage</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}

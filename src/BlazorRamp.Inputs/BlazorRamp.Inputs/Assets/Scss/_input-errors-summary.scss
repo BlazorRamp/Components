@@ -2,17 +2,17 @@
 .br-input-errors-summary {
     display: block;
     background-color: var(--br-comp-input-es-pane-base-background);
-    border-style: var(--br-comp-input-es-pane-basee-border-style);
+    border-style: var(--br-comp-input-es-pane-base-border-style);
     border-color: var(--br-comp-input-es-pane-base-border-colour);
     border-width: var(--br-comp-input-es-pane-base-border-width);
     border-radius: var(--br-comp-input-es-pane-base-border-radius);
     padding: var(--br-unit-space-5);
-    background-color: var(--br-comp-input-es-area-contnent-background);
+    background-color: var(--br-comp-input-es-area-content-background);
     color: var(--br-comp-input-es-area-contnent-text);
-    font-family: var(--br-comp-input-es-area-contnent-font-family);
-    font-size: var(--br-comp-input-es-area-contnent-font-size);
-    font-weight: var(--br-comp-input-es-area-contnent-font-weight);
-    line-height: var(--br-comp-input-es-area-contnent-line-height);
+    font-family: var(--br-comp-input-es-area-content-font-family);
+    font-size: var(--br-comp-input-es-area-content-font-size);
+    font-weight: var(--br-comp-input-es-area-content-font-weight);
+    line-height: var(--br-comp-input-es-area-content-line-height);
 
     &:focus {
         outline-style: var(--br-comp-input-es-outline-style);
