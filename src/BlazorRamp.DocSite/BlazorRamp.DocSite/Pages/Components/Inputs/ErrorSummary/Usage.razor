@@ -4,6 +4,46 @@
 
 <h1>@GlobalValues.Component_Name_Input_Errors_Summary @GlobalValues.Common_Page_Title_Usage</h1>
 
+<p>
+    Practical examples showing the Input Errors Summary component configured with various parameters.
+</p>
+<p>
+    You can choose to either have the summary displayed as soon as any validation error occurs or only once a full model validation has occurred which generally is when the
+    user is trying to submit the form. If the summary is shown on any validation error (the always option) the focus does not move. After full model validation, if there are errors the focus is moved to  
+    the summary section. This focus event causes the screen reader to read the heading which is used to label this landmark region.
+</p>
+<p>
+    The input errors summary example below has been configured to only show after a full model validation event has occurred. It uses an input suffix of "Field" appended to the label names and wraps
+    the title in an <span class="code-span">h3</span> element, which on this page was the next logical heading.
+</p>
+<p>
+    All of the fields are required, each with validation rules, setting <span class="code-span">UpdateOnInput="true"</span> on each for immediate validation. Clicking the fake submit button will
+    validate the entire model showing any validation error messages on the respective input as well as to display the input error summary.
+</p>
+<p>
+    <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
+    but you can use any validators that work with Blazors <span class="code-span">EditContext</span>.
+</p>
+<section class="section-box">
+    <h2>Input error summary example</h2>
+
+    <EditForm Model="@_contactData" OnValidSubmit="HandleSubmit">
+        
+        <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+        <div class="br-input-row">
+            <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                       @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" />
+
+            <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                       @bind-Value="_contactData.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" />
+        </div>
+        <div class="br-input-row">
+            <button class="br-col-xs-12 normal-button" type="submit">Fake Submit to trigger validation on the model</button>
+        </div>
+    </EditForm>
+
+</section>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_InputErrors}/{GlobalValues.Common_Page_Path_Api}")">
@@ -17,6 +57,39 @@
         <span aria-hidden="true"></span>
     </a>
 </div>
+
+
 @code {
+
+    private ContactDto _contactData = new();
+    private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+    protected override void OnInitialized()
+    {
+
+        var firstNameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,50}$)[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]+$", "FirstName", "First name", "Must start with a capital letter and be between 2 and 50 characters in length");
+
+        /*
+        * Although its easy to create a regex that does everything I prefer to break things down into separate rules, so below creates a validator made up of two rules.
+                 */
+        var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]*$", "FamilyName", "Surname", "Must start with a capital letter")
+                                .AndThen(MemberValidators.CreateStringLengthValidator(2, 50, "Surname", "Surname", "Must be between 2 and 50 characters in length"));
+
+
+        _boxedValidators = BlazorValidationBuilder<ContactDto>.Create()
+                                .ForMember(c => c.FirstName, firstNameValidator)
+                                .ForMember(c => c.Surname, surnameValidator)
+                                .GetBoxedValidators();
+    }
+
+
+    private void HandleSubmit() { }
+
+    public class ContactDto
+    {
+
+        public string FirstName { get; set; }
+        public string Surname { get; set; }
+    }
 
 }

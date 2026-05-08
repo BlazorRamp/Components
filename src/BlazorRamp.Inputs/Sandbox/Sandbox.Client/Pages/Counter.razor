@@ -72,7 +72,7 @@
                         .ForMember(c => c.Password, ContactValidators.PasswordValidator)            // << This validator (function) combines two functions a regex and a separate length validator
                         .ForNullableMember(c => c.NullableAge, ContactValidators.NullableAgeValidator)
                         .ForMember(c => c.Age, ContactValidators.AgeValidator)
-                        .ForMember(c => c.Salary,ContactValidators.SalaryValidator);
+                        .ForNullableMember(c => c.Salary,ContactValidators.SalaryValidator);
         // .ForComparisonWithValue(c => c.DOB, ContactValidators.DOBValidator)
         // .ForComparisonWithMember(c => c.CompareDOB, ContactValidators.CompareDOBValidator)
         // .ForNestedMember(c => c.Address, AddressValidators.GetBoxedAddressValidators())// << Getting all the address validators from a pre-created builder.

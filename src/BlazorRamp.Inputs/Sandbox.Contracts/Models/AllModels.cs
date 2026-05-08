@@ -34,7 +34,7 @@ public record class ContactDto
     public string?  NullableMobile { get; set; } 
     public int?     NullableAge    { get; set; }
 
-    public decimal Salary { get; set; } = default!;
+    public decimal? Salary { get; set; } = default!;
 
     [Range(20, 50,ErrorMessage = "Not in range")]
     public int      Age            { get; set; }

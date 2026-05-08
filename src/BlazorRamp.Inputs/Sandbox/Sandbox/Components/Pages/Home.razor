@@ -26,7 +26,7 @@ Welcome to your new app.
         <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" DataPosition="DataPosition.Start"
                       @bind-Value="_contactData.Age" UpdateOnInput="true" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" Format="F2" />
 
-        <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Nullable Age" DataPosition="DataPosition.End" SvgIcon="--svg-food-icon"
+        <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Nullable Salary" DataPosition="DataPosition.End" SvgIcon="--svg-food-icon"
                       @bind-Value="_contactData.Salary" UpdateOnInput="true" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" Format="F2" />
     </div>
 
@@ -78,7 +78,7 @@ Welcome to your new app.
                         .ForMember(c => c.Password, ContactValidators.PasswordValidator)            // << This validator (function) combines two functions a regex and a separate length validator
                         .ForNullableMember(c => c.NullableAge, ContactValidators.NullableAgeValidator)
                         .ForMember(c => c.Age, ContactValidators.AgeValidator)
-                        .ForMember(c => c.Salary,ContactValidators.SalaryValidator);
+                        .ForNullableMember(c => c.Salary, ContactValidators.SalaryValidator);
         // .ForComparisonWithValue(c => c.DOB, ContactValidators.DOBValidator)
         // .ForComparisonWithMember(c => c.CompareDOB, ContactValidators.CompareDOBValidator)
         // .ForNestedMember(c => c.Address, AddressValidators.GetBoxedAddressValidators())// << Getting all the address validators from a pre-created builder.

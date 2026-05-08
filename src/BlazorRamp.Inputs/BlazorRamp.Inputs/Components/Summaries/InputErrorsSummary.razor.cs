@@ -67,6 +67,12 @@ public partial class InputErrorsSummary : IAsyncDisposable
     /// </summary>
     [Parameter] public TitleHeadingLevel TitleHeadingLevel      { get; set; } = TitleHeadingLevel.H2;
 
+
+    /// <summary>
+    /// Gets or sets additional attributes applied to the component's root element.
+    /// </summary>
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
     /// <summary>
     /// Gets or sets the JavaScript runtime used to load the inputs JS module
     /// and invoke focus management functions.
@@ -137,10 +143,12 @@ public partial class InputErrorsSummary : IAsyncDisposable
             _modelValidated = true;
             _summaryItems.Clear();
             _summaryItems.AddRange(BuildSummaryList(_inputMap, CurrentEditContext));
+            
+            StateHasChanged(); // added for tests as it works without it but aa blazor batches it should not harm anything.
 
             if (_summaryItems.Count > 0 && _jSModule is not null)
             {
-                await Task.Yield();
+                await Task.Yield();//needed this for the focus to work
                 await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Set_Summary_Focus, _summarySectionID);
             }
         }

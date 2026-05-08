@@ -20,7 +20,7 @@
     {
         var itemCount = summaryItems.Count;
         
-        <section id="@_summarySectionID" role="region" aria-labelledby="@_headingID" class="@GetSectionClasses(itemCount, summaryDisplay, modelValidated)">
+        <section @attributes="AdditionalAttributes" id="@_summarySectionID" role="region" aria-labelledby="@_headingID" class="@GetSectionClasses(itemCount, summaryDisplay, modelValidated)">
 
             @switch (TitleHeadingLevel)
                 {
@@ -35,10 +35,10 @@
             }
 
             @if (itemCount > 0)
-            { <ul role="list">
+            { <ul role="list" class="br-input-row">
                 @foreach(var summaryItem in summaryItems)
                 {
-                    <li>
+                    <li class="br-col-xs-12 br-col-lg-6">
                         <a id="@($"input-error-summary-{summaryItem.ControlID}")" class="@GlobalValues.Input_Errors_Summary_Link" href="#@(summaryItem.ControlID)" @onclick:preventDefault="true" @onclick="() => FocusInput(summaryItem.ControlID)">
                             @summaryItem.DisplayName @_inputSuffix
                         </a>

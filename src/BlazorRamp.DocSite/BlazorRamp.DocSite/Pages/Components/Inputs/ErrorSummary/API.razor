@@ -68,9 +68,15 @@
                         Defaults to <span class="code-span">TitleHeadingLevel.H2</span>.
                     </td>
                 </tr>
+                <tr>
+                    <td>AdditionalAttributes</td>
+                    <td>Dictionary&lt;string, object&gt;?</td>
+                    <td>Sets additional attributes applied to the component's root element.</td>
+                </tr>
             </tbody>
         </table>
     </section>
+
 </section>
 
 <section>
@@ -257,52 +263,52 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>--br-comp-history-area-header-background</td>
-                    <td>var(--br-comp-all-area-header-background)</td>
-                    <td>The background colour of the header area - uses the shared component variable.</td>
+                    <td>--br-comp-input-es-header-background</td>
+                    <td>inherit</td>
+                    <td>The background colour of the header area - <b>does not use the shared component variable.</b></td>
                 </tr>
                 <tr>
-                    <td>--br-comp-history-area-header-text</td>
+                    <td>--br-comp-input-es-area-header-text</td>
                     <td>var(--br-comp-all-area-header-text)</td>
                     <td>The text colour used on the header area - uses the shared component variable.</td>
                 </tr>
                 <tr>
-                    <td>--br-comp-history-area-header-font-family</td>
+                    <td>--br-comp-input-es-area-header-font-family</td>
                     <td>var(--br-comp-all-area-header-font-family)</td>
                     <td>The font family used - uses the shared component variable.</td>
                 </tr>
                 <tr>
-                    <td>--br-comp-history-area-header-font-size</td>
+                    <td>--br-comp-input-es-area-header-font-size</td>
                     <td>var(--br-comp-all-area-header-font-size)</td>
                     <td>The font size - uses the shared component variable.</td>
                 </tr>
                 <tr>
-                    <td>--br-comp-history-area-header-font-weight</td>
+                    <td>--br-comp-input-es-area-header-font-weight</td>
                     <td>var(--br-comp-all-area-header-font-weight)</td>
                     <td>The font weight - uses the shared component variable.</td>
                 </tr>
                 <tr>
-                    <td>--br-comp-history-area-header-line-height</td>
+                    <td>--br-comp-input-es-area-header-line-height</td>
                     <td>var(--br-comp-all-area-header-line-height)</td>
                     <td>The line height - uses the shared component variable.</td>
                 </tr>
                 <tr>
-                    <td>--br-comp-history-area-header-border-style</td>
+                    <td>--br-comp-input-es-area-header-border-style</td>
                     <td>var(--br-comp-all-area-header-border-style)</td>
                     <td>The border style - uses the shared component variable.</td>
                 </tr>
                 <tr>
-                    <td>--br-comp-history-area-header-border-colour</td>
+                    <td>--br-comp-input-es-area-header-border-colour</td>
                     <td>var(--br-comp-all-area-header-border-colour)</td>
                     <td>The border colour - uses the shared component variable.</td>
                 </tr>
                 <tr>
-                    <td>--br-comp-history-area-header-border-width</td>
+                    <td>--br-comp-input-es-area-header-border-width</td>
                     <td>var(--br-comp-all-area-header-border-width)</td>
                     <td>The border width - uses the shared component variable.</td>
                 </tr>
                 <tr>
-                    <td>--br-comp-history-area-header-border-radius</td>
+                    <td>--br-comp-input-es-area-header-border-radius</td>
                     <td>var(--br-comp-all-area-header-border-radius)</td>
                     <td>The border radius - uses the shared component variable.</td>
                 </tr>
@@ -310,7 +316,6 @@
         </table>
 
     </section>
-
 
     <section class="code-table">
 
@@ -416,6 +421,41 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>--br-comp-input-es-pane-base-background</td>
+                    <td>inherit</td>
+                    <td>This is the background colour of the component - <b>does not use the shared component variable</b>.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-pane-base-border-colour</td>
+                    <td>var(--br-unit-colour-danger)</td>
+                    <td>The border colour - <b> does not use the shared component variable</b>.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-pane-base-border-width</td>
+                    <td>var(--br-unit-border-2)</td>
+                    <td>The border width - <b>does not use the shared component variable</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-header-background</td>
+                    <td>inherit</td>
+                    <td>The background colour of the header area - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-area-content-background</td>
+                    <td>inherit</td>
+                    <td>The background colour of the content area - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-area-content-text</td>
+                    <td>var(--br-unit-colour-danger)</td>
+                    <td>The colour of the the text - <b>does not use the shared component variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-input-es-link-text</td>
+                    <td>var(--br-unit-colour-canvas-text)</td>
+                    <td>The text colour of the link text - <b>No shared variable for this property.</b></td>
+                </tr>
             </tbody>
         </table>
 

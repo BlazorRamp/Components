@@ -156,9 +156,9 @@ namespace BlazorRamp.Inputs.Components
         {
             validationErrorMessage = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(value))
+            if (string.IsNullOrWhiteSpace(value) && true == base.IsNullableType)
             {
-                result = default!;//stop the green squiggle
+                result = default(TValue)!;// default!;//stop the green squiggle
                 return true;
             }
 
