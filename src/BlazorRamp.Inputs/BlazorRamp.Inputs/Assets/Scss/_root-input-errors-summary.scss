@@ -1,4 +1,6 @@
 ﻿:root {
+    --br-comp-input-es-error-colour: var(--br-unit-colour-danger);
+    //
     --br-comp-input-es-outline-style: var(--br-comp-all-outline-style);
     --br-comp-input-es-outline-width: var(--br-comp-all-outline-width);
     --br-comp-input-es-outline-offset: var(--br-comp-all-outline-offset);
@@ -6,7 +8,7 @@
     //
     --br-comp-input-es-pane-base-background: inherit;
     --br-comp-input-es-pane-base-border-style: var(--br-comp-all-pane-base-border-style);
-    --br-comp-input-es-pane-base-border-colour: var(--br-unit-colour-danger);
+    --br-comp-input-es-pane-base-border-colour: var(--br-comp-input-es-error-colour);
     --br-comp-input-es-pane-base-border-width: var(--br-unit-border-2);
     --br-comp-input-es-pane-base-border-radius: var(--br-comp-all-pane-base-border-radius);
     //
@@ -25,7 +27,7 @@
     //
 
     --br-comp-input-es-area-content-background: inherit; //: var(--br-unit-colour-canvas);
-    --br-comp-input-es-area-content-text: var(--br-unit-colour-danger);
+    --br-comp-input-es-area-content-text: var(--br-comp-input-es-error-colour);
     --br-comp-input-es-area-content-font-family: var(--br-comp-all-area-content-font-family); //: inherit;
     --br-comp-input-es-area-content-font-size: var(--br-comp-all-area-content-font-size); //: var(--br-unit-font-size-1);
     --br-comp-input-es-area-content-font-weight: var(--br-comp-all-area-content-font-weight); //: inherit;

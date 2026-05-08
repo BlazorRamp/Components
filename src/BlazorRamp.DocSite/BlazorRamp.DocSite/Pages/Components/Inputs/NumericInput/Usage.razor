@@ -90,12 +90,12 @@
 
         var unitValidator   = MemberValidators.CreateRangeValidator<int>(1, 999, "UnitsInStock", "Units in stock", "Must be between 1 and 999");
 
-        var priceValidation = MemberValidators.CreatePrecisionScaleValidator<decimal>(5, 2, "UnitPrice", "Unit price", "Cannot be more than than one hundred thousand with a maximum of 2 decimal places")
+        var priceValidator = MemberValidators.CreatePrecisionScaleValidator<decimal>(5, 2, "UnitPrice", "Unit price", "Cannot be more than than one hundred thousand with a maximum of 2 decimal places")
                                 .AndThen(MemberValidators.CreatePredicateValidator<decimal>(c => c > 1M, "UnitPrice", "Unit Price", "Must be greater than " + String.Format("{0:C}", 1)));
 
         _boxedValidators = BlazorValidationBuilder<InventoryDto>.Create()
                                 .ForMember(c => c.UnitsInStock, unitValidator)
-                                .ForMember(c => c.UnitPrice, priceValidation)
+                                .ForMember(c => c.UnitPrice, priceValidator)
                                 .GetBoxedValidators();
     }
 

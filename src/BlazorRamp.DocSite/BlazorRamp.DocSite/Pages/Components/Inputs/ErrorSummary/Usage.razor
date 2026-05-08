@@ -8,16 +8,21 @@
     Practical examples showing the Input Errors Summary component configured with various parameters.
 </p>
 <p>
-    You can choose to either have the summary displayed as soon as any validation error occurs or only once a full model validation has occurred which generally is when the
-    user is trying to submit the form. If the summary is shown on any validation error (the always option) the focus does not move. After full model validation, if there are errors the focus is moved to  
-    the summary section. This focus event causes the screen reader to read the heading which is used to label this landmark region.
+    You can choose to have the error summary displayed immediately on any validation error (<span class="code-span">SummaryDisplay.Always</span>) or only after a full model validation has occurred (<span class="code-span">SummaryDisplay.OnModelValidated</span>)
+    which generally occurs when the user is trying to submit the form. 
+</p>
+<p>
+    When a full model validation event occurs and there are validation errors, the summary is displayed and the focus moved to it. 
+    This focus event causes screen readers to announce the heading as the section element containing this summary information has an <span class="code-span">aria-labelledby</span> attribute that point to the heading element.
+    The section has also been given a <span class="code-span">role="region"</span> attribute promoting it to a landmark in order to make it easier for screen reader users to navigate to, given the lists of short cuts they have access to.
 </p>
 <p>
     The input errors summary example below has been configured to only show after a full model validation event has occurred. It uses an input suffix of "Field" appended to the label names and wraps
     the title in an <span class="code-span">h3</span> element, which on this page was the next logical heading.
 </p>
 <p>
-    All of the fields are required, each with validation rules, setting <span class="code-span">UpdateOnInput="true"</span> on each for immediate validation. Clicking the fake submit button will
+    The three fields with the asterisk next to the label are required, with the Hourly Rate field being a nullable (optional) decimal value. 
+    Each field as validation rules and uses the setting <span class="code-span">UpdateOnInput="true"</span> for immediate validation opting to use the tabbable regions for the validation error messages. Clicking the fake submit button will
     validate the entire model showing any validation error messages on the respective input as well as to display the input error summary.
 </p>
 <p>
@@ -31,13 +36,28 @@
         
         <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
-        <div class="br-input-row">
-            <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                       @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" />
+        <InputErrorsSummary InputSuffix="Field" TitleHeadingLevel="TitleHeadingLevel.H3" SummaryDisplay="SummaryDisplay.OnModelValidated">
 
-            <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                       @bind-Value="_contactData.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" />
-        </div>
+            <div class="br-input-row">
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First Name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                           @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" />
+
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                           @bind-Value="_contactData.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" />
+            </div>
+            <div class="br-input-row">
+
+                <NumericInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.Age" Required="true"
+                              LabelText="Age" ErrorsLabel="errors" HintText="Your current age in years." UpdateOnInput="true"
+                              ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" ParseErrorMessage="Please enter a valid number for this field type." />
+
+                <NumericInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.HourlyRate" Required="false" Format="C" 
+                                LabelText="Hourly Rate" ErrorsLabel="errors" HintText="Optional, how much you charge per hour." UpdateOnInput="true" 
+                              ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" ParseErrorMessage="Please enter a valid number for this field type." maxlength="50"/>
+
+            </div>
+        </InputErrorsSummary>
+
         <div class="br-input-row">
             <button class="br-col-xs-12 normal-button" type="submit">Fake Submit to trigger validation on the model</button>
         </div>
@@ -67,19 +87,26 @@
     protected override void OnInitialized()
     {
 
-        var firstNameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,50}$)[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]+$", "FirstName", "First name", "Must start with a capital letter and be between 2 and 50 characters in length");
+        var firstNameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,25}$)[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]+$", "FirstName", "First Name", "Must start with a capital letter and be between 2 and 25 characters in length.");
 
         /*
         * Although its easy to create a regex that does everything I prefer to break things down into separate rules, so below creates a validator made up of two rules.
                  */
-        var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]*$", "FamilyName", "Surname", "Must start with a capital letter")
-                                .AndThen(MemberValidators.CreateStringLengthValidator(2, 50, "Surname", "Surname", "Must be between 2 and 50 characters in length"));
+    var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]*$", "FamilyName", "Surname", "Must start with a capital letter")
+                        .AndThen(MemberValidators.CreateStringLengthValidator(2, 25, "Surname", "Surname", "Must be between 2 and 25 characters in length but you entered {ActualLength} characters."));
+
+        var ageValidator = MemberValidators.CreateRangeValidator<int>(16, 120, "Age", "Age", "Must be between 16 and 120");
+
+        var salaryValidator = MemberValidators.CreatePrecisionScaleValidator<decimal>(50, 2, "HourlyRate", "Hourly Rate", "Can only contain a maximum of 2 decimal places")
+                        .AndThen(MemberValidators.CreateRangeValidator<decimal>(10.00M, 200.00M, "HourlyRate", "Hourly Rate", $"Must be between {String.Format("{0:C}", 10)} and {String.Format("{0:C}", 100)}"));
 
 
         _boxedValidators = BlazorValidationBuilder<ContactDto>.Create()
                                 .ForMember(c => c.FirstName, firstNameValidator)
                                 .ForMember(c => c.Surname, surnameValidator)
-                                .GetBoxedValidators();
+                                .ForMember(c => c.Age, ageValidator)
+                                .ForNullableMember(c => c.HourlyRate, salaryValidator)
+                            .GetBoxedValidators();
     }
 
 
@@ -88,8 +115,10 @@
     public class ContactDto
     {
 
-        public string FirstName { get; set; }
-        public string Surname { get; set; }
+        public string   FirstName { get; set; }
+        public string   Surname   { get; set; }
+        public int      Age       { get; set; }
+        public decimal? HourlyRate { get; set; }
     }
 
 }
