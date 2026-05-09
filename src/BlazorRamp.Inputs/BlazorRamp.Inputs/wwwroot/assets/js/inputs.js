@@ -44,8 +44,11 @@ const setInputFocus = (elementId) => {
         case "tel":
         case "url":
         case "search":
-            if (element.value)
-                element.setSelectionRange(element.value.length, element.value.length);
+            try {
+                if (element.value)
+                    element.setSelectionRange(element.value.length, element.value.length);
+            }
+            catch { }
             break;
         // date, time, number, checkbox, radio etc - just focus, no cursor manipulation
     }

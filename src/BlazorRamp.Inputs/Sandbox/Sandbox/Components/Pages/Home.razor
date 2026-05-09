@@ -32,9 +32,6 @@ Welcome to your new app.
 
     <div class="br-input-row">
 
-            <TextInput class="br-col-xs-12 br-col-sm-6"  @bind-Value="_contactData.GivenName" UpdateOnInput="true" HintText="Some hint text" LabelText="First Name"
-                       AriaDisabled="false" ReadOnly="false" SvgIcon="--svg-information-icon" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" />
-
             <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.FamilyName" LabelText="Surname"
             UpdateOnInput="true" AriaDisabled="false" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
                    
@@ -50,12 +47,33 @@ Welcome to your new app.
                        @bind-Value="_contactData.ConfirmPassword" UpdateOnInput="false" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
     </div>
 
+
+
+        <div class="br-input-row">
+
+            @{
+                var index = 0;
+            }
+            @foreach (var contactMethod in _contactData.ContactMethods)
+            {
+
+                <TextInput class="br-col-xs-12 br-col-sm-6"  LabelText="" @bind-Value="contactMethod.MethodValue" HintText="Enter some value" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="true" />
+
+                <div class="br-input-row">
+                    <button class="btn btn-danger" type="button" @onclick="() => RemoveContactMethod(contactMethod)">Delete</button>
+                    <hr />
+                </div>
+                index++;
+            }
+
+        </div>
+
     </InputErrorsSummary>
 
     <button class="btn btn-primary" type="submit">Submit</button>
 
 </EditForm>
-
+<button class="btn btn-primary" type="button" @onclick="AddContactMethod">Add Contact Method</button>
 <button class="btn btn-primary" type="button" @onclick="Test">Click</button>
 
 @code{
@@ -78,17 +96,17 @@ Welcome to your new app.
                         .ForMember(c => c.Password, ContactValidators.PasswordValidator)            // << This validator (function) combines two functions a regex and a separate length validator
                         .ForNullableMember(c => c.NullableAge, ContactValidators.NullableAgeValidator)
                         .ForMember(c => c.Age, ContactValidators.AgeValidator)
-                        .ForNullableMember(c => c.Salary, ContactValidators.SalaryValidator);
-        // .ForComparisonWithValue(c => c.DOB, ContactValidators.DOBValidator)
-        // .ForComparisonWithMember(c => c.CompareDOB, ContactValidators.CompareDOBValidator)
-        // .ForNestedMember(c => c.Address, AddressValidators.GetBoxedAddressValidators())// << Getting all the address validators from a pre-created builder.
-        // .ForEachCollectionMember(c => c.ContactMethods, ContactMethodValidators.GetBoxedContactMethodValidators())
+                        .ForNullableMember(c => c.Salary, ContactValidators.SalaryValidator)
+         // .ForComparisonWithValue(c => c.DOB, ContactValidators.DOBValidator)
+         // .ForComparisonWithMember(c => c.CompareDOB, ContactValidators.CompareDOBValidator)
+         // .ForNestedMember(c => c.Address, AddressValidators.GetBoxedAddressValidators())// << Getting all the address validators from a pre-created builder.
+         .ForEachCollectionMember(c => c.ContactMethods, ContactMethodValidators.GetBoxedContactMethodValidators());
         // .ForCollection(c => c.ContactMethods, MemberValidators.CreateCollectionLengthValidator<List<ContactMethodDto>>(1, 3, "ContactMethods", "Contact methods", "Must have at least 1 contact method but no more than 3"));// << created on the fly
 
 
         _contactBoxedValidators = builder.GetBoxedValidators();
 
-        _contactData.ContactMethods = [];
+        //_contactData.ContactMethods = [];
     }
 
     private void Test()
@@ -99,5 +117,11 @@ Welcome to your new app.
     {
 
     }
+    private void AddContactMethod()
 
+    => _contactData.ContactMethods.Add(new ContactMethodDto());
+
+    private void RemoveContactMethod(ContactMethodDto contactMethod)
+
+        => _contactData.ContactMethods.Remove(contactMethod);
 }

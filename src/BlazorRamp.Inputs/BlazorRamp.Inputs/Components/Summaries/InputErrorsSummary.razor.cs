@@ -162,6 +162,18 @@ public partial class InputErrorsSummary : IAsyncDisposable
         if (false == _inputMap.ContainsKey(fieldIdentifier)) _inputMap[fieldIdentifier] = new(displayName,controlID);
     }
 
+    internal void RemoveFromInputMap(FieldIdentifier fieldIdentifier)
+    { 
+        _inputMap.Remove(fieldIdentifier);
+
+        if (CurrentEditContext.GetValidationMessages(fieldIdentifier).Count() == 0) return;
+
+        _summaryItems.Clear();
+        _summaryItems.AddRange(BuildSummaryList(_inputMap, CurrentEditContext));
+
+        StateHasChanged();
+    }
+
     private List<ErrorSummaryItem> BuildSummaryList(Dictionary<FieldIdentifier, InputMapItem> inputMap, EditContext currentContext)
     {
         List<ErrorSummaryItem> summaryList = [];

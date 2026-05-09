@@ -12,7 +12,6 @@
     font-size: var(--br-comp-input-es-area-content-font-size);
     font-weight: var(--br-comp-input-es-area-content-font-weight);
     line-height: var(--br-comp-input-es-area-content-line-height);
-
     word-break: break-word; // add this
     &:focus {
         outline-style: var(--br-comp-input-es-outline-style);
@@ -21,7 +20,7 @@
         outline-color: var(--br-comp-input-es-outline-colour);
     }
 
-    & ul,li {
+    & ul, li {
         margin: 0;
         padding: 0;
         list-style-type: none;
@@ -72,8 +71,7 @@
         color: inherit;
     }
 
-    &__list {
-        padding-block-end: var(--br-unit-space-3) !important;
-
+    ul.br-input-errors-summary__list {
+        padding-block-end: var(--br-unit-space-3);
     }
 }

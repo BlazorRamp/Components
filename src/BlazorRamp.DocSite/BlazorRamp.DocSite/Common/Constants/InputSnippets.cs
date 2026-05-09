@@ -254,4 +254,80 @@ public class InputSnippets
         
         """;
 
+    public const string Error_Summary_Example = """
+            
+        <EditForm Model="@_contactData" OnValidSubmit="HandleSubmit">
+
+            <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <InputErrorsSummary InputSuffix="Field" TitleHeadingLevel="TitleHeadingLevel.H3" SummaryDisplay="SummaryDisplay.OnModelValidated">
+
+                <div class="br-input-row">
+                    <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First Name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                               @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" />
+
+                    <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                               @bind-Value="_contactData.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" />
+                </div>
+                <div class="br-input-row">
+
+                    <NumericInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.Age" Required="true"
+                                  LabelText="Age" ErrorsLabel="errors" HintText="Your current age in years." UpdateOnInput="true"
+                                  ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" ParseErrorMessage="Please enter a valid number for this field type." />
+
+                    <NumericInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.HourlyRate" Required="false" Format="C" 
+                                    LabelText="Hourly Rate" ErrorsLabel="errors" HintText="Optional, how much you charge per hour." UpdateOnInput="true" 
+                                  ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" ParseErrorMessage="Please enter a valid number for this field type." maxlength="50"/>
+
+                </div>
+            </InputErrorsSummary>
+
+            <div class="br-input-row">
+                <button class="br-col-xs-12 normal-button" type="submit">Fake Submit to trigger validation on the model</button>
+            </div>
+        </EditForm>
+
+        @code {
+
+            private ContactDto _contactData = new();
+            private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+            protected override void OnInitialized()
+            {
+
+                var firstNameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,25}$)[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]+$", "FirstName", "First Name", "Must start with a capital letter and be between 2 and 25 characters in length.");
+
+                /*
+                * Although its easy to create a regex that does everything I prefer to break things down into separate rules, so below creates a validator made up of two rules.
+                         */
+            var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]*$", "FamilyName", "Surname", "Must start with a capital letter")
+                                .AndThen(MemberValidators.CreateStringLengthValidator(2, 25, "Surname", "Surname", "Must be between 2 and 25 characters in length but you entered {ActualLength} characters."));
+
+                var ageValidator = MemberValidators.CreateRangeValidator<int>(16, 120, "Age", "Age", "Must be between 16 and 120");
+
+                var salaryValidator = MemberValidators.CreatePrecisionScaleValidator<decimal>(50, 2, "HourlyRate", "Hourly Rate", "Can only contain a maximum of 2 decimal places")
+                                .AndThen(MemberValidators.CreateRangeValidator<decimal>(10.00M, 200.00M, "HourlyRate", "Hourly Rate", $"Must be between {String.Format("{0:C}", 10)} and {String.Format("{0:C}", 100)}"));
+
+
+                _boxedValidators = BlazorValidationBuilder<ContactDto>.Create()
+                                        .ForMember(c => c.FirstName, firstNameValidator)
+                                        .ForMember(c => c.Surname, surnameValidator)
+                                        .ForMember(c => c.Age, ageValidator)
+                                        .ForNullableMember(c => c.HourlyRate, salaryValidator)
+                                    .GetBoxedValidators();
+            }
+
+
+            private void HandleSubmit() { }
+
+            public class ContactDto
+            {
+                public string   FirstName  { get; set; }
+                public string   Surname    { get; set; }
+                public int      Age        { get; set; }
+                public decimal? HourlyRate { get; set; }
+            }
+
+        }
+        """;
 }

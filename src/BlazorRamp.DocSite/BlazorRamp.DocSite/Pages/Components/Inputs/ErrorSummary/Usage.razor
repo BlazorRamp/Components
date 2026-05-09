@@ -12,6 +12,9 @@
     which generally occurs when the user is trying to submit the form. 
 </p>
 <p>
+    To use the component all you need to do is place the component inside of the <span class="code-span">EditContext</span> wrapping the inputs that you want including in the summary that will have links pointing to the inputs.
+</p>
+<p>
     When a full model validation event occurs and there are validation errors, the summary is displayed and the focus moved to it. 
     This focus event causes screen readers to announce the heading as the section element containing this summary information has an <span class="code-span">aria-labelledby</span> attribute that point to the heading element.
     The section has also been given a <span class="code-span">role="region"</span> attribute promoting it to a landmark in order to make it easier for screen reader users to navigate to, given the lists of short cuts they have access to.
@@ -114,10 +117,9 @@
 
     public class ContactDto
     {
-
-        public string   FirstName { get; set; }
-        public string   Surname   { get; set; }
-        public int      Age       { get; set; }
+        public string   FirstName  { get; set; }
+        public string   Surname    { get; set; }
+        public int      Age        { get; set; }
         public decimal? HourlyRate { get; set; }
     }
 

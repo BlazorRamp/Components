@@ -373,6 +373,8 @@ namespace BlazorRamp.Inputs.Components
             {
                 try
                 {
+                    if (InputErrorsSummary is not null) InputErrorsSummary?.RemoveFromInputMap(this.FieldIdentifier);
+
                     await UnRegisterDisabledHandlers();
                     await _jSModule.DisposeAsync();
                 }
