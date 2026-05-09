@@ -88,14 +88,24 @@
 <p>
     <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were available at the time of testing (see release history on the installation page for approximate testing dates)
 </p>
+<h2 id="screen-reader-quirks">Screen reader quirks or known issues</h2>
+<ul aria-labelledby="screen-reader-quirks">
+    <li>
+        <b>Narrator</b> on Firefox currently does not seem to honour <span class="code-span">aria-required</span> or  <span class="code-span">aria-invalid</span>; please check your version
+        of Narrator and version of Firefox if you need to support this pairing. Its recommended that Narrator be used with Edge or Chrome.
+    </li>
+</ul>
 <p>
     <strong>Note: </strong>Not a quirk as its by design, but Talkback on Android will not read content linked by the <span class="code-span">aria-describedby</span> attribute on the input when the input had content.
 </p>
 <p>
-    <strong>Important:</strong> I recommend prioritising form-level validation over field-level validation. Ensure a robust error summary mechanism is in place at the form level first, then layer field-level validation on top. When the user 
+I recommend prioritising form-level validation over field-level validation. Ensure a robust error summary mechanism is in place at the form level first, then layer field-level validation on top. When the user 
     attempts to submit a form with errors, use an ARIA live region (preferably the Live Region Service) to announce that errors are present and direct the user to the error summary region to review them.
 </p>
-
+<p>
+    <strong>Note: </strong>If using the Blazor Ramp Inputs you can also use the <span class="code-span">&lt;InputErrorsSummary /&gt;</span> that on form submission, if errors are present, will be displayed with links to the erroneous fields. No live regions announcements
+    are needed given the focusing and <span class="code-span">aria-labelledby</span> attribute used.
+</p>
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Installation}")">
         <span aria-hidden="true"></span>
