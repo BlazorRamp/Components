@@ -400,6 +400,8 @@
   --br-comp-input-success-colour: var(--br-unit-colour-success-light);
   --br-code-block-background-colour: var(--br-unit-colour-secondary-darker);
   --br-code-block-text: var(--br-unit-colour-info-lighter);
+  --br-comp-input-success-colour: var(--br-unit-colour-success-light);
+  --br-comp-input-es-error-colour: var(--br-unit-colour-danger-light);
 }
 
 *,

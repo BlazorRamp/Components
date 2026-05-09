@@ -1,0 +1,148 @@
+﻿
+@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_ErrorsSummary}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
+
+<PageTitle>@GlobalValues.Component_Name_Errors_Summary @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Errors_Summary @GlobalValues.Common_Page_Title_Overview_Tests</h1>
+
+    <p>
+        The Inputs Errors Summary component is a simple component designed to show the validation messages that may have occurred for the form field with a link that 
+        takes the user to the erroneous field so they can correct it.
+    </p>
+
+</section>
+<section class="@GlobalValues.Main_Nav_Section_Heading_SkipTo @GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
+    <p>
+        All of the form fields below have validation rules attached and are set for immediate validation using a tabbable region for the error messages that appear below the respective input.
+    </p>
+    <p>
+        The Input Errors Summary component has been set to show only once a full model validation has occurred, which in the example below occurs when you click the fake submit button.
+    </p>
+    <p>
+        You can click the fake submit button at any time. By default, as three of the fields are required, if you try to submit the form without entering any data there will be three erroneous fields.
+    </p>
+</section>
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+    <ul>
+        <li>
+            On clicking the fake submit button, if there are any validation errors the input errors summary should be displayed at the top of the form with focus being set on this landmark region.
+        </li>
+        <li>
+            Screen readers should announce the regions heading to the user so they are aware of the form errors.  
+        </li>
+        <li>
+            Each field error should contain a link to the input as well as having a list of the actual errors that occurred for that field.
+        </li>
+        <li>
+            Clicking the link should take you to the erroneous input. 
+        </li>
+        <li>
+           Screen reader users should should also have this summary region listed in thier landmarks shortcuts.
+        </li>
+        <li>
+            Voice control users should be able to navigate to any field directly using the appropriate command and the visible field name and/or by issuing the command to activate the link using its
+            visible accessible name.
+        </li>
+    </ul>
+</section>
+<section class="section-box">
+    <h2>Input error summary example</h2>
+
+    <EditForm Model="@_contactData" OnValidSubmit="HandleSubmit">
+        
+        <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+        <InputErrorsSummary InputSuffix="Field" TitleHeadingLevel="TitleHeadingLevel.H3" SummaryDisplay="SummaryDisplay.OnModelValidated">
+
+            <div class="br-input-row">
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First Name" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                           @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" />
+
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                           @bind-Value="_contactData.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" />
+            </div>
+            <div class="br-input-row">
+
+                <NumericInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.Age" Required="true"
+                              LabelText="Age" HintText="Your current age in years." UpdateOnInput="true"
+                              ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" ParseErrorMessage="Please enter a valid number for this field type." />
+
+                <NumericInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.HourlyRate" Required="false" Format="C" 
+                                LabelText="Hourly Rate" HintText="Optional, how much you charge per hour." UpdateOnInput="true" 
+                              ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" ParseErrorMessage="Please enter a valid number for this field type." maxlength="50"/>
+
+            </div>
+        </InputErrorsSummary>
+
+        <div class="br-input-row">
+            <button class="br-col-xs-12 normal-button" type="submit">Fake Submit to trigger validation on the model</button>
+        </div>
+    </EditForm>
+
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Text_Input - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_NavGroup}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_NavGroup - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+
+
+</div>
+
+
+@code {
+
+    private ContactDto _contactData = new();
+    private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+    protected override void OnInitialized()
+    {
+
+        var firstNameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,25}$)[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]+$", "FirstName", "First Name", "Must start with a capital letter and be between 2 and 25 characters in length.");
+
+        /*
+        * Although its easy to create a regex that does everything I prefer to break things down into separate rules, so below creates a validator made up of two rules.
+                 */
+        var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]*$", "FamilyName", "Surname", "Must start with a capital letter")
+                            .AndThen(MemberValidators.CreateStringLengthValidator(2, 25, "Surname", "Surname", "Must be between 2 and 25 characters in length but you entered {ActualLength} characters."));
+
+        var ageValidator = MemberValidators.CreateRangeValidator<int>(16, 120, "Age", "Age", "Must be between 16 and 120");
+
+        var salaryValidator = MemberValidators.CreatePrecisionScaleValidator<decimal>(50, 2, "HourlyRate", "Hourly Rate", "Can only contain a maximum of 2 decimal places")
+                        .AndThen(MemberValidators.CreateRangeValidator<decimal>(10.00M, 200.00M, "HourlyRate", "Hourly Rate", $"Must be between {String.Format("{0:C}", 10)} and {String.Format("{0:C}", 100)}"));
+
+
+        _boxedValidators = BlazorValidationBuilder<ContactDto>.Create()
+                                .ForMember(c => c.FirstName, firstNameValidator)
+                                .ForMember(c => c.Surname, surnameValidator)
+                                .ForMember(c => c.Age, ageValidator)
+                                .ForNullableMember(c => c.HourlyRate, salaryValidator)
+                            .GetBoxedValidators();
+    }
+
+
+    private void HandleSubmit() { }
+
+    public class ContactDto
+    {
+        public string FirstName { get; set; }
+        public string Surname { get; set; }
+        public int Age { get; set; }
+        public decimal? HourlyRate { get; set; }
+    }
+
+}
