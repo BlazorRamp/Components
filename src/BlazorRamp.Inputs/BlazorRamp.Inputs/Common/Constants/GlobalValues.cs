@@ -7,8 +7,8 @@ internal class GlobalValues
     public const string JS_Inputs_Register_Aria_Disabled_Handlers   = "registerAriaDisabledHandlers";
     public const string JS_Inputs_Unregister_Aria_Disabled_Handlers = "unregisterAriaDisabledHandlers";
 
-    public const string JS_Inputs_Register_Readonly_Handlers = "registerAriaDisabledHandlers";
-    public const string JS_Inputs_Unregister_Readonly_Handlers = "unregisterAriaDisabledHandlers";
+    public const string JS_Inputs_Register_Readonly_Handlers = "registerReadOnlyHandlers";
+    public const string JS_Inputs_Unregister_Readonly_Handlers = "unregisterReadOnlyHandlers";
 
     public const string JS_Inputs_Register_Numeric_Handlers   = "registerNumericHandlers";
     public const string JS_Inputs_Unregister_Numeric_Handlers = "unregisterNumericHandlers";

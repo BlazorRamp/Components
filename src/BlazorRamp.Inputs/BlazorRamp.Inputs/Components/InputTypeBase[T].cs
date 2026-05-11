@@ -140,7 +140,10 @@ namespace BlazorRamp.Inputs.Components
         /// </summary>
         protected bool    HasErrors         { get; private set; } = false;
 
-
+        /// <summary>
+        /// Gets the current validation state of the field. <c>true</c> when invalid,
+        /// <c>false</c> when valid, and <c>null</c> when not yet validated.
+        /// </summary>
         protected bool? InvalidState { get; private set; } = null;
 
         /// <summary>
@@ -311,13 +314,6 @@ namespace BlazorRamp.Inputs.Components
             }
 
         }
-
-        //private static string GetStateIconClasses(bool? invalid)
-        //{
-        //    var classes = GlobalValues.Text_Input_State_Icon_Class;
-
-        //    return invalid == null ? classes : $"{classes} {(invalid == true ? GlobalValues.Text_Input_State_Icon_Invalid_Modifier : GlobalValues.Text_Input_State_Icon_Valid_Modifier)}";
-        //}
 
         private static string? CheckSetSvgVariable(string? svgIcon)
         {

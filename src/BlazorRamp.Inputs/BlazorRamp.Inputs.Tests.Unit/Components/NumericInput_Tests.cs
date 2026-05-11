@@ -180,7 +180,7 @@ public class NumericInput_Tests
         [InlineData("")]
         [InlineData(" ")]
         [InlineData("MyControl")]
-        public async Task Should_be_able_to_set_the_display_dame_which_will_used_the_field_identity_if_null_empty_or_whitespace(string? labelText)
+        public async Task Should_be_able_to_set_the_label_text_which_defaults_to_the_field_identity_if_null_empty_or_whitespace(string? labelText)
         {
             await using var context = new BunitContext();
 

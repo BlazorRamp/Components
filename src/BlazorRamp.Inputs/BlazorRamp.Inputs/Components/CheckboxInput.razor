@@ -26,7 +26,7 @@
     <input @ref="ControlReference" @attributes="@GetAttributes(AdditionalAttributes)" class="@GlobalValues.Checkbox_Input_Field_Class" id="@InputID"
            type="checkbox"
            autocomplete="off"
-           aria-invalid="@(HasErrors ? "true" : null)"
+           aria-invalid="@(HasErrors ? "true" : "false")"
            aria-describedby="@(AriaDescribedByID)"
            aria-required="@(Required ? "true" : null)"
            aria-disabled="@(base.IsDisabled ? "true" : null)"

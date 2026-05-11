@@ -99,7 +99,6 @@
 
         &[data-br-invalid-state="false"] {
 
-
             @include valid-state-icon;
             color: var(--br-comp-input-success-colour);
         }
