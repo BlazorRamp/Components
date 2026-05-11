@@ -1,16 +1,16 @@
 ﻿@use "_functions" as *;
 
-.br-password-input {
+.br-checkbox-input {
     --_icon-size: 1em;
     --_br-svg-input-icon: none;
     width: 100%;
     display: inline-grid;
     grid-template-rows: auto auto auto minmax(var(--br-unit-space-5), auto);
-    grid-template-columns: min-content 1fr 1.5rem auto;
+    grid-template-columns: min-content 1fr 1.5rem;
     //I prefer just numbers/lines but needed this for RTL
 
     grid-template-areas:
-        "label   label   label   label" "hint    hint    hint    hint" "icon    field   state  button" "errors  errors  errors  errors";
+        "label      label   label" "hint       hint    hint" "icon       field   state" "errors     errors  errors";
     padding: var(--br-unit-space-3);
     background-color: var(--br-comp-input-pane-base-background);
     border-style: var(--br-comp-input-pane-base-border-style);
@@ -29,7 +29,7 @@
         outline-style: var(--br-comp-input-outline-style);
         outline-color: var(--br-comp-input-outline-colour);
 
-        .br-text-input__error-wrapper {
+        .br-checkbox-input__error-wrapper {
             border-top: 1px solid var(--br-comp-all-outline-colour);
         }
     }
@@ -37,8 +37,8 @@
     &:has(input[aria-disabled="true"]) {
         cursor: not-allowed;
 
-        .br-password-input__field,
-        .br-password-input__label {
+        .br-checkbox-input__field,
+        .br-checkbox-input__label {
             opacity: var(--br-comp-input-disabled-opacity);
             cursor: not-allowed;
         }
@@ -86,8 +86,8 @@
             background-color: CanvasText;
         }
     }
-
-    &__state-icon {
+    //Moved to _shared_inputs
+    /*    &__state-icon {
         grid-area: state;
         min-height: var(--_icon-size);
         aspect-ratio: 1/1;
@@ -101,43 +101,39 @@
             @include invalid-state-icon;
             color: var(--br-comp-input-error-colour);
         }
-    }
+    }*/
 
     &__field {
         grid-area: field;
-        appearance: none;
         min-width: 0;
-        border: none;
         background-color: var(--br-comp-input-area-content-background);
         color: var(--br-comp-input-area-content-colour);
         font-family: var(--br-comp-input-area-content-font-family);
         font-size: var(--br-comp-input-area-content-font-size);
         font-weight: var(--br-comp-input-area-content-font-weight);
+        justify-self: start;
+        align-self: center;
+        width: 1.25rem;
+        height: 1.25rem;
+        accent-color: var(--br-unit-colour-primary);
+        cursor: pointer;
 
-        &:is([type="password"], [type="text"]) {
-            border: none;
-            outline: none;
-        }
-
-        &[type="password"]::-ms-reveal {
-            display: none;
-        }
-
-        &:is(:autofill, :-webkit-autofill) {
-            -webkit-background-clip: text; // prevents autofill colours reappearing on viewport resize/reflow
-            -webkit-box-shadow: 0 0 0 1000px var(--br-comp-input-area-content-background) inset !important;
-            -webkit-text-fill-color: var(--br-comp-input-area-content-colour) !important;
-            caret-color: var(--br-comp-input-area-content-colour);
+        &:focus,
+        &:focus-visible {
+            outline-offset: var(--br-comp-input-outline-offset);
+            outline-width: var(--br-comp-input-outline-width);
+            outline-style: var(--br-comp-input-outline-style);
+            outline-color: var(--br-comp-input-outline-colour);
         }
     }
 
     &__error-wrapper {
         grid-area: errors;
-        border-top: var(--br-unit-border-1) solid var(--br-comp-input-divider-colour);
+        border-top: var(--br-unit-border-1) solid var(--br-comp-all-divider-colour);
         color: var(--br-comp-input-error-colour);
         min-height: var(--br-unit-space-5);
 
-        &:has(.br-password-input__error:focus-visible) {
+        &:has(.br-checkbox-input__error:focus-visible) {
             border-top: var(--br-unit-border-1) solid transparent;
             border-radius: var(--br-comp-input-pane-base-border-radius);
         }
@@ -155,43 +151,6 @@
         }
     }
 
-    & button.br-password-input__show-password {
-        appearance: none;
-        border: none;
-        outline: none;
-        margin: 0;
-        padding-inline: var(--br-unit-space-3);
-        background-color: var(--br-comp-input-button-background);
-        border-radius: var(--br-comp-input-button-border-radius);
-        font-family: var(--br-comp-input-button-font-family);
-        font-weight: var(--br-comp-input-button-font-weight);
-        font-size: var(--br-comp-input-button-font-size);
-        line-height: var(--br-comp-input-button-line-height);
-        border-style: none;
-        border-color: var(--br-comp-input-button-border-colour);
-        border-width: var(--br-comp-input-button-border-width);
-        border-radius: var(--br-comp-input-button-border-radius);
-        white-space: nowrap;
-        color: var(--br-comp-input-button-text);
-
-        &:focus-visible {
-            outline-offset: -2px;
-            outline-width: var(--br-comp-input-outline-width);
-            outline-style: var(--br-comp-input-outline-style);
-            outline-color: var(--br-comp-input-outline-colour);
-        }
-
-        &:active {
-            transform: scale(var(--br-comp-input-button-state-active-scale));
-            filter: brightness(var(--br-comp-input-button-state-active-brightness));
-            outline: none;
-        }
-
-        &:hover {
-            background-color: var(--br-comp-input-button-state-hover);
-        }
-    }
-
     &__asterisk {
         color: var(--br-comp-input-error-colour);
         font-size: var(--br-comp-input-label-font-size);
@@ -200,14 +159,14 @@
     }
 
     & > input[data-br-input-position="start"] {
-        text-align: start;
+        justify-self: start;
     }
 
     & > input[data-br-input-position="centre"] {
-        text-align: center;
+        justify-self: center;
     }
 
     & > input[data-br-input-position="end"] {
-        text-align: end;
+        justify-self: end;
     }
 }

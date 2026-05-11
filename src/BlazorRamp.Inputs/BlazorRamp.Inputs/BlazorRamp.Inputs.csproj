@@ -33,8 +33,13 @@ ValidationSummary component when working with the Blazor Ramp Inputs. </PackageR
 		<DebugType>embedded</DebugType>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Compile Remove="Components\CheckboxInput.razor.cs" />
+	</ItemGroup>
+
   <ItemGroup>
     <Content Remove="compilerconfig.json" />
+    <Content Remove="Components\CheckboxInput.razor" />
   </ItemGroup>
 
 
