@@ -24,6 +24,8 @@ public static class ContactValidators
     public static MemberValidator<ContactDto> CompareDOBValidator { get; }
     public static MemberValidator<DateOnly> DOBValidator { get; }
 
+    public static MemberValidator<bool> IsAliveValidator { get; }
+
     /*
         * All of these validator are good for multiple things. Validating individual values, used in the Validated.Core's ValidationBuilder
         * or as in this demo the BlazorValidationBuilder
@@ -48,5 +50,8 @@ public static class ContactValidators
 
 
         SalaryValidator = MemberValidators.CreatePrecisionScaleValidator<decimal>(7, 2, "Salary", "Salary", "Must be pounds and pence");
+
+
+        IsAliveValidator = MemberValidators.CreateCompareToValidator<bool>(true, CompareType.EqualTo, "IsAlive", "Is Alive", "You should be alive.");
     }
 }

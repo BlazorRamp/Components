@@ -2,7 +2,7 @@
 
 const getDecimalSeparator = (): string => Intl.NumberFormat(navigator.language).format(1.1).charAt(1);
 
-
+const preventClickAction = (e: MouseEvent): void => e.preventDefault();
 const preventAction = (e) => e.preventDefault();
 
 const ariaDisabledKeyHandler = (e: KeyboardEvent): void => {
@@ -72,10 +72,9 @@ const setInputFocus = (elementId: string): void => {
                 if (element.value) element.setSelectionRange(element.value.length, element.value.length);
             } catch { }
             break;
-        // date, time, number, checkbox, radio etc - just focus, no cursor manipulation
     }
 
-}; 
+};
 
 const setSummaryFocus = (elementId: string): void => {
 
@@ -92,6 +91,11 @@ const setSummaryFocus = (elementId: string): void => {
 const registerAriaDisabledHandlers = (inputElement: HTMLElement): void => {
 
     if (!inputElement) return;
+
+    if ((inputElement as HTMLInputElement).type === "checkbox") {
+        inputElement.removeEventListener("click", preventClickAction);
+        inputElement.addEventListener("click", preventClickAction);
+    }
 
     inputElement.removeEventListener("keydown", ariaDisabledKeyHandler);
     inputElement.addEventListener("keydown", ariaDisabledKeyHandler);
@@ -110,6 +114,20 @@ const unregisterAriaDisabledHandlers = (inputElement: HTMLElement): void => {
     inputElement.removeEventListener("keydown", ariaDisabledKeyHandler);
     inputElement.removeEventListener("cut", preventAction);
     inputElement.removeEventListener("paste", preventAction);
+    inputElement.removeEventListener("click", preventClickAction);
+};
+
+const registerReadOnlyHandlers = (inputElement: HTMLElement): void => {
+
+    if (!inputElement) return;
+    inputElement.removeEventListener("click", preventClickAction);
+    inputElement.addEventListener("click", preventClickAction);
+};
+
+const unregisterReadOnlyHandlers = (inputElement: HTMLElement): void => {
+
+    if (!inputElement) return;
+    inputElement.removeEventListener("click", preventClickAction);
 };
 
 const registerNumericHandlers = (inputElement: HTMLElement, isWholeNumber: boolean): void => {
@@ -132,4 +150,7 @@ const unregisterNumericHandlers = (inputElement: HTMLElement, isWholeNumber: boo
 };
 
 
-export { registerAriaDisabledHandlers, unregisterAriaDisabledHandlers, registerNumericHandlers, unregisterNumericHandlers, setInputValue, setInputFocus, setSummaryFocus };
+export {
+    registerAriaDisabledHandlers, unregisterAriaDisabledHandlers, registerNumericHandlers, unregisterNumericHandlers,
+    setInputValue, setInputFocus, setSummaryFocus, registerReadOnlyHandlers, unregisterReadOnlyHandlers
+};

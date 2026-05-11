@@ -1,0 +1,59 @@
+﻿@inherits CheckboxTypeInput
+
+<div class="@CheckboxInputClasses">
+    <label class="@GlobalValues.Checkbox_Input_Label_Class" for="@InputID">
+        @LabelNameText
+        @if (Required)
+        {
+            <span aria-hidden="true" class="@GlobalValues.Checkbox_Input_Asterisk_Class"> *</span>
+        }
+    </label>
+    @if (HintNormalised is not null)
+    {
+        <span id="@HintTextID" class="@GlobalValues.Checkbox_Input_Hint_Class">
+            @HintNormalised
+        </span>
+    }
+    
+    @if (false == String.IsNullOrWhiteSpace(SvgVariable))
+    {
+        <span aria-hidden="true" class="@GlobalValues.Checkbox_Input_Icon_Class" style="@SvgVariable"></span>
+    }
+    else
+    {
+        <span aria-hidden="true"></span>
+    }
+    <input @ref="ControlReference" @attributes="@GetAttributes(AdditionalAttributes)" class="@GlobalValues.Checkbox_Input_Field_Class" id="@InputID"
+           type="checkbox"
+           autocomplete="off"
+           aria-invalid="@(HasErrors ? "true" : null)"
+           aria-describedby="@(AriaDescribedByID)"
+           aria-required="@(Required ? "true" : null)"
+           aria-disabled="@(base.IsDisabled ? "true" : null)"
+           readonly="@(base.ReadOnly ? "readonly" : null)"
+           @onchange="HandleOnChange"
+           checked="@CurrentValue"
+           data-br-input-position="@DataPosition.ToString().ToLower()" />
+
+    <span class="@GlobalValues.Checkbox_Input_State_Icon_Class" data-br-invalid-state="@GetInvalidStateAttributeValue(base.InvalidState)" aria-hidden="true"></span>
+
+    <div class="@GlobalValues.Checkbox_Input_Error_Wrapper_Class">
+        
+        @if (HasErrors)
+        {
+            <div class="@GlobalValues.Checkbox_Input_Error_Class" tabindex="@(TabbableError ? "0" : null)" aria-label="@(TabbableError ? $"{LabelNameText.TrimEnd(':')} {ErrorsText}" : null)" role="@(TabbableError ? "region" : null)">
+
+                <ul id="@ErrorMessageID" role="list">
+                    @foreach (var errorMessage in InvalidMessages)
+                    {
+                        <li>@errorMessage</li>
+                    }
+                </ul>
+
+            </div>
+        }
+
+    </div>
+
+</div>
+

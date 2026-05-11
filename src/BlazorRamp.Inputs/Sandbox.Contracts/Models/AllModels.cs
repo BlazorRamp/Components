@@ -21,6 +21,9 @@ public record class AddressDto
 }
 public record class ContactDto
 {
+
+    public bool IsAlive { get; set; }
+
     public string   Title          { get; set; } = default!;
 
     [Required(ErrorMessage = "Name is required")]

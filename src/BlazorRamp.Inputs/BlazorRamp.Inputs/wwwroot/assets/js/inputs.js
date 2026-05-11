@@ -1,4 +1,5 @@
 const getDecimalSeparator = () => Intl.NumberFormat(navigator.language).format(1.1).charAt(1);
+const preventClickAction = (e) => e.preventDefault();
 const preventAction = (e) => e.preventDefault();
 const ariaDisabledKeyHandler = (e) => {
     const navigationKeys = ["Tab", "Enter", "Escape", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Home", "End", "PageUp", "PageDown"];
@@ -50,7 +51,6 @@ const setInputFocus = (elementId) => {
             }
             catch { }
             break;
-        // date, time, number, checkbox, radio etc - just focus, no cursor manipulation
     }
 };
 const setSummaryFocus = (elementId) => {
@@ -64,6 +64,10 @@ const setSummaryFocus = (elementId) => {
 const registerAriaDisabledHandlers = (inputElement) => {
     if (!inputElement)
         return;
+    if (inputElement.type === "checkbox") {
+        inputElement.removeEventListener("click", preventClickAction);
+        inputElement.addEventListener("click", preventClickAction);
+    }
     inputElement.removeEventListener("keydown", ariaDisabledKeyHandler);
     inputElement.addEventListener("keydown", ariaDisabledKeyHandler);
     inputElement.removeEventListener("paste", preventAction);
@@ -77,6 +81,18 @@ const unregisterAriaDisabledHandlers = (inputElement) => {
     inputElement.removeEventListener("keydown", ariaDisabledKeyHandler);
     inputElement.removeEventListener("cut", preventAction);
     inputElement.removeEventListener("paste", preventAction);
+    inputElement.removeEventListener("click", preventClickAction);
+};
+const registerReadOnlyHandlers = (inputElement) => {
+    if (!inputElement)
+        return;
+    inputElement.removeEventListener("click", preventClickAction);
+    inputElement.addEventListener("click", preventClickAction);
+};
+const unregisterReadOnlyHandlers = (inputElement) => {
+    if (!inputElement)
+        return;
+    inputElement.removeEventListener("click", preventClickAction);
 };
 const registerNumericHandlers = (inputElement, isWholeNumber) => {
     if (!inputElement)
@@ -91,5 +107,5 @@ const unregisterNumericHandlers = (inputElement, isWholeNumber) => {
     const handler = isWholeNumber ? integerHandler : decimalHandler;
     inputElement.removeEventListener("input", handler);
 };
-export { registerAriaDisabledHandlers, unregisterAriaDisabledHandlers, registerNumericHandlers, unregisterNumericHandlers, setInputValue, setInputFocus, setSummaryFocus };
+export { registerAriaDisabledHandlers, unregisterAriaDisabledHandlers, registerNumericHandlers, unregisterNumericHandlers, setInputValue, setInputFocus, setSummaryFocus, registerReadOnlyHandlers, unregisterReadOnlyHandlers };
 //# sourceMappingURL=inputs.js.map

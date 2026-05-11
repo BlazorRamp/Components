@@ -7,6 +7,9 @@ internal class GlobalValues
     public const string JS_Inputs_Register_Aria_Disabled_Handlers   = "registerAriaDisabledHandlers";
     public const string JS_Inputs_Unregister_Aria_Disabled_Handlers = "unregisterAriaDisabledHandlers";
 
+    public const string JS_Inputs_Register_Readonly_Handlers = "registerAriaDisabledHandlers";
+    public const string JS_Inputs_Unregister_Readonly_Handlers = "unregisterAriaDisabledHandlers";
+
     public const string JS_Inputs_Register_Numeric_Handlers   = "registerNumericHandlers";
     public const string JS_Inputs_Unregister_Numeric_Handlers = "unregisterNumericHandlers";
 
@@ -52,6 +55,19 @@ internal class GlobalValues
     public const string Numeric_Input_Field_Class           = $"{Numeric_Input_Class}__field";
     public const string Numeric_Input_Icon_Class            = $"{Numeric_Input_Class}__icon";
     public const string Numeric_Input_State_Icon_Class      = $"{Numeric_Input_Class}__state-icon";
+
+
+    public const string Checkbox_Input_Class                = "br-checkbox-input";
+    public const string Checkbox_Input_Label_Class          = $"{Checkbox_Input_Class}__label";
+    public const string Checkbox_Input_Hint_Class           = $"{Checkbox_Input_Class}__hint";
+    public const string Checkbox_Input_Error_Wrapper_Class  = $"{Checkbox_Input_Class}__error-wrapper";
+    public const string Checkbox_Input_Error_Class          = $"{Checkbox_Input_Class}__error";
+    public const string Checkbox_Input_Asterisk_Class       = $"{Checkbox_Input_Class}__asterisk";
+    public const string Checkbox_Input_Field_Class          = $"{Checkbox_Input_Class}__field";
+    public const string Checkbox_Input_Icon_Class           = $"{Checkbox_Input_Class}__icon";
+    public const string Checkbox_Input_State_Icon_Class     = $"{Checkbox_Input_Class}__state-icon";
+
+
 
 
     public const string Input_Errors_Summary_Class = "br-input-errors-summary";
