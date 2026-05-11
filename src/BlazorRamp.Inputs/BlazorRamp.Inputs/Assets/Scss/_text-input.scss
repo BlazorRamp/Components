@@ -92,14 +92,16 @@
         min-height: var(--_icon-size);
         aspect-ratio: 1/1;
 
-        &--valid {
-            @include valid-state-icon;
-            color: var(--br-comp-input-success-colour);
-        }
-
-        &--invalid {
+        &[data-br-invalid-state="true"] {
             @include invalid-state-icon;
             color: var(--br-comp-input-error-colour);
+        }
+
+        &[data-br-invalid-state="false"] {
+
+
+            @include valid-state-icon;
+            color: var(--br-comp-input-success-colour);
         }
     }
 

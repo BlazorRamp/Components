@@ -111,7 +111,8 @@ Welcome to your new app.
 
     private void Test()
     {
-        var s = _contactData.Age;
+        _contactData = new();
+        _editContext = new EditContext(_contactData);
     }
     public async Task HandleSubmit()
     {

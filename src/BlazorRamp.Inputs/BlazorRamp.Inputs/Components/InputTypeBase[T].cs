@@ -104,11 +104,6 @@ namespace BlazorRamp.Inputs.Components
         /// </summary>
         protected string  InputID           { get; private set; } = string.Empty;
 
-        /// <summary>
-        /// Gets the CSS class string applied to the state icon element, reflecting the
-        /// current validation state of the field — neutral, valid, or invalid.
-        /// </summary>
-        protected string  StateIconClasses  { get; private set; } = GlobalValues.Text_Input_State_Icon_Class;
 
         /// <summary>
         /// Gets a value indicating whether the input is currently in the aria-disabled state.
@@ -144,6 +139,9 @@ namespace BlazorRamp.Inputs.Components
         /// Gets a value indicating whether the field currently has validation errors.
         /// </summary>
         protected bool    HasErrors         { get; private set; } = false;
+
+
+        protected bool? InvalidState { get; private set; } = null;
 
         /// <summary>
         /// Gets the space-separated <c>id</c> value(s) applied to <c>aria-describedby</c>
@@ -256,9 +254,9 @@ namespace BlazorRamp.Inputs.Components
 
         private void EditContext_OnValidationRequested(object? sender, ValidationRequestedEventArgs e)
         {
-            StateIconClasses  = GetStateIconClasses(EditContext.GetValidationMessages(FieldIdentifier).Any());
+
             InvalidMessages   = GetValidationMessages();
-            HasErrors         = InvalidMessages.Count > 0;
+            InvalidState      = HasErrors = InvalidMessages.Count > 0;
             AriaDescribedByID = SetDescribedBy(HasErrors, ValidationDisplayMode);
         }
         private void EditContext_OnValidationStateChanged(object? sender, ValidationStateChangedEventArgs e)
@@ -279,14 +277,13 @@ namespace BlazorRamp.Inputs.Components
             {
                 InvalidMessages = [];
                 HasErrors = false;
-                StateIconClasses = GlobalValues.Text_Input_State_Icon_Class;
+                InvalidState = null;
                 AriaDescribedByID = SetDescribedBy(false, ValidationDisplayMode);
                 return;
             }
 
-            StateIconClasses = GetStateIconClasses(hasMessages);
             InvalidMessages = hasMessages ? GetValidationMessages() : [];
-            HasErrors = InvalidMessages.Count > 0;
+            InvalidState = HasErrors = InvalidMessages.Count > 0;
             AriaDescribedByID = SetDescribedBy(HasErrors, ValidationDisplayMode);
 
 
@@ -315,12 +312,12 @@ namespace BlazorRamp.Inputs.Components
 
         }
 
-        private static string GetStateIconClasses(bool? invalid)
-        {
-            var classes = GlobalValues.Text_Input_State_Icon_Class;
+        //private static string GetStateIconClasses(bool? invalid)
+        //{
+        //    var classes = GlobalValues.Text_Input_State_Icon_Class;
 
-            return invalid == null ? classes : $"{classes} {(invalid == true ? GlobalValues.Text_Input_State_Icon_Invalid_Modifier : GlobalValues.Text_Input_State_Icon_Valid_Modifier)}";
-        }
+        //    return invalid == null ? classes : $"{classes} {(invalid == true ? GlobalValues.Text_Input_State_Icon_Invalid_Modifier : GlobalValues.Text_Input_State_Icon_Valid_Modifier)}";
+        //}
 
         private static string? CheckSetSvgVariable(string? svgIcon)
         {
@@ -344,6 +341,14 @@ namespace BlazorRamp.Inputs.Components
             if (_jSModule is not null)  await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Unregister_Aria_Disabled_Handlers, ControlReference);
         }
 
+
+
+        /// <summary>
+        /// Gets the valid state of the input, true, false or  empty if not yet validated.
+        /// </summary>
+        protected static string GetInvalidStateAttributeValue(bool? invalidState)
+
+            => invalidState is null ? string.Empty : invalidState.ToString()!.ToLower();
 
         /// <summary>
         /// Unsubscribes from <see cref="EditContext.OnValidationStateChanged"/> and

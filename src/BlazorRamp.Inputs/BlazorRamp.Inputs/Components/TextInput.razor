@@ -35,7 +35,7 @@
            @bind-value:set="HandlePropertySet" 
            data-br-input-position="@DataPosition.ToString().ToLower()" />
 
-    <span class="@StateIconClasses" aria-hidden="true"></span>
+    <span class="@GlobalValues.Text_Input_State_Icon_Class" data-br-invalid-state="@GetInvalidStateAttributeValue(base.InvalidState)" aria-hidden="true"></span>
 
     <div class="@GlobalValues.Text_Input_Error_Wrapper_Class">
         

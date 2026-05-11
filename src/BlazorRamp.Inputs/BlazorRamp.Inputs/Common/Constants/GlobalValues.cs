@@ -29,11 +29,6 @@ internal class GlobalValues
     public const string Text_Input_Icon_Class           = $"{Text_Input_Class}__icon";
     public const string Text_Input_State_Icon_Class     = $"{Text_Input_Class}__state-icon";
 
-    public const string Text_Input_State_Icon_Valid_Modifier   = $"{Text_Input_State_Icon_Class}--valid";
-    public const string Text_Input_State_Icon_Invalid_Modifier = $"{Text_Input_State_Icon_Class}--invalid";
-
-   
-
 
     public const string Password_Input_Class                = "br-password-input";
     public const string Password_Input_Label_Class          = $"{Password_Input_Class}__label";
@@ -46,9 +41,6 @@ internal class GlobalValues
     public const string Password_Input_Icon_Class           = $"{Password_Input_Class}__icon";
     public const string Password_Input_State_Icon_Class     = $"{Password_Input_Class}__state-icon";
 
-    public const string Password_Input_State_Icon_Valid_Modifier   = $"{Password_Input_State_Icon_Class}--valid";
-    public const string Password_Input_State_Icon_Invalid_Modifier = $"{Password_Input_State_Icon_Class}--invalid";
-
     public const string Password_Input_Show_Password_Text    = "Show Password";
 
     public const string Numeric_Input_Class                 = "br-numeric-input";
@@ -60,9 +52,6 @@ internal class GlobalValues
     public const string Numeric_Input_Field_Class           = $"{Numeric_Input_Class}__field";
     public const string Numeric_Input_Icon_Class            = $"{Numeric_Input_Class}__icon";
     public const string Numeric_Input_State_Icon_Class      = $"{Numeric_Input_Class}__state-icon";
-
-    public const string Numeric_Input_State_Icon_Valid_Modifier   = $"{Numeric_Input_State_Icon_Class}--valid";
-    public const string Numeric_Input_State_Icon_Invalid_Modifier = $"{Numeric_Input_State_Icon_Class}--invalid";
 
 
     public const string Input_Errors_Summary_Class = "br-input-errors-summary";
