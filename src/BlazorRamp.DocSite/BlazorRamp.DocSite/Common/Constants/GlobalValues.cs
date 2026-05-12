@@ -72,6 +72,7 @@ public class GlobalValues
     public const string Component_Name_Text_Input     = "Text Input";
     public const string Component_Name_Password_Input = "Password Input";
     public const string Component_Name_Numeric_Input  = "Numeric Input";
+    public const string Component_Name_Checkbox_Input = "Checkbox Input";
 
     public const string Component_Name_Input_Errors_Summary = "Input Errors Summary";
 
@@ -88,6 +89,7 @@ public class GlobalValues
     public const string Component_Path_Part_TextInput     = "text-input";
     public const string Component_Path_Part_PasswordInput = "password-input";
     public const string Component_Path_Part_NumericInput  = "numeric-input";
+    public const string Component_Path_Part_CheckboxInput = "checkbox-input";
     public const string Component_Path_Part_InputErrors   = "input-errors-summary";
     public const string Component_Path_Part_SkipTo        = "skip-to";
     public const string Component_Path_Part_Switch        = "switch";
@@ -97,12 +99,12 @@ public class GlobalValues
 
 
     public const string Service_Name_Live_Region = "Live Region";
-    public const string Serivce_Path_Part_Live_Region  = "live-region";
+    public const string Service_Path_Part_Live_Region  = "live-region";
 
     public const string Framework_Name_Modal         = "Modal Dialog";
     public const string Framework_Path_Part_Modal   = "modal-dialog";
 
-    public const string Getting_Started_Name = "Gettting Started";
+    public const string Getting_Started_Name = "Getting Started";
     public const string Theming_Name = "Theming";
     public const string Faqs_Name    = "FAQ";
 

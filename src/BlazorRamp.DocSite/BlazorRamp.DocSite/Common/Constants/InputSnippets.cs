@@ -131,8 +131,6 @@ public class InputSnippets
             public UserRegistrationDto _registrationData = new();
             private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
 
-            private bool _disableConfirm = false;
-
             protected override async Task OnInitializedAsync()
             {
                 var passwordValidator = MemberValidators.CreateStringLengthValidator(7, 25, "Password", "Password", "Must be between 7 and 25 characters in length but you entered {ActualLength} characters");
@@ -329,5 +327,46 @@ public class InputSnippets
             }
 
         }
+        """;
+
+
+
+    public const string Checkbox_Input_Example = """
+
+        <EditForm Model="@_userAccountData">
+
+            <div class="br-input-row">
+
+                <CheckboxInput class="br-col-xs-12 br-col-sm-6" Value="@_userAccountData.Disabled" ValueChanged="HandleValueChanged" ValueExpression="() => _userAccountData.Disabled"
+                LabelText="Disable Account" HintText="Tick if the user account should be disabled." SvgIcon="@_disabledIcon" Required="false" />
+
+                <CheckboxInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_userAccountData.IncreaseSalary" LabelText="Increase Salary" HintText="Tick to give yourself a pay rise."
+                                SvgIcon="--svg-money-icon" AriaDisabled="true" Required="false" />
+
+         </div>
+
+        </EditForm>
+               
+        @code {
+
+            public UserAccountDto _userAccountData = new();
+
+            private string _userIcon            = "--svg-user-icon";
+            private string _accountLockedIcon   = "--svg-lock-account-icon";
+            private string _disabledIcon        = "--svg-user-icon";
+
+            private void HandleValueChanged(bool value)
+            {
+                _disabledIcon = value ? _accountLockedIcon : _userIcon;
+                _userAccountData.Disabled = value;
+            }
+
+            public class UserAccountDto
+            {
+                public bool Disabled       { get; set; }
+                public bool IncreaseSalary { get; set; }
+            }
+        }
+
         """;
 }
