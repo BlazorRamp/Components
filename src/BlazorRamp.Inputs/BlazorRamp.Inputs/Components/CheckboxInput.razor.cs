@@ -94,7 +94,7 @@ public class CheckboxTypeInput : InputTypeBase<bool>, IAsyncDisposable
     {
         if (IsDisabled) return;
         CurrentValue = (bool)(e.Value ?? false);
-        EditContext.NotifyFieldChanged(FieldIdentifier);
+      
     }
 
     /// <summary>
