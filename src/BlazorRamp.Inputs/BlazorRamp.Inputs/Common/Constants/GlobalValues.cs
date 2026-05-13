@@ -17,7 +17,8 @@ internal class GlobalValues
     public const string JS_Inputs_Set_Input_Focus   = "setInputFocus";
     public const string JS_Inputs_Set_Summary_Focus  = "setSummaryFocus";
 
-    public const string Input_Parse_Error_Message = "Invalid number.";
+    public const string Input_Parse_Number_Error_Message  = "Invalid number.";
+    public const string Input_Parse_General_Error_Message = "Invalid entry.";
 
 
     public const string Input_Svg_Css_Variable_Name = "--_br-svg-input-icon";
@@ -68,7 +69,15 @@ internal class GlobalValues
     public const string Checkbox_Input_State_Icon_Class     = $"{Checkbox_Input_Class}__state-icon";
 
 
-
+    public const string Select_Input_Class               = "br-select-input";
+    public const string Select_Input_Label_Class         = $"{Select_Input_Class}__label";
+    public const string Select_Input_Hint_Class          = $"{Select_Input_Class}__hint";
+    public const string Select_Input_Error_Wrapper_Class = $"{Select_Input_Class}__error-wrapper";
+    public const string Select_Input_Error_Class         = $"{Select_Input_Class}__error";
+    public const string Select_Input_Asterisk_Class      = $"{Select_Input_Class}__asterisk";
+    public const string Select_Input_Field_Class         = $"{Select_Input_Class}__field";
+    public const string Select_Input_Icon_Class          = $"{Select_Input_Class}__icon";
+    public const string Select_Input_State_Icon_Class    = $"{Select_Input_Class}__state-icon";
 
     public const string Input_Errors_Summary_Class = "br-input-errors-summary";
 

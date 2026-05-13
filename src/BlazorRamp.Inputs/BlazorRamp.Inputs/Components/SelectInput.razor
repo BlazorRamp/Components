@@ -1,0 +1,65 @@
+﻿@typeparam TValue
+@inherits SelectTypeInput<TValue>
+
+<div class="@SelectInputClasses">
+    <label class="@GlobalValues.Select_Input_Label_Class" for="@InputID">
+        @LabelNameText
+        @if (Required)
+        {
+            <span aria-hidden="true" class="@GlobalValues.Select_Input_Asterisk_Class"> *</span>
+        }
+    </label>
+    @if (HintNormalised is not null)
+    {
+        <span id="@HintTextID" class="@GlobalValues.Select_Input_Hint_Class">
+            @HintNormalised
+        </span>
+    }
+
+    @if (false == String.IsNullOrWhiteSpace(SvgVariable))
+    {
+        <span aria-hidden="true" class="@GlobalValues.Select_Input_Icon_Class" style="@SvgVariable"></span>
+    }
+    else
+    {
+        <span aria-hidden="true"></span>
+    }
+    <select @ref="ControlReference" @attributes="@GetAttributes(AdditionalAttributes)" class="@GlobalValues.Select_Input_Field_Class" id="@InputID"
+           aria-invalid="@(HasErrors ? "true" : null)"
+           aria-describedby="@(AriaDescribedByID)"
+           aria-required="@(Required ? "true" : null)"
+           aria-disabled="@(base.IsDisabled ? "true" : null)"
+           readonly="@(base.ReadOnly ? "readonly" : null)"
+           @bind-value:get="@CurrentValueAsString"
+           @bind-value:event="@(UpdateOnInput ? "oninput" : "onchange")"
+           @bind-value:set="HandlePropertySet"
+           data-br-input-position="@DataPosition.ToString().ToLower()">
+
+        @OptionValues
+
+    </select>
+
+
+
+    <span class="@GlobalValues.Select_Input_State_Icon_Class" data-br-invalid-state="@GetInvalidStateAttributeValue(base.InvalidState)" aria-hidden="true"></span>
+
+    <div class="@GlobalValues.Select_Input_Error_Wrapper_Class">
+
+        @if (HasErrors)
+        {
+            <div class="@GlobalValues.Select_Input_Error_Class" tabindex="@(TabbableError ? "0" : null)" aria-label="@(TabbableError ? $"{LabelNameText.TrimEnd(':')} {ErrorsText}" : null)" role="@(TabbableError ? "region" : null)">
+
+                <ul id="@ErrorMessageID" role="list">
+                    @foreach (var errorMessage in InvalidMessages)
+                    {
+                        <li>@errorMessage</li>
+                    }
+                </ul>
+
+            </div>
+        }
+
+    </div>
+
+</div>
+

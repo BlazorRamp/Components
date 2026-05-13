@@ -515,7 +515,7 @@ public class NumericInput_Tests
                 {
                     if (String.IsNullOrWhiteSpace(parseErrorText))
                     {
-                        errorItems[0].TextContent.Should().Be($"MyField - {GlobalValues.Input_Parse_Error_Message}");
+                        errorItems[0].TextContent.Should().Be($"MyField - {GlobalValues.Input_Parse_Number_Error_Message}");
                         return;
                     }
 

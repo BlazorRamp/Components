@@ -12,45 +12,58 @@
 
 Welcome to your new app.
 
-<EditForm EditContext="@_editContext" OnValidSubmit="HandleSubmit" novalidate>
+<EditForm EditContext="@_editContext" OnValidSubmit="HandleSubmit" novalidate style="background-color:aliceblue;">
 
-@*     <DataAnnotationsValidator /> *@
+    @*     <DataAnnotationsValidator /> *@
 
-     <BlazorValidated TEntity="ContactDto" BoxedValidators="_contactBoxedValidators" AddDisplayName="true"  />
+    <BlazorValidated TEntity="ContactDto" BoxedValidators="_contactBoxedValidators" AddDisplayName="true" />
 
-     <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
+    <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
 
-    <InputNumber @bind-Value="_contactData.Age" />
-    <div class="br-input-row">
-        <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" DataPosition="DataPosition.Start"
-                      @bind-Value="_contactData.Age" UpdateOnInput="true" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" Format="F2" />
+        <InputNumber @bind-Value="_contactData.Age" />
+        <div class="br-input-row">
+            <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" DataPosition="DataPosition.Start"
+                          @bind-Value="_contactData.Age" UpdateOnInput="true" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" Format="F2" />
 
-        <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Nullable Salary" DataPosition="DataPosition.End" SvgIcon="--svg-food-icon"
-                      @bind-Value="_contactData.Salary" UpdateOnInput="true" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" Format="F2" />
-    </div>
+            <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Nullable Salary" DataPosition="DataPosition.End" SvgIcon="--svg-food-icon"
+                          @bind-Value="_contactData.Salary" UpdateOnInput="true" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" Format="F2" />
+        </div>
 
-    <div class="br-input-row">
+        <div class="br-input-row">
 
             <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.FamilyName" LabelText="Surname"
-            UpdateOnInput="true" AriaDisabled="false" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+                       UpdateOnInput="true" AriaDisabled="false" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
                    
+        </div>
 
-    </div> 
+        <div class="br-input-row">
 
-     <div class="br-input-row">
+            <PasswordInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Password"
+                           @bind-Value="_contactData.Password" UpdateOnInput="true" AriaDisabled="false" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
 
-        <PasswordInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Password"
-                   @bind-Value="_contactData.Password" UpdateOnInput="true" AriaDisabled="false" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"  />
-
-        <PasswordInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Password Confirmation"
-                       @bind-Value="_contactData.ConfirmPassword" UpdateOnInput="false" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
-    </div>
+            <PasswordInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Password Confirmation"
+                           @bind-Value="_contactData.ConfirmPassword" UpdateOnInput="false" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+        </div>
 
         <div class="br-input-row">
             <CheckboxInput class="br-col-xs-12 br-col-sm-6" HintText="You go a 50/50 chance of getting it right" @bind-Value="_contactData.IsAlive"
                            ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
         </div>
+
+        <div class="br-input-row">
+            <SelectInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.ContactID" LabelText="Select Me" HintText="Select something"
+                         ErrorsLabel="Errors" ParseErrorMessage="Not able to apply this value please contact support." SvgIcon="--svg-food-icon">
+                       <OptionValues>
+                    <option selected value="">Not Entered</option>
+                    <option value="1">Option 1</option>
+                    <option  value="2">Option 2</option>
+                       </OptionValues>
+            </SelectInput>   
+        </div>
+
+
 
         <div class="br-input-row">
 
@@ -60,7 +73,7 @@ Welcome to your new app.
             @foreach (var contactMethod in _contactData.ContactMethods)
             {
 
-                <TextInput class="br-col-xs-12 br-col-sm-6"  LabelText="" @bind-Value="contactMethod.MethodValue" HintText="Enter some value" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="true" />
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="" @bind-Value="contactMethod.MethodValue" HintText="Enter some value" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="true" />
 
                 <div class="br-input-row">
                     <button class="btn btn-danger" type="button" @onclick="() => RemoveContactMethod(contactMethod)">Delete</button>
@@ -79,7 +92,7 @@ Welcome to your new app.
 <button class="btn btn-primary" type="button" @onclick="AddContactMethod">Add Contact Method</button>
 <button class="btn btn-primary" type="button" @onclick="Test">Click</button>
 
-@code{
+@code {
 
     private EditContext _editContext = default!;
     private ContactDto _contactData = StaticData.CreateContactObjectGraph();

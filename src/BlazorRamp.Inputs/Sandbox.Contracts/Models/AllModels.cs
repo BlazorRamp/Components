@@ -22,6 +22,7 @@ public record class AddressDto
 public record class ContactDto
 {
 
+    public int ContactID { get; set; }
     public bool IsAlive { get; set; }
 
     public string   Title          { get; set; } = default!;

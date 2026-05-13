@@ -41,9 +41,9 @@ namespace BlazorRamp.Inputs.Components
         /// <summary>
         /// Gets or sets the error message displayed when the input value cannot be parsed
         /// to <typeparamref name="TValue"/>. The message is prefixed with the field's
-        /// display name (label text). When null, empty, or whitespace defaults to <c>"Invalid format."</c>.
+        /// display name (label text). When null, empty, or whitespace defaults to <c>"Invalid number."</c>.
         /// </summary>
-        [Parameter] public string ParseErrorMessage { get; set; } = GlobalValues.Input_Parse_Error_Message;
+        [Parameter] public string ParseErrorMessage { get; set; } = GlobalValues.Input_Parse_Number_Error_Message;
 
         /// <summary>
         /// Gets or sets the text/data alignment in the input. Defaults to <see cref="DataPosition.End"/>.
@@ -70,7 +70,7 @@ namespace BlazorRamp.Inputs.Components
         /// Gets the resolved parse error message, derived from <see cref="ParseErrorMessage"/>
         /// or the default value when not set.
         /// </summary>
-        protected string ParseErrorsText     { get; private set; } = GlobalValues.Input_Parse_Error_Message;
+        protected string ParseErrorsText     { get; private set; } = GlobalValues.Input_Parse_Number_Error_Message;
 
         /// <summary>
         /// Tracks the raw string value currently displayed in the input element, independent
@@ -120,7 +120,7 @@ namespace BlazorRamp.Inputs.Components
                         ? NumericInputModeType.Numeric.ToString().ToLower() 
                         : NumericInputModeType.Decimal.ToString().ToLower();
 
-            ParseErrorsText = String.IsNullOrWhiteSpace(ParseErrorMessage) ? GlobalValues.Input_Parse_Error_Message : ParseErrorMessage.Trim();
+            ParseErrorsText = String.IsNullOrWhiteSpace(ParseErrorMessage) ? GlobalValues.Input_Parse_Number_Error_Message : ParseErrorMessage.Trim();
 
             _stringValue = !string.IsNullOrWhiteSpace(Format) && CurrentValue is not null && !_isWholeNumber
                    ? string.Format(CultureInfo.CurrentCulture, $"{{0:{Format}}}", CurrentValue)
@@ -165,11 +165,11 @@ namespace BlazorRamp.Inputs.Components
 
             switch (base.DataType)
             {
-                case Type t when t == typeof(int)     && int.TryParse(value, NumberStyles.Any, null, out int intValue):             { result = (TValue)(object)intValue;     return true; }
-                case Type t when t == typeof(long)    && long.TryParse(value, NumberStyles.Any, null, out long longValue):          { result = (TValue)(object)longValue;    return true; }
-                case Type t when t == typeof(decimal) && decimal.TryParse(value, NumberStyles.Any, null, out decimal decimalValue): { result = (TValue)(object)decimalValue; return true; }
-                case Type t when t == typeof(double)  && double.TryParse(value, NumberStyles.Any, null, out double doubleValue):    { result = (TValue)(object)doubleValue; return true; }
-                case Type t when t == typeof(float)   && float.TryParse(value, NumberStyles.Any, null, out float floatValue):       { result = (TValue)(object)floatValue; return true; }
+                case Type t when t == typeof(int)     && int.TryParse(value, NumberStyles.Any, null, out int intValue):             result = (TValue)(object)intValue;     return true; 
+                case Type t when t == typeof(long)    && long.TryParse(value, NumberStyles.Any, null, out long longValue):          result = (TValue)(object)longValue;    return true; 
+                case Type t when t == typeof(decimal) && decimal.TryParse(value, NumberStyles.Any, null, out decimal decimalValue): result = (TValue)(object)decimalValue; return true; 
+                case Type t when t == typeof(double)  && double.TryParse(value, NumberStyles.Any, null, out double doubleValue):    result = (TValue)(object)doubleValue; return true; 
+                case Type t when t == typeof(float)   && float.TryParse(value, NumberStyles.Any, null, out float floatValue):       result = (TValue)(object)floatValue; return true; 
 
             }
 
