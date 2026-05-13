@@ -1,0 +1,254 @@
+﻿@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_CheckboxInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
+
+@inject ILiveRegionService _liveRegionService
+
+<PageTitle>@GlobalValues.Component_Name_Checkbox_Input @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Checkbox_Input @GlobalValues.Common_Page_Title_Overview_Tests</h1>
+
+    <p>
+        The Checkbox Input component in this library is the combination of a label, optional hint area and a region below the input for validation messages.
+    </p>
+
+</section>
+
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
+    <p>
+        The examples below only use two fields, <b>Delete Item</b> and <b>Confirm Delete</b>, with the latter having a validation rule that enforces that if the Delete Item field is checked, it must be confirmed.
+    </p>
+    <p>
+        <b>Note: </b>The value updates immediately when the checkbox is clicked. Unlike text-based inputs there is no intermediate editing state, so the bound value and validation state are always updated at the point of interaction.
+    </p>
+    <p>
+        For the examples the following Validation Display options are used in each test so you can test the options with your chosen devices.
+    </p>
+    <ul>
+        <li>
+            Described By With Hint -  This options links the input to the hint text via the <span class="code-span">aria-describedby</span> attribute. The id of unordered list element that holds any validation errors
+            is added or removed from the <span class="code-span">aria-describedby</span> attribute, depending on the validity of the value. The id of the validation errors element is places first in the attribute.
+        </li>
+        <li>
+            Described By Hint Suppressed - This option removes the id of the hint text element from the <span class="code-span">aria-describedby</span> attribute when there are validation errors to reduce verbosity
+            for screen reader users.
+        </li>
+        <li>
+            Tabbable With Hint - This option only uses the <span class="code-span">aria-describedby</span> attribute for the hint text element which is never removed. The Validation errors area is given a tab stop
+            and is promoted to a landmark regions. In the following examples these transient regions will have the accessible name of [Label Text] + " errors" so for a "Confirm Delete" field the region would be "Confirm Delete errors".
+        </li>
+    </ul>
+    <p>
+        For each of the above options there are two examples, one that uses Blazors <span class="code-span">oninput</span> event which causes validation on every keystroke the other using the <span class="code-span">onchange</span> event
+        which occurs if the value has changed and once focus is lost.
+    </p>
+    <p>
+        <strong>Important: </strong>Some screen reader and browser combinations treat the <span class="code-span">aria-describedby</span> attribute similar to a live regions so when the hint text id or errors element id is added/removed
+        with validation screen reader users will get announcements which may be distracting. This behaviour may differ with the event used, for example NVDA on Firefox treats <span class="code-span">aria-describedby</span> similar to a live
+        region when using "oninput", but when using "onchange" does not make the announcement when the focus is lost, which it does on Edge and Chrome.
+    </p>
+    <p>
+        <strong>Note: </strong>Given the myriad combinations of screen reader, operating system, browser, validation display option and event used, I have not provided an expectations section like the tests for other components. My preferred option given
+        that the behaviour is the same for all is to use the tabbable region option but you should choose the options that best suit your target audience.
+    </p>
+</section>
+
+<section>
+    <h2>Examples using oninput (immediate validation)</h2>
+    
+    <section class="section-box">
+        <h3>Example one - fake form using the option "Described By With Hint".</h3>
+
+        <EditForm EditContext="@_editContextOne" OnSubmit="HandleSubmitOne">
+        
+            <BlazorValidated TEntity="InventoryDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <div class="br-input-row">
+
+                <CheckboxInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryDataOne.DeleteItem" LabelText="Delete Item" HintText="Only tick if you are sure this needs deleting." 
+                    Required="false" ErrorsLabel="errors" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
+                
+                <CheckboxInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryDataOne.ConfirmDelete" LabelText="Confirm Delete" HintText="If you ticked the delete option you must confirm it."
+                        Required="false" ErrorsLabel="errors" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
+
+            </div>
+
+            <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                <button class="test-button" type="submit">Submit One to trigger validation on unmodified fields</button>
+                <button @ref="ResetButtonOne" class="test-button" type="button" @onclick="ResetEditContextOne">Reset Example One</button>
+            </div>
+        </EditForm>
+
+    </section>
+
+    <section class="section-box">
+        <h3>Example two - fake form using the option "Described By Hint Suppressed".</h3>
+        <EditForm EditContext="@_editContextTwo" OnSubmit="HandleSubmitTwo">
+        
+            <BlazorValidated TEntity="InventoryDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+                <div class="br-input-row">
+
+                    <CheckboxInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryDataTwo.DeleteItem" LabelText="Delete Item" HintText="Only tick if you are sure this needs deleting." 
+                               Required="false" ErrorsLabel="errors" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" />
+                    <CheckboxInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryDataTwo.ConfirmDelete" LabelText="Confirm Delete" HintText="If you ticked the delete option you must confirm it." 
+                               Required="false" ErrorsLabel="errors" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" />
+
+                </div>
+
+            <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                <button class="test-button" type="submit">Submit Two to trigger validation on unmodified fields</button>
+                <button @ref="ResetButtonTwo" class="test-button" type="button" @onclick="ResetEditContextTwo">Reset Example Two</button>
+            </div>
+        </EditForm>
+
+
+    </section>
+
+    <section class="section-box">
+        <h3>Example three - fake form using the option "Tabbable With Hint".</h3>
+
+        <EditForm EditContext="@_editContextThree" OnSubmit="HandleSubmitThree">
+        
+            <BlazorValidated TEntity="InventoryDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <div class="br-input-row">
+
+                <CheckboxInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryDataThree.DeleteItem" LabelText="Delete Item" HintText="Only tick if you are sure this needs deleting." 
+                               Required="false" ErrorsLabel="errors" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+                <CheckboxInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_inventoryDataThree.ConfirmDelete" LabelText="Confirm Delete" HintText="If you ticked the delete option you must confirm it." 
+                               Required="false" ErrorsLabel="errors" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
+            </div>
+
+
+            <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                <button class="test-button" type="submit">Submit Three to trigger validation on unmodified fields</button>
+                <button @ref="ResetButtonThree" class="test-button" type="button" @onclick="ResetEditContextThree">Reset Example Three</button>
+            </div>
+        </EditForm>
+
+    </section>
+</section>
+
+
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Quirks_Issues}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Inputs - @GlobalValues.Common_Page_Title_Quirks_Issues</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_NumericInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Numeric_Input - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+
+    private InventoryDto  _inventoryDataOne = new();
+    private InventoryDto  _inventoryDataTwo = new();
+    private InventoryDto  _inventoryDataThree = new();
+
+
+    private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+    private EditContext _editContextOne = default!;
+    private EditContext _editContextTwo = default!;
+    private EditContext _editContextThree = default!;
+
+
+    private ElementReference ResetButtonOne { get; set; } = default;
+    private ElementReference ResetButtonTwo { get; set; } = default;
+    private ElementReference ResetButtonThree { get; set; } = default;
+
+
+    protected override void OnInitialized()
+    {
+
+        var confirmValidator = MemberValidators.CreateMemberComparisonValidator<InventoryDto, bool>(c => c.DeleteItem, c => c.ConfirmDelete, CompareType.EqualTo, "Confirm Delete", "Must match the delete item field only when its true");
+
+        _boxedValidators = BlazorValidationBuilder<InventoryDto>.Create()
+                                .ForComparisonWithMember(c => c.ConfirmDelete, confirmValidator)
+                                .GetBoxedValidators();
+
+        _editContextOne = new EditContext(_inventoryDataOne);
+        _editContextTwo = new EditContext(_inventoryDataTwo);
+        _editContextThree = new EditContext(_inventoryDataThree);
+
+    }
+
+
+    private async Task HandleSubmitOne()
+    {
+        _editContextOne.Validate();
+        var announcement = new Announcement("Validation invoked on example one form fields", AnnouncementType.Info, "Submit One Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+
+    }
+    private async Task HandleSubmitTwo()
+    {
+        _editContextTwo.Validate();
+        var announcement = new Announcement("Validation invoked on example two form fields", AnnouncementType.Info, "Submit Two Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+    }
+    private async Task HandleSubmitThree()
+    {
+        _editContextThree.Validate();
+        var announcement = new Announcement("Validation invoked on example three form fields", AnnouncementType.Info, "Submit Three Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+    }
+
+
+    private async Task ResetEditContextOne()
+    {
+        var announcement = new Announcement("Example one has been reset", AnnouncementType.Info, "Reset Example One Button");
+
+        _inventoryDataOne = new();
+        _editContextOne = new EditContext(_inventoryDataOne);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+
+        await ResetButtonOne.FocusAsync();
+
+    }
+    private async Task ResetEditContextTwo()
+    {
+        var announcement = new Announcement("Example two has been reset", AnnouncementType.Info, "Reset Example Two Button");
+
+        _inventoryDataTwo = new();
+        _editContextTwo = new EditContext(_inventoryDataTwo);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+        await ResetButtonTwo.FocusAsync();
+    }
+    private async Task ResetEditContextThree()
+    {
+        var announcement = new Announcement("Example three has been reset", AnnouncementType.Info, "Reset Example Three Button");
+
+        _inventoryDataThree = new();
+        _editContextThree = new EditContext(_inventoryDataThree);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+        await ResetButtonThree.FocusAsync();
+    }
+
+
+
+
+    public class InventoryDto
+    {
+        public decimal UnitPrice { get; set; }
+        public int UnitsInStock { get; set; }
+
+        public bool DeleteItem    { get; set; }
+        public bool ConfirmDelete { get; set; }
+    }
+}
