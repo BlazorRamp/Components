@@ -119,7 +119,8 @@
         cursor: pointer;
 
         & option {
-            background-color: inherit;
+            background-color: var(--br-unit-colour-canvas);
+            color: var(--br-unit-colour-canvas-text);
         }
 
         &:is(:autofill, :-webkit-autofill) {

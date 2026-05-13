@@ -31,7 +31,7 @@
            aria-disabled="@(base.IsDisabled ? "true" : null)"
            readonly="@(base.ReadOnly ? "readonly" : null)"
            @bind-value:get="@CurrentValueAsString"
-           @bind-value:event="@(UpdateOnInput ? "oninput" : "onchange")"
+           @bind-value:event="onchange"
            @bind-value:set="HandlePropertySet"
            data-br-input-position="@DataPosition.ToString().ToLower()">
 

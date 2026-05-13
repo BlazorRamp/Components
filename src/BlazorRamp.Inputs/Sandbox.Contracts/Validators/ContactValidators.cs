@@ -26,6 +26,9 @@ public static class ContactValidators
 
     public static MemberValidator<bool> IsAliveValidator { get; }
 
+
+    public static MemberValidator<int> ContactIDVallidator { get; }
+
     /*
         * All of these validator are good for multiple things. Validating individual values, used in the Validated.Core's ValidationBuilder
         * or as in this demo the BlazorValidationBuilder
@@ -53,5 +56,9 @@ public static class ContactValidators
 
 
         IsAliveValidator = MemberValidators.CreateCompareToValidator<bool>(true, CompareType.EqualTo, "IsAlive", "Is Alive", "You should be alive.");
+
+
+        ContactIDVallidator = MemberValidators.CreatePredicateValidator<int>(x => x > 0, "Contact ID", "Contact ID", "Must be in the list of optiosn");
+
     }
 }

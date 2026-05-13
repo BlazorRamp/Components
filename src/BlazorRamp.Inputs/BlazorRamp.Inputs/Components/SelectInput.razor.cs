@@ -20,20 +20,6 @@ public class SelectTypeInput<TValue> : InputTypeBase<TValue>
     /// Gets or sets the child content, options for the select element
     /// </summary>
     [Parameter] public RenderFragment? OptionValues { get; set; } = default;
-    /// <summary>
-    /// Gets or sets whether the input value is updated on every keystroke via the
-    /// <c>oninput</c> event. When <c>false</c> the value updates on <c>onchange</c>
-    /// (i.e. when the field loses focus). Defaults to <c>false</c>.
-    /// </summary>
-    [Parameter] public bool UpdateOnInput { get; set; } = false;
-
-    /// <summary>
-    /// Gets or sets the error message displayed when the input value cannot be parsed
-    /// to <typeparamref name="TValue"/>. The message is prefixed with the field's
-    /// display name (label text). When null, empty, or whitespace defaults to <c>"Invalid entry."</c>.
-    /// </summary>
-    [Parameter] public string ParseErrorMessage { get; set; } = GlobalValues.Input_Parse_General_Error_Message;
-
 
     /// <summary>
     /// Gets or sets the text/data alignment in the input. Defaults to <see cref="DataPosition.Start"/>.
@@ -50,17 +36,6 @@ public class SelectTypeInput<TValue> : InputTypeBase<TValue>
     /// </summary>
     protected string SelectInputClasses { get; private set; } = String.Empty;
 
-    /// <summary>
-    /// Gets the <c>inputmode</c> attribute value applied to the input element.
-    /// <c>"numeric"</c> for integer types, <c>"decimal"</c> for decimal, double, and float types.
-    /// </summary>
-    protected string InputMode { get; private set; } = NumericInputModeType.Numeric.ToString().ToLower();
-
-    /// <summary>
-    /// Gets the resolved parse error message, derived from <see cref="ParseErrorMessage"/>
-    /// or the default value when not set.
-    /// </summary>
-    protected string ParseErrorsText { get; private set; } = GlobalValues.Input_Parse_General_Error_Message;
 
 
     /// <summary>
@@ -72,7 +47,6 @@ public class SelectTypeInput<TValue> : InputTypeBase<TValue>
         SelectInputClasses = GetInputClasses(base.AdditionalAttributes);
 
     }
-
 
     protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string? validationErrorMessage)
     {
@@ -87,9 +61,10 @@ public class SelectTypeInput<TValue> : InputTypeBase<TValue>
             case Type type when type == typeof(Guid)  && Guid.TryParse(value, null, out Guid guidValue):                      result = (TValue)(object)guidValue; return true;
             case Type type when type == typeof(string):                                                                       result = (TValue)(object)value!; return true;
         }
-   
+        
+        //should never get here with a select input in normal use
         result = default;
-        validationErrorMessage = String.Concat(base.LabelNameText.TrimEnd(':').Trim(), " - ", ParseErrorsText);
+        validationErrorMessage = String.Concat(base.LabelNameText.TrimEnd(':').Trim(), " - ", GlobalValues.Input_Parse_General_Error_Message);
         return false;
     }
 

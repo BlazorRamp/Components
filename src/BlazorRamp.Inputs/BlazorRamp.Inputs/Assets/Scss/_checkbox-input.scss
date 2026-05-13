@@ -36,10 +36,10 @@
 
     &:has(input[aria-disabled="true"]) {
         cursor: not-allowed;
-
+        opacity: var(--br-comp-input-disabled-opacity);
         .br-checkbox-input__field,
         .br-checkbox-input__label {
-            opacity: var(--br-comp-input-disabled-opacity);
+
             cursor: not-allowed;
         }
     }
