@@ -119,9 +119,8 @@
         accent-color: var(--br-unit-colour-primary);
         cursor: pointer;
 
-        &:focus,
         &:focus-visible {
-            outline-offset: var(--br-comp-input-outline-offset);
+            outline-offset: 1px;//
             outline-width: var(--br-comp-input-outline-width);
             outline-style: var(--br-comp-input-outline-style);
             outline-color: var(--br-comp-input-outline-colour);

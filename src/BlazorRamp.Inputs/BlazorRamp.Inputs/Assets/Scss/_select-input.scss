@@ -115,8 +115,17 @@
         font-size: var(--br-comp-input-area-content-font-size);
         font-weight: var(--br-comp-input-area-content-font-weight);
         background-color: inherit; //red;//var(--br-comp-input-area-content-background);
+        border:none;
         outline: none;
         cursor: pointer;
+
+        &:focus-visible {
+            border-style: var(--br-comp-input-outline-style);
+            border-color: var(--br-comp-input-outline-colour);
+            border-radius: var(--br-comp-input-pane-base-border-radius);
+            border-width: 1px;
+            border-bottom: none;
+        }
 
         & option {
             background-color: var(--br-unit-colour-canvas);
