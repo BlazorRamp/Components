@@ -83,6 +83,11 @@ const unregisterAriaDisabledHandlers = (inputElement) => {
     inputElement.removeEventListener("paste", preventAction);
     inputElement.removeEventListener("click", preventClickAction);
 };
+const selectReadOnlyKeyHandler = (e) => {
+    const blockedKeys = [" ", "ArrowUp", "ArrowDown", "Enter", "F4"];
+    if (blockedKeys.includes(e.key))
+        e.preventDefault();
+};
 const registerReadOnlyHandlers = (inputElement) => {
     if (!inputElement)
         return;
@@ -107,5 +112,19 @@ const unregisterNumericHandlers = (inputElement, isWholeNumber) => {
     const handler = isWholeNumber ? integerHandler : decimalHandler;
     inputElement.removeEventListener("input", handler);
 };
-export { registerAriaDisabledHandlers, unregisterAriaDisabledHandlers, registerNumericHandlers, unregisterNumericHandlers, setInputValue, setInputFocus, setSummaryFocus, registerReadOnlyHandlers, unregisterReadOnlyHandlers };
+const registerSelectReadOnlyDisabledHandlers = (inputElement) => {
+    if (!inputElement)
+        return;
+    inputElement.removeEventListener("mousedown", preventAction);
+    inputElement.addEventListener("mousedown", preventAction);
+    inputElement.removeEventListener("keydown", selectReadOnlyKeyHandler);
+    inputElement.addEventListener("keydown", selectReadOnlyKeyHandler);
+};
+const unregisterSelectReadOnlyDisabledHandlers = (inputElement) => {
+    if (!inputElement)
+        return;
+    inputElement.removeEventListener("mousedown", preventAction);
+    inputElement.removeEventListener("keydown", selectReadOnlyKeyHandler);
+};
+export { registerAriaDisabledHandlers, unregisterAriaDisabledHandlers, registerNumericHandlers, unregisterNumericHandlers, setInputValue, setInputFocus, setSummaryFocus, registerReadOnlyHandlers, unregisterReadOnlyHandlers, registerSelectReadOnlyDisabledHandlers, unregisterSelectReadOnlyDisabledHandlers };
 //# sourceMappingURL=inputs.js.map

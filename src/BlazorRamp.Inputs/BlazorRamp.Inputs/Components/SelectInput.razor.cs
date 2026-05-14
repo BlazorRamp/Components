@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace BlazorRamp.Inputs.Components;
 
-public class SelectTypeInput<TValue> : InputTypeBase<TValue>
+public class SelectTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
 {
 
     /// <summary>
@@ -30,6 +30,9 @@ public class SelectTypeInput<TValue> : InputTypeBase<TValue>
 
     private IJSObjectReference? _jSModule = null;
 
+    private bool _inactiveHandlerRegistered = false;
+
+
     /// <summary>
     /// Gets the resolved CSS class string applied to the root element of the numeric input,
     /// including any additional classes passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.
@@ -45,7 +48,31 @@ public class SelectTypeInput<TValue> : InputTypeBase<TValue>
     {
         base.OnParametersSet();
         SelectInputClasses = GetInputClasses(base.AdditionalAttributes);
+    }
 
+    /// <summary>
+    /// Loads the JavaScript module on first render and registers or unregisters
+    /// readonly click handlers as the <see cref="InputTypeBase{TValue}.ReadOnly"/> state changes.
+    /// </summary>
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (true == firstRender) _jSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Inputs_File_Path);
+
+
+        if (_jSModule is null) return;
+
+        if ((true == ReadOnly || true == IsDisabled) && false == _inactiveHandlerRegistered)
+        {
+            await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Register_Select_Readonly_Disabled_Handlers, ControlReference);
+            _inactiveHandlerRegistered = true;
+        }
+        if ((false == ReadOnly && false== IsDisabled) && true == _inactiveHandlerRegistered)
+        {
+            await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Unregister_Select_Readonly_Disabled_Handlers, ControlReference);
+            _inactiveHandlerRegistered = false;
+        }
     }
 
     protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string? validationErrorMessage)
@@ -105,4 +132,22 @@ public class SelectTypeInput<TValue> : InputTypeBase<TValue>
     protected IReadOnlyDictionary<string, object>? GetAttributes(IReadOnlyDictionary<string, object>? additionalAttributes)
 
         => additionalAttributes?.Where(kv => kv.Key != "class").ToDictionary();
+
+
+    /// <summary>
+    /// Disposes the JavaScript module reference,
+    /// and calls <see cref="InputTypeBase{TValue}.DisposeAsync"/> to release base resources.
+    /// </summary>
+    public override async ValueTask DisposeAsync()
+    {
+        if (_jSModule is not null)
+        {
+            try
+            {
+                await _jSModule.DisposeAsync();
+            }
+            catch { }
+        }
+        await base.DisposeAsync();
+    }
 }

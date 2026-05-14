@@ -10,6 +10,9 @@ internal class GlobalValues
     public const string JS_Inputs_Register_Readonly_Handlers = "registerReadOnlyHandlers";
     public const string JS_Inputs_Unregister_Readonly_Handlers = "unregisterReadOnlyHandlers";
 
+    public const string JS_Inputs_Register_Select_Readonly_Disabled_Handlers = "registerSelectReadOnlyDisabledHandlers";
+    public const string JS_Inputs_Unregister_Select_Readonly_Disabled_Handlers = "unregisterSelectReadOnlyDisabledHandlers";
+
     public const string JS_Inputs_Register_Numeric_Handlers   = "registerNumericHandlers";
     public const string JS_Inputs_Unregister_Numeric_Handlers = "unregisterNumericHandlers";
 

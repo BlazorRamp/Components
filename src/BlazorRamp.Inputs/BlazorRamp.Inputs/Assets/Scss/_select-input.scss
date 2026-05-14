@@ -119,7 +119,7 @@
         outline: none;
         cursor: pointer;
 
-        &:focus-visible {
+        &:focus {
             border-style: var(--br-comp-input-outline-style);
             border-color: var(--br-comp-input-outline-colour);
             border-radius: var(--br-comp-input-pane-base-border-radius);
@@ -137,6 +137,10 @@
             -webkit-box-shadow: 0 0 0 1000px var(--br-comp-input-area-content-background) inset !important;
             -webkit-text-fill-color: var(--br-comp-input-area-content-colour) !important;
             caret-color: var(--br-comp-input-area-content-colour);
+        }
+
+        &[readonly]{
+            cursor:default;
         }
     }
 
