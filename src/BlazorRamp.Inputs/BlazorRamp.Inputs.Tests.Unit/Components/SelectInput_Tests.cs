@@ -5,40 +5,56 @@ using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BlazorRamp.Inputs.Tests.Unit.Components;
 
-public class CheckboxInput_Tests
+public class SelectInput_Tests
 {
-
     internal class TestModel
     {
-        [Range(typeof(bool), "true", "true", ErrorMessage = "Must be checked.")]
-        public bool BoolValue { get; set; } = false;
+        [Required(ErrorMessage = "Please select a value.")]
+        [Range(1, 10, ErrorMessage = "Must be in the list.")]
+        public int IntValue { get; set; } = 0;
+
+        public string? StringValue { get; set; } = null;
     }
 
-    public static (IRenderedComponent<CheckboxInput> Component, EditContext EditContext) CreateCheckboxInput(
-    BunitContext context,
-    Action<ComponentParameterCollectionBuilder<CheckboxInput>>? parameters = null)
+    private static RenderFragment BuildIntOptions() => builder =>
+    {
+        builder.OpenElement(0, "option"); builder.AddAttribute(1, "value", ""); builder.AddContent(2, "Select..."); builder.CloseElement();
+        builder.OpenElement(3, "option"); builder.AddAttribute(4, "value", "1"); builder.AddContent(5, "Option 1"); builder.CloseElement();
+        builder.OpenElement(6, "option"); builder.AddAttribute(7, "value", "2"); builder.AddContent(8, "Option 2"); builder.CloseElement();
+        builder.OpenElement(9, "option"); builder.AddAttribute(10, "value", "3"); builder.AddContent(11, "Option 3"); builder.CloseElement();
+    };
+    public static (IRenderedComponent<SelectInput<int>> Component, EditContext EditContext) CreateIntSelectInput(
+        BunitContext context,
+        Action<ComponentParameterCollectionBuilder<SelectInput<int>>>? parameters = null)
     {
         var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);
         moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, _ => true).SetVoidResult();
-        moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Readonly_Handlers, _ => true).SetVoidResult();
+        moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Select_Readonly_Disabled_Handlers, _ => true).SetVoidResult();
+        moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Unregister_Select_Readonly_Disabled_Handlers, _ => true).SetVoidResult();
 
         var model = new TestModel();
         var editContext = new EditContext(model);
 
         editContext.EnableDataAnnotationsValidation(context.Services);
 
-        var component = context.Render<CheckboxInput>(
+        var component = context.Render<SelectInput<int>>(
             builder =>
             {
                 builder
                     .AddCascadingValue(editContext)
-                    .Add(p => p.Value, model.BoolValue)
-                    .Add(p => p.ValueChanged, EventCallback.Factory.Create<bool>(context, v => model.BoolValue = v))
-                    .Add(p => p.ValueExpression, () => model.BoolValue);
+                    .Add(p => p.Value, model.IntValue)
+                    .Add(p => p.ValueChanged, EventCallback.Factory.Create<int>(context, v => model.IntValue = v))
+                    .Add(p => p.ValueExpression, () => model.IntValue)
+                    .Add(p => p.OptionValues, BuildIntOptions());
 
                 parameters?.Invoke(builder);
             });
@@ -47,8 +63,10 @@ public class CheckboxInput_Tests
     }
 
 
+
     public class Parameters
     {
+
         [Theory]
         [InlineData(DataPosition.End)]
         [InlineData(DataPosition.Centre)]
@@ -57,12 +75,14 @@ public class CheckboxInput_Tests
         {
             using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.DataPosition, dataPosition));
+            var (inputComponent, _) = CreateIntSelectInput(context, p => p.Add(x => x.DataPosition, dataPosition));
 
-            var dataAttribute = inputComponent.Find("input").GetAttribute("data-br-input-position");
+            var dataAttribute = inputComponent.Find("select").GetAttribute("data-br-input-position");
 
             dataAttribute.Should().Be(dataPosition.ToString().ToLower());
         }
+
+
 
         [Theory]
         [InlineData(true)]
@@ -71,9 +91,9 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.Required, required));
+            var (inputComponent, _) = CreateIntSelectInput(context, p => p.Add(x => x.Required, required));
 
-            var ariaAttribute = inputComponent.Find("input").GetAttribute("aria-required");
+            var ariaAttribute = inputComponent.Find("select").GetAttribute("aria-required");
 
             if (required) ariaAttribute.Should().Be("true");
 
@@ -88,15 +108,14 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.ReadOnly, readOnly));
+            var (inputComponent, _) = CreateIntSelectInput(context, p => p.Add(x => x.ReadOnly, readOnly));
 
-            var readOnlyAttribute = inputComponent.Find("input").GetAttribute("readonly");
+            var readOnlyAttribute = inputComponent.Find("select").GetAttribute("readonly");
 
             if (readOnly) readOnlyAttribute.Should().Be("readonly");
 
             if (!readOnly) readOnlyAttribute.Should().BeNull();
         }
-
 
         [Theory]
         [InlineData(true)]
@@ -105,9 +124,9 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.AriaDisabled, disabled));
+            var (inputComponent, _) = CreateIntSelectInput(context, p => p.Add(x => x.AriaDisabled, disabled));
 
-            var disabledAttribute = inputComponent.Find("input").GetAttribute("aria-disabled");
+            var disabledAttribute = inputComponent.Find("select").GetAttribute("aria-disabled");
 
             if (disabled) disabledAttribute.Should().Be("true");
 
@@ -120,9 +139,9 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _)   = CreateCheckboxInput(context, p => p.Add(x => x.AriaDisabled, true).Add(x => x.ReadOnly, true));
-            var readonlyAttribute     = inputComponent.Find("input").GetAttribute("readonly");
-            var ariaDisabledAttribute = inputComponent.Find("input").GetAttribute("aria-disabled");
+            var (inputComponent, _) = CreateIntSelectInput(context, p => p.Add(x => x.AriaDisabled, true).Add(x => x.ReadOnly, true));
+            var readonlyAttribute = inputComponent.Find("select").GetAttribute("readonly");
+            var ariaDisabledAttribute = inputComponent.Find("select").GetAttribute("aria-disabled");
 
 
             using (new AssertionScope())
@@ -142,9 +161,9 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.ControlID, controlID));
+            var (inputComponent, _) = CreateIntSelectInput(context, p => p.Add(x => x.ControlID, controlID));
 
-            var idAttribute = inputComponent.Find("input").GetAttribute("id");
+            var idAttribute = inputComponent.Find("select").GetAttribute("id");
 
             if (String.IsNullOrWhiteSpace(controlID)) Guid.Parse(idAttribute!).Should().NotBeEmpty();
 
@@ -161,11 +180,11 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.LabelText, labelText).Add(x => x.Required,false));
+            var (inputComponent, _) = CreateIntSelectInput(context, p => p.Add(x => x.LabelText, labelText).Add(x => x.Required, false));
 
             var labelContent = inputComponent.Find("label").TextContent;
 
-            if (String.IsNullOrWhiteSpace(labelText)) labelContent.Should().Be("BoolValue");
+            if (String.IsNullOrWhiteSpace(labelText)) labelContent.Should().Be("IntValue");
 
             if (!String.IsNullOrWhiteSpace(labelText)) labelContent.Should().Be(labelText);
         }
@@ -181,11 +200,11 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.LabelText, labelText).Add(x => x.Required, true));
+            var (inputComponent, _) = CreateIntSelectInput(context, p => p.Add(x => x.LabelText, labelText).Add(x => x.Required, true));
 
             var labelContent = inputComponent.Find("label").TextContent;
 
-            if (String.IsNullOrWhiteSpace(labelText)) labelContent.Should().Be("BoolValue *");
+            if (String.IsNullOrWhiteSpace(labelText)) labelContent.Should().Be("IntValue *");
 
             if (!String.IsNullOrWhiteSpace(labelText)) labelContent.Should().Be(labelText + " *");
         }
@@ -200,9 +219,9 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.HintText, hintText));
+            var (inputComponent, _) = CreateIntSelectInput(context, p => p.Add(x => x.HintText, hintText));
 
-            var hints = inputComponent.FindAll($".{GlobalValues.Checkbox_Input_Hint_Class}");
+            var hints = inputComponent.FindAll($".{GlobalValues.Select_Input_Hint_Class}");
 
             if (String.IsNullOrWhiteSpace(hintText)) hints.Should().BeEmpty();
 
@@ -217,48 +236,20 @@ public class CheckboxInput_Tests
         }
 
 
-        [Fact]
-        public async Task Should_have_a_tabbable_region_for_errors_when_the_Validation_display_mode_is_set_to_tabbable_with_hint()
-        {
-            await using var context = new BunitContext();
-
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint));
-
-            var input = inputComponent.Find("input");//tried editContext.Validate but that did not get the markup to render 
-
-            input.Change(true);//need to change from default first for it to be modified.
-            input.Change(false);
-
-            inputComponent.WaitForAssertion(() =>
-            {
-                // Use FindAll first to debug if it exists at all
-                var errorDiv = inputComponent.Find($".{GlobalValues.Checkbox_Input_Error_Class}");
-
-                using (new AssertionScope())
-                {
-                    errorDiv.GetAttribute("tabindex").Should().Be("0");
-                    errorDiv.GetAttribute("role").Should().Be("region");
-
-                    input.GetAttribute("aria-invalid").Should().Be("true");
-                }
-            });
-        }
-
-
 
         [Fact]
         public async Task Should_capture_unmatched_attributes_and_apply_all_to_the_input_element_excluding_class()
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.AddUnmatched("class", "test").AddUnmatched("style", "color:red;"));
+            var (inputComponent, _) = CreateIntSelectInput(context, p => p.AddUnmatched("class", "test").AddUnmatched("style", "color:red;"));
 
 
             using (new AssertionScope())
             {
                 inputComponent.Instance.AdditionalAttributes.Should().ContainKey("style").WhoseValue.Should().Be("color:red;");
 
-                var inputElement = inputComponent.Find("input");
+                var inputElement = inputComponent.Find("select");
 
                 inputElement.GetAttribute("style").Should().Be("color:red;");
                 inputElement.ClassList.Should().NotContain("test");
@@ -272,7 +263,7 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.AddUnmatched("class", "test").AddUnmatched("style", "color:red;"));
+            var (inputComponent, _) = CreateIntSelectInput(context, p => p.AddUnmatched("class", "test").AddUnmatched("style", "color:red;"));
 
             using (new AssertionScope())
             {
@@ -286,30 +277,7 @@ public class CheckboxInput_Tests
             }
         }
 
-        [Fact]
-        public async Task Should_be_able_to_set_the_error_label_used_for_tabbable_error_regions()
-        {
-            await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint).Add(x => x.ErrorsLabel, "My Errors"));
-
-            var input = inputComponent.Find("input");//tried editContext.Validate but that did not get the markup to render 
-
-            input.Change(true);//need to change from default first for it to be modified.
-            input.Change(false);
-
-            inputComponent.WaitForAssertion(() =>
-            {
-                // Use FindAll first to debug if it exists at all
-                var errorDiv = inputComponent.Find($"div.{GlobalValues.Checkbox_Input_Error_Class}");
-
-                using (new AssertionScope())
-                {
-                    inputComponent.Instance.ErrorsLabel.Should().Be("My Errors");
-                    errorDiv.GetAttribute("aria-label").Should().Contain("My Errors");
-                }
-            });
-        }
 
 
         [Theory]
@@ -320,23 +288,79 @@ public class CheckboxInput_Tests
         public async Task Should_be_able_to_set_the_optional_svg_icon_parameter_which_must_start_with_a_double_dash(string? svgIconVariable)
         {
             await using var context = new BunitContext();
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint).Add(x => x.SvgIcon, svgIconVariable));
+            var (inputComponent, _) = CreateIntSelectInput(context, p => p.Add(x => x.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint).Add(x => x.SvgIcon, svgIconVariable));
 
             if (String.IsNullOrWhiteSpace(svgIconVariable))
             {
-                inputComponent.FindAll($"span.{GlobalValues.Checkbox_Input_Icon_Class}").Should().BeEmpty();
+                inputComponent.FindAll($"span.{GlobalValues.Select_Input_Icon_Class}").Should().BeEmpty();
                 return;
             }
 
             if (svgIconVariable.StartsWith("--"))
             {
-                inputComponent.Find($"span.{GlobalValues.Checkbox_Input_Icon_Class}").GetAttribute("style").Should().NotBeEmpty();
+                inputComponent.Find($"span.{GlobalValues.Select_Input_Icon_Class}").GetAttribute("style").Should().NotBeEmpty();
                 return;
             }
 
-            inputComponent.FindAll($"span.{GlobalValues.Checkbox_Input_Icon_Class}").Should().BeEmpty();
+            inputComponent.FindAll($"span.{GlobalValues.Select_Input_Icon_Class}").Should().BeEmpty();
         }
+
+
+        [Fact]
+        public async Task Should_have_a_tabbable_region_for_errors_when_the_Validation_display_mode_is_set_to_tabbable_with_hint()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateIntSelectInput(context, p => p.Add(x => x.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint));
+
+            var input = inputComponent.Find("select");//tried editContext.Validate but that did not get the markup to render 
+
+            input.Change(11);
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                // Use FindAll first to debug if it exists at all
+                var errorDiv = inputComponent.Find($".{GlobalValues.Select_Input_Error_Class}");
+
+                using (new AssertionScope())
+                {
+                    errorDiv.GetAttribute("tabindex").Should().Be("0");
+                    errorDiv.GetAttribute("role").Should().Be("region");
+
+                    input.GetAttribute("aria-invalid").Should().Be("true");
+                }
+            });
+        }
+
+        [Fact]
+        public async Task Should_be_able_to_set_the_error_label_used_for_tabbable_error_regions()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateIntSelectInput(context, p => p.Add(x => x.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint).Add(x => x.ErrorsLabel, "My Errors"));
+
+            var input = inputComponent.Find("select");//tried editContext.Validate but that did not get the markup to render 
+
+            input.Change(11);
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                // Use FindAll first to debug if it exists at all
+                var errorDiv = inputComponent.Find($"div.{GlobalValues.Select_Input_Error_Class}");
+
+                using (new AssertionScope())
+                {
+                    inputComponent.Instance.ErrorsLabel.Should().Be("My Errors");
+                    errorDiv.GetAttribute("aria-label").Should().Contain("My Errors");
+                }
+            });
+        }
+
+
+
+
     }
+
 
     public class Properties()
     {
@@ -345,13 +369,11 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context);
+            var (inputComponent, _) = CreateIntSelectInput(context);
 
             inputComponent.Instance.ControlReference.Should().NotBeNull();
         }
     }
-
-
 }
 
 

@@ -37,9 +37,9 @@
     &:has(input[aria-disabled="true"]) {
         cursor: not-allowed;
         opacity: var(--br-comp-input-disabled-opacity);
+
         .br-checkbox-input__field,
         .br-checkbox-input__label {
-
             cursor: not-allowed;
         }
     }
@@ -119,8 +119,9 @@
         accent-color: var(--br-unit-colour-primary);
         cursor: pointer;
 
+        &:focus,
         &:focus-visible {
-            outline-offset: 1px;//
+            outline-offset: var(--br-comp-input-outline-offset);
             outline-width: var(--br-comp-input-outline-width);
             outline-style: var(--br-comp-input-outline-style);
             outline-color: var(--br-comp-input-outline-colour);

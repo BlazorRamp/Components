@@ -49,12 +49,12 @@ Welcome to your new app.
 
         <div class="br-input-row">
             <CheckboxInput class="br-col-xs-12 br-col-sm-6" HintText="You go a 50/50 chance of getting it right" @bind-Value="_contactData.IsAlive"
-                           ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" AriaDisabled="true" />
+                           ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" AriaDisabled="false" />
         </div>
 
         <div class="br-input-row">
             <SelectInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.ContactID" LabelText="Select Me" HintText="Select something" DataPosition="DataPosition.Start" 
-                         ErrorsLabel="Errors" ParseErrorMessage="Not able to apply this value please contact support." SvgIcon="--svg-food-icon" AriaDisabled="true" >
+                         ErrorsLabel="Errors" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint">
                        <OptionValues>
                     <option value="0">Not Entered</option>
                     <option value="1">Option 1</option>

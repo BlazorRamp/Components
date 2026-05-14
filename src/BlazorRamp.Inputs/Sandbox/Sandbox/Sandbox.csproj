@@ -12,7 +12,7 @@
     <ProjectReference Include="..\..\Sandbox.Contracts\Sandbox.Contracts.csproj" />
     <ProjectReference Include="..\Sandbox.Client\Sandbox.Client.csproj" />
     <PackageReference Include="BlazorRamp.Core" Version="1.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.8" />
     <PackageReference Include="Validated.Blazor" Version="1.0.4" />
   </ItemGroup>
 
