@@ -1,6 +1,8 @@
 ﻿
 @attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_ErrorsSummary}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
 
+@inject ILiveRegionService _liveRegionService
+
 <PageTitle>@GlobalValues.Component_Name_Errors_Summary @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
@@ -54,7 +56,7 @@
 <section class="section-box">
     <h2>Input error summary example</h2>
 
-    <EditForm Model="@_contactData" OnValidSubmit="HandleSubmit">
+    <EditForm EditContext="@_editContext" OnValidSubmit="HandleSubmit">
         
         <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
@@ -80,9 +82,11 @@
             </div>
         </InputErrorsSummary>
 
-        <div class="br-input-row">
-            <button class="br-col-xs-12 normal-button" type="submit">Fake Submit to trigger validation on the model</button>
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+            <button class="test-button" type="submit">Fake Submit to trigger validation on the model</button>
+            <button @ref="ResetButton" class="test-button" type="button" @onclick="ResetEditContext">Reset Example</button>
         </div>
+
     </EditForm>
 
 </section>
@@ -105,8 +109,9 @@
 
 
 @code {
-
-    private ContactDto _contactData = new();
+    private ContactDto _contactData  = new();
+    private EditContext _editContext = default!;
+    private ElementReference ResetButton { get; set; } = default;
     private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
 
     protected override void OnInitialized()
@@ -132,10 +137,26 @@
                                 .ForMember(c => c.Age, ageValidator)
                                 .ForNullableMember(c => c.HourlyRate, salaryValidator)
                             .GetBoxedValidators();
+
+        _editContext = new EditContext(_contactData);
     }
 
 
     private void HandleSubmit() { }
+
+    
+    private async Task ResetEditContext()
+    {
+        var announcement = new Announcement("Summary example has been reset.", AnnouncementType.Info, "Reset Example Button");
+
+        _contactData = new();
+        _editContext = new EditContext(_contactData);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+
+        await ResetButton.FocusAsync();
+
+    }
 
     public class ContactDto
     {
