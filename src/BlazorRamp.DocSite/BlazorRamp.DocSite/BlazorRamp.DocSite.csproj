@@ -17,7 +17,6 @@
 		<PackageReference Include="BlazorRamp.BusyIndicator" Version="1.0.2" />
 		<PackageReference Include="BlazorRamp.Core" Version="1.0.8" />
 		<PackageReference Include="BlazorRamp.DialogFramework" Version="1.0.2" />
-		<PackageReference Include="BlazorRamp.Inputs" Version="1.2.0" />
 		<PackageReference Include="BlazorRamp.NavGroup" Version="1.0.2" />
 		<PackageReference Include="BlazorRamp.SkipTo" Version="1.0.3" />
 		<PackageReference Include="BlazorRamp.Switch" Version="1.0.0" />
@@ -39,6 +38,10 @@
 
 	<ItemGroup>
 		<None Include="compilerconfig.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\BlazorRamp.Inputs\BlazorRamp.Inputs\BlazorRamp.Inputs.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

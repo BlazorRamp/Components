@@ -24,7 +24,7 @@ Welcome to your new app.
         <InputNumber @bind-Value="_contactData.Age" />
         <div class="br-input-row">
             <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" DataPosition="DataPosition.Start"
-                          @bind-Value="_contactData.Age" UpdateOnInput="true" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" Format="F2" />
+                          @bind-Value="_contactData.Age" UpdateOnInput="true" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" Format="F2" />
 
             <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Nullable Salary" DataPosition="DataPosition.End" SvgIcon="--svg-food-icon"
                           @bind-Value="_contactData.Salary" UpdateOnInput="true" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" Format="F2" />
@@ -32,7 +32,7 @@ Welcome to your new app.
 
         <div class="br-input-row">
 
-            <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Surname" AriaDisabled="true" HintText="The name that you use on official documents"
+            <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Surname" AriaDisabled="false" HintText="The name that you use on official documents"
                        UpdateOnInput="true" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
 
                    

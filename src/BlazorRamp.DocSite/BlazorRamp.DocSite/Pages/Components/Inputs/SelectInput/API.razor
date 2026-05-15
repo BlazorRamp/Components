@@ -2,9 +2,307 @@
 
 <PageTitle>@GlobalValues.Component_Name_Select_Input @GlobalValues.Common_Page_Title_Api</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Select_Input @GlobalValues.Common_Page_Title_Usage . .  In Progess . . .</h1>
+<h1>@GlobalValues.Component_Name_Select_Input @GlobalValues.Common_Page_Title_Api</h1>
 
+<p>
+    Everything you need to work with the SelectInput component: parameters, methods, models, enums, and CSS variables for styling.
+</p>
+<p>
+    <b>Note: </b>The value updates immediately when a selection is made. Unlike text-based inputs there is no <span class="code-span">UpdateOnInput</span> parameter - a select input has no
+    intermediate editing state, so the bound value and validation state are always updated at the point of interaction.
+</p>
+<p>
+    As this component supports nullable types, if you ever have a nullable boolean in your model given I am not aware of an accessible nullable checkbox pattern, you can use the select with null, True and False as 
+    the options bound to the nullable bool. <b>Note: </b> the options values would need to be use the capitiliasations as it has to match <span class="code-span">bool.ToString()</span> i.e True / False.
+</p>
+<p>
+    As each Input component is a single unit that contains both the input, its label and regions for both hint and error text the <b>BlazorRamp.Inputs</b> stylesheet also contains a 12 column grid layout container with
+    familiar row and col classes to help with alignments. The Input component detects if its inside a Blazor Ramp <span class="code-span">.br-input-row</span> and switches to using a css sub-grid to keep inputs aligned that are in adjacent
+    columns. Without this, if one input was showing an error message and an input in an adjacent column was not, the heights would be different.
+</p>
+<p>
+    The grid system employed uses a container query with common breakpoints of <span class="code-span">"xs": 0px, "sm": 576px, "md": 768px, "lg": 992px, "xl": 1280px, "xxl": 1536px</span>
+</p>
+<p>
+    The usage page shows these in action but simply add a row class on your container such as <span class="code-span">&lt;div class=".br-input-row"&gt;</span> and then add the appropriate classes on the
+    input directly such as <span class="code-span">&lt;CheckboxInput class="br-col-xs-12 br-col-sm-6"&gt;</span>. For each column class/breakpoint size just add the number 1 through 12 for the
+    number of columns that are spanned from the 12 fractional units to form the width.
+</p>
+<p>
+    <strong>Note: </strong>The input components do not define parameters for the common input attributes. You can add any of these to the Input component directly as attribute splatting will place these on the underlying input element.
+</p>
 
+<section>
+    <h2 class="page-heading">
+        Component parameters, methods, supporting classes and enums.
+    </h2>
+    <p>
+        The following sections cover all components that make up this feature, including their parameters,
+        public methods, and any supporting classes or enumerations required for use.
+    </p>
+    <section class="code-table">
+
+        <h3 id="select-input-component-parameters" class="code-table__heading">SelectInput component parameters</h3>
+
+        <table aria-labelledby="select-input-component-parameters">
+
+            <thead>
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Options</td>
+                    <td>RenderFragment</td>
+                    <td>
+                       The RenderFragment used that allows you provide the HTML <span class="code-span">&lt;option /&gt;</span> elements for your
+                       list.
+                    </td>
+                </tr>
+                <tr>
+                    <td>LabelText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the name used for the input control label.
+                        If the value is null, empty, or whitespace then the field name is used.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ControlID</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the <span class="code-span">id</span> attribute applied to the underlying <span class="code-span">&lt;input&gt;</span>
+                        element. When null, empty, or whitespace a <span class="code-span">Guid</span> string is generated automatically. Leading and trailing whitespace is trimmed before use.
+                    </td>
+                </tr>
+                <tr>
+                    <td>HintText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the hint text rendered below the label and above the input field. When set, the text is normalised so it always ends with a full stop, and is
+                        associated to the input via <span class="code-span">aria-describedby</span>. When null, empty, or whitespace no hint element is rendered.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ReadOnly</td>
+                    <td>bool</td>
+                    <td>
+                        Gets or sets whether the input is read-only. When <span class="code-span">true</span>, the HTML <span class="code-span">readonly</span> attribute is applied
+                        to the underlying <span class="code-span">&lt;input&gt;</span> element. Takes precedence over the <span class="code-span">AriaDisabled</span> parameter when
+                        both are set. <b>Note: </b> as the underlying HTML <span class="code-span">readonly</span> attribute have no effect on select elements, javascript is used to stop
+                        any behaviour simulating readonly.
+                    </td>
+                </tr>
+                <tr>
+                    <td>AriaDisabled</td>
+                    <td>bool</td>
+                    <td>
+                        Gets or sets whether the input is aria-disabled. When <span class="code-span">true</span>, the input is visually and functionally disabled via <span class="code-span">aria-disabled="true"</span> without
+                        using the native <span class="code-span">disabled</span> attribute, keeping the field focusable and readable by screen readers. JavaScript handlers block keyboard input and paste.
+                        Has no effect when <span class="code-span">ReadOnly</span> is also <span class="code-span">true</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Required</td>
+                    <td>bool</td>
+                    <td>
+                        Gets or sets whether the field is required. When <span class="code-span">true</span>, <span class="code-span">aria-required="true"</span>
+                        is applied to the input and a visually hidden asterisk is appended to the label. Defaults to <span class="code-span">true</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>DataPosition</td>
+                    <td>DataPosition (enum)</td>
+                    <td>
+                        Gets or sets the text/data alignment in the input.
+                        Defaults to <span class="code-span">DataPosition.Start</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ErrorsLabel</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the accessible label for the tabbable error region, used when
+                        <span class="code-span">ValidationDisplayMode</span> is set to <span class="code-span">ValidationDisplayMode.TabbableWithHint</span>.
+                        Defaults to <span class="code-span">Errors</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ValidationDisplayMode</td>
+                    <td>ValidationDisplayMode (enum)</td>
+                    <td>
+                        Gets or sets the validation display mode which controls how <span class="code-span">aria-describedby</span>
+                        is set and whether the error region is tabbable. Defaults to <span class="code-span">ValidationDisplayMode.DescribedByWithHint</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>SvgIcon</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
+                        used as a mask-image icon alongside the tab title. Must begin with <span class="code-span">--</span>.
+                        For example: <span class="code-span">--svg-my-icon</span>.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>AdditionalAttributes</td>
+                    <td>Dictionary&lt;string, object&gt;?</td>
+                    <td>
+                        Sets additional attributes applied to the input element.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Value</td>
+                    <td>string</td>
+                    <td>
+
+                        Gets or sets the value of the input field, bound to a property on your model. Typically provided automatically when using
+                        <span class="code-span">@@bind-Value="Model.PropertyName</span> syntax.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ValueChanged</td>
+                    <td>EventCallback&lt;TValue&gt;></td>
+                    <td>
+                        Gets or sets a callback invoked when the bound value changes. Used for both one-way binding, where you handle the new value directly in the event callback, and two-way binding via
+                        <span class="code-span">@@bind-Value="Model.PropertyName</span> where it is provided and managed automatically by the framework.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ValueExpression</td>
+                    <td>Expression&lt;Func&lt;string&gt;&gt;</td>
+                    <td>
+                        Gets or sets an expression that identifies the bound model property.
+                    </td>
+                </tr>
+                <tr>
+                    <td>DisplayName</td>
+                    <td>string</td>
+                    <td>
+                        Inherited from <span class="code-span">InputBase&lt;TValue&gt;</span> but is <strong>not used by the Blazor Ramp inputs</strong>.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+        <h3 id="select-input-component-methods" class="code-table__heading">SelectInput component properties and methods</h3>
+
+        <table aria-labelledby="select-input-component-methods">
+
+            <thead>
+                <tr>
+                    <th scope="col">Type/Return</th>
+                    <th scope="col">Property/Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ElementReference</td>
+                    <td>ControlReference</td>
+                    <td>
+                        Property that returns the underlying <span class="code-span">ElementReference</span> for the input control.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+
+        <h2 class="code-table__heading">Supporting enums</h2>
+
+        <section class="code-table">
+
+            <h3 id="validation-display-mode-enum" class="code-table__heading">ValidationDisplayMode enum</h3>
+
+            <table aria-labelledby="validation-display-mode-enum">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>DescribedByWithHint</td>
+                        <td>
+                            Error message ID and hint text ID are both included in <span class="code-span">aria-describedby</span>.
+                            Error region is not tabbable. This is the default mode.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>DescribedByHintSuppressed</td>
+                        <td>
+                            Only the error message ID is included in <span class="code-span">aria-describedby</span> when errors
+                            are present, suppressing the hint text association. Error region is not tabbable.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>TabbableWithHint</td>
+                        <td>
+                            The error region is rendered as a tabbable <span class="code-span">role="region"</span> element with a
+                            <span class="code-span">tabindex="0"</span>, allowing keyboard users to navigate directly to the errors.
+                            Only the hint text ID is included in <span class="code-span">aria-describedby</span>.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
+        <section class="code-table">
+
+            <h3 id="data-position-enum" class="code-table__heading">DataPosition enum</h3>
+
+            <table aria-labelledby="validation-display-mode-enum">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Start</td>
+                        <td>
+                            Left aligned in LTR, right aligned in RTL
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Centre</td>
+                        <td>
+                            The text/data is centred.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>End</td>
+                        <td>
+                            Right aligned in LTR, left aligned in RTL
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
+    </section>
+
+</section>
 
 
 <div class="flex-content justify-content-between">

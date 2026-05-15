@@ -3,6 +3,7 @@ using BlazorRamp.Inputs.Components;
 using Bunit;
 using FluentAssertions;
 using FluentAssertions.Execution;
+using FluentAssertions.Formatting;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using System;
@@ -23,6 +24,13 @@ public class SelectInput_Tests
         public int IntValue { get; set; } = 0;
 
         public string? StringValue { get; set; } = null;
+
+        public int? NullableIntValue { get; set; } = null;
+    }
+
+    internal class GenericPropertyModel<TValue>()
+    {
+        public TValue GenericValue { get; set; } = default!;
     }
 
     private static RenderFragment BuildIntOptions() => builder =>
@@ -357,8 +365,157 @@ public class SelectInput_Tests
         }
 
 
+        [Fact]
+        public async Task Should_parse_value_correctly_when_type_is_nullable_and_value_is_not_empty()
+        {
+            await using var context = new BunitContext();
 
+            var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Select_Readonly_Disabled_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Unregister_Select_Readonly_Disabled_Handlers, _ => true).SetVoidResult();
 
+            var model = new TestModel();
+            var editContext = new EditContext(model);
+
+            var component = context.Render<SelectInput<int?>>(
+                builder =>
+                {
+                    builder
+                        .AddCascadingValue(editContext)
+                        .Add(p => p.Value, model.NullableIntValue)
+                        .Add(p => p.ValueChanged, EventCallback.Factory.Create<int?>(context, v => model.NullableIntValue = v))
+                        .Add(p => p.ValueExpression, () => model.NullableIntValue)
+                        .Add(p => p.OptionValues, BuildIntOptions());
+                });
+
+            component.Find("select").Change("1");
+
+            component.WaitForAssertion(() =>
+            {
+                component.Instance.Value.Should().Be(1);
+            });
+        }
+        [Fact]
+        public async Task Should_be_able_select_a_null_value_when_type_is_nullable()
+        {
+            await using var context = new BunitContext();
+
+            var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Select_Readonly_Disabled_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Unregister_Select_Readonly_Disabled_Handlers, _ => true).SetVoidResult();
+
+            var model = new TestModel();
+            var editContext = new EditContext(model);
+
+            var component = context.Render<SelectInput<int?>>(
+                builder =>
+                {
+                    builder
+                        .AddCascadingValue(editContext)
+                        .Add(p => p.Value, model.NullableIntValue)
+                        .Add(p => p.ValueChanged, EventCallback.Factory.Create<int?>(context, v => model.NullableIntValue = v))
+                        .Add(p => p.ValueExpression, () => model.NullableIntValue)
+                        .Add(p => p.OptionValues, BuildIntOptions());
+                });
+
+            var selectComponent = component.Find("select");
+            selectComponent.Change("1");
+            selectComponent.Change(null);
+
+            component.WaitForAssertion(() =>
+            {
+                component.Instance.Value.Should().BeNull();
+            });
+        }
+
+        [Theory]
+        [InlineData(1, typeof(int))]
+        [InlineData("string", typeof(string))]
+        [InlineData((long)999999, typeof(long))]
+        [InlineData((byte)20, typeof(byte))]
+        [InlineData((short)300, typeof(short))]
+        [InlineData(true, typeof(bool))]
+        public async Task Should_be_able_to_work_with_the_supported_types<TValue>(TValue testValue, Type dataType)
+        {
+            await using var context = new BunitContext();
+
+            var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Select_Readonly_Disabled_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Unregister_Select_Readonly_Disabled_Handlers, _ => true).SetVoidResult();
+
+            var guid = Guid.NewGuid();
+            var model = new GenericPropertyModel<TValue>();
+            model.GenericValue = testValue;
+
+            var editContext = new EditContext(model);
+
+            var component = context.Render<SelectInput<TValue>>(
+                builder =>
+                {
+                    builder
+                        .AddCascadingValue(editContext)
+                        .Add(p => p.Value, model.GenericValue)
+                        .Add(p => p.ValueChanged, EventCallback.Factory.Create<TValue>(context, v => model.GenericValue = v))
+                        .Add(p => p.ValueExpression, () => model.GenericValue)
+                        .Add(p => p.OptionValues, BuildIntOptions());
+                });
+
+            var selectComponent = component.Find("select");
+            selectComponent.Change(testValue);
+
+            component.WaitForAssertion(() =>
+            {
+                using(new AssertionScope())
+                {
+                    component.Instance.Value.Should().BeOfType(dataType);
+                    component.Instance.Value.Should().Be(testValue);
+                }
+               
+            });
+        }
+
+        [Fact]
+        public async Task Should_be_able_to_work_with_a_guid()
+        {
+            await using var context = new BunitContext();
+
+            var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Select_Readonly_Disabled_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Unregister_Select_Readonly_Disabled_Handlers, _ => true).SetVoidResult();
+
+            var guid = Guid.NewGuid();
+            var model = new GenericPropertyModel<Guid>();
+            model.GenericValue = guid; ;
+
+            var editContext = new EditContext(model);
+
+            var component = context.Render<SelectInput<Guid>>(
+                builder =>
+                {
+                    builder
+                        .AddCascadingValue(editContext)
+                        .Add(p => p.Value, model.GenericValue)
+                        .Add(p => p.ValueChanged, EventCallback.Factory.Create<Guid>(context, v => model.GenericValue = v))
+                        .Add(p => p.ValueExpression, () => model.GenericValue)
+                        .Add(p => p.OptionValues, BuildIntOptions());
+                });
+
+            var selectComponent = component.Find("select");
+            selectComponent.Change(guid);
+
+            component.WaitForAssertion(() =>
+            {
+                using (new AssertionScope())
+                {
+                    component.Instance.Value.Should().Be(guid);
+                }
+
+            });
+        }
     }
 
 

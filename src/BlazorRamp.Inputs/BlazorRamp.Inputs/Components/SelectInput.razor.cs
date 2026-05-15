@@ -78,7 +78,7 @@ public class SelectTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     }
     /// <summary>
     /// Attempts to parse <paramref name="value"/> to <typeparamref name="TValue"/>.
-    /// Supports <c>byte</c>, <c>short</c>, <c>int</c>, <c>long</c>, <c>Guid</c>, and <c>string</c>
+    /// Supports <c>byte</c>, <c>short</c>, <c>int</c>, <c>long</c>, <c>Guid</c>,<c>bool</c> and <c>string</c>
     /// and their nullable equivalents. Returns <c>true</c> on success. On failure sets
     /// <paramref name="validationErrorMessage"/> to the resolved parse error message
     /// prefixed with the field display name. In normal use this path should never be reached
@@ -90,6 +90,7 @@ public class SelectTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
 
         switch (base.DataType)
         {
+            case Type type when type == typeof(bool) && bool.TryParse(value, out bool boolValue): result = (TValue)(object)boolValue; return true;
             case Type type when type == typeof(byte)  && byte.TryParse(value, NumberStyles.Any, null, out byte byteValue):    result = (TValue)(object)byteValue; return true;
             case Type type when type == typeof(short) && short.TryParse(value, NumberStyles.Any, null, out short shortValue): result = (TValue)(object)shortValue; return true;
             case Type type when type == typeof(int)   && int.TryParse(value, NumberStyles.Any, null, out int intValue):       result = (TValue)(object)intValue; return true;

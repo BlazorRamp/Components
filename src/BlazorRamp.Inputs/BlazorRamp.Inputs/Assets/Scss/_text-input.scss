@@ -37,10 +37,10 @@
     &:has(input[aria-disabled="true"]) {
         cursor: not-allowed;
         opacity: var(--br-comp-input-disabled-opacity);
+
         .br-text-input__field,
         .br-text-input__label {
             cursor: not-allowed;
-
         }
     }
 
@@ -142,7 +142,7 @@
     }
 
     &__error {
-        padding: var(--br-unit-space-3);
+        padding-block-start: var(--br-unit-space-3);
 
         &:focus-visible {
             border-radius: var(--br-comp-input-pane-base-border-radius);
