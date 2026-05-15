@@ -1,18 +1,20 @@
 ﻿using BlazorRamp.Inputs.Common.Constants;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.Extensions.Primitives;
 using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlazorRamp.Inputs.Components;
 
+/// <summary>
+/// Renders an accessible select input supporting <c>byte</c>, <c>short</c>, <c>int</c>, <c>long</c>,
+/// <c>Guid</c>, and <c>string</c> value types, as well as their nullable equivalents.
+/// Inherits validation state management, hint text, aria-disabled support, and SVG
+/// icon support from <see cref="InputTypeBase{TValue}"/>.
+/// Interaction blocking for readonly and aria-disabled states is handled via JavaScript
+/// interop, preventing mouse and keyboard activation of the native dropdown.
+/// </summary>
 public class SelectTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
 {
 
@@ -74,7 +76,14 @@ public class SelectTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
             _inactiveHandlerRegistered = false;
         }
     }
-
+    /// <summary>
+    /// Attempts to parse <paramref name="value"/> to <typeparamref name="TValue"/>.
+    /// Supports <c>byte</c>, <c>short</c>, <c>int</c>, <c>long</c>, <c>Guid</c>, and <c>string</c>
+    /// and their nullable equivalents. Returns <c>true</c> on success. On failure sets
+    /// <paramref name="validationErrorMessage"/> to the resolved parse error message
+    /// prefixed with the field display name. In normal use this path should never be reached
+    /// as the select options constrain the value to valid entries.
+    /// </summary>
     protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string? validationErrorMessage)
     {
         validationErrorMessage = string.Empty;
@@ -95,7 +104,12 @@ public class SelectTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         return false;
     }
 
-
+    /// <summary>
+    /// Handles the binding set event, updating <see cref="InputBase{TValue}.CurrentValueAsString"/>
+    /// with the selected option value. Sets <see cref="InputBase{TValue}.CurrentValue"/> to
+    /// <c>default</c> when the value is null or whitespace and the type is nullable.
+    /// Does nothing when <see cref="InputTypeBase{TValue}.IsDisabled"/> is <c>true</c>.
+    /// </summary>
     protected void HandlePropertySet(string? value)
     {
         if (IsDisabled) return;
