@@ -31,7 +31,7 @@
 
         <div class="br-input-row">
             <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First Name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                       @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" ReadOnly="true" />
+                       @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" ReadOnly="false" />
 
             <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
                        @bind-Value="_contactData.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" />
@@ -73,12 +73,11 @@
     protected override void OnInitialized()
     {
 
-        var firstNameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,50}$)[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]+$", "FirstName", "First Name", "Must start with a capital letter and be between 2 and 50 characters in length");
-
+        var firstNameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,50}$)[A-Z][A-Za-z]*(?:['\- ][A-Za-z]+)*$", "FirstName", "First Name", "Must start with a capital letter and be between 2 and 50 characters in length");
         /*
-        * Although its easy to create a regex that does everything I prefer to break things down into separate rules, so below creates a validator made up of two rules. 
-                 */
-        var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]*$", "FamilyName", "Surname", "Must start with a capital letter")
+            * Although its easy to create a regex that does everything I prefer to break things down into separate rules, so below creates a validator made up of two rules. 
+        */
+        var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,})[A-Z][A-Za-z]*(?:['\- ][A-Za-z]+)*\z", "Surname", "Surname", "Must start with a capital letter and no double spaces.")
                                 .AndThen(MemberValidators.CreateStringLengthValidator(2, 50, "Surname", "Surname", "Must be between 2 and 50 characters in length"));
 
 

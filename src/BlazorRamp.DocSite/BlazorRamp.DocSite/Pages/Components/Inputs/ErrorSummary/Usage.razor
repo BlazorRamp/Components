@@ -90,12 +90,11 @@
     protected override void OnInitialized()
     {
 
-        var firstNameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,25}$)[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]+$", "FirstName", "First Name", "Must start with a capital letter and be between 2 and 25 characters in length.");
-
+        var firstNameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,55}$)[A-Z][A-Za-z]*(?:['\- ][A-Za-z]+)*$", "FirstName", "First Name", "Must start with a capital letter and be between 2 and 25 characters in length.");
         /*
-        * Although its easy to create a regex that does everything I prefer to break things down into separate rules, so below creates a validator made up of two rules.
-                 */
-    var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]*$", "FamilyName", "Surname", "Must start with a capital letter")
+            * Although its easy to create a regex that does everything I prefer to break things down into separate rules, so below creates a validator made up of two rules.
+        */
+        var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,})[A-Z][A-Za-z]*(?:['\- ][A-Za-z]+)*\z", "Surname", "Surname", "Must start with a capital letter and no double spaces.")
                         .AndThen(MemberValidators.CreateStringLengthValidator(2, 25, "Surname", "Surname", "Must be between 2 and 25 characters in length but you entered {ActualLength} characters."));
 
         var ageValidator = MemberValidators.CreateRangeValidator<int>(16, 120, "Age", "Age", "Must be between 16 and 120");
