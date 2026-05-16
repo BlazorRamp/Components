@@ -1,0 +1,239 @@
+﻿@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_SelectInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
+
+@inject ILiveRegionService _liveRegionService
+
+<PageTitle>@GlobalValues.Component_Name_Select_Input @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Select_Input @GlobalValues.Common_Page_Title_Overview_Tests</h1>
+
+    <p>
+        The Select Input component in this library is the combination of a label, optional hint area, an input and a region below the input for validation messages.
+    </p>
+</section>
+
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
+    <p>
+        The examples below only uses a single required field, <b>Favourite Food</b><br/>
+        <b>Note: </b>The value updates immediately when the option is selected, unlike text-based inputs there is no intermediate editing state, so the bound value and validation state are always updated at the point of interaction.
+    </p>
+    <p>
+        For the examples the following Validation Display options are used in each test so you can test the options with your chosen devices.
+    </p>
+    <ul>
+        <li>
+            Described By With Hint -  This options links the input to the hint text via the <span class="code-span">aria-describedby</span> attribute. The id of unordered list element that holds any validation errors
+            is added or removed from the <span class="code-span">aria-describedby</span> attribute, depending on the validity of the value. The id of the validation errors element is places first in the attribute.
+        </li>
+        <li>
+            Described By Hint Suppressed - This option removes the id of the hint text element from the <span class="code-span">aria-describedby</span> attribute when there are validation errors to reduce verbosity
+            for screen reader users.
+        </li>
+        <li>
+            Tabbable With Hint - This option only uses the <span class="code-span">aria-describedby</span> attribute for the hint text element which is never removed. The Validation errors area is given a tab stop
+            and is promoted to a landmark regions. In the following examples these transient regions will have the accessible name of [Label Text] + " errors" so for a "Confirm Delete" field the region would be "Confirm Delete errors".
+        </li>
+    </ul>
+
+    <p>
+        <strong>Important: </strong>Some screen reader and browser combinations treat the <span class="code-span">aria-describedby</span> attribute similar to a live regions so when the hint text id or errors element id is added/removed
+        with validation screen reader users will get announcements which may be distracting. 
+    </p>
+    <p>
+        <strong>Note: </strong>Given the myriad combinations of screen reader, operating system, browser, validation display option and event used, I have not provided an expectations section like the tests for other components. 
+    </p>
+</section>
+
+<section class="section-box">
+    <h3>Example one - fake form using the option "Described By With Hint".</h3>
+    
+    <EditForm EditContext="@_editContextOne" OnSubmit="HandleSubmitOne">
+        <BlazorValidated TEntity="ProfileDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+        <div class="br-input-row">
+            <SelectInput  class=" br-col-xs-12 br-col-sm-6" LabelText="Favourite Food" HintText="What food do you like the most?" Required="true" 
+                         @bind-Value="@_profileDataOne.FavouriteFoodID" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint">
+                 <OptionValues>
+                     <option value="0">Please select your favourite food</option>
+                    @foreach(var item in _foodListItems)
+                    {
+                        <option value="@item.Key" >@item.Value</option>
+                    }
+                </OptionValues>
+            </SelectInput>
+        </div>
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+            <button class="test-button" type="submit">Submit One to trigger validation on unmodified fields</button>
+            <button @ref="ResetButtonOne" class="test-button" type="button" @onclick="ResetEditContextOne">Reset Example One</button>
+        </div>
+    </EditForm>
+</section>
+
+<section class="section-box">
+    <h3>Example two - fake form using the option "Described By Hint Suppressed".</h3>
+
+    <EditForm EditContext="@_editContextTwo" OnSubmit="HandleSubmitTwo">
+        <BlazorValidated TEntity="ProfileDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+        <div class="br-input-row">
+            <SelectInput class=" br-col-xs-12 br-col-sm-6" LabelText="Favourite Food" HintText="What food do you like the most?" Required="true"
+                         @bind-Value="@_profileDataTwo.FavouriteFoodID" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed">
+                <OptionValues>
+                    <option value="0">Please select your favourite food</option>
+                    @foreach (var item in _foodListItems)
+                    {
+                        <option value="@item.Key">@item.Value</option>
+                    }
+                </OptionValues>
+            </SelectInput>
+        </div>
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+            <button class="test-button" type="submit">Submit Two to trigger validation on unmodified fields</button>
+            <button @ref="ResetButtonTwo" class="test-button" type="button" @onclick="ResetEditContextTwo">Reset Example One</button>
+        </div>
+    </EditForm>
+</section>
+
+
+<section class="section-box">
+    <h3>Example three - fake form using the option "Tabbable With Hint".</h3>
+
+    <EditForm EditContext="@_editContextThree" OnSubmit="HandleSubmitThree">
+        <BlazorValidated TEntity="ProfileDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+        <div class="br-input-row">
+            <SelectInput class=" br-col-xs-12 br-col-sm-6" LabelText="Favourite Food" HintText="What food do you like the most?" Required="true"
+                         @bind-Value="@_profileDataThree.FavouriteFoodID" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint">
+                <OptionValues>
+                    <option value="0">Please select your favourite food</option>
+                    @foreach (var item in _foodListItems)
+                    {
+                        <option value="@item.Key">@item.Value</option>
+                    }
+                </OptionValues>
+            </SelectInput>
+        </div>
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+            <button class="test-button" type="submit">Submit Three to trigger validation on unmodified fields</button>
+            <button @ref="ResetButtonThree" class="test-button" type="button" @onclick="ResetEditContextThree">Reset Example One</button>
+        </div>
+    </EditForm>
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_PasswordInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Password_Input - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Text_Input - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+
+</div>
+@code {
+
+    
+    private ProfileDto _profileData = new();
+    private Dictionary<int, string> _foodListItems = new() { [1] = "Fish & Chips", [2] = "Burger & Fries", [3] = "Pizza" };
+
+    private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+    private ProfileDto _profileDataOne = new();
+    private ProfileDto _profileDataTwo = new();
+    private ProfileDto _profileDataThree = new();
+
+    private EditContext _editContextOne = default!;
+    private EditContext _editContextTwo = default!;
+    private EditContext _editContextThree = default!;
+
+
+    private ElementReference ResetButtonOne { get; set; } = default;
+    private ElementReference ResetButtonTwo { get; set; } = default;
+    private ElementReference ResetButtonThree { get; set; } = default;
+
+    protected override void OnInitialized()
+    {
+
+        var foodValidator = MemberValidators.CreatePredicateValidator<int>(c => c == 1, "FavouriteFoodID", "Favourite Food", "Wrong answer, it has to be Fish & Chips");
+
+        _boxedValidators = BlazorValidationBuilder<ProfileDto>.Create()
+                                .ForMember(c => c.FavouriteFoodID, foodValidator)
+                                .GetBoxedValidators();
+
+        _editContextOne   = new EditContext(_profileDataOne);
+        _editContextTwo   = new EditContext(_profileDataTwo);
+        _editContextThree = new EditContext(_profileDataThree);
+    }
+
+
+
+    public class ProfileDto
+    {
+        public int FavouriteFoodID { get; set; }
+    }
+
+    
+    private async Task HandleSubmitOne()
+    {
+        _editContextOne.Validate();
+        var announcement = new Announcement("Validation invoked on example one form fields", AnnouncementType.Info, "Submit One Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+
+    }
+    private async Task HandleSubmitTwo()
+    {
+        _editContextTwo.Validate();
+        var announcement = new Announcement("Validation invoked on example two form fields", AnnouncementType.Info, "Submit Two Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+    }
+    private async Task HandleSubmitThree()
+    {
+        _editContextThree.Validate();
+        var announcement = new Announcement("Validation invoked on example three form fields", AnnouncementType.Info, "Submit Three Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+    }
+
+
+    private async Task ResetEditContextOne()
+    {
+        var announcement = new Announcement("Example one has been reset", AnnouncementType.Info, "Reset Example One Button");
+
+        _profileDataOne = new();
+        _editContextOne = new EditContext(_profileDataOne);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+
+        await ResetButtonOne.FocusAsync();
+
+    }
+    private async Task ResetEditContextTwo()
+    {
+        var announcement = new Announcement("Example two has been reset", AnnouncementType.Info, "Reset Example Two Button");
+
+        _profileDataTwo = new();
+        _editContextTwo = new EditContext(_profileDataTwo);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+        await ResetButtonTwo.FocusAsync();
+    }
+    private async Task ResetEditContextThree()
+    {
+        var announcement = new Announcement("Example three has been reset", AnnouncementType.Info, "Reset Example Three Button");
+
+        _profileDataThree = new();
+        _editContextThree = new EditContext(_profileDataThree);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+        await ResetButtonThree.FocusAsync();
+    }
+
+    
+
+}

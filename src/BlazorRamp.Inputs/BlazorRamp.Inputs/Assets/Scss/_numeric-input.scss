@@ -142,7 +142,7 @@
     }
 
     &__error {
-        padding-block-start: var(--br-unit-space-3);
+        padding: var(--br-unit-space-2);
 
         &:focus-visible {
             border-radius: var(--br-comp-input-pane-base-border-radius);
