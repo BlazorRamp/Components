@@ -16,7 +16,7 @@ Welcome to your new app.
 
     @*     <DataAnnotationsValidator /> *@
 
-    <BlazorValidated TEntity="ContactDto" BoxedValidators="_contactBoxedValidators" AddDisplayName="true" />
+    <BlazorValidated TEntity="ContactDto" BoxedValidators="_contactBoxedValidators" AddDisplayName="true" DeferFieldValidation="true" />
 
     <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
@@ -109,8 +109,8 @@ Welcome to your new app.
 
         var builder = BlazorValidationBuilder<ContactDto>.Create()
                         .ForMember(c => c.Title, ContactValidators.TitleValidator)                      //< using a ready built title member validator
-                        .ForMember(c => c.GivenName, ContactValidators.GivenNameValidator)
-                        .ForMember(c => c.FamilyName, ContactValidators.FamilyNameValidator)            // << This validator (function) combines two functions a regex and a separate length validator
+                        .ForMember(c => c.GivenName, ContactValidators.GivenNameValidator, true)
+                        .ForMember(c => c.FamilyName, ContactValidators.FamilyNameValidator, true)            // << This validator (function) combines two functions a regex and a separate length validator
                         .ForMember(c => c.Password, ContactValidators.PasswordValidator)            // << This validator (function) combines two functions a regex and a separate length validator
                         .ForNullableMember(c => c.NullableAge, ContactValidators.NullableAgeValidator)
                         .ForMember(c => c.Age, ContactValidators.AgeValidator)

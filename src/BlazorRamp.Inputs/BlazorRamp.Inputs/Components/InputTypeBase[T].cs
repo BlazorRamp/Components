@@ -270,7 +270,7 @@ namespace BlazorRamp.Inputs.Components
         /// Called when the <see cref="EditContext"/> raises a validation state change.
         /// Clears validation state if the field is unmodified and has no validation messages,
         /// otherwise updates <see cref="InvalidMessages"/>, <see cref="HasErrors"/>, 
-        /// <see cref="StateIconClasses"/>, and <see cref="AriaDescribedByID"/>.
+        /// and <see cref="AriaDescribedByID"/>.
         /// </summary>
         protected virtual void OnValidationStateChanged()
         {

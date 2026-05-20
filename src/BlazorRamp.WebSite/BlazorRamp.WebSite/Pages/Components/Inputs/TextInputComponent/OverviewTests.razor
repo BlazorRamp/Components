@@ -246,15 +246,14 @@
 
         var firstNameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,50}$)[A-Z][A-Za-z]*(?:['\- ][A-Za-z]+)*$", "FirstName", "First name", "Must start with a capital letter and be between 2 and 50 characters in length.");
                 
-
-        var surnameValidator = CreateStringRegexValidator2(@"^(?=.{2,})[A-Z][A-Za-z]*(?:['\- ][A-Za-z]+)*/z", "FamilyName", "Surname", "Must start with a capital letter and no double spaces.")
+        var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]*$", "FamilyName", "Surname", "Must start with a capital letter and no double spaces.")
          .AndThen(MemberValidators.CreateStringLengthValidator(2, 50, "Surname", "Surname", "Must be between 2 and 50 characters in length."));
 
 ;
 
         _boxedValidators = BlazorValidationBuilder<ContactDto>.Create()
                                 .ForMember(c => c.FirstName, firstNameValidator)
-                                .ForMember(c => c.Surname, surnameValidator)
+                                .ForMember(c => c.Surname, surnameValidator, true)
                                 .GetBoxedValidators();
 
         _editContextOne   = new EditContext(_contactDataOne);
@@ -386,14 +385,4 @@
         public string Surname { get; set; }
     }
 
-    public static MemberValidator<string> CreateStringRegexValidator2(string pattern, string propertyName, string displayName, string failureMessage)
-
-        => (valueToValidate, path, _, _) =>
-        {
-            if (String.IsNullOrWhiteSpace(valueToValidate?.ToString())) return Task.FromResult(Validated<string>.Invalid(new InvalidEntry(failureMessage, propertyName, displayName)));
-
-            if (Regex.IsMatch(valueToValidate.TrimEnd(), pattern)) return Task.FromResult(Validated<string>.Valid(valueToValidate.Trim()));
-
-            return Task.FromResult(Validated<string>.Invalid(new InvalidEntry(failureMessage, propertyName, displayName)));
-        };
 }

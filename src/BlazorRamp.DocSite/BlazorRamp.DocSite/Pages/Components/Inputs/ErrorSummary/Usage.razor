@@ -37,7 +37,7 @@
 
     <EditForm Model="@_contactData" OnValidSubmit="HandleSubmit">
         
-        <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+        <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" DeferFieldValidation="true" />
 
         <InputErrorsSummary InputSuffix="Field" TitleHeadingLevel="TitleHeadingLevel.H3" SummaryDisplay="SummaryDisplay.OnModelValidated">
 

@@ -1,4 +1,5 @@
-﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextInput}/{GlobalValues.Common_Page_Path_Usage}")]
+﻿@using BlazorRamp.DocSite.Pages.Components.AnnouncementHistory
+@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextInput}/{GlobalValues.Common_Page_Path_Usage}")]
 
 <PageTitle>@GlobalValues.Component_Name_Text_Input @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
@@ -9,17 +10,15 @@
     that gets added as mentioned on the Inputs Accessibility page.
 </p>
 <p>
-    Both inputs have the <span class="code-span">UpdateOnInput</span> parameter set to true so validation runs on input, after the field is dirty. Neither input has a <span class="code-span">maxlength</span> attribute as these
-    can be problematic for some screen readers as it silently stops the user typing with no feedback, so it's better to catch issues with validation.
+    Both inputs have the <span class="code-span">UpdateOnInput</span> parameter set to true so validation runs on input, after the field is dirty combined with <span class="hint">ValidationDisplayMode="TabbableWithHint"</span>, but 
+    you should use the options that best suit your application and intended audience.
+    Neither input has a <span class="code-span">maxlength</span> attribute as these can be problematic for some screen readers as it silently stops the user typing with no feedback, so it's better to catch issues with validation.
 </p>
-<p>
-    Personally, I prefer immediate validation by setting the parameter <span class="code-span">UpdateOnInput="true"</span> with the value of false using Blazors <span class="code-span">onchange</span> event which runs validation
-    if the value has changed and after focus has moved away from the field. You should choose the best option for your application and intended audience..
-</p>
-
 <p>
     <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
-    but you can use any validators that work with Blazors <span class="code-span">EditContext</span>.
+    but you can use any validators that work with Blazors <span class="code-span">EditContext</span>. One of the options on my Blazor validation component is to remove leading and trailing whitespace from your string fields on a full model 
+    validation. The validation for the First Name field below does not allow trailing spaces so causes it to be invalid if you enter any. The Surname field just as demonstraion has a rule that allows a single space after its valid, 
+    and I have used the option to remove spaces from this field on full model validation.
 </p>
 
 <section class="section-box">
