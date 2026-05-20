@@ -32,10 +32,11 @@ Welcome to your new app.
 
         <div class="br-input-row">
 
-            <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Surname" AriaDisabled="false" HintText="The name that you use on official documents"
+            <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Firstname" AriaDisabled="false" HintText="The name that you use on official documents"
                        UpdateOnInput="true" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
 
-                   
+            <TextInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.FamilyName" LabelText="Surname" AriaDisabled="false" HintText="The suname that you use on official documents"
+                       UpdateOnInput="true" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
         </div>
 
         <div class="br-input-row">

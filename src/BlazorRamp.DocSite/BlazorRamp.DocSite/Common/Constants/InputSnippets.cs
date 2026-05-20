@@ -203,13 +203,13 @@ public class InputSnippets
             <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" 
-                            ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" @bind-Value="_contactData.FirstName" 
-                                HintText="The name you use on official documents" SvgIcon="--svg-user-icon" />
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First Name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" 
+                    TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" @bind-Value="_contactData.FirstName" 
+                    HintText="The name you use on official documents" SvgIcon="--svg-user-icon" ReadOnly="false" autocomplete="given-name" />
 
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" 
-                            ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" @bind-Value="_contactData.Surname" 
-                                HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" />
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" ErrorsLabel="errors" UpdateOnInput="true" 
+                    TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" @bind-Value="_contactData.Surname" 
+                    HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
             </div>
             <div class="br-input-row">
                 <button class="br-col-xs-12 test-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
@@ -228,12 +228,12 @@ public class InputSnippets
                 /*
                     * Although its easy to create a regex that does everything I prefer to break things down into separate rules, so below creates a validator made up of two rules. 
                 */
-                var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,})[A-Z][A-Za-z]*(?:['\- ][A-Za-z]+)*\z", "Surname", "Surname", "Must start with a capital letter and no double spaces.")
+                var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]*$", "Surname", "Surname", "Must start with a capital letter and no double spaces.")
                                         .AndThen(MemberValidators.CreateStringLengthValidator(2, 50, "Surname", "Surname", "Must be between 2 and 50 characters in length"));
 
                 _boxedValidators = BlazorValidationBuilder<ContactDto>.Create()
                                         .ForMember(c => c.FirstName, firstNameValidator)
-                                        .ForMember(c => c.Surname, surnameValidator)
+                                        .ForMember(c => c.Surname, surnameValidator, true)
                                         .GetBoxedValidators();
             }
 
@@ -260,11 +260,13 @@ public class InputSnippets
             <InputErrorsSummary InputSuffix="Field" TitleHeadingLevel="TitleHeadingLevel.H3" SummaryDisplay="SummaryDisplay.OnModelValidated">
 
                 <div class="br-input-row">
-                    <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First Name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                               @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" />
+                    <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First Name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" 
+                    TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" @bind-Value="_contactData.FirstName" 
+                    HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name"/>
 
-                    <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                               @bind-Value="_contactData.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" />
+                    <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" ErrorsLabel="errors" UpdateOnInput="true" 
+                    TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" @bind-Value="_contactData.Surname" 
+                    HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="familiy-name" />
                 </div>
                 <div class="br-input-row">
 

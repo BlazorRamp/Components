@@ -43,10 +43,10 @@
 
             <div class="br-input-row">
                 <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First Name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                           @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" />
+                           @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name"/>
 
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                           @bind-Value="_contactData.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" />
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                           @bind-Value="_contactData.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="familiy-name" />
             </div>
             <div class="br-input-row">
 
@@ -94,7 +94,7 @@
         /*
             * Although its easy to create a regex that does everything I prefer to break things down into separate rules, so below creates a validator made up of two rules.
         */
-        var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,})[A-Z][A-Za-z]*(?:['\- ][A-Za-z]+)*\z", "Surname", "Surname", "Must start with a capital letter and no double spaces.")
+        var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]*$", "Surname", "Surname", "Must start with a capital letter and no double spaces.")
                         .AndThen(MemberValidators.CreateStringLengthValidator(2, 25, "Surname", "Surname", "Must be between 2 and 25 characters in length but you entered {ActualLength} characters."));
 
         var ageValidator = MemberValidators.CreateRangeValidator<int>(16, 120, "Age", "Age", "Must be between 16 and 120");
@@ -105,7 +105,7 @@
 
         _boxedValidators = BlazorValidationBuilder<ContactDto>.Create()
                                 .ForMember(c => c.FirstName, firstNameValidator)
-                                .ForMember(c => c.Surname, surnameValidator)
+                                .ForMember(c => c.Surname, surnameValidator, true)
                                 .ForMember(c => c.Age, ageValidator)
                                 .ForNullableMember(c => c.HourlyRate, salaryValidator)
                             .GetBoxedValidators();

@@ -31,7 +31,10 @@ public record class ContactDto
     [MinLength(4, ErrorMessage = "Name must be at least 4 characters")]
     public string   GivenName      { get; set; } = default!;
     [MinLength(4, ErrorMessage = "Name must be at least 4 characters")]
-    public string   FamilyName     { get; set; } = default!;
+    public string FamilyName { get; set { field = value; } } = default!;
+
+
+
     public DateOnly DOB            { get; set; } = default!;
     public DateOnly CompareDOB     { get; set; } = default!;
     public string   Email          { get; set; } = default!;
