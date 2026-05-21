@@ -102,7 +102,7 @@ namespace BlazorRamp.Inputs.Components
         /// Gets the resolved <c>id</c> attribute value applied to the underlying input element.
         /// Either the trimmed <see cref="ControlID"/> parameter or a generated <see cref="Guid"/> string.
         /// </summary>
-        protected string  InputID           { get; private set; } = string.Empty;
+        internal string  InputID           { get; private set; } = string.Empty;
 
 
         /// <summary>

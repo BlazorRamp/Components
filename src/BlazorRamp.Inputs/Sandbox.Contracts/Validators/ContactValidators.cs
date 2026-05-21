@@ -26,6 +26,8 @@ public static class ContactValidators
 
     public static MemberValidator<bool> IsAliveValidator { get; }
 
+    public static MemberValidator<int> RadioGoupValue { get; }
+
 
     public static MemberValidator<int> ContactIDVallidator { get; }
 
@@ -59,6 +61,9 @@ public static class ContactValidators
 
 
         ContactIDVallidator = MemberValidators.CreatePredicateValidator<int>(x => x > 0, "Contact ID", "Contact ID", "Must be in the list of optiosn");
+
+
+        RadioGoupValue = MemberValidators.CreatePredicateValidator<int>(x => x > 0, "RadioButtonValue", "Radio Button Value", "Required, you must select an option");
 
     }
 }

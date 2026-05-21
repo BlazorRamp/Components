@@ -29,6 +29,8 @@ public class RadioTypeInputGroup<TValue> : InputTypeBase<TValue>
     /// </summary>
     protected string RadioInputGroupClasses { get; private set; } = String.Empty;
 
+    internal TValue? GroupValue => CurrentValue;
+
     /// <summary>
     /// Updates the checkbox input CSS classes on each parameter change.
     /// </summary>
@@ -36,10 +38,17 @@ public class RadioTypeInputGroup<TValue> : InputTypeBase<TValue>
     {
         base.OnParametersSet();
         RadioInputGroupClasses = GetInputClasses(base.AdditionalAttributes);
-
+    }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
     }
 
-
+    internal void SetGroupValue(TValue value)
+    { 
+        CurrentValue = value;
+        //StateHasChanged();
+    }
 
     protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string? validationErrorMessage)
     {
@@ -47,6 +56,9 @@ public class RadioTypeInputGroup<TValue> : InputTypeBase<TValue>
         result = default;
         return true;
     }
+
+
+
 
     /// <summary>
     /// Builds the CSS class string for the root element by combining the base input

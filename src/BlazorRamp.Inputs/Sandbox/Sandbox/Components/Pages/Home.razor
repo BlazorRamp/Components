@@ -22,12 +22,12 @@ Welcome to your new app.
     <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
          <div class="br-input-row"> 
-            <RadioInputGroup class="br-col-xs-12 br-col-sm-6" TValue="Int32" @bind-Value="_contactData.Age"  
-                LabelText="Your Gender" HintText="Please select on of the options">
+            <RadioInputGroup class="br-col-xs-12 br-col-sm-6" TValue="Int32" @bind-Value="@_groupValue" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                             LabelText="Your Gender" HintText="Please select on of the options">
                 <OptionValues>
-                    <RadioInput LabelText="First item" />
-                    <RadioInput LabelText="Second item" />
-                    <RadioInput LabelText="Third item" />
+                    <RadioInput LabelText="First item"  Value="1"/>
+                    <RadioInput LabelText="Second item" Value="2" />
+                    <RadioInput LabelText="Third item" Value="3" />
                 </OptionValues>
             </RadioInputGroup>
           </div>
@@ -105,6 +105,7 @@ Welcome to your new app.
 
 @code {
 
+    private int _groupValue = 0;
     private EditContext _editContext = default!;
     private ContactDto _contactData = StaticData.CreateContactObjectGraph();
 
@@ -127,6 +128,7 @@ Welcome to your new app.
                         .ForNullableMember(c => c.Salary, ContactValidators.SalaryValidator)
                         .ForMember(c => c.IsAlive, ContactValidators.IsAliveValidator)
                         .ForMember(c => c.ContactID, ContactValidators.ContactIDVallidator)
+                        .ForMember(c => c.RadioButtonValue, ContactValidators.RadioGoupValue)
          // .ForComparisonWithValue(c => c.DOB, ContactValidators.DOBValidator)
          // .ForComparisonWithMember(c => c.CompareDOB, ContactValidators.CompareDOBValidator)
          // .ForNestedMember(c => c.Address, AddressValidators.GetBoxedAddressValidators())// << Getting all the address validators from a pre-created builder.
