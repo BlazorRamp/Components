@@ -10,7 +10,7 @@
     </label>
     @if (HintNormalised is not null)
     {
-        <span id="@HintTextID" class="@GlobalValues.Checkbox_Input_Hint_Class">
+        <span id="@HintTextID" class="@GlobalValues.Checkbox_Input_Hint_Class" @onmousedown:preventDefault>
             @HintNormalised
         </span>
     }

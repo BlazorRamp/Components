@@ -9,6 +9,11 @@ public partial class RadioInput
     [CascadingParameter(Name = "RadioGroupName")] private string GroupName { get; set; } = default!;
     [Parameter] public string LabelText { get; set; }
 
+    /// <summary>
+    /// Gets or sets additional attributes applied to the component's root element.
+    /// </summary>
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
     private string _inputID = Guid.NewGuid().ToString();
 
     protected override void OnInitialized()

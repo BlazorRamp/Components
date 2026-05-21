@@ -1,8 +1,8 @@
 ﻿
-<div class="@GlobalValues.Radio_Input_Class">
+<div @attributes="AdditionalAttributes"  class="@GlobalValues.Radio_Input_Class">
     <input id="@_inputID" type="radio" name="@GroupName" class="@GlobalValues.Radio_Input_field_Class" />
 
-    <label for="@_inputID" class="@GlobalValues.Radio_Input_Label_Class">
+    <label for="@_inputID" class="@GlobalValues.Radio_Input_Label_Class" @onmousedown:preventDefault>
         @LabelText
     </label>
 

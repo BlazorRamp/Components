@@ -13,6 +13,16 @@ public class RadioTypeInputGroup<TValue> : InputTypeBase<TValue>
     /// </summary>
     [Parameter] public RenderFragment? OptionValues { get; set; } = default;
 
+    private new bool ReadOnly
+    {
+        get => false;
+        set { }
+    }
+    private new bool AriaDisabled
+    {
+        get => false;
+        set { }
+    }
     /// <summary>
     /// Gets the resolved CSS class string applied to the root element of the radio group input,
     /// including any additional classes passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.
