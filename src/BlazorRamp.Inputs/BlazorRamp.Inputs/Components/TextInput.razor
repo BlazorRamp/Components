@@ -30,6 +30,7 @@
            aria-required="@(Required ? "true" : null)"
            aria-disabled="@(base.IsDisabled ? "true" : null)"
            readonly="@(base.ReadOnly ? "readonly" : null)"
+           @onblur="HandleOnBlur"
            @bind-value:get="@CurrentValueAsString"
            @bind-value:event="@(UpdateOnInput ? "oninput" : "onchange")"
            @bind-value:set="HandlePropertySet" 

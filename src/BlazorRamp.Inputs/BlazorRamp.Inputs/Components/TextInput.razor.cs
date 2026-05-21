@@ -1,7 +1,9 @@
 ﻿using BlazorRamp.Inputs.Common.Constants;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.Extensions.Primitives;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 
 namespace BlazorRamp.Inputs.Components;
 
@@ -32,6 +34,10 @@ public class TextTypeInput : InputTypeBase<string>
     /// </summary>
     [Parameter] public DataPosition DataPosition { get; set; } = DataPosition.Start;
 
+    /// <summary>
+    /// Gets or sets whether the value should be trimmed during the on blur event. Defauts to <c>false</c>.
+    /// </summary>
+    [Parameter] public bool TrimOnBlur { get; set; } = false;
 
     /// <summary>
     /// Gets the resolved CSS class string applied to the root element of the text input,
@@ -88,6 +94,16 @@ public class TextTypeInput : InputTypeBase<string>
         if (base.IsDisabled)  return;
          
         CurrentValueAsString = value;
+    }
+
+
+    /// <summary>
+    /// Handles the input blur event and trims the whitespace from the <see cref="InputBase{TValue}.CurrentValue"/> 
+    /// if the option has been set for this <see cref="TrimOnBlur" />
+    /// </summary>
+    protected async Task HandleOnBlur()
+    {
+        if (CurrentValueAsString is not null && true == TrimOnBlur) CurrentValueAsString = CurrentValueAsString.Trim();
     }
 
     /// <summary>

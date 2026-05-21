@@ -455,6 +455,37 @@ public class TextInput_Tests
 
             inputComponent.FindAll($"span.{GlobalValues.Text_Input_Icon_Class}").Should().BeEmpty();
         }
+
+
+        [Fact]
+        public void Should_trim_the_value_on_blur_when_trim_on_blur_is_set_to_true()
+        {
+            using var context = new BunitContext();
+
+            var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, _ => true).SetVoidResult();
+
+            var model = new TestModel();
+            var editContext = new EditContext(model);
+
+            editContext.EnableDataAnnotationsValidation(context.Services);
+
+            var component = context.Render<TextInputComponent>(
+                builder => builder
+                    .AddCascadingValue(editContext)
+                    .Add(p => p.Value, model.PropertyValue)
+                    .Add(p => p.ValueChanged, EventCallback.Factory.Create<string>(context, v => model.PropertyValue = v))
+                    .Add(p => p.ValueExpression, () => model.PropertyValue)
+                    .Add(p => p.TrimOnBlur, true));
+
+            var input = component.Find("input");
+
+            input.Change("  hello  ");
+            input.Blur();
+
+            model.PropertyValue.Should().Be("hello");
+        }
+
     }
 
 

@@ -16,7 +16,7 @@ Welcome to your new app.
 
     @*     <DataAnnotationsValidator /> *@
 
-    <BlazorValidated TEntity="ContactDto" BoxedValidators="_contactBoxedValidators" AddDisplayName="true" DeferFieldValidation="true" />
+    <BlazorValidated TEntity="ContactDto" BoxedValidators="_contactBoxedValidators" AddDisplayName="true" DeferFieldValidation="false" />
 
     <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
@@ -36,7 +36,7 @@ Welcome to your new app.
                        UpdateOnInput="true" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
 
             <TextInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.FamilyName" LabelText="Surname" AriaDisabled="false" HintText="The suname that you use on official documents"
-                       UpdateOnInput="true" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+                       UpdateOnInput="true" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" TrimOnBlur="true" />
         </div>
 
         <div class="br-input-row">
@@ -109,8 +109,8 @@ Welcome to your new app.
 
         var builder = BlazorValidationBuilder<ContactDto>.Create()
                         .ForMember(c => c.Title, ContactValidators.TitleValidator)                      //< using a ready built title member validator
-                        .ForMember(c => c.GivenName, ContactValidators.GivenNameValidator, true)
-                        .ForMember(c => c.FamilyName, ContactValidators.FamilyNameValidator, true)            // << This validator (function) combines two functions a regex and a separate length validator
+                        .ForMember(c => c.GivenName, ContactValidators.GivenNameValidator)
+                        .ForMember(c => c.FamilyName, ContactValidators.FamilyNameValidator,true)            // << This validator (function) combines two functions a regex and a separate length validator
                         .ForMember(c => c.Password, ContactValidators.PasswordValidator)            // << This validator (function) combines two functions a regex and a separate length validator
                         .ForNullableMember(c => c.NullableAge, ContactValidators.NullableAgeValidator)
                         .ForMember(c => c.Age, ContactValidators.AgeValidator)
