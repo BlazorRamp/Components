@@ -37,6 +37,12 @@ const setInputFocus = (elementId) => {
     const element = document.getElementById(elementId);
     if (!element)
         return;
+    if (element.getAttribute('role') === 'radiogroup') {
+        const firstRadio = element.querySelector('input[type="radio"]');
+        if (firstRadio)
+            firstRadio.focus();
+        return;
+    }
     element.focus();
     switch (element.type) {
         case "text":
