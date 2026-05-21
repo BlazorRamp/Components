@@ -13,16 +13,10 @@ public class RadioTypeInputGroup<TValue> : InputTypeBase<TValue>
     /// </summary>
     [Parameter] public RenderFragment? OptionValues { get; set; } = default;
 
-    private new bool ReadOnly
-    {
-        get => false;
-        set { }
-    }
-    private new bool AriaDisabled
-    {
-        get => false;
-        set { }
-    }
+    private new bool ReadOnly { get; set; }
+    private new bool AriaDisabled { get; set; }
+
+    private new string? SvgIcon { get; set; } = default;
     /// <summary>
     /// Gets the resolved CSS class string applied to the root element of the radio group input,
     /// including any additional classes passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.
@@ -31,6 +25,7 @@ public class RadioTypeInputGroup<TValue> : InputTypeBase<TValue>
 
     internal TValue? GroupValue => CurrentValue;
 
+    protected string _labelID = Guid.NewGuid().ToString();
     /// <summary>
     /// Updates the checkbox input CSS classes on each parameter change.
     /// </summary>

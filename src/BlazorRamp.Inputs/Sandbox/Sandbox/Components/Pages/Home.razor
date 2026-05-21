@@ -30,6 +30,14 @@ Welcome to your new app.
                     <RadioInput LabelText="Third item" Value="3" />
                 </OptionValues>
             </RadioInputGroup>
+            <SelectInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.ContactID" LabelText="Select Me" HintText="Select something" DataPosition="DataPosition.Start"
+                         ErrorsLabel="Errors" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint">
+                <OptionValues>
+                    <option value="0">Not Entered</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                </OptionValues>
+            </SelectInput>
           </div>
 
         <div class="br-input-row">

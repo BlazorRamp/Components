@@ -186,4 +186,12 @@
     & > select[data-br-input-position="end"] {
         text-align: end;
     }
+
+    &__icon,
+    &__field,
+    &__state-icon {
+        .br-input-row & {
+            align-self: end;
+        }
+    }
 }

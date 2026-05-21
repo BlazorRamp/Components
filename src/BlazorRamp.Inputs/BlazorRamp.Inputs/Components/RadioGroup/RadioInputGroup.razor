@@ -1,26 +1,34 @@
 ﻿@typeparam TValue
 @inherits RadioTypeInputGroup<TValue>
 
-<fieldset @attributes="@GetAttributes(AdditionalAttributes)" tabindex="-1" id="@InputID"
-          class="@RadioInputGroupClasses" role="radiogroup"
-          aria-invalid="@(HasErrors ? "true" : null)"
-          aria-describedby="@(AriaDescribedByID)"
-          aria-required="@(Required ? "true" : null)"
-          aria-disabled="@(base.IsDisabled ? "true" : null)"
-          readonly="@(base.ReadOnly ? "readonly" : null)">
-    <legend class="@GlobalValues.Radio_Input_Group_Label_Class">
+<div @attributes="@GetAttributes(AdditionalAttributes)" 
+     id="@InputID"
+     aria-labelledby="@_labelID"
+     class="@RadioInputGroupClasses" role="radiogroup"
+     aria-invalid="@(HasErrors ? "true" : null)"
+     aria-describedby="@(AriaDescribedByID)"
+     aria-required="@(Required ? "true" : null)"
+     aria-disabled="@(base.IsDisabled ? "true" : null)"
+     readonly="@(base.ReadOnly ? "readonly" : null)"
+     tabindex="-1">
+    
+    <label id="@_labelID" class="@GlobalValues.Radio_Input_Group_Label_Class">
         @LabelNameText
         @if (Required)
         {
             <span aria-hidden="true" class="@GlobalValues.Radio_Input_Group_Asterisk_Class"> *</span>
         }
-    </legend>
+    </label>
+
+
     @if (HintNormalised is not null)
     {
         <span id="@HintTextID" class="@GlobalValues.Radio_Input_Group_Hint_Class">
             @HintNormalised
         </span>
     }
+    <span aria-hidden="true"></span><!--space for where icon would have gone needed-->
+
     <div class="@GlobalValues.Radio_Input_Group__Field_Area_Class">
         <CascadingValue Value="this" IsFixed="true">
             @OptionValues
@@ -47,7 +55,8 @@
         }
 
     </div>
-</fieldset>
+</div>
+
 
 @code {
 

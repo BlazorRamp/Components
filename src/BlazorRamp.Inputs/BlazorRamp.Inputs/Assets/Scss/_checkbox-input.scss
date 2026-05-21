@@ -170,4 +170,12 @@
     & > input[data-br-input-position="end"] {
         justify-self: end;
     }
+
+    &__icon,
+    &__field,
+    &__state-icon {
+        .br-input-row & {
+            align-self: end;
+        }
+    }
 }

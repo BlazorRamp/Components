@@ -1,5 +1,6 @@
 ﻿.br-radio-input {
     display: inline-flex;
+    flex-direction:row;
     gap: var(--br-unit-space-3);
     align-items: center;
     cursor: pointer;
