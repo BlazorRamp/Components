@@ -16,6 +16,14 @@
     border-width: var(--br-comp-input-pane-base-border-width);
     border-radius: var(--br-comp-input-pane-base-border-radius);
 
+
+    ul {
+        margin: 0;
+        padding-left: 0;
+        list-style-type: none;
+        list-style-position: inside;
+    }
+
     .br-input-row & {
         grid-row: span 4;
         grid-template-rows: subgrid;

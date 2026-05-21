@@ -1,7 +1,7 @@
 ﻿@typeparam TValue
 @inherits RadioTypeInputGroup<TValue>
 
-<fieldset @attributes="@GetAttributes(AdditionalAttributes)" 
+<fieldset @attributes="@GetAttributes(AdditionalAttributes)" tabindex="-1" id="@InputID"
           class="@RadioInputGroupClasses" role="radiogroup"
           aria-invalid="@(HasErrors ? "true" : null)"
           aria-describedby="@(AriaDescribedByID)"
