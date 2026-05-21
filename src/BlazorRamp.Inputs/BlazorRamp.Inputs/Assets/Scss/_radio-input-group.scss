@@ -1,0 +1,121 @@
+﻿@use "_functions" as *;
+
+.br-radio-input-group {
+    --_icon-size: 1em;
+    --_br-svg-input-icon: none;
+    width: 100%;
+    display: inline-grid;
+    grid-template-rows: auto auto auto minmax(var(--br-unit-space-5), auto);
+    grid-template-columns: min-content 1fr 1.5rem;
+    grid-template-areas:
+        "label      label   label" "hint       hint    hint" "icon       field-area   state" "errors     errors  errors";
+    padding: var(--br-unit-space-3);
+    background-color: var(--br-comp-input-pane-base-background);
+    border-style: var(--br-comp-input-pane-base-border-style);
+    border-color: var(--br-comp-input-pane-base-border-colour);
+    border-width: var(--br-comp-input-pane-base-border-width);
+    border-radius: var(--br-comp-input-pane-base-border-radius);
+
+    .br-input-row & {
+        grid-row: span 4;
+        grid-template-rows: subgrid;
+    }
+
+    &:focus-within {
+        outline-offset: var(--br-comp-input-outline-offset);
+        outline-width: var(--br-comp-input-outline-width);
+        outline-style: var(--br-comp-input-outline-style);
+        outline-color: var(--br-comp-input-outline-colour);
+
+        .br-radio-input-group__error-wrapper {
+            border-top: 1px solid var(--br-comp-all-outline-colour);
+        }
+    }
+
+    &__label {
+        padding: 0;
+        margin: 0;
+        grid-area: label;
+        font-size: var(--br-comp-input-label-font-size);
+        font-weight: var(--br-comp-input-label-font-weight);
+        color: var(--br-comp-input-label-color);
+        background-color: var(--br-comp-input-label-background);
+    }
+
+    &__hint {
+        grid-area: hint;
+        font-size: var(--br-comp-input-hint-font-size);
+        font-weight: var(--br-comp-input-hint-font-weight);
+        color: var(--br-comp-input-hint-color);
+        background-color: var(--br-comp-input-hint-background);
+        opacity: var(--br-comp-input-hint-opacity);
+        padding-block-end: var(--br-unit-space-3);
+    }
+
+
+    &__field-area {
+        grid-area: field-area;
+        appearance: none;
+        min-width: 0;
+        border: none;
+        background-color: var(--br-comp-input-area-content-background);
+        color: var(--br-comp-input-area-content-colour);
+        font-family: var(--br-comp-input-area-content-font-family);
+        font-size: var(--br-comp-input-area-content-font-size);
+        font-weight: var(--br-comp-input-area-content-font-weight);
+
+    }
+
+
+
+
+    &__state-icon {
+        grid-area: state;
+        min-height: var(--_icon-size);
+        aspect-ratio: 1/1;
+
+        &[data-br-invalid-state="true"] {
+            @include invalid-state-icon;
+            color: var(--br-comp-input-error-colour);
+        }
+
+        &[data-br-invalid-state="false"] {
+
+
+            @include valid-state-icon;
+            color: var(--br-comp-input-success-colour);
+        }
+    }
+
+
+    &__error-wrapper {
+        grid-area: errors;
+        border-top: var(--br-unit-border-1) solid var(--br-comp-all-divider-colour);
+        color: var(--br-comp-input-error-colour);
+        min-height: var(--br-unit-space-5);
+
+        &:has(.br-radio-input-group__error:focus-visible) {
+            border-top: var(--br-unit-border-1) solid transparent;
+            border-radius: var(--br-comp-input-pane-base-border-radius);
+        }
+    }
+
+    &__error {
+        padding: var(--br-unit-space-2);
+
+        &:focus-visible {
+            border-radius: var(--br-comp-input-pane-base-border-radius);
+            outline-offset: var(--br-comp-input-outline-offset);
+            outline-width: var(--br-comp-input-outline-width);
+            outline-style: var(--br-comp-input-outline-style);
+            outline-color: var(--br-comp-input-error-colour);
+        }
+    }
+
+    &__asterisk {
+        color: var(--br-comp-input-error-colour);
+        font-size: var(--br-comp-input-label-font-size);
+        font-weight: var(--br-comp-input-label-font-weight);
+        background-color: var(--br-comp-input-label-background);
+    }
+}

@@ -102,25 +102,25 @@ public class CheckboxTypeInput : InputTypeBase<bool>, IAsyncDisposable
     /// class with any additional class passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.
     /// </summary>
     protected static string GetInputClasses(IReadOnlyDictionary<string, object>? additionalAttributes)
-{
-    var classData = additionalAttributes?.TryGetValue("class", out var extraClass) == true ? extraClass.ToString() : "";
-
-    if (false == String.IsNullOrWhiteSpace(classData))
     {
-        return $"{@GlobalValues.Checkbox_Input_Class} {classData}";
+        var classData = additionalAttributes?.TryGetValue("class", out var extraClass) == true ? extraClass.ToString() : "";
+
+        if (false == String.IsNullOrWhiteSpace(classData))
+        {
+            return $"{@GlobalValues.Checkbox_Input_Class} {classData}";
+        }
+
+        return @GlobalValues.Checkbox_Input_Class;
     }
 
-    return @GlobalValues.Checkbox_Input_Class;
-}
+    /// <summary>
+    /// Returns a filtered copy of <see cref="InputBase{TValue}.AdditionalAttributes"/> with
+    /// the <c>class</c> key removed, so additional attributes can be applied to the input
+    /// element without duplicating the class handling.
+    /// </summary>
+    protected static IReadOnlyDictionary<string, object>? GetAttributes(IReadOnlyDictionary<string, object>? additionalAttributes)
 
-/// <summary>
-/// Returns a filtered copy of <see cref="InputBase{TValue}.AdditionalAttributes"/> with
-/// the <c>class</c> key removed, so additional attributes can be applied to the input
-/// element without duplicating the class handling.
-/// </summary>
-protected static IReadOnlyDictionary<string, object>? GetAttributes(IReadOnlyDictionary<string, object>? additionalAttributes)
-
-    => additionalAttributes?.Where(kv => kv.Key != "class").ToDictionary();
+        => additionalAttributes?.Where(kv => kv.Key != "class").ToDictionary();
 
 
     /// <summary>

@@ -1,0 +1,53 @@
+﻿@typeparam TValue
+@inherits RadioTypeInputGroup<TValue>
+
+<fieldset class="@RadioInputGroupClasses"
+          aria-invalid="@(HasErrors ? "true" : null)"
+          aria-describedby="@(AriaDescribedByID)"
+          aria-required="@(Required ? "true" : null)"
+          aria-disabled="@(base.IsDisabled ? "true" : null)"
+          readonly="@(base.ReadOnly ? "readonly" : null)">
+    <legend class="@GlobalValues.Radio_Input_Group_Label_Class">
+        @LabelNameText
+        @if (Required)
+        {
+            <span aria-hidden="true" class="@GlobalValues.Radio_Input_Group_Asterisk_Class"> *</span>
+        }
+    </legend>
+    @if (HintNormalised is not null)
+    {
+        <span id="@HintTextID" class="@GlobalValues.Radio_Input_Group_Hint_Class">
+            @HintNormalised
+        </span>
+    }
+    <div class="@GlobalValues.Radio_Input_Group__Field_Area_Class">
+        <CascadingValue Name="@GlobalValues.Radio_Input_Group_Cascade_Value_Name" Value="@InputID" IsFixed="true">
+            @OptionValues
+        </CascadingValue>
+    </div>
+
+
+    <span class="@GlobalValues.Radio_Input_Group_State_Icon_Class" data-br-invalid-state="@GetInvalidStateAttributeValue(base.InvalidState)" aria-hidden="true"></span>
+
+    <div class="@GlobalValues.Radio_Input_Group_Error_Wrapper_Class">
+
+        @if (HasErrors)
+        {
+            <div class="@GlobalValues.Radio_Input_Group_Error_Class" tabindex="@(TabbableError ? "0" : null)" aria-label="@(TabbableError ? $"{LabelNameText.TrimEnd(':')} {ErrorsText}" : null)" role="@(TabbableError ? "region" : null)">
+
+                <ul id="@ErrorMessageID" role="list">
+                    @foreach (var errorMessage in InvalidMessages)
+                    {
+                        <li>@errorMessage</li>
+                    }
+                </ul>
+
+            </div>
+        }
+
+    </div>
+</fieldset>
+
+@code {
+
+}

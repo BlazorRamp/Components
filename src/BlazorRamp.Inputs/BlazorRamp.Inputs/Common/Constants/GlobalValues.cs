@@ -22,6 +22,8 @@ internal class GlobalValues
 
     public const string Input_Parse_Number_Error_Message  = "Invalid number.";
     public const string Input_Parse_General_Error_Message = "Invalid entry.";
+    public const string Input_Missing_Label_Text_Error_Message = "Label Text cannot be null, empty or whitespace";
+    public const string Input_Missing_Radio_Group_Parent_Error_Message = "The radio input must be used inside a radio input group";
 
 
     public const string Input_Svg_Css_Variable_Name = "--_br-svg-input-icon";
@@ -81,6 +83,24 @@ internal class GlobalValues
     public const string Select_Input_Field_Class         = $"{Select_Input_Class}__field";
     public const string Select_Input_Icon_Class          = $"{Select_Input_Class}__icon";
     public const string Select_Input_State_Icon_Class    = $"{Select_Input_Class}__state-icon";
+
+
+
+    public const string Radio_Input_Group_Class               = "br-radio-input-group";
+    public const string Radio_Input_Group_Label_Class         = $"{Radio_Input_Group_Class}__label";
+    public const string Radio_Input_Group_Hint_Class          = $"{Radio_Input_Group_Class}__hint";
+    public const string Radio_Input_Group__Field_Area_Class   = $"{Radio_Input_Group_Class}__field-area";
+    public const string Radio_Input_Group_Asterisk_Class      = $"{Radio_Input_Group_Class}__asterisk";
+    public const string Radio_Input_Group_Error_Wrapper_Class = $"{Radio_Input_Group_Class}__error-wrapper";
+    public const string Radio_Input_Group_Error_Class         = $"{Radio_Input_Group_Class}__error";
+    public const string Radio_Input_Group_Icon_Class          = $"{Select_Input_Class}__icon";
+    public const string Radio_Input_Group_State_Icon_Class    = $"{Select_Input_Class}__state-icon";
+
+    public const string Radio_Input_Class       = "br-radio-input";
+    public const string Radio_Input_Label_Class = $"{Radio_Input_Class}__label";
+    public const string Radio_Input_field_Class = $"{Radio_Input_Class}__field";
+
+    public const string Radio_Input_Group_Cascade_Value_Name = "RadioGroupName";
 
     public const string Input_Errors_Summary_Class = "br-input-errors-summary";
 

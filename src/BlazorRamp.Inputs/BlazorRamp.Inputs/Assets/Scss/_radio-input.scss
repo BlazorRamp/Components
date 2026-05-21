@@ -1,0 +1,33 @@
+﻿.br-radio-input {
+    display: inline-flex;
+    gap: var(--br-unit-space-3);
+    align-items: center;
+    cursor: pointer;
+
+    &__label {
+        grid-area: label;
+        font-size: var(--br-comp-input-label-font-size);
+        font-weight: inherit;
+        color: var(--br-comp-input-label-color);
+        background-color: var(--br-comp-input-label-background);
+        cursor: pointer;
+    }
+
+    &__field {
+        accent-color: var(--br-unit-colour-primary);
+        cursor: pointer;
+
+        &:focus {
+            border: none;
+            outline: none;
+        }
+    }
+
+    &:has(input:focus-visible) {
+        border-radius: 2px;
+        outline-offset: 2px; //var(--br-comp-input-outline-offset);
+        outline-width: var(--br-comp-input-outline-width);
+        outline-style: var(--br-comp-input-outline-style);
+        outline-color: var(--br-comp-input-outline-colour);
+    }
+}
