@@ -26,7 +26,7 @@ Welcome to your new app.
 
 
          <div class="br-input-row"> 
-            <RadioInputGroup class="br-col-xs-12 br-col-sm-6" @bind-Value="@_contactData.RadioButtonValue" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+            <RadioInputGroup class="br-col-xs-12 br-col-sm-6"  @bind-Value="@_contactData.RadioButtonValue" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
                              LabelText="Your Gender" HintText="Please select on of the options">
                 <OptionValues>
                     <RadioInput LabelText="First item"  Value="1" />
@@ -124,7 +124,7 @@ Welcome to your new app.
         _editContext = new EditContext(_contactData);
         _contactData.ContactID = 1;
         _contactData.FamilyName = null;
-        _contactData.RadioButtonValue = 5;
+
         var builder = BlazorValidationBuilder<ContactDto>.Create()
                         .ForMember(c => c.Title, ContactValidators.TitleValidator)                      //< using a ready built title member validator
                         .ForMember(c => c.GivenName, ContactValidators.GivenNameValidator)
@@ -135,14 +135,15 @@ Welcome to your new app.
                         .ForNullableMember(c => c.Salary, ContactValidators.SalaryValidator)
                         .ForMember(c => c.IsAlive, ContactValidators.IsAliveValidator)
                         .ForMember(c => c.ContactID, ContactValidators.ContactIDVallidator)
-                        .ForMember(c => c.RadioButtonValue, ContactValidators.RadioGoupValue)
+                        .ForNullableMember(c => c.RadioButtonValue, ContactValidators.RadioGoupValue)
          // .ForComparisonWithValue(c => c.DOB, ContactValidators.DOBValidator)
          // .ForComparisonWithMember(c => c.CompareDOB, ContactValidators.CompareDOBValidator)
          // .ForNestedMember(c => c.Address, AddressValidators.GetBoxedAddressValidators())// << Getting all the address validators from a pre-created builder.
          .ForEachCollectionMember(c => c.ContactMethods, ContactMethodValidators.GetBoxedContactMethodValidators());
         // .ForCollection(c => c.ContactMethods, MemberValidators.CreateCollectionLengthValidator<List<ContactMethodDto>>(1, 3, "ContactMethods", "Contact methods", "Must have at least 1 contact method but no more than 3"));// << created on the fly
 
-        
+        _contactData.RadioButtonValue = 5;
+
         _contactBoxedValidators = builder.GetBoxedValidators();
 
         //_contactData.ContactMethods = [];

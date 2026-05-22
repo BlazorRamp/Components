@@ -230,17 +230,18 @@ public class RadioInputGroup_Tests
             });
         }
 
-        public class Properties()
+        
+    }
+    public class Properties()
+    {
+        [Fact]
+        public async Task Should_be_able_to_get_the_control_reference_for_the_underlying_input()
         {
-            [Fact]
-            public async Task Should_be_able_to_get_the_control_reference_for_the_underlying_input()
-            {
-                await using var context = new BunitContext();
+            await using var context = new BunitContext();
 
-                var (inputComponent, _) = CreateIntRadioInputGroup(context);
+            var (inputComponent, _) = CreateIntRadioInputGroup(context);
 
-                inputComponent.Instance.ControlReference.Should().NotBeNull();
-            }
+            inputComponent.Instance.ControlReference.Should().NotBeNull();
         }
     }
 }

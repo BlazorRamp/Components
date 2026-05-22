@@ -34,7 +34,7 @@ public record class ContactDto
     public string FamilyName { get; set { field = value; } } = default!;
 
 
-    public int RadioButtonValue { get; set; } = default!;
+    public int RadioButtonValue { get; set; } = default;
 
 
 

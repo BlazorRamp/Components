@@ -1,6 +1,6 @@
 ﻿.br-radio-input {
     display: inline-flex;
-    flex-direction:row;
+    flex-direction: row;
     gap: var(--br-unit-space-3);
     align-items: center;
     cursor: pointer;
@@ -25,6 +25,14 @@
     }
 
     &:has(input:focus-visible) {
+        border-radius: 2px;
+        outline-offset: 2px; //var(--br-comp-input-outline-offset);
+        outline-width: var(--br-comp-input-outline-width);
+        outline-style: var(--br-comp-input-outline-style);
+        outline-color: var(--br-comp-input-outline-colour);
+    }
+
+    &:has(input[data-br-focused]) {
         border-radius: 2px;
         outline-offset: 2px; //var(--br-comp-input-outline-offset);
         outline-width: var(--br-comp-input-outline-width);

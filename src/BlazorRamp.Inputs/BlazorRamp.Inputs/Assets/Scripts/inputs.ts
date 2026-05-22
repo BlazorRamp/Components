@@ -60,7 +60,12 @@ const setInputFocus = (elementId: string): void => {
 
     if (element.getAttribute('role') === 'radiogroup') {
         const firstRadio = element.querySelector('input[type="radio"]') as HTMLInputElement;
-        if (firstRadio) firstRadio.focus();
+        if (firstRadio) {
+            firstRadio.setAttribute("data-br-focused","");
+            firstRadio.focus();
+            firstRadio.addEventListener("blur", () => firstRadio.removeAttribute("data-br-focused"), { once: true });
+        }
+            
         return;
     }
 

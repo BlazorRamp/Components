@@ -42,7 +42,6 @@ public class RadioTypeInputGroup<TValue> : InputTypeBase<TValue>
     internal void SetGroupValue(TValue value)
     { 
         CurrentValue = value;
-        //StateHasChanged();
     }
 
     protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string? validationErrorMessage)
