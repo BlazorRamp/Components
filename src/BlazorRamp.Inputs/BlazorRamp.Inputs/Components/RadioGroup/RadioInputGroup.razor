@@ -7,15 +7,15 @@
      aria-labelledby="@_labelID"
      aria-invalid="@(HasErrors ? "true" : null)"
      aria-describedby="@(AriaDescribedByID)"
-     aria-required="@(Required ? "true" : null)" ">
+     aria-required="@(Required ? "true" : null)">
    
-    <label id="@_labelID" class="@GlobalValues.Radio_Input_Group_Label_Class">
+    <span id="@_labelID" class="@GlobalValues.Radio_Input_Group_Label_Class">
         @LabelNameText
         @if (Required)
         {
             <span aria-hidden="true" class="@GlobalValues.Radio_Input_Group_Asterisk_Class"> *</span>
         }
-    </label>
+    </span>
 
 
     @if (HintNormalised is not null)
@@ -26,7 +26,7 @@
     }
     <span aria-hidden="true"></span><!--space for where icon would have gone needed-->
 
-    <div class="@GlobalValues.Radio_Input_Group__Field_Area_Class">
+    <div class="@RadioInputGroupFieldClasses">
         <CascadingValue Value="this" IsFixed="true">
             @OptionValues
         </CascadingValue>

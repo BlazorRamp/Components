@@ -119,6 +119,7 @@
         border: none;
         outline: none;
         cursor: pointer;
+        margin-block-end: var(--br-unit-space-1);
 
         &:focus {
             border-style: var(--br-comp-input-outline-style);
@@ -188,14 +189,14 @@
         text-align: end;
     }
 
-    &__icon,
-    &__state-icon {
+    &__icon {
         .br-input-row & {
             align-self: end;
             margin-block-end: var(--br-unit-space-2);
         }
     }
 
+    &__state-icon,
     &__field {
         .br-input-row & {
             align-self: end;

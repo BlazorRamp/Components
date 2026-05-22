@@ -110,7 +110,7 @@ public class TextTypeInput : InputTypeBase<string>
     /// Builds the CSS class string for the root element by combining the base text input
     /// class with any additional class passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.
     /// </summary>
-    protected static string GetInputClasses(IReadOnlyDictionary<string, object>? additionalAttributes)
+    private static string GetInputClasses(IReadOnlyDictionary<string, object>? additionalAttributes)
     {
         var classData = additionalAttributes?.TryGetValue("class", out var extraClass) == true ? extraClass.ToString() : "";
 

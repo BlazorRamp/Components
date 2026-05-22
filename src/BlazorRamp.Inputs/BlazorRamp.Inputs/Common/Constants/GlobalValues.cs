@@ -89,12 +89,14 @@ internal class GlobalValues
     public const string Radio_Input_Group_Class               = "br-radio-input-group";
     public const string Radio_Input_Group_Label_Class         = $"{Radio_Input_Group_Class}__label";
     public const string Radio_Input_Group_Hint_Class          = $"{Radio_Input_Group_Class}__hint";
-    public const string Radio_Input_Group__Field_Area_Class   = $"{Radio_Input_Group_Class}__field-area";
+    public const string Radio_Input_Group_Field_Area_Class    = $"{Radio_Input_Group_Class}__field-area";
     public const string Radio_Input_Group_Asterisk_Class      = $"{Radio_Input_Group_Class}__asterisk";
     public const string Radio_Input_Group_Error_Wrapper_Class = $"{Radio_Input_Group_Class}__error-wrapper";
     public const string Radio_Input_Group_Error_Class         = $"{Radio_Input_Group_Class}__error";
     public const string Radio_Input_Group_Icon_Class          = $"{Radio_Input_Group_Class}__icon";
     public const string Radio_Input_Group_State_Icon_Class    = $"{Radio_Input_Group_Class}__state-icon";
+
+    public const string Radio_Input_Group_Field_Area_Modifier = $"{Radio_Input_Group_Field_Area_Class}--vertical";
 
     public const string Radio_Input_Class       = "br-radio-input";
     public const string Radio_Input_Label_Class = $"{Radio_Input_Class}__label";

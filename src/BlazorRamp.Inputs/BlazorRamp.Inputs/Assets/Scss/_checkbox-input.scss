@@ -172,14 +172,14 @@
         justify-self: end;
     }
 
-    &__icon,
-    &__state-icon {
+    &__icon {
         .br-input-row & {
             align-self: end;
             margin-block-end: var(--br-unit-space-2);
         }
     }
 
+    &__state-icon,
     &__field {
         .br-input-row & {
             align-self: end;

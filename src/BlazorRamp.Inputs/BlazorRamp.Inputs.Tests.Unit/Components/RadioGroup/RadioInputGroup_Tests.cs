@@ -130,7 +130,7 @@ public class RadioInputGroup_Tests
 
             var (inputComponent, _) = CreateIntRadioInputGroup(context, p => p.Add(x => x.LabelText, labelText).Add(x => x.Required, false));
 
-            var labelContent = inputComponent.Find("label").TextContent;
+            var labelContent = inputComponent.Find($"span.{GlobalValues.Radio_Input_Group_Label_Class}").TextContent;
 
             if (String.IsNullOrWhiteSpace(labelText)) labelContent.Should().Be("IntValue");
 
@@ -150,7 +150,7 @@ public class RadioInputGroup_Tests
 
             var (inputComponent, _) = CreateIntRadioInputGroup(context, p => p.Add(x => x.LabelText, labelText).Add(x => x.Required, true));
 
-            var labelContent = inputComponent.Find("label").TextContent;
+            var labelContent = inputComponent.Find($"span.{GlobalValues.Radio_Input_Group_Label_Class}").TextContent;
 
             if (String.IsNullOrWhiteSpace(labelText)) labelContent.Should().Be("IntValue *");
 

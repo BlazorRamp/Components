@@ -5,23 +5,43 @@ using System.Text.RegularExpressions;
 
 namespace BlazorRamp.Inputs.Components.RadioGroup;
 
-[CascadingTypeParameter(nameof(TValue))]
-public partial class RadioInput<TValue>
+/// <summary>
+/// Renders an individual radio button for use within a <see cref="RadioTypeInputGroup{TValue}"/>.
+/// Communicates with the parent group to handle selection state and accessibility.
+/// </summary>
+/// <typeparam name="TValue">The type of the value, which must match the parent group's type context.</typeparam>
+public partial class RadioInput<TValue> : ComponentBase
 {
-    [CascadingParameter] private RadioInputGroup<TValue> ParentControl { get; set; } = default!;
-    [Parameter] public string LabelText { get; set; }
+    /// <summary>
+    /// Gets or sets the cascading parent group that coordinates selection and shared state.
+    /// </summary>
+    [CascadingParameter] private RadioInputGroup<TValue>? ParentControl { get; set; } = default!;
 
+    /// <summary>
+    /// Gets or sets the label text displayed alongside the radio button.
+    /// </summary>
+    [Parameter] public string LabelText { get; set; } = default!;
+
+    /// <summary>
+    /// Gets or sets the value associated with this specific radio button.
+    /// </summary>
     [Parameter, EditorRequired] public required TValue Value { get; set; }
+
     /// <summary>
     /// Gets or sets additional attributes applied to the component's root element.
     /// </summary>
     [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
     /// <summary>
     /// Gets the resolved CSS class string applied to the root element of the radio input,
     /// including any additional classes passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.
     /// </summary>
     protected string RadioInputClasses { get; private set; } = String.Empty;
-    private bool IsChecked => ParentControl.GroupValue is not null && ParentControl.GroupValue.Equals(Value);
+
+    /// <summary>
+    /// Gets a value indicating whether this radio button is currently selected based on the parent group's value.
+    /// </summary>
+    private bool IsChecked => ParentControl!.GroupValue is not null && ParentControl.GroupValue.Equals(Value);
 
     private string _inputID = Guid.NewGuid().ToString();
     private string _groupName = String.Empty;
@@ -35,6 +55,9 @@ public partial class RadioInput<TValue>
         RadioInputClasses = GetInputClasses(AdditionalAttributes);
     }
 
+    /// <summary>
+    /// Initializes the component, ensuring required parameters and the parent cascading context are present.
+    /// </summary>
     protected override void OnInitialized()
     {
         if (String.IsNullOrWhiteSpace(LabelText)) throw new ArgumentNullException(nameof(LabelText), GlobalValues.Input_Missing_Label_Text_Error_Message);
@@ -43,9 +66,12 @@ public partial class RadioInput<TValue>
         _groupName = ParentControl.InputID;
     }
 
+    /// <summary>
+    /// Handles the change event from the input element to update the parent group's value.
+    /// </summary>
     private void HandleOnChange()
 
-        => ParentControl.SetGroupValue(Value);
+        => ParentControl!.SetGroupValue(Value);
 
 
     /// <summary>

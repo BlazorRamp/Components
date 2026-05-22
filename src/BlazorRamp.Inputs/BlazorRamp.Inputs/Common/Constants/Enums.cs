@@ -146,3 +146,18 @@ public enum SummaryDisplay: int
     /// </summary>
     Always = 1
 }
+
+/// <summary>
+/// Sets the orientation of the control.
+/// </summary>
+public enum Orientation: int
+{
+    /// <summary>
+    /// The control uses a horizonal layout.
+    /// </summary>
+    Horizontal = 0,
+    /// <summary>
+    /// The control uses vertical layout.
+    /// </summary>
+    Vertical = 1
+}
