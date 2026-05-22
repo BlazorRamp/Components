@@ -1,7 +1,7 @@
 ﻿@typeparam TValue
 
-<div @attributes="AdditionalAttributes"  class="@GlobalValues.Radio_Input_Class">
-    <input id="@_inputID" type="radio" name="@_groupName" class="@GlobalValues.Radio_Input_field_Class" @onchange="HandleOnChange" checked="@IsChecked"/>
+<div class="@RadioInputClasses">
+    <input @attributes="GetAttributes(AdditionalAttributes)" id="@_inputID" type="radio" name="@_groupName" class="@GlobalValues.Radio_Input_field_Class" @onchange="HandleOnChange" checked="@IsChecked" />
 
     <label for="@_inputID" class="@GlobalValues.Radio_Input_Label_Class" @onmousedown:preventDefault>
         @LabelText

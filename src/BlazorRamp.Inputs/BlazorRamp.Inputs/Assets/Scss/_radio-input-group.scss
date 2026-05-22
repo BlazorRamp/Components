@@ -67,7 +67,7 @@
         display: flex;
         gap: 1rem;
         flex-direction: row;
-        flex-wrap:wrap;
+        flex-wrap: wrap;
         min-width: 0;
         border: none;
         background-color: var(--br-comp-input-area-content-background);
@@ -147,6 +147,13 @@
     }
 
     &__state-icon {
+        .br-input-row & {
+            align-self: end;
+            margin-block-end: var(--br-unit-space-2);
+        }
+    }
+
+    &__field {
         .br-input-row & {
             align-self: end;
         }

@@ -35,6 +35,11 @@ public record class ContactDto
 
 
     public int RadioButtonValue { get; set; } = default!;
+
+
+
+
+
     public DateOnly DOB            { get; set; } = default!;
     public DateOnly CompareDOB     { get; set; } = default!;
     public string   Email          { get; set; } = default!;

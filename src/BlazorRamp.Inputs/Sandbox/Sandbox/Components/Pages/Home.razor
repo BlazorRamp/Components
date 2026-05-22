@@ -21,27 +21,26 @@ Welcome to your new app.
 
     <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
+@*         <TextInput  autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Firstname" AriaDisabled="false" HintText="The name that you use on official documents"
+                   UpdateOnInput="true" SvgIcon="--svg-user-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" /> *@
+
+
          <div class="br-input-row"> 
-            <RadioInputGroup class="br-col-xs-12 br-col-sm-6" TValue="Int32" @bind-Value="@_contactData.RadioButtonValue" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+            <RadioInputGroup class="br-col-xs-12 br-col-sm-6" @bind-Value="@_contactData.RadioButtonValue" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
                              LabelText="Your Gender" HintText="Please select on of the options">
                 <OptionValues>
-                    <RadioInput LabelText="First item"  Value="1"/>
+                    <RadioInput LabelText="First item"  Value="1" />
                     <RadioInput LabelText="Second item" Value="2" />
                     <RadioInput LabelText="Third item" Value="3" />
                 </OptionValues>
             </RadioInputGroup>
-            <SelectInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.ContactID" LabelText="Select Me" HintText="Select something" DataPosition="DataPosition.Start"
-                         ErrorsLabel="Errors" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint">
-                <OptionValues>
-                    <option value="0">Not Entered</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                </OptionValues>
-            </SelectInput>
+            <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Firstname" AriaDisabled="false" HintText="The name that you use on official documents"
+                       UpdateOnInput="true" SvgIcon="--svg-user-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
           </div>
 
         <div class="br-input-row">
-            <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" DataPosition="DataPosition.Start"
+            <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" DataPosition="DataPosition.Start" SvgIcon="--svg-user-icon"
                           @bind-Value="_contactData.Age" UpdateOnInput="true" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" Format="F2" />
 
             <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Nullable Salary" DataPosition="DataPosition.End" SvgIcon="--svg-food-icon"
@@ -51,7 +50,7 @@ Welcome to your new app.
         <div class="br-input-row">
 
             <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Firstname" AriaDisabled="false" HintText="The name that you use on official documents"
-                       UpdateOnInput="true" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+                       UpdateOnInput="true" SvgIcon="--svg-user-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
 
             <TextInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.FamilyName" LabelText="Surname" AriaDisabled="false" HintText="The suname that you use on official documents"
                        UpdateOnInput="true" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" TrimOnBlur="true" />
@@ -75,9 +74,9 @@ Welcome to your new app.
             <SelectInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.ContactID" LabelText="Select Me" HintText="Select something" DataPosition="DataPosition.Start" 
                          ErrorsLabel="Errors" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint">
                        <OptionValues>
-                    <option value="0">Not Entered</option>
-                    <option value="1">Option 1</option>
-                    <option  value="2">Option 2</option>
+                            <option value="0">Not Entered</option>
+                            <option value="1">Option 1</option>
+                            <option  value="2">Option 2</option>
                        </OptionValues>
             </SelectInput>   
         </div>
@@ -121,11 +120,11 @@ Welcome to your new app.
 
     protected override void OnInitialized()
     {
-      
+
         _editContext = new EditContext(_contactData);
         _contactData.ContactID = 1;
         _contactData.FamilyName = null;
-
+        _contactData.RadioButtonValue = 5;
         var builder = BlazorValidationBuilder<ContactDto>.Create()
                         .ForMember(c => c.Title, ContactValidators.TitleValidator)                      //< using a ready built title member validator
                         .ForMember(c => c.GivenName, ContactValidators.GivenNameValidator)

@@ -27,7 +27,7 @@ public class RadioTypeInputGroup<TValue> : InputTypeBase<TValue>
 
     protected string _labelID = Guid.NewGuid().ToString();
     /// <summary>
-    /// Updates the checkbox input CSS classes on each parameter change.
+    /// Updates the radio input group CSS classes on each parameter change.
     /// </summary>
     protected override void OnParametersSet()
     {

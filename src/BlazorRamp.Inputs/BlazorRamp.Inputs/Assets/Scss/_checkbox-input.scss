@@ -81,6 +81,7 @@
         min-height: calc(var(--_icon-size) * 1.25);
         aspect-ratio: 1/1;
         margin-inline-end: var(--br-unit-space-2);
+        margin-block-end: 3px;
 
         @media (forced-colors: active) {
             background-color: CanvasText;
@@ -172,8 +173,14 @@
     }
 
     &__icon,
-    &__field,
     &__state-icon {
+        .br-input-row & {
+            align-self: end;
+            margin-block-end: var(--br-unit-space-2);
+        }
+    }
+
+    &__field {
         .br-input-row & {
             align-self: end;
         }
