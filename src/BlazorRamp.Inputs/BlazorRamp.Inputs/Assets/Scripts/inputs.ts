@@ -58,6 +58,14 @@ const setInputFocus = (elementId: string): void => {
 
     if (!element) return;
 
+    const prefersReducedMotion: boolean = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    element.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "center",
+        inline: "nearest"
+    });
+
     if (element.getAttribute('role') === 'radiogroup') {
         const firstRadio = element.querySelector('input[type="radio"]') as HTMLInputElement;
         if (firstRadio) {

@@ -37,6 +37,12 @@ const setInputFocus = (elementId) => {
     const element = document.getElementById(elementId);
     if (!element)
         return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    element.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "center",
+        inline: "nearest"
+    });
     if (element.getAttribute('role') === 'radiogroup') {
         const firstRadio = element.querySelector('input[type="radio"]');
         if (firstRadio) {

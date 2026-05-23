@@ -119,6 +119,7 @@
         height: 1.25rem;
         accent-color: var(--br-unit-colour-primary);
         cursor: pointer;
+        margin-block-end: var(--br-unit-space-2);
 
         &:focus,
         &:focus-visible {
