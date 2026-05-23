@@ -34,13 +34,16 @@
         }
     }
 
-    &:has(input[aria-disabled="true"]) {
+    &:has(select[aria-disabled="true"]) {
         cursor: not-allowed;
-        opacity: var(--br-comp-input-disabled-opacity);
 
-        .br-checkbox-input__field,
-        .br-checkbox-input__label {
+        .br-select-input__field,
+        .br-select-input__label,
+        .br-select-input__hint,
+        .br-select-input__icon,
+        .br-select-input__state-icon {
             cursor: not-allowed;
+            opacity: var(--br-comp-input-disabled-opacity);
         }
     }
 
