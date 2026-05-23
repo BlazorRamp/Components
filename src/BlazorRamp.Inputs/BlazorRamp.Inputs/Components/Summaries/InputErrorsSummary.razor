@@ -39,7 +39,9 @@
                 @foreach(var summaryItem in summaryItems)
                 {
                     <li class="br-col-xs-12 br-col-lg-6">
-                        <a id="@($"input-error-summary-{summaryItem.ControlID}")" class="@GlobalValues.Input_Errors_Summary_Link" href="#@(summaryItem.ControlID)" @onclick:preventDefault="true" @onclick="() => FocusInput(summaryItem.ControlID)">
+                        <a id="@($"input-error-summary-{summaryItem.ControlID}")" class="@GlobalValues.Input_Errors_Summary_Link" 
+                        data-enhance-nav="false"
+                        href="#@(summaryItem.ControlID)" @onclick:preventDefault="true" @onclick="() => FocusInput(summaryItem.ControlID)">
                             @summaryItem.DisplayName @_inputSuffix
                         </a>
                         <ul aria-labelledby="@($"input-error-summary-{summaryItem.ControlID}")" class="@GlobalValues.Input_Errors_Summary_List" role="list">

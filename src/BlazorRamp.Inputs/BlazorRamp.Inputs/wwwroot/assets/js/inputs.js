@@ -40,7 +40,7 @@ const setInputFocus = (elementId) => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     element.scrollIntoView({
         behavior: prefersReducedMotion ? "auto" : "smooth",
-        block: "center",
+        block: "nearest",
         inline: "nearest"
     });
     if (element.getAttribute('role') === 'radiogroup') {
@@ -50,9 +50,6 @@ const setInputFocus = (elementId) => {
             firstRadio.focus({ preventScroll: true });
             firstRadio.addEventListener("blur", () => firstRadio.removeAttribute("data-br-focused"), { once: true });
         }
-        requestAnimationFrame(() => {
-            document.documentElement.scrollTop = 0;
-        });
         return;
     }
     element.focus({ preventScroll: true });
@@ -70,9 +67,6 @@ const setInputFocus = (elementId) => {
             catch { }
             break;
     }
-    requestAnimationFrame(() => {
-        document.documentElement.scrollTop = 0;
-    });
 };
 const setSummaryFocus = (elementId) => {
     const element = document.getElementById(elementId);

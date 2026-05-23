@@ -195,6 +195,7 @@
         overflow-y: auto;
         overflow-x: hidden;
 
+       
         &:focus-visible {
             outline-width: var(--br-comp-all-outline-width);
             outline-color: var(--br-comp-all-outline-colour);
