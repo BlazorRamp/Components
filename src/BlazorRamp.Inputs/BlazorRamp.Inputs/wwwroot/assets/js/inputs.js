@@ -47,12 +47,12 @@ const setInputFocus = (elementId) => {
         const firstRadio = element.querySelector('input[type="radio"]');
         if (firstRadio) {
             firstRadio.setAttribute("data-br-focused", "");
-            firstRadio.focus();
+            firstRadio.focus({ preventScroll: true });
             firstRadio.addEventListener("blur", () => firstRadio.removeAttribute("data-br-focused"), { once: true });
         }
         return;
     }
-    element.focus();
+    element.focus({ preventScroll: true });
     switch (element.type) {
         case "text":
         case "password":

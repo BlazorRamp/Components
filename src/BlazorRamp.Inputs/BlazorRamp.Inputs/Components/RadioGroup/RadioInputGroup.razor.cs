@@ -59,21 +59,15 @@ public class RadioTypeInputGroup<TValue> : InputTypeBase<TValue>
         RadioInputGroupFieldClasses = GetInputFieldClasses(Orientation);
     }
 
-    /// <summary>
-    /// Initializes the component and invokes the base initialization logic.
-    /// </summary>
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-    }
+
     /// <summary>
     /// Sets the current value of the radio group. Called by child <see cref="RadioInput{TValue}"/> components.
     /// </summary>
     /// <param name="value">The new value to assign to the group.</param>
     internal void SetGroupValue(TValue value)
-    { 
-        CurrentValue = value;
-    }
+     
+        =>  CurrentValue = value;
+    
 
     /// <summary>
     /// As radio buttons handle their own selection, this implementation satisfies 

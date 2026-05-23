@@ -229,8 +229,52 @@ public class RadioInputGroup_Tests
                 }
             });
         }
+        [Fact]
+        public async Task Should_be_able_to_set_the_error_label_used_for_tabbable_error_regions()
+        {
+            await using var context = new BunitContext();
 
-        
+            var (inputComponent, editContext) = CreateIntRadioInputGroup(context, p =>
+                p.Add(x => x.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint)
+                 .Add(x => x.ErrorsLabel, "My Errors"));
+
+            await inputComponent.InvokeAsync(() => inputComponent.Instance.SetGroupValue(4));
+            await inputComponent.InvokeAsync(() => editContext.Validate());
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                var errorDiv = inputComponent.Find($"div.{GlobalValues.Radio_Input_Group_Error_Class}");
+
+                using (new AssertionScope())
+                {
+                    inputComponent.Instance.ErrorsLabel.Should().Be("My Errors");
+                    errorDiv.GetAttribute("aria-label").Should().Contain("My Errors");
+                }
+            });
+        }
+
+
+        [Theory]
+        [InlineData(Orientation.Horizontal)]
+        [InlineData(Orientation.Vertical)]
+        public async Task Should_be_able_to_set_the_orientation_of_the_radio_inputs(Orientation orientation)
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateIntRadioInputGroup(context, p => p.Add(x => x.Orientation, orientation));
+
+            var fieldArea = inputComponent.Find($".{GlobalValues.Radio_Input_Group_Field_Area_Class}");
+
+            if (orientation == Orientation.Horizontal)
+            {
+                fieldArea.ClassList.Should().NotContain(GlobalValues.Radio_Input_Group_Field_Area_Modifier);
+            }
+
+            if (orientation == Orientation.Vertical)
+            {
+                fieldArea.ClassList.Should().Contain(GlobalValues.Radio_Input_Group_Field_Area_Modifier);
+            }
+        }
     }
     public class Properties()
     {
