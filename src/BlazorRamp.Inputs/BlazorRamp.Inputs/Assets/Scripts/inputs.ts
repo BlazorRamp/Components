@@ -73,6 +73,9 @@ const setInputFocus = (elementId: string): void => {
             firstRadio.focus({ preventScroll: true });
             firstRadio.addEventListener("blur", () => firstRadio.removeAttribute("data-br-focused"), { once: true });
         }
+        requestAnimationFrame(() => {
+            document.documentElement.scrollTop = 0;
+        });
         return;
     }
 
@@ -90,6 +93,10 @@ const setInputFocus = (elementId: string): void => {
             } catch { }
             break;
     }
+
+    requestAnimationFrame(() => {
+        document.documentElement.scrollTop = 0;
+    });
 };
 
 const setSummaryFocus = (elementId: string): void => {
