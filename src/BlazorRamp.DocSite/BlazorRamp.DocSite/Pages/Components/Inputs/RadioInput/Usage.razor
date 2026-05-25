@@ -6,13 +6,12 @@
 <h1>@GlobalValues.Component_Name_Radio_Input_Group @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
-    The example below has the ValidationDisplayMode for the radio input group set to <span class="code-span">ValidationDisplayMode.TabbableWithHint</span>. 
+    The example below has its Orientation parameter set to <span class="code-span">Orientation.Horizontal</span> and its ValidationDisplayMode set to <span class="code-span">ValidationDisplayMode.TabbableWithHint</span>. 
+    The optional icon has not been assigned to the component.
 </p>
 <p>
-    An optional icon has been assigned to the component. All the input icons are hidden from screen reader users as they are just decorative. In the case of the state icons, green tick and red cross, screen reader
-    users are informed via the <span class="code-span">aria-invalid</span> attribute..
+   The Radio Input Group follows the standard default browser keyboard pattern whereby you tab to the group and then use the arrow keys to both move and select the focused option.
 </p>
-
 <p>
     <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
     but you can use any validators that work with Blazors <span class="code-span">EditContext</span>.
@@ -21,11 +20,11 @@
     
     <h2>Radio input group example</h2>
 
-    <EditForm Model="@_profileData" OnSubmit="HandleSubmit">
+    <EditForm Model="@_profileData">
         <BlazorValidated TEntity="ProfileDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
         <div class="br-input-row">
             <RadioInputGroup class=" br-col-xs-12 br-col-sm-6" LabelText="Favourite Food" HintText="What food do you like the most?" Required="true"
-                             @bind-Value="@_profileData.FavouriteFoodID" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint">
+                             @bind-Value="@_profileData.FavouriteFoodID" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint">
             <OptionValues>
                     <RadioInput LabelText="Fish & Chips" Value="1" />
                     <RadioInput LabelText="Burger & Fries" Value="2" />
@@ -36,14 +35,13 @@
         </div>
     </EditForm>
 
-
 </section>
 
 <p style="padding-block:1rem;">
     Below is the code that was used for the example. Please note that in general when using the Validated library the validators would be in a shared library so they could be used in any part of your application.
 </p>
 
-<CodeBox CodeBlock="@InputSnippets.Password_Code_Example" AriaLabel="Password input code example" />
+<CodeBox CodeBlock="@InputSnippets.Radio_Input_Group_Code_Example" AriaLabel="Radio input groupd code example" />
 
 
 <div class="flex-content justify-content-between">
@@ -63,8 +61,6 @@
 
     
     private ProfileDto _profileData = new();
-    private Dictionary<int, string> _foodListItems = new() { [1] = "Fish & Chips", [2] = "Burger & Fries", [3] = "Pizza" };
-
     private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
 
     protected override void OnInitialized()
@@ -76,8 +72,6 @@
                                 .ForMember(c => c.FavouriteFoodID, foodValidator)
                                 .GetBoxedValidators();
     }
-
-    private void HandleSubmit() { }
 
     public class ProfileDto
     {

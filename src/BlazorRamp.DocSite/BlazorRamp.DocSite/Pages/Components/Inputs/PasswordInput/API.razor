@@ -61,7 +61,8 @@
                         HTML <span class="code-span">autocomplete</span> attribute. Use <span class="code-span">PasswordAutoComplete.CurrentPassword</span>
                         for login forms and <span class="code-span">PasswordAutoComplete.NewPassword</span> for registration
                         or change password forms. Defaults to <span class="code-span">PasswordAutoComplete.CurrentPassword</span>.
-                        <strong>This is needed for WCAG 1.3.5 Identify Input Purpose</strong>.
+                        <strong>This is needed for WCAG 1.3.5 Identify Input Purpose</strong>. However, for any security concerns the option of 
+                        <span class="code-span">PasswordAutoComplete.Off</span> has been added that turns off autocomplete for the input.
                     </td>
                 </tr>
                 <tr>
@@ -257,6 +258,13 @@
                         Maps to <span class="code-span">autocomplete="new-password"</span>. Use on registration or change
                         password forms to prevent password managers from filling existing credentials
                         and to prompt generation of a new password.
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Off</td>
+                    <td>
+                        Sets the autocomplete attribute to <span class="code-span">autocomplete="off"</span>
                     </td>
                 </tr>
             </tbody>

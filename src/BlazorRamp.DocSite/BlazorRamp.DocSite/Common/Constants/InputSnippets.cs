@@ -459,4 +459,44 @@ public class InputSnippets
         }
 
         """;
+
+
+    public const string Radio_Input_Group_Code_Example = """
+
+        <EditForm Model="@_profileData">
+            <BlazorValidated TEntity="ProfileDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+            <div class="br-input-row">
+                <RadioInputGroup class=" br-col-xs-12 br-col-sm-6" LabelText="Favourite Food" HintText="What food do you like the most?" Required="true"
+                                 @bind-Value="@_profileData.FavouriteFoodID" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint">
+                <OptionValues>
+                        <RadioInput LabelText="Fish & Chips" Value="1" />
+                        <RadioInput LabelText="Burger & Fries" Value="2" />
+                        <RadioInput LabelText="Pizza" Value="3" />
+                </OptionValues>
+                </RadioInputGroup>
+
+            </div>
+        </EditForm>
+
+        @code {
+
+
+        private ProfileDto _profileData = new();
+        private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+        protected override void OnInitialized()
+        {
+
+            var foodValidator = MemberValidators.CreatePredicateValidator<int>(c => c == 1, "FavouriteFoodID", "Favourite Food", "Wrong answer, it has to be Fish & Chips");
+
+            _boxedValidators = BlazorValidationBuilder<ProfileDto>.Create()
+                                    .ForMember(c => c.FavouriteFoodID, foodValidator)
+                                    .GetBoxedValidators();
+        }
+
+        public class ProfileDto
+        {
+            public int FavouriteFoodID { get; set; }
+        }
+        """;
 }
