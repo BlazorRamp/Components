@@ -152,17 +152,9 @@
         background-color: var(--br-comp-input-label-background);
     }
 
-    &__icon {
-     .br-input-row & {
-         align-self: end;
-         margin-block-end: var(--br-unit-space-2);
-     }
- }
-
- &__state-icon,
- &__field-area {
-     .br-input-row & {
-         align-self: end;
-     }
- }
+    &__icon,
+    &__state-icon,
+    &__field-area {
+        align-self: end;
+    }
 }

@@ -275,6 +275,55 @@ public class RadioInputGroup_Tests
                 fieldArea.ClassList.Should().Contain(GlobalValues.Radio_Input_Group_Field_Area_Modifier);
             }
         }
+
+
+        [Theory]
+        [InlineData("--svg-icon")]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("  ")]
+        public async Task Should_be_able_to_set_the_optional_svg_icon_parameter_which_must_start_with_a_double_dash(string? svgIconVariable)
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateIntRadioInputGroup(context, p => p.Add(x => x.SvgIcon, svgIconVariable));
+
+            if (String.IsNullOrWhiteSpace(svgIconVariable))
+            {
+                inputComponent.FindAll($"span.{GlobalValues.Radio_Input_Group_Icon_Class}").Should().BeEmpty();
+                return;
+            }
+
+            if (svgIconVariable.StartsWith("--"))
+            {
+                inputComponent.Find($"span.{GlobalValues.Radio_Input_Group_Icon_Class}").GetAttribute("style").Should().NotBeEmpty();
+                return;
+            }
+
+            inputComponent.FindAll($"span.{GlobalValues.Radio_Input_Group_Icon_Class}").Should().BeEmpty();
+        }
+
+        [Fact]
+        public async Task AriaDisabled_parameter_should_have_no_effect_and_not_render_aria_disabled_attribute()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateIntRadioInputGroup(context, p => p.Add(x => x.AriaDisabled, true));
+
+            inputComponent.Find("div").GetAttribute("aria-disabled").Should().BeNull();
+        }
+
+        [Fact]
+        public async Task ReadOnly_parameter_should_have_no_effect_and_not_render_readonly_attribute()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateIntRadioInputGroup(context, p => p.Add(x => x.ReadOnly, true));
+
+            inputComponent.Find("div").GetAttribute("readonly").Should().BeNull();
+        }
+
+
     }
     public class Properties()
     {
