@@ -75,7 +75,6 @@
         font-family: var(--br-comp-input-area-content-font-family);
         font-size: var(--br-comp-input-area-content-font-size);
         font-weight: var(--br-comp-input-area-content-font-weight);
-
         margin-block-end: var(--br-unit-space-2);
 
         &--vertical {
@@ -95,6 +94,7 @@
         min-height: calc(var(--_icon-size) * 1.25);
         aspect-ratio: 1/1;
         margin-inline-end: var(--br-unit-space-2);
+        margin-block-end: 3px;
 
         @media (forced-colors: active) {
             background-color: CanvasText;
@@ -153,16 +153,16 @@
     }
 
     &__icon {
-        .br-input-row & {
-            align-self: end;
-            margin-block-end: var(--br-unit-space-2);
-        }
-    }
+     .br-input-row & {
+         align-self: end;
+         margin-block-end: var(--br-unit-space-2);
+     }
+ }
 
-    &__state-icon,
-    &__field {
-        .br-input-row & {
-            align-self: end;
-        }
-    }
+ &__state-icon,
+ &__field-area {
+     .br-input-row & {
+         align-self: end;
+     }
+ }
 }

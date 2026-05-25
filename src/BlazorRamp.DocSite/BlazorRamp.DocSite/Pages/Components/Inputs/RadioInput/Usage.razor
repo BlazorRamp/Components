@@ -1,0 +1,87 @@
+﻿@using BlazorRamp.Inputs.Components.RadioGroup
+@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_RadioInputGroup}/{GlobalValues.Common_Page_Path_Usage}")]
+
+<PageTitle>@GlobalValues.Component_Name_Radio_Input_Group @GlobalValues.Common_Page_Title_Usage</PageTitle>
+
+<h1>@GlobalValues.Component_Name_Radio_Input_Group @GlobalValues.Common_Page_Title_Usage</h1>
+
+<p>
+    The example below has the ValidationDisplayMode for the radio input group set to <span class="code-span">ValidationDisplayMode.TabbableWithHint</span>. 
+</p>
+<p>
+    An optional icon has been assigned to the component. All the input icons are hidden from screen reader users as they are just decorative. In the case of the state icons, green tick and red cross, screen reader
+    users are informed via the <span class="code-span">aria-invalid</span> attribute..
+</p>
+
+<p>
+    <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
+    but you can use any validators that work with Blazors <span class="code-span">EditContext</span>.
+</p>
+<section class="section-box">
+    
+    <h2>Radio input group example</h2>
+
+    <EditForm Model="@_profileData" OnSubmit="HandleSubmit">
+        <BlazorValidated TEntity="ProfileDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+        <div class="br-input-row">
+            <RadioInputGroup class=" br-col-xs-12 br-col-sm-6" LabelText="Favourite Food" HintText="What food do you like the most?" Required="true"
+                             @bind-Value="@_profileData.FavouriteFoodID" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint">
+            <OptionValues>
+                    <RadioInput LabelText="Fish & Chips" Value="1" />
+                    <RadioInput LabelText="Burger & Fries" Value="2" />
+                    <RadioInput LabelText="Pizza" Value="3" />
+            </OptionValues>
+            </RadioInputGroup>
+
+        </div>
+    </EditForm>
+
+
+</section>
+
+<p style="padding-block:1rem;">
+    Below is the code that was used for the example. Please note that in general when using the Validated library the validators would be in a shared library so they could be used in any part of your application.
+</p>
+
+<CodeBox CodeBlock="@InputSnippets.Password_Code_Example" AriaLabel="Password input code example" />
+
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_RadioInputGroup}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Radio_Input_Group - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_SelectInput}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Select_Input - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+
+    
+    private ProfileDto _profileData = new();
+    private Dictionary<int, string> _foodListItems = new() { [1] = "Fish & Chips", [2] = "Burger & Fries", [3] = "Pizza" };
+
+    private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+    protected override void OnInitialized()
+    {
+
+        var foodValidator = MemberValidators.CreatePredicateValidator<int>(c => c == 1, "FavouriteFoodID", "Favourite Food", "Wrong answer, it has to be Fish & Chips");
+
+        _boxedValidators = BlazorValidationBuilder<ProfileDto>.Create()
+                                .ForMember(c => c.FavouriteFoodID, foodValidator)
+                                .GetBoxedValidators();
+    }
+
+    private void HandleSubmit() { }
+
+    public class ProfileDto
+    {
+        public int FavouriteFoodID { get; set; }
+    }
+
+}

@@ -12,7 +12,8 @@
     which generally occurs when the user is trying to submit the form. 
 </p>
 <p>
-    To use the component all you need to do is place the component inside of the <span class="code-span">EditContext</span> wrapping the inputs that you want including in the summary that will have links pointing to the inputs.
+    To use the component all you need to do is place the component inside of the <span class="code-span">EditForm</span> wrapping the inputs that you want including in the summary; these will then
+    appear in the summary with inks pointing to them.
 </p>
 <p>
     When a full model validation event occurs and there are validation errors, the summary is displayed and the focus moved to it. 
@@ -20,12 +21,12 @@
     The section has also been given a <span class="code-span">role="region"</span> attribute promoting it to a landmark in order to make it easier for screen reader users to navigate to, given the lists of short cuts they have access to.
 </p>
 <p>
-    The input errors summary example below has been configured to only show after a full model validation event has occurred. It uses an input suffix of "Field" appended to the label names and wraps
-    the title in an <span class="code-span">h3</span> element, which on this page was the next logical heading.
+    The input errors summary example below has been configured to only show after a full model validation event has occurred. It uses an input suffix of "Field" which is appended to the label names. In this instance the 
+    title that gets displayed for the section was configured to use an <span class="code-span">h3</span> element, which on this page was the next logical heading.
 </p>
 <p>
     The three fields with the asterisk next to the label are required, with the Hourly Rate field being a nullable (optional) decimal value. 
-    Each field as validation rules and uses the setting <span class="code-span">UpdateOnInput="true"</span> for immediate validation opting to use the tabbable regions for the validation error messages. Clicking the fake submit button will
+    Each field has validation rules and uses the setting <span class="code-span">UpdateOnInput="true"</span> for immediate validation opting to use the tabbable regions for the validation error messages. Clicking the fake submit button will
     validate the entire model showing any validation error messages on the respective input as well as to display the input error summary.
 </p>
 <p>
@@ -39,7 +40,7 @@
         
         <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" DeferFieldValidation="false" />
 
-        <InputErrorsSummary InputSuffix="Field" TitleHeadingLevel="TitleHeadingLevel.H3" SummaryDisplay="SummaryDisplay.OnModelValidated">
+        <InputErrorsSummary InputSuffix="Field" TitleHeadingLevel="TitleHeadingLevel.H3" SummaryDisplay="SummaryDisplay.OnModelValidated" Title="There is a problem with your entries">
 
             <div class="br-input-row">
                 <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First Name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"

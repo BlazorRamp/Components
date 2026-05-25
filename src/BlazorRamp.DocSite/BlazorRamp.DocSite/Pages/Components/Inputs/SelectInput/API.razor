@@ -12,7 +12,7 @@
     intermediate editing state, so the bound value and validation state are always updated at the point of interaction.
 </p>
 <p>
-    As this component supports nullable types, if you ever have a nullable boolean in your model given I am not aware of an accessible nullable checkbox pattern, you can use the select with null, True and False as 
+    As this component supports nullable types, if you ever have a nullable boolean in your model given I am not aware of an accessible nullable checkbox pattern, you can use the select with null, True and False as
     the options bound to the nullable bool. <b>Note: </b> the options values would need to be use the capitiliasations as it has to match <span class="code-span">bool.ToString()</span> i.e True / False.
 </p>
 <p>
@@ -58,8 +58,8 @@
                     <td>Options</td>
                     <td>RenderFragment</td>
                     <td>
-                       The RenderFragment used that allows you provide the HTML <span class="code-span">&lt;option /&gt;</span> elements for your
-                       list.
+                        The RenderFragment used that allows you provide the HTML <span class="code-span">&lt;option /&gt;</span> elements for your
+                        list.
                     </td>
                 </tr>
                 <tr>
@@ -213,102 +213,103 @@
             </tbody>
         </table>
     </section>
+</section>
 
-    <section>
+<section>
 
-        <h2 class="code-table__heading">Supporting enums</h2>
+    <h2 class="code-table__heading">Supporting enums</h2>
 
-        <section class="code-table">
+    <section class="code-table">
 
-            <h3 id="validation-display-mode-enum" class="code-table__heading">ValidationDisplayMode enum</h3>
+        <h3 id="validation-display-mode-enum" class="code-table__heading">ValidationDisplayMode enum</h3>
 
-            <table aria-labelledby="validation-display-mode-enum">
+        <table aria-labelledby="validation-display-mode-enum">
 
-                <thead>
-                    <tr>
-                        <th scope="col">Value</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>DescribedByWithHint</td>
-                        <td>
-                            Error message ID and hint text ID are both included in <span class="code-span">aria-describedby</span>.
-                            Error region is not tabbable. This is the default mode.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>DescribedByHintSuppressed</td>
-                        <td>
-                            Only the error message ID is included in <span class="code-span">aria-describedby</span> when errors
-                            are present, suppressing the hint text association. Error region is not tabbable.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>TabbableWithHint</td>
-                        <td>
-                            The error region is rendered as a tabbable <span class="code-span">role="region"</span> element with a
-                            <span class="code-span">tabindex="0"</span>, allowing keyboard users to navigate directly to the errors.
-                            Only the hint text ID is included in <span class="code-span">aria-describedby</span>.
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>DescribedByWithHint</td>
+                    <td>
+                        Error message ID and hint text ID are both included in <span class="code-span">aria-describedby</span>.
+                        Error region is not tabbable. This is the default mode.
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>DescribedByHintSuppressed</td>
+                    <td>
+                        Only the error message ID is included in <span class="code-span">aria-describedby</span> when errors
+                        are present, suppressing the hint text association. Error region is not tabbable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>TabbableWithHint</td>
+                    <td>
+                        The error region is rendered as a tabbable <span class="code-span">role="region"</span> element with a
+                        <span class="code-span">tabindex="0"</span>, allowing keyboard users to navigate directly to the errors.
+                        Only the hint text ID is included in <span class="code-span">aria-describedby</span>.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-        </section>
-        <section class="code-table">
-
-            <h3 id="data-position-enum" class="code-table__heading">DataPosition enum</h3>
-
-            <table aria-labelledby="validation-display-mode-enum">
-
-                <thead>
-                    <tr>
-                        <th scope="col">Value</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>Start</td>
-                        <td>
-                            Left aligned in LTR, right aligned in RTL
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Centre</td>
-                        <td>
-                            The text/data is centred.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>End</td>
-                        <td>
-                            Right aligned in LTR, left aligned in RTL
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </section>
     </section>
+    <section class="code-table">
 
+        <h3 id="data-position-enum" class="code-table__heading">DataPosition enum</h3>
+
+        <table aria-labelledby="validation-display-mode-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Start</td>
+                    <td>
+                        Left aligned in LTR, right aligned in RTL
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Centre</td>
+                    <td>
+                        The text/data is centred.
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>End</td>
+                    <td>
+                        Right aligned in LTR, left aligned in RTL
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
 </section>
 
 
+
+
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_PasswordInput}/{GlobalValues.Common_Page_Path_Usage}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_RadioInputGroup}/{GlobalValues.Common_Page_Path_Usage}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Component_Name_Password_Input - @GlobalValues.Common_Page_Title_Api</span>
+        <span>@GlobalValues.Component_Name_Radio_Input_Group - @GlobalValues.Common_Page_Title_Api</span>
         <span aria-hidden="true"></span>
     </a>
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_SelectInput}/{GlobalValues.Common_Page_Path_Usage}")">

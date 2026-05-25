@@ -75,8 +75,8 @@
                     <td>ReadOnly</td>
                     <td>bool</td>
                     <td>
-                        Gets or sets whether the input is read-only. When <span class="code-span">true</span>, the HTML <span class="code-span">readonly</span> attribute is applied 
-                        to the underlying <span class="code-span">&lt;input&gt;</span> element. Takes precedence over the <span class="code-span">AriaDisabled</span> parameter when 
+                        Gets or sets whether the input is read-only. When <span class="code-span">true</span>, the HTML <span class="code-span">readonly</span> attribute is applied
+                        to the underlying <span class="code-span">&lt;input&gt;</span> element. Takes precedence over the <span class="code-span">AriaDisabled</span> parameter when
                         both are set.
                     </td>
                 </tr>
@@ -167,8 +167,8 @@
                     <td>Value</td>
                     <td>string</td>
                     <td>
-                        
-                        Gets or sets the value of the input field, bound to a property on your model. Typically provided automatically when using 
+
+                        Gets or sets the value of the input field, bound to a property on your model. Typically provided automatically when using
                         <span class="code-span">@@bind-Value="Model.PropertyName</span> syntax.
                     </td>
                 </tr>
@@ -197,7 +197,7 @@
             </tbody>
         </table>
     </section>
-    
+
     <section class="code-table">
         <h3 id="text-input-component-methods" class="code-table__heading">TextInput component properties and methods</h3>
 
@@ -221,141 +221,141 @@
             </tbody>
         </table>
     </section>
-
-    <section>
-
-        <h2 class="code-table__heading">Supporting enums</h2>
-
-        <section class="code-table">
-
-            <h3 id="text-input-type-enum" class="code-table__heading">TextInputType enum</h3>
-
-            <table aria-labelledby="text-input-type-enum">
-
-                <thead>
-                    <tr>
-                        <th scope="col">Value</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>Text</td>
-                        <td>
-                            Plain text input.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Email</td>
-                        <td>
-                            Email address input. Provides email keyboard on mobile devices.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Url</td>
-                        <td>
-                            URL input. Provides URL keyboard on mobile devices.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Tel</td>
-                        <td>
-                            Telephone number input. Provides numeric keyboard on mobile devices.
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-        <section class="code-table">
-
-            <h3 id="validation-display-mode-enum" class="code-table__heading">ValidationDisplayMode enum</h3>
-
-            <table aria-labelledby="validation-display-mode-enum">
-
-                <thead>
-                    <tr>
-                        <th scope="col">Value</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>DescribedByWithHint</td>
-                        <td>
-                            Error message ID and hint text ID are both included in <span class="code-span">aria-describedby</span>.
-                            Error region is not tabbable. This is the default mode.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>DescribedByHintSuppressed</td>
-                        <td>
-                            Only the error message ID is included in <span class="code-span">aria-describedby</span> when errors
-                            are present, suppressing the hint text association. Error region is not tabbable.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>TabbableWithHint</td>
-                        <td>
-                            The error region is rendered as a tabbable <span class="code-span">role="region"</span> element with a
-                            <span class="code-span">tabindex="0"</span>, allowing keyboard users to navigate directly to the errors.
-                            Only the hint text ID is included in <span class="code-span">aria-describedby</span>.
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </section>
-        <section class="code-table">
-
-            <h3 id="data-position-enum" class="code-table__heading">DataPosition enum</h3>
-
-            <table aria-labelledby="validation-display-mode-enum">
-
-                <thead>
-                    <tr>
-                        <th scope="col">Value</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>Start</td>
-                        <td>
-                            Left aligned in LTR, right aligned in RTL
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Centre</td>
-                        <td>
-                            The text/data is centred.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>End</td>
-                        <td>
-                            Right aligned in LTR, left aligned in RTL
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </section>
-    </section>
-
 </section>
+
+<section>
+
+    <h2 class="code-table__heading">Supporting enums</h2>
+
+    <section class="code-table">
+
+        <h3 id="text-input-type-enum" class="code-table__heading">TextInputType enum</h3>
+
+        <table aria-labelledby="text-input-type-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Text</td>
+                    <td>
+                        Plain text input.
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Email</td>
+                    <td>
+                        Email address input. Provides email keyboard on mobile devices.
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Url</td>
+                    <td>
+                        URL input. Provides URL keyboard on mobile devices.
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Tel</td>
+                    <td>
+                        Telephone number input. Provides numeric keyboard on mobile devices.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section class="code-table">
+
+        <h3 id="validation-display-mode-enum" class="code-table__heading">ValidationDisplayMode enum</h3>
+
+        <table aria-labelledby="validation-display-mode-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>DescribedByWithHint</td>
+                    <td>
+                        Error message ID and hint text ID are both included in <span class="code-span">aria-describedby</span>.
+                        Error region is not tabbable. This is the default mode.
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>DescribedByHintSuppressed</td>
+                    <td>
+                        Only the error message ID is included in <span class="code-span">aria-describedby</span> when errors
+                        are present, suppressing the hint text association. Error region is not tabbable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>TabbableWithHint</td>
+                    <td>
+                        The error region is rendered as a tabbable <span class="code-span">role="region"</span> element with a
+                        <span class="code-span">tabindex="0"</span>, allowing keyboard users to navigate directly to the errors.
+                        Only the hint text ID is included in <span class="code-span">aria-describedby</span>.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="data-position-enum" class="code-table__heading">DataPosition enum</h3>
+
+        <table aria-labelledby="validation-display-mode-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Start</td>
+                    <td>
+                        Left aligned in LTR, right aligned in RTL
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Centre</td>
+                    <td>
+                        The text/data is centred.
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>End</td>
+                    <td>
+                        Right aligned in LTR, left aligned in RTL
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+</section>
+
 
 <p>
     <strong>Note: </strong>This Input component only uses the shared Input CSS variables as defined on the

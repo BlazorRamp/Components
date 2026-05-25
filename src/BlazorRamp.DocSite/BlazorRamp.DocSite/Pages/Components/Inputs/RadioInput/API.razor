@@ -1,14 +1,14 @@
-﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_CheckboxInput}/{GlobalValues.Common_Page_Path_Api}")]
+﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_RadioInputGroup}/{GlobalValues.Common_Page_Path_Api}")]
 
-<PageTitle>@GlobalValues.Component_Name_Checkbox_Input @GlobalValues.Common_Page_Title_Api</PageTitle>
+<PageTitle>@GlobalValues.Component_Name_Radio_Input_Group @GlobalValues.Common_Page_Title_Api</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Checkbox_Input @GlobalValues.Common_Page_Title_Api</h1>
+<h1>@GlobalValues.Component_Name_Radio_Input_Group @GlobalValues.Common_Page_Title_Api</h1>
 <p>
-    Everything you need to work with the CheckboxInput component: parameters, methods, models, enums, and CSS variables for styling.
+    Everything you need to work with the RadioInputGroup component: parameters, methods, models, enums, and CSS variables for styling.
 </p>
 <p>
-    <b>Note: </b>The value updates immediately when the checkbox is clicked. Unlike text-based inputs there is no <span class="code-span">UpdateOnInput</span> parameter - a checkbox has no 
-    intermediate editing state, so the bound value and validation state are always updated at the point of interaction.
+    <b>Note: </b>The value updates immediately when a radio input is clicked. Unlike text-based inputs there is no <span class="code-span">UpdateOnInput</span> parameter - a radio input has no
+    intermediate editing state, so the bound value (on the radio input group) and validation state are always updated at the point of interaction.
 </p>
 <p>
     As each Input component is a single unit that contains both the input, its label and regions for both hint and error text the <b>BlazorRamp.Inputs</b> stylesheet also contains a 12 column grid layout container with
@@ -20,13 +20,16 @@
 </p>
 <p>
     The usage page shows these in action but simply add a row class on your container such as <span class="code-span">&lt;div class=".br-input-row"&gt;</span> and then add the appropriate classes on the
-    input directly such as <span class="code-span">&lt;CheckboxInput class="br-col-xs-12 br-col-sm-6"&gt;</span>. For each column class/breakpoint size just add the number 1 through 12 for the
+    input directly such as <span class="code-span">&lt;RadiodInputGroup class="br-col-xs-12 br-col-sm-6"&gt;</span>. For each column class/breakpoint size just add the number 1 through 12 for the
     number of columns that are spanned from the 12 fractional units to form the width.
 </p>
 <p>
-    <strong>Note: </strong>The input components do not define parameters for the common input attributes. You can add any of these to the Input component directly as attribute splatting will place these on the underlying input element.
+    <strong>Note: </strong>The input components do not define parameters for the common input attributes. You can add any of these to the Input component directly as attribute splatting will place these on the underlying input element(s).
 </p>
-
+<p>
+    <strong>Note: </strong>Unlike some of the other components, given the browser behaviour for radio inputs, no ReadOnly or AriaDisabled parameters have been exposed. Disabling form controls is a controversial topic, but you can
+    of course use attribute splatting to add whatever attribute you like to the parent container and the individual radio inputs.
+</p>
 <section>
     <h2 class="page-heading">
         Component parameters, methods, supporting classes and enums.
@@ -37,9 +40,9 @@
     </p>
     <section class="code-table">
 
-        <h3 id="checkbox-input-component-parameters" class="code-table__heading">CheckboxInput component parameters</h3>
+        <h3 id="radio-input-group-component-parameters" class="code-table__heading">RadioInputGroup component (parent) parameters</h3>
 
-        <table aria-labelledby="checkbox-input-component-parameters">
+        <table aria-labelledby="radio-input-group-component-parameters">
 
             <thead>
                 <tr>
@@ -50,10 +53,15 @@
             </thead>
             <tbody>
                 <tr>
+                    <td>OptionValues</td>
+                    <td>RenderFragment?</td>
+                    <td>The render fragment used for the child <span class="code-span">&lt;RadioInput /&gt;</span> components</td>
+                </tr>
+                <tr>
                     <td>LabelText</td>
                     <td>string</td>
                     <td>
-                        Gets or sets the name used for the input control label.
+                        Gets or sets the name used for to title this radio group.
                         If the value is null, empty, or whitespace then the field name is used.
                     </td>
                 </tr>
@@ -61,53 +69,27 @@
                     <td>ControlID</td>
                     <td>string</td>
                     <td>
-                        Gets or sets the <span class="code-span">id</span> attribute applied to the underlying <span class="code-span">&lt;input&gt;</span>
-                        element. When null, empty, or whitespace a <span class="code-span">Guid</span> string is generated automatically. Leading and trailing whitespace is trimmed before use.
+                        Gets or sets the <span class="code-span">id</span> attribute applied to, in this instance the parent container for the radio inputs elements.
+                        When null, empty, or whitespace a <span class="code-span">Guid</span> string is generated automatically. Leading and trailing whitespace is trimmed before use.
                     </td>
                 </tr>
                 <tr>
                     <td>HintText</td>
                     <td>string</td>
                     <td>
-                        Gets or sets the hint text rendered below the label and above the input field. When set, the text is normalised so it always ends with a full stop, and is
-                        associated to the input via <span class="code-span">aria-describedby</span>. When null, empty, or whitespace no hint element is rendered.
-                    </td>
-                </tr>
-                <tr>
-                    <td>ReadOnly</td>
-                    <td>bool</td>
-                    <td>
-                        Gets or sets whether the input is read-only. When <span class="code-span">true</span>, the HTML <span class="code-span">readonly</span> attribute is applied
-                        to the underlying <span class="code-span">&lt;input&gt;</span> element. Takes precedence over the <span class="code-span">AriaDisabled</span> parameter when
-                        both are set. <b>Note: </b> as the underlying HTML <span class="code-span">readonly</span> attribute have no effect on checkboxes, javascript is used to stop
-                        any behaviour simulating readonly.
-                    </td>
-                </tr>
-                <tr>
-                    <td>AriaDisabled</td>
-                    <td>bool</td>
-                    <td>
-                        Gets or sets whether the input is aria-disabled. When <span class="code-span">true</span>, the input is visually and functionally disabled via <span class="code-span">aria-disabled="true"</span> without
-                        using the native <span class="code-span">disabled</span> attribute, keeping the field focusable and readable by screen readers. JavaScript handlers block keyboard input and paste.
-                        Has no effect when <span class="code-span">ReadOnly</span> is also <span class="code-span">true</span>.
+                        Gets or sets the hint text rendered below the title of the radio group and above the radio inputs. When set, the text is normalised so it always ends with a full stop, and is
+                        associated to the radio input group via <span class="code-span">aria-describedby</span>. When null, empty, or whitespace no hint element is rendered.
                     </td>
                 </tr>
                 <tr>
                     <td>Required</td>
                     <td>bool</td>
                     <td>
-                        Gets or sets whether the field is required. When <span class="code-span">true</span>, <span class="code-span">aria-required="true"</span>
-                        is applied to the input and a visually hidden asterisk is appended to the label. Defaults to <span class="code-span">true</span>.
+                        Gets or sets whether a value for the radio input group is required. When <span class="code-span">true</span>, <span class="code-span">aria-required="true"</span>
+                        is applied to the radio input group component and a visually hidden asterisk is appended to the title. Defaults to <span class="code-span">true</span>.
                     </td>
                 </tr>
-                <tr>
-                    <td>DataPosition</td>
-                    <td>DataPosition (enum)</td>
-                    <td>
-                        Gets or sets the text/data alignment in the input.
-                        Defaults to <span class="code-span">DataPosition.Start</span>
-                    </td>
-                </tr>
+
                 <tr>
                     <td>ErrorsLabel</td>
                     <td>string</td>
@@ -115,6 +97,14 @@
                         Gets or sets the accessible label for the tabbable error region, used when
                         <span class="code-span">ValidationDisplayMode</span> is set to <span class="code-span">ValidationDisplayMode.TabbableWithHint</span>.
                         Defaults to <span class="code-span">Errors</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Orientation</td>
+                    <td>Orientation (enum)</td>
+                    <td>
+                        Gets or sets the layout orientation of the radio inputs within the group.
+                        Defaults to <span class="code-span">Orientation.Horizontal</span> />.
                     </td>
                 </tr>
                 <tr>
@@ -139,21 +129,21 @@
                     <td>AdditionalAttributes</td>
                     <td>Dictionary&lt;string, object&gt;?</td>
                     <td>
-                        Sets additional attributes applied to the input element.
+                        Sets additional attributes applied to the radio input group components root element.
                     </td>
                 </tr>
                 <tr>
                     <td>Value</td>
                     <td>string</td>
                     <td>
-                        
-                        Gets or sets the value of the input field, bound to a property on your model. Typically provided automatically when using
+
+                        Gets or sets the value of the radio input group, bound to a property on your model. Typically provided automatically when using
                         <span class="code-span">@@bind-Value="Model.PropertyName</span> syntax.
                     </td>
                 </tr>
                 <tr>
                     <td>ValueChanged</td>
-                    <td>EventCallback&lt;bool&gt;></td>
+                    <td>EventCallback&lt;string&gt;></td>
                     <td>
                         Gets or sets a callback invoked when the bound value changes. Used for both one-way binding, where you handle the new value directly in the event callback, and two-way binding via
                         <span class="code-span">@@bind-Value="Model.PropertyName</span> where it is provided and managed automatically by the framework.
@@ -176,36 +166,84 @@
             </tbody>
         </table>
     </section>
-    
     <section class="code-table">
-        <h3 id="checkbox-input-component-methods" class="code-table__heading">CheckboxInput component properties and methods</h3>
 
-        <table aria-labelledby="checkbox-input-component-methods">
+        <h3 id="radio-input-component-parameters" class="code-table__heading">RadioInput component (child) parameters</h3>
+
+        <table aria-labelledby="tab-component-parameters">
 
             <thead>
                 <tr>
-                    <th scope="col">Type/Return</th>
-                    <th scope="col">Property/Method</th>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
                     <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>ElementReference</td>
-                    <td>ControlReference</td>
+                    <td>LabelText</td>
+                    <td>string</td>
                     <td>
-                        Property that returns the underlying <span class="code-span">ElementReference</span> for the input control.
+                        Gets or sets the name used for the radio input control label.
+                        If the value is null, empty, or whitespace then the field name is used.
                     </td>
                 </tr>
-            </tbody>
-        </table>
-    </section>
+                <tr>
+                    <td>Value</td>
+                    <td>TValue</td>
+                    <td>
+                        The value assigned to the radio input when checked. Should detect the parent type, but if necessary, as is the case if you want to use a nullable type
+                        you would then have to specify the <span class="code-span">TValue</span> on each radio input.
+                    </td>
+                </tr>
+                <tr>
+                    <td>AdditionalAttributes</td>
+                    <td>Dictionary&lt;string, object&gt;?</td>
+                    <td>
+                        Sets additional attributes applied to the radio input.
+                    </td>
+                </tr>
+
+        </tbody>
+    </table>
+</section>
 </section>
 
 <section>
 
     <h2 class="code-table__heading">Supporting enums</h2>
 
+    <section class="code-table">
+
+        <h3 id="radio-input-group-orientation-enum" class="code-table__heading">Orientation enum</h3>
+
+        <table aria-labelledby="radio-input-group-orientation-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Horizontal</td>
+                    <td>
+                        The component uses a horizontal wrapping layout for the radio inputs
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Vertical</td>
+                    <td>
+                        The component uses a vertically wrapping layout for the radio inputs
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
     <section class="code-table">
 
         <h3 id="validation-display-mode-enum" class="code-table__heading">ValidationDisplayMode enum</h3>
@@ -249,61 +287,24 @@
         </table>
 
     </section>
-    <section class="code-table">
 
-        <h3 id="data-position-enum" class="code-table__heading">DataPosition enum</h3>
-
-        <table aria-labelledby="validation-display-mode-enum">
-
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>Start</td>
-                    <td>
-                        Left aligned in LTR, right aligned in RTL
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Centre</td>
-                    <td>
-                        The text/data is centred.
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>End</td>
-                    <td>
-                        Right aligned in LTR, left aligned in RTL
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-    </section>
 </section>
 
 
 <p>
-    <strong>Note: </strong>This Input component only uses the shared Input CSS variables as defined on the
+    <strong>Note: </strong>Excluding the outline offset value applied to a radio input, this Input component only uses the shared Input CSS variables as defined on the
     <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_CSS_Variables}")">@GlobalValues.Component_Name_Inputs - @GlobalValues.Common_Page_Title_Shared_CSS</a> page.
+    The shared outline offset variable is 0px, the radio input directly uses a value of 2px;
 </p>
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_CSS_Variables}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_PasswordInput}/{GlobalValues.Common_Page_Path_Usage}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Component_Name_Inputs - @GlobalValues.Common_Page_Title_Shared_CSS</span>
+        <span>@GlobalValues.Component_Name_Password_Input - @GlobalValues.Common_Page_Title_Usage</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_CheckboxInput}/{GlobalValues.Common_Page_Path_Usage}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_RadioInputGroup}/{GlobalValues.Common_Page_Path_Usage}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Component_Name_Checkbox_Input - @GlobalValues.Common_Page_Title_Usage</span>
+        <span>@GlobalValues.Component_Name_Radio_Input_Group - @GlobalValues.Common_Page_Title_Usage</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

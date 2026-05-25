@@ -73,7 +73,12 @@ public class PasswordTypeInput : InputTypeBase<string>
     {
         base.OnParametersSet();
         PasswordInputClasses = GetInputClasses(base.AdditionalAttributes);
-        AutoComplete = PasswordAutoComplete == PasswordAutoComplete.CurrentPassword ? "current-password" : "new-password";
+        AutoComplete = PasswordAutoComplete switch
+        { 
+            PasswordAutoComplete.CurrentPassword => "current-password",
+            PasswordAutoComplete.NewPassword     => "new-password",
+            _ => "off"
+        };
     }
 
     /// <summary>

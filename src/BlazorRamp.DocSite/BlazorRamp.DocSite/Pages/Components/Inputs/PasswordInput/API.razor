@@ -168,7 +168,7 @@
                     <td>Value</td>
                     <td>string</td>
                     <td>
-                        
+
                         Gets or sets the value of the input field, bound to a property on your model. Typically provided automatically when using
                         <span class="code-span">@@bind-Value="Model.PropertyName</span> syntax.
                     </td>
@@ -198,7 +198,7 @@
             </tbody>
         </table>
     </section>
-    
+
     <section class="code-table">
         <h3 id="password-input-component-methods" class="code-table__heading">PasswordInput component properties and methods</h3>
 
@@ -222,130 +222,131 @@
             </tbody>
         </table>
     </section>
-
-    <section>
-
-        <h2 class="code-table__heading">Supporting enums</h2>
-
-        <section class="code-table">
-
-            <h3 id="password-input-type-enum" class="code-table__heading">PasswordAutoComplete enum</h3>
-
-            <table aria-labelledby="password-input-type-enum">
-
-                <thead>
-                    <tr>
-                        <th scope="col">Value</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>CurrentPassword</td>
-                        <td>
-                            Maps to <span class="code-span">autocomplete="current-password</span>. Use on login forms to allow
-                            password managers to fill existing credentials.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>NewPassword</td>
-                        <td>
-                            Maps to <span class="code-span">autocomplete="new-password"</span>. Use on registration or change
-                            password forms to prevent password managers from filling existing credentials
-                            and to prompt generation of a new password.
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-        <section class="code-table">
-
-            <h3 id="validation-display-mode-enum" class="code-table__heading">ValidationDisplayMode enum</h3>
-
-            <table aria-labelledby="validation-display-mode-enum">
-
-                <thead>
-                    <tr>
-                        <th scope="col">Value</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>DescribedByWithHint</td>
-                        <td>
-                            Error message ID and hint text ID are both included in <span class="code-span">aria-describedby</span>.
-                            Error region is not tabbable. This is the default mode.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>DescribedByHintSuppressed</td>
-                        <td>
-                            Only the error message ID is included in <span class="code-span">aria-describedby</span> when errors
-                            are present, suppressing the hint text association. Error region is not tabbable.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>TabbableWithHint</td>
-                        <td>
-                            The error region is rendered as a tabbable <span class="code-span">role="region"</span> element with a
-                            <span class="code-span">tabindex="0"</span>, allowing keyboard users to navigate directly to the errors.
-                            Only the hint text ID is included in <span class="code-span">aria-describedby</span>.
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </section>
-        <section class="code-table">
-
-            <h3 id="data-position-enum" class="code-table__heading">DataPosition enum</h3>
-
-            <table aria-labelledby="validation-display-mode-enum">
-
-                <thead>
-                    <tr>
-                        <th scope="col">Value</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>Start</td>
-                        <td>
-                            Left aligned in LTR, right aligned in RTL
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Centre</td>
-                        <td>
-                            The text/data is centred.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>End</td>
-                        <td>
-                            Right aligned in LTR, left aligned in RTL
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </section>
-    </section>
-
 </section>
+
+<section>
+
+    <h2 class="code-table__heading">Supporting enums</h2>
+
+    <section class="code-table">
+
+        <h3 id="password-input-type-enum" class="code-table__heading">PasswordAutoComplete enum</h3>
+
+        <table aria-labelledby="password-input-type-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>CurrentPassword</td>
+                    <td>
+                        Maps to <span class="code-span">autocomplete="current-password</span>. Use on login forms to allow
+                        password managers to fill existing credentials.
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>NewPassword</td>
+                    <td>
+                        Maps to <span class="code-span">autocomplete="new-password"</span>. Use on registration or change
+                        password forms to prevent password managers from filling existing credentials
+                        and to prompt generation of a new password.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section class="code-table">
+
+        <h3 id="validation-display-mode-enum" class="code-table__heading">ValidationDisplayMode enum</h3>
+
+        <table aria-labelledby="validation-display-mode-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>DescribedByWithHint</td>
+                    <td>
+                        Error message ID and hint text ID are both included in <span class="code-span">aria-describedby</span>.
+                        Error region is not tabbable. This is the default mode.
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>DescribedByHintSuppressed</td>
+                    <td>
+                        Only the error message ID is included in <span class="code-span">aria-describedby</span> when errors
+                        are present, suppressing the hint text association. Error region is not tabbable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>TabbableWithHint</td>
+                    <td>
+                        The error region is rendered as a tabbable <span class="code-span">role="region"</span> element with a
+                        <span class="code-span">tabindex="0"</span>, allowing keyboard users to navigate directly to the errors.
+                        Only the hint text ID is included in <span class="code-span">aria-describedby</span>.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="data-position-enum" class="code-table__heading">DataPosition enum</h3>
+
+        <table aria-labelledby="validation-display-mode-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Start</td>
+                    <td>
+                        Left aligned in LTR, right aligned in RTL
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Centre</td>
+                    <td>
+                        The text/data is centred.
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>End</td>
+                    <td>
+                        Right aligned in LTR, left aligned in RTL
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+</section>
+
+
 <p>
     <strong>Note: </strong>This Input component only uses the shared Input CSS variables as defined on the
     <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_CSS_Variables}")">@GlobalValues.Component_Name_Inputs - @GlobalValues.Common_Page_Title_Shared_CSS</a> page.

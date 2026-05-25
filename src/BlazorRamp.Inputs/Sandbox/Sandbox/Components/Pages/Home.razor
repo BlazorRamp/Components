@@ -13,7 +13,7 @@
 
 Welcome to your new app.
 
-<EditForm EditContext="@_editContext" OnValidSubmit="HandleSubmit" novalidate style="background-color:aliceblue;">
+<EditForm EditContext="@_editContext" OnValidSubmit="HandleSubmit" novalidate>
 
     @*     <DataAnnotationsValidator /> *@
 
@@ -27,7 +27,7 @@ Welcome to your new app.
 
          <div class="br-input-row"> 
             <RadioInputGroup class="br-col-xs-12 br-col-sm-6"  @bind-Value="@_contactData.RadioButtonValue" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                             LabelText="Your Gender" HintText="Please select on of the options" Orientation="Orientation.Horizontal">
+                             LabelText="Your Gender" HintText="Please select on of the options" Orientation="Orientation.Vertical" AriaDisabled="true" SvgIcon="--svg-food-icon">
                 <OptionValues>
                     <RadioInput LabelText="First item"  Value="1" />
                     <RadioInput LabelText="Second item" Value="2" />

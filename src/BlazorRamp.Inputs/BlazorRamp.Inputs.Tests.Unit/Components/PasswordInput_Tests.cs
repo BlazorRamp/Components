@@ -333,6 +333,7 @@ public class PasswordInput_Tests
         [Theory]
         [InlineData(PasswordAutoComplete.CurrentPassword)]
         [InlineData(PasswordAutoComplete.NewPassword)]
+        [InlineData(PasswordAutoComplete.Off)]
 
         public async Task Should_be_able_to_set_the_auto_complete_param(PasswordAutoComplete autoCompleteValue)
         {
@@ -344,7 +345,12 @@ public class PasswordInput_Tests
 
             using (new AssertionScope())
             {
-                var enumText = autoCompleteValue == PasswordAutoComplete.CurrentPassword ? "current-password" : "new-password";
+                var enumText = autoCompleteValue switch
+                {
+                    PasswordAutoComplete.CurrentPassword => "current-password",
+                    PasswordAutoComplete.NewPassword => "new-password",
+                    _ => "off"
+                };
                 inputComponent.Instance.PasswordAutoComplete.Should().Be(autoCompleteValue);
                 inputTypeAttribute.Should().Be(enumText);
             }

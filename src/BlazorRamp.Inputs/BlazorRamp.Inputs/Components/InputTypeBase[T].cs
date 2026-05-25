@@ -40,7 +40,7 @@ namespace BlazorRamp.Inputs.Components
         /// <c>readonly</c> attribute is applied to the underlying <c>&lt;input&gt;</c>
         /// element. Takes precedence over <see cref="AriaDisabled"/> when both are set.
         /// </summary>
-        [Parameter] public bool   ReadOnly      { get; set; } = false;
+        [Parameter] public virtual bool ReadOnly      { get; set; } = false;
 
         /// <summary>
         /// Gets or sets whether the input is aria-disabled. When <c>true</c>, the input
@@ -49,7 +49,7 @@ namespace BlazorRamp.Inputs.Components
         /// readable by screen readers. JavaScript handlers block keyboard input and paste.
         /// Has no effect when <see cref="ReadOnly"/> is also <c>true</c>.
         /// </summary>
-        [Parameter] public bool   AriaDisabled  { get; set; } = false;
+        [Parameter] public virtual bool AriaDisabled  { get; set; } = false;
 
         /// <summary>
         /// Gets or sets whether the field is required. When <c>true</c>, <c>aria-required="true"</c>

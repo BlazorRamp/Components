@@ -82,7 +82,11 @@ public enum PasswordAutoComplete : int
     /// password forms to prevent password managers from filling existing credentials
     /// and to prompt generation of a new password.
     /// </summary>
-    NewPassword = 1
+    NewPassword = 1,
+    /// <summary>
+    /// Turns off autocomplete for the password input.
+    /// </summary>
+    Off = 2
 }
 /// <summary>
 /// Sets the alignment of the text/data in the input.

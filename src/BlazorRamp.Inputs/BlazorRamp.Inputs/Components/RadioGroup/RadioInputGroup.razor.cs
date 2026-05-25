@@ -1,6 +1,7 @@
 ﻿using BlazorRamp.Inputs.Common.Constants;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 
 namespace BlazorRamp.Inputs.Components.RadioGroup;
@@ -26,11 +27,31 @@ public class RadioTypeInputGroup<TValue> : InputTypeBase<TValue>
     /// </summary>
     [Parameter] public Orientation Orientation { get; set; } = Orientation.Horizontal;
 
-    private new bool ReadOnly { get; set; }
-    private new bool AriaDisabled { get; set; }
 
-    private new string? SvgIcon { get; set; } = default;
+#pragma warning disable BL0007
 
+    /// <summary>
+    /// Not supported on <see cref="RadioInputGroup{TValue}"/>. This parameter has no effect if set.
+    /// </summary>
+    [Parameter]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public override bool AriaDisabled { get => false; set { } }
+
+    /// <summary>
+    /// Not supported on <see cref="RadioInputGroup{TValue}"/>. This parameter has no effect if set.
+    /// </summary>
+    [Parameter]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public override bool ReadOnly { get => false; set { } }
+
+    ///// <summary>
+    ///// Not supported on <see cref="RadioInputGroup{TValue}"/>. This parameter has no effect if set.
+    ///// </summary>
+    //[Parameter]
+    //[EditorBrowsable(EditorBrowsableState.Never)]
+    //public override string? SvgIcon { get => null; set { } }
+
+#pragma warning restore BL0007
     /// <summary>
     /// Gets the resolved CSS class string applied to the root element of the radio group input,
     /// including any additional classes passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.

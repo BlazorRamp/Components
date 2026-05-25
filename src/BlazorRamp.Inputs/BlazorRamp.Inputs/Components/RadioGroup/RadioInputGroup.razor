@@ -24,7 +24,15 @@
             @HintNormalised
         </span>
     }
-    <span aria-hidden="true"></span><!--space for where icon would have gone needed-->
+    @if (false == String.IsNullOrWhiteSpace(SvgVariable))
+    {
+        <span aria-hidden="true" class="@GlobalValues.Radio_Input_Group_Icon_Class" style="@SvgVariable"></span>
+    }
+    else
+    {
+        <span aria-hidden="true"></span>
+    }
+
 
     <div class="@RadioInputGroupFieldClasses">
         <CascadingValue Value="this" IsFixed="true">
