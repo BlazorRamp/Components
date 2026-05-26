@@ -43,7 +43,7 @@
         {
             <div class="@GlobalValues.Checkbox_Input_Error_Class" tabindex="@(TabbableError ? "0" : null)" aria-label="@(TabbableError ? $"{LabelNameText.TrimEnd(':')} {ErrorsText}" : null)" role="@(TabbableError ? "region" : null)">
 
-                <ul id="@ErrorMessageID" role="list">
+                <ul id="@ErrorMessageID">
                     @foreach (var errorMessage in InvalidMessages)
                     {
                         <li>@errorMessage</li>
