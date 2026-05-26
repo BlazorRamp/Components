@@ -92,7 +92,19 @@
 <ul aria-labelledby="screen-reader-quirks">
     <li>
         <b>Narrator</b> on Firefox currently does not seem to honour <span class="code-span">aria-required</span> or  <span class="code-span">aria-invalid</span>; please check your version
-        of Narrator and version of Firefox if you need to support this pairing. Its recommended that Narrator be used with Edge or Chrome.
+        of Narrator and version of Firefox if you need to support this pairing. Its recommended that Narrator be used with Edge or Chrome. By default the input components Required parameter is set to true which
+        adds <span class="code-span">aria-required</span> to the input. An alternative, is to set the Required parameter to false and add the text "Required" at the start of the hint text.
+    </li>
+    <li>
+        <b>Narrator</b> on all browsers with regards to the <span class="code-span">&lt;RadioInputGroup /&gt;</span> component that uses <span class="code-span">role=radiogroup</span>, it does not
+        honour <span class="code-span">aria-invalid</span> nor does it announce hint text and error messages linked via <span class="code-span">aria-describedby</span>
+    </li>
+    <li>
+        <b>>Radio Input tGroup — Error Announcement on Selection</b>
+        When a radio option is selected and validation runs, screen readers will not immediately announce the error message linked via aria-describedby. This is expected behaviour and is not a defect. 
+        Because keyboard navigation between radio buttons within a role="radiogroup" uses the arrow keys, focus never leaves and re-enters the group element itself. Screen readers only re-read a group's 
+        <span class="code-span">aria-describedby</span> association on group entry — since focus remains within the group when an option is selected and validation fires, the updated description is not 
+        announced until the user tabs away and returns to the group. <strong>Using the tabbable region option may be preferable.</strong>
     </li>
 </ul>
 <p>

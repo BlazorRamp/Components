@@ -79,13 +79,14 @@ public static class GlobalValues
     public const string Component_Name_Announcement = "Announcement History";
     public const string Component_Name_Busy         = "Busy Indicator";
 
-    public const string Component_Name_Inputs         = "Inputs";
-    public const string Component_Name_Text_Input     = "Text Input";
-    public const string Component_Name_Password_Input = "Password Input";
-    public const string Component_Name_Numeric_Input  = "Numeric Input";
-    public const string Component_Name_Checkbox_Input = "Checkbox Input";
-    public const string Component_Name_Select_Input   = "Select Input";
-    public const string Component_Name_Errors_Summary = "Input Errors Summary";
+    public const string Component_Name_Inputs            = "Inputs";
+    public const string Component_Name_Text_Input        = "Text Input";
+    public const string Component_Name_Password_Input    = "Password Input";
+    public const string Component_Name_Numeric_Input     = "Numeric Input";
+    public const string Component_Name_Checkbox_Input    = "Checkbox Input";
+    public const string Component_Name_Radio_Input_Group = "Radio Input Group";
+    public const string Component_Name_Select_Input      = "Select Input";
+    public const string Component_Name_Errors_Summary    = "Input Errors Summary";
 
     public const string Component_Name_NavGroup  = "Nav Group";
     public const string Component_Name_SkipTo    = "Skip To";
@@ -94,21 +95,22 @@ public static class GlobalValues
     public const string Component_Name_Toggletip = "Toggletip";
 
 
-    public const string Component_Path_Part_Accordion     = "accordion";
-    public const string Component_Path_Part_Announcement  = "announcement-history";
-    public const string Component_Path_Part_Busy          = "busy-indicator";
-    public const string Component_Path_Part_Inputs        = "inputs";
-    public const string Component_Path_Part_TextInput     = "text-input";
-    public const string Component_Path_Part_PasswordInput = "password-input";
-    public const string Component_Path_Part_NumericInput  = "numeric-input";
-    public const string Component_Path_Part_CheckboxInput = "checkbox-input";
-    public const string Component_Path_Part_SelectInput   = "select-input";
-    public const string Component_Path_Part_ErrorsSummary = "errors-summary";
-    public const string Component_Path_Part_SkipTo        = "skip-to";
-    public const string Component_Path_Part_Switch        = "switch";
-    public const string Component_Path_Part_Tabs          = "tabs";
-    public const string Component_Path_Part_Toggletip     = "toggletip";
-    public const string Component_Path_Part_NavGroup      = "nav-group";
+    public const string Component_Path_Part_Accordion       = "accordion";
+    public const string Component_Path_Part_Announcement    = "announcement-history";
+    public const string Component_Path_Part_Busy            = "busy-indicator";
+    public const string Component_Path_Part_Inputs          = "inputs";
+    public const string Component_Path_Part_TextInput       = "text-input";
+    public const string Component_Path_Part_PasswordInput   = "password-input";
+    public const string Component_Path_Part_NumericInput    = "numeric-input";
+    public const string Component_Path_Part_CheckboxInput   = "checkbox-input";
+    public const string Component_Path_Part_RadioInputGroup = "radio-input-group";
+    public const string Component_Path_Part_SelectInput     = "select-input";
+    public const string Component_Path_Part_ErrorsSummary   = "errors-summary";
+    public const string Component_Path_Part_SkipTo          = "skip-to";
+    public const string Component_Path_Part_Switch          = "switch";
+    public const string Component_Path_Part_Tabs            = "tabs";
+    public const string Component_Path_Part_Toggletip       = "toggletip";
+    public const string Component_Path_Part_NavGroup        = "nav-group";
 
     public const string Framework_Name_Modal = "Modal Dialog";
     public const string Framework_Path_Part_Modal = "modal-dialog";

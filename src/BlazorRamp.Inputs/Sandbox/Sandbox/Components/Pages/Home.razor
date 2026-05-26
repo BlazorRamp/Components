@@ -37,6 +37,9 @@ Welcome to your new app.
             <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Firstname" AriaDisabled="false" HintText="The name that you use on official documents"
                        UpdateOnInput="true" SvgIcon="--svg-user-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
 
+            <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Firstname" AriaDisabled="false" HintText="The name that you use on official documents"
+                       UpdateOnInput="true" SvgIcon="--svg-user-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" Required="false" />
+
           </div>
 
         <div class="br-input-row">
@@ -135,7 +138,7 @@ Welcome to your new app.
                         .ForNullableMember(c => c.Salary, ContactValidators.SalaryValidator)
                         .ForMember(c => c.IsAlive, ContactValidators.IsAliveValidator)
                         .ForMember(c => c.ContactID, ContactValidators.ContactIDVallidator)
-                        .ForNullableMember(c => c.RadioButtonValue, ContactValidators.RadioGoupValue)
+                        .ForMember(c => c.RadioButtonValue, ContactValidators.RadioGoupValue)
          // .ForComparisonWithValue(c => c.DOB, ContactValidators.DOBValidator)
          // .ForComparisonWithMember(c => c.CompareDOB, ContactValidators.CompareDOBValidator)
          // .ForNestedMember(c => c.Address, AddressValidators.GetBoxedAddressValidators())// << Getting all the address validators from a pre-created builder.
