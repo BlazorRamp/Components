@@ -18,13 +18,16 @@
 
     <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
     <p>
-        All of the form fields below have validation rules attached and are set for immediate validation using a tabbable region for the error messages that appear below the respective input.
+        All of the form fields below have validation rules attached, all are required excluding the Hourly Rate field that is optional. Each field is set to use immediate validation with a tabbable region for the 
+        error messages that appear below the respective input.
     </p>
     <p>
-        The Input Errors Summary component has been set to show only once a full model validation has occurred, which in the example below occurs when you click the fake submit button.
+        The Input Error Summary component in both of the examples below have been set to show only once a full model validation has occurred. The first example uses validation that has been set to begin field level
+        validation prior to any attempt to submit the fake form. For the second example, the validation process has been set to occur only after a submit attempt has been made. In the second example, the whole model 
+        will be validated on submit and then field level validation will occur as of the first example.
     </p>
     <p>
-        You can click the fake submit button at any time. By default, as three of the fields are required, if you try to submit the form without entering any data there will be three erroneous fields.
+        You can click the fake submit buttons at any time. By default, as three of the fields are required, if you try to submit the form without entering any data there will be at least three erroneous fields.
     </p>
 </section>
 <section class="@GlobalValues.Info_Box_Class">
@@ -36,6 +39,9 @@
             On clicking the fake submit button, if there are any validation errors the input errors summary should be displayed at the top of the form with focus being set on this landmark region.
         </li>
         <li>
+            For the second example that uses the deferred validation approach, no visual or audible validation messages should be displayed for any field until after a submit attempt that contains errors.
+        </li>
+        <li>
             Screen readers should announce the regions heading to the user so they are aware of the form errors.  
         </li>
         <li>
@@ -45,7 +51,7 @@
             Clicking the link should take you to the erroneous input. 
         </li>
         <li>
-           Screen reader users should should also have this summary region listed in thier landmarks shortcuts.
+           Screen reader users should should also have this summary region listed in their landmarks shortcuts.
         </li>
         <li>
             Voice control users should be able to navigate to any field directly using the appropriate command and the visible field name and/or by issuing the command to activate the link using its
@@ -54,39 +60,79 @@
     </ul>
 </section>
 <section class="section-box">
-    <h2>Input error summary example</h2>
+    <h2>Input error summary example one</h2>
 
-    <EditForm EditContext="@_editContext" OnValidSubmit="HandleSubmit">
-        
-        <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+    <EditForm Model="@_contactDataOne" OnValidSubmit="HandleSubmitOne">
 
-        <InputErrorsSummary InputSuffix="Field" TitleHeadingLevel="TitleHeadingLevel.H3" SummaryDisplay="SummaryDisplay.OnModelValidated">
+        <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" DeferFieldValidation="false" />
+
+        <InputErrorsSummary InputSuffix="Field" TitleHeadingLevel="TitleHeadingLevel.H3" SummaryDisplay="SummaryDisplay.OnModelValidated" Title="There is a problem with your entries">
 
             <div class="br-input-row">
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First Name" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                           @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" />
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First Name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                           @bind-Value="_contactDataOne.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name" />
 
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                           @bind-Value="_contactData.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" />
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                           @bind-Value="_contactDataOne.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
             </div>
             <div class="br-input-row">
 
-                <NumericInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.Age" Required="true"
-                              LabelText="Age" HintText="Your current age in years." UpdateOnInput="true"
+                <NumericInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactDataOne.Age" Required="true"
+                              LabelText="Age" ErrorsLabel="errors" HintText="Your current age in years." UpdateOnInput="true"
                               ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" ParseErrorMessage="Please enter a valid number for this field type." />
 
-                <NumericInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.HourlyRate" Required="false" Format="C" 
-                                LabelText="Hourly Rate" HintText="Optional, how much you charge per hour." UpdateOnInput="true" 
-                              ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" ParseErrorMessage="Please enter a valid number for this field type." maxlength="50"/>
+                <NumericInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactDataOne.HourlyRate" Required="false" Format="C"
+                              LabelText="Hourly Rate" ErrorsLabel="errors" HintText="Optional, how much you charge per hour." UpdateOnInput="true"
+                              ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" ParseErrorMessage="Please enter a valid number for this field type." maxlength="50" />
 
             </div>
         </InputErrorsSummary>
 
         <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
-            <button class="test-button" type="submit">Fake Submit to trigger validation on the model</button>
-            <button @ref="ResetButton" class="test-button" type="button" @onclick="ResetEditContext">Reset Example</button>
+            <button class="br-col-xs-12 normal-button" type="submit">Fake submit one to trigger validation on the model</button>
+            <button @ref="ResetButtonOne" class="normal-button" type="button" @onclick="ResetExampleOne">Reset example one</button>
         </div>
+    </EditForm>
 
+</section>
+
+<p>
+    The next form is identical to the first one, but this time no field validation will take place until the form has tried to be submitted, after which field level
+    will take place as of the first example.
+</p>
+<section class="section-box">
+    <h2>Input error summary example two (no validation until submit)</h2>
+
+    <EditForm EditContext="@_editContextTwo" OnValidSubmit="HandleSubmitTwo">
+
+        <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" DeferFieldValidation="true" />
+
+        <InputErrorsSummary InputSuffix="Field" TitleHeadingLevel="TitleHeadingLevel.H3" SummaryDisplay="SummaryDisplay.OnModelValidated">
+
+            <div class="br-input-row">
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First Name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                           @bind-Value="_contactDataTwo.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name" />
+
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
+                           @bind-Value="_contactDataTwo.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
+            </div>
+            <div class="br-input-row">
+
+                <NumericInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactDataTwo.Age" Required="true"
+                              LabelText="Age" ErrorsLabel="errors" HintText="Your current age in years." UpdateOnInput="true"
+                              ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" ParseErrorMessage="Please enter a valid number for this field type." />
+
+                <NumericInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactDataTwo.HourlyRate" Required="false" Format="C"
+                              LabelText="Hourly Rate" ErrorsLabel="errors" HintText="Optional, how much you charge per hour." UpdateOnInput="true"
+                              ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" ParseErrorMessage="Please enter a valid number for this field type." maxlength="50" />
+
+            </div>
+        </InputErrorsSummary>
+
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+            <button class="normal-button" type="submit">Fake submit two to trigger validation on the model</button>
+            <button @ref="ResetButtonTwo" class="normal-button" type="button" @onclick="ResetExampleTwo">Reset example two</button>
+        </div>
     </EditForm>
 
 </section>
@@ -109,9 +155,12 @@
 
 
 @code {
-    private ContactDto _contactData  = new();
-    private EditContext _editContext = default!;
-    private ElementReference ResetButton { get; set; } = default;
+    private ContactDto _contactDataOne  = new();
+    private ContactDto _contactDataTwo = new();
+    private EditContext _editContextOne = default!;
+    private EditContext _editContextTwo = default!;
+    private ElementReference ResetButtonOne { get; set; } = default;
+    private ElementReference ResetButtonTwo { get; set; } = default;
     private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
 
     protected override void OnInitialized()
@@ -138,26 +187,39 @@
                                 .ForNullableMember(c => c.HourlyRate, salaryValidator)
                             .GetBoxedValidators();
 
-        _editContext = new EditContext(_contactData);
+        _editContextOne = new EditContext(_contactDataOne);
+        _editContextTwo = new EditContext(_contactDataTwo);
     }
 
 
-    private void HandleSubmit() { }
+    private void HandleSubmitOne() { }
+    private void HandleSubmitTwo() { }
 
     
-    private async Task ResetEditContext()
+    private async Task ResetExampleOne()
     {
-        var announcement = new Announcement("Summary example has been reset.", AnnouncementType.Info, "Reset Example Button");
+        var announcement = new Announcement("Summary example one has been reset.", AnnouncementType.Info, "Reset example one button");
 
-        _contactData = new();
-        _editContext = new EditContext(_contactData);
+        _contactDataOne = new();
+        _editContextOne = new EditContext(_contactDataOne);
 
         await _liveRegionService.MakeAnnouncement(announcement);
 
-        await ResetButton.FocusAsync();
+        await ResetButtonOne.FocusAsync();
 
     }
+    private async Task ResetExampleTwo()
+    {
+        var announcement = new Announcement("Summary example two has been reset.", AnnouncementType.Info, "Reset example two button");
 
+        _contactDataTwo = new();
+        _editContextTwo = new EditContext(_contactDataTwo);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+
+        await ResetButtonTwo.FocusAsync();
+
+    }
     public class ContactDto
     {
         public string FirstName { get; set; }

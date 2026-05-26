@@ -264,7 +264,7 @@ public class InputSnippets
                                @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name"/>
 
                     <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                               @bind-Value="_contactData.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="familiy-name" />
+                               @bind-Value="_contactData.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
                 </div>
                 <div class="br-input-row">
 
@@ -342,7 +342,7 @@ public class InputSnippets
                                @bind-Value="_contactDataTwo.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name" />
 
                     <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                               @bind-Value="_contactDataTwo.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="familiy-name" />
+                               @bind-Value="_contactDataTwo.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
                 </div>
                 <div class="br-input-row">
 
