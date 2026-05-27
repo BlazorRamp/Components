@@ -111,14 +111,15 @@ internal class GlobalValues
 
 
     public const string Time_Input_Class                = "br-time-input";
-    public const string Time_Input_Label_Class          = $"{Text_Input_Class}__label";
-    public const string Time_Input_Hint_Class           = $"{Text_Input_Class}__hint";
-    public const string Time_Input_Error_Wrapper_Class  = $"{Text_Input_Class}__error-wrapper";
-    public const string Time_Input_Error_Class          = $"{Text_Input_Class}__error";
-    public const string Time_Input_Asterisk_Class       = $"{Text_Input_Class}__asterisk";
-    public const string Time_Input_Field_Class          = $"{Text_Input_Class}__field";
-    public const string Time_Input_Icon_Class           = $"{Text_Input_Class}__icon";
-    public const string Time_Input_State_Icon_Class     = $"{Text_Input_Class}__state-icon";
+    public const string Time_Input_Label_Class          = $"{Time_Input_Class}__label";
+    public const string Time_Input_Hint_Class           = $"{Time_Input_Class}__hint";
+    public const string Time_Input_Error_Wrapper_Class  = $"{Time_Input_Class}__error-wrapper";
+    public const string Time_Input_Error_Class          = $"{Time_Input_Class}__error";
+    public const string Time_Input_Asterisk_Class       = $"{Time_Input_Class}__asterisk";
+    public const string Time_Input_Field_Area_Class     = $"{Time_Input_Class}__field-area";
+    public const string Time_Input_Field_Class          = $"{Time_Input_Class}__field";
+    public const string Time_Input_Icon_Class           = $"{Time_Input_Class}__icon";
+    public const string Time_Input_State_Icon_Class     = $"{Time_Input_Class}__state-icon";
 
 
 

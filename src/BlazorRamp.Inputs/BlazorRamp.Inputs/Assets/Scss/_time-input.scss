@@ -10,7 +10,7 @@
     //I prefer just numbers/lines but needed this for RTL
 
     grid-template-areas:
-        "label      label   label" "hint       hint    hint" "icon       field   state" "errors     errors  errors";
+        "label      label   label" "hint       hint    hint" "icon       field-area   state" "errors     errors  errors";
     padding: var(--br-unit-space-3);
     background-color: var(--br-comp-input-pane-base-background);
     border-style: var(--br-comp-input-pane-base-border-style);
@@ -29,7 +29,7 @@
         outline-style: var(--br-comp-input-outline-style);
         outline-color: var(--br-comp-input-outline-colour);
 
-        .br-text-input__error-wrapper {
+        .br-time-input__error-wrapper {
             border-top: 1px solid var(--br-comp-all-outline-colour);
         }
     }
@@ -109,8 +109,27 @@
         }
     }
 
+    &__field-area {
+        grid-area: field-area;
+        display: flex;
+        width: 100%;
+
+        &[data-br-input-position="start"] {
+            justify-content: flex-start;
+        }
+
+        &[data-br-input-position="centre"] {
+            justify-content:center;
+        }
+
+        &[data-br-input-position="end"] {
+            justify-content: flex-end;
+        }
+    }
+
+
+
     &__field {
-        grid-area: field;
         appearance: none;
         min-width: 0;
         border: none;
@@ -164,17 +183,7 @@
         background-color: var(--br-comp-input-label-background);
     }
 
-    & > input[data-br-input-position="start"] {
-        text-align: start;
-    }
 
-    & > input[data-br-input-position="centre"] {
-        text-align: center;
-    }
-
-    & > input[data-br-input-position="end"] {
-        text-align: end;
-    }
 
     &__icon {
         .br-input-row & {
@@ -184,7 +193,7 @@
     }
 
     &__state-icon,
-    &__field {
+    &__field-area {
         .br-input-row & {
             align-self: end;
         }

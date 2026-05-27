@@ -1,6 +1,7 @@
 ﻿using BlazorRamp.Inputs.Common.Constants;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -11,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace BlazorRamp.Inputs.Components;
 
-public class TimeTypeInput : InputTypeBase<TimeOnly>
+public class TimeTypeInput<TValue> : InputTypeBase<TValue>
 {
 
 
     /// <summary>
     /// Gets or sets the text/data alignment in the input. Defaults to <see cref="DataPosition.Start"/>.
     /// </summary>
-    [Parameter] public DataPosition DataPosition { get; set; } = DataPosition.Centre;
+    [Parameter] public DataPosition DataPosition { get; set; } = DataPosition.End;
     /// <summary>
     /// Gets or sets the error message displayed when the input value cannot be parsed
     /// to TimeOnly. The message is prefixed with the field's
@@ -33,8 +34,13 @@ public class TimeTypeInput : InputTypeBase<TimeOnly>
     /// </summary>
     protected string TimeInputClasses { get; private set; } = String.Empty;
 
-
-
+    /// <summary>
+    /// Tracks the raw string value currently displayed in the input element, independent
+    /// of the parsed <see cref="InputBase{TValue}.CurrentValue"/>. Used to preserve
+    /// mid-entry display state such as trailing decimal points and formatted values.
+    /// </summary>
+    protected string? _stringValue = null;
+    private TValue? _lastParsedValue = default;
     /// <summary>
     /// Updates the text input CSS classes on each parameter change.
     /// </summary>
@@ -43,26 +49,41 @@ public class TimeTypeInput : InputTypeBase<TimeOnly>
         base.OnParametersSet();
         TimeInputClasses = GetInputClasses(base.AdditionalAttributes);
 
+        if (!Equals(CurrentValue, _lastParsedValue))
+        {
+            _lastParsedValue = CurrentValue;
+            _stringValue = CurrentValue is TimeOnly t ? t.ToString("HH:mm") : null;
+        }
+
     }
 
-    protected override bool TryParseValueFromString(string? value, out TimeOnly result, out string? validationErrorMessage)
+    protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string? validationErrorMessage)
     {
         validationErrorMessage = string.Empty;
 
         if (string.IsNullOrWhiteSpace(value) && base.IsNullableType)
         {
-            result = default;
+            result = default!;
             return true;
         }
 
-        if (TimeOnly.TryParseExact(value, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out result)) return true;
-           
+        if (TimeOnly.TryParseExact(value, "HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out TimeOnly parsed))
+        {
+            result = (TValue)(object)parsed;
+            return true;
+        }
 
+        result = default!;
         validationErrorMessage = string.Concat(base.LabelNameText.TrimEnd(':').Trim(), " - ", ParseErrorMessage);
         return false;
     }
-
-
+    protected void HandleOnChange(ChangeEventArgs e)
+    {
+        if (IsDisabled) return;
+        var value = e.Value?.ToString();
+        CurrentValueAsString = _stringValue = value;
+        _lastParsedValue = CurrentValue;
+    }
 
     /// <summary>
     /// Builds the CSS class string for the root element by combining the base time input
@@ -88,5 +109,6 @@ public class TimeTypeInput : InputTypeBase<TimeOnly>
     protected static IReadOnlyDictionary<string, object>? GetAttributes(IReadOnlyDictionary<string, object>? additionalAttributes)
 
         => additionalAttributes?.Where(kv => kv.Key != "class").ToDictionary();
+
 
 }

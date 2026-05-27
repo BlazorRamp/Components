@@ -1,4 +1,5 @@
-﻿@inherits TimeTypeInput
+﻿@typeparam TValue
+@inherits TimeTypeInput<TValue>
 
 
 <div class="@TimeInputClasses">
@@ -6,34 +7,37 @@
         @LabelNameText
         @if (Required)
         {
-            <span aria-hidden="true" class="@GlobalValues.Text_Input_Asterisk_Class"> *</span>
+            <span aria-hidden="true" class="@GlobalValues.Time_Input_Asterisk_Class"> *</span>
         }
     </label>
     @if (HintNormalised is not null)
     {
-        <span id="@HintTextID" class="@GlobalValues.Text_Input_Hint_Class">
+        <span id="@HintTextID" class="@GlobalValues.Time_Input_Hint_Class">
             @HintNormalised
         </span>
     }
 
     @if (false == String.IsNullOrWhiteSpace(SvgVariable))
     {
-        <span aria-hidden="true" class="@GlobalValues.Text_Input_Icon_Class" style="@SvgVariable"></span>
+        <span aria-hidden="true" class="@GlobalValues.Time_Input_Icon_Class" style="@SvgVariable"></span>
     }
     else
     {
         <span aria-hidden="true"></span>
     }
-    <input @ref="ControlReference" @attributes="@GetAttributes(AdditionalAttributes)" class="@GlobalValues.Time_Input_Field_Class" id="@InputID"
-           type="time"
-           aria-invalid="@(HasErrors ? "true" : null)"
-           aria-describedby="@(AriaDescribedByID)"
-           aria-required="@(Required ? "true" : null)"
-           aria-disabled="@(base.IsDisabled ? "true" : null)"
-           readonly="@(base.ReadOnly ? "readonly" : null)"
-           @bind-value:get="@CurrentValueAsString"
-           @bind-value:event="onchange"
-           data-br-input-position="@DataPosition.ToString().ToLower()" />
+    <div class="@GlobalValues.Time_Input_Field_Area_Class" data-br-input-position="@DataPosition.ToString().ToLower()">
+        <input @ref="ControlReference" @attributes="@GetAttributes(AdditionalAttributes)" class="@GlobalValues.Time_Input_Field_Class" id="@InputID"
+               type="time"
+               aria-invalid="@(HasErrors ? "true" : null)"
+               aria-describedby="@(AriaDescribedByID)"
+               aria-required="@(Required ? "true" : null)"
+               aria-disabled="@(base.IsDisabled ? "true" : null)"
+               readonly="@(base.ReadOnly ? "readonly" : null)"
+               value="@_stringValue"
+               @onchange="HandleOnChange" />
+               
+    </div>
+
 
     <span class="@GlobalValues.Time_Input_State_Icon_Class" data-br-invalid-state="@GetInvalidStateAttributeValue(base.InvalidState)" aria-hidden="true"></span>
 
