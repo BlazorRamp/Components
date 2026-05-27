@@ -21,13 +21,13 @@ Welcome to your new app.
 
     <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
-@*         <TextInput  autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Firstname" AriaDisabled="false" HintText="The name that you use on official documents"
-                   UpdateOnInput="true" SvgIcon="--svg-user-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" /> *@
-
+        <div class="br-input-row">
+            <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="My Time" @bind-Value="@_contactData.NullableTime" HintText="You need to add some time value."/>
+        </div>
 
          <div class="br-input-row"> 
             <RadioInputGroup class="br-col-xs-12 br-col-sm-6" @bind-Value="@_contactData.RadioButtonValue" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"
-                             LabelText="Your Gender" HintText="Please select on of the options" Orientation="Orientation.Vertical" AriaDisabled="true" SvgIcon="--svg-food-icon">
+                             LabelText="Your Gender" HintText="Please select on of the options" Orientation="Orientation.Horizontal" AriaDisabled="true" SvgIcon="--svg-food-icon">
                 <OptionValues>
                     <RadioInput LabelText="First item" Value="1" />
                     <RadioInput LabelText="Second item" Value="2" />
@@ -70,7 +70,9 @@ Welcome to your new app.
 
         <div class="br-input-row">
             <CheckboxInput class="br-col-xs-12 br-col-sm-6" HintText="You go a 50/50 chance of getting it right" @bind-Value="_contactData.IsAlive"
-                           ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"  SvgIcon="--svg-food-icon" AriaDisabled="true" />
+                           ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"  SvgIcon="--svg-food-icon" AriaDisabled="false" />
+            <TextInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.FamilyName" LabelText="Surname" HintText="The suname that you use on official documents"
+                       UpdateOnInput="true" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" TrimOnBlur="true" AriaDisabled="false" />
         </div>
 
         <div class="br-input-row">

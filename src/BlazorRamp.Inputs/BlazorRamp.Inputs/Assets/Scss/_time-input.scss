@@ -1,6 +1,6 @@
 ﻿@use "_functions" as *;
 
-.br-checkbox-input {
+.br-time-input {
     --_icon-size: 1em;
     --_br-svg-input-icon: none;
     width: 100%;
@@ -29,7 +29,7 @@
         outline-style: var(--br-comp-input-outline-style);
         outline-color: var(--br-comp-input-outline-colour);
 
-        .br-checkbox-input__error-wrapper {
+        .br-text-input__error-wrapper {
             border-top: 1px solid var(--br-comp-all-outline-colour);
         }
     }
@@ -37,11 +37,11 @@
     &:has(input[aria-disabled="true"]) {
         cursor: not-allowed;
 
-        .br-checkbox-input__field,
-        .br-checkbox-input__label,
-        .br-checkbox-input__hint,
-        .br-checkbox-input__icon,
-        .br-checkbox-input__state-icon {
+        .br-time-input__field,
+        .br-time-input__label,
+        .br-time-input__hint,
+        .br-time-input__icon,
+        .br-time-input__state-icon {
             cursor: not-allowed;
             opacity: var(--br-comp-input-disabled-opacity);
         }
@@ -103,6 +103,7 @@
 
         &[data-br-invalid-state="false"] {
 
+
             @include valid-state-icon;
             color: var(--br-comp-input-success-colour);
         }
@@ -110,28 +111,25 @@
 
     &__field {
         grid-area: field;
+        appearance: none;
         min-width: 0;
+        border: none;
         background-color: var(--br-comp-input-area-content-background);
         color: var(--br-comp-input-area-content-colour);
         font-family: var(--br-comp-input-area-content-font-family);
         font-size: var(--br-comp-input-area-content-font-size);
         font-weight: var(--br-comp-input-area-content-font-weight);
-        justify-self: start;
-        align-self: center;
-        width: 1.25rem;
-        height: 1.25rem;
-        accent-color: var(--br-unit-colour-primary);
-        cursor: pointer;
-        margin-block-end: var(--br-unit-space-2);
 
+        &:is([type="time"]) {
+            border: none;
+            outline: none;
+        }
 
-
-        &:focus,
-        &:focus-visible {
-            outline-offset: var(--br-comp-input-outline-offset);
-            outline-width: var(--br-comp-input-outline-width);
-            outline-style: var(--br-comp-input-outline-style);
-            outline-color: var(--br-comp-input-outline-colour);
+        &:is(:autofill, :-webkit-autofill) {
+            -webkit-background-clip: text; // prevents autofill colours reappearing on viewport resize/reflow
+            -webkit-box-shadow: 0 0 0 1000px var(--br-comp-input-area-content-background) inset !important;
+            -webkit-text-fill-color: var(--br-comp-input-area-content-colour) !important;
+            caret-color: var(--br-comp-input-area-content-colour);
         }
     }
 
@@ -141,14 +139,14 @@
         color: var(--br-comp-input-error-colour);
         min-height: var(--br-unit-space-5);
 
-        &:has(.br-checkbox-input__error:focus-visible) {
+        &:has(.br-time-input__error:focus-visible) {
             border-top: var(--br-unit-border-1) solid transparent;
             border-radius: var(--br-comp-input-pane-base-border-radius);
         }
     }
 
     &__error {
-        padding-block-start: var(--br-unit-space-3);
+        padding: var(--br-unit-space-2);
 
         &:focus-visible {
             border-radius: var(--br-comp-input-pane-base-border-radius);
@@ -167,15 +165,15 @@
     }
 
     & > input[data-br-input-position="start"] {
-        justify-self: start;
+        text-align: start;
     }
 
     & > input[data-br-input-position="centre"] {
-        justify-self: center;
+        text-align: center;
     }
 
     & > input[data-br-input-position="end"] {
-        justify-self: end;
+        text-align: end;
     }
 
     &__icon {

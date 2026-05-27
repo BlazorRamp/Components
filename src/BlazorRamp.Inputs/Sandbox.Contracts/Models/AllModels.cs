@@ -37,7 +37,7 @@ public record class ContactDto
     public int RadioButtonValue { get; set; } = default;
 
 
-
+    public TimeOnly NullableTime { get; set;  } = default!;
 
 
     public DateOnly DOB            { get; set; } = default!;

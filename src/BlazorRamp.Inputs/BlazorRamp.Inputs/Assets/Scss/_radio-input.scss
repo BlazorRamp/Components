@@ -4,6 +4,10 @@
     gap: var(--br-unit-space-3);
     align-items: center;
     cursor: pointer;
+    position: relative;
+    padding-block: 2px;
+
+    margin-bottom: calc(var(--br-unit-space-2) * -1);
 
     &__label {
         grid-area: label;
@@ -12,11 +16,23 @@
         color: var(--br-comp-input-label-color);
         background-color: var(--br-comp-input-label-background);
         cursor: pointer;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1; /* 2. The invisible bridge */
+        }
     }
 
     &__field {
         accent-color: var(--br-unit-colour-primary);
         cursor: pointer;
+        z-index: 1;
+        padding: 0;
 
         &:focus {
             border: none;
