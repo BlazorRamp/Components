@@ -15,6 +15,7 @@ namespace BlazorRamp.Inputs.Components;
 public class TimeTypeInput<TValue> : InputTypeBase<TValue>
 {
 
+    [Parameter] public bool EnableSeconds { get; set; } = false;
 
     /// <summary>
     /// Gets or sets the text/data alignment in the input. Defaults to <see cref="DataPosition.Start"/>.

@@ -108,7 +108,7 @@ const registerAriaDisabledHandlers = (inputElement: HTMLElement): void => {
 
     if (!inputElement) return;
 
-    if ((inputElement as HTMLInputElement).type === "checkbox") {
+    if ((inputElement as HTMLInputElement).type === "checkbox" || (inputElement as HTMLInputElement).type === "time") {
         inputElement.removeEventListener("click", preventClickAction);
         inputElement.addEventListener("click", preventClickAction);
     }

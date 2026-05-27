@@ -6,8 +6,7 @@
     cursor: pointer;
     position: relative;
     padding-block: 2px;
-
-    margin-bottom: calc(var(--br-unit-space-2) * -1);
+    margin-bottom: calc(var(--br-unit-space-1) * -1);
 
     &__label {
         grid-area: label;

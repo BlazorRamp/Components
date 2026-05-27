@@ -37,6 +37,7 @@
     &:has(input[aria-disabled="true"]) {
         cursor: not-allowed;
 
+        .br-time-input__field::-webkit-calendar-picker-indicator,
         .br-time-input__field,
         .br-time-input__label,
         .br-time-input__hint,
@@ -45,6 +46,7 @@
             cursor: not-allowed;
             opacity: var(--br-comp-input-disabled-opacity);
         }
+
     }
 
     ul {
@@ -119,7 +121,7 @@
         }
 
         &[data-br-input-position="centre"] {
-            justify-content:center;
+            justify-content: center;
         }
 
         &[data-br-input-position="end"] {
@@ -139,6 +141,7 @@
         font-size: var(--br-comp-input-area-content-font-size);
         font-weight: var(--br-comp-input-area-content-font-weight);
 
+
         &:is([type="time"]) {
             border: none;
             outline: none;
@@ -149,6 +152,10 @@
             -webkit-box-shadow: 0 0 0 1000px var(--br-comp-input-area-content-background) inset !important;
             -webkit-text-fill-color: var(--br-comp-input-area-content-colour) !important;
             caret-color: var(--br-comp-input-area-content-colour);
+        }
+
+        &::-webkit-calendar-picker-indicator {
+                cursor: pointer;
         }
     }
 

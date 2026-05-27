@@ -3,7 +3,7 @@
 
 
 <div class="@TimeInputClasses">
-    <label class="@GlobalValues.Text_Input_Label_Class" for="@InputID" @onmousedown:preventDefault>
+    <label class="@GlobalValues.Time_Input_Label_Class" for="@InputID" @onmousedown:preventDefault>
         @LabelNameText
         @if (Required)
         {
@@ -28,6 +28,7 @@
     <div class="@GlobalValues.Time_Input_Field_Area_Class" data-br-input-position="@DataPosition.ToString().ToLower()">
         <input @ref="ControlReference" @attributes="@GetAttributes(AdditionalAttributes)" class="@GlobalValues.Time_Input_Field_Class" id="@InputID"
                type="time"
+               step="@(EnableSeconds ? "1" : null)"
                aria-invalid="@(HasErrors ? "true" : null)"
                aria-describedby="@(AriaDescribedByID)"
                aria-required="@(Required ? "true" : null)"

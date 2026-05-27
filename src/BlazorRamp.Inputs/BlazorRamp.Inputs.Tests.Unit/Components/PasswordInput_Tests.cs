@@ -284,7 +284,7 @@ public class PasswordInput_Tests
 
 
         [Fact]
-        public async Task Should_capture_unmatched_attributes_and_add_class_to_the_text_input_class_list()
+        public async Task Should_capture_unmatched_attributes_and_add_class_to_the_password_input_class_list()
         {
             await using var context = new BunitContext();
             var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);

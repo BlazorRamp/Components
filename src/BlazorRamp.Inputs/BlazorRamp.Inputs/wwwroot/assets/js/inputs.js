@@ -79,7 +79,7 @@ const setSummaryFocus = (elementId) => {
 const registerAriaDisabledHandlers = (inputElement) => {
     if (!inputElement)
         return;
-    if (inputElement.type === "checkbox") {
+    if (inputElement.type === "checkbox" || inputElement.type === "time") {
         inputElement.removeEventListener("click", preventClickAction);
         inputElement.addEventListener("click", preventClickAction);
     }

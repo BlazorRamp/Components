@@ -5,22 +5,27 @@ using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BlazorRamp.Inputs.Tests.Unit.Components;
 
-public class CheckboxInput_Tests
+public class TimeInput_Tests
 {
-
     internal class TestModel
     {
-        [Range(typeof(bool), "true", "true", ErrorMessage = "Must be checked.")]
-        public bool BoolValue { get; set; } = false;
+        [Range(typeof(TimeOnly), "09:00", "17:00", ErrorMessage = "Time must be between 9 AM and 5 PM.")]
+        public TimeOnly TimeValue          { get; set; } = TimeOnly.FromTimeSpan(new TimeSpan(13, 0, 0));
+        public TimeOnly? NullableTimeValue { get; set; } = null;
     }
 
-    public static (IRenderedComponent<CheckboxInput> Component, EditContext EditContext) CreateCheckboxInput(
+    public static (IRenderedComponent<TimeInput<TimeOnly>> Component, EditContext EditContext) CreateTimeInput(
     BunitContext context,
-    Action<ComponentParameterCollectionBuilder<CheckboxInput>>? parameters = null)
+    Action<ComponentParameterCollectionBuilder<TimeInput<TimeOnly>>>? parameters = null)
     {
         var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);
         moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, _ => true).SetVoidResult();
@@ -31,21 +36,20 @@ public class CheckboxInput_Tests
 
         editContext.EnableDataAnnotationsValidation(context.Services);
 
-        var component = context.Render<CheckboxInput>(
+        var component = context.Render<TimeInput<TimeOnly>>(
             builder =>
             {
                 builder
                     .AddCascadingValue(editContext)
-                    .Add(p => p.Value, model.BoolValue)
-                    .Add(p => p.ValueChanged, EventCallback.Factory.Create<bool>(context, v => model.BoolValue = v))
-                    .Add(p => p.ValueExpression, () => model.BoolValue);
+                    .Add(p => p.Value, model.TimeValue)
+                    .Add(p => p.ValueChanged, EventCallback.Factory.Create<TimeOnly>(context, v => model.TimeValue = v))
+                    .Add(p => p.ValueExpression, () => model.TimeValue);
 
                 parameters?.Invoke(builder);
             });
 
         return (component, editContext);
     }
-
 
     public class Parameters
     {
@@ -57,9 +61,9 @@ public class CheckboxInput_Tests
         {
             using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.DataPosition, dataPosition));
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.DataPosition, dataPosition));
 
-            var dataAttribute = inputComponent.Find("input").GetAttribute("data-br-input-position");
+            var dataAttribute = inputComponent.Find($"div.{GlobalValues.Time_Input_Field_Area_Class}").GetAttribute("data-br-input-position");
 
             dataAttribute.Should().Be(dataPosition.ToString().ToLower());
         }
@@ -71,7 +75,7 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.Required, required));
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.Required, required));
 
             var ariaAttribute = inputComponent.Find("input").GetAttribute("aria-required");
 
@@ -88,7 +92,7 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.ReadOnly, readOnly));
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.ReadOnly, readOnly));
 
             var readOnlyAttribute = inputComponent.Find("input").GetAttribute("readonly");
 
@@ -105,7 +109,7 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.AriaDisabled, disabled));
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.AriaDisabled, disabled));
 
             var disabledAttribute = inputComponent.Find("input").GetAttribute("aria-disabled");
 
@@ -120,8 +124,8 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _)   = CreateCheckboxInput(context, p => p.Add(x => x.AriaDisabled, true).Add(x => x.ReadOnly, true));
-            var readonlyAttribute     = inputComponent.Find("input").GetAttribute("readonly");
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.AriaDisabled, true).Add(x => x.ReadOnly, true));
+            var readonlyAttribute = inputComponent.Find("input").GetAttribute("readonly");
             var ariaDisabledAttribute = inputComponent.Find("input").GetAttribute("aria-disabled");
 
 
@@ -142,7 +146,7 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.ControlID, controlID));
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.ControlID, controlID));
 
             var idAttribute = inputComponent.Find("input").GetAttribute("id");
 
@@ -161,15 +165,14 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.LabelText, labelText).Add(x => x.Required,false));
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.LabelText, labelText).Add(x => x.Required, false));
 
             var labelContent = inputComponent.Find("label").TextContent;
 
-            if (String.IsNullOrWhiteSpace(labelText)) labelContent.Should().Be("BoolValue");
+            if (String.IsNullOrWhiteSpace(labelText)) labelContent.Should().Be("TimeValue");
 
             if (!String.IsNullOrWhiteSpace(labelText)) labelContent.Should().Be(labelText);
         }
-
 
 
         [Theory]
@@ -181,11 +184,11 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.LabelText, labelText).Add(x => x.Required, true));
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.LabelText, labelText).Add(x => x.Required, true));
 
             var labelContent = inputComponent.Find("label").TextContent;
 
-            if (String.IsNullOrWhiteSpace(labelText)) labelContent.Should().Be("BoolValue *");
+            if (String.IsNullOrWhiteSpace(labelText)) labelContent.Should().Be("TimeValue *");
 
             if (!String.IsNullOrWhiteSpace(labelText)) labelContent.Should().Be(labelText + " *");
         }
@@ -200,9 +203,9 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.HintText, hintText));
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.HintText, hintText));
 
-            var hints = inputComponent.FindAll($".{GlobalValues.Checkbox_Input_Hint_Class}");
+            var hints = inputComponent.FindAll($".{GlobalValues.Time_Input_Hint_Class}");
 
             if (String.IsNullOrWhiteSpace(hintText)) hints.Should().BeEmpty();
 
@@ -222,17 +225,17 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint));
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint));
 
             var input = inputComponent.Find("input");//tried editContext.Validate but that did not get the markup to render 
 
-            input.Change(true);//need to change from default first for it to be modified.
-            input.Change(false);
+            input.Change("18:00");//need to change from default 13:00 to a failing time of 18:00
 
             inputComponent.WaitForAssertion(() =>
             {
+   
                 // Use FindAll first to debug if it exists at all
-                var errorDiv = inputComponent.Find($".{GlobalValues.Checkbox_Input_Error_Class}");
+                var errorDiv = inputComponent.Find($".{GlobalValues.Time_Input_Error_Class}");
 
                 using (new AssertionScope())
                 {
@@ -246,13 +249,13 @@ public class CheckboxInput_Tests
 
 
 
+
         [Fact]
         public async Task Should_capture_unmatched_attributes_and_apply_all_to_the_input_element_excluding_class()
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.AddUnmatched("class", "test").AddUnmatched("style", "color:red;"));
-
+            var (inputComponent, _) = CreateTimeInput(context, p => p.AddUnmatched("class", "test").AddUnmatched("style", "color:red;"));
 
             using (new AssertionScope())
             {
@@ -268,11 +271,11 @@ public class CheckboxInput_Tests
 
 
         [Fact]
-        public async Task Should_capture_unmatched_attributes_and_add_class_to_the_checkbox_input_class_list()
+        public async Task Should_capture_unmatched_attributes_and_add_class_to_the_time_input_class_list()
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.AddUnmatched("class", "test").AddUnmatched("style", "color:red;"));
+            var (inputComponent, _) = CreateTimeInput(context, p => p.AddUnmatched("class", "test").AddUnmatched("style", "color:red;"));
 
             using (new AssertionScope())
             {
@@ -286,22 +289,21 @@ public class CheckboxInput_Tests
             }
         }
 
+
         [Fact]
         public async Task Should_be_able_to_set_the_error_label_used_for_tabbable_error_regions()
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint).Add(x => x.ErrorsLabel, "My Errors"));
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint).Add(x => x.ErrorsLabel, "My Errors"));
 
             var input = inputComponent.Find("input");//tried editContext.Validate but that did not get the markup to render 
 
-            input.Change(true);//need to change from default first for it to be modified.
-            input.Change(false);
-
+            input.Change("18:00");//need to change from default 13:00 to a failing time of 18:00
             inputComponent.WaitForAssertion(() =>
             {
                 // Use FindAll first to debug if it exists at all
-                var errorDiv = inputComponent.Find($"div.{GlobalValues.Checkbox_Input_Error_Class}");
+                var errorDiv = inputComponent.Find($"div.{GlobalValues.Time_Input_Error_Class}");
 
                 using (new AssertionScope())
                 {
@@ -312,6 +314,7 @@ public class CheckboxInput_Tests
         }
 
 
+
         [Theory]
         [InlineData("--svg-icon")]
         [InlineData(null)]
@@ -320,22 +323,24 @@ public class CheckboxInput_Tests
         public async Task Should_be_able_to_set_the_optional_svg_icon_parameter_which_must_start_with_a_double_dash(string? svgIconVariable)
         {
             await using var context = new BunitContext();
-            var (inputComponent, _) = CreateCheckboxInput(context, p => p.Add(x => x.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint).Add(x => x.SvgIcon, svgIconVariable));
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint).Add(x => x.SvgIcon, svgIconVariable));
 
             if (String.IsNullOrWhiteSpace(svgIconVariable))
             {
-                inputComponent.FindAll($"span.{GlobalValues.Checkbox_Input_Icon_Class}").Should().BeEmpty();
+                inputComponent.FindAll($"span.{GlobalValues.Time_Input_Icon_Class}").Should().BeEmpty();
                 return;
             }
 
             if (svgIconVariable.StartsWith("--"))
             {
-                inputComponent.Find($"span.{GlobalValues.Checkbox_Input_Icon_Class}").GetAttribute("style").Should().NotBeEmpty();
+                inputComponent.Find($"span.{GlobalValues.Time_Input_Icon_Class}").GetAttribute("style").Should().NotBeEmpty();
                 return;
             }
 
-            inputComponent.FindAll($"span.{GlobalValues.Checkbox_Input_Icon_Class}").Should().BeEmpty();
+            inputComponent.FindAll($"span.{GlobalValues.Time_Input_Icon_Class}").Should().BeEmpty();
         }
+
+
     }
 
     public class Properties()
@@ -345,7 +350,7 @@ public class CheckboxInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateCheckboxInput(context);
+            var (inputComponent, _) = CreateTimeInput(context);
 
             inputComponent.Instance.ControlReference.Should().NotBeNull();
         }
@@ -353,7 +358,6 @@ public class CheckboxInput_Tests
 
 
 }
-
 
 
 

@@ -22,7 +22,8 @@ Welcome to your new app.
     <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
         <div class="br-input-row">
-            <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="My Time" @bind-Value="@_contactData.NullableTime" HintText="You need to add some time value." DataPosition="DataPosition.Centre"/>
+            <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="My Time" @bind-Value="@_contactData.NullableTime" HintText="You need to add some time value." 
+           EnableSeconds="true" DataPosition="DataPosition.Centre" ReadOnly="true"/>
         </div>
 
          <div class="br-input-row"> 
@@ -34,7 +35,7 @@ Welcome to your new app.
                     <RadioInput LabelText="Third item" Value="3" />
                 </OptionValues>
             </RadioInputGroup>
-            <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Firstname" AriaDisabled="false" HintText="The name that you use on official documents"
+            <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Firstname" AriaDisabled="true" HintText="The name that you use on official documents"
                        UpdateOnInput="true" SvgIcon="--svg-user-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
 
             <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Firstname" AriaDisabled="false" HintText="The name that you use on official documents"
@@ -44,7 +45,7 @@ Welcome to your new app.
 
         <div class="br-input-row">
             <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" DataPosition="DataPosition.Start" SvgIcon="--svg-user-icon"
-                          @bind-Value="_contactData.Age" UpdateOnInput="true" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" Format="F2" />
+                          @bind-Value="_contactData.Age" UpdateOnInput="true" AriaDisabled="true" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" Format="F2" />
 
             <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Nullable Salary" DataPosition="DataPosition.End" SvgIcon="--svg-food-icon"
                           @bind-Value="_contactData.Salary" UpdateOnInput="true" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" Format="F2" AriaDisabled="false" />
@@ -62,7 +63,7 @@ Welcome to your new app.
         <div class="br-input-row">
 
             <PasswordInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Password"
-                           @bind-Value="_contactData.Password" UpdateOnInput="true" AriaDisabled="false" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
+                           @bind-Value="_contactData.Password" UpdateOnInput="true" AriaDisabled="true" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
 
             <PasswordInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Password Confirmation"
                            @bind-Value="_contactData.ConfirmPassword" UpdateOnInput="false" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" AriaDisabled="false" />
@@ -70,14 +71,14 @@ Welcome to your new app.
 
         <div class="br-input-row">
             <CheckboxInput class="br-col-xs-12 br-col-sm-6" HintText="You go a 50/50 chance of getting it right" @bind-Value="_contactData.IsAlive"
-                           ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"  SvgIcon="--svg-food-icon" AriaDisabled="false" />
+                           ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"  SvgIcon="--svg-food-icon" AriaDisabled="true" />
             <TextInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.FamilyName" LabelText="Surname" HintText="The suname that you use on official documents"
                        UpdateOnInput="true" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" TrimOnBlur="true" AriaDisabled="false" />
         </div>
 
         <div class="br-input-row">
             <SelectInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.ContactID" LabelText="Select Me" HintText="Select something" DataPosition="DataPosition.Start" 
-                         ErrorsLabel="Errors" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" AriaDisabled="false">
+                         ErrorsLabel="Errors" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" AriaDisabled="true">
                        <OptionValues>
                             <option value="0">Not Entered</option>
                             <option value="1">Option 1</option>

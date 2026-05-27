@@ -267,7 +267,7 @@ public class SelectInput_Tests
 
 
         [Fact]
-        public async Task Should_capture_unmatched_attributes_and_add_class_to_the_text_input_class_list()
+        public async Task Should_capture_unmatched_attributes_and_add_class_to_the_select_input_class_list()
         {
             await using var context = new BunitContext();
 
