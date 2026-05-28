@@ -40,13 +40,13 @@
         .br-time-input__field::-webkit-calendar-picker-indicator,
         .br-time-input__field,
         .br-time-input__label,
+        .br-time-input__segment,
         .br-time-input__hint,
         .br-time-input__icon,
         .br-time-input__state-icon {
             cursor: not-allowed;
             opacity: var(--br-comp-input-disabled-opacity);
         }
-
     }
 
     ul {
@@ -129,33 +129,45 @@
         }
     }
 
+    &__segment-wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--br-unit-space-3);
+        align-items: end;
+        margin-block-end: var(--br-unit-space-2);
+    }
 
+    &__segment {
+        display: flex;
+        flex-direction: column;
+        width: 8ch;
+        justify-content: center;
+    }
+
+    &__segment-label {
+        font-size: var(--br-comp-input-label-font-size);
+        font-weight: var(--br-comp-input-label-font-weight);
+        color: var(--br-comp-input-label-color);
+        background-color: var(--br-comp-input-label-background);
+    }
 
     &__field {
         appearance: none;
-        min-width: 0;
-        border: none;
+        border: var(--br-unit-border-1) solid var(--br-comp-all-divider-colour);
         background-color: var(--br-comp-input-area-content-background);
         color: var(--br-comp-input-area-content-colour);
         font-family: var(--br-comp-input-area-content-font-family);
         font-size: var(--br-comp-input-area-content-font-size);
         font-weight: var(--br-comp-input-area-content-font-weight);
+        text-align: center;
 
-
-        &:is([type="time"]) {
-            border: none;
-            outline: none;
-        }
 
         &:is(:autofill, :-webkit-autofill) {
             -webkit-background-clip: text; // prevents autofill colours reappearing on viewport resize/reflow
             -webkit-box-shadow: 0 0 0 1000px var(--br-comp-input-area-content-background) inset !important;
             -webkit-text-fill-color: var(--br-comp-input-area-content-colour) !important;
             caret-color: var(--br-comp-input-area-content-colour);
-        }
-
-        &::-webkit-calendar-picker-indicator {
-                cursor: pointer;
         }
     }
 

@@ -23,7 +23,10 @@ Welcome to your new app.
 
         <div class="br-input-row">
             <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="My Time" @bind-Value="@_contactData.NullableTime" HintText="You need to add some time value." 
-           EnableSeconds="true" DataPosition="DataPosition.Centre" ReadOnly="false"/>
+                       EnableSeconds="true" DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" />
+
+            <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" DataPosition="DataPosition.Start" SvgIcon="--svg-user-icon"
+                          @bind-Value="_contactData.Age" UpdateOnInput="true" ReadOnly="true" AriaDisabled="true" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" Format="F2" />
         </div>
 
          <div class="br-input-row"> 

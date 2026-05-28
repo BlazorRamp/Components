@@ -16,6 +16,12 @@ internal class GlobalValues
     public const string JS_Inputs_Register_Numeric_Handlers   = "registerNumericHandlers";
     public const string JS_Inputs_Unregister_Numeric_Handlers = "unregisterNumericHandlers";
 
+    public const string JS_Inputs_Register_Time_Segment_Handlers   = "registerTimeSegmentHandlers";
+    public const string JS_Inputs_Unregister_Time_Segment_Handlers = "unregisterTimeSegmentHandlers";
+
+    public const string JS_Inputs_Register_Focus_Out_Callback   = "registerElementFocusOutHandler";
+    public const string JS_Inputs_Unregister_Focus_Out_Callback = "unregisterElementFocusOutHandler";
+
     public const string JS_Inputs_Set_Value         = "setInputValue";
     public const string JS_Inputs_Set_Input_Focus   = "setInputFocus";
     public const string JS_Inputs_Set_Summary_Focus  = "setSummaryFocus";
@@ -117,10 +123,18 @@ internal class GlobalValues
     public const string Time_Input_Error_Class          = $"{Time_Input_Class}__error";
     public const string Time_Input_Asterisk_Class       = $"{Time_Input_Class}__asterisk";
     public const string Time_Input_Field_Area_Class     = $"{Time_Input_Class}__field-area";
+
+    public const string Time_Input_Segment_Class         = $"{Time_Input_Class}__segment";
+    public const string Time_Input_Segment_Wrapper_Class = $"{Time_Input_Class}__segment-wrapper";
+    public const string Time_Input_Segment_Label_Class   = $"{Time_Input_Class}__segment-label";
+
     public const string Time_Input_Field_Class          = $"{Time_Input_Class}__field";
     public const string Time_Input_Icon_Class           = $"{Time_Input_Class}__icon";
     public const string Time_Input_State_Icon_Class     = $"{Time_Input_Class}__state-icon";
 
+    public const string Time_Input_Hours_Text   = "Hours";
+    public const string Time_Input_Minutes_Text = "Minutes";
+    public const string Time_Input_Seconds_Text = "Seconds";
 
 
     public const string Input_Errors_Summary_Class = "br-input-errors-summary";

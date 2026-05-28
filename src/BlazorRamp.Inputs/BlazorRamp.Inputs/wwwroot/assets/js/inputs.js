@@ -1,3 +1,4 @@
+const elementFocusOutMap = new WeakMap();
 const getDecimalSeparator = () => Intl.NumberFormat(navigator.language).format(1.1).charAt(1);
 const preventClickAction = (e) => e.preventDefault();
 const preventAction = (e) => e.preventDefault();
@@ -25,6 +26,19 @@ const decimalHandler = (e) => {
     const parts = cleaned.split(separator);
     if (parts.length > 2)
         cleaned = parts[0] + separator + parts.slice(1).join('');
+    if (input.value !== cleaned)
+        input.value = cleaned;
+};
+const timeSegmentHandler = (e, min, max) => {
+    const input = e.target;
+    let cleaned = input.value.replace(/[^0-9]/g, '');
+    if (cleaned.length > 0) {
+        const numValue = parseInt(cleaned, 10);
+        if (numValue > max)
+            cleaned = max.toString().padStart(2, '0');
+        if (numValue < min)
+            cleaned = min.toString().padStart(2, '0');
+    }
     if (input.value !== cleaned)
         input.value = cleaned;
 };
@@ -79,6 +93,18 @@ const setSummaryFocus = (elementId) => {
 const registerAriaDisabledHandlers = (inputElement) => {
     if (!inputElement)
         return;
+    if (inputElement.getAttribute('role') === 'group') {
+        const inputs = inputElement.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.removeEventListener("keydown", ariaDisabledKeyHandler);
+            input.addEventListener("keydown", ariaDisabledKeyHandler);
+            input.removeEventListener("paste", preventAction);
+            input.addEventListener("paste", preventAction);
+            input.removeEventListener("cut", preventAction);
+            input.addEventListener("cut", preventAction);
+        });
+        return;
+    }
     if (inputElement.type === "checkbox" || inputElement.type === "time") {
         inputElement.removeEventListener("click", preventClickAction);
         inputElement.addEventListener("click", preventClickAction);
@@ -93,6 +119,16 @@ const registerAriaDisabledHandlers = (inputElement) => {
 const unregisterAriaDisabledHandlers = (inputElement) => {
     if (!inputElement)
         return;
+    if (inputElement.getAttribute('role') === 'group') {
+        const inputs = inputElement.querySelectorAll('input');
+        console.log("in unreg handler");
+        inputs.forEach(input => {
+            input.removeEventListener("keydown", ariaDisabledKeyHandler);
+            input.removeEventListener("paste", preventAction);
+            input.removeEventListener("cut", preventAction);
+        });
+        return;
+    }
     inputElement.removeEventListener("keydown", ariaDisabledKeyHandler);
     inputElement.removeEventListener("cut", preventAction);
     inputElement.removeEventListener("paste", preventAction);
@@ -141,5 +177,41 @@ const unregisterSelectReadOnlyDisabledHandlers = (inputElement) => {
     inputElement.removeEventListener("mousedown", preventAction);
     inputElement.removeEventListener("keydown", selectReadOnlyKeyHandler);
 };
-export { registerAriaDisabledHandlers, unregisterAriaDisabledHandlers, registerNumericHandlers, unregisterNumericHandlers, setInputValue, setInputFocus, setSummaryFocus, registerReadOnlyHandlers, unregisterReadOnlyHandlers, registerSelectReadOnlyDisabledHandlers, unregisterSelectReadOnlyDisabledHandlers };
+const registerTimeSegmentHandlers = (hoursElement, minutesElement, secondsElement) => {
+    if (!hoursElement || !minutesElement)
+        return;
+    hoursElement.addEventListener("input", (e) => timeSegmentHandler(e, 0, 23));
+    minutesElement.addEventListener("input", (e) => timeSegmentHandler(e, 0, 59));
+    if (secondsElement)
+        secondsElement.addEventListener("input", (e) => timeSegmentHandler(e, 0, 59));
+};
+const unregisterTimeSegmentHandlers = (hoursElement, minutesElement, secondsElement) => {
+    if (!hoursElement || !minutesElement)
+        return;
+    hoursElement.removeEventListener("input", (e) => timeSegmentHandler(e, 0, 23));
+    minutesElement.removeEventListener("input", (e) => timeSegmentHandler(e, 0, 59));
+    if (secondsElement)
+        secondsElement.removeEventListener("input", (e) => timeSegmentHandler(e, 0, 59));
+};
+const registerElementFocusOutHandler = (element, dotNetRef, callBackName) => {
+    if (!element)
+        return;
+    const handler = (e) => {
+        if (element.contains(e.relatedTarget))
+            return;
+        dotNetRef.invokeMethodAsync(callBackName);
+    };
+    elementFocusOutMap.set(element, handler);
+    element.addEventListener("focusout", handler);
+};
+const unregisterElementFocusOutHandler = (element) => {
+    if (!element)
+        return;
+    const handler = elementFocusOutMap.get(element);
+    if (handler) {
+        element.removeEventListener("focusout", handler);
+        elementFocusOutMap.delete(element);
+    }
+};
+export { registerAriaDisabledHandlers, unregisterAriaDisabledHandlers, registerNumericHandlers, unregisterNumericHandlers, setInputValue, setInputFocus, setSummaryFocus, registerReadOnlyHandlers, unregisterReadOnlyHandlers, registerSelectReadOnlyDisabledHandlers, unregisterSelectReadOnlyDisabledHandlers, registerTimeSegmentHandlers, unregisterTimeSegmentHandlers, registerElementFocusOutHandler, unregisterElementFocusOutHandler };
 //# sourceMappingURL=inputs.js.map

@@ -30,6 +30,9 @@ public class TimeInput_Tests
         var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);
         moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, _ => true).SetVoidResult();
         moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Readonly_Handlers, _ => true).SetVoidResult();
+        moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Time_Segment_Handlers, _ => true).SetVoidResult();
+        moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Focus_Out_Callback, _ => true).SetVoidResult();
+
 
         var model = new TestModel();
         var editContext = new EditContext(model);
@@ -77,7 +80,7 @@ public class TimeInput_Tests
 
             var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.Required, required));
 
-            var ariaAttribute = inputComponent.Find("input").GetAttribute("aria-required");
+            var ariaAttribute = inputComponent.Find("div").GetAttribute("aria-required");
 
             if (required) ariaAttribute.Should().Be("true");
 
@@ -148,7 +151,7 @@ public class TimeInput_Tests
 
             var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.ControlID, controlID));
 
-            var idAttribute = inputComponent.Find("input").GetAttribute("id");
+            var idAttribute = inputComponent.Find("div").GetAttribute("id");
 
             if (String.IsNullOrWhiteSpace(controlID)) Guid.Parse(idAttribute!).Should().NotBeEmpty();
 
@@ -167,7 +170,7 @@ public class TimeInput_Tests
 
             var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.LabelText, labelText).Add(x => x.Required, false));
 
-            var labelContent = inputComponent.Find("label").TextContent;
+            var labelContent = inputComponent.Find($"span.{GlobalValues.Time_Input_Label_Class}").TextContent;
 
             if (String.IsNullOrWhiteSpace(labelText)) labelContent.Should().Be("TimeValue");
 
@@ -186,7 +189,7 @@ public class TimeInput_Tests
 
             var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.LabelText, labelText).Add(x => x.Required, true));
 
-            var labelContent = inputComponent.Find("label").TextContent;
+            var labelContent = inputComponent.Find($"span.{GlobalValues.Time_Input_Label_Class}").TextContent;
 
             if (String.IsNullOrWhiteSpace(labelText)) labelContent.Should().Be("TimeValue *");
 
@@ -225,24 +228,50 @@ public class TimeInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint));
+            var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Readonly_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Time_Segment_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Focus_Out_Callback, _ => true).SetVoidResult();
 
-            var input = inputComponent.Find("input");//tried editContext.Validate but that did not get the markup to render 
 
-            input.Change("18:00");//need to change from default 13:00 to a failing time of 18:00
+            var model = new TestModel { TimeValue = new TimeOnly(18, 0, 0) };
+            var editContext = new EditContext(model);
 
-            inputComponent.WaitForAssertion(() =>
+            editContext.EnableDataAnnotationsValidation(context.Services);
+
+            var component = context.Render<TimeInput<TimeOnly>>(
+                builder =>
+                {
+                    builder
+                        .AddCascadingValue(editContext)
+                        .Add(p => p.Value, model.TimeValue)
+                        .Add(p => p.ValueChanged, EventCallback.Factory.Create<TimeOnly>(context, v => model.TimeValue = v))
+                        .Add(p => p.ValueExpression, () => model.TimeValue)
+                        .Add(p => p.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint)
+                        .Add(p => p.ErrorsLabel, "My Errors");
+
+                });
+
+            await component.InvokeAsync(() =>
+            {
+                editContext.NotifyFieldChanged(new FieldIdentifier(model, nameof(model.TimeValue)));
+                editContext.Validate();
+            });
+
+            component.WaitForAssertion(() =>
             {
    
                 // Use FindAll first to debug if it exists at all
-                var errorDiv = inputComponent.Find($".{GlobalValues.Time_Input_Error_Class}");
+                var errorDiv = component.Find($".{GlobalValues.Time_Input_Error_Class}");
 
                 using (new AssertionScope())
                 {
                     errorDiv.GetAttribute("tabindex").Should().Be("0");
                     errorDiv.GetAttribute("role").Should().Be("region");
 
-                    input.GetAttribute("aria-invalid").Should().Be("true");
+                    component.Find("div").GetAttribute("aria-invalid").Should().Be("true");
+                   
                 }
             });
         }
@@ -261,10 +290,14 @@ public class TimeInput_Tests
             {
                 inputComponent.Instance.AdditionalAttributes.Should().ContainKey("style").WhoseValue.Should().Be("color:red;");
 
-                var inputElement = inputComponent.Find("input");
+                var inputElement = inputComponent.Find("div");
 
                 inputElement.GetAttribute("style").Should().Be("color:red;");
-                inputElement.ClassList.Should().NotContain("test");
+
+                // the get attributes is used twice, once for the class the other for attribues so we should only have one test class.
+                inputElement.ClassList.Where(c => c.Contains("test")).Should().HaveCount(1);
+                inputElement.ClassList.Should().Contain(GlobalValues.Time_Input_Class);
+
 
             }
         }
@@ -275,16 +308,14 @@ public class TimeInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateTimeInput(context, p => p.AddUnmatched("class", "test").AddUnmatched("style", "color:red;"));
+            var (inputComponent, _) = CreateTimeInput(context, p => p.AddUnmatched("class", "test"));
 
             using (new AssertionScope())
             {
                 inputComponent.Instance.AdditionalAttributes.Should().ContainKey("class").WhoseValue.Should().Be("test");
 
-                var textInputElement = inputComponent.Find("div");
-
-                textInputElement.GetAttribute("style").Should().BeNull();
-                textInputElement.ClassList.Should().Contain("test");
+                var parentElement = inputComponent.Find("div");
+                parentElement.ClassList.Should().Contain("test");
 
             }
         }
@@ -295,19 +326,45 @@ public class TimeInput_Tests
         {
             await using var context = new BunitContext();
 
-            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint).Add(x => x.ErrorsLabel, "My Errors"));
+            var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Readonly_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Time_Segment_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Focus_Out_Callback, _ => true).SetVoidResult();
 
-            var input = inputComponent.Find("input");//tried editContext.Validate but that did not get the markup to render 
 
-            input.Change("18:00");//need to change from default 13:00 to a failing time of 18:00
-            inputComponent.WaitForAssertion(() =>
+            var model = new TestModel { TimeValue = new TimeOnly(18, 0, 0) };
+            var editContext = new EditContext(model);
+
+            editContext.EnableDataAnnotationsValidation(context.Services);
+
+            var component = context.Render<TimeInput<TimeOnly>>(
+                builder =>
+                {
+                    builder
+                        .AddCascadingValue(editContext)
+                        .Add(p => p.Value, model.TimeValue)
+                        .Add(p => p.ValueChanged, EventCallback.Factory.Create<TimeOnly>(context, v => model.TimeValue = v))
+                        .Add(p => p.ValueExpression, () => model.TimeValue)
+                        .Add(p => p.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint)
+                        .Add(p => p.ErrorsLabel, "My Errors");
+
+                });
+
+            await component.InvokeAsync(() =>
+            {
+                editContext.NotifyFieldChanged(new FieldIdentifier(model, nameof(model.TimeValue)));
+                editContext.Validate();
+            });
+
+            component.WaitForAssertion(() =>
             {
                 // Use FindAll first to debug if it exists at all
-                var errorDiv = inputComponent.Find($"div.{GlobalValues.Time_Input_Error_Class}");
+                var errorDiv = component.Find($"div.{GlobalValues.Time_Input_Error_Class}");
 
                 using (new AssertionScope())
                 {
-                    inputComponent.Instance.ErrorsLabel.Should().Be("My Errors");
+                    component.Instance.ErrorsLabel.Should().Be("My Errors");
                     errorDiv.GetAttribute("aria-label").Should().Contain("My Errors");
                 }
             });
