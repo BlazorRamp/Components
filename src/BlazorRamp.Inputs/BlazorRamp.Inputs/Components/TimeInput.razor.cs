@@ -45,6 +45,9 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>
     /// <summary>
     /// Updates the text input CSS classes on each parameter change.
     /// </summary>
+    /// 
+
+
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
@@ -53,10 +56,21 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>
         if (!Equals(CurrentValue, _lastParsedValue))
         {
             _lastParsedValue = CurrentValue;
-            _stringValue = CurrentValue is TimeOnly t ? t.ToString("HH:mm") : null;
+            _stringValue = CurrentValue is TimeOnly t ? t.ToString("HH:mm:ss") : null;
         }
 
     }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        ParseErrorMessage = string.IsNullOrWhiteSpace(ParseErrorMessage) ? GlobalValues.Input_Parse_time_Error_Message : ParseErrorMessage.Trim();
+
+        _stringValue = CurrentValue is TimeOnly t ? t.ToString(EnableSeconds ? "HH:mm:ss" : "HH:mm") : null;
+
+        _lastParsedValue = CurrentValue;
+    }
+
+
 
     protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string? validationErrorMessage)
     {
