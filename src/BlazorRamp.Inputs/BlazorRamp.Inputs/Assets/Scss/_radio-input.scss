@@ -8,6 +8,8 @@
     padding-block: 2px;
     margin-bottom: calc(var(--br-unit-space-1) * -1);
 
+   
+
     &__label {
         grid-area: label;
         font-size: var(--br-comp-input-label-font-size);
@@ -32,14 +34,14 @@
         cursor: pointer;
         z-index: 1;
         padding: 0;
-
+        margin-block:0;
         &:focus {
             border: none;
             outline: none;
         }
     }
 
-    &:has(input:focus-visible) {
+    &:has(input:focus) {
         border-radius: 2px;
         outline-offset: 2px; //var(--br-comp-input-outline-offset);
         outline-width: var(--br-comp-input-outline-width);
@@ -47,11 +49,4 @@
         outline-color: var(--br-comp-input-outline-colour);
     }
 
-    &:has(input[data-br-focused]) {
-        border-radius: 2px;
-        outline-offset: 2px; //var(--br-comp-input-outline-offset);
-        outline-width: var(--br-comp-input-outline-width);
-        outline-style: var(--br-comp-input-outline-style);
-        outline-color: var(--br-comp-input-outline-colour);
-    }
 }

@@ -2,13 +2,13 @@
 @inherits TimeTypeInput<TValue>
 
 
-<div @ref="ControlReference"
+<div @ref="ControlReference" data-br-component="TimeInput"
      @attributes="@GetAttributes(AdditionalAttributes)"
     id="@InputID"
     class="@TimeInputClasses" 
     role="group" 
     aria-labelledby="@ControlLabelledbyID"
-    aria-invalid="true"
+     aria-invalid="@(HasErrors ? "true" : null)"
     aria-describedby="@(AriaDescribedByID)"
     aria-required="@(Required ? "true" : null)">
     
@@ -51,7 +51,7 @@
                        @bind-value:get="HoursValue"
                        @bind-value:event="oninput"
                        @bind-value:set="HandleHoursSet"
-                       @onfocus="() => HoursValue = StripLeadingZero(HoursValue)"       />
+                       @onfocus="() => HoursValue = RemoveLeadingZero(HoursValue)"       />
                        
             </div>
 
@@ -63,11 +63,12 @@
                        readonly="@(base.ReadOnly ? "readonly" : null)"
                        aria-disabled="@(base.IsDisabled ? "true" : null)"
                         maxlength="2"
+
                        @ref="MinutesReference"
                        @bind-value:get="MinutesValue"
                        @bind-value:event="oninput"
                        @bind-value:set="HandleMinutesSet" 
-                       @onfocus="() => MinutesValue = StripLeadingZero(MinutesValue)" />
+                       @onfocus="() => MinutesValue = RemoveLeadingZero(MinutesValue)" />
             </div>
 
             @if (EnableSeconds)
@@ -84,7 +85,7 @@
                            @bind-value:get="SecondsValue"
                            @bind-value:event="oninput"
                            @bind-value:set="HandleSecondsSet"
-                           @onfocus="() => SecondsValue = StripLeadingZero(SecondsValue)" />
+                           @onfocus="() => SecondsValue = RemoveLeadingZero(SecondsValue)" />
                 </div>
             }
         </div>

@@ -23,7 +23,12 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     [Parameter] public string MinutesLabelText { get; set; } = GlobalValues.Time_Input_Minutes_Text;
     [Parameter] public string SecondsLabelText { get; set; } = GlobalValues.Time_Input_Seconds_Text;
     [Parameter] public bool   EnableSeconds    { get; set; } = false;
-
+    /// <summary>
+    /// Gets or sets whether the input value is updated on every keystroke via the
+    /// <c>oninput</c> event. When <c>false</c> the value updates on <c>onchange</c>
+    /// (i.e. when the field loses focus). Defaults to <c>false</c>.
+    /// </summary>
+    [Parameter] public bool UpdateOnInput { get; set; } = false;
 
     /// <summary>
     /// Gets or sets the text/data alignment in the input. Defaults to <see cref="DataPosition.Start"/>.
@@ -68,6 +73,8 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     /// </summary>
     protected string? _stringValue = null;
     private TValue? _lastParsedValue = default;
+
+    private bool _firstRender = true;
     [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
 
 
@@ -91,7 +98,7 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         {
             _lastParsedValue = CurrentValue;
 
-            SetDisplayValues();
+            SetDisplayValues(_firstRender);
         }
 
     }
@@ -110,7 +117,7 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
 
         _lastParsedValue = CurrentValue;
 
-        SetDisplayValues();
+        SetDisplayValues(_firstRender);
     }
 
     /// <summary>
@@ -122,6 +129,7 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         await base.OnAfterRenderAsync(firstRender);
         if (firstRender)
         {
+            _firstRender = false;
             _jSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Inputs_File_Path);
 
             if (_jSModule is not null)
@@ -130,6 +138,8 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
                 await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Register_Time_Segment_Handlers, HoursReference, MinutesReference, SecondsReference);
                 await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Register_Focus_Out_Callback,ControlReference, _dotNetObjectRef, nameof(this.HandleComponentFocusOut));
             }
+
+
         }
     }
     protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string? validationErrorMessage)
@@ -141,8 +151,8 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
             result = default!;
             return true;
         }
-
-        if (TimeOnly.TryParseExact(value, "HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out TimeOnly parsed))
+        
+        if (TimeOnly.TryParseExact(value, "H:m:s", CultureInfo.InvariantCulture, DateTimeStyles.None, out TimeOnly parsed))
         {
             result = (TValue)(object)parsed;
             return true;
@@ -153,13 +163,18 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         return false;
     }
 
-    private void SetDisplayValues()
+    private void SetDisplayValues(bool displayTwoDigit = false)
     {
         if (CurrentValue is TimeOnly timeOnly)
         {
-            HoursValue = timeOnly.Hour.ToString("D2");
-            MinutesValue = timeOnly.Minute.ToString("D2");
-            SecondsValue = EnableSeconds ? timeOnly.Second.ToString("D2") : string.Empty;
+            HoursValue   = displayTwoDigit ? timeOnly.Hour.ToString("D2") : timeOnly.Hour.ToString();
+            MinutesValue = displayTwoDigit ? timeOnly.Minute.ToString("D2") : timeOnly.Minute.ToString();
+            SecondsValue = EnableSeconds ? (displayTwoDigit ? timeOnly.Second.ToString("D2") : timeOnly.Second.ToString()) : string.Empty;
+
+            //HoursValue = timeOnly.Hour.ToString("D2");
+            //MinutesValue = timeOnly.Minute.ToString("D2");
+            //SecondsValue = EnableSeconds ? timeOnly.Second.ToString("D2") : string.Empty;
+
         }
         else
         {
@@ -172,27 +187,37 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     {
         if (IsDisabled) return;
         HoursValue = value ?? string.Empty;
+
+        if (UpdateOnInput) CurrentValueAsString = EnableSeconds ? $"{HoursValue}:{MinutesValue}:{SecondsValue}" : $"{HoursValue}:{MinutesValue}:00";
     }
 
     protected void HandleMinutesSet(string? value)
     {
         if (IsDisabled) return;
         MinutesValue = value ?? string.Empty;
+
+        if (UpdateOnInput) CurrentValueAsString = EnableSeconds ? $"{HoursValue}:{MinutesValue}:{SecondsValue}" : $"{HoursValue}:{MinutesValue}:00";
     }
 
     protected void HandleSecondsSet(string? value)
     {
         if (IsDisabled) return;
         SecondsValue = value ?? string.Empty;
+
+        if (UpdateOnInput) CurrentValueAsString = EnableSeconds ? $"{HoursValue}:{MinutesValue}:{SecondsValue}" : $"{HoursValue}:{MinutesValue}:00";
     }
 
-    internal string? StripLeadingZero(string? value)
+    internal string? RemoveLeadingZero(string? value)
     {
-        if (string.IsNullOrWhiteSpace(value)) return value;
-        if (!int.TryParse(value, out int parsed)) return value;
-        return parsed == 0 ? string.Empty : parsed.ToString();
+        if (base.ReadOnly || base.IsDisabled || string.IsNullOrWhiteSpace(value)) return value;
+
+        return int.TryParse(value, out int parsed) ? parsed.ToString() : value;
     }
 
+    //private string CreateFormattedString(string? hours, string? minutes, string? seconds)
+    //{
+    //    var hoursValue = String.IsNullOrWhiteSpace(hours) ? y : hours;   
+    //}
 
     /// <summary>
     /// Builds the CSS class string for the root element by combining the base time input

@@ -37,7 +37,6 @@
     &:has(input[aria-disabled="true"]) {
         cursor: not-allowed;
 
-        .br-time-input__field::-webkit-calendar-picker-indicator,
         .br-time-input__field,
         .br-time-input__label,
         .br-time-input__segment,
@@ -154,6 +153,7 @@
 
     &__field {
         appearance: none;
+        border-radius: 2px;
         border: var(--br-unit-border-1) solid var(--br-comp-all-divider-colour);
         background-color: var(--br-comp-input-area-content-background);
         color: var(--br-comp-input-area-content-colour);
@@ -168,6 +168,13 @@
             -webkit-box-shadow: 0 0 0 1000px var(--br-comp-input-area-content-background) inset !important;
             -webkit-text-fill-color: var(--br-comp-input-area-content-colour) !important;
             caret-color: var(--br-comp-input-area-content-colour);
+        }
+
+        &:focus {
+            outline-offset: 2px;
+            outline-width: var(--br-comp-input-outline-width);
+            outline-style: var(--br-comp-input-outline-style);
+            outline-color: var(--br-comp-input-outline-colour);
         }
     }
 

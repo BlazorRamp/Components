@@ -19,16 +19,17 @@ Welcome to your new app.
 
     <BlazorValidated TEntity="ContactDto" BoxedValidators="_contactBoxedValidators" AddDisplayName="true" DeferFieldValidation="false" />
 
+
     <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
         <div class="br-input-row">
-            <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="My Time" @bind-Value="@_contactData.NullableTimeValue" HintText="You need to add some time value." 
-                       EnableSeconds="true" DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" />
+            <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="My Time" @bind-Value="@_contactData.TimeValue" HintText="You need to add some time value." 
+                       EnableSeconds="true" DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" UpdateOnInput="true" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"/>
 
             <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" DataPosition="DataPosition.Start" SvgIcon="--svg-user-icon"
                           @bind-Value="_contactData.Age" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" Format="F2" />
         </div>
-@* 
+
          <div class="br-input-row"> 
             <RadioInputGroup class="br-col-xs-12 br-col-sm-6" @bind-Value="@_contactData.RadioButtonValue" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"
                              LabelText="Your Gender" HintText="Please select on of the options" Orientation="Orientation.Horizontal" AriaDisabled="true" SvgIcon="--svg-food-icon">
@@ -75,7 +76,7 @@ Welcome to your new app.
 
         <div class="br-input-row">
             <CheckboxInput class="br-col-xs-12 br-col-sm-6" HintText="You go a 50/50 chance of getting it right" @bind-Value="_contactData.IsAlive"
-                           ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"  SvgIcon="--svg-food-icon" AriaDisabled="true" />
+                           ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"  SvgIcon="--svg-food-icon" AriaDisabled="false" />
             <TextInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.FamilyName" LabelText="Surname" HintText="The suname that you use on official documents"
                        UpdateOnInput="true" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" TrimOnBlur="true" AriaDisabled="false" />
         </div>
@@ -110,7 +111,7 @@ Welcome to your new app.
                 index++;
             }
 
-        </div> *@
+        </div>
 
     </InputErrorsSummary>
 
@@ -134,8 +135,8 @@ Welcome to your new app.
         _editContext = new EditContext(_contactData);
         _contactData.ContactID = 1;
         _contactData.FamilyName = null;
-        _contactData.NullableTimeValue = TimeOnly.FromTimeSpan(new TimeSpan(13, 30, 30)); ;
-        _contactData.TimeValue = TimeOnly.FromTimeSpan(new TimeSpan(13, 30, 30));
+        _contactData.NullableTimeValue = null;//TimeOnly.FromTimeSpan(new TimeSpan(13, 30, 30)); ;
+        //_contactData.TimeValue = TimeOnly.FromTimeSpan(new TimeSpan(13, 30, 30));
         _contactData.Age = 26;
         _contactData.NullableSalary = null;
         _contactData.Salary = 12.25M;

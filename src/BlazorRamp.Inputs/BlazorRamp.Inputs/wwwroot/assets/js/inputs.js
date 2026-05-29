@@ -1,4 +1,5 @@
 const elementFocusOutMap = new WeakMap();
+const TIME_INPUT_COMPONENT_NAME = "TimeInput";
 const getDecimalSeparator = () => Intl.NumberFormat(navigator.language).format(1.1).charAt(1);
 const preventClickAction = (e) => e.preventDefault();
 const preventAction = (e) => e.preventDefault();
@@ -50,10 +51,16 @@ const setInputFocus = (elementId) => {
         block: "nearest",
         inline: "nearest"
     });
+    if (element.getAttribute("data-br-component") === TIME_INPUT_COMPONENT_NAME) {
+        const input = element.querySelector("input");
+        if (input) {
+            input.focus({ preventScroll: true });
+            return;
+        }
+    }
     if (element.getAttribute('role') === 'radiogroup') {
         const firstRadio = element.querySelector('input[type="radio"]');
         if (firstRadio) {
-            firstRadio.setAttribute("data-br-focused", "");
             firstRadio.focus({ preventScroll: true });
             firstRadio.addEventListener("blur", () => firstRadio.removeAttribute("data-br-focused"), { once: true });
         }

@@ -1,5 +1,7 @@
 ﻿const elementFocusOutMap = new WeakMap<HTMLElement, (e: FocusEvent) => void>();
 
+const TIME_INPUT_COMPONENT_NAME = "TimeInput";
+
 const getDecimalSeparator = (): string => Intl.NumberFormat(navigator.language).format(1.1).charAt(1);
 
 const preventClickAction = (e: MouseEvent): void => e.preventDefault();
@@ -75,10 +77,19 @@ const setInputFocus = (elementId: string): void => {
         inline: "nearest"
     });
 
+    if (element.getAttribute("data-br-component") === TIME_INPUT_COMPONENT_NAME){
+
+        const input = element.querySelector("input") as HTMLInputElement;
+
+        if (input) {
+            input.focus({ preventScroll: true });
+            return;
+        }
+    }
+
     if (element.getAttribute('role') === 'radiogroup') {
         const firstRadio = element.querySelector('input[type="radio"]') as HTMLInputElement;
         if (firstRadio) {
-            firstRadio.setAttribute("data-br-focused", "");
             firstRadio.focus({ preventScroll: true });
             firstRadio.addEventListener("blur", () => firstRadio.removeAttribute("data-br-focused"), { once: true });
         }
