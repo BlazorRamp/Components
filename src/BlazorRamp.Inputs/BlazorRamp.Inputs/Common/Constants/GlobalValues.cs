@@ -31,6 +31,7 @@ internal class GlobalValues
 
     public const string Input_Parse_time_Error_Message = "Invalid time.";
 
+    public const string Input_Time_DataType_Error_Message = "Only the data type TimeOnly or nullable TimeOnl is supported";
 
 
     public const string Input_Missing_Label_Text_Error_Message = "Label Text cannot be null, empty or whitespace";

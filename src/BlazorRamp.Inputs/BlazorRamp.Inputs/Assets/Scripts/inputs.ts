@@ -259,6 +259,7 @@ const registerElementFocusOutHandler = (element: HTMLElement, dotNetRef: any, ca
     if (!element) return;
 
     const handler = (e: FocusEvent): void => {
+      
         if (element.contains(e.relatedTarget as Node)) return;
         dotNetRef.invokeMethodAsync(callBackName);
     };

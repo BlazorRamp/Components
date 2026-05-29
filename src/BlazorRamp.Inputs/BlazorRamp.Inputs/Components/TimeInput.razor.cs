@@ -114,8 +114,9 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         MinutesText = String.IsNullOrWhiteSpace(MinutesLabelText) ? GlobalValues.Time_Input_Minutes_Text : MinutesLabelText.Trim();
         SecondsText = String.IsNullOrWhiteSpace(SecondsLabelText) ? GlobalValues.Time_Input_Seconds_Text : SecondsLabelText.Trim();
 
+        if (base.DataType != typeof(TimeOnly)) throw new ArgumentException(GlobalValues.Input_Time_DataType_Error_Message);
 
-        _stringValue = CurrentValue is TimeOnly t ? t.ToString(EnableSeconds ? "HH:mm:ss" : "HH:mm") : null;
+        _stringValue = CurrentValue is TimeOnly timeOnly ? timeOnly.ToString(EnableSeconds ? "HH:mm:ss" : "HH:mm") : null;
 
         _lastParsedValue = CurrentValue;
     }
