@@ -22,13 +22,13 @@ Welcome to your new app.
     <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
         <div class="br-input-row">
-            <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="My Time" @bind-Value="@_contactData.NullableTime" HintText="You need to add some time value." 
+            <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="My Time" @bind-Value="@_contactData.NullableTimeValue" HintText="You need to add some time value." 
                        EnableSeconds="true" DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" />
 
             <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" DataPosition="DataPosition.Start" SvgIcon="--svg-user-icon"
                           @bind-Value="_contactData.Age" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" Format="F2" />
         </div>
-
+@* 
          <div class="br-input-row"> 
             <RadioInputGroup class="br-col-xs-12 br-col-sm-6" @bind-Value="@_contactData.RadioButtonValue" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"
                              LabelText="Your Gender" HintText="Please select on of the options" Orientation="Orientation.Horizontal" AriaDisabled="true" SvgIcon="--svg-food-icon">
@@ -47,8 +47,9 @@ Welcome to your new app.
           </div>
 
         <div class="br-input-row">
-            <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" DataPosition="DataPosition.Start" SvgIcon="--svg-user-icon"
-                          @bind-Value="_contactData.Age" UpdateOnInput="true" AriaDisabled="true" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" Format="F2" />
+
+            <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Salary" DataPosition="DataPosition.End" SvgIcon="--svg-food-icon"
+                          @bind-Value="_contactData.NullableSalary" UpdateOnInput="true" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" Format="F2" AriaDisabled="false" />
 
             <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" LabelText="Nullable Salary" DataPosition="DataPosition.End" SvgIcon="--svg-food-icon"
                           @bind-Value="_contactData.Salary" UpdateOnInput="true" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" Format="F2" AriaDisabled="false" />
@@ -109,7 +110,7 @@ Welcome to your new app.
                 index++;
             }
 
-        </div>
+        </div> *@
 
     </InputErrorsSummary>
 
@@ -133,7 +134,11 @@ Welcome to your new app.
         _editContext = new EditContext(_contactData);
         _contactData.ContactID = 1;
         _contactData.FamilyName = null;
-        _contactData.NullableTime = TimeOnly.FromTimeSpan(new TimeSpan(13, 30, 30));
+        _contactData.NullableTimeValue = TimeOnly.FromTimeSpan(new TimeSpan(13, 30, 30)); ;
+        _contactData.TimeValue = TimeOnly.FromTimeSpan(new TimeSpan(13, 30, 30));
+        _contactData.Age = 26;
+        _contactData.NullableSalary = null;
+        _contactData.Salary = 12.25M;
 
         var builder = BlazorValidationBuilder<ContactDto>.Create()
                         .ForMember(c => c.Title, ContactValidators.TitleValidator)                      //< using a ready built title member validator
@@ -142,10 +147,13 @@ Welcome to your new app.
                         .ForMember(c => c.Password, ContactValidators.PasswordValidator)            // << This validator (function) combines two functions a regex and a separate length validator
                         .ForNullableMember(c => c.NullableAge, ContactValidators.NullableAgeValidator)
                         .ForMember(c => c.Age, ContactValidators.AgeValidator)
-                        .ForNullableMember(c => c.Salary, ContactValidators.SalaryValidator)
+                        .ForNullableMember(c => c.NullableSalary, ContactValidators.SalaryValidator)
+                        .ForMember(c => c.Salary, ContactValidators.SalaryValidator)
                         .ForMember(c => c.IsAlive, ContactValidators.IsAliveValidator)
-                        .ForMember(c => c.ContactID, ContactValidators.ContactIDVallidator)
-                        .ForMember(c => c.RadioButtonValue, ContactValidators.RadioGoupValue)
+                        .ForMember(c => c.ContactID, ContactValidators.ContactIDValidator)
+                        .ForMember(c => c.RadioButtonValue, ContactValidators.RadioGroupValue)
+                        .ForMember(c => c.TimeValue, ContactValidators.TimeOnlyValidator)
+                        .ForNullableMember(c => c.NullableTimeValue, ContactValidators.TimeOnlyValidator)
          // .ForComparisonWithValue(c => c.DOB, ContactValidators.DOBValidator)
          // .ForComparisonWithMember(c => c.CompareDOB, ContactValidators.CompareDOBValidator)
          // .ForNestedMember(c => c.Address, AddressValidators.GetBoxedAddressValidators())// << Getting all the address validators from a pre-created builder.

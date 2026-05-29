@@ -49,8 +49,9 @@
                        maxlength="2"
                        @ref="HoursReference"
                        @bind-value:get="HoursValue"
-                       @bind-value:event="onchange"
-                       @bind-value:set="HandleHoursSet" />
+                       @bind-value:event="oninput"
+                       @bind-value:set="HandleHoursSet"
+                       @onfocus="() => HoursValue = StripLeadingZero(HoursValue)"       />
                        
             </div>
 
@@ -64,8 +65,9 @@
                         maxlength="2"
                        @ref="MinutesReference"
                        @bind-value:get="MinutesValue"
-                       @bind-value:event="onchange"
-                       @bind-value:set="HandleMinutesSet" />
+                       @bind-value:event="oninput"
+                       @bind-value:set="HandleMinutesSet" 
+                       @onfocus="() => MinutesValue = StripLeadingZero(MinutesValue)" />
             </div>
 
             @if (EnableSeconds)
@@ -80,8 +82,9 @@
                            maxlength="2"
                            @ref="SecondsReference"
                            @bind-value:get="SecondsValue"
-                           @bind-value:event="onchange"
-                           @bind-value:set="HandleSecondsSet" />
+                           @bind-value:event="oninput"
+                           @bind-value:set="HandleSecondsSet"
+                           @onfocus="() => SecondsValue = StripLeadingZero(SecondsValue)" />
                 </div>
             }
         </div>

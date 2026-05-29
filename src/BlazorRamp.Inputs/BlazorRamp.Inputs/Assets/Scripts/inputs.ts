@@ -46,17 +46,11 @@ const decimalHandler = (e: Event): void => {
     if (input.value !== cleaned) input.value = cleaned;
 };
 
-const timeSegmentHandler = (e: Event, min: number, max: number): void => {
+const timeSegmentHandler = (e:Event): void => {
 
     const input = e.target as HTMLInputElement;
 
     let cleaned = input.value.replace(/[^0-9]/g, '');
-
-    if (cleaned.length > 0) {
-        const numValue = parseInt(cleaned, 10);
-        if (numValue > max) cleaned = max.toString().padStart(2, '0');
-        if (numValue < min) cleaned = min.toString().padStart(2, '0');
-    }
     if (input.value !== cleaned) input.value = cleaned;
 };
 
@@ -234,26 +228,27 @@ const unregisterSelectReadOnlyDisabledHandlers = (inputElement: HTMLElement): vo
 
 };
 
-
 const registerTimeSegmentHandlers = (hoursElement: HTMLElement, minutesElement: HTMLElement, secondsElement: HTMLElement | null): void => {
-
     if (!hoursElement || !minutesElement) return;
 
-    hoursElement.addEventListener("input", (e) => timeSegmentHandler(e, 0, 23));
-    minutesElement.addEventListener("input", (e) => timeSegmentHandler(e, 0, 59));
+    hoursElement.addEventListener("input", timeSegmentHandler);
+    minutesElement.addEventListener("input", timeSegmentHandler);
 
-    if (secondsElement) secondsElement.addEventListener("input", (e) => timeSegmentHandler(e, 0, 59));
+    if (secondsElement) {
+        secondsElement.addEventListener("input", timeSegmentHandler);
+    }
 };
 
 const unregisterTimeSegmentHandlers = (hoursElement: HTMLElement, minutesElement: HTMLElement, secondsElement: HTMLElement | null): void => {
-
     if (!hoursElement || !minutesElement) return;
-    hoursElement.removeEventListener("input", (e) => timeSegmentHandler(e, 0, 23));
-    minutesElement.removeEventListener("input", (e) => timeSegmentHandler(e, 0, 59));
 
-    if (secondsElement) secondsElement.removeEventListener("input", (e) => timeSegmentHandler(e, 0, 59));
+    hoursElement.removeEventListener("input", timeSegmentHandler);
+    minutesElement.removeEventListener("input", timeSegmentHandler);
+
+    if (secondsElement) {
+        secondsElement.removeEventListener("input", timeSegmentHandler);
+    }
 };
-
 const registerElementFocusOutHandler = (element: HTMLElement, dotNetRef: any, callBackName: string): void => {
 
     if (!element) return;

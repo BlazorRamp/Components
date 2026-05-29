@@ -132,8 +132,8 @@
                         .ForMember(c => c.Age, ContactValidators.AgeValidator)
                         .ForNullableMember(c => c.Salary, ContactValidators.SalaryValidator)
                         .ForMember(c => c.IsAlive, ContactValidators.IsAliveValidator)
-                        .ForMember(c => c.ContactID, ContactValidators.ContactIDVallidator)
-                        .ForNullableMember(c => c.RadioButtonValue, ContactValidators.RadioGoupValue)
+                        .ForMember(c => c.ContactID, ContactValidators.ContactIDValidator)
+                        .ForNullableMember(c => c.RadioButtonValue, ContactValidators.RadioGroupValue)
          // .ForComparisonWithValue(c => c.DOB, ContactValidators.DOBValidator)
          // .ForComparisonWithMember(c => c.CompareDOB, ContactValidators.CompareDOBValidator)
          // .ForNestedMember(c => c.Address, AddressValidators.GetBoxedAddressValidators())// << Getting all the address validators from a pre-created builder.

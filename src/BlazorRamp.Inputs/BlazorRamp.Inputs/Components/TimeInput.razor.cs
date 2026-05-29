@@ -6,6 +6,7 @@ using Microsoft.Extensions.Primitives;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
@@ -66,7 +67,7 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     /// mid-entry display state such as trailing decimal points and formatted values.
     /// </summary>
     protected string? _stringValue = null;
-
+    private TValue? _lastParsedValue = default;
     [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
 
 
@@ -74,7 +75,7 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
 
     private IJSObjectReference? _jSModule = null;
 
-    private TValue? _lastParsedValue = default;
+
     /// <summary>
     /// Updates the text input CSS classes on each parameter change.
     /// </summary>
@@ -90,18 +91,7 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         {
             _lastParsedValue = CurrentValue;
 
-            if (CurrentValue is TimeOnly timeOnly)
-            {
-                HoursValue   = timeOnly.Hour.ToString("D2");
-                MinutesValue = timeOnly.Minute.ToString("D2");
-                SecondsValue = EnableSeconds ? timeOnly.Second.ToString("D2") : string.Empty;
-            }
-            else
-            {
-                HoursValue = string.Empty;
-                MinutesValue = string.Empty;
-                SecondsValue = string.Empty;
-            }
+            SetDisplayValues();
         }
 
     }
@@ -119,6 +109,8 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         _stringValue = CurrentValue is TimeOnly timeOnly ? timeOnly.ToString(EnableSeconds ? "HH:mm:ss" : "HH:mm") : null;
 
         _lastParsedValue = CurrentValue;
+
+        SetDisplayValues();
     }
 
     /// <summary>
@@ -161,7 +153,21 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         return false;
     }
 
-
+    private void SetDisplayValues()
+    {
+        if (CurrentValue is TimeOnly timeOnly)
+        {
+            HoursValue = timeOnly.Hour.ToString("D2");
+            MinutesValue = timeOnly.Minute.ToString("D2");
+            SecondsValue = EnableSeconds ? timeOnly.Second.ToString("D2") : string.Empty;
+        }
+        else
+        {
+            HoursValue = string.Empty;
+            MinutesValue = string.Empty;
+            SecondsValue = string.Empty;
+        }
+    }
     protected void HandleHoursSet(string? value)
     {
         if (IsDisabled) return;
@@ -178,6 +184,13 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     {
         if (IsDisabled) return;
         SecondsValue = value ?? string.Empty;
+    }
+
+    internal string? StripLeadingZero(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value)) return value;
+        if (!int.TryParse(value, out int parsed)) return value;
+        return parsed == 0 ? string.Empty : parsed.ToString();
     }
 
 
@@ -212,32 +225,40 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     {
         if (IsDisabled) return;
 
-        // if all empty, set to default
         if (string.IsNullOrWhiteSpace(HoursValue) &&
             string.IsNullOrWhiteSpace(MinutesValue) &&
-            string.IsNullOrWhiteSpace(SecondsValue))
+            (string.IsNullOrWhiteSpace(SecondsValue) || !EnableSeconds))
         {
-            CurrentValue = default;
-            _lastParsedValue = default;
+            if (base.IsNullableType)
+            {
+                CurrentValueAsString = null;
+                CurrentValue = default;
+                _lastParsedValue = default;
+                await InvokeAsync(StateHasChanged);
+                return;
+            }
+
+            // non-nullable - treat as midnight
+            HoursValue = "00";
+            MinutesValue = "00";
+            if (EnableSeconds) SecondsValue = "00";
+            CurrentValueAsString = "00:00:00";
+            _lastParsedValue = CurrentValue;
             await InvokeAsync(StateHasChanged);
             return;
         }
 
-        var hours = int.TryParse(HoursValue, out int h) ? h : 0;
-        var minutes = int.TryParse(MinutesValue, out int m) ? m : 0;
-        var seconds = EnableSeconds && int.TryParse(SecondsValue, out int s) ? s : 0;
+        HoursValue = string.IsNullOrWhiteSpace(HoursValue) ? string.Empty : HoursValue.PadLeft(2, '0');
+        MinutesValue = string.IsNullOrWhiteSpace(MinutesValue) ? string.Empty : MinutesValue.PadLeft(2, '0');
 
-        // pad segments
-        HoursValue = hours.ToString("D2");
-        MinutesValue = minutes.ToString("D2");
-        if (EnableSeconds) SecondsValue = seconds.ToString("D2");
+        if (EnableSeconds)
+            SecondsValue = string.IsNullOrWhiteSpace(SecondsValue) ? string.Empty : SecondsValue.PadLeft(2, '0');
 
         CurrentValueAsString = EnableSeconds
             ? $"{HoursValue}:{MinutesValue}:{SecondsValue}"
-            : $"{HoursValue}:{MinutesValue}";
+            : $"{HoursValue}:{MinutesValue}:00";
 
         _lastParsedValue = CurrentValue;
-
         await InvokeAsync(StateHasChanged);
     }
 

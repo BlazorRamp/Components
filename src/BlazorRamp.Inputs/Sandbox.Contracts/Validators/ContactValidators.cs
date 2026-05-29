@@ -26,10 +26,10 @@ public static class ContactValidators
 
     public static MemberValidator<bool> IsAliveValidator { get; }
 
-    public static MemberValidator<int> RadioGoupValue { get; }
+    public static MemberValidator<int> RadioGroupValue { get; }
 
-
-    public static MemberValidator<int> ContactIDVallidator { get; }
+    public static MemberValidator<TimeOnly> TimeOnlyValidator { get; }
+    public static MemberValidator<int> ContactIDValidator { get; }
 
     /*
         * All of these validator are good for multiple things. Validating individual values, used in the Validated.Core's ValidationBuilder
@@ -60,10 +60,13 @@ public static class ContactValidators
         IsAliveValidator = MemberValidators.CreateCompareToValidator<bool>(true, CompareType.EqualTo, "IsAlive", "Is Alive", "You should be alive.");
 
 
-        ContactIDVallidator = MemberValidators.CreatePredicateValidator<int>(x => x > 0, "Contact ID", "Contact ID", "Must be in the list of optiosn");
+        ContactIDValidator = MemberValidators.CreatePredicateValidator<int>(x => x > 0, "Contact ID", "Contact ID", "Must be in the list of options");
 
 
-        RadioGoupValue = MemberValidators.CreatePredicateValidator<int>(x => x == 1 && x < 4, "RadioButtonValue", "Radio Button Value", "Required, you must select an option");
+        RadioGroupValue = MemberValidators.CreatePredicateValidator<int>(x => x == 1 && x < 4, "RadioButtonValue", "Radio Button Value", "Required, you must select an option");
 
+        //TimeOnlyValidator = MemberValidators.CreateRangeValidator<TimeOnly>(TimeOnly.FromTimeSpan(new TimeSpan(10, 10, 10)), TimeOnly.FromTimeSpan(new TimeSpan(23, 59, 59)), "TimeValue", "Time Value", "Needs to be over 10 seconds past 10 past 10"); ;// MemberValidators.CreatePredicateValidator<TimeOnly>(x => x.Hour > 10 && x.Minute > 10 & x.Second > 10, "TimeValue", "Time Value", "Needs to be over 10 seconds past 10 past 10");
+
+        TimeOnlyValidator = MemberValidators.CreatePredicateValidator<TimeOnly>(x => x.Hour > 9, "TimeValue", "Time Value", "Needs to be over 10 seconds past 10 past 10"); ;// MemberValidators.CreatePredicateValidator<TimeOnly>(x => x.Hour > 10 && x.Minute > 10 & x.Second > 10, "TimeValue", "Time Value", "Needs to be over 10 seconds past 10 past 10");
     }
 }
