@@ -24,10 +24,10 @@ Welcome to your new app.
 
         <div class="br-input-row">
             <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="My Time" @bind-Value="@_contactData.TimeValue" HintText="You need to add some time value." 
-                       EnableSeconds="true" DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" UpdateOnInput="true" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"/>
+                       EnableSeconds="true" DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" UpdateOnInput="true" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"/>
 
-            <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" DataPosition="DataPosition.Start" SvgIcon="--svg-user-icon"
-                          @bind-Value="_contactData.Age" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" Format="F2" />
+            <CheckboxInput class="br-col-xs-12 br-col-sm-6" HintText="You go a 50/50 chance of getting it right" @bind-Value="_contactData.IsAlive"
+                           ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" SvgIcon="--svg-food-icon" AriaDisabled="true" />
         </div>
 
          <div class="br-input-row"> 
@@ -75,10 +75,12 @@ Welcome to your new app.
         </div>
 
         <div class="br-input-row">
-            <CheckboxInput class="br-col-xs-12 br-col-sm-6" HintText="You go a 50/50 chance of getting it right" @bind-Value="_contactData.IsAlive"
-                           ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"  SvgIcon="--svg-food-icon" AriaDisabled="false" />
+
             <TextInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.FamilyName" LabelText="Surname" HintText="The suname that you use on official documents"
                        UpdateOnInput="true" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" TrimOnBlur="true" AriaDisabled="false" />
+
+            <NumericInput class="br-col-xs-12 br-col-sm-6" HintText="Some hint text about the type of entry" DataPosition="DataPosition.Start" SvgIcon="--svg-user-icon"
+                          @bind-Value="_contactData.Age" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" Format="F2" />
         </div>
 
         <div class="br-input-row">

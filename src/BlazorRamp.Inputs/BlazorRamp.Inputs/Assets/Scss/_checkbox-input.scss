@@ -37,13 +37,17 @@
     &:has(input[aria-disabled="true"]) {
         cursor: not-allowed;
 
-        .br-checkbox-input__field,
         .br-checkbox-input__label,
         .br-checkbox-input__hint,
         .br-checkbox-input__icon,
         .br-checkbox-input__state-icon {
             cursor: not-allowed;
             opacity: var(--br-comp-input-disabled-opacity);
+        }
+
+        .br-checkbox-input__field {
+            cursor: not-allowed;
+            accent-color: color-mix(in srgb, currentColor, transparent 50%);
         }
     }
 
@@ -123,12 +127,11 @@
         accent-color: var(--br-unit-colour-primary);
         cursor: pointer;
         margin-block-end: var(--br-unit-space-2);
-
-
+        border-radius: 5px;
 
         &:focus,
         &:focus-visible {
-            outline-offset: var(--br-comp-input-outline-offset);
+            outline-offset: 2px; //var(--br-comp-input-outline-offset);
             outline-width: var(--br-comp-input-outline-width);
             outline-style: var(--br-comp-input-outline-style);
             outline-color: var(--br-comp-input-outline-colour);

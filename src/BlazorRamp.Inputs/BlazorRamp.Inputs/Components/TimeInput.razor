@@ -8,7 +8,7 @@
     class="@TimeInputClasses" 
     role="group" 
     aria-labelledby="@ControlLabelledbyID"
-     aria-invalid="@(HasErrors ? "true" : null)"
+    aria-invalid="@(HasErrors ? "true" : null)"
     aria-describedby="@(AriaDescribedByID)"
     aria-required="@(Required ? "true" : null)">
     
@@ -46,12 +46,14 @@
                 <input id="@HoursInputID" class="@GlobalValues.Time_Input_Field_Class" type="text" inputmode="numeric" 
                        readonly="@(base.ReadOnly ? "readonly" : null)"
                        aria-disabled="@(base.IsDisabled ? "true" : null)"
+                       aria-required="@(Required ? "true" : null)"
                        maxlength="2"
+                       autocomplete="@(AutoCompleteOff ? "off" : null)"
                        @ref="HoursReference"
                        @bind-value:get="HoursValue"
                        @bind-value:event="oninput"
                        @bind-value:set="HandleHoursSet"
-                       @onfocus="() => HoursValue = RemoveLeadingZero(HoursValue)"       />
+                       @onfocus="() => HoursValue = RemoveLeadingZero(HoursValue)"  />
                        
             </div>
 
@@ -62,8 +64,9 @@
                 <input id="@MinutesInputID" class="@GlobalValues.Time_Input_Field_Class" type="text" inputmode="numeric" 
                        readonly="@(base.ReadOnly ? "readonly" : null)"
                        aria-disabled="@(base.IsDisabled ? "true" : null)"
-                        maxlength="2"
-
+                       aria-required="@(Required ? "true" : null)"
+                       maxlength="2"
+                       autocomplete="@(AutoCompleteOff ? "off" : null)"
                        @ref="MinutesReference"
                        @bind-value:get="MinutesValue"
                        @bind-value:event="oninput"
@@ -80,7 +83,9 @@
                     <input id="@SecondsInputID" class="@GlobalValues.Time_Input_Field_Class" type="text" inputmode="numeric" 
                            readonly="@(base.ReadOnly ? "readonly" : null)"
                            aria-disabled="@(base.IsDisabled ? "true" : null)"
+                           aria-required="@(Required ? "true" : null)"
                            maxlength="2"
+                           autocomplete="@(AutoCompleteOff ? "off" : null)"
                            @ref="SecondsReference"
                            @bind-value:get="SecondsValue"
                            @bind-value:event="oninput"

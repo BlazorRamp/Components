@@ -1,32 +1,60 @@
 ﻿using BlazorRamp.Inputs.Common.Constants;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.Extensions.Primitives;
 using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlazorRamp.Inputs.Components;
+/// <summary>
+/// Renders an accessible time input composed of separate hours, minutes, and optional
+/// seconds segment inputs. Supports <see cref="TimeOnly"/> and nullable <see cref="TimeOnly"/>.
+/// The composite value is committed and parsed when focus leaves the entire group via
+/// a JavaScript focusout callback. Inherits validation state management, hint text,
+/// aria-disabled support, and SVG icon support from <see cref="InputTypeBase{TValue}"/>.
+/// For the best screen reader experience, <see cref="InputTypeBase{TValue}.ValidationDisplayMode"/>
+/// should be set to <see cref="ValidationDisplayMode.TabbableWithHint"/> with
+/// <see cref="UpdateOnInput"/> set to <c>true</c>.
+/// </summary>
 
 public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
 {
 
-
+    /// <summary>
+    /// Gets or sets the visible label text for the hours segment input.
+    /// When null, empty, or whitespace defaults to <c>"Hours"</c>.
+    /// </summary>
     [Parameter] public string HoursLabelText   { get; set; } = GlobalValues.Time_Input_Hours_Text;
+
+    /// <summary>
+    /// Gets or sets the visible label text for the minutes segment input.
+    /// When null, empty, or whitespace defaults to <c>"Minutes"</c>.
+    /// </summary>
     [Parameter] public string MinutesLabelText { get; set; } = GlobalValues.Time_Input_Minutes_Text;
+
+    /// <summary>
+    /// Gets or sets the visible label text for the seconds segment input.
+    /// When null, empty, or whitespace defaults to <c>"Seconds"</c>.
+    /// </summary>
     [Parameter] public string SecondsLabelText { get; set; } = GlobalValues.Time_Input_Seconds_Text;
+
+    /// <summary>
+    /// Gets or sets whether the seconds segment is rendered and included in the time value.
+    /// When <c>false</c> only hours and minutes are shown and seconds default to <c>00</c>
+    /// in the parsed value. Defaults to <c>false</c>.
+    /// </summary>
     [Parameter] public bool   EnableSeconds    { get; set; } = false;
+
+
+    /// <summary>
+    /// Gets or sets whether the autocomplete attribute is added with the value of off.
+    /// </summary>
+    [Parameter] public bool AutoCompleteOff    { get; set; } = true;
+
     /// <summary>
     /// Gets or sets whether the input value is updated on every keystroke via the
-    /// <c>oninput</c> event. When <c>false</c> the value updates on <c>onchange</c>
-    /// (i.e. when the field loses focus). Defaults to <c>false</c>.
+    /// <c>oninput</c> event. When <c>false</c> the value updates on focusout from
+    /// the entire group. Defaults to <c>false</c>.
     /// </summary>
     [Parameter] public bool UpdateOnInput { get; set; } = false;
 
@@ -48,22 +76,86 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     /// </summary>
     protected string TimeInputClasses { get; private set; } = String.Empty;
 
-
+    /// <summary>
+    /// Gets the unique <c>id</c> of the element used as the accessible label for the
+    /// group via <c>aria-labelledby</c>.
+    /// </summary>
     protected string ControlLabelledbyID { get; private set; } = Guid.NewGuid().ToString();
+
+    /// <summary>
+    /// Gets the unique <c>id</c> attribute applied to the hours segment input element.
+    /// </summary>
     protected string HoursInputID        { get; private set; } = Guid.NewGuid().ToString();
+
+    /// <summary>
+    /// Gets the unique <c>id</c> attribute applied to the minutes segment input element.
+    /// </summary>
     protected string MinutesInputID      { get; private set; } = Guid.NewGuid().ToString();
+
+    /// <summary>
+    /// Gets the unique <c>id</c> attribute applied to the seconds segment input element.
+    /// </summary>
     protected string SecondsInputID      { get; private set; } = Guid.NewGuid().ToString();
+
+    /// <summary>
+    /// Gets the resolved label text for the hours segment, derived from
+    /// <see cref="HoursLabelText"/> or the default value when not set.
+    /// </summary>
     protected string HoursText           { get; private set; } = GlobalValues.Time_Input_Hours_Text;
+
+    /// <summary>
+    /// Gets the resolved label text for the minutes segment, derived from
+    /// <see cref="MinutesLabelText"/> or the default value when not set.
+    /// </summary>
     protected string MinutesText         { get; private set; } = GlobalValues.Time_Input_Minutes_Text;
+
+    /// <summary>
+    /// Gets the resolved label text for the seconds segment, derived from
+    /// <see cref="SecondsLabelText"/> or the default value when not set.
+    /// </summary>
     protected string SecondsText         { get; private set; } = GlobalValues.Time_Input_Seconds_Text;
 
-
+    /// <summary>
+    /// Gets or sets the raw string value currently displayed in the hours segment input.
+    /// Managed independently of <see cref="InputBase{TValue}.CurrentValue"/> to preserve
+    /// mid-entry display state and leading zero removal on focus.
+    /// </summary>
     protected string? HoursValue   { get; set; }
+
+    /// <summary>
+    /// Gets or sets the raw string value currently displayed in the minutes segment input.
+    /// Managed independently of <see cref="InputBase{TValue}.CurrentValue"/> to preserve
+    /// mid-entry display state and leading zero removal on focus.
+    /// </summary>
     protected string? MinutesValue { get; set; }
+
+    /// <summary>
+    /// Gets or sets the raw string value currently displayed in the seconds segment input.
+    /// Only relevant when <see cref="EnableSeconds"/> is <c>true</c>.
+    /// Managed independently of <see cref="InputBase{TValue}.CurrentValue"/> to preserve
+    /// mid-entry display state and leading zero removal on focus.
+    /// </summary>
     protected string? SecondsValue { get; set; }
 
+    /// <summary>
+    /// Gets or sets the <see cref="ElementReference"/> for the hours segment input element,
+    /// available after the component has rendered. Used for JavaScript interop to register
+    /// input character-stripping handlers.
+    /// </summary>
     protected ElementReference? HoursReference   { get; set; }
+
+    /// <summary>
+    /// Gets or sets the <see cref="ElementReference"/> for the minutes segment input element,
+    /// available after the component has rendered. Used for JavaScript interop to register
+    /// input character-stripping handlers.
+    /// </summary>
     protected ElementReference? MinutesReference { get; set; }
+
+    /// <summary>
+    /// Gets or sets the <see cref="ElementReference"/> for the seconds segment input element,
+    /// available after the component has rendered. Only populated when <see cref="EnableSeconds"/>
+    /// is <c>true</c>. Used for JavaScript interop to register input character-stripping handlers.
+    /// </summary>
     protected ElementReference? SecondsReference { get; set; }
 
     /// <summary>
@@ -84,11 +176,9 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
 
 
     /// <summary>
-    /// Updates the text input CSS classes on each parameter change.
+    /// Updates the time input CSS classes and synchronises the segment display values
+    /// when <see cref="InputBase{TValue}.CurrentValue"/> changes externally.
     /// </summary>
-    /// 
-
-
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
@@ -102,6 +192,13 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         }
 
     }
+
+    /// <summary>
+    /// Validates that <typeparamref name="TValue"/> is <see cref="TimeOnly"/> or nullable
+    /// <see cref="TimeOnly"/>, resolves segment label texts and the parse error message
+    /// from parameters, and initialises the segment display values from
+    /// <see cref="InputBase{TValue}.CurrentValue"/>.
+    /// </summary>
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -121,8 +218,9 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     }
 
     /// <summary>
-    /// Loads the inputs JavaScript module on first render and registers the time
-    /// input handlers for character stripping.
+    /// Loads the JavaScript module on first render and registers the time segment
+    /// character-stripping handlers and the focusout callback used to commit and
+    /// parse the composite time value when focus leaves the group.
     /// </summary>
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -142,6 +240,15 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
 
         }
     }
+
+    /// <summary>
+    /// Attempts to parse <paramref name="value"/> to <typeparamref name="TValue"/> using
+    /// exact format <c>"H:m:s"</c> with <see cref="CultureInfo.InvariantCulture"/>.
+    /// Returns <c>true</c> and sets <paramref name="result"/> when the value is null or
+    /// whitespace and the type is nullable, or when the value parses successfully.
+    /// On failure sets <paramref name="validationErrorMessage"/> to the resolved parse
+    /// error message prefixed with the field display name.
+    /// </summary>
     protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string? validationErrorMessage)
     {
         validationErrorMessage = string.Empty;
@@ -183,6 +290,13 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
             SecondsValue = string.Empty;
         }
     }
+
+    /// <summary>
+    /// Handles the binding set event for the hours segment, updating <see cref="HoursValue"/>
+    /// with the raw input value. When <see cref="UpdateOnInput"/> is <c>true</c> the
+    /// composite <see cref="InputBase{TValue}.CurrentValueAsString"/> is also updated
+    /// immediately. Does nothing when <see cref="InputTypeBase{TValue}.IsDisabled"/> is <c>true</c>.
+    /// </summary>
     protected void HandleHoursSet(string? value)
     {
         if (IsDisabled) return;
@@ -191,6 +305,12 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         if (UpdateOnInput) CurrentValueAsString = EnableSeconds ? $"{HoursValue}:{MinutesValue}:{SecondsValue}" : $"{HoursValue}:{MinutesValue}:00";
     }
 
+    /// <summary>
+    /// Handles the binding set event for the minutes segment, updating <see cref="MinutesValue"/>
+    /// with the raw input value. When <see cref="UpdateOnInput"/> is <c>true</c> the
+    /// composite <see cref="InputBase{TValue}.CurrentValueAsString"/> is also updated
+    /// immediately. Does nothing when <see cref="InputTypeBase{TValue}.IsDisabled"/> is <c>true</c>.
+    /// </summary>
     protected void HandleMinutesSet(string? value)
     {
         if (IsDisabled) return;
@@ -199,6 +319,13 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         if (UpdateOnInput) CurrentValueAsString = EnableSeconds ? $"{HoursValue}:{MinutesValue}:{SecondsValue}" : $"{HoursValue}:{MinutesValue}:00";
     }
 
+    /// <summary>
+    /// Handles the binding set event for the seconds segment, updating <see cref="SecondsValue"/>
+    /// with the raw input value. When <see cref="UpdateOnInput"/> is <c>true</c> the
+    /// composite <see cref="InputBase{TValue}.CurrentValueAsString"/> is also updated
+    /// immediately. Does nothing when <see cref="InputTypeBase{TValue}.IsDisabled"/> is <c>true</c>.
+    /// Only relevant when <see cref="EnableSeconds"/> is <c>true</c>.
+    /// </summary>
     protected void HandleSecondsSet(string? value)
     {
         if (IsDisabled) return;
@@ -207,17 +334,18 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         if (UpdateOnInput) CurrentValueAsString = EnableSeconds ? $"{HoursValue}:{MinutesValue}:{SecondsValue}" : $"{HoursValue}:{MinutesValue}:00";
     }
 
+    /// <summary>
+    /// Removes the leading zero from a segment value when the input receives focus,
+    /// allowing free editing without the leading zero interfering with entry.
+    /// Returns the value unchanged when the component is readonly, aria-disabled,
+    /// null, empty, or whitespace, or when the value cannot be parsed as an integer.
+    /// </summary>
     internal string? RemoveLeadingZero(string? value)
     {
         if (base.ReadOnly || base.IsDisabled || string.IsNullOrWhiteSpace(value)) return value;
 
         return int.TryParse(value, out int parsed) ? parsed.ToString() : value;
     }
-
-    //private string CreateFormattedString(string? hours, string? minutes, string? seconds)
-    //{
-    //    var hoursValue = String.IsNullOrWhiteSpace(hours) ? y : hours;   
-    //}
 
     /// <summary>
     /// Builds the CSS class string for the root element by combining the base time input
@@ -244,7 +372,15 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
 
         => additionalAttributes?.Where(kv => kv.Key != "class").ToDictionary();
 
-
+    /// <summary>
+    /// Invoked via JavaScript interop when focus leaves the entire time input group.
+    /// Commits the current segment values to <see cref="InputBase{TValue}.CurrentValueAsString"/>,
+    /// padding each segment with a leading zero where needed. When all segments are
+    /// empty and the type is nullable, sets <see cref="InputBase{TValue}.CurrentValue"/>
+    /// to <c>default</c>. When all segments are empty and the type is non-nullable,
+    /// defaults to midnight (<c>00:00:00</c>). Does nothing when
+    /// <see cref="InputTypeBase{TValue}.IsDisabled"/> is <c>true</c>.
+    /// </summary>
     [JSInvokable]
     public async Task HandleComponentFocusOut()
     {

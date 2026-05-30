@@ -37,14 +37,18 @@
     &:has(input[aria-disabled="true"]) {
         cursor: not-allowed;
 
-        .br-time-input__field,
         .br-time-input__label,
-        .br-time-input__segment,
+        .br-time-input__segment-label,
         .br-time-input__hint,
         .br-time-input__icon,
         .br-time-input__state-icon {
             cursor: not-allowed;
             opacity: var(--br-comp-input-disabled-opacity);
+        }
+
+        .br-time-input__field {
+            cursor: not-allowed;
+            color: color-mix(in srgb, currentColor, transparent 50%);
         }
     }
 
