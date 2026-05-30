@@ -37,6 +37,7 @@
     &:has(input[aria-disabled="true"]) {
         cursor: not-allowed;
 
+        .br-checkbox-input__field,
         .br-checkbox-input__label,
         .br-checkbox-input__hint,
         .br-checkbox-input__icon,
@@ -44,12 +45,8 @@
             cursor: not-allowed;
             opacity: var(--br-comp-input-disabled-opacity);
         }
-
-        .br-checkbox-input__field {
-            cursor: not-allowed;
-            accent-color: color-mix(in srgb, currentColor, transparent 50%);
-        }
     }
+
 
     ul {
         margin: 0;

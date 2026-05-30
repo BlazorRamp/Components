@@ -164,7 +164,7 @@ const unregisterAriaDisabledHandlers = (inputElement: HTMLElement): void => {
 
     if (inputElement.getAttribute('role') === 'group') {
         const inputs = inputElement.querySelectorAll('input');
-        console.log("in unreg handler");
+
         inputs.forEach(input => {
             input.removeEventListener("keydown", ariaDisabledKeyHandler);
             input.removeEventListener("paste", preventAction);
