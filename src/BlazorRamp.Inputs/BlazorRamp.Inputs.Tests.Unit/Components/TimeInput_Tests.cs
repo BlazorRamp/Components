@@ -398,6 +398,7 @@ public class TimeInput_Tests
         }
 
 
+
     }
 
     public class Properties()
@@ -414,6 +415,212 @@ public class TimeInput_Tests
     }
 
 
+    public class RemoveLeadingZero_
+    {
+
+        [Fact]
+        public async Task Should_remove_the_leading_zero_from_a_segment_value_on_focus()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context);
+
+            var result = inputComponent.Instance.RemoveLeadingZero("09");
+
+            result.Should().Be("9");
+        }
+    }
+
+
+    public class HandleHoursSet
+    {
+        [Fact]
+        public async Task Should_update_the_hours_value()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context);
+
+            var hoursInput = inputComponent.FindAll("input")[0];
+            await hoursInput.InputAsync(new ChangeEventArgs { Value = "10" });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[0].GetAttribute("value").Should().Be("10");
+            });
+        }
+
+        [Fact]
+        public async Task Should_set_hours_value_to_empty_string_when_null_is_passed_and_update_on_input_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.UpdateOnInput, true));
+
+            var hoursInput = inputComponent.FindAll("input")[0];
+            await hoursInput.InputAsync(new ChangeEventArgs { Value = null });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[0].GetAttribute("value").Should().BeNullOrEmpty();
+            });
+        }
+        [Fact]
+        public async Task Should_not_update_the_hours_value_when_aria_disabled_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.AriaDisabled, true));
+
+            var hoursInput = inputComponent.FindAll("input")[0];
+            await hoursInput.InputAsync(new ChangeEventArgs { Value = "10" });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[0].GetAttribute("value").Should().Be("13");
+            });
+        }
+    }
+
+
+    public class HandleMinutesSet
+    {
+        [Fact]
+        public async Task Should_update_the_minutes_value()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context);
+
+            var minutesInput = inputComponent.FindAll("input")[1];
+            await minutesInput.InputAsync(new ChangeEventArgs { Value = "30" });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[1].GetAttribute("value").Should().Be("30");
+            });
+        }
+
+        [Fact]
+        public async Task Should_set_minutes_value_to_empty_string_when_null_is_passed_and_update_on_input_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.UpdateOnInput, true));
+
+            var minutesInput = inputComponent.FindAll("input")[1];
+            await minutesInput.InputAsync(new ChangeEventArgs { Value = null });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[1].GetAttribute("value").Should().BeNullOrEmpty();
+            });
+        }
+
+        [Fact]
+        public async Task HandleMinutesSet_should_not_update_the_minutes_value_when_aria_disabled_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.AriaDisabled, true));
+
+            var minutesInput = inputComponent.FindAll("input")[1];
+            await minutesInput.InputAsync(new ChangeEventArgs { Value = "45" });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[1].GetAttribute("value").Should().Be("00");
+            });
+        }
+    }
+
+
+    public class HandleSecondsSet
+    {
+        [Fact]
+        public async Task Should_update_the_seconds_value()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.EnableSeconds, true));
+
+            var secondsInput = inputComponent.FindAll("input")[2];
+            await secondsInput.InputAsync(new ChangeEventArgs { Value = "45" });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[2].GetAttribute("value").Should().Be("45");
+            });
+        }
+
+        [Fact]
+        public async Task Should_set_seconds_value_to_empty_string_when_null_is_passed_and_update_on_input_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.UpdateOnInput, true).Add(x => x.EnableSeconds, true));
+
+            var secondsInput = inputComponent.FindAll("input")[2];
+            await secondsInput.InputAsync(new ChangeEventArgs { Value = null });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[2].GetAttribute("value").Should().BeNullOrEmpty();
+            });
+        }
+
+        [Fact]
+        public async Task HandleSecondsSet_should_not_update_the_seconds_value_when_aria_disabled_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.AriaDisabled, true).Add(x => x.EnableSeconds, true));
+
+            var secondsInput = inputComponent.FindAll("input")[2];
+            await secondsInput.InputAsync(new ChangeEventArgs { Value = "30" });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[2].GetAttribute("value").Should().Be("00");
+            });
+        }
+    }
+
+    public class HandleComponentFocusOut
+    {
+        [Fact]
+        public async Task Should_pad_single_digit_segment_values_and_commit_the_time()
+        {
+            await using var context = new BunitContext();
+
+            // Start with a time that has single digit hours and minutes
+            var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Readonly_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Time_Segment_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Focus_Out_Callback, _ => true).SetVoidResult();
+
+            var model = new TestModel { TimeValue = new TimeOnly(9, 5, 0) };
+            var editContext = new EditContext(model);
+
+            var component = context.Render<TimeInput<TimeOnly>>(
+                builder =>
+                {
+                    builder
+                        .AddCascadingValue(editContext)
+                        .Add(p => p.Value, model.TimeValue)
+                        .Add(p => p.ValueChanged, EventCallback.Factory.Create<TimeOnly>(context, v => model.TimeValue = v))
+                        .Add(p => p.ValueExpression, () => model.TimeValue);
+                });
+
+            await component.InvokeAsync(() => component.Instance.HandleComponentFocusOut());
+
+            component.WaitForAssertion(() =>
+            {
+                component.Instance.Value.Should().Be(new TimeOnly(9, 5, 0));
+            });
+        }
+    }
 }
 
 
