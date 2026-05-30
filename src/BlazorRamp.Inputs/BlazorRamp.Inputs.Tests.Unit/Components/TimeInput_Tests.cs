@@ -53,7 +53,35 @@ public class TimeInput_Tests
 
         return (component, editContext);
     }
+    public static (IRenderedComponent<TimeInput<TimeOnly?>> Component, EditContext EditContext) CreateNullableTimeInput(
+    BunitContext context,
+    Action<ComponentParameterCollectionBuilder<TimeInput<TimeOnly?>>>? parameters = null)
+    {
+        var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);
+        moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, _ => true).SetVoidResult();
+        moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Readonly_Handlers, _ => true).SetVoidResult();
+        moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Time_Segment_Handlers, _ => true).SetVoidResult();
+        moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Focus_Out_Callback, _ => true).SetVoidResult();
 
+        var model = new TestModel();
+        var editContext = new EditContext(model);
+
+        editContext.EnableDataAnnotationsValidation(context.Services);
+
+        var component = context.Render<TimeInput<TimeOnly?>>(
+            builder =>
+            {
+                builder
+                    .AddCascadingValue(editContext)
+                    .Add(p => p.Value, model.NullableTimeValue)
+                    .Add(p => p.ValueChanged, EventCallback.Factory.Create<TimeOnly?>(context, v => model.NullableTimeValue = v))
+                    .Add(p => p.ValueExpression, () => model.NullableTimeValue);
+
+                parameters?.Invoke(builder);
+            });
+
+        return (component, editContext);
+    }
     public class Parameters
     {
         [Theory]
@@ -397,6 +425,118 @@ public class TimeInput_Tests
             inputComponent.FindAll($"span.{GlobalValues.Time_Input_Icon_Class}").Should().BeEmpty();
         }
 
+        [Fact]
+        public async Task Should_not_render_autocomplete_attribute_when_autocomplete_off_is_false()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.AutoCompleteOff, false));
+
+            inputComponent.Find("input").GetAttribute("autocomplete").Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Should_render_autocomplete_off_attribute_when_autocomplete_off_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context);
+
+            inputComponent.Find("input").GetAttribute("autocomplete").Should().Be("off");
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData(" ")]
+        [InlineData("HH")]
+        public async Task Should_be_able_to_set_the_hours_label_text_which_defaults_when_null_empty_or_whitespace(string? labelText)
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.HoursLabelText, labelText));
+
+            var label = inputComponent.Find($"label[for='{inputComponent.FindAll("input")[0].GetAttribute("id")}']").TextContent;
+
+            if (String.IsNullOrWhiteSpace(labelText)) label.Should().Be(GlobalValues.Time_Input_Hours_Text);
+
+            if (!String.IsNullOrWhiteSpace(labelText)) label.Should().Be(labelText);
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData(" ")]
+        [InlineData("MM")]
+        public async Task Should_be_able_to_set_the_minutes_label_text_which_defaults_when_null_empty_or_whitespace(string? labelText)
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.MinutesLabelText, labelText));
+
+            var label = inputComponent.Find($"label[for='{inputComponent.FindAll("input")[1].GetAttribute("id")}']").TextContent;
+
+            if (String.IsNullOrWhiteSpace(labelText)) label.Should().Be(GlobalValues.Time_Input_Minutes_Text);
+
+            if (!String.IsNullOrWhiteSpace(labelText)) label.Should().Be(labelText);
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData(" ")]
+        [InlineData("SS")]
+        public async Task Should_be_able_to_set_the_seconds_label_text_which_defaults_when_null_empty_or_whitespace(string? labelText)
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.SecondsLabelText, labelText).Add(x => x.EnableSeconds, true));
+
+            var label = inputComponent.Find($"label[for='{inputComponent.FindAll("input")[2].GetAttribute("id")}']").TextContent;
+
+            if (String.IsNullOrWhiteSpace(labelText)) label.Should().Be(GlobalValues.Time_Input_Seconds_Text);
+
+            if (!String.IsNullOrWhiteSpace(labelText)) label.Should().Be(labelText);
+        }
+
+
+
+
+        [Theory]
+        [InlineData("My parse error text")]
+        [InlineData("")]
+        [InlineData("  ")]
+        [InlineData(null)]
+        public async Task Should_be_able_to_set_the_parse_error_message_or_use_the_default(string? parseErrorText)
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p =>
+                p.Add(x => x.ParseErrorMessage, parseErrorText)
+                 .Add(x => x.LabelText, "MyField")
+                 .Add(x => x.UpdateOnInput, true)
+                 .Add(x => x.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint));
+
+            await inputComponent.FindAll("input")[0].InputAsync(new ChangeEventArgs { Value = "99" });
+            await inputComponent.FindAll("input")[1].InputAsync(new ChangeEventArgs { Value = "99" });
+
+            await inputComponent.InvokeAsync(() => inputComponent.Instance.HandleComponentFocusOut());
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                var errorItems = inputComponent.FindAll($"div.{GlobalValues.Time_Input_Error_Class} > ul > li");
+
+                if (String.IsNullOrWhiteSpace(parseErrorText))
+                {
+                    errorItems[0].TextContent.Should().Be($"MyField - {GlobalValues.Input_Parse_time_Error_Message}");
+                    return;
+                }
+
+                errorItems[0].TextContent.Should().Be($"MyField - {parseErrorText}.");
+            });
+        }
+
+
 
 
     }
@@ -428,6 +568,53 @@ public class TimeInput_Tests
             var result = inputComponent.Instance.RemoveLeadingZero("09");
 
             result.Should().Be("9");
+        }
+        [Fact]
+        public async Task Should_return_value_unchanged_when_readonly_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.ReadOnly, true));
+
+            var result = inputComponent.Instance.RemoveLeadingZero("09");
+
+            result.Should().Be("09");
+        }
+
+        [Fact]
+        public async Task Should_return_value_unchanged_when_aria_disabled_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.AriaDisabled, true));
+
+            var result = inputComponent.Instance.RemoveLeadingZero("09");
+
+            result.Should().Be("09");
+        }
+
+        [Fact]
+        public async Task Should_return_value_unchanged_when_value_is_not_a_valid_integer()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context);
+
+            var result = inputComponent.Instance.RemoveLeadingZero("abc");
+
+            result.Should().Be("abc");
+        }
+
+        [Fact]
+        public async Task Should_return_null_when_value_is_null()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context);
+
+            var result = inputComponent.Instance.RemoveLeadingZero(null);
+
+            result.Should().BeNull();
         }
     }
 
@@ -620,6 +807,113 @@ public class TimeInput_Tests
                 component.Instance.Value.Should().Be(new TimeOnly(9, 5, 0));
             });
         }
+
+
+        [Fact]
+        public async Task Should_return_early_and_not_change_value_when_aria_disabled_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.AriaDisabled, true));
+
+            await inputComponent.InvokeAsync(() => inputComponent.Instance.HandleComponentFocusOut());
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.Instance.Value.Should().Be(new TimeOnly(13, 0, 0));
+            });
+        }
+
+        [Fact]
+        public async Task Should_set_value_to_null_when_all_segments_are_empty_and_type_is_nullable()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateNullableTimeInput(context);
+
+            await inputComponent.InvokeAsync(() => inputComponent.Instance.HandleComponentFocusOut());
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.Instance.Value.Should().BeNull();
+            });
+        }
+
+        [Fact]
+        public async Task Should_default_to_midnight_when_all_segments_are_empty_and_type_is_non_nullable()
+        {
+            await using var context = new BunitContext();
+
+            // Use a model with a null-ish starting point by rendering with no initial value set
+            var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Readonly_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Time_Segment_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Focus_Out_Callback, _ => true).SetVoidResult();
+
+            var model = new TestModel { TimeValue = new TimeOnly(0, 0, 0) };
+            var editContext = new EditContext(model);
+
+            var component = context.Render<TimeInput<TimeOnly>>(
+                builder =>
+                {
+                    builder
+                        .AddCascadingValue(editContext)
+                        .Add(p => p.Value, model.TimeValue)
+                        .Add(p => p.ValueChanged, EventCallback.Factory.Create<TimeOnly>(context, v => model.TimeValue = v))
+                        .Add(p => p.ValueExpression, () => model.TimeValue);
+                });
+
+            // Clear the segments then focusout
+            await component.FindAll("input")[0].InputAsync(new ChangeEventArgs { Value = "" });
+            await component.FindAll("input")[1].InputAsync(new ChangeEventArgs { Value = "" });
+
+            await component.InvokeAsync(() => component.Instance.HandleComponentFocusOut());
+
+            component.WaitForAssertion(() =>
+            {
+                component.Instance.Value.Should().Be(new TimeOnly(0, 0, 0));
+            });
+        }
+
+        [Fact]
+        public async Task Should_pad_single_digit_segment_values_and_commit_when_focus_leaves_the_group()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.UpdateOnInput, true));
+
+            await inputComponent.FindAll("input")[0].InputAsync(new ChangeEventArgs { Value = "9" });
+            await inputComponent.FindAll("input")[1].InputAsync(new ChangeEventArgs { Value = "5" });
+
+            await inputComponent.InvokeAsync(() => inputComponent.Instance.HandleComponentFocusOut());
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.Instance.Value.Should().Be(new TimeOnly(9, 5, 0));
+            });
+        }
+
+        [Fact]
+        public async Task Should_pad_seconds_and_commit_when_enable_seconds_is_true_and_focus_leaves_the_group()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.UpdateOnInput, true).Add(x => x.EnableSeconds, true));
+
+            await inputComponent.FindAll("input")[0].InputAsync(new ChangeEventArgs { Value = "9" });
+            await inputComponent.FindAll("input")[1].InputAsync(new ChangeEventArgs { Value = "5" });
+            await inputComponent.FindAll("input")[2].InputAsync(new ChangeEventArgs { Value = "3" });
+
+            await inputComponent.InvokeAsync(() => inputComponent.Instance.HandleComponentFocusOut());
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.Instance.Value.Should().Be(new TimeOnly(9, 5, 3));
+            });
+        }
+
+
     }
 }
 
