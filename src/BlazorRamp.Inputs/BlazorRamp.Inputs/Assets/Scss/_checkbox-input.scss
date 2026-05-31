@@ -119,12 +119,12 @@
         font-weight: var(--br-comp-input-area-content-font-weight);
         justify-self: start;
         align-self: center;
-        width: 1.25rem;
-        height: 1.25rem;
         accent-color: var(--br-unit-colour-primary);
         cursor: pointer;
         margin-block-end: var(--br-unit-space-2);
         border-radius: 5px;
+        min-height: var(--br-unit-wcag-target-2a);
+        aspect-ratio:1/1;
 
         &:focus,
         &:focus-visible {

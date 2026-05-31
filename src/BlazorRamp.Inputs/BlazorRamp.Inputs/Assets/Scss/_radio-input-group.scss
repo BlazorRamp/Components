@@ -76,6 +76,7 @@
         font-size: var(--br-comp-input-area-content-font-size);
         font-weight: var(--br-comp-input-area-content-font-weight);
         margin-block-end: var(--br-unit-space-2);
+        min-height: var(--br-unit-wcag-target-2a);
 
         &--vertical {
             flex-direction: column;

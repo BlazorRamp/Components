@@ -123,6 +123,7 @@
         outline: none;
         cursor: pointer;
         margin-block-end: var(--br-unit-space-1);
+        min-height: var(--br-unit-wcag-target-2a);
 
         &:focus {
             border-style: var(--br-comp-input-outline-style);

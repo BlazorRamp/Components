@@ -1,9 +1,9 @@
 ﻿@using BlazorRamp.DocSite.Pages.Components.AnnouncementHistory
-@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextInput}/{GlobalValues.Common_Page_Path_Usage}")]
+@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TimeInput}/{GlobalValues.Common_Page_Path_Usage}")]
 
-<PageTitle>@GlobalValues.Component_Name_Text_Input @GlobalValues.Common_Page_Title_Usage</PageTitle>
+<PageTitle>@GlobalValues.Component_Name_Time_Input @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Text_Input @GlobalValues.Common_Page_Title_Usage</h1>
+<h1>@GlobalValues.Component_Name_Time_Input @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
     In the following example, both input values are required as denoted by the asterisk in each field label, screen reader users will be advised that these fields are required via the <span class="code-span">aria-required</span> attribute
@@ -55,14 +55,14 @@
 </p>
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextInput}/{GlobalValues.Common_Page_Path_Api}")">
-        <span aria-hidden="true"></span>
-        <span>@GlobalValues.Component_Name_Text_Input - @GlobalValues.Common_Page_Title_Api</span>
-        <span aria-hidden="true"></span>
-    </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TimeInput}/{GlobalValues.Common_Page_Path_Api}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TimeInput}/{GlobalValues.Common_Page_Path_Api}")">
         <span aria-hidden="true"></span>
         <span>@GlobalValues.Component_Name_Time_Input - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_InputErrors}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Input_Errors_Summary - @GlobalValues.Common_Page_Title_Api</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

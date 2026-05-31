@@ -277,11 +277,6 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
             HoursValue   = displayTwoDigit ? timeOnly.Hour.ToString("D2") : timeOnly.Hour.ToString();
             MinutesValue = displayTwoDigit ? timeOnly.Minute.ToString("D2") : timeOnly.Minute.ToString();
             SecondsValue = EnableSeconds ? (displayTwoDigit ? timeOnly.Second.ToString("D2") : timeOnly.Second.ToString()) : string.Empty;
-
-            //HoursValue = timeOnly.Hour.ToString("D2");
-            //MinutesValue = timeOnly.Minute.ToString("D2");
-            //SecondsValue = EnableSeconds ? timeOnly.Second.ToString("D2") : string.Empty;
-
         }
         else
         {

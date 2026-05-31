@@ -165,6 +165,8 @@
         font-size: var(--br-comp-input-area-content-font-size);
         font-weight: var(--br-comp-input-area-content-font-weight);
         text-align: center;
+        min-height: var(--br-unit-wcag-target-2a);
+        line-height:normal;
 
 
         &:is(:autofill, :-webkit-autofill) {

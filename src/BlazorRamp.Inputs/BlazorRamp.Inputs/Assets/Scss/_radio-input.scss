@@ -8,7 +8,7 @@
     padding-block: 2px;
     margin-bottom: calc(var(--br-unit-space-1) * -1);
 
-   
+
 
     &__label {
         grid-area: label;
@@ -34,7 +34,8 @@
         cursor: pointer;
         z-index: 1;
         padding: 0;
-        margin-block:0;
+        margin-block: 0;
+
         &:focus {
             border: none;
             outline: none;
@@ -48,5 +49,4 @@
         outline-style: var(--br-comp-input-outline-style);
         outline-color: var(--br-comp-input-outline-colour);
     }
-
 }
