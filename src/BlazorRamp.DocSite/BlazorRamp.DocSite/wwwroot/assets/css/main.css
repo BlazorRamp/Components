@@ -508,6 +508,10 @@ dialog {
   color: var(--br-unit-colour-canvas-text);
 }
 
+html {
+  scroll-padding-top: 6rem;
+}
+
 body {
   min-height: 100vh;
   margin: 0;
@@ -535,6 +539,14 @@ body #app__main {
 
 .keyboard-list {
   margin-bottom: var(--br-unit-space-9);
+}
+
+h2:focus-visible {
+  border-radius: var(--br-unit-radius-2);
+  outline-offset: var(--br-comp-all-outline-offset);
+  outline-width: calc(var(--br-comp-all-outline-width) * 1.5);
+  outline-style: var(--br-comp-all-outline-style);
+  outline-color: var(--br-comp-all-outline-colour);
 }
 
 .main-navigation > ul {

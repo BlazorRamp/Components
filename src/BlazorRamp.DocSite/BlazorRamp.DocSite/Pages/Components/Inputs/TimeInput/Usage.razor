@@ -1,4 +1,4 @@
-﻿@using BlazorRamp.DocSite.Pages.Components.AnnouncementHistory
+﻿
 @attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TimeInput}/{GlobalValues.Common_Page_Path_Usage}")]
 
 <PageTitle>@GlobalValues.Component_Name_Time_Input @GlobalValues.Common_Page_Title_Usage</PageTitle>
@@ -6,37 +6,52 @@
 <h1>@GlobalValues.Component_Name_Time_Input @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
-    In the following example, both input values are required as denoted by the asterisk in each field label, screen reader users will be advised that these fields are required via the <span class="code-span">aria-required</span> attribute
-    that gets added as mentioned on the Inputs Accessibility page.
+    The example below shows the Time Input component being bound to both non-nullable and nullable <span class="code-span">TimeOnly</span> fields. The "End Time" and "Start Time" are non-nullable, required, with  
+    validation rules that says the "End Time" must be greater than the start time and with a "Start Time" that must be between 7am and 10am.
 </p>
 <p>
-    Both inputs have the <span class="code-span">UpdateOnInput</span> parameter set to true so validation runs on input, after the field is dirty combined with <span class="hint">ValidationDisplayMode="TabbableWithHint"</span>, but 
-    you should use the options that best suit your application and intended audience.
-    Neither input has a <span class="code-span">maxlength</span> attribute as these can be problematic for some screen readers as it silently stops the user typing with no feedback, so it's better to catch issues with validation.
+    Rather than set the component parameter <span class="code-span">Required</span> to true, which only adds a red asterisk to the label and the <span class="code-span">aria-required</span> attribute to the inputs, I have opted to
+    just use the text "Required" in the hint text for the required field, and the text "Optional" in the optional nullable fields. By default the required parameter is set to true so I set this to false for the Work start and end fields. 
+</p>
+<p>
+    For both the "Start Time" and "Start Work" fields I have set the <span class="code-span">UpdateOnInput</span> parameter to true, and false for the end time and work fields just so you can see the different approaches.
+    For validation on the work field, I validation rules that says if entered "Start Work" must be before 11am and if entered "End Work" must be after 1pm. As these are nullable fields and validation will run on every keystroke for "Start Work", the <span>ParseErrorMessage</span> parameter will be utilised until a valid time can
+    be parsed from the inputs.
+</p>
+
+<p>
+    I have used <span class="code-span">ValidationDisplayMode="TabbableWithHint"</span> on all fields. For the nullable fields I have set the <span>EnableSeconds</span> parameter to false to hide the seconds input.
 </p>
 <p>
     <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
-    but you can use any validators that work with Blazors <span class="code-span">EditContext</span>. One of the options on my Blazor validation component is to remove leading and trailing whitespace from your string fields on a full model 
-    validation. The validation for the First Name field below does not allow trailing spaces so causes it to be invalid if you enter any. The Surname field just as demonstraion has a rule that allows a single space after its valid, 
-    and I have used the option to remove spaces from this field on full model validation.
+    but you can use any validators that work with Blazors <span class="code-span">EditContext</span>. 
 </p>
-<p>
-    <strong>Note: </strong>As you may not want to use this valdiation framework, and/or have differing options, there is also a <span class="code-span">TrimOnBlur</span> parameter option on the text input, that when set to true
-    trims the string value on lost focus.
-</p>
-<section class="section-box">
-    <h2>Text inputs example</h2>
 
-    <EditForm Model="@_contactData" OnValidSubmit="HandleSubmit">
+<section class="section-box">
+    <h2>Time input example</h2>
+
+    <EditForm EditContext="@_editContext" OnValidSubmit="HandleSubmit">
         
-        <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+        <BlazorValidated TEntity="ScheduleDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
         <div class="br-input-row">
-            <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First Name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                       @bind-Value="_contactData.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" ReadOnly="false" autocomplete="given-name" />
+            <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Time" @bind-Value="@_scheduleData.StartTime" HintText="Required, the time you want the scheduled action to start." 
+                Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="Must be a valid time."  
+                ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
 
-            <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                       @bind-Value="_contactData.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
+            <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="End Time" @bind-Value="@_scheduleData.EndTime" HintText="Required, the time you want the scheduled action to finish" 
+                Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid time."    
+                ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
+        </div>
+         <div class="br-input-row">
+
+            <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Work" @bind-Value="@_scheduleData.StartWork" HintText="Optional, the time you start work." Required="false"
+                       EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="true"  ParseErrorMessage="Must be a valid time."  
+                       ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
+
+            <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="End Work" @bind-Value="@_scheduleData.EndWork" HintText="Optional, the time you finish work." Required="false"
+                       EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid time."  
+                       ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
         </div>
         <div class="br-input-row">
             <button class="br-col-xs-12 normal-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
@@ -48,10 +63,13 @@
 <p style="padding-block:1rem;">
     Below is the code that was used for the example. Please note that in general when using the Validated library the validators would be in a shared library so they could be used in any part of your application.
 </p>
-<CodeBox CodeBlock="@InputSnippets.Text_Input_Example" AriaLabel="Text input code example" />
+<CodeBox CodeBlock="@InputSnippets.Time_Input_Code_Example" AriaLabel="Time input code example" />
 <h3 style="padding-top:1rem;">Accessibility</h3>
 <p>
-    Please ensure dependant on the context that you add the appropriate <span class="code-block">autocomplete</span> attribute to meet WCAG requirements, although there is no harm in just adding them regardless.
+    Given the various nuances with the various screen readers regarding composite components with multiple inputs, both custom and native, please review the 
+    <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Accessibility}#screen-reader-quirks")" 
+       onclick="setTimeout(() => document.getElementById('screen-reader-quirks')?.focus(), 100);">Screen reader quirks or known issues section (inputs accessibility page)</a>
+    to help choose the optimal settings for your target audience.
 </p>
 
 <div class="flex-content justify-content-between">
@@ -69,34 +87,42 @@
 
 @code {
 
-    private ContactDto _contactData = new();
+    private EditContext _editContext = default!;
+    private ScheduleDto _scheduleData = new();
     private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
 
     protected override void OnInitialized()
     {
-
-        var firstNameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,50}$)[A-Z][A-Za-z]*(?:['\- ][A-Za-z]+)*$", "FirstName", "First Name", "Must start with a capital letter and be between 2 and 50 characters in length");
+        var startTimeValidator = MemberValidators.CreateRangeValidator<TimeOnly>(TimeOnly.FromTimeSpan(new TimeSpan(7, 0, 0)), TimeOnly.FromTimeSpan(new TimeSpan(10, 0, 0)), "StartTime", "Start Time", "Must be between 7am and 10am.");
+        var endTimeValidator = MemberValidators.CreateMemberComparisonValidator<ScheduleDto, TimeOnly>(y => y.EndTime, x => x.StartTime, CompareType.GreaterThan, "End Time", "Must be greater than the start time.");
         /*
-            * Although its easy to create a regex that does everything I prefer to break things down into separate rules, so below creates a validator made up of two rules. 
+            * Different ways to do the same thing 
         */
-        var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]*$", "Surname", "Surname", "Must start with a capital letter and no double spaces.")
-                                .AndThen(MemberValidators.CreateStringLengthValidator(2, 50, "Surname", "Surname", "Must be between 2 and 50 characters in length"));
+        var startWorkValidator = MemberValidators.CreatePredicateValidator<TimeOnly>(x => x <= TimeOnly.FromTimeSpan(new TimeSpan(11, 0, 0)), "StartWork", "Start Work", "If entered must be 11am or earlier.");
+        var endWorkValidator   = MemberValidators.CreateCompareToValidator<TimeOnly>(TimeOnly.FromTimeSpan(new TimeSpan(13, 0, 0)),CompareType.GreaterThanOrEqual, "EndWork", "End Work", "If entered must be 1pm or later.");
 
+        _editContext = new EditContext(_scheduleData);
 
-        _boxedValidators = BlazorValidationBuilder<ContactDto>.Create()
-                                .ForMember(c => c.FirstName, firstNameValidator)
-                                .ForMember(c => c.Surname, surnameValidator, true)
+        _boxedValidators = BlazorValidationBuilder<ScheduleDto>.Create()
+                                .ForMember(c => c.StartTime, startTimeValidator)
+                                .ForComparisonWithMember(c => c.EndTime, endTimeValidator)
+                                .ForNullableMember(c => c.StartWork, startWorkValidator) //Nullable in my library means optional
+                                .ForNullableMember(c => c.EndWork, endWorkValidator)
                                 .GetBoxedValidators();
     }
 
-
     private void HandleSubmit() { }
 
-    public class ContactDto
+    public class ScheduleDto
     {
+        public TimeOnly  StartTime { get; set; }
+        public TimeOnly  EndTime   { get; set; }
 
-        public string FirstName { get; set; }
-        public string Surname { get; set; }
+        public TimeOnly? StartWork { get; set; } = null;
+        public TimeOnly? EndWork   { get; set; } = null;
     }
 
+    private async Task PerformLink(){
+
+    }
 }

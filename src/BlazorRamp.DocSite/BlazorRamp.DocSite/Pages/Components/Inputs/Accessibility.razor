@@ -13,8 +13,6 @@
     that regardless of the input type, screen reader users always encounter information in a logical, predictable order.
 </p>
 
-
-
 <h2>Validation announcements</h2>
 <p>
     None of the BlazorRamp inputs use ARIA live regions for validation feedback. Whilst live regions may seem an obvious choice, they can introduce confusion and verbosity in practice. When using
@@ -26,6 +24,15 @@
     Instead, validation messages are surfaced via aria-describedby and the <span class="code-span">ValidationDisplayMode</span> parameter, giving you precise control over how and when error information is presented.
 </p>
 
+<h2>Required fields</h2>
+<p>
+    By default all components have the <span class="code-span">Required</span> parameter set to true. This adds a red asterisk next to the field label which is not part of the accessible name and is hidden from screen readers.
+    The attribute <span class="code-span">aria-required</span> is then added to the input for screen readers. Alternatively you can set the <span class="code-span">Required</span> to false, and add the text "Required" to the hint 
+    or label text for both sighted or screen reader users. Please note if you add this to the <span class="code-span">LabelText</span> parameter it will become part of the accessible name.
+</p>
+<p>
+    <strong>Note: </strong>If taking the asterisk approach don't forget to add a note at the top of the form informing sighted users that the asterisk denotes a required field.
+</p>
 
 <h2>Hint text and validation messages</h2>
 <p>
@@ -55,7 +62,7 @@
 
 <h3>TabbableWithHint</h3>
 <p>
-    takes a different approach entirely. Rather than relying on the user refocusing the input to hear validation errors, this mode renders the error area as a focusable landmark region with a tab stop. When the user tabs
+    This takes a different approach entirely. Rather than relying on the user refocusing the input to hear validation errors, this mode renders the error area as a focusable landmark region with a tab stop. When the user tabs
     away from an invalid field, their next stop is the error area itself, where they can read the error information directly. All error areas also appear in the user's landmark list, making it straightforward to review and
     navigate between all errors on the page.
 </p>
@@ -71,7 +78,7 @@
     when the field changes from valid to invalid the error message will be announced. 
 </p>    
 <p>
-    <strong>Important: </strong>For WCAG dependant on the context you should ensure that the inputs have the appropriate autocomplete values specified. 
+    <strong>Important: </strong>For WCAG dependant on the context, you should ensure that the inputs have the appropriate autocomplete values specified. 
     You can add any of these to the Input component directly as attribute splatting will place these on the underlying input element.
 </p>
 
@@ -88,27 +95,62 @@
 <p>
     <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were available at the time of testing (see release history on the installation page for approximate testing dates)
 </p>
-<h2 id="screen-reader-quirks">Screen reader quirks or known issues</h2>
+<h2 id="screen-reader-quirks" tabindex="-1">Screen reader quirks or known issues</h2>
 <ul aria-labelledby="screen-reader-quirks">
     <li>
         <b>Narrator</b> on Firefox currently does not seem to honour <span class="code-span">aria-required</span> or  <span class="code-span">aria-invalid</span>; please check your version
         of Narrator and version of Firefox if you need to support this pairing. Its recommended that Narrator be used with Edge or Chrome. By default the input components Required parameter is set to true which
         adds <span class="code-span">aria-required</span> to the input. An alternative, is to set the Required parameter to false and add the text "Required" at the start of the hint text.
     </li>
+
     <li>
-        <b>Narrator</b> on all browsers with regards to the <span class="code-span">&lt;RadioInputGroup /&gt;</span> component that uses <span class="code-span">role=radiogroup</span>, it does not
-        honour <span class="code-span">aria-invalid</span> nor does it announce hint text and error messages linked via <span class="code-span">aria-describedby</span>
+        <h3>Radio input group quirks</h3>
+        <ul>
+            <li>Error Announcement on Selection - When a radio option is selected and validation runs, screen readers will not immediately announce the error message linked via aria-describedby. This is expected behaviour and is not a defect.
+                Because keyboard navigation between radio buttons within a role="radiogroup" uses the arrow keys, focus never leaves and re-enters the group element itself. Screen readers only re-read a group's
+                <span class="code-span">aria-describedby</span> association on group entry — since focus remains within the group when an option is selected and validation fires, the updated description is not
+                announced until the user tabs away and returns to the group. <strong>Using the tabbable region option may be preferable.</strong>
+            </li>
+            <li>
+                <b>Narrator</b> on all browsers does not honour <span class="code-span">aria-invalid</span> nor does it announce hint text and error messages linked via <span class="code-span">aria-describedby</span>
+            </li>
+        </ul>
     </li>
     <li>
-        <b>>Radio Input tGroup — Error Announcement on Selection</b>
-        When a radio option is selected and validation runs, screen readers will not immediately announce the error message linked via aria-describedby. This is expected behaviour and is not a defect. 
-        Because keyboard navigation between radio buttons within a role="radiogroup" uses the arrow keys, focus never leaves and re-enters the group element itself. Screen readers only re-read a group's 
-        <span class="code-span">aria-describedby</span> association on group entry — since focus remains within the group when an option is selected and validation fires, the updated description is not 
-        announced until the user tabs away and returns to the group. <strong>Using the tabbable region option may be preferable.</strong>
+        <h3>Time input group quirks</h3>
+        The time input is a composite component and uses the ARIA role attribute of "group" as there is no named time role that can be used. Given some of the issues I encountered using screen readers (especially repeated announcements) when 
+        wrapping a native <span class="code-span">input type="time"</span> element, this approach seem preferable despite its issues.
+        <ul>
+            <li>
+                <b>Narrator</b> on all browsers does not announce the hint text or error messages that are both linked via <span class="code-span">aria-describedby</span>. It also does not announce aria-invalid
+                that is placed on the group. It was a deliberate decision not to place <span class="code-span">aria-invalid</span> on individual input segments as hearing invalid on a segment that may be valid,
+                due to another segment and/or the overall time being invalid due to a validation rule failure may have been too confusing.
+            </li>
+            <li>
+                <b>NVDA</b> on all browsers does not treat <span class="code-span">aria-describedby</span> as a live region for composite inputs as it does for standard inputs. When an error message ID is dynamically added to <span class="code-span">aria-describedby</span>,
+                the message is not announced immediately — it is only read when the user returns focus to the component.
+            </li>
+            <li>
+                <b>JAWS</b> on all browsers announces the group label and anything linked via <span class="code-span">aria-describedby</span> twice on entering the component. This is consistent with how JAWS handles <span class="code-span">role="group"</span> and is not a defect.
+                    Like NVDA, JAWS does not treat <span class="code-span">aria-describedby</span> as a live region for composite inputs — dynamically added error messages are not announced immediately and are only read when the user returns focus to the component.
+            </li>
+            <li>
+                <b>VoiceOver</b> on macOS does not treat <span class="code-span">aria-describedby</span> as a live region for composite inputs as it does for standard inputs. When an error message ID is dynamically added to <span class="code-span">aria-describedby</span>,
+                the message is not announced immediately - it is only read when the user returns focus to the component.
+            </li>
+            <li>
+                <b>VoiceOver</b> on iOS reads <span class="code-span">aria-describedby</span> on focus entry to each individual segment within the group. This means an error caused by one segment will be re-announced when focus moves to subsequent segments, which may result in 
+                repeated error announcements across the hours, minutes, and seconds inputs.
+            </li>
+            <li>
+                <b>TalkBack</b> on Android when using touch exploration (pressing directly on a segment) announces only the current value of the input without reading the accessible name. When a segment is empty, as with a nullable TimeOnly? field, the accessible name is announced correctly.
+                This is consistent with TalkBack's native behaviour for numeric inputs and is not a defect. Users navigating by linear swipe will have the label and value read correctly in sequence.
+            </li>
+        </ul>
     </li>
 </ul>
 <p>
-    <strong>Note: </strong>Not a quirk as its by design, but Talkback on Android will not read content linked by the <span class="code-span">aria-describedby</span> attribute on the input when the input had content.
+    <strong>Note: </strong>Not a quirk as its by design, but Talkback on Android will not read content linked by the <span class="code-span">aria-describedby</span> attribute on the input when the input has content.
 </p>
 <p>
 I recommend prioritising form-level validation over field-level validation. Ensure a robust error summary mechanism is in place at the form level first, then layer field-level validation on top. When the user 

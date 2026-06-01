@@ -10,14 +10,14 @@
     that gets added as mentioned on the Inputs Accessibility page.
 </p>
 <p>
-    Both inputs have the <span class="code-span">UpdateOnInput</span> parameter set to true so validation runs on input, after the field is dirty combined with <span class="hint">ValidationDisplayMode="TabbableWithHint"</span>, but 
+    Both inputs have the <span class="code-span">UpdateOnInput</span> parameter set to true so validation runs on input, after the field is dirty combined with <span class="code-span">ValidationDisplayMode="TabbableWithHint"</span>, but 
     you should use the options that best suit your application and intended audience.
     Neither input has a <span class="code-span">maxlength</span> attribute as these can be problematic for some screen readers as it silently stops the user typing with no feedback, so it's better to catch issues with validation.
 </p>
 <p>
     <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
     but you can use any validators that work with Blazors <span class="code-span">EditContext</span>. One of the options on my Blazor validation component is to remove leading and trailing whitespace from your string fields on a full model 
-    validation. The validation for the First Name field below does not allow trailing spaces so causes it to be invalid if you enter any. The Surname field just as demonstraion has a rule that allows a single space after its valid, 
+    validation. The validation for the First Name field below does not allow trailing spaces so causes it to be invalid if you enter any. The Surname field just as demonstration has a rule that allows a single space after its valid, 
     and I have used the option to remove spaces from this field on full model validation.
 </p>
 <p>

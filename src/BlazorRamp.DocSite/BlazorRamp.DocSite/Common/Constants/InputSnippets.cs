@@ -499,4 +499,75 @@ public class InputSnippets
             public int FavouriteFoodID { get; set; }
         }
         """;
+
+
+    public const string Time_Input_Code_Example = """
+            <EditForm EditContext="@_editContext" OnValidSubmit="HandleSubmit">
+
+                <BlazorValidated TEntity="ScheduleDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+                <div class="br-input-row">
+                    <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Time" @bind-Value="@_scheduleData.StartTime" HintText="Required, the time you want the scheduled action to start." 
+                        Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="Must be a valid time."  
+                        ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
+                    <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="End Time" @bind-Value="@_scheduleData.EndTime" HintText="Required, the time you want the scheduled action to finish" 
+                        Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid time."  
+                        ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" /> 
+                </div>
+                 <div class="br-input-row">
+
+                    <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Work" @bind-Value="@_scheduleData.StartWork" HintText="Optional, the time you start work." Required="false"
+                               EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="true"  ParseErrorMessage="Must be a valid time."  
+                               ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
+                    <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="End Work" @bind-Value="@_scheduleData.EndWork" HintText="Optional, the time you finish work." Required="false"
+                               EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid time."  
+                               ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+                </div>
+                <div class="br-input-row">
+                    <button class="br-col-xs-12 normal-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
+                </div>
+            </EditForm>
+
+            @code {
+
+            private EditContext _editContext = default!;
+            private ScheduleDto _scheduleData = new();
+            private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+            protected override void OnInitialized()
+            {
+                var startTimeValidator = MemberValidators.CreateRangeValidator<TimeOnly>(TimeOnly.FromTimeSpan(new TimeSpan(7, 0, 0)), TimeOnly.FromTimeSpan(new TimeSpan(10, 0, 0)), "StartTime", "Start Time", "Must be between 7am and 10am.");
+                var endTimeValidator   = MemberValidators.CreateMemberComparisonValidator<ScheduleDto, TimeOnly>(y => y.EndTime, x => x.StartTime, CompareType.GreaterThan, "End Time", "Must be greater than the start time.");
+                /*
+                    * Different ways to do the same thing 
+                */
+                var startWorkValidator = MemberValidators.CreatePredicateValidator<TimeOnly>(x => x <= TimeOnly.FromTimeSpan(new TimeSpan(11, 0, 0)), "StartWork", "Start Work", "If entered must be 11am or earlier.");
+                var endWorkValidator   = MemberValidators.CreateCompareToValidator<TimeOnly>(TimeOnly.FromTimeSpan(new TimeSpan(13, 0, 0)),CompareType.GreaterThanOrEqual, "EndWork", "End Work", "If entered must be 1pm or later.");
+
+                _editContext = new EditContext(_scheduleData);
+
+                _boxedValidators = BlazorValidationBuilder<ScheduleDto>.Create()
+                                        .ForMember(c => c.StartTime, startTimeValidator)
+                                        .ForComparisonWithMember(c => c.EndTime, endTimeValidator)
+                                        .ForNullableMember(c => c.StartWork, startWorkValidator) //Nullable in my library means optional
+                                        .ForNullableMember(c => c.EndWork, endWorkValidator)
+                                        .GetBoxedValidators();
+            }
+
+            private void HandleSubmit() { }
+
+            public class ScheduleDto
+            {
+                public TimeOnly  StartTime { get; set; }
+                public TimeOnly  EndTime   { get; set; }
+
+                public TimeOnly? StartWork { get; set; } = null;
+                public TimeOnly? EndWork   { get; set; } = null;
+            }
+
+        }
+        
+        """;
 }
