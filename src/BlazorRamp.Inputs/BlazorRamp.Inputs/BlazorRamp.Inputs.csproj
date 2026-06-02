@@ -8,17 +8,16 @@
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
     <Title>BlazorRamp.Inputs</Title>
-    <Version>1.6.1</Version>
+    <Version>1.6.2</Version>
     <Authors>Paul Kent</Authors>
     <Description>Base set of the simple inputs for the Blazor Ramp ecosystem</Description>
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; TextIInput; PasswordInput; NumericInput; CheckboxInput; SelectInput; RadioInputGroup; TimeInput; Input;</PackageTags>
-    <PackageReleaseNotes>Added a min-height of 24px to inputs to account where
-the browser defaults were less as a precaution - WCAG target size</PackageReleaseNotes>
-    <AssemblyVersion>1.6.1</AssemblyVersion>
-    <FileVersion>1.6.1</FileVersion>
+    <PackageReleaseNotes>Fixed a visual issue with a time segment value not being padded with a zero in some circumstances. </PackageReleaseNotes>
+    <AssemblyVersion>1.6.2</AssemblyVersion>
+    <FileVersion>1.6.2</FileVersion>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>

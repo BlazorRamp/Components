@@ -102,51 +102,57 @@ public class TimeInput_Tests
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public async Task Should_be_able_to_set_required_which_uses_aria_required_if_true(bool required)
+        public async Task Should_be_able_to_set_required_which_uses_sets_aria_required_on_each_input_if_true(bool required)
         {
             await using var context = new BunitContext();
 
             var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.Required, required));
 
-            var ariaAttribute = inputComponent.Find("div").GetAttribute("aria-required");
+            var inputs = inputComponent.FindAll("input");
 
-            if (required) ariaAttribute.Should().Be("true");
-
-            if (!required) ariaAttribute.Should().BeNull();
+            foreach(var input in inputs)
+            {
+                if (required) input.GetAttribute("aria-required").Should().Be("true");
+                if (!required) input.GetAttribute("aria-required").Should().BeNull();
+            }
         }
 
 
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public async Task Should_be_able_to_set_the_readonly_attribute_when_true(bool readOnly)
+        public async Task Should_be_able_to_set_the_readonly_attribute_on_each_input_when_true(bool readOnly)
         {
             await using var context = new BunitContext();
 
             var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.ReadOnly, readOnly));
 
-            var readOnlyAttribute = inputComponent.Find("input").GetAttribute("readonly");
-
-            if (readOnly) readOnlyAttribute.Should().Be("readonly");
-
-            if (!readOnly) readOnlyAttribute.Should().BeNull();
+            var inputs = inputComponent.FindAll("input");
+            
+            foreach (var input in inputs)
+            {
+                if (readOnly) input.GetAttribute("readonly").Should().Be("readonly");
+                if (!readOnly) input.GetAttribute("readonly").Should().BeNull();
+            }
         }
 
 
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public async Task Should_be_able_to_set_the_aria_disabled_attribute_when_true(bool disabled)
+        public async Task Should_be_able_to_set_the_aria_disabled_attribute_on_each_input_when_true(bool disabled)
         {
             await using var context = new BunitContext();
 
             var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.AriaDisabled, disabled));
 
-            var disabledAttribute = inputComponent.Find("input").GetAttribute("aria-disabled");
+            var inputs = inputComponent.FindAll("input");
 
-            if (disabled) disabledAttribute.Should().Be("true");
-
-            if (!disabled) disabledAttribute.Should().BeNull();
+            foreach (var input in inputs)
+            {
+                if (disabled) input.GetAttribute("aria-disabled").Should().Be("true");
+                if (!disabled) input.GetAttribute("aria-disabled").Should().BeNull();
+            }
         }
 
 
@@ -618,6 +624,64 @@ public class TimeInput_Tests
         }
     }
 
+    public class PadMissingWithZero
+    {
+
+        [Theory]
+        [InlineData("0")]
+        [InlineData("1")]
+        [InlineData("11")]
+
+        public async Task Should_left_pad_with_non_blank_value_with_zero_so_its_2_digit(string value)
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context);
+
+            var result = inputComponent.Instance.PadMissingWithZero(value);
+
+            if(value.Length == 1) result.Should().Be("0" + value);
+            if (value.Length == 2) result.Should().Be(value);
+        }
+        [Fact]
+        public async Task Should_return_value_unchanged_when_readonly_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.ReadOnly, true));
+
+            var result = inputComponent.Instance.PadMissingWithZero("9");
+
+            result.Should().Be("9");
+        }
+
+
+        [Fact]
+        public async Task Should_return_value_unchanged_when_aria_disabled_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context, p => p.Add(x => x.AriaDisabled, true));
+
+            var result = inputComponent.Instance.PadMissingWithZero("9");
+
+            result.Should().Be("9");
+        }
+
+        
+        [Fact]
+        public async Task Should_return_null_when_value_is_null()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTimeInput(context);
+
+            var result = inputComponent.Instance.PadMissingWithZero(null);
+
+            result.Should().BeNull();
+        }
+
+    }
 
     public class HandleHoursSet
     {

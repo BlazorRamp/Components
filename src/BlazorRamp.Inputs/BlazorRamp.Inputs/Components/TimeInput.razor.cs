@@ -166,8 +166,7 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     protected string? _stringValue = null;
     private TValue? _lastParsedValue = default;
 
-    private bool _firstRender = true;
-    [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
+     [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
 
 
     private DotNetObjectReference<TimeTypeInput<TValue>>? _dotNetObjectRef;
@@ -188,7 +187,7 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         {
             _lastParsedValue = CurrentValue;
 
-            SetDisplayValues(_firstRender);
+            SetDisplayValues();
         }
 
     }
@@ -214,7 +213,7 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
 
         _lastParsedValue = CurrentValue;
 
-        SetDisplayValues(_firstRender);
+        SetDisplayValues();
     }
 
     /// <summary>
@@ -227,7 +226,6 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         await base.OnAfterRenderAsync(firstRender);
         if (firstRender)
         {
-            _firstRender = false;
             _jSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Inputs_File_Path);
 
             if (_jSModule is not null)
@@ -270,13 +268,14 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         return false;
     }
 
-    private void SetDisplayValues(bool displayTwoDigit = false)
+    private void SetDisplayValues()
     {
+
         if (CurrentValue is TimeOnly timeOnly)
         {
-            HoursValue   = displayTwoDigit ? timeOnly.Hour.ToString("D2") : timeOnly.Hour.ToString();
-            MinutesValue = displayTwoDigit ? timeOnly.Minute.ToString("D2") : timeOnly.Minute.ToString();
-            SecondsValue = EnableSeconds ? (displayTwoDigit ? timeOnly.Second.ToString("D2") : timeOnly.Second.ToString()) : string.Empty;
+            HoursValue = timeOnly.Hour.ToString("D2");
+            MinutesValue = timeOnly.Minute.ToString("D2");
+            SecondsValue = EnableSeconds ? timeOnly.Second.ToString("D2") : string.Empty;
         }
         else
         {
@@ -340,6 +339,17 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         if (base.ReadOnly || base.IsDisabled || string.IsNullOrWhiteSpace(value)) return value;
 
         return int.TryParse(value, out int parsed) ? parsed.ToString() : value;
+    }
+
+    /// <summary>
+    /// Left pads the value with zeros so its always 2 digits.
+    /// Returns the value unchanged when the component is readonly, aria-disabled,
+    /// null, empty, or whitespace.
+    /// </summary>
+    internal string? PadMissingWithZero(string? value)
+    {
+        if (base.ReadOnly || base.IsDisabled || string.IsNullOrWhiteSpace(value)) return value;
+        return value.PadLeft(2, '0');
     }
 
     /// <summary>

@@ -52,7 +52,8 @@
                        @bind-value:get="HoursValue"
                        @bind-value:event="oninput"
                        @bind-value:set="HandleHoursSet"
-                       @onfocus="() => HoursValue = RemoveLeadingZero(HoursValue)"  />
+                       @onfocus="() => HoursValue = RemoveLeadingZero(HoursValue)"  
+                       @onfocusout="() => HoursValue = PadMissingWithZero(HoursValue)" />
                        
             </div>
 
@@ -70,7 +71,8 @@
                        @bind-value:get="MinutesValue"
                        @bind-value:event="oninput"
                        @bind-value:set="HandleMinutesSet" 
-                       @onfocus="() => MinutesValue = RemoveLeadingZero(MinutesValue)" />
+                       @onfocus="() => MinutesValue = RemoveLeadingZero(MinutesValue)" 
+                       @onfocusout="() => MinutesValue = PadMissingWithZero(MinutesValue)" />
             </div>
 
             @if (EnableSeconds)
@@ -89,7 +91,8 @@
                            @bind-value:get="SecondsValue"
                            @bind-value:event="oninput"
                            @bind-value:set="HandleSecondsSet"
-                           @onfocus="() => SecondsValue = RemoveLeadingZero(SecondsValue)" />
+                           @onfocus="() => SecondsValue = RemoveLeadingZero(SecondsValue)" 
+                           @onfocusout="() => SecondsValue = PadMissingWithZero(SecondsValue)"/>
                 </div>
             }
         </div>

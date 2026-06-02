@@ -22,16 +22,19 @@ Welcome to your new app.
 
     <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
-        <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Firstname" AriaDisabled="false" HintText="The name that you use on official documents"
-                   UpdateOnInput="true" SvgIcon="--svg-user-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
-        <div class="br-input-row">
-            <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="My Time" @bind-Value="@_contactData.NullableTimeValue" HintText="You need to add some time value." SvgIcon="--svg-clock-icon"
-                       EnableSeconds="true" DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" UpdateOnInput="false" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"/>
 
+        <div class="br-input-row">
+            <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="My Time" @bind-Value="@_contactData.TimeValue" HintText="You need to add some time value." SvgIcon="--svg-clock-icon"
+                       EnableSeconds="true" DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" UpdateOnInput="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"/>
+            
+                       <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Nullable Time" @bind-Value="@_contactData.NullableTimeValue" HintText="You need to add some time value."
+                       EnableSeconds="true" DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" UpdateOnInput="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
+        </div>
+        <div class="br-input-row">
             <CheckboxInput class="br-col-xs-12 br-col-sm-6" HintText="You go a 50/50 chance of getting it right" @bind-Value="_contactData.IsAlive"
                            ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" SvgIcon="--svg-food-icon" AriaDisabled="false" />
         </div>
-
          <div class="br-input-row"> 
             <RadioInputGroup class="br-col-xs-12 br-col-sm-6" @bind-Value="@_contactData.RadioButtonValue" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"
                              LabelText="Your Gender" HintText="Please select on of the options" Orientation="Orientation.Horizontal" AriaDisabled="false" SvgIcon="--svg-food-icon">
