@@ -1,0 +1,401 @@
+﻿@using System.Text.RegularExpressions
+@using Validated.Core.Types
+
+@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TimeInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
+
+@inject ILiveRegionService _liveRegionService
+
+<PageTitle>@GlobalValues.Component_Name_Time_Input @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Time_Input @GlobalValues.Common_Page_Title_Overview_Tests</h1>
+
+    <p>
+        The Time Input component in this library is a composite component using ARIA <span>role="group"</span> and combines a label for the composite component, an optional area for hint text, with time segment labels and inputs 
+        for each time segment, Hours, Minutes and an optional Seconds segment. Finally with a region below the inputs for validation messages. 
+    </p>
+
+</section>
+
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
+    <p>
+        The examples below only use two fields, <b>Start Time</b> (non nullable, required) field and <b>Start Work</b> an optional (nullable, can be left blank) field. Both have the same validation rule attached
+        stipulating that the entry must be between 7am and 10am for the Start Time, but only if an entry is made for the Start Work field.        
+    </p>
+    <p>
+        For these example rather than use a red asterisk next to the label and the <span class="code-span">aria-required</span> attribute to indicate that the Start Time field is required, I opted to place the text
+        "Required" at the start of the hint text.
+    </p>
+    <p>
+        For the examples the following Validation Display options are used in each test so you can test the options with your chosen devices.
+    </p>
+    <ul>
+        <li>
+            Described By With Hint -  This options links the time input (group) to the hint text via the <span class="code-span">aria-describedby</span> attribute. The id of unordered list element that holds any validation errors
+            is added or removed from the <span class="code-span">aria-describedby</span> attribute, depending on the validity of the value. The id of the validation errors element is places first in the attribute.
+        </li>
+        <li>
+            Described By Hint Suppressed - This option removes the id of the hint text element from the <span class="code-span">aria-describedby</span> attribute when there are validation errors to reduce verbosity
+            for screen reader users.
+        </li>
+        <li>
+            Tabbable With Hint - This option only uses the <span class="code-span">aria-describedby</span> attribute for the hint text element which is never removed. The Validation errors area is given a tab stop
+            and is promoted to a landmark regions. In the following examples these transient regions will have the accessible name of [Label Text] + " errors" so for the "Start Time" field the region would be "Start Time errors".
+        </li>
+    </ul>
+    <p>
+        For each of the above options there are two examples, one that uses Blazors <span class="code-span">oninput</span> event which causes validation on every keystroke the other using the <span class="code-span">onchange</span> event
+        which occurs if the value has changed and once focus is lost - in this instance when focus is moved from the time input group component.
+    </p>
+    <p>
+        Examples one to three use the "On Input" event whilst examples four to six use the "On Change" event.
+    </p>
+    <p>
+        <strong>Important: </strong>Unlike the non-composite inputs where some screen reader/browser combinations treat the <span class="code-span">aria-describedby</span> attribute similar to a live region, with the 
+        <span class="code-span">role="group"</span> in play this behaviour is not exhibited.
+    </p>
+    <p>
+        <strong>Note: </strong>Given the myriad combinations of screen reader, operating system, browser, validation display option and event used, I have not provided an expectations section like the tests for other components. My preferred option given
+        that the behaviour is the same for all is to use the tabbable region option with the "oninput" event, but you should choose the options that best suit your target audience.
+    </p>
+</section>
+
+<section>
+    <h2>Examples using oninput (immediate validation)</h2>
+    
+    <section class="section-box">
+        <h3>Example one - fake form using the option "Described By With Hint" and the "On Input" event.</h3>
+
+        <EditForm EditContext="@_editContextOne" OnSubmit="HandleSubmitOne">
+        
+            <BlazorValidated TEntity="ScheduleDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <div class="br-input-row">
+                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Time" @bind-Value="@_scheduleDataOne.StartTime" HintText="Required, the time (24-hour format) you want the scheduled action to start."
+                           Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="Must be a valid time."
+                           ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
+
+                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Work" @bind-Value="@_scheduleDataOne.StartWork" HintText="Optional, the time (24-hour format) you start work." Required="false"
+                           EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="If entered must be a valid time."
+                           ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
+
+            </div>
+            <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                <button class="test-button" type="submit">Submit One to trigger validation on unmodified fields</button>
+                <button @ref="ResetButtonOne" class="test-button" type="button" @onclick="ResetEditContextOne">Reset Example One</button>
+            </div>
+        </EditForm>
+
+    </section>
+
+    <section class="section-box">
+        <h3>Example two - fake form using the option "Described By Hint Suppressed" and the "On Input" event.</h3>
+        <EditForm EditContext="@_editContextTwo" OnSubmit="HandleSubmitTwo">
+        
+            <BlazorValidated TEntity="ScheduleDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <div class="br-input-row">
+                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Time" @bind-Value="@_scheduleDataTwo.StartTime" HintText="Required, the time (24-hour format) you want the scheduled action to start."
+                           Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="Must be a valid time."
+                           ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" />
+
+                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Work" @bind-Value="@_scheduleDataTwo.StartWork" HintText="Optional, the time (24-hour format) you start work." Required="false"
+                           EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="If entered must be a valid time."
+                           ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" />
+            </div>
+            <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                <button class="test-button" type="submit">Submit Two to trigger validation on unmodified fields</button>
+                <button @ref="ResetButtonTwo" class="test-button" type="button" @onclick="ResetEditContextTwo">Reset Example Two</button>
+            </div>
+        </EditForm>
+
+
+    </section>
+
+    <section class="section-box">
+        <h3>Example three - fake form using the option "Tabbable With Hint" and the "On Input" event.</h3>
+
+        <EditForm EditContext="@_editContextThree" OnSubmit="HandleSubmitThree">
+        
+            <BlazorValidated TEntity="ScheduleDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <div class="br-input-row">
+                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Time" @bind-Value="@_scheduleDataThree.StartTime" HintText="Required, the time (24-hour format) you want the scheduled action to start."
+                           Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="Must be a valid time."
+                           ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
+                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Work" @bind-Value="@_scheduleDataThree.StartWork" HintText="Optional, the time (24-hour format) you start work." Required="false"
+                           EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="If entered must be a valid time."
+                           ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+            </div>
+            <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                <button class="test-button" type="submit">Submit Three to trigger validation on unmodified fields</button>
+                <button @ref="ResetButtonThree" class="test-button" type="button" @onclick="ResetEditContextThree">Reset Example Three</button>
+            </div>
+        </EditForm>
+
+    </section>
+</section>
+
+<section>
+    <h2>Examples using onchange (validation occurs when the value has changed and focus has moved)</h2>
+    
+    <section class="section-box">
+        <h3>Example four - fake form using the option "Described By With Hint" and the "On Change" event.</h3>
+
+        <EditForm EditContext="@_editContextFour" OnSubmit="HandleSubmitFour">
+        
+            <BlazorValidated TEntity="ScheduleDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <div class="br-input-row">
+                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Time" @bind-Value="@_scheduleDataFour.StartTime" HintText="Required, the time (24-hour format) you want the scheduled action to start."
+                           Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid time."
+                           ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
+
+                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Work" @bind-Value="@_scheduleDataFour.StartWork" HintText="Optional, the time (24-hour format) you start work." Required="false"
+                           EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="If entered must be a valid time."
+                           ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
+            </div>
+            <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                <button class="test-button" type="submit">Submit Four to trigger validation on unmodified fields</button>
+                <button @ref="ResetButtonFour" class="test-button" type="button" @onclick="ResetEditContextFour">Reset Example Four</button>
+            </div>
+        </EditForm>
+
+    </section>
+
+    <section class="section-box">
+        <h3>Example five - fake form using the option "Described By Hint Suppressed" and the "On Change" event.</h3>
+        <EditForm EditContext="@_editContextFive" OnSubmit="HandleSubmitFive">
+        
+            <BlazorValidated TEntity="ScheduleDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <div class="br-input-row">
+                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Time" @bind-Value="@_scheduleDataFive.StartTime" HintText="Required, the time (24-hour format) you want the scheduled action to start."
+                           Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid time."
+                           ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" />
+
+                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Work" @bind-Value="@_scheduleDataFive.StartWork" HintText="Optional, the time (24-hour format) you start work." Required="false"
+                           EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="If entered must be a valid time."
+                           ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" />
+            </div>
+            <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                <button class="test-button" type="submit">Submit Five to trigger validation on unmodified fields</button>
+                <button @ref="ResetButtonFive" class="test-button" type="button" @onclick="ResetEditContextFive">Reset Example Five</button>
+            </div>
+        </EditForm>
+
+
+    </section>
+
+    <section class="section-box">
+        <h3>Example six - fake form using the option "Tabbable With Hint" and the "On Change" event.</h3>
+
+        <EditForm EditContext="@_editContextSix" OnSubmit ="HandleSubmitSix">
+        
+            <BlazorValidated TEntity="ScheduleDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <div class="br-input-row">
+                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Time" @bind-Value="@_scheduleDataSix.StartTime" HintText="Required, the time (24-hour format) you want the scheduled action to start."
+                           Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid time."
+                           ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
+                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Work" @bind-Value="@_scheduleDataSix.StartWork" HintText="Optional, the time (24-hour format) you start work." Required="false"
+                           EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="If entered must be a valid time."
+                           ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+            </div>
+            <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+                <button class="test-button" type="submit">Submit Six to trigger validation on unmodified fields</button>
+                <button @ref="ResetButtonSix" class="test-button" type="button" @onclick="ResetEditContextSix">Reset Example Six</button>
+            </div>
+        </EditForm>
+
+    </section>
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Text_Input - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_ErrorsSummary}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Errors_Summary - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+
+
+</div>
+
+@code {
+
+    private ScheduleDto _scheduleDataOne   = new();
+    private ScheduleDto _scheduleDataTwo   = new();
+    private ScheduleDto _scheduleDataThree = new();
+    private ScheduleDto _scheduleDataFour  = new();
+    private ScheduleDto _scheduleDataFive  = new();
+    private ScheduleDto _scheduleDataSix   = new();
+
+    private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+    private EditContext _editContextOne   = default!; 
+    private EditContext _editContextTwo   = default!;
+    private EditContext _editContextThree = default!;
+    private EditContext _editContextFour  = default!;
+    private EditContext _editContextFive  = default!;
+    private EditContext _editContextSix   = default!;
+
+    private ElementReference ResetButtonOne {get;set;}= default;
+    private ElementReference ResetButtonTwo {get;set;}= default;
+    private ElementReference ResetButtonThree {get;set;}= default;
+    private ElementReference ResetButtonFour { get; set; } = default;
+    private ElementReference ResetButtonFive { get; set; } = default;
+    private ElementReference ResetButtonSix { get; set; } = default;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var startTimeValidator = MemberValidators.CreateRangeValidator<TimeOnly>(TimeOnly.FromTimeSpan(new TimeSpan(7, 0, 0)), TimeOnly.FromTimeSpan(new TimeSpan(10, 0, 0)), "StartTime", "Start Time", "Must be between 7am and 10am.");
+        var startWorkValidator = MemberValidators.CreateRangeValidator<TimeOnly>(TimeOnly.FromTimeSpan(new TimeSpan(7, 0, 0)), TimeOnly.FromTimeSpan(new TimeSpan(10, 0, 0)), "StartWork", "Start Work", "If entered must be between 7am and 10am");
+        
+
+        _boxedValidators = BlazorValidationBuilder<ScheduleDto>.Create()
+                               .ForMember(c => c.StartTime, startTimeValidator)
+                               .ForNullableMember(c => c.StartWork, startWorkValidator) //Nullable in my library means optional
+                                .GetBoxedValidators();
+
+        _editContextOne   = new EditContext(_scheduleDataOne);
+        _editContextTwo   = new EditContext(_scheduleDataTwo);
+        _editContextThree = new EditContext(_scheduleDataThree);
+        _editContextFour  = new EditContext(_scheduleDataFour);
+        _editContextFive  = new EditContext(_scheduleDataFive);
+        _editContextSix   = new EditContext(_scheduleDataSix);
+
+    }
+
+
+    private async Task HandleSubmitOne()
+    {
+        _editContextOne.Validate();
+        var announcement = new Announcement("Validation invoked on example one form fields", AnnouncementType.Info, "Submit One Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+
+    }
+    private async Task HandleSubmitTwo()
+    {
+        _editContextTwo.Validate();
+        var announcement = new Announcement("Validation invoked on example two form fields", AnnouncementType.Info, "Submit Two Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+    }
+    private async Task HandleSubmitThree()
+    {
+        _editContextThree.Validate();
+        var announcement = new Announcement("Validation invoked on example three form fields", AnnouncementType.Info, "Submit Three Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+    }
+    private async Task HandleSubmitFour()
+    {
+        _editContextFour.Validate();
+        var announcement = new Announcement("Validation invoked on example four form fields", AnnouncementType.Info, "Submit Four Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+
+    }
+    private async Task HandleSubmitFive()
+    {
+        _editContextFive.Validate();
+        var announcement = new Announcement("Validation invoked on example five form fields", AnnouncementType.Info, "Submit Five Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+    }
+    private async Task HandleSubmitSix()
+    {
+        _editContextSix.Validate();
+        var announcement = new Announcement("Validation invoked on example six form fields", AnnouncementType.Info, "Submit Six Button");
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+    }
+
+
+    private async Task ResetEditContextOne()
+    {
+        var announcement = new Announcement("Example one has been reset", AnnouncementType.Info, "Reset Example One Button");
+
+        _scheduleDataOne = new();
+        _editContextOne = new EditContext(_scheduleDataOne);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+
+        await ResetButtonOne.FocusAsync();
+
+    }
+    private async Task ResetEditContextTwo()
+    {
+        var announcement = new Announcement("Example two has been reset", AnnouncementType.Info, "Reset Example Two Button");
+       
+        _scheduleDataTwo = new();
+        _editContextTwo = new EditContext(_scheduleDataTwo);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+        await ResetButtonTwo.FocusAsync();
+    }
+    private async Task ResetEditContextThree()
+    {
+        var announcement = new Announcement("Example three has been reset", AnnouncementType.Info, "Reset Example Three Button");
+       
+        _scheduleDataThree = new();
+        _editContextThree = new EditContext(_scheduleDataThree);
+
+       await _liveRegionService.MakeAnnouncement(announcement);
+        await ResetButtonThree.FocusAsync();
+    }
+
+    private async Task ResetEditContextFour()
+    {
+        var announcement = new Announcement("Example four has been reset", AnnouncementType.Info, "Reset Example Four Button");
+
+        _scheduleDataFour = new();
+        _editContextFour = new EditContext(_scheduleDataFour);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+
+        await ResetButtonFour.FocusAsync();
+
+    }
+    private async Task ResetEditContextFive()
+    {
+        var announcement = new Announcement("Example five has been reset", AnnouncementType.Info, "Reset Example Five Button");
+       
+        _scheduleDataFive = new();
+        _editContextFive = new EditContext(_scheduleDataFive);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+        await ResetButtonFive.FocusAsync();
+    }
+    private async Task ResetEditContextSix()
+    {
+        var announcement = new Announcement("Example six has been reset", AnnouncementType.Info, "Reset Example Six Button");
+       
+        _scheduleDataSix = new();
+        _editContextSix = new EditContext(_scheduleDataSix);
+
+        await _liveRegionService.MakeAnnouncement(announcement);
+        await ResetButtonSix.FocusAsync();
+    }
+
+
+    public class ScheduleDto
+    {
+        public TimeOnly StartTime { get; set; }
+        public TimeOnly? StartWork { get; set; } = null;
+
+    }
+}

@@ -502,26 +502,27 @@ public class InputSnippets
 
 
     public const string Time_Input_Code_Example = """
+
             <EditForm EditContext="@_editContext" OnValidSubmit="HandleSubmit">
 
                 <BlazorValidated TEntity="ScheduleDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
                 <div class="br-input-row">
-                    <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Time" @bind-Value="@_scheduleData.StartTime" HintText="Required, the time you want the scheduled action to start." 
+                    <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Time" @bind-Value="@_scheduleData.StartTime" HintText="Required, the time (24-hour format) you want the scheduled action to start." 
                         Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="Must be a valid time."  
                         ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
 
-                    <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="End Time" @bind-Value="@_scheduleData.EndTime" HintText="Required, the time you want the scheduled action to finish" 
-                        Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid time."  
-                        ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" /> 
+                    <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="End Time" @bind-Value="@_scheduleData.EndTime" HintText="Required, the time (24-hour format) you want the scheduled action to finish"
+                        Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid time."   
+                        ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
                 </div>
                  <div class="br-input-row">
 
-                    <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Work" @bind-Value="@_scheduleData.StartWork" HintText="Optional, the time you start work." Required="false"
+                    <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Work" @bind-Value="@_scheduleData.StartWork" HintText="Optional, the time (24-hour format) you start work." Required="false"
                                EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="true"  ParseErrorMessage="Must be a valid time."  
                                ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
 
-                    <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="End Work" @bind-Value="@_scheduleData.EndWork" HintText="Optional, the time you finish work." Required="false"
+                    <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="End Work" @bind-Value="@_scheduleData.EndWork" HintText="Optional, the time (24-hour format) you finish work." Required="false"
                                EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid time."  
                                ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
                 </div>
