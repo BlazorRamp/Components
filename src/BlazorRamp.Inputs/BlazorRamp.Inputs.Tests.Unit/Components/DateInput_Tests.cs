@@ -524,7 +524,7 @@ public  class DateInput_Tests
                  .Add(x => x.UpdateOnInput, true)
                  .Add(x => x.ValidationDisplayMode, ValidationDisplayMode.TabbableWithHint));
 
-            await inputComponent.FindAll("input")[0].InputAsync(new ChangeEventArgs { Value = "99" });
+            await inputComponent.FindAll("input")[0].InputAsync(new ChangeEventArgs { Value = "00" });
             await inputComponent.FindAll("input")[1].InputAsync(new ChangeEventArgs { Value = "99" });
 
             await inputComponent.InvokeAsync(() => inputComponent.Instance.HandleComponentFocusOut());

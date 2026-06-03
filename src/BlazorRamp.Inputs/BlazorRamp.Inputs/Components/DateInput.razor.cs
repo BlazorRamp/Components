@@ -139,12 +139,7 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     /// </summary>
     protected ElementReference? DaysReference { get; set; }
 
-    /// <summary>
-    /// Tracks the raw string value currently displayed in the input element, independent
-    /// of the parsed <see cref="InputBase{TValue}.CurrentValue"/>. Used to preserve
-    /// mid-entry display state such as trailing decimal points and formatted values.
-    /// </summary>
-    protected string? _stringValue = null;
+
     private TValue? _lastParsedValue = default;
 
     [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
@@ -191,8 +186,6 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
 
         if (base.DataType != typeof(DateOnly)) throw new ArgumentException(GlobalValues.Input_Date_DataType_Error_Message);
 
-        _stringValue = CurrentValue is DateOnly dateOnly ? dateOnly.ToString("yyyy-MM-dd") : null;
-
         _lastParsedValue = CurrentValue;
 
         SetDisplayValues();
@@ -231,14 +224,25 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     /// On failure sets <paramref name="validationErrorMessage"/> to the resolved parse
     /// error message prefixed with the field display name.
     /// </summary>
+
     protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string? validationErrorMessage)
     {
         validationErrorMessage = string.Empty;
-
         if (string.IsNullOrWhiteSpace(value) && base.IsNullableType)
         {
             result = default!;
             return true;
+        }
+
+        var parts = value?.Split('-') ?? Array.Empty<string>();
+
+        if (parts.Length == 3)
+        {
+            var paddedYear  = parts[0].PadLeft(4, '0');
+            var paddedMonth = parts[1].PadLeft(2, '0');
+            var paddedDay   = parts[2].PadLeft(2, '0');
+
+            value = $"{paddedYear}-{paddedMonth}-{paddedDay}";
         }
 
         if (DateOnly.TryParseExact(value, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateOnly parsed))
@@ -252,21 +256,60 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         return false;
     }
 
+    //protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string? validationErrorMessage)
+    //{
+    //    validationErrorMessage = string.Empty;
+
+    //    if (string.IsNullOrWhiteSpace(value) && base.IsNullableType)
+    //    {
+    //        result = default!;
+    //        return true;
+    //    }
+
+    //    if (DateOnly.TryParseExact(value, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateOnly parsed))
+    //    {
+    //        result = (TValue)(object)parsed;
+    //        return true;
+    //    }
+
+    //    result = default!;
+    //    validationErrorMessage = string.Concat(base.LabelNameText.TrimEnd(':').Trim(), " - ", ParseErrorMessage);
+    //    return false;
+    //}
+
+
+    //private void SetDisplayValues()
+    //{
+
+    //    if (CurrentValue is DateOnly dateOnly)
+    //    {
+    //        YearsValue  = dateOnly.Year.ToString("D4");
+    //        MonthsValue = dateOnly.Month.ToString("D2");
+    //        DaysValue   = dateOnly.Day.ToString("D2");
+    //    }
+    //    else
+    //    {
+    //        YearsValue  = string.Empty;
+    //        MonthsValue = string.Empty;
+    //        DaysValue   = string.Empty;
+    //    }
+    //}
 
     private void SetDisplayValues()
     {
-
         if (CurrentValue is DateOnly dateOnly)
         {
-            YearsValue  = dateOnly.Year.ToString("D4");
-            MonthsValue = dateOnly.Month.ToString("D2");
-            DaysValue   = dateOnly.Day.ToString("D2");
+            if (!int.TryParse(YearsValue, out var y) || y != dateOnly.Year) YearsValue = dateOnly.Year.ToString("D4");
+
+            if (!int.TryParse(MonthsValue, out var m) || m != dateOnly.Month) MonthsValue = dateOnly.Month.ToString("D2");
+
+            if (!int.TryParse(DaysValue, out var d) || d != dateOnly.Day) DaysValue = dateOnly.Day.ToString("D2");
         }
         else
         {
-            YearsValue  = string.Empty;
+            YearsValue = string.Empty;
             MonthsValue = string.Empty;
-            DaysValue   = string.Empty;
+            DaysValue = string.Empty;
         }
     }
 

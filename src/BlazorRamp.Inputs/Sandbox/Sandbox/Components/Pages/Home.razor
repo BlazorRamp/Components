@@ -23,8 +23,8 @@ Welcome to your new app.
     <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
          <div class="br-input-row">
-            <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Date of Birth" @bind-Value="@_contactData.DOB" HintText="You need to add some date value." SvgIcon="--svg-clock-icon"
-                       DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" UpdateOnInput="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+            <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Date of Birth" @bind-Value="@_contactData.DOB" HintText="You need to add some date value."
+                       DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" UpdateOnInput="true" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
         </div>
 
         <div class="br-input-row">
@@ -174,7 +174,7 @@ Welcome to your new app.
         // .ForCollection(c => c.ContactMethods, MemberValidators.CreateCollectionLengthValidator<List<ContactMethodDto>>(1, 3, "ContactMethods", "Contact methods", "Must have at least 1 contact method but no more than 3"));// << created on the fly
 
         _contactData.RadioButtonValue = 5;
-
+        _contactData.DOB = default;
         _contactBoxedValidators = builder.GetBoxedValidators();
 
         //_contactData.ContactMethods = [];
