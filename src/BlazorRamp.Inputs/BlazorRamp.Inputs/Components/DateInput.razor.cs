@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 
 namespace BlazorRamp.Inputs.Components;
 
@@ -223,9 +224,23 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     }
     protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string? validationErrorMessage)
     {
-        validationErrorMessage = String.Empty;
-        result = default;
-        return true;
+        validationErrorMessage = string.Empty;
+
+        if (string.IsNullOrWhiteSpace(value) && base.IsNullableType)
+        {
+            result = default!;
+            return true;
+        }
+
+        if (DateOnly.TryParseExact(value, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateOnly parsed))
+        {
+            result = (TValue)(object)parsed;
+            return true;
+        }
+
+        result = default!;
+        validationErrorMessage = string.Concat(base.LabelNameText.TrimEnd(':').Trim(), " - ", ParseErrorMessage);
+        return false;
     }
 
 
@@ -257,7 +272,7 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         if (IsDisabled) return;
         YearsValue = value ?? string.Empty;
 
-        if (UpdateOnInput) CurrentValueAsString = $"{YearsValue}:{MonthsValue}:{DaysValue}";
+        if (UpdateOnInput) CurrentValueAsString = $"{YearsValue}-{MonthsValue}-{DaysValue}";
     }
 
     /// <summary>
@@ -271,7 +286,7 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         if (IsDisabled) return;
         MonthsValue = value ?? string.Empty;
 
-        if (UpdateOnInput) CurrentValueAsString = $"{YearsValue}:{MonthsValue}:{DaysValue}";
+        if (UpdateOnInput) CurrentValueAsString = $"{YearsValue}-{MonthsValue}-{DaysValue}";
     }
 
     /// <summary>
@@ -285,7 +300,7 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         if (IsDisabled) return;
         DaysValue = value ?? string.Empty;
 
-        if (UpdateOnInput) CurrentValueAsString = $"{YearsValue}:{MonthsValue}:{DaysValue}";
+        if (UpdateOnInput) CurrentValueAsString = $"{YearsValue}-{MonthsValue}-{DaysValue}";
     }
 
     /// <summary>
