@@ -385,7 +385,7 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         MonthsValue = string.IsNullOrWhiteSpace(MonthsValue) ? string.Empty : MonthsValue.PadLeft(2, '0');
         DaysValue  = string.IsNullOrWhiteSpace(DaysValue)   ? string.Empty : DaysValue.PadLeft(2, '0');
 
-        CurrentValueAsString = $"{YearsValue}:{MonthsValue}:{DaysValue}";
+        CurrentValueAsString = $"{YearsValue}-{MonthsValue}-{DaysValue}";
      
         _lastParsedValue = CurrentValue;
         await InvokeAsync(StateHasChanged);

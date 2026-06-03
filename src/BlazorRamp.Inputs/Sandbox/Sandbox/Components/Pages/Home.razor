@@ -166,6 +166,7 @@ Welcome to your new app.
                         .ForMember(c => c.RadioButtonValue, ContactValidators.RadioGroupValue)
                         .ForMember(c => c.TimeValue, ContactValidators.TimeOnlyValidator)
                         .ForNullableMember(c => c.NullableTimeValue, ContactValidators.TimeOnlyValidator)
+                        .ForMember(c => c.DOB, ContactValidators.DOBValidator)
          // .ForComparisonWithValue(c => c.DOB, ContactValidators.DOBValidator)
          // .ForComparisonWithMember(c => c.CompareDOB, ContactValidators.CompareDOBValidator)
          // .ForNestedMember(c => c.Address, AddressValidators.GetBoxedAddressValidators())// << Getting all the address validators from a pre-created builder.

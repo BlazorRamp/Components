@@ -5,12 +5,7 @@ using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlazorRamp.Inputs.Tests.Unit.Components;
 
@@ -404,8 +399,6 @@ public class TimeInput_Tests
             });
         }
 
-
-
         [Theory]
         [InlineData("--svg-icon")]
         [InlineData(null)]
@@ -506,8 +499,6 @@ public class TimeInput_Tests
         }
 
 
-
-
         [Theory]
         [InlineData("My parse error text")]
         [InlineData("")]
@@ -541,9 +532,6 @@ public class TimeInput_Tests
                 errorItems[0].TextContent.Should().Be($"MyField - {parseErrorText}.");
             });
         }
-
-
-
 
     }
 
