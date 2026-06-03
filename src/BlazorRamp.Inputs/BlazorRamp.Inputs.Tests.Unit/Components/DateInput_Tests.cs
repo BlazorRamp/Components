@@ -695,6 +695,277 @@ public  class DateInput_Tests
         }
 
     }
+    public class HandleYearsSet
+    {
+        [Fact]
+        public async Task Should_update_the_years_value()
+        {
+            await using var context = new BunitContext();
 
+            var (inputComponent, _) = CreateDateInput(context);
+
+            var yearsInput = inputComponent.FindAll("input")[0];
+            await yearsInput.InputAsync(new ChangeEventArgs { Value = "2024" });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[0].GetAttribute("value").Should().Be("2024");
+            });
+        }
+
+        [Fact]
+        public async Task Should_set_years_value_to_empty_string_when_null_is_passed_and_update_on_input_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateDateInput(context, p => p.Add(x => x.UpdateOnInput, true));
+
+            var yearsInput = inputComponent.FindAll("input")[0];
+            await yearsInput.InputAsync(new ChangeEventArgs { Value = null });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[0].GetAttribute("value").Should().BeNullOrEmpty();
+            });
+        }
+
+        [Fact]
+        public async Task Should_not_update_the_years_value_when_aria_disabled_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateDateInput(context, p => p.Add(x => x.AriaDisabled, true));
+
+            var yearsInput = inputComponent.FindAll("input")[0];
+            await yearsInput.InputAsync(new ChangeEventArgs { Value = "2099" });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[0].GetAttribute("value").Should().Be("2010");
+            });
+        }
+    }
+
+    public class HandleMonthsSet
+    {
+        [Fact]
+        public async Task Should_update_the_months_value()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateDateInput(context);
+
+            var monthsInput = inputComponent.FindAll("input")[1];
+            await monthsInput.InputAsync(new ChangeEventArgs { Value = "06" });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[1].GetAttribute("value").Should().Be("06");
+            });
+        }
+
+        [Fact]
+        public async Task Should_set_months_value_to_empty_string_when_null_is_passed_and_update_on_input_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateDateInput(context, p => p.Add(x => x.UpdateOnInput, true));
+
+            var monthsInput = inputComponent.FindAll("input")[1];
+            await monthsInput.InputAsync(new ChangeEventArgs { Value = null });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[1].GetAttribute("value").Should().BeNullOrEmpty();
+            });
+        }
+
+        [Fact]
+        public async Task Should_not_update_the_months_value_when_aria_disabled_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateDateInput(context, p => p.Add(x => x.AriaDisabled, true));
+
+            var monthsInput = inputComponent.FindAll("input")[1];
+            await monthsInput.InputAsync(new ChangeEventArgs { Value = "12" });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[1].GetAttribute("value").Should().Be("05");
+            });
+        }
+    }
+
+    public class HandleDaysSet
+    {
+        [Fact]
+        public async Task Should_update_the_days_value()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateDateInput(context);
+
+            var daysInput = inputComponent.FindAll("input")[2];
+            await daysInput.InputAsync(new ChangeEventArgs { Value = "15" });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[2].GetAttribute("value").Should().Be("15");
+            });
+        }
+
+        [Fact]
+        public async Task Should_set_days_value_to_empty_string_when_null_is_passed_and_update_on_input_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateDateInput(context, p => p.Add(x => x.UpdateOnInput, true));
+
+            var daysInput = inputComponent.FindAll("input")[2];
+            await daysInput.InputAsync(new ChangeEventArgs { Value = null });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[2].GetAttribute("value").Should().BeNullOrEmpty();
+            });
+        }
+
+        [Fact]
+        public async Task Should_not_update_the_days_value_when_aria_disabled_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateDateInput(context, p => p.Add(x => x.AriaDisabled, true));
+
+            var daysInput = inputComponent.FindAll("input")[2];
+            await daysInput.InputAsync(new ChangeEventArgs { Value = "30" });
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.FindAll("input")[2].GetAttribute("value").Should().Be("05");
+            });
+        }
+    }
+
+    public class HandleComponentFocusOut
+    {
+        [Fact]
+        public async Task Should_pad_single_digit_segment_values_and_commit_the_date()
+        {
+            await using var context = new BunitContext();
+
+            var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Readonly_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Date_Segment_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Focus_Out_Callback, _ => true).SetVoidResult();
+
+            var model = new TestModel { DateValue = new DateOnly(2010, 5, 5) };
+            var editContext = new EditContext(model);
+
+            var component = context.Render<DateInput<DateOnly>>(
+                builder =>
+                {
+                    builder
+                        .AddCascadingValue(editContext)
+                        .Add(p => p.Value, model.DateValue)
+                        .Add(p => p.ValueChanged, EventCallback.Factory.Create<DateOnly>(context, v => model.DateValue = v))
+                        .Add(p => p.ValueExpression, () => model.DateValue);
+                });
+
+            await component.InvokeAsync(() => component.Instance.HandleComponentFocusOut());
+
+            component.WaitForAssertion(() =>
+            {
+                component.Instance.Value.Should().Be(new DateOnly(2010, 5, 5));
+            });
+        }
+
+        [Fact]
+        public async Task Should_return_early_and_not_change_value_when_aria_disabled_is_true()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateDateInput(context, p => p.Add(x => x.AriaDisabled, true));
+
+            await inputComponent.InvokeAsync(() => inputComponent.Instance.HandleComponentFocusOut());
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.Instance.Value.Should().Be(new DateOnly(2010, 5, 5));
+            });
+        }
+
+        [Fact]
+        public async Task Should_set_value_to_null_when_all_segments_are_empty_and_type_is_nullable()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateNullableDateInput(context);
+
+            await inputComponent.InvokeAsync(() => inputComponent.Instance.HandleComponentFocusOut());
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.Instance.Value.Should().BeNull();
+            });
+        }
+
+        [Fact]
+        public async Task Should_default_to_date_only_min_value_when_all_segments_are_empty_and_type_is_non_nullable()
+        {
+            await using var context = new BunitContext();
+
+            var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Readonly_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Date_Segment_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Focus_Out_Callback, _ => true).SetVoidResult();
+
+            var model = new TestModel { DateValue = DateOnly.MinValue };
+            var editContext = new EditContext(model);
+
+            var component = context.Render<DateInput<DateOnly>>(
+                builder =>
+                {
+                    builder
+                        .AddCascadingValue(editContext)
+                        .Add(p => p.Value, model.DateValue)
+                        .Add(p => p.ValueChanged, EventCallback.Factory.Create<DateOnly>(context, v => model.DateValue = v))
+                        .Add(p => p.ValueExpression, () => model.DateValue);
+                });
+
+            await component.FindAll("input")[0].InputAsync(new ChangeEventArgs { Value = "" });
+            await component.FindAll("input")[1].InputAsync(new ChangeEventArgs { Value = "" });
+            await component.FindAll("input")[2].InputAsync(new ChangeEventArgs { Value = "" });
+
+            await component.InvokeAsync(() => component.Instance.HandleComponentFocusOut());
+
+            component.WaitForAssertion(() =>
+            {
+                component.Instance.Value.Should().Be(DateOnly.MinValue);
+            });
+        }
+
+        [Fact]
+        public async Task Should_pad_segment_values_and_commit_when_focus_leaves_the_group()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateDateInput(context, p => p.Add(x => x.UpdateOnInput, true));
+
+            await inputComponent.FindAll("input")[0].InputAsync(new ChangeEventArgs { Value = "2024" });
+            await inputComponent.FindAll("input")[1].InputAsync(new ChangeEventArgs { Value = "3" });
+            await inputComponent.FindAll("input")[2].InputAsync(new ChangeEventArgs { Value = "7" });
+
+            await inputComponent.InvokeAsync(() => inputComponent.Instance.HandleComponentFocusOut());
+
+            inputComponent.WaitForAssertion(() =>
+            {
+                inputComponent.Instance.Value.Should().Be(new DateOnly(2024, 3, 7));
+            });
+        }
+    }
 
 }

@@ -259,22 +259,7 @@ const registerTimeSegmentHandlers = (hoursElement: HTMLElement, minutesElement: 
     }
 };
 
-const unregisterTimeSegmentHandlers = (yearsElement: HTMLElement, monthsElement: HTMLElement, daysElement: HTMLElement): void => {
-    if (!yearsElement || !monthsElement || !daysElement) return;
-
-    yearsElement.removeEventListener("input", dateSegmentHandler);
-    monthsElement.removeEventListener("input", dateSegmentHandler);
-    daysElement.removeEventListener("input", dateSegmentHandler);
-};
-const registerDateSegmentHandlers = (yearsElement: HTMLElement, monthsElement: HTMLElement, daysElement: HTMLElement): void => {
-    if (!yearsElement || !monthsElement || !daysElement) return;
-
-    yearsElement.addEventListener("input", dateSegmentHandler);
-    monthsElement.addEventListener("input", dateSegmentHandler);
-    daysElement.addEventListener("input", dateSegmentHandler);
-};
-
-const unregisterDateSegmentHandlers = (hoursElement: HTMLElement, minutesElement: HTMLElement, secondsElement: HTMLElement | null): void => {
+const unregisterTimeSegmentHandlers = (hoursElement: HTMLElement, minutesElement: HTMLElement, secondsElement: HTMLElement | null): void => {
     if (!hoursElement || !minutesElement) return;
 
     hoursElement.removeEventListener("input", timeSegmentHandler);
@@ -284,6 +269,25 @@ const unregisterDateSegmentHandlers = (hoursElement: HTMLElement, minutesElement
         secondsElement.removeEventListener("input", timeSegmentHandler);
     }
 };
+
+const registerDateSegmentHandlers = (yearsElement: HTMLElement, monthsElement: HTMLElement, daysElement: HTMLElement): void => {
+    if (!yearsElement || !monthsElement || !daysElement) return;
+
+    yearsElement.addEventListener("input", dateSegmentHandler);
+    monthsElement.addEventListener("input", dateSegmentHandler);
+    daysElement.addEventListener("input", dateSegmentHandler);
+};
+
+const unregisterDateSegmentHandlers = (yearsElement: HTMLElement, monthsElement: HTMLElement, daysElement: HTMLElement): void => {
+    if (!yearsElement || !monthsElement || !daysElement) return;
+
+    yearsElement.removeEventListener("input", dateSegmentHandler);
+    monthsElement.removeEventListener("input", dateSegmentHandler);
+    daysElement.removeEventListener("input", dateSegmentHandler);
+};
+
+
+
 
 
 const registerElementFocusOutHandler = (element: HTMLElement, dotNetRef: any, callBackName: string): void => {

@@ -192,12 +192,14 @@ const registerTimeSegmentHandlers = (hoursElement, minutesElement, secondsElemen
         secondsElement.addEventListener("input", timeSegmentHandler);
     }
 };
-const unregisterTimeSegmentHandlers = (yearsElement, monthsElement, daysElement) => {
-    if (!yearsElement || !monthsElement || !daysElement)
+const unregisterTimeSegmentHandlers = (hoursElement, minutesElement, secondsElement) => {
+    if (!hoursElement || !minutesElement)
         return;
-    yearsElement.removeEventListener("input", dateSegmentHandler);
-    monthsElement.removeEventListener("input", dateSegmentHandler);
-    daysElement.removeEventListener("input", dateSegmentHandler);
+    hoursElement.removeEventListener("input", timeSegmentHandler);
+    minutesElement.removeEventListener("input", timeSegmentHandler);
+    if (secondsElement) {
+        secondsElement.removeEventListener("input", timeSegmentHandler);
+    }
 };
 const registerDateSegmentHandlers = (yearsElement, monthsElement, daysElement) => {
     if (!yearsElement || !monthsElement || !daysElement)
@@ -206,14 +208,12 @@ const registerDateSegmentHandlers = (yearsElement, monthsElement, daysElement) =
     monthsElement.addEventListener("input", dateSegmentHandler);
     daysElement.addEventListener("input", dateSegmentHandler);
 };
-const unregisterDateSegmentHandlers = (hoursElement, minutesElement, secondsElement) => {
-    if (!hoursElement || !minutesElement)
+const unregisterDateSegmentHandlers = (yearsElement, monthsElement, daysElement) => {
+    if (!yearsElement || !monthsElement || !daysElement)
         return;
-    hoursElement.removeEventListener("input", timeSegmentHandler);
-    minutesElement.removeEventListener("input", timeSegmentHandler);
-    if (secondsElement) {
-        secondsElement.removeEventListener("input", timeSegmentHandler);
-    }
+    yearsElement.removeEventListener("input", dateSegmentHandler);
+    monthsElement.removeEventListener("input", dateSegmentHandler);
+    daysElement.removeEventListener("input", dateSegmentHandler);
 };
 const registerElementFocusOutHandler = (element, dotNetRef, callBackName) => {
     if (!element)

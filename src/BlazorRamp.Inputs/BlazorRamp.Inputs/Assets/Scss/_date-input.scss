@@ -190,7 +190,7 @@
         color: var(--br-comp-input-error-colour);
         min-height: var(--br-unit-space-5);
 
-        &:has(.br-time-input__error:focus-visible) {
+        &:has(.br-date-input__error:focus-visible) {
             border-top: var(--br-unit-border-1) solid transparent;
             border-radius: var(--br-comp-input-pane-base-border-radius);
         }

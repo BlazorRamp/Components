@@ -222,6 +222,15 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
 
         }
     }
+
+    /// <summary>
+    /// Attempts to parse <paramref name="value"/> to <typeparamref name="TValue"/> using
+    /// exact format <c>"yyyy-MM-dd"</c> with <see cref="CultureInfo.InvariantCulture"/>.
+    /// Returns <c>true</c> and sets <paramref name="result"/> when the value is null or
+    /// whitespace and the type is nullable, or when the value parses successfully.
+    /// On failure sets <paramref name="validationErrorMessage"/> to the resolved parse
+    /// error message prefixed with the field display name.
+    /// </summary>
     protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string? validationErrorMessage)
     {
         validationErrorMessage = string.Empty;
@@ -353,6 +362,16 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         => additionalAttributes?.Where(kv => kv.Key != "class").ToDictionary();
 
 
+    /// <summary>
+    /// Invoked via JavaScript interop when focus leaves the entire date input group.
+    /// Commits the current segment values to <see cref="InputBase{TValue}.CurrentValueAsString"/>,
+    /// padding years to four digits and months and days to two digits where needed. 
+    /// When all segments are empty and the type is nullable, sets 
+    /// <see cref="InputBase{TValue}.CurrentValue"/> to <c>default</c>. When all segments 
+    /// are empty and the type is non-nullable, defaults to <see cref="DateOnly.MinValue"/> 
+    /// (<c>0001-01-01</c>). Does nothing when
+    /// <see cref="InputTypeBase{TValue}.IsDisabled"/> is <c>true</c>.
+    /// </summary>
     [JSInvokable]
     public async Task HandleComponentFocusOut()
     {
@@ -371,11 +390,11 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
                 return;
             }
 
-            // non-nullable - treat as 
-            YearsValue  = "0000";
-            MonthsValue = "00";
-            DaysValue   = "00";
-            CurrentValueAsString = "0000-00-00";
+            // non-nullable - treat as default value
+            YearsValue  = "0001";
+            MonthsValue = "01";
+            DaysValue   = "01";
+            CurrentValueAsString = "0001-01-01";
             _lastParsedValue = CurrentValue;
             await InvokeAsync(StateHasChanged);
             return;
