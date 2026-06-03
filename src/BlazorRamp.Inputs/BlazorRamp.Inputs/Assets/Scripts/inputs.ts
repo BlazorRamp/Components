@@ -1,6 +1,7 @@
 ﻿const elementFocusOutMap = new WeakMap<HTMLElement, (e: FocusEvent) => void>();
 
 const TIME_INPUT_COMPONENT_NAME = "TimeInput";
+const DATE_INPUT_COMPONENT_NAME = "DateInput";
 
 const getDecimalSeparator = (): string => Intl.NumberFormat(navigator.language).format(1.1).charAt(1);
 
@@ -56,6 +57,14 @@ const timeSegmentHandler = (e:Event): void => {
     if (input.value !== cleaned) input.value = cleaned;
 };
 
+const dateSegmentHandler = (e: Event): void => {
+
+    const input = e.target as HTMLInputElement;
+
+    let cleaned = input.value.replace(/[^0-9]/g, '');
+    if (input.value !== cleaned) input.value = cleaned;
+};
+
 const setInputValue = (inputElement: HTMLElement, value: string): void => {
 
     if (!inputElement) return;
@@ -77,7 +86,7 @@ const setInputFocus = (elementId: string): void => {
         inline: "nearest"
     });
 
-    if (element.getAttribute("data-br-component") === TIME_INPUT_COMPONENT_NAME){
+    if (element.getAttribute("data-br-component") === TIME_INPUT_COMPONENT_NAME || element.getAttribute("data-br-component") === DATE_INPUT_COMPONENT_NAME){
 
         const input = element.querySelector("input") as HTMLInputElement;
 
@@ -250,7 +259,22 @@ const registerTimeSegmentHandlers = (hoursElement: HTMLElement, minutesElement: 
     }
 };
 
-const unregisterTimeSegmentHandlers = (hoursElement: HTMLElement, minutesElement: HTMLElement, secondsElement: HTMLElement | null): void => {
+const unregisterTimeSegmentHandlers = (yearsElement: HTMLElement, monthsElement: HTMLElement, daysElement: HTMLElement): void => {
+    if (!yearsElement || !monthsElement || !daysElement) return;
+
+    yearsElement.removeEventListener("input", dateSegmentHandler);
+    monthsElement.removeEventListener("input", dateSegmentHandler);
+    daysElement.removeEventListener("input", dateSegmentHandler);
+};
+const registerDateSegmentHandlers = (yearsElement: HTMLElement, monthsElement: HTMLElement, daysElement: HTMLElement): void => {
+    if (!yearsElement || !monthsElement || !daysElement) return;
+
+    yearsElement.addEventListener("input", dateSegmentHandler);
+    monthsElement.addEventListener("input", dateSegmentHandler);
+    daysElement.addEventListener("input", dateSegmentHandler);
+};
+
+const unregisterDateSegmentHandlers = (hoursElement: HTMLElement, minutesElement: HTMLElement, secondsElement: HTMLElement | null): void => {
     if (!hoursElement || !minutesElement) return;
 
     hoursElement.removeEventListener("input", timeSegmentHandler);
@@ -260,6 +284,8 @@ const unregisterTimeSegmentHandlers = (hoursElement: HTMLElement, minutesElement
         secondsElement.removeEventListener("input", timeSegmentHandler);
     }
 };
+
+
 const registerElementFocusOutHandler = (element: HTMLElement, dotNetRef: any, callBackName: string): void => {
 
     if (!element) return;
@@ -291,5 +317,6 @@ export {
     registerAriaDisabledHandlers, unregisterAriaDisabledHandlers, registerNumericHandlers, unregisterNumericHandlers,
     setInputValue, setInputFocus, setSummaryFocus, registerReadOnlyHandlers, unregisterReadOnlyHandlers,
     registerSelectReadOnlyDisabledHandlers, unregisterSelectReadOnlyDisabledHandlers, registerTimeSegmentHandlers,
-    unregisterTimeSegmentHandlers, registerElementFocusOutHandler, unregisterElementFocusOutHandler
+    unregisterTimeSegmentHandlers, registerElementFocusOutHandler, unregisterElementFocusOutHandler,
+    registerDateSegmentHandlers, unregisterDateSegmentHandlers
 };

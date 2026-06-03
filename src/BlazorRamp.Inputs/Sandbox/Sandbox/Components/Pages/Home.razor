@@ -22,6 +22,10 @@ Welcome to your new app.
 
     <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
+         <div class="br-input-row">
+            <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Date of Birth" @bind-Value="@_contactData.DOB" HintText="You need to add some date value." SvgIcon="--svg-clock-icon"
+                       DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" UpdateOnInput="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+        </div>
 
         <div class="br-input-row">
             <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="My Time" @bind-Value="@_contactData.TimeValue" HintText="You need to add some time value." SvgIcon="--svg-clock-icon"

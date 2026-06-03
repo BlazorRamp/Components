@@ -1,5 +1,6 @@
 const elementFocusOutMap = new WeakMap();
 const TIME_INPUT_COMPONENT_NAME = "TimeInput";
+const DATE_INPUT_COMPONENT_NAME = "DateInput";
 const getDecimalSeparator = () => Intl.NumberFormat(navigator.language).format(1.1).charAt(1);
 const preventClickAction = (e) => e.preventDefault();
 const preventAction = (e) => e.preventDefault();
@@ -36,6 +37,12 @@ const timeSegmentHandler = (e) => {
     if (input.value !== cleaned)
         input.value = cleaned;
 };
+const dateSegmentHandler = (e) => {
+    const input = e.target;
+    let cleaned = input.value.replace(/[^0-9]/g, '');
+    if (input.value !== cleaned)
+        input.value = cleaned;
+};
 const setInputValue = (inputElement, value) => {
     if (!inputElement)
         return;
@@ -51,7 +58,7 @@ const setInputFocus = (elementId) => {
         block: "nearest",
         inline: "nearest"
     });
-    if (element.getAttribute("data-br-component") === TIME_INPUT_COMPONENT_NAME) {
+    if (element.getAttribute("data-br-component") === TIME_INPUT_COMPONENT_NAME || element.getAttribute("data-br-component") === DATE_INPUT_COMPONENT_NAME) {
         const input = element.querySelector("input");
         if (input) {
             input.focus({ preventScroll: true });
@@ -185,7 +192,21 @@ const registerTimeSegmentHandlers = (hoursElement, minutesElement, secondsElemen
         secondsElement.addEventListener("input", timeSegmentHandler);
     }
 };
-const unregisterTimeSegmentHandlers = (hoursElement, minutesElement, secondsElement) => {
+const unregisterTimeSegmentHandlers = (yearsElement, monthsElement, daysElement) => {
+    if (!yearsElement || !monthsElement || !daysElement)
+        return;
+    yearsElement.removeEventListener("input", dateSegmentHandler);
+    monthsElement.removeEventListener("input", dateSegmentHandler);
+    daysElement.removeEventListener("input", dateSegmentHandler);
+};
+const registerDateSegmentHandlers = (yearsElement, monthsElement, daysElement) => {
+    if (!yearsElement || !monthsElement || !daysElement)
+        return;
+    yearsElement.addEventListener("input", dateSegmentHandler);
+    monthsElement.addEventListener("input", dateSegmentHandler);
+    daysElement.addEventListener("input", dateSegmentHandler);
+};
+const unregisterDateSegmentHandlers = (hoursElement, minutesElement, secondsElement) => {
     if (!hoursElement || !minutesElement)
         return;
     hoursElement.removeEventListener("input", timeSegmentHandler);
@@ -214,5 +235,5 @@ const unregisterElementFocusOutHandler = (element) => {
         elementFocusOutMap.delete(element);
     }
 };
-export { registerAriaDisabledHandlers, unregisterAriaDisabledHandlers, registerNumericHandlers, unregisterNumericHandlers, setInputValue, setInputFocus, setSummaryFocus, registerReadOnlyHandlers, unregisterReadOnlyHandlers, registerSelectReadOnlyDisabledHandlers, unregisterSelectReadOnlyDisabledHandlers, registerTimeSegmentHandlers, unregisterTimeSegmentHandlers, registerElementFocusOutHandler, unregisterElementFocusOutHandler };
+export { registerAriaDisabledHandlers, unregisterAriaDisabledHandlers, registerNumericHandlers, unregisterNumericHandlers, setInputValue, setInputFocus, setSummaryFocus, registerReadOnlyHandlers, unregisterReadOnlyHandlers, registerSelectReadOnlyDisabledHandlers, unregisterSelectReadOnlyDisabledHandlers, registerTimeSegmentHandlers, unregisterTimeSegmentHandlers, registerElementFocusOutHandler, unregisterElementFocusOutHandler, registerDateSegmentHandlers, unregisterDateSegmentHandlers };
 //# sourceMappingURL=inputs.js.map

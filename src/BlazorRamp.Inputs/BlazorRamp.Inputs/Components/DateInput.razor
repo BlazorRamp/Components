@@ -1,0 +1,122 @@
+﻿@typeparam TValue
+@inherits DateTypeInput<TValue>
+
+
+
+<div @ref="ControlReference" data-br-component="DateInput"
+     @attributes="@GetAttributes(AdditionalAttributes)"
+     id="@InputID"
+     class="@DateInputClasses"
+     role="group"
+     aria-labelledby="@ControlLabelledbyID"
+     aria-invalid="@(HasErrors ? "true" : null)"
+     aria-describedby="@(AriaDescribedByID)">
+
+    
+    <span id="@ControlLabelledbyID" class="@GlobalValues.Date_Input_Label_Class" @onmousedown:preventDefault>
+        @LabelNameText
+        @if (Required)
+        {
+            <span aria-hidden="true" class="@GlobalValues.Date_Input_Asterisk_Class"> *</span>
+        }
+    </span>
+    @if (HintNormalised is not null)
+    {
+        <span id="@HintTextID" class="@GlobalValues.Date_Input_Hint_Class">
+            @HintNormalised
+        </span>
+    }
+
+    @if (false == String.IsNullOrWhiteSpace(SvgVariable))
+    {
+        <span aria-hidden="true" class="@GlobalValues.Date_Input_Icon_Class" style="@SvgVariable"></span>
+    }
+    else
+    {
+        <span aria-hidden="true"></span>
+    }
+
+
+    <div class="@GlobalValues.Date_Input_Field_Area_Class" data-br-input-position="@DataPosition.ToString().ToLower()">
+
+        <div class="@GlobalValues.Date_Input_Segment_Wrapper_Class">
+
+            <div class="@GlobalValues.Date_Input_Segment_Class">
+                <label class="@GlobalValues.Date_Input_Segment_Label_Class" for="@YearsInputID">@YearsText</label>
+                <input id="@YearsInputID" class="@GlobalValues.Date_Input_Field_Class" type="text" inputmode="numeric"
+                       readonly="@(base.ReadOnly ? "readonly" : null)"
+                       aria-disabled="@(base.IsDisabled ? "true" : null)"
+                       aria-required="@(Required ? "true" : null)"
+                       maxlength="4"
+                       autocomplete="@(AutoCompleteOff ? "off" : null)"
+                       @ref="YearsReference"
+                       @bind-value:get="YearsValue"
+                       @bind-value:event="oninput"
+                       @bind-value:set="HandleYearsSet"
+                       @onfocus="() => YearsValue = RemoveLeadingZero(YearsValue)"
+                       @onfocusout="() => YearsValue = PadMissingWithZero(YearsValue,4)" />
+
+            </div>
+
+            <span aria-hidden="true">:</span>
+
+            <div class="@GlobalValues.Date_Input_Segment_Class">
+                <label class="@GlobalValues.Date_Input_Segment_Label_Class" for="@MonthsInputID">@MonthsText</label>
+                <input id="@MonthsInputID" class="@GlobalValues.Date_Input_Field_Class" type="text" inputmode="numeric"
+                       readonly="@(base.ReadOnly ? "readonly" : null)"
+                       aria-disabled="@(base.IsDisabled ? "true" : null)"
+                       aria-required="@(Required ? "true" : null)"
+                       maxlength="2"
+                       autocomplete="@(AutoCompleteOff ? "off" : null)"
+                       @ref="MonthsReference"
+                       @bind-value:get="MonthsValue"
+                       @bind-value:event="oninput"
+                       @bind-value:set="HandleMonthsSet"
+                       @onfocus="() => MonthsValue = RemoveLeadingZero(MonthsValue)"
+                       @onfocusout="() => MonthsValue = PadMissingWithZero(MonthsValue)" />
+            </div>
+
+
+            <span aria-hidden="true">:</span>
+
+            <div class="@GlobalValues.Date_Input_Segment_Class">
+                <label class="@GlobalValues.Date_Input_Segment_Label_Class" for="@DaysInputID">@DaysText</label>
+                <input id="@DaysInputID" class="@GlobalValues.Date_Input_Field_Class" type="text" inputmode="numeric"
+                        readonly="@(base.ReadOnly ? "readonly" : null)"
+                        aria-disabled="@(base.IsDisabled ? "true" : null)"
+                        aria-required="@(Required ? "true" : null)"
+                        maxlength="2"
+                        autocomplete="@(AutoCompleteOff ? "off" : null)"
+                        @ref="DaysReference"
+                        @bind-value:get="DaysValue"
+                        @bind-value:event="oninput"
+                        @bind-value:set="HandleDaysSet"
+                        @onfocus="() => DaysValue = RemoveLeadingZero(DaysValue)"
+                        @onfocusout="() => DaysValue = PadMissingWithZero(DaysValue)" />
+            </div>
+
+        </div>
+
+    </div>
+
+    <span class="@GlobalValues.Date_Input_State_Icon_Class" data-br-invalid-state="@GetInvalidStateAttributeValue(base.InvalidState)" aria-hidden="true"></span>
+
+    <div class="@GlobalValues.Date_Input_Error_Wrapper_Class">
+
+        @if (HasErrors)
+        {
+            <div class="@GlobalValues.Date_Input_Error_Class" tabindex="@(TabbableError ? "0" : null)" aria-label="@(TabbableError ? $"{LabelNameText.TrimEnd(':')} {ErrorsText}" : null)" role="@(TabbableError ? "region" : null)">
+
+                <ul id="@ErrorMessageID">
+                    @foreach (var errorMessage in InvalidMessages)
+                    {
+                        <li>@errorMessage</li>
+                    }
+                </ul>
+
+            </div>
+        }
+
+    </div>
+
+</div>

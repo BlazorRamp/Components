@@ -19,6 +19,11 @@ internal class GlobalValues
     public const string JS_Inputs_Register_Time_Segment_Handlers   = "registerTimeSegmentHandlers";
     public const string JS_Inputs_Unregister_Time_Segment_Handlers = "unregisterTimeSegmentHandlers";
 
+
+    public const string JS_Inputs_Register_Date_Segment_Handlers   = "registerDateSegmentHandlers";
+    public const string JS_Inputs_Unregister_Date_Segment_Handlers = "unregisterDateSegmentHandlers";
+
+
     public const string JS_Inputs_Register_Focus_Out_Callback   = "registerElementFocusOutHandler";
     public const string JS_Inputs_Unregister_Focus_Out_Callback = "unregisterElementFocusOutHandler";
 
@@ -30,8 +35,10 @@ internal class GlobalValues
     public const string Input_Parse_General_Error_Message = "Invalid entry.";
 
     public const string Input_Parse_time_Error_Message = "Invalid time.";
+    public const string Input_Parse_Date_Error_Message = "Invalid date.";
 
-    public const string Input_Time_DataType_Error_Message = "Only the data type TimeOnly or nullable TimeOnl is supported";
+    public const string Input_Time_DataType_Error_Message = "Only the data type TimeOnly or nullable TimeOnly is supported";
+    public const string Input_Date_DataType_Error_Message = "Only the data type DateOnly or nullable DateOnly is supported";
 
 
     public const string Input_Missing_Label_Text_Error_Message = "Label Text cannot be null, empty or whitespace";
@@ -136,6 +143,41 @@ internal class GlobalValues
     public const string Time_Input_Hours_Text   = "Hours";
     public const string Time_Input_Minutes_Text = "Minutes";
     public const string Time_Input_Seconds_Text = "Seconds";
+
+
+
+
+    public const string Date_Input_Class                 = "br-date-input";
+    public const string Date_Input_Label_Class           = $"{Date_Input_Class}__label";
+    public const string Date_Input_Hint_Class            = $"{Date_Input_Class}__hint";
+    public const string Date_Input_Error_Wrapper_Class   = $"{Date_Input_Class}__error-wrapper";
+    public const string Date_Input_Error_Class           = $"{Date_Input_Class}__error";
+    public const string Date_Input_Asterisk_Class        = $"{Date_Input_Class}__asterisk";
+    public const string Date_Input_Field_Area_Class      = $"{Date_Input_Class}__field-area";
+
+    public const string Date_Input_Segment_Class         = $"{Date_Input_Class}__segment";
+    public const string Date_Input_Segment_Wrapper_Class = $"{Date_Input_Class}__segment-wrapper";
+    public const string Date_Input_Segment_Label_Class   = $"{Date_Input_Class}__segment-label";
+
+    public const string Date_Input_Field_Class           = $"{Date_Input_Class}__field";
+    public const string Date_Input_Icon_Class            = $"{Date_Input_Class}__icon";
+    public const string Date_Input_State_Icon_Class      = $"{Date_Input_Class}__state-icon";
+
+    public const string Date_Input_Years_Text            = "Years";
+    public const string Date_Input_Months_Text           = "Months";
+    public const string Date_Input_Days_Text             = "Days";
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public const string Input_Errors_Summary_Class = "br-input-errors-summary";
