@@ -256,44 +256,6 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         return false;
     }
 
-    //protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string? validationErrorMessage)
-    //{
-    //    validationErrorMessage = string.Empty;
-
-    //    if (string.IsNullOrWhiteSpace(value) && base.IsNullableType)
-    //    {
-    //        result = default!;
-    //        return true;
-    //    }
-
-    //    if (DateOnly.TryParseExact(value, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateOnly parsed))
-    //    {
-    //        result = (TValue)(object)parsed;
-    //        return true;
-    //    }
-
-    //    result = default!;
-    //    validationErrorMessage = string.Concat(base.LabelNameText.TrimEnd(':').Trim(), " - ", ParseErrorMessage);
-    //    return false;
-    //}
-
-
-    //private void SetDisplayValues()
-    //{
-
-    //    if (CurrentValue is DateOnly dateOnly)
-    //    {
-    //        YearsValue  = dateOnly.Year.ToString("D4");
-    //        MonthsValue = dateOnly.Month.ToString("D2");
-    //        DaysValue   = dateOnly.Day.ToString("D2");
-    //    }
-    //    else
-    //    {
-    //        YearsValue  = string.Empty;
-    //        MonthsValue = string.Empty;
-    //        DaysValue   = string.Empty;
-    //    }
-    //}
 
     private void SetDisplayValues()
     {

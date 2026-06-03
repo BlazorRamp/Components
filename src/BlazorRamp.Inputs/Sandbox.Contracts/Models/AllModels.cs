@@ -42,6 +42,10 @@ public record class ContactDto
 
     public DateOnly DOB            { get; set; } = default!;
     public DateOnly CompareDOB     { get; set; } = default!;
+
+    public DateOnly? NullableDOB   { get; set; } = default!;
+
+
     public string   Email          { get; set; } = default!;
     public string?  NullableMobile { get; set; } 
     public int?     NullableAge    { get; set; }

@@ -158,12 +158,7 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     /// </summary>
     protected ElementReference? SecondsReference { get; set; }
 
-    /// <summary>
-    /// Tracks the raw string value currently displayed in the input element, independent
-    /// of the parsed <see cref="InputBase{TValue}.CurrentValue"/>. Used to preserve
-    /// mid-entry display state such as trailing decimal points and formatted values.
-    /// </summary>
-    protected string? _stringValue = null;
+
     private TValue? _lastParsedValue = default;
 
      [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
@@ -208,8 +203,6 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         SecondsText = String.IsNullOrWhiteSpace(SecondsLabelText) ? GlobalValues.Time_Input_Seconds_Text : SecondsLabelText.Trim();
 
         if (base.DataType != typeof(TimeOnly)) throw new ArgumentException(GlobalValues.Input_Time_DataType_Error_Message);
-
-        _stringValue = CurrentValue is TimeOnly timeOnly ? timeOnly.ToString(EnableSeconds ? "HH:mm:ss" : "HH:mm") : null;
 
         _lastParsedValue = CurrentValue;
 

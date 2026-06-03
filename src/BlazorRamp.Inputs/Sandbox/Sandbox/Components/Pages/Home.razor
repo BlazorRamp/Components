@@ -25,6 +25,9 @@ Welcome to your new app.
          <div class="br-input-row">
             <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Date of Birth" @bind-Value="@_contactData.DOB" HintText="You need to add some date value."
                        DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" UpdateOnInput="true" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
+            <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Nullable Date of Birth" @bind-Value="@_contactData.NullableDOB" HintText="You need to add some date value."
+                       DataPosition="DataPosition.Centre" ReadOnly="false" AriaDisabled="false" UpdateOnInput="true" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
         </div>
 
         <div class="br-input-row">
@@ -151,6 +154,8 @@ Welcome to your new app.
         _contactData.Age = 26;
         _contactData.NullableSalary = null;
         _contactData.Salary = 12.25M;
+        //_contactData.NullableDOB = null;
+
 
         var builder = BlazorValidationBuilder<ContactDto>.Create()
                         .ForMember(c => c.Title, ContactValidators.TitleValidator)                      //< using a ready built title member validator
@@ -167,6 +172,7 @@ Welcome to your new app.
                         .ForMember(c => c.TimeValue, ContactValidators.TimeOnlyValidator)
                         .ForNullableMember(c => c.NullableTimeValue, ContactValidators.TimeOnlyValidator)
                         .ForMember(c => c.DOB, ContactValidators.DOBValidator)
+                        .ForNullableMember(c => c.NullableDOB, ContactValidators.DOBValidator)
          // .ForComparisonWithValue(c => c.DOB, ContactValidators.DOBValidator)
          // .ForComparisonWithMember(c => c.CompareDOB, ContactValidators.CompareDOBValidator)
          // .ForNestedMember(c => c.Address, AddressValidators.GetBoxedAddressValidators())// << Getting all the address validators from a pre-created builder.
