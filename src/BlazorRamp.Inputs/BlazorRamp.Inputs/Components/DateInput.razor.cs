@@ -362,7 +362,9 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     {
         if (base.ReadOnly || base.IsDisabled || string.IsNullOrWhiteSpace(value)) return value;
 
-        return int.TryParse(value, out int parsed) ? parsed.ToString() : value;
+        if (int.TryParse(value, out int parsed)) return parsed == 0 ? string.Empty : parsed.ToString();
+
+        return value;
     }
 
     /// <summary>

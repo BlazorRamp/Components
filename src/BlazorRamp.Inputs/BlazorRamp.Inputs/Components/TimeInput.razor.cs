@@ -302,14 +302,37 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
             ? $"{hoursLabel}: {hoursDisplay}, {minutesLabel}: {minutesDisplay}, {secondsLabel}: {secondsDisplay}"
             : $"{hoursLabel}: {hoursDisplay}, {minutesLabel}: {minutesDisplay}";
     }
+    //private void SetDisplayValues()
+    //{
+
+    //    if (CurrentValue is TimeOnly timeOnly)
+    //    {
+    //        HoursValue = timeOnly.Hour.ToString("D2");
+    //        MinutesValue = timeOnly.Minute.ToString("D2");
+    //        SecondsValue = EnableSeconds ? timeOnly.Second.ToString("D2") : string.Empty;
+    //    }
+    //    else
+    //    {
+    //        HoursValue = string.Empty;
+    //        MinutesValue = string.Empty;
+    //        SecondsValue = string.Empty;
+    //    }
+    //}
     private void SetDisplayValues()
     {
-
         if (CurrentValue is TimeOnly timeOnly)
         {
-            HoursValue = timeOnly.Hour.ToString("D2");
-            MinutesValue = timeOnly.Minute.ToString("D2");
-            SecondsValue = EnableSeconds ? timeOnly.Second.ToString("D2") : string.Empty;
+            if (!int.TryParse(HoursValue, out var h) || h != timeOnly.Hour) HoursValue = timeOnly.Hour.ToString("D2");
+            if (!int.TryParse(MinutesValue, out var m) || m != timeOnly.Minute) MinutesValue = timeOnly.Minute.ToString("D2");
+
+            if (EnableSeconds)
+            {
+                if (!int.TryParse(SecondsValue, out var s) || s != timeOnly.Second) SecondsValue = timeOnly.Second.ToString("D2");
+            }
+            else
+            {
+                SecondsValue = string.Empty;
+            }
         }
         else
         {
@@ -330,7 +353,11 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         if (IsDisabled) return;
         HoursValue = value ?? string.Empty;
 
-        if (UpdateOnInput) CurrentValueAsString = EnableSeconds ? $"{HoursValue}:{MinutesValue}:{SecondsValue}" : $"{HoursValue}:{MinutesValue}:00";
+        if (UpdateOnInput)
+        {
+            CurrentValueAsString = EnableSeconds ? $"{HoursValue}:{MinutesValue}:{SecondsValue}" : $"{HoursValue}:{MinutesValue}:00";
+            _lastParsedValue = CurrentValue;
+        }
     }
 
     /// <summary>
@@ -344,7 +371,11 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         if (IsDisabled) return;
         MinutesValue = value ?? string.Empty;
 
-        if (UpdateOnInput) CurrentValueAsString = EnableSeconds ? $"{HoursValue}:{MinutesValue}:{SecondsValue}" : $"{HoursValue}:{MinutesValue}:00";
+        if (UpdateOnInput)
+        {
+            CurrentValueAsString = EnableSeconds ? $"{HoursValue}:{MinutesValue}:{SecondsValue}" : $"{HoursValue}:{MinutesValue}:00";
+            _lastParsedValue = CurrentValue;
+        }
     }
 
     /// <summary>
@@ -359,7 +390,11 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         if (IsDisabled) return;
         SecondsValue = value ?? string.Empty;
 
-        if (UpdateOnInput) CurrentValueAsString = EnableSeconds ? $"{HoursValue}:{MinutesValue}:{SecondsValue}" : $"{HoursValue}:{MinutesValue}:00";
+        if (UpdateOnInput)
+        {
+            CurrentValueAsString = EnableSeconds ? $"{HoursValue}:{MinutesValue}:{SecondsValue}" : $"{HoursValue}:{MinutesValue}:00";
+            _lastParsedValue = CurrentValue;
+        }
     }
 
     /// <summary>
@@ -372,7 +407,9 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     {
         if (base.ReadOnly || base.IsDisabled || string.IsNullOrWhiteSpace(value)) return value;
 
-        return int.TryParse(value, out int parsed) ? parsed.ToString() : value;
+        if (int.TryParse(value, out int parsed))return parsed == 0 ? string.Empty : parsed.ToString();
+
+        return value;
     }
 
     /// <summary>
@@ -382,8 +419,8 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     /// </summary>
     internal string? PadMissingWithZero(string? value)
     {
-        if (base.ReadOnly || base.IsDisabled || string.IsNullOrWhiteSpace(value)) return value;
-        return value.PadLeft(2, '0');
+        if (base.ReadOnly || base.IsDisabled || value is null) return value;
+        return value.Trim().PadLeft(2, '0');
     }
 
     /// <summary>
@@ -421,6 +458,7 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     /// <see cref="InputTypeBase{TValue}.IsDisabled"/> is <c>true</c>.
     /// </summary>
     [JSInvokable]
+
     public async Task HandleComponentFocusOut()
     {
         if (IsDisabled) return;
