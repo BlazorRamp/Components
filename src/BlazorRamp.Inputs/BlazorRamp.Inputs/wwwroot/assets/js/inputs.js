@@ -97,6 +97,16 @@ const setSummaryFocus = (elementId) => {
     element.focus();
     element.addEventListener("blur", () => element.removeAttribute("tabindex"), { once: true });
 };
+const formatDateForAnnouncement = (dateString) => {
+    try {
+        const [year, month, day] = dateString.split('-').map(Number);
+        const date = new Date(year, month - 1, day);
+        return new Intl.DateTimeFormat(navigator.language, { dateStyle: 'long' }).format(date);
+    }
+    catch {
+        return '';
+    }
+};
 const registerAriaDisabledHandlers = (inputElement) => {
     if (!inputElement)
         return;
@@ -235,5 +245,5 @@ const unregisterElementFocusOutHandler = (element) => {
         elementFocusOutMap.delete(element);
     }
 };
-export { registerAriaDisabledHandlers, unregisterAriaDisabledHandlers, registerNumericHandlers, unregisterNumericHandlers, setInputValue, setInputFocus, setSummaryFocus, registerReadOnlyHandlers, unregisterReadOnlyHandlers, registerSelectReadOnlyDisabledHandlers, unregisterSelectReadOnlyDisabledHandlers, registerTimeSegmentHandlers, unregisterTimeSegmentHandlers, registerElementFocusOutHandler, unregisterElementFocusOutHandler, registerDateSegmentHandlers, unregisterDateSegmentHandlers };
+export { registerAriaDisabledHandlers, unregisterAriaDisabledHandlers, registerNumericHandlers, unregisterNumericHandlers, setInputValue, setInputFocus, setSummaryFocus, registerReadOnlyHandlers, unregisterReadOnlyHandlers, registerSelectReadOnlyDisabledHandlers, unregisterSelectReadOnlyDisabledHandlers, registerTimeSegmentHandlers, unregisterTimeSegmentHandlers, registerElementFocusOutHandler, unregisterElementFocusOutHandler, registerDateSegmentHandlers, unregisterDateSegmentHandlers, formatDateForAnnouncement };
 //# sourceMappingURL=inputs.js.map

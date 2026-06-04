@@ -93,13 +93,13 @@
 
     protected override void OnInitialized()
     {
-        var startTimeValidator = MemberValidators.CreateRangeValidator<TimeOnly>(TimeOnly.FromTimeSpan(new TimeSpan(7, 0, 0)), TimeOnly.FromTimeSpan(new TimeSpan(10, 0, 0)), "StartTime", "Start Time", "Must be between 7am and 10am.");
+        var startTimeValidator = MemberValidators.CreateRangeValidator<TimeOnly>(new TimeOnly(7, 0, 0), new TimeOnly(10, 0, 0), "StartTime", "Start Time", "Must be between 7am and 10am.");
         var endTimeValidator = MemberValidators.CreateMemberComparisonValidator<ScheduleDto, TimeOnly>(y => y.EndTime, x => x.StartTime, CompareType.GreaterThan, "End Time", "Must be greater than the start time.");
         /*
             * Different ways to do the same thing 
         */
-        var startWorkValidator = MemberValidators.CreatePredicateValidator<TimeOnly>(x => x <= TimeOnly.FromTimeSpan(new TimeSpan(11, 0, 0)), "StartWork", "Start Work", "If entered must be 11am or earlier.");
-        var endWorkValidator   = MemberValidators.CreateCompareToValidator<TimeOnly>(TimeOnly.FromTimeSpan(new TimeSpan(13, 0, 0)),CompareType.GreaterThanOrEqual, "EndWork", "End Work", "If entered must be 1pm or later.");
+        var startWorkValidator = MemberValidators.CreatePredicateValidator<TimeOnly>(x => x <= new TimeOnly(11, 0, 0), "StartWork", "Start Work", "If entered must be 11am or earlier.");
+        var endWorkValidator   = MemberValidators.CreateCompareToValidator<TimeOnly>(new TimeOnly(13, 0, 0),CompareType.GreaterThanOrEqual, "EndWork", "End Work", "If entered must be 1pm or later.");
 
         _editContext = new EditContext(_scheduleData);
 

@@ -133,6 +133,19 @@ const setSummaryFocus = (elementId: string): void => {
 
 };
 
+const formatDateForAnnouncement = (dateString: string): string => {
+
+    try {
+        const [year, month, day] = dateString.split('-').map(Number);
+        const date = new Date(year, month - 1, day);
+
+        return new Intl.DateTimeFormat(navigator.language, { dateStyle: 'long' }).format(date);
+
+    } catch {
+        return '';
+    }
+};
+
 const registerAriaDisabledHandlers = (inputElement: HTMLElement): void => {
 
     if (!inputElement) return;
@@ -287,9 +300,6 @@ const unregisterDateSegmentHandlers = (yearsElement: HTMLElement, monthsElement:
 };
 
 
-
-
-
 const registerElementFocusOutHandler = (element: HTMLElement, dotNetRef: any, callBackName: string): void => {
 
     if (!element) return;
@@ -322,5 +332,5 @@ export {
     setInputValue, setInputFocus, setSummaryFocus, registerReadOnlyHandlers, unregisterReadOnlyHandlers,
     registerSelectReadOnlyDisabledHandlers, unregisterSelectReadOnlyDisabledHandlers, registerTimeSegmentHandlers,
     unregisterTimeSegmentHandlers, registerElementFocusOutHandler, unregisterElementFocusOutHandler,
-    registerDateSegmentHandlers, unregisterDateSegmentHandlers
+    registerDateSegmentHandlers, unregisterDateSegmentHandlers, formatDateForAnnouncement
 };

@@ -19,13 +19,13 @@ internal class GlobalValues
     public const string JS_Inputs_Register_Time_Segment_Handlers   = "registerTimeSegmentHandlers";
     public const string JS_Inputs_Unregister_Time_Segment_Handlers = "unregisterTimeSegmentHandlers";
 
-
     public const string JS_Inputs_Register_Date_Segment_Handlers   = "registerDateSegmentHandlers";
     public const string JS_Inputs_Unregister_Date_Segment_Handlers = "unregisterDateSegmentHandlers";
 
-
     public const string JS_Inputs_Register_Focus_Out_Callback   = "registerElementFocusOutHandler";
     public const string JS_Inputs_Unregister_Focus_Out_Callback = "unregisterElementFocusOutHandler";
+
+    public const string JS_Inputs_Format_Date_For_Announcement_Func = "formatDateForAnnouncement";
 
     public const string JS_Inputs_Set_Value         = "setInputValue";
     public const string JS_Inputs_Set_Input_Focus   = "setInputFocus";

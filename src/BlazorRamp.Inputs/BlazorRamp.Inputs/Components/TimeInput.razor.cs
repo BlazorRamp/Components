@@ -433,7 +433,7 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
             try
             {
                 await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Unregister_Time_Segment_Handlers, HoursReference, MinutesReference, SecondsReference);
-                await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Unregister_Focus_Out_Callback, _dotNetObjectRef);
+                await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Unregister_Focus_Out_Callback, ControlReference);
                 await _jSModule.DisposeAsync();
             }
             catch { }

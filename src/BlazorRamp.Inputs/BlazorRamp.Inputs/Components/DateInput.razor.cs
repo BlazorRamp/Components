@@ -1,4 +1,7 @@
-﻿using BlazorRamp.Inputs.Common.Constants;
+﻿using BlazorRamp.Core.Common.Constants;
+using BlazorRamp.Core.Common.Models;
+using BlazorRamp.Core.Services;
+using BlazorRamp.Inputs.Common.Constants;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
@@ -143,7 +146,6 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     private TValue? _lastParsedValue = default;
 
     [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
-
 
     private DotNetObjectReference<DateTypeInput<TValue>>? _dotNetObjectRef;
 
@@ -410,8 +412,9 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         DaysValue  = string.IsNullOrWhiteSpace(DaysValue)   ? string.Empty : DaysValue.PadLeft(2, '0');
 
         CurrentValueAsString = $"{YearsValue}-{MonthsValue}-{DaysValue}";
-     
+
         _lastParsedValue = CurrentValue;
+
         await InvokeAsync(StateHasChanged);
     }
 
@@ -427,7 +430,7 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
             try
             {
                 await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Unregister_Date_Segment_Handlers, YearsReference, MonthsReference, DaysReference);
-                await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Unregister_Focus_Out_Callback, _dotNetObjectRef);
+                await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Unregister_Focus_Out_Callback, ControlReference);
                 await _jSModule.DisposeAsync();
             }
             catch { }
