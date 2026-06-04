@@ -158,7 +158,11 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     /// </summary>
     protected ElementReference? SecondsReference { get; set; }
 
-
+    /// <summary>
+    /// Gets the resolved parse error message derived from
+    /// <see cref="ParseErrorMessage"/> or the default value when not set.
+    /// </summary>
+    protected string ParseErrorMessageText { get; private set; } = GlobalValues.Input_Parse_time_Error_Message;
     private TValue? _lastParsedValue = default;
 
      [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
@@ -196,7 +200,9 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        ParseErrorMessage = string.IsNullOrWhiteSpace(ParseErrorMessage) ? GlobalValues.Input_Parse_time_Error_Message : ParseErrorMessage.Trim();
+        ParseErrorMessageText = string.IsNullOrWhiteSpace(ParseErrorMessage) ? GlobalValues.Input_Parse_time_Error_Message : ParseErrorMessage.Trim();
+        
+        if (false == ParseErrorMessageText.EndsWith('.')) ParseErrorMessageText = String.Concat(ParseErrorMessageText, ".");
 
         HoursText   = String.IsNullOrWhiteSpace(HoursLabelText)   ? GlobalValues.Time_Input_Hours_Text   : HoursLabelText.Trim();
         MinutesText = String.IsNullOrWhiteSpace(MinutesLabelText) ? GlobalValues.Time_Input_Minutes_Text : MinutesLabelText.Trim();
@@ -240,6 +246,7 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     /// On failure sets <paramref name="validationErrorMessage"/> to the resolved parse
     /// error message prefixed with the field display name.
     /// </summary>
+
     protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string? validationErrorMessage)
     {
         validationErrorMessage = string.Empty;
@@ -249,7 +256,22 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
             result = default!;
             return true;
         }
-        
+
+        var parts = value?.Split(':') ?? Array.Empty<string>();
+
+        var paddedHours   = "00";
+        var paddedMinutes = "00";
+        var paddedSeconds = "00";
+
+        if (parts.Length == 3)
+        {
+            paddedHours   = parts[0].PadLeft(2, '0');
+            paddedMinutes = parts[1].PadLeft(2, '0');
+            paddedSeconds = parts[2].PadLeft(2, '0');
+
+            value = $"{paddedHours}:{paddedMinutes}:{paddedSeconds}";
+        }
+
         if (TimeOnly.TryParseExact(value, "H:m:s", CultureInfo.InvariantCulture, DateTimeStyles.None, out TimeOnly parsed))
         {
             result = (TValue)(object)parsed;
@@ -257,10 +279,29 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         }
 
         result = default!;
-        validationErrorMessage = string.Concat(base.LabelNameText.TrimEnd(':').Trim(), " - ", ParseErrorMessage);
+        var timeErrorMessage = FormatTimeErrorMessage(paddedHours, HoursText, paddedMinutes, MinutesText, paddedSeconds, SecondsText, EnableSeconds);
+        validationErrorMessage = string.Concat(base.LabelNameText.TrimEnd(':').Trim(), " - ", ParseErrorMessageText, " ", timeErrorMessage);
         return false;
     }
 
+    internal string FormatTimeErrorMessage(string hours, string hoursLabel, string minutes, string minutesLabel, string seconds, string secondsLabel, bool enableSeconds)
+    {
+        int hoursValue = int.TryParse(hours, out int hoursResult) ? hoursResult : -1;
+        int minutesValue = int.TryParse(minutes, out int minutesResult) ? minutesResult : -1;
+        int secondsValue = int.TryParse(seconds, out int secondsResult) ? secondsResult : -1;
+
+        var hoursIsValid = hoursValue >= 0 && hoursValue <= 23;
+        var minutesIsValid = minutesValue >= 0 && minutesValue <= 59;
+        var secondsIsValid = secondsValue >= 0 && secondsValue <= 59;
+
+        var hoursDisplay = hoursIsValid ? hoursValue.ToString("D2") : "[00 - 23]?";
+        var minutesDisplay = minutesIsValid ? minutesValue.ToString("D2") : "[00 - 59]?";
+        var secondsDisplay = secondsIsValid ? secondsValue.ToString("D2") : "[00 - 59]?";
+
+        return enableSeconds
+            ? $"{hoursLabel}: {hoursDisplay}, {minutesLabel}: {minutesDisplay}, {secondsLabel}: {secondsDisplay}"
+            : $"{hoursLabel}: {hoursDisplay}, {minutesLabel}: {minutesDisplay}";
+    }
     private void SetDisplayValues()
     {
 
@@ -435,6 +476,7 @@ public class TimeTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
                 await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Unregister_Time_Segment_Handlers, HoursReference, MinutesReference, SecondsReference);
                 await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Unregister_Focus_Out_Callback, ControlReference);
                 await _jSModule.DisposeAsync();
+                _dotNetObjectRef?.Dispose();
             }
             catch { }
         }

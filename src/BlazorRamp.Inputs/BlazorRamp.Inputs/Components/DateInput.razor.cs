@@ -143,7 +143,14 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     protected ElementReference? DaysReference { get; set; }
 
 
+    /// <summary>
+    /// Gets the resolved parse error message derived from
+    /// <see cref="ParseErrorMessage"/> or the default value when not set.
+    /// </summary>
+    protected string ParseErrorMessageText { get; private set; } = GlobalValues.Input_Parse_Date_Error_Message;
+
     private TValue? _lastParsedValue = default;
+
 
     [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
 
@@ -180,7 +187,9 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        ParseErrorMessage = string.IsNullOrWhiteSpace(ParseErrorMessage) ? GlobalValues.Input_Parse_Date_Error_Message : ParseErrorMessage.Trim();
+        ParseErrorMessageText = string.IsNullOrWhiteSpace(ParseErrorMessage) ? GlobalValues.Input_Parse_Date_Error_Message : ParseErrorMessage.Trim();
+
+        if (false == ParseErrorMessageText.EndsWith('.')) ParseErrorMessageText = String.Concat(ParseErrorMessageText, ".");
 
         YearsText  = String.IsNullOrWhiteSpace(YearsLabelText)  ? GlobalValues.Date_Input_Years_Text  : YearsLabelText.Trim();
         MonthsText = String.IsNullOrWhiteSpace(MonthsLabelText) ? GlobalValues.Date_Input_Months_Text : MonthsLabelText.Trim();
@@ -238,11 +247,15 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
 
         var parts = value?.Split('-') ?? Array.Empty<string>();
 
+        var paddedYear  = "0000";
+        var paddedMonth = "00";
+        var paddedDay   = "00";
+
         if (parts.Length == 3)
         {
-            var paddedYear  = parts[0].PadLeft(4, '0');
-            var paddedMonth = parts[1].PadLeft(2, '0');
-            var paddedDay   = parts[2].PadLeft(2, '0');
+            paddedYear  = parts[0].PadLeft(4, '0');
+            paddedMonth = parts[1].PadLeft(2, '0');
+            paddedDay   = parts[2].PadLeft(2, '0');
 
             value = $"{paddedYear}-{paddedMonth}-{paddedDay}";
         }
@@ -254,10 +267,30 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
         }
 
         result = default!;
-        validationErrorMessage = string.Concat(base.LabelNameText.TrimEnd(':').Trim(), " - ", ParseErrorMessage);
+        var dateErrorMessage  = FormatDateErrorMessage(paddedYear, YearsText, paddedMonth, MonthsText, paddedDay, DaysText);
+        validationErrorMessage = string.Concat(base.LabelNameText.TrimEnd(':').Trim(), " - ", ParseErrorMessageText, " ", dateErrorMessage) ;
         return false;
     }
 
+   internal string FormatDateErrorMessage(string year, string yearLabel, string month, string monthLabel, string day, string dayLabel)
+    {
+        int yearValue  = int.TryParse(year, out int yearResult) ? yearResult : 0;
+        int monthValue = int.TryParse(month, out int monthResult) ? monthResult : 0;
+        int dayValue   = int.TryParse(day, out int dayResult) ? dayResult : 0;
+
+        var yearIsValid  = yearValue >= 1 && yearValue <= 9999;
+        var monthIsValid = monthValue >= 1 && monthValue <= 12;
+
+        var daysInMonth = yearIsValid && monthIsValid ? DateTime.DaysInMonth(yearValue, monthValue) : monthIsValid && monthValue == 2 ? 29 : 31;
+
+        var dayIsValid  = dayValue >= 1 && dayValue <= daysInMonth;
+
+        var yearDisplay  = yearIsValid ? yearValue.ToString("D4") : "[0001 - 9999]?";
+        var monthDisplay = monthIsValid ? monthValue.ToString("D2") : "[01 - 12]?";
+        var dayDisplay   = dayIsValid ? dayValue.ToString("D2") : $"[01 - {daysInMonth.ToString("D2")}]?";
+
+        return $"{yearLabel}: {yearDisplay}, {monthLabel}: {monthDisplay}, {dayLabel}: {dayDisplay}";
+    }
 
     private void SetDisplayValues()
     {
@@ -432,6 +465,8 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
                 await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Unregister_Date_Segment_Handlers, YearsReference, MonthsReference, DaysReference);
                 await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Unregister_Focus_Out_Callback, ControlReference);
                 await _jSModule.DisposeAsync();
+
+                _dotNetObjectRef?.Dispose();
             }
             catch { }
         }

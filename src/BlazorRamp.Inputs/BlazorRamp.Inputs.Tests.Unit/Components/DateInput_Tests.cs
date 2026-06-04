@@ -535,11 +535,11 @@ public  class DateInput_Tests
 
                 if (String.IsNullOrWhiteSpace(parseErrorText))
                 {
-                    errorItems[0].TextContent.Should().Be($"MyField - {GlobalValues.Input_Parse_Date_Error_Message}");
+                    errorItems[0].TextContent.Should().Contain($"MyField - {GlobalValues.Input_Parse_Date_Error_Message}");
                     return;
                 }
 
-                errorItems[0].TextContent.Should().Be($"MyField - {parseErrorText}.");
+                errorItems[0].TextContent.Should().Contain($"MyField - {parseErrorText}");
             });
         }
 
@@ -967,5 +967,114 @@ public  class DateInput_Tests
             });
         }
     }
+    public class FormatDateErrorMessage_
+    {
+        private static DateTypeInput<DateOnly> GetInstance(BunitContext context)
+        {
+            var (component, _) = CreateDateInput(context);
+            return component.Instance;
+        }
 
+        [Fact]
+        public async Task Should_return_all_valid_parts_when_date_is_valid()
+        {
+            await using var context = new BunitContext();
+            var instance = GetInstance(context);
+
+            var result = instance.FormatDateErrorMessage("1956", "Years", "02", "Months", "28", "Days");
+
+            result.Should().Be("Years: 1956, Months: 02, Days: 28");
+        }
+
+        [Fact]
+        public async Task Should_show_year_range_when_year_is_zero()
+        {
+            await using var context = new BunitContext();
+            var instance = GetInstance(context);
+
+            var result = instance.FormatDateErrorMessage("0000", "Years", "02", "Months", "28", "Days");
+
+            result.Should().Be("Years: [0001 - 9999]?, Months: 02, Days: 28");
+        }
+
+        [Fact]
+        public async Task Should_show_month_range_when_month_is_invalid()
+        {
+            await using var context = new BunitContext();
+            var instance = GetInstance(context);
+
+            var result = instance.FormatDateErrorMessage("1956", "Years", "13", "Months", "28", "Days");
+
+            result.Should().Be("Years: 1956, Months: [01 - 12]?, Days: 28");
+        }
+
+        [Fact]
+        public async Task Should_show_month_range_when_month_is_zero()
+        {
+            await using var context = new BunitContext();
+            var instance = GetInstance(context);
+
+            var result = instance.FormatDateErrorMessage("1956", "Years", "00", "Months", "28", "Days");
+
+            result.Should().Be("Years: 1956, Months: [01 - 12]?, Days: 28");
+        }
+
+        [Fact]
+        public async Task Should_show_day_range_for_specific_month_when_day_exceeds_days_in_month()
+        {
+            await using var context = new BunitContext();
+            var instance = GetInstance(context);
+
+            // February in a non-leap year
+            var result = instance.FormatDateErrorMessage("1999", "Years", "02", "Months", "29", "Days");
+
+            result.Should().Be("Years: 1999, Months: 02, Days: [01 - 28]?");
+        }
+
+        [Fact]
+        public async Task Should_show_day_range_for_february_in_a_leap_year()
+        {
+            await using var context = new BunitContext();
+            var instance = GetInstance(context);
+
+            var result = instance.FormatDateErrorMessage("2000", "Years", "02", "Months", "30", "Days");
+
+            result.Should().Be("Years: 2000, Months: 02, Days: [01 - 29]?");
+        }
+
+        [Fact]
+        public async Task Should_show_day_range_of_31_when_month_is_invalid_as_max_days_unknown()
+        {
+            await using var context = new BunitContext();
+            var instance = GetInstance(context);
+
+            var result = instance.FormatDateErrorMessage("1956", "Years", "13", "Months", "32", "Days");
+
+            result.Should().Be("Years: 1956, Months: [01 - 12]?, Days: [01 - 31]?");
+        }
+
+        [Fact]
+        public async Task Should_show_all_ranges_when_all_parts_are_invalid()
+        {
+            await using var context = new BunitContext();
+            var instance = GetInstance(context);
+
+            var result = instance.FormatDateErrorMessage("0000", "Years", "00", "Months", "00", "Days");
+
+            result.Should().Be("Years: [0001 - 9999]?, Months: [01 - 12]?, Days: [01 - 31]?");
+        }
+
+        [Fact]
+        public async Task Should_use_custom_label_text_in_the_output()
+        {
+            await using var context = new BunitContext();
+            var instance = GetInstance(context);
+
+            var result = instance.FormatDateErrorMessage("1956", "Jahr", "13", "Monat", "28", "Tag");
+
+            result.Should().Be("Jahr: 1956, Monat: [01 - 12]?, Tag: 28");
+        }
+
+       
+    }
 }
