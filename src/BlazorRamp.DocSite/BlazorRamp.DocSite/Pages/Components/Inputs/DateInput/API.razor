@@ -1,14 +1,14 @@
 ﻿
-@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TimeInput}/{GlobalValues.Common_Page_Path_Api}")]
+@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_DateInput}/{GlobalValues.Common_Page_Path_Api}")]
 
-<PageTitle>@GlobalValues.Component_Name_Time_Input @GlobalValues.Common_Page_Title_Api</PageTitle>
+<PageTitle>@GlobalValues.Component_Name_Date_Input @GlobalValues.Common_Page_Title_Api</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Time_Input @GlobalValues.Common_Page_Title_Api</h1>
+<h1>@GlobalValues.Component_Name_Date_Input @GlobalValues.Common_Page_Title_Api</h1>
 <p>
-    Everything you need to work with the TextInput component: parameters, methods, models, enums, and CSS variables for styling.
+    Everything you need to work with the DateInput component: parameters, methods, models, enums, and CSS variables for styling.
 </p>
 <p>
-    As this input is dealing with time it only supports a data type of TimeOnly or TimeOnly? (nullable).
+    As this input is dealing with dates it only supports a data type of DateOnly or DateOnly? (nullable).
 </p>
 <p>
     As each Input component is a single unit that contains both the input, its label and regions for both hint and error text the <b>BlazorRamp.Inputs</b> stylesheet also contains a 12 column grid layout container with
@@ -20,7 +20,7 @@
 </p>
 <p>
     The usage page shows these in action but simply add a row class on your container such as <span class="code-span">&lt;div class=".br-input-row"&gt;</span> and then add the appropriate classes on the
-    input directly such as <span class="code-span">&lt;TimeInput class="br-col-xs-12 br-col-sm-6"&gt;</span>. For each column class/breakpoint size just add the number 1 through 12 for the
+    input directly such as <span class="code-span">&lt;DateInput class="br-col-xs-12 br-col-sm-6"&gt;</span>. For each column class/breakpoint size just add the number 1 through 12 for the
     number of columns that are spanned from the 12 fractional units to form the width.
 </p>
 <p>
@@ -39,9 +39,9 @@
     </p>
     <section class="code-table">
 
-        <h3 id="time-input-component-parameters" class="code-table__heading">TimeInput component parameters</h3>
+        <h3 id="date-input-component-parameters" class="code-table__heading">DateInput component parameters</h3>
 
-        <table aria-labelledby="time-input-component-parameters">
+        <table aria-labelledby="date-input-component-parameters">
 
             <thead>
                 <tr>
@@ -69,29 +69,29 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>HoursLabelText</td>
+                    <td>YearsLabelText</td>
                     <td>String</td>
                     <td>
-                        Gets or sets the visible label text for the hours segment input.
-                        When null, empty, or whitespace defaults to <span class="code-span">Hours</span>.
+                        Gets or sets the visible label text for the years segment input.
+                        When null, empty, or whitespace defaults to <span class="code-span">Years</span>.
                     </td>
                 </tr>
 
                 <tr>
-                    <td>MinutesLabelText</td>
+                    <td>MonthsLabelText</td>
                     <td>string</td>
                     <td>
-                        Gets or sets the visible label text for the minutes segment input.
-                        When null, empty, or whitespace defaults to <span class="code-span">Minutes</span>.
+                        Gets or sets the visible label text for the months segment input.
+                        When null, empty, or whitespace defaults to <span class="code-span">Months</span>.
                     </td>
                 </tr>
 
                 <tr>
-                    <td>SecondsLabelText</td>
+                    <td>DaysLabelText</td>
                     <td>string</td>
                     <td>
-                        Gets or sets the visible label text for the seconds segment input.
-                        When null, empty, or whitespace defaults to <span class="code-span">Seconds</span>.
+                        Gets or sets the visible label text for the days segment input.
+                        When null, empty, or whitespace defaults to <span class="code-span">Days</span>.
                     </td>
                 </tr>
                 <tr>
@@ -100,15 +100,6 @@
                     <td>
                         Gets or sets the hint text rendered below the label and above the input field.s When set, the text is normalised so it always ends with a full stop, and is
                         associated to the input via <span class="code-span">aria-describedby</span>. When null, empty, or whitespace no hint element is rendered.
-                    </td>
-                </tr>
-                <tr>
-                    <td>EnableSeconds</td>
-                    <td>bool</td>
-                    <td>
-                        Gets or sets whether the seconds segment is rendered and included in the time value.
-                        When <span class="code-span">false</span> only hours and minutes are shown and seconds default to <span class="code-span">00</span>
-                        in the parsed value. Defaults to <span class="code-span">false</span>.
                     </td>
                 </tr>
                 <tr>
@@ -123,7 +114,7 @@
                     <td>UpdateOnInput</td>
                     <td>bool</td>
                     <td>
-                        Gets or sets whether the time input value is updated on every keystroke or when the time input component loses focus. 
+                        Gets or sets whether the date input value is updated on every keystroke or when the date input component loses focus. 
                         Defaults to <span class="code-span">false</span>.
                     </td>
                 </tr>
@@ -131,7 +122,7 @@
                     <td>ReadOnly</td>
                     <td>bool</td>
                     <td>
-                        Gets or sets whether the time input is read-only. When <span class="code-span">true</span>, the HTML <span class="code-span">readonly</span> attribute is applied
+                        Gets or sets whether the date input is read-only. When <span class="code-span">true</span>, the HTML <span class="code-span">readonly</span> attribute is applied
                         to the underlying <span class="code-span">&lt;input&gt;</span> elements. Takes precedence over the <span class="code-span">AriaDisabled</span> parameter when
                         both are set.
                     </td>
@@ -140,7 +131,7 @@
                     <td>AriaDisabled</td>
                     <td>bool</td>
                     <td>
-                        Gets or sets whether the time input is aria-disabled. When <span class="code-span">true</span>, the input is visually and functionally disabled via <span class="code-span">aria-disabled="true"</span> without
+                        Gets or sets whether the date input is aria-disabled. When <span class="code-span">true</span>, the input is visually and functionally disabled via <span class="code-span">aria-disabled="true"</span> without
                         using the native <span class="code-span">disabled</span> attribute, keeping the fields focusable and readable by screen readers. JavaScript handlers block keyboard input and paste.
                         Has no effect when <span class="code-span">ReadOnly</span> is also <span class="code-span">true</span>.
                     </td>
@@ -149,9 +140,9 @@
                     <td>Required</td>
                     <td>bool</td>
                     <td>
-                        Gets or sets whether the time input value is required. When <span class="code-span">true</span>, <span class="code-span">aria-required="true"</span>
+                        Gets or sets whether the date input value is required. When <span class="code-span">true</span>, <span class="code-span">aria-required="true"</span>
                         is applied to each contained input and a visually hidden asterisk is appended to the label. Defaults to <span class="code-span">true</span>.
-                        <b>Note: </b>If you only want screen readers to announce required for the time input and not each input then you should set this to false and add the text
+                        <b>Note: </b>If you only want screen readers to announce required for the date input and not each input then you should set this to false and add the text
                         "Required" to the hint text or component label.
                     </td>
                 </tr>
@@ -168,8 +159,8 @@
                     <td>string</td>
                     <td>
                         Gets or sets the error message displayed when the input value cannot be parsed
-                        to TimeOnly. The message is prefixed with the field's display name (label text). When null, empty, or whitespace defaults to 
-                        <span class="code-span">"Invalid time."</span>.
+                        to DateOnly. The message is prefixed with the field's
+                        display name (label text). When null, empty, or whitespace defaults to <span class="code-span">"Invalid date."</span>.
                         <b>Note: </b>After this parse error message text, another string is appended using the input labels identifying which input(s)
                         are erroneous.
                     </td>
@@ -205,7 +196,7 @@
                     <td>AdditionalAttributes</td>
                     <td>Dictionary&lt;string, object&gt;?</td>
                     <td>
-                        Sets additional attributes applied to the time input container element.
+                        Sets additional attributes applied to the date input container element.
                     </td>
                 </tr>
                 <tr>
@@ -213,7 +204,7 @@
                     <td>string</td>
                     <td>
 
-                        Gets or sets the value of the time input field, bound to a property on your model. Typically provided automatically when using
+                        Gets or sets the value of the date input field, bound to a property on your model. Typically provided automatically when using
                         <span class="code-span">@@bind-Value="Model.PropertyName</span> syntax.
                     </td>
                 </tr>
@@ -244,9 +235,9 @@
     </section>
 
     <section class="code-table">
-        <h3 id="time-input-component-methods" class="code-table__heading">TimeInput component properties and methods</h3>
+        <h3 id="date-input-component-methods" class="code-table__heading">DateInput component properties and methods</h3>
 
-        <table aria-labelledby="time-input-component-methods">
+        <table aria-labelledby="date-input-component-methods">
 
             <thead>
                 <tr>
@@ -362,14 +353,14 @@
     <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_CSS_Variables}")">@GlobalValues.Component_Name_Inputs - @GlobalValues.Common_Page_Title_Shared_CSS</a> page.
 </p>
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextInput}/{GlobalValues.Common_Page_Path_Usage}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_CheckboxInput}/{GlobalValues.Common_Page_Path_Usage}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Component_Name_Text_Input - @GlobalValues.Common_Page_Title_Usage</span>
+        <span>@GlobalValues.Component_Name_Checkbox_Input - @GlobalValues.Common_Page_Title_Usage</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TimeInput}/{GlobalValues.Common_Page_Path_Usage}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_DateInput}/{GlobalValues.Common_Page_Path_Usage}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Component_Name_Time_Input - @GlobalValues.Common_Page_Title_Usage</span>
+        <span>@GlobalValues.Component_Name_Date_Input - @GlobalValues.Common_Page_Title_Usage</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

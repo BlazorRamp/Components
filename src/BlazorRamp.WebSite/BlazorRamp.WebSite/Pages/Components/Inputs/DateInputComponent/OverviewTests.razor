@@ -1,18 +1,18 @@
 ﻿@using System.Text.RegularExpressions
 @using Validated.Core.Types
 
-@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TimeInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
+@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_DateInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
 
 @inject ILiveRegionService _liveRegionService
 
-<PageTitle>@GlobalValues.Component_Name_Time_Input @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
+<PageTitle>@GlobalValues.Component_Name_Date_Input @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
-    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Time_Input @GlobalValues.Common_Page_Title_Overview_Tests</h1>
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Date_Input @GlobalValues.Common_Page_Title_Overview_Tests</h1>
 
     <p>
-        The Time Input component in this library is a composite component using ARIA <span>role="group"</span> and combines a label for the composite component, an optional area for hint text, with time segment labels and inputs 
-        for each time segment, Hours, Minutes and an optional Seconds segment. Finally with a region below the inputs for validation messages. 
+        The Date Input component in this library is a composite component using ARIA <span>role="group"</span> and combines a label for the composite component, an optional area for hint text, with date segment labels and inputs
+        for each time segment, Years, Months and Days segments. Finally with a region below the inputs for validation messages. 
     </p>
 
 </section>
@@ -22,12 +22,11 @@
 
     <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
     <p>
-        The examples below only use two fields, <b>Start Time</b> (non nullable, required) field and <b>Start Work</b> an optional (nullable, can be left blank) field. Both have the same validation rule attached
-        stipulating that the entry must be between 7am and 10am for the Start Time, but only if an entry is made for the Start Work field. The Start Time field uses and displays all time segments. For the Start Work field, 
-        I set the option not to use the Seconds segment.       
+        The examples below only use two fields, <b>Start Date</b> (non nullable, required) field and <b>End Date</b> an optional (nullable, can be left blank) field. 
+        The validation rule for the Start Date requires that the entry is between the dates 2022-02-02 and 2026-06-06 for the Start Date. If the End Date is entered then this must be after the date 2026-06-06
     </p>
     <p>
-        For these example rather than use a red asterisk next to the label and the <span class="code-span">aria-required</span> attribute to indicate that the Start Time field is required, I opted to place the text
+        For these example rather than use a red asterisk next to the label and the <span class="code-span">aria-required</span> attribute to indicate that the Start Date field is required, I opted to place the text
         "Required" at the start of the hint text.
     </p>
     <p>
@@ -75,12 +74,12 @@
             <BlazorValidated TEntity="ScheduleDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Time" @bind-Value="@_scheduleDataOne.StartTime" HintText="Required, the time (24-hour format) you want the scheduled action to start."
-                           Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="Must be a valid time."
+                <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Date" @bind-Value="@_scheduleDataOne.StartDate" HintText="Required, the date you started the project (numbers only)."
+                           Required="false" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="Must be a valid date."
                            ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
 
-                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Work" @bind-Value="@_scheduleDataOne.StartWork" HintText="Optional, the time (24-hour format) you start work." Required="false"
-                           EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="If entered must be a valid time."
+                <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="End Date" @bind-Value="@_scheduleDataOne.EndDate" HintText="Optional, the date you completed the project (numbers only)." Required="false"
+                           DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="If entered must be a valid date."
                            ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
 
             </div>
@@ -99,12 +98,12 @@
             <BlazorValidated TEntity="ScheduleDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Time" @bind-Value="@_scheduleDataTwo.StartTime" HintText="Required, the time (24-hour format) you want the scheduled action to start."
-                           Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="Must be a valid time."
+                <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Date" @bind-Value="@_scheduleDataTwo.StartDate" HintText="Required, the date you started the project (numbers only)."
+                           Required="false" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="Must be a valid date."
                            ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" />
 
-                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Work" @bind-Value="@_scheduleDataTwo.StartWork" HintText="Optional, the time (24-hour format) you start work." Required="false"
-                           EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="If entered must be a valid time."
+                <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="End Date" @bind-Value="@_scheduleDataTwo.EndDate" HintText="Optional, the date you completed the project (numbers only)." Required="false"
+                           DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="If entered must be a valid date."
                            ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
@@ -124,13 +123,14 @@
             <BlazorValidated TEntity="ScheduleDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Time" @bind-Value="@_scheduleDataThree.StartTime" HintText="Required, the time (24-hour format) you want the scheduled action to start."
-                           Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="Must be a valid time."
+                <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Date" @bind-Value="@_scheduleDataThree.StartDate" HintText="Required, the date you started the project (numbers only)."
+                           Required="false" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="Must be a valid date."
                            ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
 
-                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Work" @bind-Value="@_scheduleDataThree.StartWork" HintText="Optional, the time (24-hour format) you start work." Required="false"
-                           EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="If entered must be a valid time."
+                <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="End Date" @bind-Value="@_scheduleDataThree.EndDate" HintText="Optional, the date you completed the project (numbers only)." Required="false"
+                           DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="If entered must be a valid date."
                            ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
                 <button class="test-button" type="submit">Submit Three to trigger validation on unmodified fields</button>
@@ -152,13 +152,15 @@
             <BlazorValidated TEntity="ScheduleDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Time" @bind-Value="@_scheduleDataFour.StartTime" HintText="Required, the time (24-hour format) you want the scheduled action to start."
-                           Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid time."
+
+                <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Date" @bind-Value="@_scheduleDataFour.StartDate" HintText="Required, the date you started the project (numbers only)."
+                           Required="false" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid date."
                            ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
 
-                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Work" @bind-Value="@_scheduleDataFour.StartWork" HintText="Optional, the time (24-hour format) you start work." Required="false"
-                           EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="If entered must be a valid time."
+                <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="End Date" @bind-Value="@_scheduleDataFour.EndDate" HintText="Optional, the date you completed the project (numbers only)." Required="false"
+                           DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="If entered must be a valid date."
                            ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
+
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
                 <button class="test-button" type="submit">Submit Four to trigger validation on unmodified fields</button>
@@ -175,13 +177,14 @@
             <BlazorValidated TEntity="ScheduleDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Time" @bind-Value="@_scheduleDataFive.StartTime" HintText="Required, the time (24-hour format) you want the scheduled action to start."
-                           Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid time."
+                <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Date" @bind-Value="@_scheduleDataFive.StartDate" HintText="Required, the date you started the project (numbers only)."
+                           Required="false" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid date."
                            ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" />
 
-                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Work" @bind-Value="@_scheduleDataFive.StartWork" HintText="Optional, the time (24-hour format) you start work." Required="false"
-                           EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="If entered must be a valid time."
+                <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="End Date" @bind-Value="@_scheduleDataFive.EndDate" HintText="Optional, the date you completed the project (numbers only)." Required="false"
+                           DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="If entered must be a valid date."
                            ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" />
+
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
                 <button class="test-button" type="submit">Submit Five to trigger validation on unmodified fields</button>
@@ -200,12 +203,12 @@
             <BlazorValidated TEntity="ScheduleDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Time" @bind-Value="@_scheduleDataSix.StartTime" HintText="Required, the time (24-hour format) you want the scheduled action to start."
-                           Required="false" EnableSeconds="true" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid time."
+                <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Date" @bind-Value="@_scheduleDataSix.StartDate" HintText="Required, the date you started the project (numbers only)."
+                           Required="false" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid date."
                            ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
 
-                <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Work" @bind-Value="@_scheduleDataSix.StartWork" HintText="Optional, the time (24-hour format) you start work." Required="false"
-                           EnableSeconds="false" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="If entered must be a valid time."
+                <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="End Date" @bind-Value="@_scheduleDataSix.EndDate" HintText="Optional, the date you completed the project (numbers only)." Required="false"
+                           DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="If entered must be a valid date."
                            ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
@@ -218,15 +221,15 @@
 </section>
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_CheckboxInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Component_Name_Text_Input - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span>@GlobalValues.Component_Name_Checkbox_Input - @GlobalValues.Common_Page_Title_Overview_Tests</span>
         <span aria-hidden="true"></span>
     </a>
 
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_ErrorsSummary}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_NumericInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Component_Name_Errors_Summary - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span>@GlobalValues.Component_Name_Numeric_Input - @GlobalValues.Common_Page_Title_Overview_Tests</span>
         <span aria-hidden="true"></span>
     </a>
 
@@ -261,13 +264,13 @@
     protected override async Task OnInitializedAsync()
     {
 
-        var startTimeValidator = MemberValidators.CreateRangeValidator<TimeOnly>(TimeOnly.FromTimeSpan(new TimeSpan(7, 0, 0)), TimeOnly.FromTimeSpan(new TimeSpan(10, 0, 0)), "StartTime", "Start Time", "Must be between 7am and 10am.");
-        var startWorkValidator = MemberValidators.CreateRangeValidator<TimeOnly>(TimeOnly.FromTimeSpan(new TimeSpan(7, 0, 0)), TimeOnly.FromTimeSpan(new TimeSpan(10, 0, 0)), "StartWork", "Start Work", "If entered must be between 7am and 10am");
+        var startDateValidator = MemberValidators.CreateRangeValidator<DateOnly>(new DateOnly(2022, 2, 2), new DateOnly(2026, 6, 6), "StartDate", "Start Date", "Must be between 2022-02-02 and 2026-06-06.");
+        var endDateValidator = MemberValidators.CreateCompareToValidator<DateOnly>(new DateOnly(2026, 6, 6), CompareType.GreaterThan, "EndDate", "End Date", "If entered must be after 2026-06-06");
 
         
         _boxedValidators = BlazorValidationBuilder<ScheduleDto>.Create()
-                                       .ForMember(c => c.StartTime, startTimeValidator)
-                                       .ForNullableMember(c => c.StartWork, startWorkValidator) //Nullable in my library means optional
+                                       .ForMember(c => c.StartDate, startDateValidator)
+                                       .ForNullableMember(c => c.EndDate, endDateValidator) //Nullable in my library means optional
                                         .GetBoxedValidators();
 
         _editContextOne = new EditContext(_scheduleDataOne);
@@ -395,8 +398,8 @@
 
     public class ScheduleDto
     {
-        public TimeOnly StartTime { get; set; }
-        public TimeOnly? StartWork { get; set; } = null;
+        public DateOnly StartDate { get; set; }
+        public DateOnly? EndDate { get; set; } = null;
 
     }
 }

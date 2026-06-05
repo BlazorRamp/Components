@@ -14,8 +14,8 @@
     just use the text "Required" in the hint text for the required field, and the text "Optional" in the optional nullable fields. By default the required parameter is set to true so I set this to false for the Work start and end fields. 
 </p>
 <p>
-    For both the "Start Time" and "Start Work" fields I have set the <span class="code-span">UpdateOnInput</span> parameter to true, and false for the end time and work fields just so you can see the different approaches.
-    For validation on the work field, I validation rules that says if entered "Start Work" must be before 11am and if entered "End Work" must be after 1pm. As these are nullable fields and validation will run on every keystroke for "Start Work", the <span>ParseErrorMessage</span> parameter will be utilised until a valid time can
+    For both the "Start Time" and "Start Work" fields I have set the <span class="code-span">UpdateOnInput</span> parameter to true, and false for the "End Time" and "End Work" fields just so you can see the different approaches.
+    For validation on the work field, I added validation rules that says if entered "Start Work" must be before 11am and if entered "End Work" must be after 1pm. As these are nullable fields and validation will run on every keystroke for "Start Work", the <span>ParseErrorMessage</span> parameter will be utilised until a valid time can
     be parsed from the inputs.
 </p>
 

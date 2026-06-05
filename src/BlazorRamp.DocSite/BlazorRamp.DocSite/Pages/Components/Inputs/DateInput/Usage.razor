@@ -1,0 +1,123 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_DateInput}/{GlobalValues.Common_Page_Path_Usage}")]
+
+<PageTitle>@GlobalValues.Component_Name_Date_Input @GlobalValues.Common_Page_Title_Usage</PageTitle>
+
+<h1>@GlobalValues.Component_Name_Date_Input @GlobalValues.Common_Page_Title_Usage</h1>
+
+<p>
+    The example below shows the Date Input component being bound to both non-nullable and nullable <span class="code-span">DateOnly</span> fields. The "End Date" and "Start Date" are non-nullable, required, with  
+    validation rules that says the "End Date" must be greater than the "Star Date" and with a "Start Date" that must be between 2022-02-02 and 2026-06-06.
+</p>
+<p>
+    Rather than set the component parameter <span class="code-span">Required</span> to true, which only adds a red asterisk to the label and the <span class="code-span">aria-required</span> attribute to the inputs, I have opted to
+    just use the text "Required" in the hint text for the required field, and the text "Optional" in the optional nullable fields. By default the required parameter is set to true so I set this to false for the Date Started and Completed fields. 
+</p>
+<p>
+    For both the "Start Date" and "Date Started" fields I have set the <span class="code-span">UpdateOnInput</span> parameter to true, and false for the "End Date" and "Date Completed" fields just so you can see the different approaches.
+    For validation on the Date Started and Completed fields, I added validation rules that says if entered "Date Started" must be before 2022-02-02 and if entered "Date Completed" must be after 2022-03-02. As these are nullable fields and validation will run on every keystroke for "Start Work", the <span>ParseErrorMessage</span> parameter will be utilised until a valid time can
+    be parsed from the inputs.
+</p>
+
+<p>
+    I have used <span class="code-span">ValidationDisplayMode="TabbableWithHint"</span> on all fields.
+</p>
+<p>
+    <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
+    but you can use any validators that work with Blazors <span class="code-span">EditContext</span>. 
+</p>
+
+<section class="section-box">
+    <h2>Date input example</h2>
+
+    <EditForm EditContext="@_editContext" OnValidSubmit="HandleSubmit">
+        
+        <BlazorValidated TEntity="ScheduleDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+        <div class="br-input-row">
+            <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Date" @bind-Value="@_scheduleData.StartDate" HintText="Required, the date (numbers only) you want the scheduled action to start." 
+                 Required="false" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="Must be a valid date."  
+                 ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
+            <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="End Date" @bind-Value="@_scheduleData.EndDate" HintText="Required, the date (numbers only) you want the scheduled action to end"
+                Required="false" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid date."   
+                ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+        </div>
+         <div class="br-input-row">
+
+            <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Date Started" @bind-Value="@_scheduleData.DateStarted" HintText="Optional, the date you started the project (numbers only)." 
+                    Required="false" DataPosition="DataPosition.Start" UpdateOnInput="true"  ParseErrorMessage="Must be a valid date."  
+                       ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
+            <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Date Completed" @bind-Value="@_scheduleData.DateCompleted" HintText="Optional, the date you completed the project (numbers only)." Required="false"
+                       DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid date."  
+                       ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+        </div>
+        <div class="br-input-row">
+            <button class="br-col-xs-12 normal-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
+        </div>
+    </EditForm>
+
+
+</section>
+<p style="padding-block:1rem;">
+    Below is the code that was used for the example. Please note that in general when using the Validated library the validators would be in a shared library so they could be used in any part of your application.
+</p>
+<CodeBox CodeBlock="@InputSnippets.Date_Input_Code_Example" AriaLabel="Date input code example" />
+<h3 style="padding-top:1rem;">Accessibility</h3>
+<p>
+    Given the various nuances with the various screen readers regarding composite components with multiple inputs, both custom and native, please review the 
+    <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Accessibility}#screen-reader-quirks")" 
+       onclick="setTimeout(() => document.getElementById('screen-reader-quirks')?.focus(), 100);">Screen reader quirks or known issues section (inputs accessibility page)</a>
+    to help choose the optimal settings for your target audience.
+</p>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_DateInput}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Date_Input - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_NumericInput}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Numeric_Input - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+
+    private EditContext _editContext = default!;
+    private ScheduleDto _scheduleData = new();
+    private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+    protected override void OnInitialized()
+    {
+        var startDateValidator = MemberValidators.CreateRangeValidator<DateOnly>(new DateOnly(2022, 2, 2), new DateOnly(2026, 6, 6), "StartTime", "Start Date", "Must be between 2022-02-02 and 2026-06-06.");
+        var endDateValidator = MemberValidators.CreateMemberComparisonValidator<ScheduleDto, DateOnly>(y => y.EndDate, x => x.StartDate, CompareType.GreaterThan, "End Date", "Must be greater than the start date.");
+        /*
+            * Different ways to do similar things. 
+         */
+        var dateStartedValidator   = MemberValidators.CreatePredicateValidator<DateOnly>(x => x < new DateOnly(2026, 06, 06), "DateStarted", "Date Started", "If entered must be before to 2026-06-06.");
+        var dateCompletedValidator = MemberValidators.CreateCompareToValidator<DateOnly>(new DateOnly(2026, 6, 6),CompareType.GreaterThan, "DateCompleted", "Date Completed", "If entered must be after 2026-06-06.");
+
+        _editContext = new EditContext(_scheduleData);
+
+        _boxedValidators = BlazorValidationBuilder<ScheduleDto>.Create()
+                                 .ForMember(c => c.StartDate, startDateValidator)
+                                 .ForComparisonWithMember(c => c.EndDate, endDateValidator)
+                                 .ForNullableMember(c => c.DateStarted, dateStartedValidator) //Nullable in my library means optional
+                                 .ForNullableMember(c => c.DateCompleted, dateCompletedValidator)
+                                .GetBoxedValidators();
+    }
+
+    private void HandleSubmit() { }
+
+    public class ScheduleDto
+    {
+        public DateOnly  StartDate { get; set; }
+        public DateOnly  EndDate   { get; set; }
+
+        public DateOnly? DateStarted   { get; set; } = null;
+        public DateOnly? DateCompleted { get; set; } = null;
+    }
+}

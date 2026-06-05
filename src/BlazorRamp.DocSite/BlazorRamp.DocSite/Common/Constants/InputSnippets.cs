@@ -571,4 +571,75 @@ public class InputSnippets
         }
         
         """;
+
+
+    public const string Date_Input_Code_Example = """
+
+            <EditForm EditContext="@_editContext" OnValidSubmit="HandleSubmit">
+
+            <BlazorValidated TEntity="ScheduleDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <div class="br-input-row">
+                <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Start Date" @bind-Value="@_scheduleData.StartDate" HintText="Required, the date (numbers only) you want the scheduled action to start." 
+                     Required="false" DataPosition="DataPosition.Start" UpdateOnInput="true" ParseErrorMessage="Must be a valid date."  
+                     ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
+                <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="End Date" @bind-Value="@_scheduleData.EndDate" HintText="Required, the date (numbers only) you want the scheduled action to end"
+                    Required="false" DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid date."   
+                    ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+            </div>
+             <div class="br-input-row">
+
+                <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Date Started" @bind-Value="@_scheduleData.DateStarted" HintText="Optional, the date you started the project (numbers only)." 
+                        Required="false" DataPosition="DataPosition.Start" UpdateOnInput="true"  ParseErrorMessage="Must be a valid date."  
+                           ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
+                <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Date Completed" @bind-Value="@_scheduleData.DateCompleted" HintText="Optional, the date you completed the project (numbers only)." Required="false"
+                           DataPosition="DataPosition.Start" UpdateOnInput="false" ParseErrorMessage="Must be a valid date."  
+                           ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+            </div>
+            <div class="br-input-row">
+                <button class="br-col-xs-12 normal-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
+            </div>
+        </EditForm>
+
+        @code {
+
+            private EditContext _editContext = default!;
+            private ScheduleDto _scheduleData = new();
+            private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+            protected override void OnInitialized()
+            {
+                var startDateValidator = MemberValidators.CreateRangeValidator<DateOnly>(new DateOnly(2022, 2, 2), new DateOnly(2026, 6, 6), "StartTime", "Start Date", "Must be between 2022-02-02 and 2026-06-06.");
+                var endDateValidator = MemberValidators.CreateMemberComparisonValidator<ScheduleDto, DateOnly>(y => y.EndDate, x => x.StartDate, CompareType.GreaterThan, "End Date", "Must be greater than the start date.");
+                /*
+                    * Different ways to do similar things. 
+                 */
+                var dateStartedValidator   = MemberValidators.CreatePredicateValidator<DateOnly>(x => x < new DateOnly(2026, 06, 06), "DateStarted", "Date Started", "If entered must be before to 2026-06-06.");
+                var dateCompletedValidator = MemberValidators.CreateCompareToValidator<DateOnly>(new DateOnly(2026, 6, 6),CompareType.GreaterThan, "DateCompleted", "Date Completed", "If entered must be after 2026-06-06.");
+
+                _editContext = new EditContext(_scheduleData);
+
+                _boxedValidators = BlazorValidationBuilder<ScheduleDto>.Create()
+                                         .ForMember(c => c.StartDate, startDateValidator)
+                                         .ForComparisonWithMember(c => c.EndDate, endDateValidator)
+                                         .ForNullableMember(c => c.DateStarted, dateStartedValidator) //Nullable in my library means optional
+                                         .ForNullableMember(c => c.DateCompleted, dateCompletedValidator)
+                                        .GetBoxedValidators();
+            }
+
+            private void HandleSubmit() { }
+
+            public class ScheduleDto
+            {
+                public DateOnly  StartDate { get; set; }
+                public DateOnly  EndDate   { get; set; }
+
+                public DateOnly? DateStarted   { get; set; } = null;
+                public DateOnly? DateCompleted { get; set; } = null;
+            }
+        }
+        
+        """;
 }
