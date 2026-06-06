@@ -431,13 +431,20 @@ public  class DateInput_Tests
         }
 
         [Fact]
-        public async Task Should_not_render_autocomplete_attribute_when_autocomplete_off_is_false()
+        public async Task Should_render_birthday_autocomplete_tokens_on_each_input_when_autocomplete_off_is_false()
         {
             await using var context = new BunitContext();
 
             var (inputComponent, _) = CreateDateInput(context, p => p.Add(x => x.AutoCompleteOff, false));
 
-            inputComponent.Find("input").GetAttribute("autocomplete").Should().BeNull();
+            var inputs = inputComponent.FindAll("input");
+
+            using (new AssertionScope())
+            {
+                inputs[0].GetAttribute("autocomplete").Should().Be("bday-year");
+                inputs[1].GetAttribute("autocomplete").Should().Be("bday-month");
+                inputs[2].GetAttribute("autocomplete").Should().Be("bday-day");
+            }
         }
 
         [Fact]

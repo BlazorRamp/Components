@@ -34,6 +34,8 @@ public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
 
     /// <summary>
     /// Gets or sets whether the autocomplete attribute is added with the value of off.
+    /// If this value is set to false it will add the autocomplete value birthday token
+    /// for each input segment.
     /// </summary>
     [Parameter] public bool AutoCompleteOff { get; set; } = true;
 

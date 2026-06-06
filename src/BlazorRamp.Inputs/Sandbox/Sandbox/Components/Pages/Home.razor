@@ -23,7 +23,7 @@ Welcome to your new app.
     <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
          <div class="br-input-row">
-            <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Date of Birth" @bind-Value="@_contactData.DOB" HintText="You need to add some date value."
+            <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Date of Birth" @bind-Value="@_contactData.DOB" HintText="You need to add some date value." AutoCompleteOff="false"
                        DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" UpdateOnInput="true" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
 
             <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Nullable Date of Birth" @bind-Value="@_contactData.NullableDOB" HintText="You need to add some date value."
