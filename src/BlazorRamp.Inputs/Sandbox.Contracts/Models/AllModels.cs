@@ -27,6 +27,8 @@ public record class ContactDto
 
     public string   Title          { get; set; } = default!;
 
+    public string? Notes { get; set; } = default;
+
     [Required(ErrorMessage = "Name is required")]
     [MinLength(4, ErrorMessage = "Name must be at least 4 characters")]
     public string   GivenName      { get; set; } = default!;

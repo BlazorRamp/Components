@@ -1,33 +1,19 @@
 ﻿using BlazorRamp.Inputs.Common.Constants;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.Extensions.Primitives;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 
 namespace BlazorRamp.Inputs.Components;
 
-/// <summary>
-/// Renders an accessible text input supporting <c>text</c>, <c>email</c>, <c>url</c>,
-/// and <c>tel</c> input types. Inherits validation state management, hint text,
-/// aria-disabled support, and SVG icon support from <see cref="InputTypeBase{TValue}"/>.
-/// </summary>
-public class TextTypeInput : InputTypeBase<string>
+public class TextAreaTypeInput : InputTypeBase<string>
 {
+
     /// <summary>
     /// Gets or sets whether the input value is updated on every keystroke via the
     /// <c>oninput</c> event. When <c>false</c> the value updates on <c>onchange</c>
     /// (i.e. when the field loses focus). Defaults to <c>false</c>.
     /// </summary>
-    [Parameter] public bool          UpdateOnInput  { get; set; } = false;
-
-    /// <summary>
-    /// Gets or sets the HTML input type. Supports <see cref="TextInputType.Text"/>,
-    /// <see cref="TextInputType.Email"/>, <see cref="TextInputType.Url"/>, and
-    /// <see cref="TextInputType.Tel"/>. Defaults to <see cref="TextInputType.Text"/>.
-    /// </summary>
-    [Parameter] public TextInputType TextInputType  { get; set; } = TextInputType.Text;
-
+    [Parameter] public bool UpdateOnInput { get; set; } = false;
 
     /// <summary>
     /// Gets or sets the text/data alignment in the input. Defaults to <see cref="DataPosition.Start"/>.
@@ -39,17 +25,14 @@ public class TextTypeInput : InputTypeBase<string>
     /// </summary>
     [Parameter] public bool TrimOnBlur { get; set; } = false;
 
-    /// <summary>
-    /// Gets the resolved CSS class string applied to the root element of the text input,
-    /// including any additional classes passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.
-    /// </summary>
-    protected string TextInputClasses { get; private set; } = String.Empty;
+
 
     /// <summary>
-    /// Gets the current HTML input type string, resolved from <see cref="TextInputType"/>
-    /// on initialisation. For example <c>"text"</c>, <c>"email"</c>, <c>"url"</c>, or <c>"tel"</c>.
+    /// Gets the resolved CSS class string applied to the root element of the textarea input,
+    /// including any additional classes passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.
     /// </summary>
-    protected string InputType    { get; private set; } = "text";
+    protected string TextAreaInputClasses { get; private set; } = String.Empty;
+
 
     /// <summary>
     /// Updates the text input CSS classes on each parameter change.
@@ -57,17 +40,8 @@ public class TextTypeInput : InputTypeBase<string>
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        TextInputClasses = GetInputClasses(base.AdditionalAttributes);
-        
-    }
+        TextAreaInputClasses = GetInputClasses(base.AdditionalAttributes);
 
-    /// <summary>
-    /// Resolves the HTML input type string from <see cref="TextInputType"/>.
-    /// </summary>
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        InputType = Enum.GetName<TextInputType>(TextInputType)?.ToLower() ?? "text";
     }
 
     /// <summary>
@@ -84,6 +58,7 @@ public class TextTypeInput : InputTypeBase<string>
         return true;
     }
 
+
     /// <summary>
     /// Handles the binding set event, updating <see cref="InputBase{TValue}.CurrentValueAsString"/>
     /// with the raw input value. Does nothing when <see cref="InputTypeBase{TValue}.IsDisabled"/>
@@ -91,8 +66,8 @@ public class TextTypeInput : InputTypeBase<string>
     /// </summary>
     protected void HandlePropertySet(string? value)
     {
-        if (base.IsDisabled)  return;
-         
+        if (base.IsDisabled) return;
+
         CurrentValueAsString = value;
     }
 
@@ -106,6 +81,8 @@ public class TextTypeInput : InputTypeBase<string>
         if (CurrentValueAsString is not null && true == TrimOnBlur) CurrentValueAsString = CurrentValueAsString.Trim();
     }
 
+
+
     /// <summary>
     /// Builds the CSS class string for the root element by combining the base text input
     /// class with any additional class passed via <see cref="InputBase{TValue}.AdditionalAttributes"/>.
@@ -116,20 +93,19 @@ public class TextTypeInput : InputTypeBase<string>
 
         if (false == String.IsNullOrWhiteSpace(classData))
         {
-            return $"{@GlobalValues.Text_Input_Class} {classData}";
+            return $"{@GlobalValues.TextArea_Input_Class} {classData}";
         }
 
-        return @GlobalValues.Text_Input_Class;
+        return @GlobalValues.TextArea_Input_Class;
     }
 
     /// <summary>
     /// Returns a filtered copy of <see cref="InputBase{TValue}.AdditionalAttributes"/> with
-    /// the <c>class</c> key removed, so additional attributes can be applied to the input
+    /// the <c>class</c> key removed, so additional attributes can be applied to the textarea input
     /// element without duplicating the class handling.
     /// </summary>
     protected static IReadOnlyDictionary<string, object>? GetAttributes(IReadOnlyDictionary<string, object>? additionalAttributes)
 
         => additionalAttributes?.Where(kv => kv.Key != "class").ToDictionary();
-
 
 }

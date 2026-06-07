@@ -58,6 +58,19 @@ internal class GlobalValues
     public const string Text_Input_State_Icon_Class     = $"{Text_Input_Class}__state-icon";
 
 
+    public const string TextArea_Input_Class                = "br-textarea-input";
+    public const string TextArea_Input_Label_Class          = $"{TextArea_Input_Class}__label";
+    public const string TextArea_Input_Hint_Class           = $"{TextArea_Input_Class}__hint";
+    public const string TextArea_Input_Error_Wrapper_Class  = $"{TextArea_Input_Class}__error-wrapper";
+    public const string TextArea_Input_Error_Class          = $"{TextArea_Input_Class}__error";
+    public const string TextArea_Input_Asterisk_Class       = $"{TextArea_Input_Class}__asterisk";
+    public const string TextArea_Input_Field_Area_Class     = $"{TextArea_Input_Class}__field-area";
+    public const string TextArea_Input_Field_Class          = $"{TextArea_Input_Class}__field";
+    public const string TextArea_Input_Field_Counter_Class  = $"{TextArea_Input_Class}__field-counter";
+    public const string TextArea_Input_Icon_Class           = $"{TextArea_Input_Class}__icon";
+    public const string TextArea_Input_State_Icon_Class     = $"{TextArea_Input_Class}__state-icon";
+
+
     public const string Password_Input_Class                = "br-password-input";
     public const string Password_Input_Label_Class          = $"{Password_Input_Class}__label";
     public const string Password_Input_Hint_Class           = $"{Password_Input_Class}__hint";
