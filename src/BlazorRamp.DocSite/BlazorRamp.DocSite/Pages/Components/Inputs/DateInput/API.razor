@@ -106,8 +106,18 @@
                     <td>AutoCompleteOff</td>
                     <td>bool</td>
                     <td>
-                        Gets or sets whether the autocomplete attribute is added tp each input segment with the value of off.
-                        Defaults to <span class="code-span">true</span>.
+                        Gets or sets whether autocomplete is disabled on each input segment.
+                        When <span class="code-span">true</span> (default), sets <span class="code-span">autocomplete="off"</span>
+                        on each input segment.
+
+                        When set to <span class="code-span">false</span>, applies the appropriate WCAG 1.3.5
+                        autocomplete tokens to each segment (<span class="code-span">bday-day</span>,
+                        <span class="code-span">bday-month</span>, <span class="code-span">bday-year</span>).
+
+                        <b>Note:</b> If this component is used to capture the user's date of birth, set
+                        <span class="code-span">AutocompleteOff="false"</span> to meet the WCAG 1.3.5
+                        Identify Input Purpose (Level AA) requirement.
+
                     </td>
                 </tr>
                 <tr>
