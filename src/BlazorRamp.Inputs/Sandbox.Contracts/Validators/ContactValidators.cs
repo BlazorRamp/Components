@@ -31,6 +31,7 @@ public static class ContactValidators
     public static MemberValidator<TimeOnly> TimeOnlyValidator { get; }
     public static MemberValidator<int> ContactIDValidator { get; }
 
+
     /*
         * All of these validator are good for multiple things. Validating individual values, used in the Validated.Core's ValidationBuilder
         * or as in this demo the BlazorValidationBuilder

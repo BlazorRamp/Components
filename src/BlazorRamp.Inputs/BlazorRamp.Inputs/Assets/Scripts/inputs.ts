@@ -1,7 +1,9 @@
 ﻿const elementFocusOutMap = new WeakMap<HTMLElement, (e: FocusEvent) => void>();
+const textAreaCounterMap = new WeakMap<HTMLTextAreaElement, () => void>();
 
 const TIME_INPUT_COMPONENT_NAME = "TimeInput";
 const DATE_INPUT_COMPONENT_NAME = "DateInput";
+const TEXTAREA_INPUT_COMPONENT_NAME = "TextAreaInput";
 
 const getDecimalSeparator = (): string => Intl.NumberFormat(navigator.language).format(1.1).charAt(1);
 
@@ -105,6 +107,14 @@ const setInputFocus = (elementId: string): void => {
         return;
     }
 
+    if (element instanceof HTMLTextAreaElement) {
+        element.focus({ preventScroll: true });
+        try {
+            if (element.value) element.setSelectionRange(element.value.length, element.value.length);
+        } catch { }
+        return;
+    }
+
     element.focus({ preventScroll: true });
 
     switch (element.type) {
@@ -165,7 +175,7 @@ const registerAriaDisabledHandlers = (inputElement: HTMLElement): void => {
     }
 
 
-    if ((inputElement as HTMLInputElement).type === "checkbox" || (inputElement as HTMLInputElement).type === "time") {
+    if ((inputElement as HTMLInputElement).type === "checkbox") {
         inputElement.removeEventListener("click", preventClickAction);
         inputElement.addEventListener("click", preventClickAction);
     }
@@ -194,7 +204,6 @@ const unregisterAriaDisabledHandlers = (inputElement: HTMLElement): void => {
         });
         return;
     }
-
 
 
     inputElement.removeEventListener("keydown", ariaDisabledKeyHandler);
@@ -327,10 +336,68 @@ const unregisterElementFocusOutHandler = (element: HTMLElement): void => {
     }
 };
 
+const getFlooredTextAreaThreshold = (length: number, maxLength: number): number => {
+    const percentage = (length / maxLength) * 100;
+
+    if (percentage < 50) return -1;
+
+    return Math.floor(percentage / 10) * 10;
+};
+
+const textAreaCountHandler = (dotNetRef: any, callBackName: string, textAreaElement: HTMLTextAreaElement, messageElement: HTMLSpanElement, message: string, maxCharacters: number):void => {
+
+    if (!dotNetRef || !callBackName || !textAreaElement || !messageElement) return;
+
+    const currentLength: number = textAreaElement.value?.length ?? 0;
+
+    messageElement.textContent = `${message} ${currentLength} / ${maxCharacters}`;
+
+    if (maxCharacters <= 0) return;
+
+    const percentage = (currentLength / maxCharacters) * 100;
+
+    // only callback at 50% and every 10% thereafter, plus over limit
+    if (percentage < 50) return;
+
+    dotNetRef.invokeMethodAsync(callBackName, currentLength);
+
+};
+
+const registerTextAreaCharacterCountHandler = (dotNetRef: any, callBackName: string, textAreaElement: HTMLTextAreaElement, messageElement: HTMLSpanElement, message: string, maxCharacters: number): void => {
+
+    if (!dotNetRef || !callBackName || !textAreaElement || !messageElement || !message) return;
+
+    const handler = () => textAreaCountHandler(dotNetRef, callBackName, textAreaElement, messageElement, message, maxCharacters);
+
+    const currentLength: number = textAreaElement.value?.length ?? 0;
+
+    messageElement.textContent = `${message} ${currentLength} / ${maxCharacters}`;
+
+    textAreaElement.removeEventListener("input", handler);
+    textAreaElement.addEventListener("input", handler);
+
+    const lastThreshold = getFlooredTextAreaThreshold(currentLength, maxCharacters);
+
+    textAreaCounterMap.set(textAreaElement, handler);
+};
+
+const unregisterTextAreaCharacterCountHandler = (textAreaElement: HTMLTextAreaElement): void => {
+
+    if (!textAreaElement) return;
+
+    const handler = textAreaCounterMap.get(textAreaElement);
+
+    if (handler) {
+        textAreaElement.removeEventListener("input", handler);
+        textAreaCounterMap.delete(textAreaElement);
+    }
+};
+
 export {
     registerAriaDisabledHandlers, unregisterAriaDisabledHandlers, registerNumericHandlers, unregisterNumericHandlers,
     setInputValue, setInputFocus, setSummaryFocus, registerReadOnlyHandlers, unregisterReadOnlyHandlers,
     registerSelectReadOnlyDisabledHandlers, unregisterSelectReadOnlyDisabledHandlers, registerTimeSegmentHandlers,
     unregisterTimeSegmentHandlers, registerElementFocusOutHandler, unregisterElementFocusOutHandler,
-    registerDateSegmentHandlers, unregisterDateSegmentHandlers, formatDateForAnnouncement
+    registerDateSegmentHandlers, unregisterDateSegmentHandlers, formatDateForAnnouncement,
+    registerTextAreaCharacterCountHandler, unregisterTextAreaCharacterCountHandler
 };

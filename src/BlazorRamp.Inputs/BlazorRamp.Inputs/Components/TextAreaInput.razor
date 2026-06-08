@@ -23,7 +23,7 @@
     {
         <span aria-hidden="true"></span>
     }
-    <div class="@GlobalValues.TextArea_Input_Field_Area_Class" style="@($"{GlobalValues.TextAraa_CSS_Row_Variable_Name}:{InputRows};")">
+    <div class="@GlobalValues.TextArea_Input_Field_Area_Class" style="@($"{GlobalValues.TextArea_CSS_Row_Variable_Name}:{InputRows};")">
 
         <textarea @ref="ControlReference" @attributes="@GetAttributes(AdditionalAttributes)" class="@TextAreaClasses" id="@InputID"
                type="textarea"
@@ -39,9 +39,7 @@
                @bind-value:set="HandlePropertySet"
                data-br-input-position="@DataPosition.ToString().ToLower()" />
 
-            <span class="@GlobalValues.TextArea_Input_Field_Counter_Class">
-                Number of characters
-            </span>
+        <span @ref="@MessageSpanRef" class="@GlobalValues.TextArea_Input_Field_Counter_Class"></span>
     </div>
 
     <span class="@GlobalValues.TextArea_Input_State_Icon_Class" data-br-invalid-state="@GetInvalidStateAttributeValue(base.InvalidState)" aria-hidden="true"></span>

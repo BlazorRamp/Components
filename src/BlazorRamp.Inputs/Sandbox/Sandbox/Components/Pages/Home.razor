@@ -23,10 +23,17 @@ Welcome to your new app.
     <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
         <div class="br-input-row">
-            <TextAreaInput class="br-col-xs-12" LabelText="My Area" HintText="Tell us about yourself" @bind-Value="@_contactData.Notes" DataPosition="DataPosition.Start"
-                ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="false" />
+            <TextAreaInput class="br-col-xs-12" LabelText="My Area" HintText="Tell us about yourself" @bind-Value="@_contactData.Notes" DataPosition="DataPosition.Start" MaxCharacters="100"
+                ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
         </div>
+        <div class="br-input-row">
 
+            <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Firstname" AriaDisabled="false" HintText="The name that you use on official documents"
+                       UpdateOnInput="true" SvgIcon="--svg-user-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
+
+            <TextInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.FamilyName" LabelText="Surname" HintText="The suname that you use on official documents"
+                       UpdateOnInput="true" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" TrimOnBlur="true" AriaDisabled="false" />
+        </div>
          <div class="br-input-row">
             <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Date of Birth" @bind-Value="@_contactData.DOB" HintText="You need to add some date value." AutoCompleteOff="false"
                        DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" UpdateOnInput="true" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
@@ -73,14 +80,7 @@ Welcome to your new app.
                           @bind-Value="_contactData.Salary" UpdateOnInput="true" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" Format="F2" AriaDisabled="false" />
         </div>
 
-        <div class="br-input-row">
 
-            <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Firstname" AriaDisabled="false" HintText="The name that you use on official documents"
-                       UpdateOnInput="true" SvgIcon="--svg-user-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
-
-            <TextInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.FamilyName" LabelText="Surname" HintText="The suname that you use on official documents"
-                       UpdateOnInput="true" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" TrimOnBlur="true" AriaDisabled="false" />
-        </div>
 
         <div class="br-input-row">
 
@@ -159,7 +159,9 @@ Welcome to your new app.
         _contactData.Age = 26;
         _contactData.NullableSalary = null;
         _contactData.Salary = 12.25M;
-        //_contactData.NullableDOB = null;
+        _contactData.Notes = "paul";
+
+        var noteValidator = MemberValidators.CreateStringLengthValidator(0, 25, "Notes", "Notes", "Must be some value");
 
 
         var builder = BlazorValidationBuilder<ContactDto>.Create()
@@ -178,6 +180,7 @@ Welcome to your new app.
                         .ForNullableMember(c => c.NullableTimeValue, ContactValidators.TimeOnlyValidator)
                         .ForMember(c => c.DOB, ContactValidators.DOBValidator)
                         .ForNullableMember(c => c.NullableDOB, ContactValidators.DOBValidator)
+                        .ForNullableStringMember(c => c.Notes, noteValidator)
          // .ForComparisonWithValue(c => c.DOB, ContactValidators.DOBValidator)
          // .ForComparisonWithMember(c => c.CompareDOB, ContactValidators.CompareDOBValidator)
          // .ForNestedMember(c => c.Address, AddressValidators.GetBoxedAddressValidators())// << Getting all the address validators from a pre-created builder.

@@ -126,7 +126,7 @@
         font-family: var(--br-comp-input-area-content-font-family);
         font-size: var(--br-comp-input-area-content-font-size);
         font-weight: var(--br-comp-input-area-content-font-weight);
-        min-height: calc(1.5rem * var(--_br-row-count));
+        min-height: calc(1lh * var(--_br-row-count));
         border-block: 1px solid grey;
         padding-block: var(--br-unit-space-3);
         resize: none;
@@ -156,7 +156,7 @@
         color: var(--br-comp-input-hint-color);
         background-color: var(--br-comp-input-hint-background);
         opacity: var(--br-comp-input-hint-opacity);
-        padding-block-end: var(--br-unit-space-3);
+        //padding-block-end: var(--br-unit-space-3);
         text-align: end;
     }
 
@@ -211,7 +211,8 @@
     }
 
     &__state-icon,
-    &__field {
+    &__field
+    &__field-counter {
         .br-input-row & {
             align-self: end;
         }

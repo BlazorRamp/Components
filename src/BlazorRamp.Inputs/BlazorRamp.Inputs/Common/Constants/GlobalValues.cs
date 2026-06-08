@@ -27,6 +27,11 @@ internal class GlobalValues
 
     public const string JS_Inputs_Format_Date_For_Announcement_Func = "formatDateForAnnouncement";
 
+
+    public const string JS_Inputs_Register_Count_Callback_Handlers   =  "registerTextAreaCharacterCountHandler";
+    public const string JS_Inputs_Unregister_Count_Callback_Handlers = "unregisterTextAreaCharacterCountHandler";
+
+
     public const string JS_Inputs_Set_Value         = "setInputValue";
     public const string JS_Inputs_Set_Input_Focus   = "setInputFocus";
     public const string JS_Inputs_Set_Summary_Focus  = "setSummaryFocus";
@@ -58,9 +63,15 @@ internal class GlobalValues
     public const string Text_Input_State_Icon_Class     = $"{Text_Input_Class}__state-icon";
 
 
-    public const int TextArea_Debounce_Default = 500;
-    public const int TextArea_Rows_Default     = 5;
-    public const string TextAraa_CSS_Row_Variable_Name = "--_br-row-count";
+    public const int    TextArea_Max_Characters             = 8000;
+    public const int    TextArea_Debounce_Default           = 500;
+    public const int    TextArea_Rows_Default               = 5;
+    public const string TextArea_CSS_Row_Variable_Name      = "--_br-row-count";
+
+    public const string TextArea_Character_Count_Text       = "Character count";
+    public const string TextArea_Characters_Remaining_Text  = "characters remaining.";
+    public const string TextArea_Characters_Over_Limit_Text = "characters over limit";
+
 
     public const string TextArea_Input_Class                = "br-textarea-input";
     public const string TextArea_Input_Label_Class          = $"{TextArea_Input_Class}__label";
