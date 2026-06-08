@@ -58,6 +58,10 @@ internal class GlobalValues
     public const string Text_Input_State_Icon_Class     = $"{Text_Input_Class}__state-icon";
 
 
+    public const int TextArea_Debounce_Default = 500;
+    public const int TextArea_Rows_Default     = 5;
+    public const string TextAraa_CSS_Row_Variable_Name = "--_br-row-count";
+
     public const string TextArea_Input_Class                = "br-textarea-input";
     public const string TextArea_Input_Label_Class          = $"{TextArea_Input_Class}__label";
     public const string TextArea_Input_Hint_Class           = $"{TextArea_Input_Class}__hint";
@@ -70,6 +74,7 @@ internal class GlobalValues
     public const string TextArea_Input_Icon_Class           = $"{TextArea_Input_Class}__icon";
     public const string TextArea_Input_State_Icon_Class     = $"{TextArea_Input_Class}__state-icon";
 
+    public const string TextArea_Input_Field_Autosize_Modifier = $"{TextArea_Input_Field_Class}--autosize";
 
     public const string Password_Input_Class                = "br-password-input";
     public const string Password_Input_Label_Class          = $"{Password_Input_Class}__label";

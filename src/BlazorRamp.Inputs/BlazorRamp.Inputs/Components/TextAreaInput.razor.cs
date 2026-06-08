@@ -25,7 +25,11 @@ public class TextAreaTypeInput : InputTypeBase<string>
     /// </summary>
     [Parameter] public bool TrimOnBlur { get; set; } = false;
 
+    [Parameter] public int UpdateOnInputDelayMs  { get; set; } = GlobalValues.TextArea_Debounce_Default;
 
+    [Parameter] public int TextAreaRows         { get; set; } = GlobalValues.TextArea_Rows_Default;
+
+    [Parameter] public bool AutoSize            { get; set; } = true;
 
     /// <summary>
     /// Gets the resolved CSS class string applied to the root element of the textarea input,
@@ -33,6 +37,16 @@ public class TextAreaTypeInput : InputTypeBase<string>
     /// </summary>
     protected string TextAreaInputClasses { get; private set; } = String.Empty;
 
+    /// <summary>
+    /// Gets the resolved CSS class string applied to the textarea input,
+    /// </summary>
+    protected string TextAreaClasses { get; private set; } = GlobalValues.TextArea_Input_Field_Class;
+    protected int InputRows { get; private set; } = GlobalValues.TextArea_Rows_Default;
+
+    protected string? TextAreaValue { get; private set; }
+
+    private CancellationTokenSource _debounceTokenSource = default!;
+    private int?                    _debounceDelayMs     = 500;
 
     /// <summary>
     /// Updates the text input CSS classes on each parameter change.
@@ -40,8 +54,17 @@ public class TextAreaTypeInput : InputTypeBase<string>
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        TextAreaInputClasses = GetInputClasses(base.AdditionalAttributes);
 
+        TextAreaInputClasses = GetInputClasses(base.AdditionalAttributes);
+        TextAreaClasses      = GetTextAreaClasses(AutoSize);
+        InputRows            = TextAreaRows < 1 ? GlobalValues.TextArea_Rows_Default : TextAreaRows;
+
+        _debounceDelayMs = UpdateOnInputDelayMs < GlobalValues.TextArea_Debounce_Default ? GlobalValues.TextArea_Debounce_Default : UpdateOnInputDelayMs;
+    }
+
+    protected override void OnInitialized()
+    {
+        _debounceTokenSource = new CancellationTokenSource();
     }
 
     /// <summary>
@@ -64,11 +87,26 @@ public class TextAreaTypeInput : InputTypeBase<string>
     /// with the raw input value. Does nothing when <see cref="InputTypeBase{TValue}.IsDisabled"/>
     /// is <c>true</c>.
     /// </summary>
-    protected void HandlePropertySet(string? value)
+    protected async Task HandlePropertySet(string? value)
     {
         if (base.IsDisabled) return;
 
-        CurrentValueAsString = value;
+        TextAreaValue = value;
+
+        if (false == UpdateOnInput)
+        {
+            CurrentValueAsString = value;
+            return;
+        }
+        
+        TextAreaValue = value;
+
+        _debounceTokenSource?.Cancel();
+        _debounceTokenSource?.Dispose();
+        _debounceTokenSource = new CancellationTokenSource();
+             
+
+        await UpdateCurrentValueAsString(value, 3000, _debounceTokenSource.Token);
     }
 
 
@@ -78,10 +116,29 @@ public class TextAreaTypeInput : InputTypeBase<string>
     /// </summary>
     protected async Task HandleOnBlur()
     {
+        _debounceTokenSource?.Cancel();
+
         if (CurrentValueAsString is not null && true == TrimOnBlur) CurrentValueAsString = CurrentValueAsString.Trim();
     }
 
 
+    private async Task UpdateCurrentValueAsString(string? value, int timeToWait, CancellationToken cancellationToken)
+    {
+        try
+        {
+            await Task.Delay(timeToWait, cancellationToken);
+
+            CurrentValueAsString = value;
+            await InvokeAsync(StateHasChanged);
+        }
+        catch (TaskCanceledException) { }//nothing to do.
+    }
+
+
+    private static string GetTextAreaClasses(bool autosize)
+
+        => autosize ? $"{GlobalValues.TextArea_Input_Field_Class} {GlobalValues.TextArea_Input_Field_Autosize_Modifier}" : GlobalValues.TextArea_Input_Field_Class;
+    
 
     /// <summary>
     /// Builds the CSS class string for the root element by combining the base text input
@@ -108,4 +165,14 @@ public class TextAreaTypeInput : InputTypeBase<string>
 
         => additionalAttributes?.Where(kv => kv.Key != "class").ToDictionary();
 
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _debounceTokenSource?.Cancel();
+            _debounceTokenSource?.Dispose();
+        }
+        base.Dispose(disposing);
+    }
 }
