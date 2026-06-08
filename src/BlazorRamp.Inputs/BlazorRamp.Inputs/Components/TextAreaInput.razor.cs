@@ -132,7 +132,7 @@ public class TextAreaTypeInput : InputTypeBase<string>
             if (_jSModule is not null)
             {
                 _dotNetObjectRef = DotNetObjectReference.Create(this);
-                await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Register_Count_Callback_Handlers, _dotNetObjectRef, nameof(this.CheckAnnounceCharacterCount),
+                await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Register_Count_Callback_Handlers, _dotNetObjectRef, nameof(UpdateLiveCharacterCount),
                                                 base.ControlReference, MessageSpanRef, _characterCountText, _maxCharacters);
             }
 
@@ -228,7 +228,7 @@ public class TextAreaTypeInput : InputTypeBase<string>
 
 
     [JSInvokable]
-    public async Task CheckAnnounceCharacterCount(int currentCount)
+    public async Task UpdateLiveCharacterCount(int currentCount)
     
         => _liveCharacterCount = currentCount;
     
