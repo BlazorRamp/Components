@@ -99,8 +99,12 @@ public class TextAreaTypeInput : InputTypeBase<string>
         _inputDebounceTS    = new CancellationTokenSource();
 
         _maxCharacters       = MaxCharacters < 1                                  ? GlobalValues.TextArea_Max_Characters             : MaxCharacters;
-        _remainingText       = String.IsNullOrWhiteSpace(CharactersRemainingText) ? GlobalValues.TextArea_Characters_Remaining_Text  : CharactersRemainingText.Trim();
-        _overlimitText       = String.IsNullOrWhiteSpace(CharactersOverLimitText) ? GlobalValues.TextArea_Characters_Over_Limit_Text : CharactersOverLimitText.Trim();
+        _remainingText       = String.IsNullOrWhiteSpace(CharactersRemainingText) || !CharactersRemainingText.Contains("{count}") 
+                                    ? GlobalValues.TextArea_Characters_Remaining_Text  : CharactersRemainingText.Trim();
+
+        _overlimitText       = String.IsNullOrWhiteSpace(CharactersOverLimitText) || !CharactersOverLimitText.Contains("{count}")
+                                    ? GlobalValues.TextArea_Characters_Over_Limit_Text : CharactersOverLimitText.Trim();
+
         _liveCharacterCount  = Value?.Length ?? 0; 
 
         TextAreaValue = Value;

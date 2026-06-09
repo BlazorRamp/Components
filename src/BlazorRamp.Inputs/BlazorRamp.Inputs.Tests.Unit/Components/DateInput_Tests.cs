@@ -309,10 +309,6 @@ public  class DateInput_Tests
             });
         }
 
-
-
-
-
         [Fact]
         public async Task Should_capture_unmatched_attributes_and_apply_all_to_the_input_element_excluding_class()
         {
