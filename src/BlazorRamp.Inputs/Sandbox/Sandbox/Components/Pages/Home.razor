@@ -1,7 +1,195 @@
 ﻿@page "/"
+@using BlazorRamp.Core.Common.Constants
+@using BlazorRamp.Inputs.Components.RadioGroup
+
+
+
+@inject ILiveRegionService LiveRegionService
+
+@rendermode @(new InteractiveServerRenderMode(false))
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
-Welcome to your new app.
+<EditForm EditContext="@_editContext" OnValidSubmit="HandleSubmit" novalidate>
+
+    @*     <DataAnnotationsValidator /> *@
+
+    <BlazorValidated TEntity="ContactDto" BoxedValidators="_contactBoxedValidators" AddDisplayName="true" DeferFieldValidation="false" />
+
+
+    <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
+
+        <div class="br-input-row">
+            <TextAreaInput class="br-col-xs-12" LabelText="My Area" HintText="Tell us about yourself" @bind-Value="@_contactData.Notes" DataPosition="DataPosition.Start" MaxCharacters="100"
+                ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
+        </div>
+        <div class="br-input-row">
+
+            <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Firstname" AriaDisabled="false" HintText="The name that you use on official documents"
+                       UpdateOnInput="true" SvgIcon="--svg-user-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
+
+            <TextInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.FamilyName" LabelText="Surname" HintText="The suname that you use on official documents"
+                       UpdateOnInput="true" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" TrimOnBlur="true" AriaDisabled="false" />
+        </div>
+         <div class="br-input-row">
+            <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Date of Birth" @bind-Value="@_contactData.DOB" HintText="You need to add some date value." AutoCompleteOff="false"
+                       DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" UpdateOnInput="true" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
+            <DateInput class="br-col-xs-12 br-col-sm-6" LabelText="Nullable Date of Birth" @bind-Value="@_contactData.NullableDOB" HintText="You need to add some date value."
+                       DataPosition="DataPosition.Centre" ReadOnly="false" AriaDisabled="false" UpdateOnInput="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+        </div>
+
+        <div class="br-input-row">
+            <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="My Time" @bind-Value="@_contactData.TimeValue" HintText="You need to add some time value." SvgIcon="--svg-clock-icon"
+                       EnableSeconds="true" DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" UpdateOnInput="false" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"/>
+            
+                       <TimeInput class="br-col-xs-12 br-col-sm-6" LabelText="Nullable Time" @bind-Value="@_contactData.NullableTimeValue" HintText="You need to add some time value."
+                       EnableSeconds="true" DataPosition="DataPosition.Start" ReadOnly="false" AriaDisabled="false" UpdateOnInput="true" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
+
+        </div>
+        <div class="br-input-row">
+            <CheckboxInput class="br-col-xs-12 br-col-sm-6" HintText="You go a 50/50 chance of getting it right" @bind-Value="_contactData.IsAlive"
+                           ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" SvgIcon="--svg-food-icon" AriaDisabled="false" />
+        </div>
+         <div class="br-input-row"> 
+            <RadioInputGroup class="br-col-xs-12 br-col-sm-6" @bind-Value="@_contactData.RadioButtonValue" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"
+                             LabelText="Your Gender" HintText="Please select on of the options" Orientation="Orientation.Horizontal" AriaDisabled="false" SvgIcon="--svg-food-icon">
+                <OptionValues>
+                    <RadioInput LabelText="First item" Value="1" />
+                    <RadioInput LabelText="Second item" Value="2" />
+                    <RadioInput LabelText="Third item" Value="3" />
+                </OptionValues>
+            </RadioInputGroup>
+            <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Firstname" AriaDisabled="true" HintText="The name that you use on official documents"
+                       UpdateOnInput="true" SvgIcon="--svg-user-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" />
+
+            <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Firstname" AriaDisabled="false" HintText="The name that you use on official documents"
+                       UpdateOnInput="true" SvgIcon="--svg-user-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" Required="false"  />
+
+          </div>
+
+
+        <div class="br-input-row">
+            <SelectInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.ContactID" LabelText="Select Me" HintText="Select something" DataPosition="DataPosition.Start" 
+                         ErrorsLabel="Errors" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" AriaDisabled="false">
+                       <OptionValues>
+                            <option value="0">Not Entered</option>
+                            <option value="1">Option 1</option>
+                            <option  value="2">Option 2</option>
+                       </OptionValues>
+            </SelectInput>   
+        </div>
+
+
+
+        <div class="br-input-row">
+
+            @{
+                var index = 0;
+            }
+            @foreach (var contactMethod in _contactData.ContactMethods)
+            {
+
+                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="" @bind-Value="contactMethod.MethodValue" HintText="Enter some value" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="true" />
+
+                <div class="br-input-row">
+                    <button class="btn btn-danger" type="button" @onclick="() => RemoveContactMethod(contactMethod)">Delete</button>
+                    <hr />
+                </div>
+                index++;
+            }
+
+        </div>
+
+    </InputErrorsSummary>
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+</EditForm>
+<button class="btn btn-primary" type="button" @onclick="AddContactMethod">Add Contact Method</button>
+<button class="btn btn-primary" type="button" @onclick="Test">Click</button>
+
+<button @onclick="TestService">Test Service</button>
+
+
+@code {
+
+    private int _groupValue = 0;
+    private EditContext _editContext = default!;
+    private ContactDto _contactData = StaticData.CreateContactObjectGraph();
+
+    private ImmutableDictionary<string, BoxedValidator> _contactBoxedValidators = default!;
+
+    protected override void OnInitialized()
+    {
+
+        _editContext = new EditContext(_contactData);
+        _contactData.ContactID = 1;
+        _contactData.FamilyName = null;
+        _contactData.NullableTimeValue = null;//TimeOnly.FromTimeSpan(new TimeSpan(13, 30, 30)); ;
+        //_contactData.TimeValue = TimeOnly.FromTimeSpan(new TimeSpan(13, 30, 30));
+        _contactData.Age = 26;
+        _contactData.NullableSalary = null;
+        _contactData.Salary = 12.25M;
+        _contactData.Notes = "paul";
+
+        var noteValidator = MemberValidators.CreateStringLengthValidator(0, 25, "Notes", "Notes", "Must be some value");
+
+
+        var builder = BlazorValidationBuilder<ContactDto>.Create()
+                        .ForMember(c => c.Title, ContactValidators.TitleValidator)                      //< using a ready built title member validator
+                        .ForMember(c => c.GivenName, ContactValidators.GivenNameValidator)
+                        .ForMember(c => c.FamilyName, ContactValidators.FamilyNameValidator, true)            // << This validator (function) combines two functions a regex and a separate length validator
+                        .ForMember(c => c.Password, ContactValidators.PasswordValidator)            // << This validator (function) combines two functions a regex and a separate length validator
+                        .ForNullableMember(c => c.NullableAge, ContactValidators.NullableAgeValidator)
+                        .ForMember(c => c.Age, ContactValidators.AgeValidator)
+                        .ForNullableMember(c => c.NullableSalary, ContactValidators.SalaryValidator)
+                        .ForMember(c => c.Salary, ContactValidators.SalaryValidator)
+                        .ForMember(c => c.IsAlive, ContactValidators.IsAliveValidator)
+                        .ForMember(c => c.ContactID, ContactValidators.ContactIDValidator)
+                        .ForMember(c => c.RadioButtonValue, ContactValidators.RadioGroupValue)
+                        .ForMember(c => c.TimeValue, ContactValidators.TimeOnlyValidator)
+                        .ForNullableMember(c => c.NullableTimeValue, ContactValidators.TimeOnlyValidator)
+                        .ForMember(c => c.DOB, ContactValidators.DOBValidator)
+                        .ForNullableMember(c => c.NullableDOB, ContactValidators.DOBValidator)
+                        .ForNullableStringMember(c => c.Notes, noteValidator)
+         // .ForComparisonWithValue(c => c.DOB, ContactValidators.DOBValidator)
+         // .ForComparisonWithMember(c => c.CompareDOB, ContactValidators.CompareDOBValidator)
+         // .ForNestedMember(c => c.Address, AddressValidators.GetBoxedAddressValidators())// << Getting all the address validators from a pre-created builder.
+         .ForEachCollectionMember(c => c.ContactMethods, ContactMethodValidators.GetBoxedContactMethodValidators());
+        // .ForCollection(c => c.ContactMethods, MemberValidators.CreateCollectionLengthValidator<List<ContactMethodDto>>(1, 3, "ContactMethods", "Contact methods", "Must have at least 1 contact method but no more than 3"));// << created on the fly
+
+        _contactData.RadioButtonValue = 5;
+        _contactData.DOB = default;
+        _contactBoxedValidators = builder.GetBoxedValidators();
+
+        //_contactData.ContactMethods = [];
+    }
+
+    private void Test()
+    {
+        _contactData = new();
+        _editContext = new EditContext(_contactData);
+    }
+    public async Task HandleSubmit()
+    {
+
+    }
+    private void AddContactMethod()
+
+    => _contactData.ContactMethods.Add(new ContactMethodDto());
+
+    private void RemoveContactMethod(ContactMethodDto contactMethod)
+
+        => _contactData.ContactMethods.Remove(contactMethod);
+
+
+    public async Task TestService()
+    {
+        var message = new Announcement("Is it working", AnnouncementType.Info, "Home", LiveRegionType.Assertive);
+
+        await LiveRegionService.MakeAnnouncement(message);
+    }
+}
