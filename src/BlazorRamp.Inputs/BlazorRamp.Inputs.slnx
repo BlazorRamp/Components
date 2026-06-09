@@ -4,6 +4,8 @@
   </Folder>
   <Folder Name="/02 - Sandbox/">
     <Project Path="Sandbox.Contracts/Sandbox.Contracts.csproj" Id="6fb41a3f-134d-408e-b952-761defe11b43" />
+    <Project Path="Sandbox/Sandbox.Client/Sandbox.Client.csproj" Id="a08fc4ae-bb03-47f9-a5b3-e38cff3e5f2d" />
+    <Project Path="Sandbox/Sandbox/Sandbox.csproj" Id="0689a269-9256-499d-9daf-4238782c1bf7" />
   </Folder>
   <Folder Name="/03 - Tests/">
     <Project Path="BlazorRamp.Inputs.Tests.Unit/BlazorRamp.Inputs.Tests.Unit.csproj" Id="a807019d-7d66-4cf8-81bf-f248a4d420f8" />
