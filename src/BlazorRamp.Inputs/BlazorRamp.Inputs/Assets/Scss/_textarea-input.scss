@@ -158,6 +158,12 @@
         opacity: var(--br-comp-input-hint-opacity);
         //padding-block-end: var(--br-unit-space-3);
         text-align: end;
+
+
+        &--overlimit {
+            font-weight: bold;
+            color: var(--br-comp-input-error-colour);
+        }
     }
 
     &__error-wrapper {
@@ -210,9 +216,7 @@
         }
     }
 
-    &__state-icon,
-    &__field
-    &__field-counter {
+    &__state-icon, &__field &__field-counter {
         .br-input-row & {
             align-self: end;
         }

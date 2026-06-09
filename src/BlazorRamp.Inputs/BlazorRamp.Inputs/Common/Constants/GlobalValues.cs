@@ -68,9 +68,8 @@ internal class GlobalValues
     public const int    TextArea_Rows_Default               = 5;
     public const string TextArea_CSS_Row_Variable_Name      = "--_br-row-count";
 
-    public const string TextArea_Character_Count_Text       = "Character count";
-    public const string TextArea_Characters_Remaining_Text  = "characters remaining.";
-    public const string TextArea_Characters_Over_Limit_Text = "characters over limit";
+    public const string TextArea_Characters_Remaining_Text  = "You have {count} characters remaining.";
+    public const string TextArea_Characters_Over_Limit_Text = "You are {count} characters over the limit";
 
 
     public const string TextArea_Input_Class                = "br-textarea-input";
@@ -85,6 +84,7 @@ internal class GlobalValues
     public const string TextArea_Input_Icon_Class           = $"{TextArea_Input_Class}__icon";
     public const string TextArea_Input_State_Icon_Class     = $"{TextArea_Input_Class}__state-icon";
 
+    public const string TextArea_Input_Field_Counter_Modifier  = $"{TextArea_Input_Field_Counter_Class}--overlimit";
     public const string TextArea_Input_Field_Autosize_Modifier = $"{TextArea_Input_Field_Class}--autosize";
 
     public const string Password_Input_Class                = "br-password-input";

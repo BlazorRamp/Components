@@ -38,7 +38,6 @@ public class TextAreaTypeInput : InputTypeBase<string>
     [Parameter] public bool AutoSize            { get; set; } = true;
 
     [Parameter] public int    MaxCharacters           { get; set; } = GlobalValues.TextArea_Max_Characters;
-    [Parameter] public string CharacterCountText      { get; set; } = GlobalValues.TextArea_Character_Count_Text;
     [Parameter] public string CharactersRemainingText { get; set; } = GlobalValues.TextArea_Characters_Remaining_Text;
     [Parameter] public string CharactersOverLimitText { get; set; } = GlobalValues.TextArea_Characters_Over_Limit_Text;
 
@@ -68,9 +67,8 @@ public class TextAreaTypeInput : InputTypeBase<string>
 
     private CancellationTokenSource _debounceTokenSource = default!;
     private int                     _debounceDelayMs     = 500;
-    private string                  _characterCountText  = GlobalValues.TextArea_Character_Count_Text;
     private string                  _remainingText       = GlobalValues.TextArea_Characters_Remaining_Text;
-    private string                  _overLimitText       = GlobalValues.TextArea_Characters_Over_Limit_Text;
+    private string                  _overlimitText       = GlobalValues.TextArea_Characters_Over_Limit_Text;
     private int                     _maxCharacters       = GlobalValues.TextArea_Max_Characters;
     private int                     _liveCharacterCount  = 0;
 
@@ -94,9 +92,8 @@ public class TextAreaTypeInput : InputTypeBase<string>
         _debounceTokenSource = new CancellationTokenSource();
         
         _maxCharacters       = MaxCharacters < 1                                  ? GlobalValues.TextArea_Max_Characters             : MaxCharacters;
-        _characterCountText  = String.IsNullOrWhiteSpace(CharacterCountText)      ? GlobalValues.TextArea_Character_Count_Text       : CharacterCountText.Trim();
         _remainingText       = String.IsNullOrWhiteSpace(CharactersRemainingText) ? GlobalValues.TextArea_Characters_Remaining_Text  : CharactersRemainingText.Trim();
-        _overLimitText       = String.IsNullOrWhiteSpace(CharactersOverLimitText) ? GlobalValues.TextArea_Characters_Over_Limit_Text : CharactersOverLimitText.Trim();
+        _overlimitText       = String.IsNullOrWhiteSpace(CharactersOverLimitText) ? GlobalValues.TextArea_Characters_Over_Limit_Text : CharactersOverLimitText.Trim();
         _liveCharacterCount  = Value?.Length ?? 0; 
 
         TextAreaValue = Value;
@@ -133,9 +130,8 @@ public class TextAreaTypeInput : InputTypeBase<string>
             {
                 _dotNetObjectRef = DotNetObjectReference.Create(this);
                 await _jSModule.InvokeVoidAsync(GlobalValues.JS_Inputs_Register_Count_Callback_Handlers, _dotNetObjectRef, nameof(UpdateLiveCharacterCount),
-                                                base.ControlReference, MessageSpanRef, _characterCountText, _maxCharacters);
+                                                base.ControlReference, MessageSpanRef, _remainingText, _overlimitText, GlobalValues.TextArea_Input_Field_Counter_Modifier, _maxCharacters);
             }
-
 
         }
     }
@@ -228,7 +224,7 @@ public class TextAreaTypeInput : InputTypeBase<string>
 
 
     [JSInvokable]
-    public async Task UpdateLiveCharacterCount(int currentCount)
+    public async Task UpdateLiveCharacterCount(int currentCount, string counterMessage)
     
         => _liveCharacterCount = currentCount;
     

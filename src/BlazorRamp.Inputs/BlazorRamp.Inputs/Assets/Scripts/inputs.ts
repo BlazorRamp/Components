@@ -336,47 +336,57 @@ const unregisterElementFocusOutHandler = (element: HTMLElement): void => {
     }
 };
 
-const getFlooredTextAreaThreshold = (length: number, maxLength: number): number => {
-    const percentage = (length / maxLength) * 100;
 
-    if (percentage < 50) return -1;
+const formatCountMessage = (remainingMessage: string, overlimitMessage: string, currentLength: number, maxLength: number): string => {
 
-    return Math.floor(percentage / 10) * 10;
-};
+    const countLength = Math.abs(maxLength - currentLength);
+    const template    = currentLength <= maxLength ? remainingMessage : overlimitMessage;
 
-const textAreaCountHandler = (dotNetRef: any, callBackName: string, textAreaElement: HTMLTextAreaElement, messageElement: HTMLSpanElement, message: string, maxCharacters: number):void => {
+    return template.replace(/{count}/g, countLength.toString());
+}
+
+const textAreaCountHandler = (dotNetRef: any, callBackName: string, textAreaElement: HTMLTextAreaElement, messageElement: HTMLSpanElement,
+                              remainingMessage: string, overlimitMessage: string, overClass:string, maxCharacters: number): void => {
 
     if (!dotNetRef || !callBackName || !textAreaElement || !messageElement) return;
 
     const currentLength: number = textAreaElement.value?.length ?? 0;
+    const isOver = currentLength > maxCharacters;
+    const message = formatCountMessage(remainingMessage, overlimitMessage, currentLength, maxCharacters);
 
-    messageElement.textContent = `${message} ${currentLength} / ${maxCharacters}`;
+    messageElement.textContent = message;
+
+    if (isOver) {messageElement.classList.add(overClass)}
+    else { messageElement.classList.remove(overClass) }
+        
 
     if (maxCharacters <= 0) return;
 
     const percentage = (currentLength / maxCharacters) * 100;
 
-    // only callback at 50% and every 10% thereafter, plus over limit
-    if (percentage < 50) return;
+    if (percentage <= 70) return;
 
-    dotNetRef.invokeMethodAsync(callBackName, currentLength);
+    dotNetRef.invokeMethodAsync(callBackName, currentLength, message);
 
 };
 
-const registerTextAreaCharacterCountHandler = (dotNetRef: any, callBackName: string, textAreaElement: HTMLTextAreaElement, messageElement: HTMLSpanElement, message: string, maxCharacters: number): void => {
+const registerTextAreaCharacterCountHandler = (dotNetRef: any, callBackName: string, textAreaElement: HTMLTextAreaElement, messageElement: HTMLSpanElement,
+                                               remainingMessage: string, overlimitMessage: string, overClass: string,  maxCharacters: number): void => {
 
-    if (!dotNetRef || !callBackName || !textAreaElement || !messageElement || !message) return;
+    if (!dotNetRef || !callBackName || !textAreaElement || !messageElement || !remainingMessage || !overlimitMessage) return;
 
-    const handler = () => textAreaCountHandler(dotNetRef, callBackName, textAreaElement, messageElement, message, maxCharacters);
+    const handler = () => textAreaCountHandler(dotNetRef, callBackName, textAreaElement, messageElement, remainingMessage, overlimitMessage, overClass, maxCharacters);
 
     const currentLength: number = textAreaElement.value?.length ?? 0;
+   const isOver = currentLength > maxCharacters;
 
-    messageElement.textContent = `${message} ${currentLength} / ${maxCharacters}`;
+    messageElement.textContent = formatCountMessage(remainingMessage, overlimitMessage, currentLength, maxCharacters);
+
+    if (isOver) { messageElement.classList.add(overClass) }
+    else { messageElement.classList.remove(overClass) }
 
     textAreaElement.removeEventListener("input", handler);
     textAreaElement.addEventListener("input", handler);
-
-    const lastThreshold = getFlooredTextAreaThreshold(currentLength, maxCharacters);
 
     textAreaCounterMap.set(textAreaElement, handler);
 };
