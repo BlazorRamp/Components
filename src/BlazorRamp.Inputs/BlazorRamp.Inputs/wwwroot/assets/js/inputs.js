@@ -261,30 +261,25 @@ const formatCountMessage = (remainingMessage, overlimitMessage, currentLength, m
     const template = currentLength <= maxLength ? remainingMessage : overlimitMessage;
     return template.replace(/{count}/g, countLength.toString());
 };
-const textAreaCountHandler = (dotNetRef, callBackName, textAreaElement, messageElement, remainingMessage, overlimitMessage, overClass, maxCharacters) => {
+const textAreaCountHandler = (event, dotNetRef, callBackName, textAreaElement, messageElement, remainingMessage, overlimitMessage, overClass, maxCharacters) => {
     if (!dotNetRef || !callBackName || !textAreaElement || !messageElement)
         return;
+    const pasted = event.inputType === "insertFromPaste" || event.inputType === "insertFromDrop";
     const currentLength = textAreaElement.value?.length ?? 0;
-    const isOver = currentLength > maxCharacters;
     const message = formatCountMessage(remainingMessage, overlimitMessage, currentLength, maxCharacters);
     messageElement.textContent = message;
-    if (isOver) {
+    if (currentLength > maxCharacters) {
         messageElement.classList.add(overClass);
     }
     else {
         messageElement.classList.remove(overClass);
     }
-    if (maxCharacters <= 0)
-        return;
-    const percentage = (currentLength / maxCharacters) * 100;
-    if (percentage <= 70)
-        return;
-    dotNetRef.invokeMethodAsync(callBackName, currentLength);
+    dotNetRef.invokeMethodAsync(callBackName, currentLength, pasted);
 };
 const registerTextAreaCharacterCountHandler = (dotNetRef, callBackName, textAreaElement, messageElement, remainingMessage, overlimitMessage, overClass, maxCharacters) => {
     if (!dotNetRef || !callBackName || !textAreaElement || !messageElement || !remainingMessage || !overlimitMessage)
         return;
-    const handler = () => textAreaCountHandler(dotNetRef, callBackName, textAreaElement, messageElement, remainingMessage, overlimitMessage, overClass, maxCharacters);
+    const handler = (event) => textAreaCountHandler(event, dotNetRef, callBackName, textAreaElement, messageElement, remainingMessage, overlimitMessage, overClass, maxCharacters);
     const currentLength = textAreaElement.value?.length ?? 0;
     const isOver = currentLength > maxCharacters;
     messageElement.textContent = formatCountMessage(remainingMessage, overlimitMessage, currentLength, maxCharacters);

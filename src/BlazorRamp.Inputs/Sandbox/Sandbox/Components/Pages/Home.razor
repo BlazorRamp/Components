@@ -22,7 +22,7 @@
     <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
         <div class="br-input-row">
-            <TextAreaInput class="br-col-xs-12" LabelText="My Area" HintText="Tell us about yourself" @bind-Value="@_contactData.Notes" DataPosition="DataPosition.Start" MaxCharacters="100"
+            <TextAreaInput class="br-col-xs-12" LabelText="My Area" HintText="Tell us about yourself" @bind-Value="@_contactData.Notes" DataPosition="DataPosition.Start" MaxCharacters="20"
                 ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
         </div>
         <div class="br-input-row">
@@ -135,7 +135,7 @@
         _contactData.Salary = 12.25M;
         _contactData.Notes = "paul";
 
-        var noteValidator = MemberValidators.CreateStringLengthValidator(0, 25, "Notes", "Notes", "Must be some value");
+        var noteValidator = MemberValidators.CreateStringLengthValidator(0, 20, "Notes", "Notes", "Must be some value");
 
 
         var builder = BlazorValidationBuilder<ContactDto>.Create()

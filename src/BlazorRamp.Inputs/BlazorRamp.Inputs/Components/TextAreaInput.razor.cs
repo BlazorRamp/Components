@@ -185,9 +185,9 @@ public class TextAreaTypeInput : InputTypeBase<string>
         _announceDebounceTS?.Dispose();
         _announceDebounceTS = new CancellationTokenSource();
 
-        await AnnounceCharacterCount(_remainingText, _overlimitText, AnnounceDebounceMs, _liveCharacterCount, _maxCharacters, AnnounceDelaySeconds, _lastAnnouncedAt, _announceDebounceTS.Token);
+        await AnnounceCharacterCount(_remainingText, _overlimitText, AnnounceDebounceMs, _maxCharacters, AnnounceDelaySeconds, _lastAnnouncedAt, _announceDebounceTS.Token);
 
-        _lastAnnouncedAt = DateTime.Now;
+       
     }
 
     private async Task UpdateCurrentValueAsString(string? value, int timeToWait, CancellationToken cancellationToken)
@@ -202,28 +202,34 @@ public class TextAreaTypeInput : InputTypeBase<string>
         catch (TaskCanceledException) { }//nothing to do.
     }
 
-    protected async Task AnnounceCharacterCount(string remainingText, string overlimitText, int timeToWait, int currentLength, int maxLength, 
+    protected async Task AnnounceCharacterCount(string remainingText, string overlimitText, int timeToWait, int maxLength, 
                                                int announceDelaySeconds, DateTime lastDateTime, CancellationToken cancellationToken)
     {
         try
         {
-            if ((currentLength * 100.00 / maxLength) < 70) return;
                 
             await Task.Delay(timeToWait, cancellationToken);
 
-            var timeSpan = DateTime.Now.Subtract(lastDateTime);
+            var secondsPassed = DateTime.Now.Subtract(lastDateTime).Seconds;
 
-            //if (timeSpan.Seconds < announceDelaySeconds) return;
+            if (secondsPassed <= announceDelaySeconds) return;
 
-            var countValue      = Math.Abs(maxLength - currentLength);
-            var messageTemplate = currentLength <= maxLength ? remainingText : overlimitText;
-            var message         = messageTemplate.Replace("{count}", countValue.ToString());
-            var announcement    = new Announcement(message, AnnouncementType.Info, $"{LabelNameText}", LiveRegionType.Polite);
-
-            await LiveRegionService.MakeAnnouncement(announcement);
+            await MakeAnnouncement();
 
         }
         catch (TaskCanceledException) { }//nothing to do
+    }
+
+    private async Task MakeAnnouncement()
+    {
+        var countValue      = Math.Abs(_maxCharacters - _liveCharacterCount);
+        var messageTemplate = _liveCharacterCount <= _maxCharacters ? _remainingText : _overlimitText;
+        var message         = messageTemplate.Replace("{count}", countValue.ToString());
+        var announcement    = new Announcement(message, AnnouncementType.Info, $"{LabelNameText}", LiveRegionType.Polite);
+
+        await LiveRegionService.MakeAnnouncement(announcement);
+
+        _lastAnnouncedAt = DateTime.Now;
     }
 
     private static string GetCurrentCountString(string currentCountText, int currentLength, int maxLength)
@@ -263,9 +269,13 @@ public class TextAreaTypeInput : InputTypeBase<string>
 
 
     [JSInvokable]
-    public async Task UpdateLiveCharacterCount(int currentCount)
-    
-        => _liveCharacterCount = currentCount;
+    public async Task UpdateLiveCharacterCount(int currentCount, bool pastedText)
+    {
+        _liveCharacterCount = currentCount;
+
+        if (pastedText) await MakeAnnouncement();
+    }
+      
     
     protected override void Dispose(bool disposing)
     {
