@@ -37,6 +37,7 @@
                @bind-value:get="@TextAreaValue"
                @bind-value:event="@(UpdateOnInput ? "oninput" : "onchange")"
                @bind-value:set="HandlePropertySet"
+               @onkeydown="HandleKeyDown"
                data-br-input-position="@DataPosition.ToString().ToLower()" />
 
         <span @ref="@MessageSpanRef" class="@GlobalValues.TextArea_Input_Field_Counter_Class"></span>

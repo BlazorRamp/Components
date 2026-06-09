@@ -279,7 +279,7 @@ const textAreaCountHandler = (dotNetRef, callBackName, textAreaElement, messageE
     const percentage = (currentLength / maxCharacters) * 100;
     if (percentage <= 70)
         return;
-    dotNetRef.invokeMethodAsync(callBackName, currentLength, message);
+    dotNetRef.invokeMethodAsync(callBackName, currentLength);
 };
 const registerTextAreaCharacterCountHandler = (dotNetRef, callBackName, textAreaElement, messageElement, remainingMessage, overlimitMessage, overClass, maxCharacters) => {
     if (!dotNetRef || !callBackName || !textAreaElement || !messageElement || !remainingMessage || !overlimitMessage)
