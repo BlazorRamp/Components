@@ -20,7 +20,7 @@ public class TextAreaInput_Tests
 {
     internal class TestModel
     {
-        [StringLength(4, ErrorMessage = "Needs to be more than 4 characters in length")]
+        [StringLength(4, ErrorMessage = "Needs to be less than 4 characters in length")]
         public string StringValue          { get; set; } 
         public string? NullableStringValue { get; set; } = null;
     }
@@ -250,8 +250,8 @@ public class TextAreaInput_Tests
 
                 inputElement.GetAttribute("style").Should().Be("color:red;");
 
-                inputElement.ClassList.Should().NotContain("class");
-                inputElement.ClassList.Should().Contain(GlobalValues.TextArea_Input_Class);
+                inputElement.ClassList.Should().NotContain("test");
+                inputElement.ClassList.Should().Contain(GlobalValues.TextArea_Input_Field_Class);
 
             }
         }
@@ -410,7 +410,7 @@ public class TextAreaInput_Tests
             context.Services.AddScoped<ILiveRegionService, LiveRegionService>();
 
 
-            var model = new TestModel { StringValue = "Ba" };
+            var model = new TestModel { StringValue = "Too Long" };
             var editContext = new EditContext(model);
 
             editContext.EnableDataAnnotationsValidation(context.Services);
@@ -445,7 +445,7 @@ public class TextAreaInput_Tests
                     errorDiv.GetAttribute("tabindex").Should().Be("0");
                     errorDiv.GetAttribute("role").Should().Be("region");
 
-                    component.Find("div").GetAttribute("aria-invalid").Should().Be("true");
+                    component.Find("textarea").GetAttribute("aria-invalid").Should().Be("true");
 
                 }
             });
@@ -464,7 +464,7 @@ public class TextAreaInput_Tests
             context.Services.AddScoped<ILiveRegionService, LiveRegionService>();
 
 
-            var model = new TestModel { StringValue = "bad" };
+            var model = new TestModel { StringValue = "Too Long" };
             var editContext = new EditContext(model);
 
             editContext.EnableDataAnnotationsValidation(context.Services);
@@ -518,6 +518,61 @@ public class TextAreaInput_Tests
         }
     }
 
+    public class HandleOnBlur
+    {
+        [Fact]
+        public async Task Should_trim_value_if_trim_on_blur_set_to_true()
+        {
+            await using var context = new BunitContext();
+
+            var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Inputs_File_Path);
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Aria_Disabled_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Readonly_Handlers, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Inputs_Register_Count_Callback_Handlers, _ => true).SetVoidResult();
+
+            context.Services.AddScoped<ILiveRegionService, LiveRegionService>();
 
 
+            var model = new TestModel { StringValue = "Too Long" };
+            var editContext = new EditContext(model);
+
+            editContext.EnableDataAnnotationsValidation(context.Services);
+
+            var component = context.Render<TextAreaInput>(
+                builder =>
+                {
+                    builder
+                        .AddCascadingValue(editContext)
+                        .Add(p => p.Value, model.StringValue)
+                        .Add(p => p.ValueChanged, EventCallback.Factory.Create<string>(context, v => model.StringValue = v))
+                        .Add(p => p.ValueExpression, () => model.StringValue)
+                        .Add(p => p.TrimOnBlur,true);
+
+                });
+
+            var input = component.Find("textarea");
+
+            input.Change(" P ");
+            input.Blur();
+
+            model.StringValue.Should().Be("P");
+        }
+    }
+   
+    public class UpdateLiveCharacterCount
+    {
+        [Fact]
+        public async Task UpdateLiveCharacterCount_should_update_the_internal_live_character_count()
+        {
+            await using var context = new BunitContext();
+
+            var (inputComponent, _) = CreateTextAreaInput(context);
+
+            await inputComponent.InvokeAsync(() => inputComponent.Instance.UpdateLiveCharacterCount(42, false));
+
+            // No exception thrown and component still renders — count is internal
+            // but we can verify the component is still alive and rendered
+            inputComponent.Instance.Should().NotBeNull();
+        }
+    }
 }

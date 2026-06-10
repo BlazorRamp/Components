@@ -619,7 +619,7 @@ public class NumericInput_Tests
     }
 
 
-    public class HandleOnBlur_Tests
+    public class HandleOnBlur
     {
         [Fact]
         public async Task Should_set_current_value_to_default_when_the_string_value_is_empty_and_type_is_non_nullable()
