@@ -2,11 +2,15 @@
   <Folder Name="/01 - Component Source/">
     <Project Path="BlazorRamp.Core/BlazorRamp.Core.csproj" />
   </Folder>
-  <Folder Name="/02 - Tests/" />
-  <Folder Name="/02 - Tests/00 - Shared Data/">
+  <Folder Name="/02 - Sandox/">
+    <Project Path="Sandbox/Sandbox.Client/Sandbox.Client.csproj" Id="ec4132c4-9478-44a0-a1c7-9acfc959bd9b" />
+    <Project Path="Sandbox/Sandbox/Sandbox.csproj" Id="d1670472-715f-4112-b4e4-a22519eee063" />
+  </Folder>
+  <Folder Name="/03 - Tests/" />
+  <Folder Name="/03 - Tests/00 - Shared Data/">
     <Project Path="BlazorRamp.Core.Tests.SharedDataFixtures/BlazorRamp.Core.Tests.SharedDataFixtures.csproj" />
   </Folder>
-  <Folder Name="/02 - Tests/01 - Unit/">
+  <Folder Name="/03 - Tests/01 - Unit/">
     <Project Path="BlazorRamp.Core.Tests.Unit/BlazorRamp.Core.Tests.Unit.csproj" />
   </Folder>
 </Solution>

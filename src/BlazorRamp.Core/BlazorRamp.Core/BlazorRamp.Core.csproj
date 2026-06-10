@@ -45,15 +45,19 @@ All Blazor Ramp components reference this project.
   </ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.25" />
 		<PackageReference Include="BuildWebCompiler2022" Version="1.14.15">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.25" />
-		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="6.0.3">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
+		<!-- 
+		It seems having the typesript msbuild causes the static asset errors. The compiler works without it
+		but you cannot debug - so include it when debugging.
+	  -->
+		<!--<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="6.0.3">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>-->
 	</ItemGroup>
 
 	<ItemGroup>
@@ -83,7 +87,7 @@ All Blazor Ramp components reference this project.
     <None Include="compilerconfig.json" />
   </ItemGroup>
 	
-<ItemGroup>
+<!--<ItemGroup>
 	<None Update="tsconfig.json">
 		<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
@@ -94,20 +98,7 @@ All Blazor Ramp components reference this project.
 		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
 		<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 	</Content>
-</ItemGroup>
+</ItemGroup>-->
 
-
-	<!-- section to test settings -->
-	<!--<Target Name="PreResolveProjectStaticWebAssets" BeforeTargets="ResolveProjectStaticWebAssets">
-		<ItemGroup>
-			<StashedContent Include="@(Content)" />
-			<Content Remove="@(Content)" />
-		</ItemGroup>
-	</Target>
-	<Target Name="PostResolveProjectStaticWebAssets" AfterTargets="ResolveProjectStaticWebAssets">
-		<ItemGroup>
-			<Content Include="@(StashedContent)" />
-		</ItemGroup>
-	</Target>-->
 
 </Project>

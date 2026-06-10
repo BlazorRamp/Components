@@ -1,5 +1,5 @@
 {
-    "compileOnSave": true,
+  "compileOnSave": true,
   "compilerOptions": {
     "noImplicitAny": false,
     "noEmitOnError": true,
@@ -11,7 +11,7 @@
     "outDir": "wwwroot/assets/js",
     "strict": true
   },
-    "include": [
-        "Assets/Scripts/*"
-    ]
+  "include": [
+    "Assets/Scripts/*"
+  ]
 }
