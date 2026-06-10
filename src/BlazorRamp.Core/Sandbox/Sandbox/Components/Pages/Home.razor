@@ -14,9 +14,9 @@ Welcome to your new app.
 
     private async Task TestService()
     {
-        var announcement = new Announcement("Test replay", AnnouncementType.Info, "TestService Button", LiveRegionType.Assertive);
+        var announcement = new Announcement("Test replay", AnnouncementType.Info, "TestService Button", LiveRegionType.Polite);
 
-        await _liveRegionService.MakeAnnouncement(announcement, false);
+        await _liveRegionService.MakeAnnouncement(announcement, true);
     }
 
 }

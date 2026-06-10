@@ -40,7 +40,7 @@ dotnet add package BlazorRamp.Core
 Add the following line to the service registration section:
 
 ```
-@using BlazorRamp.Core.Common.Extensions;
+using BlazorRamp.Core.Common.Extensions;
 
 builder.Services.AddBlazorRampCore();
 ```
