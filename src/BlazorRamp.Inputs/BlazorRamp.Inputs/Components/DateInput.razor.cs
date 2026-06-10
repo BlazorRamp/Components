@@ -10,6 +10,17 @@ using System.Globalization;
 
 namespace BlazorRamp.Inputs.Components;
 
+/// <summary>
+/// Renders an accessible date input composed of separate years, months, and days segment
+/// inputs. Supports <see cref="DateOnly"/> and nullable <see cref="DateOnly"/>.
+/// The composite value is committed and parsed when focus leaves the entire group via
+/// a JavaScript focusout callback. Inherits validation state management, hint text,
+/// aria-disabled support, and SVG icon support from <see cref="InputTypeBase{TValue}"/>.
+/// Parsing uses exact format <c>"yyyy-MM-dd"</c> with <see cref="System.Globalization.CultureInfo.InvariantCulture"/>.
+/// For the best screen reader experience, <see cref="InputTypeBase{TValue}.ValidationDisplayMode"/>
+/// should be set to <see cref="ValidationDisplayMode.TabbableWithHint"/> with
+/// <see cref="UpdateOnInput"/> set to <c>true</c>.
+/// </summary>
 public class DateTypeInput<TValue> : InputTypeBase<TValue>, IAsyncDisposable
 {
 
