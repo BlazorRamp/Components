@@ -8,16 +8,16 @@
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
     <Title>BlazorRamp.Inputs</Title>
-    <Version>1.7.2</Version>
+    <Version>1.8.0</Version>
     <Authors>Paul Kent</Authors>
     <Description>Base set of the simple inputs for the Blazor Ramp ecosystem</Description>
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
-    <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; TextIInput; PasswordInput; NumericInput; CheckboxInput; SelectInput; RadioInputGroup; TimeInput; DateInput; Input;</PackageTags>
-    <PackageReleaseNotes>Fix: Added birthday autocomplete tokens (bday-year, bday-month, bday-day) to date input segments when AutoCompleteOff is false</PackageReleaseNotes>
-    <AssemblyVersion>1.7.2</AssemblyVersion>
-    <FileVersion>1.7.2</FileVersion>
+    <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; TextIInput; PasswordInput; NumericInput; CheckboxInput; SelectInput; RadioInputGroup; TimeInput; DateInput; TextAreaInput; Input;</PackageTags>
+    <PackageReleaseNotes>Added a TextAreaInput component with a character counter</PackageReleaseNotes>
+    <AssemblyVersion>1.8.0</AssemblyVersion>
+    <FileVersion>1.8.0</FileVersion>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -42,8 +42,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BlazorRamp.Core" Version="1.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.25" />
+    <PackageReference Include="BlazorRamp.Core" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.28" />
 	  <PackageReference Include="BuildWebCompiler2022" Version="1.14.15">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

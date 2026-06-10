@@ -15,7 +15,7 @@
 	<ItemGroup>
 		<PackageReference Include="BlazorRamp.Accordion" Version="1.0.0" />
 		<PackageReference Include="BlazorRamp.BusyIndicator" Version="1.0.2" />
-		<PackageReference Include="BlazorRamp.Core" Version="1.0.8" />
+		<PackageReference Include="BlazorRamp.Core" Version="1.1.0" />
 		<PackageReference Include="BlazorRamp.DialogFramework" Version="1.0.2" />
 		<PackageReference Include="BlazorRamp.Inputs" Version="1.7.2" />
 		<PackageReference Include="BlazorRamp.NavGroup" Version="1.0.2" />
@@ -24,8 +24,8 @@
 		<PackageReference Include="BlazorRamp.Tabs" Version="1.0.0" />
 		<PackageReference Include="BlazorRamp.ToggleTip" Version="1.0.2" />
 		<PackageReference Include="BuildWebCompiler2022" Version="1.14.15" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.8" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.8" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.9" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.9" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="6.0.3">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

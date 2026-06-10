@@ -102,8 +102,6 @@
         }
 
         &[data-br-invalid-state="false"] {
-
-
             @include valid-state-icon;
             color: var(--br-comp-input-success-colour);
         }
@@ -114,7 +112,7 @@
         display: flex;
         flex-direction: column;
         grid-area: field;
-        min-width: 0; 
+        min-width: 0;
     }
 
     &__field {
@@ -140,7 +138,7 @@
 
         &:is(textarea) {
             border: none;
-            border-top: 1px solid grey;
+            border-top: var(--br-unit-border-1) solid var(--br-comp-all-divider-colour);
             outline: none;
         }
 
@@ -158,7 +156,7 @@
         color: var(--br-comp-input-hint-color);
         background-color: var(--br-comp-input-hint-background);
         opacity: var(--br-comp-input-hint-opacity);
-        //padding-block-end: var(--br-unit-space-3);
+     
         text-align: end;
 
 

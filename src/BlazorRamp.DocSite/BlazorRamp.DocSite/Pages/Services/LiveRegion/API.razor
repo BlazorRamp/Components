@@ -21,8 +21,12 @@
         </thead>
         <tbody>
             <tr>
-                <td>MakeAnnouncement(Announcement announcement)</td>
-                <td>Dispatches an announcement to be spoken by a screen reader. Returns a <span class="code-span">Task</span>.</td>
+                <td>MakeAnnouncement(Announcement announcement, bool replayable = true)</td>
+                <td>
+                    Dispatches an announcement to be spoken by a screen reader. Returns a <span class="code-span">Task</span>.
+                    By default unless set to false, replayable adds the announcment message to the rolling log for the
+                    announcement history viewer. 
+                </td>
             </tr>
         </tbody>
     </table>

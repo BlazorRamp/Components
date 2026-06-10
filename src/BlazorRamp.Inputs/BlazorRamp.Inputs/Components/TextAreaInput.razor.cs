@@ -6,9 +6,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Net.Http.Headers;
 
 namespace BlazorRamp.Inputs.Components;
 
@@ -126,16 +124,15 @@ public class TextAreaTypeInput : InputTypeBase<string>
 
     private IJSObjectReference? _jSModule = null;
 
-    private CancellationTokenSource _inputDebounceTS     = default!;
-    private CancellationTokenSource _announceDebounceTS  = default!;
-    private int                     _debounceDelayMs     = 500;
+    private CancellationTokenSource _inputDebounceTS         = default!;
+    private CancellationTokenSource _announceDebounceTS      = default!;
+    private int                     _debounceDelayMs         = 500;
+    private int                     _announceDebounceDelayMs = 1000;
+    
     private string                  _remainingText       = GlobalValues.TextArea_Characters_Remaining_Text;
     private string                  _overlimitText       = GlobalValues.TextArea_Characters_Over_Limit_Text;
     private int                     _maxCharacters       = GlobalValues.TextArea_Max_Characters;
     private int                     _liveCharacterCount  = 0;
-    private DateTime                _lastAnnouncedAt     = DateTime.MinValue;
-    private const int               AnnounceDebounceMs   = 1000;     
-    private const int               AnnounceDelaySeconds = 2;
 
 
     /// <summary>
@@ -262,7 +259,7 @@ public class TextAreaTypeInput : InputTypeBase<string>
         _announceDebounceTS?.Dispose();
         _announceDebounceTS = new CancellationTokenSource();
 
-        await AnnounceCharacterCount(_remainingText, _overlimitText, AnnounceDebounceMs, _maxCharacters, AnnounceDelaySeconds, _lastAnnouncedAt, _announceDebounceTS.Token);
+        await AnnounceCharacterCount(_remainingText, _overlimitText, _announceDebounceDelayMs, _maxCharacters, _announceDebounceTS.Token);
 
        
     }
@@ -295,17 +292,12 @@ public class TextAreaTypeInput : InputTypeBase<string>
     /// <param name="announceDelaySeconds">The minimum number of seconds between successive announcements.</param>
     /// <param name="lastDateTime">The timestamp of the most recent announcement.</param>
     /// <param name="cancellationToken">Token used to cancel the pending announcement.</param>
-    protected async Task AnnounceCharacterCount(string remainingText, string overlimitText, int timeToWait, int maxLength, 
-                                               int announceDelaySeconds, DateTime lastDateTime, CancellationToken cancellationToken)
+    protected async Task AnnounceCharacterCount(string remainingText, string overlimitText, int timeToWait, int maxLength, CancellationToken cancellationToken)
     {
         try
         {
                 
             await Task.Delay(timeToWait, cancellationToken);
-
-            var secondsPassed = DateTime.Now.Subtract(lastDateTime).Seconds;
-
-            if (secondsPassed <= announceDelaySeconds) return;
 
             await MakeAnnouncement();
 
@@ -320,14 +312,8 @@ public class TextAreaTypeInput : InputTypeBase<string>
         var message         = messageTemplate.Replace("{count}", countValue.ToString());
         var announcement    = new Announcement(message, AnnouncementType.Info, $"{LabelNameText}", LiveRegionType.Polite);
 
-        await LiveRegionService.MakeAnnouncement(announcement);
-
-        _lastAnnouncedAt = DateTime.Now;
+        await LiveRegionService.MakeAnnouncement(announcement,false);
     }
-
-    private static string GetCurrentCountString(string currentCountText, int currentLength, int maxLength)
-
-        => $"{currentCountText} {currentLength} / {maxLength}";
 
     private static string GetTextAreaClasses(bool autosize)
 
