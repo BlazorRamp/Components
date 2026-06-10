@@ -1,7 +1,22 @@
 ﻿@page "/"
+@inject ILiveRegionService _liveRegionService
 
 <PageTitle>Home</PageTitle>
 
+@rendermode @(new InteractiveServerRenderMode(false))
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+<button type="button" @onclick="TestService">Test Live Service</button>
+
+@code{
+
+    private async Task TestService()
+    {
+        var announcement = new Announcement("Test replay", AnnouncementType.Info, "TestService Button", LiveRegionType.Assertive);
+
+        await _liveRegionService.MakeAnnouncement(announcement, false);
+    }
+
+}

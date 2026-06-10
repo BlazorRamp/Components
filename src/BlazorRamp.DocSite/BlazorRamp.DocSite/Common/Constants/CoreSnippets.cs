@@ -16,7 +16,7 @@ public class CoreSnippets
         """;
 
     public const string Add_Live_Region_Service = """
-        @using BlazorRamp.Core.Common.Extensions;
+        using BlazorRamp.Core.Common.Extensions;
 
         builder.Services.AddBlazorRampCore();
         """;

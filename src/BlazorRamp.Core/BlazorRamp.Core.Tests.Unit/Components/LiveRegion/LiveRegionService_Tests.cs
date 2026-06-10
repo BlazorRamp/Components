@@ -29,7 +29,9 @@ public class LiveRegionService_Tests
 
             var announcement = new Announcement(announcementText, AnnouncementType.OperationStarted, "Save", LiveRegionType.Assertive);
 
-            moduleInterop.SetupVoid(CoreGlobalValues.JS_Live_Region_Announce_Func, announcement)
+            var replayable = true;
+
+            moduleInterop.SetupVoid(CoreGlobalValues.JS_Live_Region_Announce_Func, announcement, replayable)
                             .SetVoidResult();
 
             await liveService.MakeAnnouncement(announcement);
@@ -40,7 +42,7 @@ public class LiveRegionService_Tests
 
                 invocations.Should().Contain(i => i.Identifier == "import" && i.Arguments[0]!.ToString() == CoreGlobalValues.JS_Live_Region_File_Path);
 
-                moduleInterop.VerifyInvoke(CoreGlobalValues.JS_Live_Region_Announce_Func).Arguments.Should().BeEquivalentTo(new object[] { announcement });
+                moduleInterop.VerifyInvoke(CoreGlobalValues.JS_Live_Region_Announce_Func).Arguments.Should().BeEquivalentTo(new object[] { announcement, replayable });
             }
 
         }
@@ -94,11 +96,12 @@ public class LiveRegionService_Tests
             var announcementText = "Loading";
 
             var announcement = new Announcement(announcementText, AnnouncementType.OperationStarted, "Save", LiveRegionType.Assertive);
+            var replayable = false;
 
-            moduleInterop.SetupVoid(CoreGlobalValues.JS_Live_Region_Announce_Func, announcement)
+            moduleInterop.SetupVoid(CoreGlobalValues.JS_Live_Region_Announce_Func, announcement, replayable)
                             .SetVoidResult();
 
-            await liveService.MakeAnnouncement(announcement);
+            await liveService.MakeAnnouncement(announcement, replayable);
 
             var invocations = jsInterop.Invocations;
 
@@ -106,7 +109,7 @@ public class LiveRegionService_Tests
             {
                 invocations.Should().Contain(i => i.Identifier == "import" && i.Arguments[0]!.ToString() == CoreGlobalValues.JS_Live_Region_File_Path);
 
-                moduleInterop.VerifyInvoke(CoreGlobalValues.JS_Live_Region_Announce_Func).Arguments.Should().BeEquivalentTo(new object[] { announcement});
+                moduleInterop.VerifyInvoke(CoreGlobalValues.JS_Live_Region_Announce_Func).Arguments.Should().BeEquivalentTo(new object[] { announcement, replayable});
             }
 
         }
@@ -182,10 +185,12 @@ public class LiveRegionService_Tests
 
             var announcement = new Announcement("Test", AnnouncementType.OperationStarted, "Test", LiveRegionType.Polite);
 
-            moduleInterop.SetupVoid(CoreGlobalValues.JS_Live_Region_Announce_Func, announcement)
+            var replayable = false;
+
+            moduleInterop.SetupVoid(CoreGlobalValues.JS_Live_Region_Announce_Func, announcement, replayable)
                 .SetVoidResult();
 
-            await liveService.MakeAnnouncement(announcement);
+            await liveService.MakeAnnouncement(announcement, replayable);
 
             await liveService.DisposeAsync();
 
