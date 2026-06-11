@@ -25,6 +25,18 @@
 <ol reversed class="history-list">
     <li>
         <h3>
+            Version 1.1.1 — <time datetime="2026-06-10">June 11, 2026</time>
+        </h3>
+        <ul>
+            <li>
+                Restored binary compatibility for pre-compiled consumers by adding an explicit single-parameter overload of MakeAnnouncement. 
+                The v1.1.0 release introduced a replayable parameter with a default value which, while source-compatible, broke binary compatibility 
+                for assemblies compiled against the previous interface signature.
+            </li>
+        </ul>
+    </li>
+    <li>
+        <h3>
             Version 1.1.0 — <time datetime="2026-06-10">June 10, 2026</time>
         </h3>
         <ul>
