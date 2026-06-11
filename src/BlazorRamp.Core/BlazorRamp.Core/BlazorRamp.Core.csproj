@@ -14,7 +14,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <AssemblyVersion>1.1.1</AssemblyVersion>
     <FileVersion>1.1.1</FileVersion>
-	  <Version>1.1.0</Version>
+	  <Version>1.1.1</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
