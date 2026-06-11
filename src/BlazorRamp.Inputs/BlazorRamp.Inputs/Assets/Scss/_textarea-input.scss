@@ -156,7 +156,6 @@
         color: var(--br-comp-input-hint-color);
         background-color: var(--br-comp-input-hint-background);
         opacity: var(--br-comp-input-hint-opacity);
-     
         text-align: end;
 
 
@@ -197,15 +196,15 @@
         background-color: var(--br-comp-input-label-background);
     }
 
-    & > textarea[data-br-input-position="start"] {
+    & textarea[data-br-input-position="start"] {
         text-align: start;
     }
 
-    & > textarea[data-br-input-position="centre"] {
+    & textarea[data-br-input-position="centre"] {
         text-align: center;
     }
 
-    & > textarea[data-br-input-position="end"] {
+    & textarea[data-br-input-position="end"] {
         text-align: end;
     }
 

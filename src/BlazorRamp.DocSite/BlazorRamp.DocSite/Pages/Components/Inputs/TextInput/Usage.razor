@@ -10,7 +10,7 @@
     that gets added as mentioned on the Inputs Accessibility page.
 </p>
 <p>
-    Both inputs have the <span class="code-span">UpdateOnInput</span> parameter set to true so validation runs on input, after the field is dirty combined with <span class="code-span">ValidationDisplayMode="TabbableWithHint"</span>, but 
+    Both inputs have the <span class="code-span">UpdateOnInput</span> parameter set to true so validation runs on input, after the field is dirty combined with <span class="code-span">ValidationDisplayMode.TabbableWithHint</span> option, but 
     you should use the options that best suit your application and intended audience.
     Neither input has a <span class="code-span">maxlength</span> attribute as these can be problematic for some screen readers as it silently stops the user typing with no feedback, so it's better to catch issues with validation.
 </p>
@@ -45,10 +45,13 @@
 
 
 </section>
+
 <p style="padding-block:1rem;">
     Below is the code that was used for the example. Please note that in general when using the Validated library the validators would be in a shared library so they could be used in any part of your application.
 </p>
+
 <CodeBox CodeBlock="@InputSnippets.Text_Input_Example" AriaLabel="Text input code example" />
+
 <h3 style="padding-top:1rem;">Accessibility</h3>
 <p>
     Please ensure dependant on the context that you add the appropriate <span class="code-block">autocomplete</span> attribute to meet WCAG requirements, although there is no harm in just adding them regardless.

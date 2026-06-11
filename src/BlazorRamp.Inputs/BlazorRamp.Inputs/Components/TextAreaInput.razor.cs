@@ -63,7 +63,7 @@ public class TextAreaTypeInput : InputTypeBase<string>
     /// <summary>
     /// Gets or sets the maximum number of characters for the textarea counter
     /// and screen reader announcements. This does not restrict the actual number of characters
-    /// that can be entered.Used t. Values less than <c>1</c> fallback to the default of 8000.
+    /// that can be entered. Values less than 1 fallback to the default of 8000.
     /// </summary>
     [Parameter] public int    MaxCharacters           { get; set; } = GlobalValues.TextArea_Max_Characters;
 
@@ -282,15 +282,12 @@ public class TextAreaTypeInput : InputTypeBase<string>
     /// Waits for <paramref name="timeToWait"/> milliseconds before announcing. If the
     /// cancellation token is cancelled during the wait the announcement is silently
     /// discarded. Additionally suppresses announcements that occur within
-    /// <paramref name="announceDelaySeconds"/> seconds of the previous announcement to
     /// avoid overwhelming screen reader users during rapid typing.
     /// </summary>
     /// <param name="remainingText">The template string for within-limit announcements.</param>
     /// <param name="overlimitText">The template string for over-limit announcements.</param>
     /// <param name="timeToWait">The debounce delay in milliseconds.</param>
     /// <param name="maxLength">The configured maximum character count.</param>
-    /// <param name="announceDelaySeconds">The minimum number of seconds between successive announcements.</param>
-    /// <param name="lastDateTime">The timestamp of the most recent announcement.</param>
     /// <param name="cancellationToken">Token used to cancel the pending announcement.</param>
     protected async Task AnnounceCharacterCount(string remainingText, string overlimitText, int timeToWait, int maxLength, CancellationToken cancellationToken)
     {

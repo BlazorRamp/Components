@@ -1,0 +1,109 @@
+﻿@using BlazorRamp.DocSite.Pages.Components.AnnouncementHistory
+@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextAreaInput}/{GlobalValues.Common_Page_Path_Usage}")]
+
+<PageTitle>@GlobalValues.Component_Name_TextArea_Input @GlobalValues.Common_Page_Title_Usage</PageTitle>
+
+<h1>@GlobalValues.Component_Name_TextArea_Input @GlobalValues.Common_Page_Title_Usage</h1>
+
+<p>
+    In the following example, the single TextArea component has been configured to use the onchange event by setting the <span class="code-span">UpdateOnInput</span> parameter to false.
+    When using Blazor Server this would only send the text entered once, when focus has been lost, and not on every keystoke as is the case with the oninput event, which although generaly fine for textboxes, 
+    a textarea may contain thousands of characters.
+</p>
+<p>
+    Just to make it easier for you to see character count messages, I have set the <span class="code-span">MaxCharacters</span> paramter to 40 along with a validation rule for the same length.
+    This does not prevent the user from adding more than 40 characters, but the validation rules will prevent submission, also allowing the user to correct the entry as they see fit.
+</p>
+<p>
+    The field has been set to be required using the <span class="code-span">Required</span> parameter which adds a red asterisk next to the label along with the <span class="code-span">aria-required</span> attribute for assitive technoloties.
+    I have set the validaion mode to use <span class="code-span">ValidationDisplayMode.DescribedByHintSuppressed</span>
+</p>
+
+<p>
+    <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
+    but you can use any validators that work with Blazors <span class="code-span">EditContext</span>. One of the options on my Blazor validation component is to remove leading and trailing whitespace from your string fields on a full model 
+    validation. 
+</p>
+<p>
+    <strong>Note: </strong>As you may not want to use this valdiation framework, and/or have differing options, there is also a <span class="code-span">TrimOnBlur</span> parameter option on the textarea input, that when set to true
+    trims the string value on blur.
+</p>
+<section class="section-box">
+    <h2>TextArea input example</h2>
+
+    <EditForm EditContext="@_editContext"  OnValidSubmit="HandleSubmit">
+        
+        <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+        <div class="br-input-row">
+            <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactData.Notes" DataPosition="DataPosition.Centre" MaxCharacters="40"
+                ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
+
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+            <button class="br-col-xs-12 normal-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
+            <button class="br-col-xs-12 normal-button" type="button" @ref="ResetButtonRef" @onclick="ResetExample">Reset example</button>
+        </div>
+    </EditForm>
+
+
+</section>
+<p style="padding-block:1rem;">
+    Below is the code that was used for the example. Please note that in general when using the Validated library the validators would be in a shared library so they could be used in any part of your application.
+</p>
+<CodeBox CodeBlock="@InputSnippets.TextArea_Input_Code_Example" AriaLabel="TexArea input code example" />
+<h3 style="padding-top:1rem;">Accessibility</h3>
+<p>
+    Please ensure dependant on the context that you add the appropriate <span class="code-block">autocomplete</span> attribute to meet WCAG requirements, although there is no harm in just adding them regardless.
+</p>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextAreaInput}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_TextArea_Input - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextInput}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Text_Input - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+
+    private ElementReference ResetButtonRef { get; set; }
+
+    private EditContext _editContext = default!;
+    private ContactDto  _contactData = new();
+
+    private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+    protected override void OnInitialized()
+    {
+        _editContext = new EditContext(_contactData);
+
+        var notesValidator = MemberValidators.CreateStringLengthValidator(1, 20, "Notes", "Notes", "Must contain text with a maximum of 40 characters.");
+
+        _boxedValidators = BlazorValidationBuilder<ContactDto>.Create()
+                                .ForMember(c => c.Notes,notesValidator)
+                                .GetBoxedValidators();
+    }
+
+    private void HandleSubmit() { }
+
+    private async Task ResetExample()
+    {
+        _contactData = new ContactDto();
+        _editContext = new EditContext(_contactData);
+        await Task.Yield();
+        await ResetButtonRef.FocusAsync();
+
+    }
+
+    public class ContactDto
+    {
+        public string Notes { get; set; }
+    }
+
+}

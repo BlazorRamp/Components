@@ -70,6 +70,7 @@ public class GlobalValues
     
     public const string Component_Name_Inputs             = "Inputs";
     public const string Component_Name_Text_Input         = "Text Input";
+    public const string Component_Name_TextArea_Input     = "TextArea Input";
     public const string Component_Name_Time_Input         = "Time Input";
     public const string Component_Name_Date_Input         = "Date Input";
     public const string Component_Name_Password_Input     = "Password Input";
@@ -91,6 +92,7 @@ public class GlobalValues
     public const string Component_Path_Part_Busy            = "busy-indicator";
     public const string Component_Path_Part_Inputs          = "inputs";
     public const string Component_Path_Part_TextInput       = "text-input";
+    public const string Component_Path_Part_TextAreaInput   = "textarea-input";
     public const string Component_Path_Part_TimeInput       = "time-input";
     public const string Component_Path_Part_DateInput       = "date-input";
     public const string Component_Path_Part_PasswordInput   = "password-input";

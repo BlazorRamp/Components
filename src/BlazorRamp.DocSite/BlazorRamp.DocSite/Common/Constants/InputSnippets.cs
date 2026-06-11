@@ -642,4 +642,62 @@ public class InputSnippets
         }
         
         """;
+
+
+    public const string TextArea_Input_Code_Example = """
+        
+        <EditForm EditContext="@_editContext"  OnValidSubmit="HandleSubmit">
+
+            <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+
+            <div class="br-input-row">
+                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactData.Notes" DataPosition="DataPosition.Centre" MaxCharacters="40"
+                    ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
+
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+                <button class="br-col-xs-12 normal-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
+                <button class="br-col-xs-12 normal-button" type="button" @ref="ResetButtonRef" @onclick="ResetExample">Reset example</button>
+            </div>
+        </EditForm>
+
+        
+        @code {
+
+            private ElementReference ResetButtonRef { get; set; }
+
+            private EditContext _editContext = default!;
+            private ContactDto  _contactData = new();
+
+            private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+            protected override void OnInitialized()
+            {
+                _editContext = new EditContext(_contactData);
+
+                var notesValidator = MemberValidators.CreateStringLengthValidator(1, 20, "Notes", "Notes", "Must contain text with a maximum of 40 characters.");
+
+                _boxedValidators = BlazorValidationBuilder<ContactDto>.Create()
+                                        .ForMember(c => c.Notes,notesValidator)
+                                        .GetBoxedValidators();
+            }
+
+            private void HandleSubmit() { }
+
+            private async Task ResetExample()
+            {
+                _contactData = new ContactDto();
+                _editContext = new EditContext(_contactData);
+                await Task.Yield();
+                await ResetButtonRef.FocusAsync();
+
+            }
+
+            public class ContactDto
+            {
+                public string Notes { get; set; }
+            }
+
+        }
+        """;
 }

@@ -69,7 +69,7 @@ internal class GlobalValues
     public const string TextArea_CSS_Row_Variable_Name      = "--_br-row-count";
 
     public const string TextArea_Characters_Remaining_Text  = "You have {count} characters remaining.";
-    public const string TextArea_Characters_Over_Limit_Text = "You are {count} characters over the limit";
+    public const string TextArea_Characters_Over_Limit_Text = "You are {count} characters over the limit.";
 
 
     public const string TextArea_Input_Class                = "br-textarea-input";
