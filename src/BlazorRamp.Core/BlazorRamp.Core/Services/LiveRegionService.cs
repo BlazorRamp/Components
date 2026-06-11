@@ -32,6 +32,11 @@ public sealed class LiveRegionService : ILiveRegionService, IAsyncDisposable
     }
 
     /// <inheritdoc />
+    public Task MakeAnnouncement(Announcement announcement)
+
+        => MakeAnnouncement(announcement, replayable: true);
+
+    /// <inheritdoc />
     public async Task MakeAnnouncement(Announcement announcement, bool replayable = true)
     {
         
@@ -87,4 +92,6 @@ public sealed class LiveRegionService : ILiveRegionService, IAsyncDisposable
 
         _isDisposed = true;
     }
+
+
 }

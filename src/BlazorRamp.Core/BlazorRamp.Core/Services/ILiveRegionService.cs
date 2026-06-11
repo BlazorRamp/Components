@@ -16,4 +16,11 @@ public interface ILiveRegionService
     /// <param name="replayable">Determines if the announcement is added to the announcment history dialog, defauts to <c>true</c></param>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     Task MakeAnnouncement(Announcement announcement, bool replayable = true);
+
+    /// <summary>
+    /// Dispatches an announcement to be spoken by a screen reader.
+    /// </summary>
+    /// <param name="announcement">The <see cref="Announcement"/> object containing the message and priority details.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+    Task MakeAnnouncement(Announcement announcement);
 }
