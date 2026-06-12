@@ -1,14 +1,14 @@
 ﻿@using System.Text.RegularExpressions
 @using Validated.Core.Types
 
-@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
+@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextAreaInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
 
 @inject ILiveRegionService _liveRegionService
 
-<PageTitle>@GlobalValues.Component_Name_Text_Input @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
+<PageTitle>@GlobalValues.Component_Name_TextArea_Input @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
-    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Text_Input @GlobalValues.Common_Page_Title_Overview_Tests</h1>
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_TextArea_Input @GlobalValues.Common_Page_Title_Overview_Tests</h1>
 
     <p>
         The Text Input component in this library is the combination of a label, optional hint area, an input that can have its <span class="code-span">type</span> attribute set to <b>text, tel, email or url</b>, and a region below the input for 
@@ -71,7 +71,7 @@
             <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataOne.Notes" DataPosition="DataPosition.Centre" MaxCharacters="40"
+                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataOne.Notes" DataPosition="DataPosition.Start" MaxCharacters="40"
                                ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
@@ -89,7 +89,7 @@
             <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataTwo.Notes" DataPosition="DataPosition.Centre" MaxCharacters="40"
+                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataTwo.Notes" DataPosition="DataPosition.Start" MaxCharacters="40"
                                ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
@@ -109,7 +109,7 @@
             <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataThree.Notes" DataPosition="DataPosition.Centre" MaxCharacters="40"
+                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataThree.Notes" DataPosition="DataPosition.Start" MaxCharacters="40"
                                ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
@@ -132,7 +132,7 @@
             <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataFour.Notes" DataPosition="DataPosition.Centre" MaxCharacters="40"
+                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataFour.Notes" DataPosition="DataPosition.Start" MaxCharacters="40"
                                ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
@@ -150,7 +150,7 @@
             <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataFive.Notes" DataPosition="DataPosition.Centre" MaxCharacters="40"
+                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataFive.Notes" DataPosition="DataPosition.Start" MaxCharacters="40"
                                ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
@@ -170,7 +170,7 @@
             <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataSix.Notes" DataPosition="DataPosition.Centre" MaxCharacters="40"
+                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataSix.Notes" DataPosition="DataPosition.Start" MaxCharacters="40"
                                ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">

@@ -22,9 +22,8 @@
     <InputErrorsSummary SummaryDisplay="SummaryDisplay.OnModelValidated">
 
         <div class="br-input-row">
-            <TextAreaInput class="br-col-xs-12" LabelText="My Area" HintText="Tell us about yourself" @bind-Value="@_contactData.Notes" DataPosition="DataPosition.Centre" MaxCharacters="20"
-                ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true"
-                />
+            <TextAreaInput class="br-col-xs-12" LabelText="My Area" HintText="Tell us about yourself" @bind-Value="@_contactData.Notes" DataPosition="DataPosition.Start" MaxCharacters="20"
+                ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
         </div>
         <div class="br-input-row">
 

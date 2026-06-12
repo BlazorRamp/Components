@@ -83,7 +83,7 @@
     {
         _editContext = new EditContext(_contactData);
 
-        var notesValidator = MemberValidators.CreateStringLengthValidator(1, 20, "Notes", "Notes", "Must contain text with a maximum of 40 characters.");
+        var notesValidator = MemberValidators.CreateStringLengthValidator(1, 40, "Notes", "Notes", "Must contain text with a maximum of 40 characters.");
 
         _boxedValidators = BlazorValidationBuilder<ContactDto>.Create()
                                 .ForMember(c => c.Notes,notesValidator)
