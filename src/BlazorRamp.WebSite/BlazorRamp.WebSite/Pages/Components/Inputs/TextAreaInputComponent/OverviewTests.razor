@@ -71,11 +71,8 @@
             <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"
-                           @bind-Value="_contactDataOne.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name" />
-
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"
-                           @bind-Value="_contactDataOne.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
+                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataOne.Notes" DataPosition="DataPosition.Centre" MaxCharacters="40"
+                               ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
                 <button class="test-button" type="submit">Submit One to trigger validation on unmodified fields</button>
@@ -92,11 +89,8 @@
             <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed"
-                           @bind-Value="_contactDataTwo.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name" />
-
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed"
-                           @bind-Value="_contactDataTwo.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
+                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataTwo.Notes" DataPosition="DataPosition.Centre" MaxCharacters="40"
+                               ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
                 <button class="test-button" type="submit">Submit Two to trigger validation on unmodified fields</button>
@@ -115,11 +109,8 @@
             <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="true" ErrorsLabel="errors" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                           @bind-Value="_contactDataThree.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name" />
-
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="true" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                           @bind-Value="_contactDataThree.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
+                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataThree.Notes" DataPosition="DataPosition.Centre" MaxCharacters="40"
+                               ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
                 <button class="test-button" type="submit">Submit Three to trigger validation on unmodified fields</button>
@@ -141,11 +132,8 @@
             <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="true" ErrorsLabel="errors" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"
-                           @bind-Value="_contactDataFour.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name" />
-
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint"
-                           @bind-Value="_contactDataFour.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
+                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataFour.Notes" DataPosition="DataPosition.Centre" MaxCharacters="40"
+                               ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
                 <button class="test-button" type="submit">Submit Four to trigger validation on unmodified fields</button>
@@ -162,11 +150,8 @@
             <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="true" ErrorsLabel="errors" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed"
-                           @bind-Value="_contactDataFive.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name" />
-
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed"
-                           @bind-Value="_contactDataFive.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
+                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataFive.Notes" DataPosition="DataPosition.Centre" MaxCharacters="40"
+                               ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
                 <button class="test-button" type="submit">Submit Five to trigger validation on unmodified fields</button>
@@ -185,11 +170,8 @@
             <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="First name" Required="true" ErrorsLabel="errors" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                           @bind-Value="_contactDataSix.FirstName" HintText="The name you use on official documents" SvgIcon="--svg-user-icon" autocomplete="given-name" />
-
-                <TextInput class="br-col-xs-12 br-col-sm-6" LabelText="Surname" Required="true" UpdateOnInput="false" TextInputType="TextInputType.Text" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint"
-                           @bind-Value="_contactDataSix.Surname" HintText="The surname you use on official documents" SvgIcon="--svg-user-icon" autocomplete="family-name" />
+                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataSix.Notes" DataPosition="DataPosition.Centre" MaxCharacters="40"
+                               ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
                 <button class="test-button" type="submit">Submit Six to trigger validation on unmodified fields</button>
@@ -201,9 +183,9 @@
 </section>
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextAreaInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_SelectInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Component_Name_TextArea_Input - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span>@GlobalValues.Component_Name_Select_Input - @GlobalValues.Common_Page_Title_Overview_Tests</span>
         <span aria-hidden="true"></span>
     </a>
 
@@ -244,16 +226,10 @@
     protected override async Task OnInitializedAsync()
     {
 
-        var firstNameValidator = MemberValidators.CreateStringRegexValidator(@"^(?=.{2,50}$)[A-Z][A-Za-z]*(?:['\- ][A-Za-z]+)*$", "FirstName", "First name", "Must start with a capital letter and be between 2 and 50 characters in length.");
-                
-        var surnameValidator = MemberValidators.CreateStringRegexValidator(@"^[A-Z]+['\- ]?[A-Za-z]*['\- ]?[A-Za-z]*$", "FamilyName", "Surname", "Must start with a capital letter and no double spaces.")
-         .AndThen(MemberValidators.CreateStringLengthValidator(2, 50, "Surname", "Surname", "Must be between 2 and 50 characters in length."));
-
-
+        var notesValidator = MemberValidators.CreateStringLengthValidator(1, 20, "Notes", "Notes", "Must contain text with a maximum of 40 characters.");
 
         _boxedValidators = BlazorValidationBuilder<ContactDto>.Create()
-                                .ForMember(c => c.FirstName, firstNameValidator)
-                                .ForMember(c => c.Surname, surnameValidator, true)
+                                .ForMember(c => c.Notes, notesValidator)
                                 .GetBoxedValidators();
 
         _editContextOne   = new EditContext(_contactDataOne);
@@ -269,7 +245,7 @@
     private async Task HandleSubmitOne()
     {
         _editContextOne.Validate();
-        var announcement = new Announcement("Validation invoked on example one form fields", AnnouncementType.Info, "Submit One Button");
+        var announcement = new Announcement("Validation invoked on example one form field.", AnnouncementType.Info, "Submit One Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
 
@@ -277,21 +253,21 @@
     private async Task HandleSubmitTwo()
     {
         _editContextTwo.Validate();
-        var announcement = new Announcement("Validation invoked on example two form fields", AnnouncementType.Info, "Submit Two Button");
+        var announcement = new Announcement("Validation invoked on example two form field.", AnnouncementType.Info, "Submit Two Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
     }
     private async Task HandleSubmitThree()
     {
         _editContextThree.Validate();
-        var announcement = new Announcement("Validation invoked on example three form fields", AnnouncementType.Info, "Submit Three Button");
+        var announcement = new Announcement("Validation invoked on example three form field.", AnnouncementType.Info, "Submit Three Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
     }
     private async Task HandleSubmitFour()
     {
         _editContextFour.Validate();
-        var announcement = new Announcement("Validation invoked on example four form fields", AnnouncementType.Info, "Submit Four Button");
+        var announcement = new Announcement("Validation invoked on example four form field.", AnnouncementType.Info, "Submit Four Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
 
@@ -299,14 +275,14 @@
     private async Task HandleSubmitFive()
     {
         _editContextFive.Validate();
-        var announcement = new Announcement("Validation invoked on example five form fields", AnnouncementType.Info, "Submit Five Button");
+        var announcement = new Announcement("Validation invoked on example five form field.", AnnouncementType.Info, "Submit Five Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
     }
     private async Task HandleSubmitSix()
     {
         _editContextSix.Validate();
-        var announcement = new Announcement("Validation invoked on example six form fields", AnnouncementType.Info, "Submit Six Button");
+        var announcement = new Announcement("Validation invoked on example six form field.", AnnouncementType.Info, "Submit Six Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
     }
@@ -314,7 +290,7 @@
 
     private async Task ResetEditContextOne()
     {
-        var announcement = new Announcement("Example one has been reset", AnnouncementType.Info, "Reset Example One Button");
+        var announcement = new Announcement("Example one has been reset.", AnnouncementType.Info, "Reset Example One Button");
 
         _contactDataOne = new();
         _editContextOne = new EditContext(_contactDataOne);
@@ -326,7 +302,7 @@
     }
     private async Task ResetEditContextTwo()
     {
-        var announcement = new Announcement("Example two has been reset", AnnouncementType.Info, "Reset Example Two Button");
+        var announcement = new Announcement("Example two has been reset.", AnnouncementType.Info, "Reset Example Two Button");
        
         _contactDataTwo = new();
         _editContextTwo = new EditContext(_contactDataTwo);
@@ -336,7 +312,7 @@
     }
     private async Task ResetEditContextThree()
     {
-        var announcement = new Announcement("Example three has been reset", AnnouncementType.Info, "Reset Example Three Button");
+        var announcement = new Announcement("Example three has been reset.", AnnouncementType.Info, "Reset Example Three Button");
        
         _contactDataThree = new();
         _editContextThree = new EditContext(_contactDataThree);
@@ -347,7 +323,7 @@
 
     private async Task ResetEditContextFour()
     {
-        var announcement = new Announcement("Example four has been reset", AnnouncementType.Info, "Reset Example Four Button");
+        var announcement = new Announcement("Example four has been reset.", AnnouncementType.Info, "Reset Example Four Button");
 
         _contactDataFour = new();
         _editContextFour = new EditContext(_contactDataFour);
@@ -359,7 +335,7 @@
     }
     private async Task ResetEditContextFive()
     {
-        var announcement = new Announcement("Example five has been reset", AnnouncementType.Info, "Reset Example Five Button");
+        var announcement = new Announcement("Example five has been reset.", AnnouncementType.Info, "Reset Example Five Button");
        
         _contactDataFive = new();
         _editContextFive = new EditContext(_contactDataFive);
@@ -369,7 +345,7 @@
     }
     private async Task ResetEditContextSix()
     {
-        var announcement = new Announcement("Example six has been reset", AnnouncementType.Info, "Reset Example Six Button");
+        var announcement = new Announcement("Example six has been reset.", AnnouncementType.Info, "Reset Example Six Button");
        
         _contactDataSix = new();
         _editContextSix = new EditContext(_contactDataSix);
@@ -380,9 +356,7 @@
 
     public class ContactDto
     {
-
-        public string FirstName { get; set; }
-        public string Surname { get; set; }
+        public string Notes { get; set; }
     }
 
 }
