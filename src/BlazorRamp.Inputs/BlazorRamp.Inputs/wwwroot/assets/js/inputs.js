@@ -118,6 +118,26 @@ const formatDateForAnnouncement = (dateString) => {
         return '';
     }
 };
+const formatCountMessage = (remainingMessage, overlimitMessage, currentLength, maxLength) => {
+    const countLength = Math.abs(maxLength - currentLength);
+    const template = currentLength <= maxLength ? remainingMessage : overlimitMessage;
+    return template.replace(/{count}/g, countLength.toString());
+};
+const textAreaCountHandler = (event, dotNetRef, callBackName, textAreaElement, messageElement, remainingMessage, overlimitMessage, overClass, maxCharacters) => {
+    if (!dotNetRef || !callBackName || !textAreaElement || !messageElement)
+        return;
+    const pasted = event.inputType === "insertFromPaste" || event.inputType === "insertFromDrop";
+    const currentLength = textAreaElement.value?.length ?? 0;
+    const message = formatCountMessage(remainingMessage, overlimitMessage, currentLength, maxCharacters);
+    messageElement.textContent = message;
+    if (currentLength > maxCharacters) {
+        messageElement.classList.add(overClass);
+    }
+    else {
+        messageElement.classList.remove(overClass);
+    }
+    dotNetRef.invokeMethodAsync(callBackName, currentLength, pasted);
+};
 const registerAriaDisabledHandlers = (inputElement) => {
     if (!inputElement)
         return;
@@ -255,26 +275,6 @@ const unregisterElementFocusOutHandler = (element) => {
         element.removeEventListener("focusout", handler);
         elementFocusOutMap.delete(element);
     }
-};
-const formatCountMessage = (remainingMessage, overlimitMessage, currentLength, maxLength) => {
-    const countLength = Math.abs(maxLength - currentLength);
-    const template = currentLength <= maxLength ? remainingMessage : overlimitMessage;
-    return template.replace(/{count}/g, countLength.toString());
-};
-const textAreaCountHandler = (event, dotNetRef, callBackName, textAreaElement, messageElement, remainingMessage, overlimitMessage, overClass, maxCharacters) => {
-    if (!dotNetRef || !callBackName || !textAreaElement || !messageElement)
-        return;
-    const pasted = event.inputType === "insertFromPaste" || event.inputType === "insertFromDrop";
-    const currentLength = textAreaElement.value?.length ?? 0;
-    const message = formatCountMessage(remainingMessage, overlimitMessage, currentLength, maxCharacters);
-    messageElement.textContent = message;
-    if (currentLength > maxCharacters) {
-        messageElement.classList.add(overClass);
-    }
-    else {
-        messageElement.classList.remove(overClass);
-    }
-    dotNetRef.invokeMethodAsync(callBackName, currentLength, pasted);
 };
 const registerTextAreaCharacterCountHandler = (dotNetRef, callBackName, textAreaElement, messageElement, remainingMessage, overlimitMessage, overClass, maxCharacters) => {
     if (!dotNetRef || !callBackName || !textAreaElement || !messageElement || !remainingMessage || !overlimitMessage)

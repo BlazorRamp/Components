@@ -23,12 +23,12 @@
 
         <div class="br-input-row">
             <TextAreaInput class="br-col-xs-12" LabelText="My Area" HintText="Tell us about yourself" @bind-Value="@_contactData.Notes" DataPosition="DataPosition.Start" MaxCharacters="20"
-                ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
+                ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
         </div>
         <div class="br-input-row">
 
             <TextInput class="br-col-xs-12 br-col-sm-6" autocomplete="given-name" @bind-Value="_contactData.GivenName" LabelText="Firstname" AriaDisabled="false" HintText="The name that you use on official documents"
-                       UpdateOnInput="true" SvgIcon="--svg-user-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" DataPosition="DataPosition.Centre"/>
+                       UpdateOnInput="true" SvgIcon="--svg-user-icon" ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" DataPosition="DataPosition.Start"/>
 
             <TextInput class="br-col-xs-12 br-col-sm-6" @bind-Value="_contactData.FamilyName" LabelText="Surname" HintText="The suname that you use on official documents"
                        UpdateOnInput="true" SvgIcon="--svg-food-icon" ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" TrimOnBlur="true" AriaDisabled="false" />

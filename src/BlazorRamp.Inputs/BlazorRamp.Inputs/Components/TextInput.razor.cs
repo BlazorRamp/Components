@@ -58,7 +58,6 @@ public class TextTypeInput : InputTypeBase<string>
     {
         base.OnParametersSet();
         TextInputClasses = GetInputClasses(base.AdditionalAttributes);
-        
     }
 
     /// <summary>

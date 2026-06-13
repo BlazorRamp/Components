@@ -11,10 +11,12 @@
     <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_TextArea_Input @GlobalValues.Common_Page_Title_Overview_Tests</h1>
 
     <p>
-        The Text Input component in this library is the combination of a label, optional hint area, an input that can have its <span class="code-span">type</span> attribute set to <b>text, tel, email or url</b>, and a region below the input for 
-        validation messages. 
+        The TextArea Input component in this library is the combination of a label, optional hint area, an input and a region below the input for validation messages.
     </p>
-
+     <p>
+         Its important to note that announcements are made via a live region to screen readers when the user stops typing. These announcements are made using the character counter text that is visible
+         to the bottom right of the TextArea. You should take this into account when deciding which Validation Display options best suits the needs of your users.
+     </p>
 </section>
 
 
@@ -22,8 +24,12 @@
 
     <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
     <p>
-        The examples below only use two fields, <b>First name</b> and <b>Surname</b>, each of which is marked as required along with having validation rules. Each entry must start with a capital letter and be more than 2 characters in length,
-        with the regex pattern used disallowing certain character sequences. The First name field just has one rule for this, where as the Surname field has had the same rule split in two, to separate the length requirement from the character requirements.
+        The exmples below use two textare field which are both marked as being required. Each example has an attached validation rule that states there must be a text entry which can contain a maximum of 
+        40 characters (short to make the testing simpler). There are two so you can hear (if using a screen reader) the order of announcements when going between fields.
+    </p>
+    <p>
+        There are now actual length restrictions imposed other than the validation rule which in reality would prevent submission, so the user is free to exceed the limit and then to correct any issues, being
+        advised of entered character lengths either visually or audibly.
     </p>
     <p>
         For the examples the following Validation Display options are used in each test so you can test the options with your chosen devices.
@@ -73,6 +79,9 @@
             <div class="br-input-row">
                 <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataOne.Notes" DataPosition="DataPosition.Start" MaxCharacters="40"
                                ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
+
+                <TextAreaInput class="br-col-xs-12" LabelText="More Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataOne.MoreNotes" DataPosition="DataPosition.Start" MaxCharacters="40"
+                               ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
                 <button class="test-button" type="submit">Submit One to trigger validation on unmodified fields</button>
@@ -90,6 +99,9 @@
 
             <div class="br-input-row">
                 <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataTwo.Notes" DataPosition="DataPosition.Start" MaxCharacters="40"
+                               ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
+
+                <TextAreaInput class="br-col-xs-12" LabelText="More Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataTwo.MoreNotes" DataPosition="DataPosition.Start" MaxCharacters="40"
                                ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
@@ -110,6 +122,9 @@
 
             <div class="br-input-row">
                 <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataThree.Notes" DataPosition="DataPosition.Start" MaxCharacters="40"
+                               ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
+
+                <TextAreaInput class="br-col-xs-12" LabelText="More Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataThree.MoreNotes" DataPosition="DataPosition.Start" MaxCharacters="40"
                                ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="true" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
@@ -134,6 +149,9 @@
             <div class="br-input-row">
                 <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataFour.Notes" DataPosition="DataPosition.Start" MaxCharacters="40"
                                ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
+
+                <TextAreaInput class="br-col-xs-12" LabelText="More Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataFour.MoreNotes" DataPosition="DataPosition.Start" MaxCharacters="40"
+                               ValidationDisplayMode="ValidationDisplayMode.DescribedByWithHint" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
                 <button class="test-button" type="submit">Submit Four to trigger validation on unmodified fields</button>
@@ -151,6 +169,9 @@
 
             <div class="br-input-row">
                 <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataFive.Notes" DataPosition="DataPosition.Start" MaxCharacters="40"
+                               ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
+
+                <TextAreaInput class="br-col-xs-12" LabelText="More Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataFive.MoreNotes" DataPosition="DataPosition.Start" MaxCharacters="40"
                                ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
@@ -171,6 +192,9 @@
 
             <div class="br-input-row">
                 <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataSix.Notes" DataPosition="DataPosition.Start" MaxCharacters="40"
+                               ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
+
+                <TextAreaInput class="br-col-xs-12" LabelText="More Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactDataSix.MoreNotes" DataPosition="DataPosition.Start" MaxCharacters="40"
                                ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
             </div>
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
@@ -226,10 +250,12 @@
     protected override async Task OnInitializedAsync()
     {
 
-        var notesValidator = MemberValidators.CreateStringLengthValidator(1, 20, "Notes", "Notes", "Must contain text with a maximum of 40 characters.");
+        var notesValidator     = MemberValidators.CreateStringLengthValidator(1, 40, "Notes", "Notes", "Must contain text with a maximum of 40 characters.");
+        var moreNotesValidator = MemberValidators.CreateStringLengthValidator(1, 40, "Notes", "More Notes", "Must contain text with a maximum of 40 characters.");
 
         _boxedValidators = BlazorValidationBuilder<ContactDto>.Create()
                                 .ForMember(c => c.Notes, notesValidator)
+                                .ForMember(c => c.MoreNotes, moreNotesValidator)
                                 .GetBoxedValidators();
 
         _editContextOne   = new EditContext(_contactDataOne);
@@ -245,7 +271,7 @@
     private async Task HandleSubmitOne()
     {
         _editContextOne.Validate();
-        var announcement = new Announcement("Validation invoked on example one form field.", AnnouncementType.Info, "Submit One Button");
+        var announcement = new Announcement("Validation invoked on example one form fields.", AnnouncementType.Info, "Submit One Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
 
@@ -253,21 +279,21 @@
     private async Task HandleSubmitTwo()
     {
         _editContextTwo.Validate();
-        var announcement = new Announcement("Validation invoked on example two form field.", AnnouncementType.Info, "Submit Two Button");
+        var announcement = new Announcement("Validation invoked on example two form fields.", AnnouncementType.Info, "Submit Two Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
     }
     private async Task HandleSubmitThree()
     {
         _editContextThree.Validate();
-        var announcement = new Announcement("Validation invoked on example three form field.", AnnouncementType.Info, "Submit Three Button");
+        var announcement = new Announcement("Validation invoked on example three form fields.", AnnouncementType.Info, "Submit Three Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
     }
     private async Task HandleSubmitFour()
     {
         _editContextFour.Validate();
-        var announcement = new Announcement("Validation invoked on example four form field.", AnnouncementType.Info, "Submit Four Button");
+        var announcement = new Announcement("Validation invoked on example four form fields.", AnnouncementType.Info, "Submit Four Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
 
@@ -275,14 +301,14 @@
     private async Task HandleSubmitFive()
     {
         _editContextFive.Validate();
-        var announcement = new Announcement("Validation invoked on example five form field.", AnnouncementType.Info, "Submit Five Button");
+        var announcement = new Announcement("Validation invoked on example five form fields.", AnnouncementType.Info, "Submit Five Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
     }
     private async Task HandleSubmitSix()
     {
         _editContextSix.Validate();
-        var announcement = new Announcement("Validation invoked on example six form field.", AnnouncementType.Info, "Submit Six Button");
+        var announcement = new Announcement("Validation invoked on example six form fields.", AnnouncementType.Info, "Submit Six Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
     }
@@ -357,6 +383,7 @@
     public class ContactDto
     {
         public string Notes { get; set; }
+        public string MoreNotes { get; set; }
     }
 
 }

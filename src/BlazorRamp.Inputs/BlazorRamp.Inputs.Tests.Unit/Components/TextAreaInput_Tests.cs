@@ -379,19 +379,6 @@ public class TextAreaInput_Tests
 
         //}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         [Fact]
         public async Task Should_have_a_tabbable_region_for_errors_when_the_Validation_display_mode_is_set_to_tabbable_with_hint()
         {

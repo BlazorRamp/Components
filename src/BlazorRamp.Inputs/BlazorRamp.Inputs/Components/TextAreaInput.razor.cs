@@ -255,13 +255,13 @@ public class TextAreaTypeInput : InputTypeBase<string>
     /// </summary>
     protected async Task HandleKeyDown(KeyboardEventArgs e)
     {
+
         _announceDebounceTS?.Cancel();
         _announceDebounceTS?.Dispose();
         _announceDebounceTS = new CancellationTokenSource();
 
         await AnnounceCharacterCount(_remainingText, _overlimitText, _announceDebounceDelayMs, _maxCharacters, _announceDebounceTS.Token);
-
-       
+      
     }
 
     private async Task UpdateCurrentValueAsString(string? value, int timeToWait, CancellationToken cancellationToken)
@@ -359,8 +359,15 @@ public class TextAreaTypeInput : InputTypeBase<string>
     {
         _liveCharacterCount = currentCount;
 
-        if (pastedText) await MakeAnnouncement();
+        if (pastedText)
+        {
+            _announceDebounceTS.Cancel();
+            await MakeAnnouncement();
+        }
+            
+           
     }
+    private bool _pasted = false;
 
     /// <summary>
     /// Cancels and disposes active debounce cancellation token sources to ensure
