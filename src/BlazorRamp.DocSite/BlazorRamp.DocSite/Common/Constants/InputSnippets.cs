@@ -651,8 +651,9 @@ public class InputSnippets
             <BlazorValidated TEntity="ContactDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
 
             <div class="br-input-row">
-                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactData.Notes" DataPosition="DataPosition.Centre" MaxCharacters="40"
-                    ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" UpdateOnInput="false" ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
+                <TextAreaInput class="br-col-xs-12" LabelText="Notes" HintText="Tell us what happened (maximum of 40 characters)" @bind-Value="@_contactData.Notes" 
+                DataPosition="DataPosition.Centre" MaxCharacters="40" ValidationDisplayMode="ValidationDisplayMode.DescribedByHintSuppressed" UpdateOnInput="false" 
+                ReadOnly="false" AriaDisabled="false" TextAreaRows="5" AutoSize="true" />
 
             </div>
             <div style="display:flex; justify-content:space-between;">
@@ -675,7 +676,7 @@ public class InputSnippets
             {
                 _editContext = new EditContext(_contactData);
 
-                var notesValidator = MemberValidators.CreateStringLengthValidator(1, 20, "Notes", "Notes", "Must contain text with a maximum of 40 characters.");
+                var notesValidator = MemberValidators.CreateStringLengthValidator(1, 40, "Notes", "Notes", "Must contain text with a maximum of 40 characters.");
 
                 _boxedValidators = BlazorValidationBuilder<ContactDto>.Create()
                                         .ForMember(c => c.Notes,notesValidator)
