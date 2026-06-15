@@ -1,0 +1,34 @@
+﻿@using BlazorRamp.DebounceFilter.Common.Constants
+
+<div class="@_debounceClasses">
+    <label class="@GlobalValues.Debounce_Filter_Label_Class" for="@_inputID" @onmousedown:preventDefault>
+        @_filterNameText
+    </label>
+    @if (@_hintNormalised is not null)
+    {
+        <span id="@_hintTextID" class="@GlobalValues.Debounce_Filter_Hint_Class">
+            @_hintNormalised
+        </span>
+    }
+
+    @if (false == String.IsNullOrWhiteSpace(_svgVariable))
+    {
+        <span aria-hidden="true" class="@GlobalValues.Debounce_Filter_Icon_Class" style="@_svgVariable"></span>
+    }
+    else
+    {
+        <span aria-hidden="true"></span>
+    }
+    <input @ref="InputRef" @attributes="@GetAttributes(AdditionalAttributes)" class="@GlobalValues.Debounce_Filter_Field_Class" id="@_inputID"
+           type="text"
+
+           aria-describedby="@_ariaDescribedByID"
+           data-br-input-position="@FilterDataPosition.ToString().ToLower()" />
+
+    <span @ref="StateIconElementRef" class="@GlobalValues.Debounce_Filter_State_Icon_Class" data-br-invalid-state="false" aria-hidden="true"></span>
+
+    <div @ref="MessageElementRef" class="@GlobalValues.Debounce_Filter_Error_Class">
+    </div>
+
+
+</div>

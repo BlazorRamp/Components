@@ -1,7 +1,24 @@
 ﻿@page "/"
+@using BlazorRamp.DebounceFilter.Common.Models
+
+
+@rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+
+<DebounceFilter DebounceDelayMs="300" FilterDataPosition="FilterDataPosition.Centre" 
+FilterLabelText="Filter Results" HintText="Data filtered as you type." OnDedbounceFilterResult="HandleDebounce" ></DebounceFilter>
+
+@code{
+
+    public async Task HandleDebounce(DebouncedFilterResult result)
+    {
+        
+
+    }
+}

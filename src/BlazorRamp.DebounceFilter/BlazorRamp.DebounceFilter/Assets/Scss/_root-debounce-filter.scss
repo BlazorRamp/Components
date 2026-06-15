@@ -1,1 +1,55 @@
-﻿
+﻿:root {
+    --br-svg-valid-state-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21 21'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' d='m5.5 11.5l3 3l8.028-8'/%3E%3C/svg%3E");
+    --br-svg-invalid-state-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21 21'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' d='m15.5 15.5l-10-10zm0-10l-10 10'/%3E%3C/svg%3E");
+    //
+    //
+    --br-comp-debounce-filter-error-colour: var(--br-unit-colour-danger);
+    --br-comp-debounce-filter-success-colour: var(--br-unit-colour-success);
+    //
+    --br-comp-debounce-filter-disabled-opacity: var(--br-unit-state-disabled-opacity);
+    --br-comp-debounce-filter-divider-colour: var(--br-comp-all-divider-colour);
+    //
+    --br-comp-debounce-filter-button-background: var(--br-comp-all-button-background);
+    --br-comp-debounce-filter-button-text: var(--br-comp-all-button-text);
+    --br-comp-debounce-filter-button-font-family: var(--br-comp-all-button-font-family);
+    --br-comp-debounce-filter-button-font-size: var(--br-comp-all-button-font-size);
+    --br-comp-debounce-filter-button-font-weight: var(--br-comp-all-button-font-weight);
+    --br-comp-debounce-filter-button-line-height: var(--br-comp-all-button-line-height);
+    --br-comp-debounce-filter-button-border-style: var(--br-comp-all-button-border-style);
+    --br-comp-debounce-filter-button-border-colour: var(--br-comp-all-button-border-colour);
+    --br-comp-debounce-filter-button-border-width: var(--br-comp-all-button-border-width);
+    --br-comp-debounce-filter-button-border-radius: var(--br-comp-all-button-border-radius);
+    --br-comp-debounce-filter-button-state-hover: var(--br-comp-all-button-state-hover);
+    --br-comp-debounce-filter-button-state-active-brightness: var(--br-comp-all-button-state-active-brightness);
+    --br-comp-debounce-filter-button-state-active-scale: var(--br-comp-all-button-state-active-scale);
+    //
+    --br-comp-debounce-filter-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-debounce-filter-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-debounce-filter-outline-offset: 0px;
+    --br-comp-debounce-filter-outline-colour: var(--br-comp-all-outline-colour);
+    //
+    --br-comp-debounce-filter-pane-base-background: inherit;
+    --br-comp-debounce-filter-pane-base-border-style: var(--br-comp-all-pane-base-border-style);
+    --br-comp-debounce-filter-pane-base-border-colour: var(--br-comp-all-pane-base-border-colour);
+    --br-comp-debounce-filter-pane-base-border-width: var(--br-comp-all-pane-base-border-width);
+    --br-comp-debounce-filter-pane-base-border-radius: var(--br-comp-all-pane-base-border-radius);
+    //
+    --br-comp-debounce-filter-area-content-background: inherit;
+    --br-comp-debounce-filter-area-content-colour: var(--br-comp-all-area-content-text);
+    --br-comp-debounce-filter-area-content-font-family: var(--br-comp-all-area-content-font-family);
+    --br-comp-debounce-filter-area-content-font-size: var(--br-comp-all-area-content-font-size);
+    --br-comp-debounce-filter-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
+    --br-comp-debounce-filter-area-content-line-height: var(--br-comp-all-area-content-line-height);
+    //
+
+    --br-comp-debounce-filter-label-font-size: var(--br-unit-font-size-label);
+    --br-comp-debounce-filter-label-font-weight: var(--br-unit-font-weight-500);
+    --br-comp-debounce-filter-label-color: inherit;
+    --br-comp-debounce-filter-label-background: inherit;
+    //
+    --br-comp-debounce-filter-hint-font-size: var(--br-unit-font-size-label);
+    --br-comp-debounce-filter-hint-font-weight: var(--br-unit-font-weight-400);
+    --br-comp-debounce-filter-hint-color: inherit;
+    --br-comp-debounce-filter-hint-background: inherit;
+    --br-comp-debounce-filter-hint-opacity: var(--br-unit-opacity-val-80);
+}

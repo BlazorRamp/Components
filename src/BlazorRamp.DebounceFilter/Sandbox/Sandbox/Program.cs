@@ -6,7 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
+    
     .AddInteractiveServerComponents()
+    .AddCircuitOptions(configure => {
+        configure.DetailedErrors = true;
+    })
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddBlazorRampCore();
