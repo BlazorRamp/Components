@@ -217,13 +217,13 @@ partial class DebounceFilter : IAsyncDisposable
 
             var message = (filterResult.IsValid, hasSystemError) switch
             {
-                (true,  false) => String.Empty,
-                (true,  true)  => filterResult.ExceptionMessage,
-                (false, true)  => filterResult.ExceptionMessage,
+                (true, false) => String.Empty,
+                (true, true) => filterResult.ExceptionMessage,
+                (false, true) => filterResult.ExceptionMessage,
                 (false, false) => _validationMessage,
             };
 
-            if(false == String.IsNullOrWhiteSpace(message))
+            if (false == String.IsNullOrWhiteSpace(message))
             {
                 AnnouncementType announcementType = hasSystemError ? AnnouncementType.SystemError : AnnouncementType.Info;
                 await LiveRegionService.MakeAnnouncement(new(message, announcementType, _filterNameText, LiveRegionType.Polite));
