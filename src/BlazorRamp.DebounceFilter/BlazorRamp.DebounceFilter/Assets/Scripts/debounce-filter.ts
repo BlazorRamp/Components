@@ -104,7 +104,7 @@ const registerDebounceFilterHandler = (inputElement: HTMLInputElement, debounceC
     });
 
     inputElement.addEventListener("input", handler);
-    console.log("Delay: " + debounceConfiguration.delayMs);
+   
 };
 
 const unregisterDebounceFilterHandler = (inputElement: HTMLInputElement): void => {
