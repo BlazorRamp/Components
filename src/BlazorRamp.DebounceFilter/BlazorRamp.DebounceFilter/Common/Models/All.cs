@@ -11,4 +11,4 @@ namespace BlazorRamp.DebounceFilter.Common.Models;
 
 public record DebounceConfiguration<TValue>(TValue  BlazorCallBackRef, string CallBackName, ElementReference MessageElement, ElementReference StateIconElement, int DelayMs, string SystemErrorMessage, string? RegexPattern = null, string? ValidationMessage = null);
 
-public record DebouncedFilterResult(string FilterValue, bool IsValid, string? ExceptionMessage = null);
+public record DebouncedFilterResult(string FilterValue, bool IsValid, bool ClearCalled, string? ExceptionMessage = null);

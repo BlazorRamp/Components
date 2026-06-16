@@ -11,14 +11,26 @@
 Welcome to your new app.
 
 
-<DebounceFilter DebounceDelayMs="300" FilterDataPosition="FilterDataPosition.Centre" 
-FilterLabelText="Filter Results" HintText="Data filtered as you type." OnDedbounceFilterResult="HandleDebounce" ></DebounceFilter>
+<DebounceFilter @ref="control" DebounceDelayMs="300" FilterDataPosition="FilterDataPosition.Centre" ValidationMessage="Numbers only"
+FilterLabelText="Filter Results" HintText="Data filtered as you type." RegexPattern="[0-9]" OnDebounceFilterResult="HandleDebounce" ></DebounceFilter>
 
+<div>
+    Just som text in here to see it move
+</div>
+
+<button type="button" @onclick="Clear"">Clear</button>
 @code{
+
+    public DebounceFilter control { get; set; }
 
     public async Task HandleDebounce(DebouncedFilterResult result)
     {
-        
 
+    }
+
+
+    public async Task Clear()
+    {
+        await control.ClearFilter();
     }
 }

@@ -58,7 +58,7 @@
         outline-style: var(--br-comp-debounce-filter-outline-style);
         outline-color: var(--br-comp-debounce-filter-outline-colour);
 
-        .br-debounce-filter__error-wrapper {
+        .br-debounce-filter__error {
             border-top: 1px solid var(--br-comp-all-outline-colour);
         }
     }
@@ -150,7 +150,7 @@
         font-weight: var(--br-comp-debounce-filter-area-content-font-weight);
         min-height: var(--br-unit-wcag-target-2a);
 
-        &:is([type="text"], [type="email"], [type="url"], [type="tel"]) {
+        &[type="text"] {
             border: none;
             outline: none;
         }

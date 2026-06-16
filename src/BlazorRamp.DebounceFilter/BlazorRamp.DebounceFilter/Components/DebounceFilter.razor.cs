@@ -61,7 +61,7 @@ partial class DebounceFilter : IAsyncDisposable
     /// </summary>
     [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
 
-    [Parameter] public Func<DebouncedFilterResult, Task>? OnDedbounceFilterResult { get; set; }
+    [Parameter] public Func<DebouncedFilterResult, Task>? OnDebounceFilterResult { get; set; }
     private ElementReference InputRef            { get; set; }
     private ElementReference MessageElementRef   { get; set; }
     private ElementReference StateIconElementRef { get; set; }
@@ -150,6 +150,13 @@ partial class DebounceFilter : IAsyncDisposable
         return @GlobalValues.Debounce_Filter_Class;
     }
 
+
+
+    public async Task ClearFilter()
+    {
+        if (_jSModule is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Clear_Debounce_Filter, InputRef);
+    }
+
     /// <summary>
     /// Returns a filtered copy of AdditionalAttributes with
     /// the <c>class</c> key removed, so additional attributes can be applied to the input
@@ -164,7 +171,7 @@ partial class DebounceFilter : IAsyncDisposable
     [JSInvokable]
     public async Task HandleDebounceFilterResult(DebouncedFilterResult filterResult)
     {
-        if (OnDedbounceFilterResult is not null) await OnDedbounceFilterResult(filterResult);
+        if (OnDebounceFilterResult is not null) await OnDebounceFilterResult(filterResult);
     }
        
 

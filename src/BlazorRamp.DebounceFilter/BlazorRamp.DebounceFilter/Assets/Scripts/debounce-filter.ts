@@ -4,24 +4,23 @@ interface IDebounceConfiguration {
     delayMs: number, systemErrorMessage: string | null, regexPattern: string | null, validationMessage: string | null
 };
 
-interface IDebouncedFilterResult { FilterValue: string, IsValid: boolean, ExceptionMessage: string | null };
+interface IDebouncedFilterResult { FilterValue: string, IsValid: boolean, ClearCalled: boolean, ExceptionMessage: string | null };
 
 const _handlerMap = new WeakMap<HTMLInputElement, { configuration: IDebounceConfiguration, handler: EventListener; timer?: number }>();
 
 
-const hasValue = (value: string | null): boolean => (value !== null && value.trim().length > 0);
+const raiseDebounceFilterResult = (inputElement: HTMLInputElement, debounceConfiguration: IDebounceConfiguration, clearCalled: boolean = false): void => {
 
-const raiseDebounceInterval = (inputElement: HTMLInputElement, debounceConfiguration: IDebounceConfiguration): void => {
-
-    if (!debounceConfiguration || !debounceConfiguration.blazorCallBackRef) return;
-
+    if (!debounceConfiguration || !debounceConfiguration.blazorCallBackRef || !inputElement) return;
 
     let isValid = true;
     let message = null;
 
-    const messageElement:  HTMLElement   = debounceConfiguration.messageElement;
-    const regexPattern:    string | null = debounceConfiguration.regexPattern;
-    const stateIconElemen: HTMLElement   = debounceConfiguration.stateIconElement;
+    const messageElement:  HTMLElement    = debounceConfiguration.messageElement;
+    const regexPattern:    string | null  = debounceConfiguration.regexPattern;
+    const stateIconElement: HTMLElement   = debounceConfiguration.stateIconElement;
+
+    const inputValue = inputElement.value.trimStart();
 
     if (regexPattern !== null && regexPattern.trim().length > 0) {
 
@@ -36,13 +35,19 @@ const raiseDebounceInterval = (inputElement: HTMLInputElement, debounceConfigura
             message = ex.message;
             isValid = false;
         }
-      
-
-        inputElement.setAttribute("aria-invalid", (!isValid).toString().toLowerCase());
-        stateIconElemen.setAttribute("data-br-invalid-state", (!isValid).toString().toLowerCase());
     }
 
-    const debouncedFilterResult: IDebouncedFilterResult = { FilterValue: inputElement.value, IsValid: isValid, ExceptionMessage: message };
+    if (inputValue.length === 0) {
+        isValid = true;
+        messageElement.innerText = "";
+    }
+
+    inputElement.setAttribute("aria-invalid", (!isValid).toString().toLowerCase());
+    stateIconElement.setAttribute("data-br-invalid-state", (!isValid).toString().toLowerCase());
+
+    if (clearCalled) stateIconElement.removeAttribute("data-br-invalid-state");
+
+    const debouncedFilterResult: IDebouncedFilterResult = { FilterValue: inputElement.value, IsValid: isValid, ClearCalled: clearCalled, ExceptionMessage: message };
 
     debounceConfiguration.blazorCallBackRef.invokeMethodAsync(debounceConfiguration.callBackName, debouncedFilterResult);
 
@@ -62,19 +67,25 @@ const oninputHandler = (event: Event): void => {
 
     if (mapEntry.timer) clearTimeout(mapEntry.timer);
 
-    mapEntry.timer = setTimeout(raiseDebounceInterval, configuration.delayMs, inputElement, configuration);
+    mapEntry.timer = setTimeout(raiseDebounceFilterResult, configuration.delayMs, inputElement, configuration, false);
 };
 
 const clearDebounceFilter = (inputElement: HTMLInputElement):void => {
 
     if (!inputElement) return;
+
+    const mapEntry = _handlerMap.get(inputElement);
+
     inputElement.value = "";
-    inputElement.removeAttribute("aria-invalid");
+
+    if (!mapEntry) return;
+
+    raiseDebounceFilterResult(inputElement, mapEntry.configuration, true);
 };
 
 const registerDebounceFilterHandler = (inputElement: HTMLInputElement, debounceConfiguration: IDebounceConfiguration): void => {
 
-    if (!inputElement || _handlerMap.has(inputElement) || !debounceConfiguration) return;
+    if (!inputElement || !debounceConfiguration) return;
 
     const handler: EventListener = (event) => oninputHandler(event);
 
