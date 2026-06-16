@@ -5,11 +5,6 @@ using BlazorRamp.DebounceFilter.Common.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlazorRamp.DebounceFilter.Components;
 
@@ -86,7 +81,12 @@ partial class DebounceFilter : IAsyncDisposable
     /// </summary>
     [Parameter] public Func<DebouncedFilterResult, Task>? OnDebounceFilterResult { get; set; }
 
-    private ElementReference InputRef            { get; set; }
+
+    /// <summary>
+    /// Gets the <see cref="ElementReference"/> for the underlying <c>&lt;input&gt;</c>
+    /// element, available after the component has rendered.
+    /// </summary>
+    public ElementReference ControlReference  { get; set; }
     private ElementReference MessageElementRef   { get; set; }
     private ElementReference StateIconElementRef { get; set; }
 
@@ -145,6 +145,7 @@ partial class DebounceFilter : IAsyncDisposable
     {
         if (true == firstRender)
         {
+            
             _jSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Debounce_Filter_File_Path);
 
             if (_jSModule is not null)
@@ -153,7 +154,7 @@ partial class DebounceFilter : IAsyncDisposable
                 var debounceConfig = new DebounceConfiguration<DotNetObjectReference<DebounceFilter>>(_dotNetObjectRef, nameof(HandleDebounceFilterResult),MessageElementRef,StateIconElementRef,
                                                                                                      _debounceDelayMs,_parseErrorMessage,_regexPattern,_validationMessage);
 
-                await _jSModule.InvokeVoidAsync(GlobalValues.JS_Register_Debounce_Filter_Handler,InputRef,debounceConfig);
+                await _jSModule.InvokeVoidAsync(GlobalValues.JS_Register_Debounce_Filter_Handler,ControlReference,debounceConfig);
             }
                
         }
@@ -191,7 +192,7 @@ partial class DebounceFilter : IAsyncDisposable
     /// </summary>
     public async Task ClearFilter()
     {
-        if (_jSModule is not null && InputRef.Id is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Clear_Debounce_Filter, InputRef);
+        if (_jSModule is not null && ControlReference.Id is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Clear_Debounce_Filter, ControlReference);
     }
 
     /// <summary>
@@ -246,7 +247,7 @@ partial class DebounceFilter : IAsyncDisposable
         {
             try
             {
-                await _jSModule.InvokeVoidAsync(GlobalValues.JS_Unregister_Debounce_Filter_Handler, InputRef);
+                await _jSModule.InvokeVoidAsync(GlobalValues.JS_Unregister_Debounce_Filter_Handler, ControlReference);
                 await _jSModule.DisposeAsync();
 
                 _dotNetObjectRef?.Dispose();
