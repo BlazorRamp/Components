@@ -1,5 +1,6 @@
 ﻿using BlazorRamp.Core.Services;
 using BlazorRamp.DebounceFilter.Common.Constants;
+using BlazorRamp.DebounceFilter.Common.Models;
 using Bunit;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -12,26 +13,23 @@ namespace BlazorRamp.DebounceFilter.Tests.Unit.Components;
 public class DebounceFilter_Tests
 {
     public static IRenderedComponent<DebounceFilterComponent> CreateDebounceFilter(
-    BunitContext context,
-    Action<ComponentParameterCollectionBuilder<DebounceFilterComponent>>? parameters = null)
+     BunitContext context,
+     Action<ComponentParameterCollectionBuilder<DebounceFilterComponent>>? parameters = null)
     {
         var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Debounce_Filter_File_Path);
         moduleInterop.SetupVoid(GlobalValues.JS_Register_Debounce_Filter_Handler, _ => true).SetVoidResult();
         moduleInterop.SetupVoid(GlobalValues.JS_Unregister_Debounce_Filter_Handler, _ => true).SetVoidResult();
         moduleInterop.SetupVoid(GlobalValues.JS_Clear_Debounce_Filter, _ => true).SetVoidResult();
 
+        context.JSInterop.SetupModule("./_content/BlazorRamp.Core/assets/js/core-live-region.js");
+
         context.Services.AddScoped<ILiveRegionService, LiveRegionService>();
 
         var component = context.Render<DebounceFilterComponent>(
-        builder =>
-        {
-            parameters?.Invoke(builder);
-        });
-
+            builder => { parameters?.Invoke(builder); });
 
         return component;
     }
-
 
 
     public class Parameters
@@ -222,16 +220,98 @@ public class DebounceFilter_Tests
     public class Methods
     {
         [Fact]
-        public async Task Clear_filter_should_clear_the_filter_and_state()
+        public async Task ClearFilter_should_invoke_the_js_clear_function_with_the_correct_element_reference()
+        {
+            await using var context = new BunitContext();
+
+            var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Debounce_Filter_File_Path);
+            moduleInterop.SetupVoid(GlobalValues.JS_Register_Debounce_Filter_Handler, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Unregister_Debounce_Filter_Handler, _ => true).SetVoidResult();
+            moduleInterop.SetupVoid(GlobalValues.JS_Clear_Debounce_Filter, _ => true).SetVoidResult();
+
+            context.JSInterop.SetupModule("./_content/BlazorRamp.Core/assets/js/core-live-region.js");
+
+            context.Services.AddScoped<ILiveRegionService, LiveRegionService>();
+
+            var component = context.Render<DebounceFilterComponent>();
+
+            await component.Instance.ClearFilter();
+
+            var invocation = moduleInterop.VerifyInvoke(GlobalValues.JS_Clear_Debounce_Filter);
+
+            using (new AssertionScope())
+            {
+                invocation.Should().NotBeNull();
+                invocation.Arguments.Should().ContainSingle();
+                invocation.Arguments[0].Should().BeEquivalentTo(component.Instance.ControlReference);
+            }
+        }
+
+        [Fact]
+        public async Task Handle_debounce_filter_result_should_invoke_the_callback_with_the_filter_result()
+        {
+            await using var context = new BunitContext();
+
+            DebouncedFilterResult? received = null;
+
+            var component = CreateDebounceFilter(context, p =>
+                p.Add(x => x.OnDebounceFilterResult, result =>
+                {
+                    received = result;
+                    return Task.CompletedTask;
+                }));
+
+            var filterResult = new DebouncedFilterResult("test", true, false);
+
+            await component.Instance.HandleDebounceFilterResult(filterResult);
+
+            using (new AssertionScope())
+            {
+                received.Should().NotBeNull();
+                received!.FilterValue.Should().Be("test");
+                received.IsValid.Should().BeTrue();
+                received.ClearCalled.Should().BeFalse();
+            }
+        }
+        [Fact]
+        public async Task Handle_debounce_filter_result_should_not_throw_when_no_callback_is_set()
         {
             await using var context = new BunitContext();
 
             var component = CreateDebounceFilter(context);
+            var filterResult = new DebouncedFilterResult("test", true, false);
 
-            var input = component.Find("input");
+            var act = async () => await component.Instance.HandleDebounceFilterResult(filterResult);
 
+            await act.Should().NotThrowAsync();
         }
+
+        [Fact]
+        public async Task Handle_debounce_filter_resul_clear_called_should_invoke_callback_with_clear_flag_set()
+        {
+            await using var context = new BunitContext();
+
+            DebouncedFilterResult? received = null;
+
+            var component = CreateDebounceFilter(context, p =>
+                p.Add(x => x.OnDebounceFilterResult, result =>
+                {
+                    received = result;
+                    return Task.CompletedTask;
+                }));
+
+            var filterResult = new DebouncedFilterResult(String.Empty, true, true);
+
+            await component.Instance.HandleDebounceFilterResult(filterResult);
+
+            using (new AssertionScope())
+            {
+                received.Should().NotBeNull();
+                received!.ClearCalled.Should().BeTrue();
+                received.FilterValue.Should().BeEmpty();
+            }
+        }
+
+
     }
-
-
 }
