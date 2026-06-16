@@ -1,4 +1,6 @@
-﻿using BlazorRamp.DebounceFilter.Common.Constants;
+﻿using BlazorRamp.Core.Common.Constants;
+using BlazorRamp.Core.Services;
+using BlazorRamp.DebounceFilter.Common.Constants;
 using BlazorRamp.DebounceFilter.Common.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -67,8 +69,8 @@ partial class DebounceFilter : IAsyncDisposable
     private ElementReference StateIconElementRef { get; set; }
 
     [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
-    
-    
+
+    [Inject] private ILiveRegionService LiveRegionService { get; set; } = default!;
     
     private IJSObjectReference?                    _jSModule        = null;
     private DotNetObjectReference<DebounceFilter>? _dotNetObjectRef = default;
@@ -79,7 +81,7 @@ partial class DebounceFilter : IAsyncDisposable
     private string _debounceClasses    = GlobalValues.Debounce_Filter_Class;
     private string _parseErrorMessage = GlobalValues.Debounce_Filter_Regex_Error_Message;
     private string? _regexPattern      = null;
-    private string? _validationMessage = null;
+    private string? _validationMessage = GlobalValues.Debounce_Filter_Regex_Validation_Message;
     private string? _hintNormalised    = null;
     private string? _svgVariable       = null;
     private string? _ariaDescribedByID = null;
@@ -98,7 +100,7 @@ partial class DebounceFilter : IAsyncDisposable
         _inputID           = String.IsNullOrWhiteSpace(ControlID) ? Guid.NewGuid().ToString() : ControlID.Trim();
         _filterNameText    = String.IsNullOrWhiteSpace(FilterLabelText) ? GlobalValues.Debounce_Filter_Label_Text : FilterLabelText.Trim();
         _regexPattern      = String.IsNullOrWhiteSpace(RegexPattern) ? null : RegexPattern.Trim();
-        _validationMessage = String.IsNullOrWhiteSpace(ValidationMessage) ? null : ValidationMessage.Trim();
+        _validationMessage = String.IsNullOrWhiteSpace(ValidationMessage) ? GlobalValues.Debounce_Filter_Regex_Validation_Message : ValidationMessage.Trim();
         _parseErrorMessage = String.IsNullOrWhiteSpace(ParseErrorMessage) ? GlobalValues.Debounce_Filter_Regex_Error_Message : ParseErrorMessage.Trim();
         _debounceDelayMs   = DebounceDelayMs < 1 ? GlobalValues.Debounce_DelayMs : DebounceDelayMs;
         _ariaDescribedByID = _hintTextID;
@@ -167,11 +169,29 @@ partial class DebounceFilter : IAsyncDisposable
         => additionalAttributes?.Where(kv => kv.Key != "class").ToDictionary();
 
 
-
     [JSInvokable]
     public async Task HandleDebounceFilterResult(DebouncedFilterResult filterResult)
     {
-        if (OnDebounceFilterResult is not null) await OnDebounceFilterResult(filterResult);
+        if (OnDebounceFilterResult is not null)
+        {
+            var hasSystemError = !String.IsNullOrWhiteSpace(filterResult.ExceptionMessage);
+
+            var message = (filterResult.IsValid, hasSystemError) switch
+            {
+                (true,  false) => String.Empty,
+                (true,  true)  => filterResult.ExceptionMessage,
+                (false, true)  => filterResult.ExceptionMessage,
+                (false, false) => _validationMessage,
+            };
+
+            if(false == String.IsNullOrWhiteSpace(message))
+            {
+                AnnouncementType announcementType = hasSystemError ? AnnouncementType.SystemError : AnnouncementType.Info;
+                await LiveRegionService.MakeAnnouncement(new(message, announcementType, _filterNameText, LiveRegionType.Polite));
+            }
+
+            await OnDebounceFilterResult(filterResult);
+        }
     }
        
 

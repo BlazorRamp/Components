@@ -10,6 +10,7 @@ internal class GlobalValues
 
 
     public const string Debounce_Filter_Regex_Error_Message      = "System error, filtering is unavailable at this time.";
+    public const string Debounce_Filter_Regex_Validation_Message = "Invalid characters, filtering paused.";
     public const string Debounce_Filter_Label_Text               = "Filter";
 
     public const int Debounce_DelayMs = 250;
