@@ -25,7 +25,12 @@ const raiseDebounceFilterResult = (inputElement, debounceConfiguration, clearCal
         isValid = true;
         messageElement.innerText = "";
     }
-    inputElement.setAttribute("aria-invalid", (!isValid).toString().toLowerCase());
+    if (isValid) {
+        inputElement.removeAttribute("aria-invalid");
+    }
+    else {
+        inputElement.setAttribute("aria-invalid", "true");
+    }
     stateIconElement.setAttribute("data-br-invalid-state", (!isValid).toString().toLowerCase());
     if (clearCalled)
         stateIconElement.removeAttribute("data-br-invalid-state");
@@ -65,6 +70,7 @@ const registerDebounceFilterHandler = (inputElement, debounceConfiguration) => {
         handler: handler
     });
     inputElement.addEventListener("input", handler);
+    console.log("Delay: " + debounceConfiguration.delayMs);
 };
 const unregisterDebounceFilterHandler = (inputElement) => {
     if (!inputElement)

@@ -13,7 +13,7 @@ internal class GlobalValues
     public const string Debounce_Filter_Regex_Validation_Message = "Invalid characters, filtering paused.";
     public const string Debounce_Filter_Label_Text               = "Filter";
 
-    public const int Debounce_DelayMs = 250;
+    public const int Debounce_DelayMs = 500;
 
 
     public const string Debounce_Filter_Svg_Css_Variable_Name = "--_br-svg-debounce-filter-icon";

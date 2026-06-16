@@ -11,14 +11,16 @@
 Welcome to your new app.
 
 
-<DebounceFilter @ref="control" DebounceDelayMs="300" FilterDataPosition="FilterDataPosition.Centre" ValidationMessage="Invalid entry filtering paused, numbers only"
+<DebounceFilter @ref="control" DebounceDelayMs="500" FilterDataPosition="FilterDataPosition.Centre" ValidationMessage="Invalid entry filtering paused, numbers only"
 FilterLabelText="Filter Results" HintText="Data filtered as you type." RegexPattern="^[0-9]*$" OnDebounceFilterResult="HandleDebounce" ></DebounceFilter>
 
 <div>
     Just som text in here to see it move
 </div>
 
-<button type="button" @onclick="Clear"">Clear</button>
+<button type="button" @onclick="Clear">Clear</button>
+
+<button type="button">Focus On Me</button>
 @code{
 
     public DebounceFilter control { get; set; }

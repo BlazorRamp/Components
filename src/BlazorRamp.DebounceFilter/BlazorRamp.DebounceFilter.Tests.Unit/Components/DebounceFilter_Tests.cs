@@ -186,7 +186,7 @@ public class DebounceFilter_Tests
         [InlineData(500)]
         [InlineData(250)]
 
-        public async Task Should_be_able_to_set_the_debounce_delay_that_defaults_to_250_if_below_1(int delayMS)
+        public async Task Should_be_able_to_set_the_debounce_delay_that_defaults_to_500_if_below_1(int delayMS)
         {
             await using var context = new BunitContext();
 
