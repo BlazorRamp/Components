@@ -13,6 +13,10 @@ using System.Threading.Tasks;
 
 namespace BlazorRamp.DebounceFilter.Components;
 
+/// <summary>
+/// A debounced filter input component that raises a callback after the user stops typing,
+/// optionally validating input against a regular expression and announcing results via an ARIA live region.
+/// </summary>
 partial class DebounceFilter : IAsyncDisposable
 {
 
@@ -48,11 +52,24 @@ partial class DebounceFilter : IAsyncDisposable
     /// Defaults to 250ms/>.
     /// </summary>
     [Parameter] public int DebounceDelayMs { get; set; } = GlobalValues.Debounce_DelayMs;
+
+    /// <summary>
+    /// Gets or sets the validation message displayed when the regex pattern is not matched.
+    /// </summary>
     [Parameter] public string? ValidationMessage { get; set; }
 
+    /// <summary>
+    /// Gets or sets the regular expression pattern used to validate the filter input.
+    /// When null or empty no validation is applied.
+    /// </summary>
     [Parameter] public string? RegexPattern { get; set; }
 
+    /// <summary>
+    /// Gets or sets the error message displayed when the regex pattern fails to compile.
+    /// Defaults to "System error, filtering is unavailable at this time." />.
+    /// </summary>
     [Parameter] public string? ParseErrorMessage { get; set; } = GlobalValues.Debounce_Filter_Regex_Error_Message;
+
     /// <summary>
     /// Gets or sets the text/data alignment in the input. Defaults to <see cref="FilterDataPosition.Start"/>.
     /// </summary>
@@ -63,7 +80,12 @@ partial class DebounceFilter : IAsyncDisposable
     /// </summary>
     [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
 
+    /// <summary>
+    /// Gets or sets the callback invoked after each debounced input event.
+    /// The <see cref="DebouncedFilterResult"/> contains the current filter value, validity state, and any error details.
+    /// </summary>
     [Parameter] public Func<DebouncedFilterResult, Task>? OnDebounceFilterResult { get; set; }
+
     private ElementReference InputRef            { get; set; }
     private ElementReference MessageElementRef   { get; set; }
     private ElementReference StateIconElementRef { get; set; }
@@ -87,14 +109,24 @@ partial class DebounceFilter : IAsyncDisposable
     private string? _ariaDescribedByID = null;
     private string _hintTextID         = Guid.NewGuid().ToString();
 
+    private bool _disposed = false;
 
-
+    /// <summary>
+    /// Sets derived state from parameters; normalises hint text, resolves the SVG icon variable,
+    /// and updates the CSS class string.
+    /// </summary>
     protected override void OnParametersSet()
     {
         _hintNormalised  = String.IsNullOrWhiteSpace(HintText) ? null : (HintText.EndsWith('.') ? HintText : HintText.Trim() + ".");
+        _ariaDescribedByID = _hintNormalised is null ? null : _hintTextID;
         _svgVariable     = CheckSetSvgVariable(SvgIcon);
         _debounceClasses = GetInputClasses(AdditionalAttributes);
     }
+
+    /// <summary>
+    /// Sets one-time state from initial parameter values; resolves the input ID, label text,
+    /// regex pattern, validation messages, debounce delay, and aria-describedby association.
+    /// </summary>
     protected override void OnInitialized()
     {
         _inputID           = String.IsNullOrWhiteSpace(ControlID) ? Guid.NewGuid().ToString() : ControlID.Trim();
@@ -103,11 +135,12 @@ partial class DebounceFilter : IAsyncDisposable
         _validationMessage = String.IsNullOrWhiteSpace(ValidationMessage) ? GlobalValues.Debounce_Filter_Regex_Validation_Message : ValidationMessage.Trim();
         _parseErrorMessage = String.IsNullOrWhiteSpace(ParseErrorMessage) ? GlobalValues.Debounce_Filter_Regex_Error_Message : ParseErrorMessage.Trim();
         _debounceDelayMs   = DebounceDelayMs < 1 ? GlobalValues.Debounce_DelayMs : DebounceDelayMs;
-        _ariaDescribedByID = _hintTextID;
-
-
     }
 
+    /// <summary>
+    /// On first render, imports the JavaScript module and registers the debounce input handler,
+    /// passing the configuration and .NET callback reference to the JS layer.
+    /// </summary>
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (true == firstRender)
@@ -153,10 +186,12 @@ partial class DebounceFilter : IAsyncDisposable
     }
 
 
-
+    /// <summary>
+    /// Clears the filter input and resets the validation state.
+    /// </summary>
     public async Task ClearFilter()
     {
-        if (_jSModule is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Clear_Debounce_Filter, InputRef);
+        if (_jSModule is not null && InputRef.Id is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Clear_Debounce_Filter, InputRef);
     }
 
     /// <summary>
@@ -168,7 +203,10 @@ partial class DebounceFilter : IAsyncDisposable
 
         => additionalAttributes?.Where(kv => kv.Key != "class").ToDictionary();
 
-
+    /// <summary>
+    /// Handles the result returned from JavaScript after each debounced input event.
+    /// Announces validation messages via the live region service and invokes <see cref="OnDebounceFilterResult"/>.
+    /// </summary>
     [JSInvokable]
     public async Task HandleDebounceFilterResult(DebouncedFilterResult filterResult)
     {
@@ -193,11 +231,17 @@ partial class DebounceFilter : IAsyncDisposable
             await OnDebounceFilterResult(filterResult);
         }
     }
-       
 
 
+    /// <summary>
+    /// Performs asynchronous disposal of resources, including the JS module reference and .NET object reference.
+    /// </summary>
     public async ValueTask DisposeAsync()
     {
+        if (_disposed) return;
+        
+        _disposed = true;
+
         if (_jSModule is not null)
         {
             try

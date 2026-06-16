@@ -11,7 +11,7 @@ const _handlerMap = new WeakMap<HTMLInputElement, { configuration: IDebounceConf
 
 const raiseDebounceFilterResult = (inputElement: HTMLInputElement, debounceConfiguration: IDebounceConfiguration, clearCalled: boolean = false): void => {
 
-    if (!debounceConfiguration || !debounceConfiguration.blazorCallBackRef || !inputElement) return;
+    if (!debounceConfiguration || !debounceConfiguration.blazorCallBackRef || !inputElement || !debounceConfiguration.messageElement) return;
 
     let isValid = true;
     let message = null;
@@ -31,7 +31,7 @@ const raiseDebounceFilterResult = (inputElement: HTMLInputElement, debounceConfi
             messageElement.innerText = isValid ? "" : debounceConfiguration.validationMessage ?? "";
         }
         catch (ex: any) {
-            if (messageElement) messageElement.innerText = debounceConfiguration.systemErrorMessage ?? "";
+            messageElement.innerText = debounceConfiguration.systemErrorMessage ?? "";
             message = ex.message;
             isValid = false;
         }
@@ -75,6 +75,8 @@ const clearDebounceFilter = (inputElement: HTMLInputElement):void => {
     if (!inputElement) return;
 
     const mapEntry = _handlerMap.get(inputElement);
+
+    if (mapEntry?.timer) clearTimeout(mapEntry.timer);
 
     inputElement.value = "";
 
