@@ -218,4 +218,20 @@ public class DebounceFilter_Tests
         }
     }
 
+
+    public class Methods
+    {
+        [Fact]
+        public async Task Clear_filter_should_clear_the_filter_and_state()
+        {
+            await using var context = new BunitContext();
+
+            var component = CreateDebounceFilter(context);
+
+            var input = component.Find("input");
+
+        }
+    }
+
+
 }
