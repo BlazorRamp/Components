@@ -77,7 +77,7 @@ Validation is turned on if the `RegexPattern` parameter is provided.
 
 ```
 <DebounceFilter DebounceDelayMs="500" 
-                ValidationMessage="Invalid entry filtering paused, numbers only" 
+                ValidationMessage="Invalid entry filtering paused, letters and numbers only" 
                 RegexPattern="^[A-Za-z0-9]*$"
                 FilterLabelText="Filter Results" 
                 HintText="Data filtered on pause of typing." 
