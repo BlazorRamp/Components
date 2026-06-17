@@ -27,7 +27,7 @@ this package separately (but it can be if you only require the Live Regions Serv
 1. Add the BlazorRamp.DebounceFilter NuGet package to your project using the NuGet Package Manager or the dotnet CLI.
 
 ```c#
-dotnet add package BlazorRamp.Inputs
+dotnet add package BlazorRamp.DebounceFilter
 ```
 2. Add the following Core and NavGroup style references to the `<head>` section of your application:
 - Blazor Web App / Blazor Server → App.razor
