@@ -231,7 +231,7 @@ partial class DebounceFilter : IAsyncDisposable
             if (false == String.IsNullOrWhiteSpace(message) && overdueMs > 2500)
             {
                 AnnouncementType announcementType = hasSystemError ? AnnouncementType.SystemError : AnnouncementType.Info;
-                await LiveRegionService.MakeAnnouncement(new(message, announcementType, _filterNameText, LiveRegionType.Polite));
+                await LiveRegionService.MakeAnnouncement(new(message, announcementType, _filterNameText, LiveRegionType.Polite),hasSystemError);
                 _lastAnnouncedTicks = Stopwatch.GetTimestamp();
             }
 
