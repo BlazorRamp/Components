@@ -11,8 +11,8 @@
 Welcome to your new app.
 
 
-<DebounceFilter @ref="control" DebounceDelayMs="500" FilterDataPosition="FilterDataPosition.Centre" ValidationMessage="Invalid entry filtering paused, numbers only"
-FilterLabelText="Filter Results" HintText="Data filtered as you type." RegexPattern="^[0-9]*$" OnDebounceFilterResult="HandleDebounce" ></DebounceFilter>
+<DebounceFilter @ref="control" DebounceDelayMs="500" ValidationMessage="Invalid entry filtering paused, numbers only" RegexPattern="^[A-Za-z0-9]*$"
+                FilterLabelText="Filter Results" HintText="Data filtered on pause of typing." OnDebounceFilterResult="HandleDebounce"  ParseErrorMessage="System error, filtering is unavailable at this time." />
 
 <div>
     Just som text in here to see it move
@@ -27,7 +27,17 @@ FilterLabelText="Filter Results" HintText="Data filtered as you type." RegexPatt
 
     public async Task HandleDebounce(DebouncedFilterResult result)
     {
+        if(result.IsValid)
+        {
+            var inputValue = result.FilterValue;
 
+            /*
+                * Pass the input value to your filtering mechanism 
+                * And remember to inform Blazor as callback is using a Func not EventCallback.
+            */
+            await InvokeAsync(StateHasChanged); 
+
+        }
     }
 
 

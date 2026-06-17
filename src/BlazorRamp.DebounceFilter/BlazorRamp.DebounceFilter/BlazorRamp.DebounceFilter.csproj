@@ -10,7 +10,7 @@
     <Title>BlazorRamp.DebounceFilter</Title>
     <Version>1.0.0</Version>
     <Authors>Paul Kent</Authors>
-    <Description>Debounce filter</Description>
+    <Description>A debounced text filter input for Blazor with optional regex validation and accessible screen reader announcements.</Description>
     <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
