@@ -5,6 +5,7 @@ using BlazorRamp.DebounceFilter.Common.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
+using System.Diagnostics;
 
 namespace BlazorRamp.DebounceFilter.Components;
 
@@ -108,6 +109,8 @@ partial class DebounceFilter : IAsyncDisposable
     private string? _svgVariable       = null;
     private string? _ariaDescribedByID = null;
     private string _hintTextID         = Guid.NewGuid().ToString();
+
+    private long _lastAnnouncedTicks = Stopwatch.GetTimestamp();
 
     private bool _disposed = false;
 
@@ -223,10 +226,13 @@ partial class DebounceFilter : IAsyncDisposable
                 (false, false) => _validationMessage,
             };
 
-            if (false == String.IsNullOrWhiteSpace(message))
+            var overdueMs = (Stopwatch.GetTimestamp() - _lastAnnouncedTicks) * 1000 / Stopwatch.Frequency;
+
+            if (false == String.IsNullOrWhiteSpace(message) && overdueMs > 2500)
             {
                 AnnouncementType announcementType = hasSystemError ? AnnouncementType.SystemError : AnnouncementType.Info;
                 await LiveRegionService.MakeAnnouncement(new(message, announcementType, _filterNameText, LiveRegionType.Polite));
+                _lastAnnouncedTicks = Stopwatch.GetTimestamp();
             }
 
             await OnDebounceFilterResult(filterResult);

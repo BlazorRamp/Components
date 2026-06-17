@@ -26,7 +26,7 @@ const raiseDebounceFilterResult = (inputElement: HTMLInputElement, debounceConfi
 
         try {
 
-            isValid = new RegExp(regexPattern).test(inputElement.value);
+            isValid = new RegExp(regexPattern).test(inputValue);
 
             messageElement.innerText = isValid ? "" : debounceConfiguration.validationMessage ?? "";
         }
@@ -40,6 +40,7 @@ const raiseDebounceFilterResult = (inputElement: HTMLInputElement, debounceConfi
     if (inputValue.length === 0) {
         isValid = true;
         messageElement.innerText = "";
+        message = null;
     }
 
     if (isValid) {
@@ -52,7 +53,7 @@ const raiseDebounceFilterResult = (inputElement: HTMLInputElement, debounceConfi
 
     if (clearCalled) stateIconElement.removeAttribute("data-br-invalid-state");
 
-    const debouncedFilterResult: IDebouncedFilterResult = { FilterValue: inputElement.value, IsValid: isValid, ClearCalled: clearCalled, ExceptionMessage: message };
+    const debouncedFilterResult: IDebouncedFilterResult = { FilterValue: inputValue, IsValid: isValid, ClearCalled: clearCalled, ExceptionMessage: message };
 
     debounceConfiguration.blazorCallBackRef.invokeMethodAsync(debounceConfiguration.callBackName, debouncedFilterResult);
 

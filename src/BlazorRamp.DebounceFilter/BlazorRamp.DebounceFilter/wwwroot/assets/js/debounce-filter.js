@@ -12,7 +12,7 @@ const raiseDebounceFilterResult = (inputElement, debounceConfiguration, clearCal
     const inputValue = inputElement.value.trimStart();
     if (regexPattern !== null && regexPattern.trim().length > 0) {
         try {
-            isValid = new RegExp(regexPattern).test(inputElement.value);
+            isValid = new RegExp(regexPattern).test(inputValue);
             messageElement.innerText = isValid ? "" : debounceConfiguration.validationMessage ?? "";
         }
         catch (ex) {
@@ -24,6 +24,7 @@ const raiseDebounceFilterResult = (inputElement, debounceConfiguration, clearCal
     if (inputValue.length === 0) {
         isValid = true;
         messageElement.innerText = "";
+        message = null;
     }
     if (isValid) {
         inputElement.removeAttribute("aria-invalid");
@@ -34,7 +35,7 @@ const raiseDebounceFilterResult = (inputElement, debounceConfiguration, clearCal
     stateIconElement.setAttribute("data-br-invalid-state", (!isValid).toString().toLowerCase());
     if (clearCalled)
         stateIconElement.removeAttribute("data-br-invalid-state");
-    const debouncedFilterResult = { FilterValue: inputElement.value, IsValid: isValid, ClearCalled: clearCalled, ExceptionMessage: message };
+    const debouncedFilterResult = { FilterValue: inputValue, IsValid: isValid, ClearCalled: clearCalled, ExceptionMessage: message };
     debounceConfiguration.blazorCallBackRef.invokeMethodAsync(debounceConfiguration.callBackName, debouncedFilterResult);
 };
 const oninputHandler = (event) => {
