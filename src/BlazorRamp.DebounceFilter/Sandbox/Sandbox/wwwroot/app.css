@@ -1,3 +1,6 @@
+:root {
+    --svg-filter-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M10 20v-7L2.95 4h18.1L14 13v7z'/%3E%3C/svg%3E");
+}
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }

@@ -63,19 +63,6 @@
         }
     }
 
-    &:has(input[aria-disabled="true"]) {
-        cursor: not-allowed;
-
-        .br-debounce-filter__field,
-        .br-debounce-filter__label,
-        .br-debounce-filter__hint,
-        .br-debounce-filter__icon,
-        .br-debounce-filter__state-icon {
-            cursor: not-allowed;
-            opacity: var(--br-comp-debounce-filter-disabled-opacity);
-        }
-    }
-
     ul {
         margin: 0;
         padding-left: 0;
