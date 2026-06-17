@@ -16,6 +16,7 @@
 		<PackageReference Include="BlazorRamp.Accordion" Version="1.0.0" />
 		<PackageReference Include="BlazorRamp.BusyIndicator" Version="1.0.2" />
 		<PackageReference Include="BlazorRamp.Core" Version="1.1.1" />
+		<PackageReference Include="BlazorRamp.DebounceFilter" Version="1.0.0" />
 		<PackageReference Include="BlazorRamp.DialogFramework" Version="1.0.2" />
 		<PackageReference Include="BlazorRamp.Inputs" Version="1.8.2" />
 		<PackageReference Include="BlazorRamp.NavGroup" Version="1.0.2" />

@@ -64,10 +64,11 @@ public class GlobalValues
     public const string Common_Page_Title_FAQ_Questions = "Frequently Asked Questions";
 
 
-    public const string Component_Name_Accordion    = "Accordion";
-    public const string Component_Name_Announcement = "Announcement History";
-    public const string Component_Name_Busy         = "Busy Indicator";
-    
+    public const string Component_Name_Accordion          = "Accordion";
+    public const string Component_Name_Announcement       = "Announcement History";
+    public const string Component_Name_Busy               = "Busy Indicator";
+    public const string Component_Name_Debounce_Filter    = "Debounce Filter";
+
     public const string Component_Name_Inputs             = "Inputs";
     public const string Component_Name_Text_Input         = "Text Input";
     public const string Component_Name_TextArea_Input     = "TextArea Input";
@@ -90,6 +91,7 @@ public class GlobalValues
     public const string Component_Path_Part_Accordion       = "accordion";
     public const string Component_Path_Part_Announcement    = "announcement-history";
     public const string Component_Path_Part_Busy            = "busy-indicator";
+    public const string Component_Path_Part_DebounceFilter  = "debounce-filter";
     public const string Component_Path_Part_Inputs          = "inputs";
     public const string Component_Path_Part_TextInput       = "text-input";
     public const string Component_Path_Part_TextAreaInput   = "textarea-input";

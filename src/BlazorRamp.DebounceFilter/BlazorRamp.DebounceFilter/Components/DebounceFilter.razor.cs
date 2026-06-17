@@ -18,7 +18,7 @@ partial class DebounceFilter : IAsyncDisposable
 
     /// <summary>
     /// Gets or sets the name used for the filter input control label.
-    /// If the value is null, empty, or whitespace then the field name is used.
+    /// If the value is null, empty, or whitespace then the default of Filter is used.
     /// </summary>
     [Parameter] public string FilterLabelText { get; set; } = String.Empty;
     /// <summary>
@@ -45,7 +45,7 @@ partial class DebounceFilter : IAsyncDisposable
 
     /// <summary>
     /// Gets or sets the debounce delay in milliseconds used.
-    /// Defaults to 250ms/>.
+    /// Defaults to 500ms/>.
     /// </summary>
     [Parameter] public int DebounceDelayMs { get; set; } = GlobalValues.Debounce_DelayMs;
 
@@ -72,7 +72,8 @@ partial class DebounceFilter : IAsyncDisposable
     [Parameter] public FilterDataPosition FilterDataPosition { get; set; } = FilterDataPosition.Start;
 
     /// <summary>
-    /// Gets or sets additional attributes applied to the component's root element.
+    /// Gets or sets additional attributes applied to the input element, but classes
+    /// get merged with the root component classes.
     /// </summary>
     [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
 

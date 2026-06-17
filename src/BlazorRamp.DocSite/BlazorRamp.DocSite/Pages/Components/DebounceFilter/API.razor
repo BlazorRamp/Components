@@ -1,0 +1,583 @@
+﻿@using BlazorRamp.DocSite.Pages.GettingStarted
+@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DebounceFilter}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.Component_Name_Debounce_Filter @GlobalValues.Common_Page_Title_Api</PageTitle>
+
+<h1>@GlobalValues.Component_Name_Debounce_Filter @GlobalValues.Common_Page_Title_Api</h1>
+<p>
+    Everything you need to work with the Debounce Filter component: parameters, methods, models, enums, and CSS variables for styling.
+</p>
+
+
+<section>
+    <h2 class="page-heading">
+        Component parameters, methods, supporting classes and enums.
+    </h2>
+    <p>
+        The following sections cover all components that make up this feature, including their parameters,
+        public methods, and any supporting classes or enumerations required for use.
+    </p>
+    <section class="code-table">
+
+        <h3 id="debounce-filter-component-parameters" class="code-table__heading">DebounceFilter component parameters</h3>
+
+        <table aria-labelledby="debounce-filter-component-parameters">
+
+            <thead>
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>FilterLabelText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the name used for the filter input control label.
+                        If the value is null, empty, or whitespace then the default of "Filter" is used. 
+                    </td>
+                </tr>
+                <tr>
+                    <td>ControlID</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the <span class="code-span">id</span> attribute applied to the underlying <c>&lt;input&gt;</c>
+                        element. When null, empty, or whitespace a <see cref="Guid"/> string is generated automatically. 
+                        Leading and trailing whitespace is trimmed before use.         
+                    </td>
+                    </tr>
+                <tr>
+                    <td>HintText</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the hint text rendered below the label and above the input field.
+                        When set, the text is normalised so it always ends with a full stop, and is
+                        associated to the input via <span class="code-span">aria-describedby</span>. 
+                        When null, empty, or whitespace no hint element is rendered.
+                    </td>
+                </tr>
+                <tr>
+                    <td>SvgIcon</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
+                        used as a mask-image icon alongside the tab title. Must begin with <span class="code-span">--</span>.
+                        For example: <span class="code-span">--svg-my-icon</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>FilterDataPosition</td>
+                    <td>FilterDataPosition (enum)</td>
+                    <td>
+                        Gets or sets the text/data alignment in the input.
+                        Defaults to <span class="code-span">FilterDataPosition.Start</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>DebounceDelayMs</td>
+                    <td>int</td>
+                    <td>
+                        Gets or sets the debounce delay in milliseconds used.
+                        Defaults to 500ms.
+                    </td>
+                </tr>
+                <tr>
+                    <td>RegexPattern</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the regular expression pattern used to validate the filter input.
+                        When null or empty no validation is applied.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ValidationMessage</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the validation message displayed when the regex pattern is not matched.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ParseErrorMessage</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the error message displayed when the regex pattern fails to compile.
+                        Defaults to "System error, filtering is unavailable at this time."
+                    </td>
+                </tr>
+                <tr>
+                    <td>OnDebounceFilterResult</td>
+                    <td>Func&lt;DebouncedFilterResult, Task&gt;?</td>
+                    <td>Func used like an event to pass the <span class="code-span">DebouncedFilterResult</span>
+                        back to the parent component after each debounced input event.
+                    </td>
+                </tr>
+                <tr>
+                    <td>AdditionalAttributes</td>
+                    <td>Dictionary&lt;string, object&gt;?</td>
+                    <td>
+                        Gets or sets additional attributes applied to the input element, but classes
+                        get merged with the root component classes.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+        <h3 id="debouce-filter-methods" class="code-table__heading">DebounceFilter component methods</h3>
+
+        <table aria-labelledby="debouce-filter-methods">
+
+            <thead>
+                <tr>
+                    <th scope="col">Return</th>
+                    <th scope="col">Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Task</td>
+                    <td>ClearFilter()</td>
+                    <td>
+                        Clears the filter input and resets the validation state
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="debounced-filter-result-class" class="code-table__heading">DebouncedFilterResult class</h3>
+
+        <table aria-labelledby="debounced-filter-result-class">
+
+            <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Property</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>string</td>
+                    <td>FilterValue</td>
+                    <td>
+                        The current value of the filter input at the time the debounce fired.
+                    </td>
+                </tr>
+                <tr>
+                    <td>bool</td>
+                    <td>IsValid</td>
+                    <td>
+                        Indicates whether the input passed regex validation, or <span class="code-spane">true</span> 
+                        if no regex pattern is configured.
+                    </td>
+                </tr>
+                <tr>
+                    <td>bool</td>
+                    <td>ClearCalled</td>
+                    <td>
+                        Indicates whether the result was raised as a result of the filter being programmatically cleared.
+                    </td>
+                </tr>
+                <tr>
+                    <td>string?</td>
+                    <td>ExceptionMessage</td>
+                    <td>
+                        The exception message if the regex pattern failed to compile, otherwise <span class="code-span">null</span>.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+
+</section>
+
+<section>
+
+    <h2 class="code-table__heading">Supporting enums</h2>
+
+    <section class="code-table">
+
+        <h3 id="filter-data-position-enum" class="code-table__heading">FilterDataPosition enum</h3>
+
+        <table aria-labelledby="validation-display-mode-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Start</td>
+                    <td>
+                        Left aligned in LTR, right aligned in RTL
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Centre</td>
+                    <td>
+                        The text/data is centred.
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>End</td>
+                    <td>
+                        Right aligned in LTR, left aligned in RTL
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">CSS variables defined for the debounce filter.</h2>
+
+    <p>
+        The following sections outline all of the css variables that can be set to alter the styling of the debounce filter component.
+        You can of course also override its style classes directly.
+    </p>
+    <p>
+        The format and values of these variables althought unique, follow the same as those defined for the inputs
+        to keep the look the same as a standard Blazor Ramp input.
+    </p>
+
+    <section class="code-table">
+
+        <h3 id="misc-variables" class="code-table__heading">Debounce filter miscellaneous variables</h3>
+        <p>
+            Miscellaneous variables used for states or dividing lines.
+        </p>
+        <table aria-labelledby="misc-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-svg-valid-state-icon</td>
+                    <td>url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21 21'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' d='m5.5 11.5l3 3l8.028-8'/%3E%3C/svg%3E")</td>
+                    <td>
+                        The icon used to represent a valid input - <b>there is no shared Core variable</b>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-svg-invalid-state-icon</td>
+                    <td>url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21 21'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' d='m15.5 15.5l-10-10zm0-10l-10 10'/%3E%3C/svg%3E")</td>
+                    <td>
+                        The icon used to represent an invalid input - <b>there is no shared Core variable</b>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-error-colour</td>
+                    <td>var(--br-unit-colour-danger)</td>
+                    <td>
+                        The colour used for invalid states and error messages -  uses the shared variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-success-colour</td>
+                    <td>var(--br-unit-colour-success)</td>
+                    <td>
+                        The colour used for valid states -  uses the shared variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-divider-colour</td>
+                    <td>var(--br-comp-all-divider-colour)</td>
+                    <td>
+                        The colour used for dividing lines - uses the shared variable.
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="base-outline-variables" class="code-table__heading">Debounce filter outline variables</h3>
+
+        <table aria-labelledby="base-outline-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-debounce-filter-outline-style</td>
+                    <td>var(--br-comp-all-outline-style)</td>
+                    <td>The style of the outline - uses the shared variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-outline-width</td>
+                    <td>var(--br-comp-all-outline-width)</td>
+                    <td>The width of the outline - uses the shared variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-outline-offset</td>
+                    <td>0px</td>
+                    <td>The outline offset - <b>does not use the shared variable</b>.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-outline-colour</td>
+                    <td>var(--br-comp-all-outline-colour)</td>
+                    <td>The colour of the outline - uses the shared variable.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+        <h3 id="debounce-filter-pane-base-variables" class="code-table__heading">Debounce filter pane base variables</h3>
+
+        <table aria-labelledby="debounce-filter-pane-base-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>--br-comp-debounce-filter-pane-base-background</td>
+                    <td>inherit</td>
+                    <td>
+                        The background colour of the base pane - <b>does not use the shared component variable.</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-pane-base-border-style</td>
+                    <td>var(--br-comp-all-pane-base-border-style)</td>
+                    <td>
+                        The border style - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-pane-base-border-colour</td>
+                    <td>var(--br-comp-all-pane-base-border-colour)</td>
+                    <td>
+                        The border colour - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-pane-base-border-width</td>
+                    <td>var(--br-comp-all-pane-base-border-width)</td>
+                    <td>
+                        The border width - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-pane-base-border-radius</td>
+                    <td>var(--br-comp-all-pane-base-border-radius)</td>
+                    <td>
+                        The border radius - uses the shared component variable
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+        <h3 id="debounce-filter-content-area-variables" class="code-table__heading">Debounce filter content area variables</h3>
+
+        <table aria-labelledby="debounce-filter-content-area-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>--br-comp-debounce-filter-area-content-background</td>
+                    <td>inherit</td>
+                    <td>
+                        The background colour of the content areas - <b>does not use the shared component variable.</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-area-content-colour</td>
+                    <td>var(--br-comp-all-area-content-text)</td>
+                    <td>
+                        The text colour used on the content area - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-area-content-font-family</td>
+                    <td>var(--br-comp-all-area-content-font-family)</td>
+                    <td>
+                        The font family used - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-area-content-font-size</td>
+                    <td>var(--br-comp-all-area-content-font-size)</td>
+                    <td>
+                        The font size - uses the shared component value.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-area-content-font-weight</td>
+                    <td>var(--br-comp-all-area-content-font-weight)</td>
+                    <td>
+                        The font weight - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-area-content-line-height</td>
+                    <td>var(--br-comp-all-area-content-line-height)</td>
+                    <td>
+                        The line height - uses the shared component variable.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+        <h3 id="debounce-filter-label-variables" class="code-table__heading">Debounce filter label variables</h3>
+
+        <table aria-labelledby="debounce-filter-label-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-debounce-filter-label-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>
+                        The font size - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-label-font-weight</td>
+                    <td>var(--br-unit-font-weight-500)</td>
+                    <td>
+                        The font weight - uses a Core unit value directly.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-label-color</td>
+                    <td>inherit</td>
+                    <td>
+                        The text colour - inherits its containers text colour.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-label-background</td>
+                    <td>inherit</td>
+                    <td>
+                        The background colour - inherits its containers background colour.
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+        <h3 id="debounce-filter-hint-text-variables" class="code-table__heading">Debounce hint text variables</h3>
+
+        <table aria-labelledby="debounce-filter-hint-text-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-debounce-filter-hint-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>
+                        The font size - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-hint-font-weight</td>
+                    <td>var(--br-unit-font-weight-400)</td>
+                    <td>
+                        The font weight - uses a Core unit value directly.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-hint-color</td>
+                    <td>inherit</td>
+                    <td>
+                        The text colour - inherits its containers text colour.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-hint-background</td>
+                    <td>inherit</td>
+                    <td>
+                        The background colour - inherits its containers background colour.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-debounce-filter-hint-opacity</td>
+                    <td>var(--br-unit-opacity-val-80)</td>
+                    <td>
+                        Slight opacity used on the hint text -  uses a Core unit value directly.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DebounceFilter}/{GlobalValues.Common_Page_Path_Accessibility}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Debounce_Filter - @GlobalValues.Common_Page_Title_Accessibility</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DebounceFilter}/{GlobalValues.Common_Page_Path_Usage}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Debounce_Filter - @GlobalValues.Common_Page_Title_Usage</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}

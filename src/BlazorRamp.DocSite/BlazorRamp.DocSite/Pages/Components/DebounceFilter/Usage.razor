@@ -1,0 +1,126 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DebounceFilter}/{GlobalValues.Common_Page_Path_Usage}")]
+
+<PageTitle>@GlobalValues.Component_Name_Debounce_Filter @GlobalValues.Common_Page_Title_Usage</PageTitle>
+
+<h1>@GlobalValues.Component_Name_Debounce_Filter @GlobalValues.Common_Page_Title_Usage</h1>
+
+<p>
+    Practical example showing the Debounce Filter component configured with a regex pattern for validation.
+</p>
+
+<p>
+    The following example uses the default Blazor weather table being filtered using debounced filter text. The regex pattern allows letters and numbers
+    so any other character will cause a validation error. And on validation errors the table is not filtered, with screen reader users being notified of the 
+    validation error.
+</p>
+
+<section style="margin-block:1rem;">
+    <div class="br-input-row">
+        <DebounceFilter class="br-col-xs-6"  @ref="DebounceFilterRef" 
+                        FilterLabelText="Filter table" HintText="Data filtered across all columns on pause of typing."
+                        DebounceDelayMs="500" SvgIcon="--svg-filter-icon"
+                        RegexPattern="^[A-Za-z0-9]*$" ValidationMessage="Invalid filter, filtering paused, letters and numbers only"
+                        OnDebounceFilterResult="HandleDebounce" ParseErrorMessage="System error, filtering is unavailable at this time." />
+
+    </div>
+    <div class="weather-table">
+       
+        <table>
+            <caption>Weather Table</caption>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Temp. (C)</th>
+                    <th>Temp. (F)</th>
+                    <th>Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var forecast in _filteredForecasts)
+                {
+                    <tr>
+                        <td>@forecast.Date.ToShortDateString()</td>
+                        <td>@forecast.TemperatureC</td>
+                        <td>@forecast.TemperatureF</td>
+                        <td>@forecast.Summary</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div style="display:flex;justify-content:space-between">
+        <span> @_filterRowMessage</span>
+        <button class="normal-button" @onclick="ClearFilter">Clear Filter</button>
+    </div>
+</section>
+<p>
+    The source code for the example above.
+</p>
+<CodeBox CodeBlock="@DebounceSnippets.Usage_Example" AriaLabel="Debounce filter code example" />
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DebounceFilter}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Debounce_Filter - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Overview}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Inputs - @GlobalValues.Common_Page_Title_Overview</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+    [Inject] ILiveRegionService _liveRegionService { get; set; } = default!;
+
+    private DebounceFilter DebounceFilterRef { get; set; } = default!;
+
+    private List<WeatherForecast> _forecasts = [];
+    private List<WeatherForecast> _filteredForecasts = [];
+
+    private string _filterRowMessage = String.Empty;
+
+    private async Task HandleDebounce(DebouncedFilterResult result)
+    {
+        if (result.ExceptionMessage is not null || false == result.IsValid) return;
+
+        await FilterTable(result.FilterValue);
+
+        _filterRowMessage = $"Showing {_filteredForecasts.Count} rows";
+
+        await _liveRegionService.MakeAnnouncement(new Announcement(_filterRowMessage), replayable: false);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task FilterTable(string filterValue)
+    {
+        _filteredForecasts = _forecasts!.Where(a => a.Summary!.ToLower().Contains(filterValue)
+                                 || a.TemperatureC.ToString().Contains(filterValue)
+                                 || a.TemperatureF.ToString().Contains(filterValue)
+                                 || a.Date.ToString().Contains(filterValue)
+                                 || filterValue == String.Empty).ToList();
+    }
+
+    private async Task ClearFilter()
+    {
+        await DebounceFilterRef.ClearFilter();
+    }  
+
+
+    protected override void OnInitialized()
+    {
+        var startDate = DateOnly.FromDateTime(DateTime.Now);
+        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
+
+        _forecasts = Enumerable.Range(1, 10)
+                        .Select(index => new WeatherForecast(startDate.AddDays(index), Random.Shared.Next(-20, 55), summaries[Random.Shared.Next(summaries.Length)])).ToList();
+        
+        _filteredForecasts = [.. _forecasts];
+        _filterRowMessage = "No filter applied showing all 10 rows";
+    }
+    private record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+    {
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
+}
