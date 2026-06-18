@@ -8,7 +8,7 @@
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
     <Title>BlazorRamp.DebounceFilter</Title>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Authors>Paul Kent</Authors>
     <Description>A debounced text filter input for Blazor with optional regex validation and accessible screen reader announcements.</Description>
     <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
@@ -16,9 +16,10 @@
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Debounce; Filter;</PackageTags>
-    <PackageReleaseNotes>Initial release of the BlazorRamp Debounce Filter</PackageReleaseNotes>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
-    <FileVersion>1.0.0</FileVersion>
+    <PackageReleaseNotes>Added a Replayable parameter to DebounceFilter for controlling whether validation
+announcements are logged to the announcement history.</PackageReleaseNotes>
+    <AssemblyVersion>1.1.0</AssemblyVersion>
+    <FileVersion>1.1.0</FileVersion>
 	  	  <PackageLicenseFile>LICENSE</PackageLicenseFile>	  	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>

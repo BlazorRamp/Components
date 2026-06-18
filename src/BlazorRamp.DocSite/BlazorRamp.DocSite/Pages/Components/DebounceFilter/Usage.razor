@@ -87,7 +87,7 @@
 
         await FilterTable(result.FilterValue);
 
-        _filterRowMessage = $"Showing {_filteredForecasts.Count} rows";
+        _filterRowMessage = result.ClearCalled ? "No filter applied showing all 10 rows" : $"Showing {_filteredForecasts.Count} rows";
 
         await _liveRegionService.MakeAnnouncement(new Announcement(_filterRowMessage), replayable: false);
         await InvokeAsync(StateHasChanged);

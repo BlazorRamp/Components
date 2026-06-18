@@ -72,6 +72,12 @@ partial class DebounceFilter : IAsyncDisposable
     [Parameter] public FilterDataPosition FilterDataPosition { get; set; } = FilterDataPosition.Start;
 
     /// <summary>
+    /// Gets or sets whether non-system-error validation messages are added to the replayable
+    /// announcement history. Defaults to <c>true</c>. Genuine system errors (e.g. an invalid
+    /// regex pattern) are always added to history regardless of this setting.
+    /// </summary>
+    [Parameter] public bool Replayable { get; set; } = true;
+    /// <summary>
     /// Gets or sets additional attributes applied to the input element, but classes
     /// get merged with the root component classes.
     /// </summary>
@@ -232,7 +238,7 @@ partial class DebounceFilter : IAsyncDisposable
             if (false == String.IsNullOrWhiteSpace(message) && overdueMs > 2500)
             {
                 AnnouncementType announcementType = hasSystemError ? AnnouncementType.SystemError : AnnouncementType.Info;
-                await LiveRegionService.MakeAnnouncement(new(message, announcementType, _filterNameText, LiveRegionType.Polite),hasSystemError);
+                await LiveRegionService.MakeAnnouncement(new(message, announcementType, _filterNameText, LiveRegionType.Polite),hasSystemError || Replayable);
                 _lastAnnouncedTicks = Stopwatch.GetTimestamp();
             }
 
