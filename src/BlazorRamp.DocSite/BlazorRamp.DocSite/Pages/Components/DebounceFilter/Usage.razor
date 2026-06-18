@@ -13,12 +13,18 @@
     so any other character will cause a validation error. And on validation errors the table is not filtered, with screen reader users being notified of the 
     validation error.
 </p>
-
+<p>
+    <b>Note: </b>The live region service and components that use it have a <span class="code-span">Replayable</span> parameter which is set true by default.
+     Replayable announcements are those that are added to a rolling log of the last twenty announcments that are viewable in the announcement history viewer.
+     For announcments such as invalid debounce filters, or the number of filtered rows, you would not normally mark these as replayable, however for this demo I have
+     not turned them off so non screen reader users can see all the messages that were sent to screen readers. Click the Alerts button bottom right of the screen to see
+     announcements that were sent for screen reader users.
+</p>
 <section style="margin-block:1rem;">
     <div class="br-input-row">
         <DebounceFilter class="br-col-xs-6"  @ref="DebounceFilterRef" 
                         FilterLabelText="Filter table" HintText="Data filtered across all columns on pause of typing."
-                        DebounceDelayMs="500" SvgIcon="--svg-filter-icon"
+                        DebounceDelayMs="500" SvgIcon="--svg-filter-icon" Replayable="true"
                         RegexPattern="^[A-Za-z0-9]*$" ValidationMessage="Invalid filter, filtering paused, letters and numbers only"
                         OnDebounceFilterResult="HandleDebounce" ParseErrorMessage="System error, filtering is unavailable at this time." />
 
@@ -89,7 +95,7 @@
 
         _filterRowMessage = result.ClearCalled ? "No filter applied showing all 10 rows" : $"Showing {_filteredForecasts.Count} rows";
 
-        await _liveRegionService.MakeAnnouncement(new Announcement(_filterRowMessage), replayable: false);
+        await _liveRegionService.MakeAnnouncement(new Announcement(_filterRowMessage));
         await InvokeAsync(StateHasChanged);
     }
 

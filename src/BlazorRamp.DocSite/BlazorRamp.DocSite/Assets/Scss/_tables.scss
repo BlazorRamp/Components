@@ -48,9 +48,14 @@
         color: var(--br-code-block-text);
         border-top: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
         width: 33%;
+        border-left: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
+
+        &:first-child{
+            border-left:none;
+        }
 
         &:nth-child(2) {
-            border-inline: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
+
             font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
             color: var(--br-code-block-text);
         }
@@ -75,6 +80,12 @@
     &--two-col-descriptive {
 
         & td {
+            border-left: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
+
+            &:first-child {
+                border-left: none;
+            }
+
             &:last-child {
                 border-inline: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
                 font-family: var(--br-unit-font-family-default);
@@ -85,6 +96,8 @@
 }
 
 .weather-table {
+    overflow-x: auto;
+
     & table {
         width: 100%;
         border-collapse: separate;
@@ -97,8 +110,8 @@
 
     & caption {
         color: var(--br-code-table-heading-text);
-        text-align:start;
-        font-size:var(--br-unit-font-size-2);
+        text-align: start;
+        font-size: var(--br-unit-font-size-2);
         margin-bottom: var(--br-unit-space-3);
     }
 

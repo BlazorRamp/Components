@@ -107,6 +107,15 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Replayable</td>
+                    <td>bool</td>
+                    <td>
+                        Gets or sets whether non-system-error validation messages are added to the replayable
+                        announcement history. Defaults to <span class="code-span">true</span>. Genuine system errors (e.g. an invalid
+                        regex pattern) are always added to history regardless of this setting.
+                    </td>
+                </tr>
+                <tr>
                     <td>OnDebounceFilterResult</td>
                     <td>Func&lt;DebouncedFilterResult, Task&gt;?</td>
                     <td>Func used like an event to pass the <span class="code-span">DebouncedFilterResult</span>

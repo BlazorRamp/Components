@@ -915,10 +915,13 @@ h2:focus-visible {
   color: var(--br-code-block-text);
   border-top: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
   width: 33%;
+  border-left: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
   padding: var(--br-unit-space-3);
 }
+.code-table td:first-child {
+  border-left: none;
+}
 .code-table td:nth-child(2) {
-  border-inline: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
   font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
   color: var(--br-code-block-text);
 }
@@ -933,12 +936,21 @@ h2:focus-visible {
   text-align: start;
   margin-block-end: var(--br-unit-space-5);
 }
+.code-table--two-col-descriptive td {
+  border-left: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
+}
+.code-table--two-col-descriptive td:first-child {
+  border-left: none;
+}
 .code-table--two-col-descriptive td:last-child {
   border-inline: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
   font-family: var(--br-unit-font-family-default);
   color: inherit;
 }
 
+.weather-table {
+  overflow-x: auto;
+}
 .weather-table table {
   width: 100%;
   border-collapse: separate;

@@ -80,8 +80,17 @@
                 </tr>
                 <tr>
                     <td>EndStatus</td>
-                    <td>AnnouncementType</td>
+                    <td>AnnouncementType (enum)</td>
                     <td>Type of announcement made when the operation completes. Defaults to OperationCompleted.</td>
+                </tr>
+                <tr>
+                    <td>Replayable</td>
+                    <td>bool</td>
+                    <td>
+                        Gets or sets whether messages are added to the replayable
+                        announcement history. Defaults to <span class="code-span">true</span>. 
+                        Announcement types of <span class="code-span">AnnouncementType.SystemError</span> are always added.
+                    </td>
                 </tr>
                 <tr>
                     <td>OnBusyCompleted</td>

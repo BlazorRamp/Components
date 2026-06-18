@@ -16,7 +16,7 @@ public class DebounceSnippets
         <div class="br-input-row">
             <DebounceFilter class="br-col-xs-6"  @ref="DebounceFilterRef" 
                             FilterLabelText="Filter table" HintText="Data filtered across all columns on pause of typing."
-                            DebounceDelayMs="500" SvgIcon="--svg-filter-icon"
+                            DebounceDelayMs="500" SvgIcon="--svg-filter-icon" Replayable="true"
                             RegexPattern="^[A-Za-z0-9]*$" ValidationMessage="Invalid filter, filtering paused, letters and numbers only"
                             OnDebounceFilterResult="HandleDebounce" ParseErrorMessage="System error, filtering is unavailable at this time." />
 
@@ -50,8 +50,8 @@ public class DebounceSnippets
             <span> @_filterRowMessage</span>
             <button class="normal-button" @onclick="ClearFilter">Clear Filter</button>
         </div>
-
-                
+                       
+        
         @code {
             [Inject] ILiveRegionService _liveRegionService { get; set; } = default!;
 
@@ -68,9 +68,9 @@ public class DebounceSnippets
 
                 await FilterTable(result.FilterValue);
 
-                _filterRowMessage = $"Showing {_filteredForecasts.Count} rows";
+                _filterRowMessage = result.ClearCalled ? "No filter applied showing all 10 rows" : $"Showing {_filteredForecasts.Count} rows";
 
-                await _liveRegionService.MakeAnnouncement(new Announcement(_filterRowMessage), replayable: false);
+                await _liveRegionService.MakeAnnouncement(new Announcement(_filterRowMessage));
                 await InvokeAsync(StateHasChanged);
             }
 
@@ -88,6 +88,7 @@ public class DebounceSnippets
                 await DebounceFilterRef.ClearFilter();
             }  
 
+
             protected override void OnInitialized()
             {
                 var startDate = DateOnly.FromDateTime(DateTime.Now);
@@ -99,7 +100,6 @@ public class DebounceSnippets
                 _filteredForecasts = [.. _forecasts];
                 _filterRowMessage = "No filter applied showing all 10 rows";
             }
-
             private record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
             {
                 public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
