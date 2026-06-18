@@ -75,9 +75,10 @@ public static class GlobalValues
 
 
 
-    public const string Component_Name_Accordion    = "Accordion";
-    public const string Component_Name_Announcement = "Announcement History";
-    public const string Component_Name_Busy         = "Busy Indicator";
+    public const string Component_Name_Accordion       = "Accordion";
+    public const string Component_Name_Announcement    = "Announcement History";
+    public const string Component_Name_Busy            = "Busy Indicator";
+    public const string Component_Name_Debounce_Filter = "Debounce Filter";
 
     public const string Component_Name_Inputs            = "Inputs";
     public const string Component_Name_Text_Input        = "Text Input";
@@ -101,6 +102,7 @@ public static class GlobalValues
     public const string Component_Path_Part_Accordion       = "accordion";
     public const string Component_Path_Part_Announcement    = "announcement-history";
     public const string Component_Path_Part_Busy            = "busy-indicator";
+    public const string Component_Path_Part_DebounceFilter  = "debounce-filter";
     public const string Component_Path_Part_Inputs          = "inputs";
     public const string Component_Path_Part_TextInput       = "text-input";
     public const string Component_Path_Part_TextAreaInput   = "textarea-input";
@@ -148,14 +150,15 @@ public static class GlobalValues
 
     public const int Start_Width_For_Collapsed_Menu = 576;
 
-    public const string Site_Link_Docs_Busy         = "https://docs.blazorramp.uk/components/busy-indicator/overview";
-    public const string Site_Link_Docs_Switch       = "https://docs.blazorramp.uk/components/switch/overview";
-    public const string Site_Link_Docs_SkipTo       = "https://docs.blazorramp.uk/components/skip-to/overview";
-    public const string Site_Link_Docs_Modal_Dialog = "https://docs.blazorramp.uk/frameworks/modal-dialog/overview";
-    public const string Site_Link_Docs_ToggleTip    = "https://docs.blazorramp.uk/components/toggletip/overview";
-    public const string Site_Link_Docs_Tabs         = "https://docs.blazorramp.uk/components/tabs/overview";
-    public const string Site_Link_Docs_Accordion    = "https://docs.blazorramp.uk/components/accordion/overview";
-    public const string Site_Link_Docs_Nav_Group    = "https://docs.blazorramp.uk/components/nav-group/overview";
+    public const string Site_Link_Docs_Busy           = "https://docs.blazorramp.uk/components/debounce-filter/overview";
+    public const string Site_Link_Docs_DebounceFilter = "https://docs.blazorramp.uk/components/busy-indicator/overview";
+    public const string Site_Link_Docs_Switch         = "https://docs.blazorramp.uk/components/switch/overview";
+    public const string Site_Link_Docs_SkipTo         = "https://docs.blazorramp.uk/components/skip-to/overview";
+    public const string Site_Link_Docs_Modal_Dialog   = "https://docs.blazorramp.uk/frameworks/modal-dialog/overview";
+    public const string Site_Link_Docs_ToggleTip      = "https://docs.blazorramp.uk/components/toggletip/overview";
+    public const string Site_Link_Docs_Tabs           = "https://docs.blazorramp.uk/components/tabs/overview";
+    public const string Site_Link_Docs_Accordion      = "https://docs.blazorramp.uk/components/accordion/overview";
+    public const string Site_Link_Docs_Nav_Group      = "https://docs.blazorramp.uk/components/nav-group/overview";
 
     public const string Site_Link_Docs_Inputs = "https://docs.blazorramp.uk/components/inputs/overview";
 }

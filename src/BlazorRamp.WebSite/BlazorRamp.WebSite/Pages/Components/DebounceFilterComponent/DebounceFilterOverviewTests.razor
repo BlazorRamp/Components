@@ -1,0 +1,187 @@
+﻿@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_DebounceFilter}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
+
+<PageTitle>@GlobalValues.Component_Name_Debounce_Filter @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Debounce_Filter @GlobalValues.Common_Page_Title_Overview_Tests</h1>
+    <p>
+        The Debounce Filter is a text input for scenarios where you need to react to what a user is typing, but rather than react on every keystoke you only want an 
+        action to occur on pause of typing, with this pause detemined by a debounce length in milliseconds (1000 milliseconds is equal to 1 second). If typing
+        resumes within this time, the debounce is reset and the action delayed until a pause that exceeds this time occurs. One common use case for this is
+        for filtering table data, which could be costly, so you would not want to filter the table on every single keystroke.
+    </p>
+    <p>
+        <b>Released: </b>Current version <b>v1.1.0</b> See the documentation site for more information: <a target="_blank" class="@GlobalValues.Link_Class" href="@GlobalValues.Site_Link_Docs_DebounceFilter">Debounce filter documentation (opens in new window)</a>
+    </p>
+
+</section>
+
+<section class="@GlobalValues.Main_Nav_Section_Heading_SkipTo @GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
+    <p>
+        The debounce filter has been set to use a delay of 500 milliseconds, once this time has exceeded without a further keypress, the text entered is
+        used to filter the weather table below. The filter is checked against every column, and where there is a match using a simple string contains, that row is 
+        included in the filtered result set.
+    </p>
+    <p>
+        The debounce filter can have an optional validation check applied against the entered value, checked per keystoke. Validation failures are shown belwo the 
+        filter input with the  message announceded to screen reader users. For this test validation has been enabled and characters other than letters or nunmbers will
+        cause a validation error. Unless cleared using the Clear Filter button, a green tick icon appears to the right of the input signifying a valid entry with a red cross
+        icon sigifying a validation errror. 
+    </p>
+    <p>
+        The debounce filter uses the Blazor Ramp live region service to announce any validation errors to the user. As with all announcements sent via the live region service,
+        the developer has the option to have this inluded or excluded from messages that get added to a rolling log containing the last 20 announcments made, viewable 
+        using the <b>Announcement History dialog</b>. This dialog can be accessed at any time using the keyboard shortcut <span class="br-visually-hidden">Control plus Shift plus the H key</span>
+        <span aria-hidden="true"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd></span> or by pressing the <b>Alerts button</b> located at the bottom-right of the screen. While this 
+        component supports a hidden, "focus-visible only" mode for a cleaner UI, it is currently configured to be always visible for any user to access.
+    </p>
+    <p>
+        The purpose of the test is primarily for the debounce filter, however, as rows may be filtered, additional announcements are made to inform users of the number of rews resulting from the
+        filter. For the beneift of all users, I have not disabled logging of these trivial announcements so they too will be availavle to view in the announcment history dialog.
+    </p>
+    <p>
+        The debounce filter can be programatically cleared, a Clear Filter button appears below the table for any tests.
+    </p>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+    <ul>
+        <li>
+            On pause of typing that exceeds the 500ms delay set. The filter value will be used to filter the table, with the filtered row count show beneath the table with
+            the same information announced to screen reader users.
+        </li>
+        <li>
+            On pause of typing that exceeds the 500ms delay set. If there is a validation failure, no filtering will occur, a validation message will appear below the filter input with
+            this information being announced to screen reader users.
+        </li>
+        <li>
+            If a validation failure occurs, the <span class="code-span">aria-invlaid</span> attribued is used to inform screen reader users. 
+            Screen reader users entering an invalid input should be informed that the current entry is invalid.
+            <strong>Note: </strong>The debounce filter opted to uses the live region service for validation failures as it could better throttle these as opposed to using
+            the <span class="code-span">aria-describedby</span> attribute.
+        </li>
+        <li>
+            Activating the Clear Filter button will clear the filter input, this in turn raises an event, which in this instance is used to clear the filtered table so it shows the intial 10
+            rows, this information is also announced to screen reader users.
+        </li>
+        <li>
+            As all announcments were optionally added to the rolling log, all announcements that were made for screen reader users should be availabe to view in the announcment history dialog.
+        </li>
+    </ul>
+
+</section>
+
+<section class="@GlobalValues.Info_Box_Class" style="min-height:750px;">
+
+    <h3>Debounce filter test</h3>
+
+    <div class="br-input-row">
+        <DebounceFilter class="br-col-xs-6"  @ref="DebounceFilterRef" 
+                        FilterLabelText="Filter table" HintText="Data filtered across all columns on pause of typing."
+                        DebounceDelayMs="500" SvgIcon="--svg-filter-icon" Replayable="true"
+                        RegexPattern="^[A-Za-z0-9]*$" ValidationMessage="Invalid filter, filtering paused, letters and numbers only"
+                        OnDebounceFilterResult="HandleDebounce" ParseErrorMessage="System error, filtering is unavailable at this time." />
+
+    </div>
+    <div class="weather-table">
+       
+        <table>
+            <caption>Weather Table</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Temp. (C)</th>
+                    <th scope="col">Temp. (F)</th>
+                    <th scope="col">Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var forecast in _filteredForecasts)
+                {
+                    <tr>
+                        <td>@forecast.Date.ToShortDateString()</td>
+                        <td>@forecast.TemperatureC</td>
+                        <td>@forecast.TemperatureF</td>
+                        <td>@forecast.Summary</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div style="display:flex;justify-content:space-between; align-items:center;flex-wrap:wrap;">
+        <span> @_filterRowMessage</span>
+        <button class="normal-button" @onclick="ClearFilter">Clear Filter</button>
+    </div>
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Quirks_Issues}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Busy - @GlobalValues.Common_Page_Title_Quirks_Issues</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Overview}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Inputs - @GlobalValues.Common_Page_Title_Overview</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+    [Inject] ILiveRegionService _liveRegionService { get; set; } = default!;
+
+    private DebounceFilter DebounceFilterRef { get; set; } = default!;
+
+    private List<WeatherForecast> _forecasts = [];
+    private List<WeatherForecast> _filteredForecasts = [];
+
+    private string _filterRowMessage = String.Empty;
+
+    private async Task HandleDebounce(DebouncedFilterResult result)
+    {
+        if (result.ExceptionMessage is not null || false == result.IsValid) return;
+
+        await FilterTable(result.FilterValue);
+
+        _filterRowMessage = result.ClearCalled ? "No filter applied showing all 10 rows" : $"Showing {_filteredForecasts.Count} rows";
+
+        await _liveRegionService.MakeAnnouncement(new Announcement(_filterRowMessage));
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task FilterTable(string filterValue)
+    {
+        _filteredForecasts = _forecasts!.Where(a => a.Summary!.ToLower().Contains(filterValue)
+                                 || a.TemperatureC.ToString().Contains(filterValue)
+                                 || a.TemperatureF.ToString().Contains(filterValue)
+                                 || a.Date.ToString().Contains(filterValue)
+                                 || filterValue == String.Empty).ToList();
+    }
+
+    private async Task ClearFilter()
+    {
+        await DebounceFilterRef.ClearFilter();
+    }
+
+
+    protected override void OnInitialized()
+    {
+        var startDate = DateOnly.FromDateTime(DateTime.Now);
+        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
+
+        _forecasts = Enumerable.Range(1, 10)
+                        .Select(index => new WeatherForecast(startDate.AddDays(index), Random.Shared.Next(-20, 55), summaries[Random.Shared.Next(summaries.Length)])).ToList();
+
+        _filteredForecasts = [.. _forecasts];
+        _filterRowMessage = "No filter applied showing all 10 rows";
+    }
+    private record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+    {
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
+}

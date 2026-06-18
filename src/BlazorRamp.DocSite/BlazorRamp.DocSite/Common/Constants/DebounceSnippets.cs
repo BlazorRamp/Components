@@ -27,10 +27,10 @@ public class DebounceSnippets
                 <caption>Weather Table</caption>
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Temp. (C)</th>
-                        <th>Temp. (F)</th>
-                        <th>Summary</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Temp. (C)</th>
+                        <th scope="col">Temp. (F)</th>
+                        <th scope="col">Summary</th>
                     </tr>
                 </thead>
                 <tbody>

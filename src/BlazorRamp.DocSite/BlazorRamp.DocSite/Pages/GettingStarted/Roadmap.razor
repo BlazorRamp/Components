@@ -12,12 +12,12 @@
         are the ones that in my opinion can have the most impact on accessibility given how poorly they are generally implemented, if at all (from an accessibility standpoint), given there usage.
     </p>
     <p>
-        I will also be building child components first, for example the DataTable will require a Pager, a TextDebounce Filter, a DropDownMenuButton for row actions etc but all of these components can be used
+        I will also be building child components first, for example the DataTable will require a Pager, a Debounce Filter, a DropDownMenuButton for row actions etc but all of these components can be used
         individually. The other factor I take into account is what I need for the site, for example the NavGroup component that was recently released.
     </p>
     <p>
-        Currently I am working on Input components and along side these will also be a Form Error Summary. I already have a separate NuGet Open Source library for Validation which works with
-        Blazor and the Blazor <span class="code-span">EditContext</span>; for those interested see: <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
+        I will most likely start work on a Pager next for general paging of results and/or for use with the planned data table. The debounce filter will also most likely be used intially with the data table, 
+        with perhaps a more advanced filter (i.e for criteria per column) built later.
     </p>
     <p>
         After the above, and in no particular order the following components will be developed. Please note all of the components will be fully functional, but may not have all the bells
@@ -39,9 +39,6 @@
             DropDownMenuButton
         </li>
         <li>
-            Inputs (working on with some, many now released - more to be added to the BlazorRamp.Inputs NuGet package)
-        </li>
-        <li>
             Pager
         </li>
         <li>
@@ -49,9 +46,6 @@
         </li>
         <li>
             Heading
-        </li>
-        <li>
-            TextDebounce
         </li>
         <li>
             ToolTip
