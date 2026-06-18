@@ -74,7 +74,13 @@ public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
     /// value is not exposed but may be utilised in the future to filter announcements.
     /// </summary>
     [Parameter] public AnnouncementType EndStatus        { get; set; } = AnnouncementType.OperationCompleted;
-    
+
+    /// <summary>
+    /// Gets or sets whether non-system-error validation messages are added to the replayable
+    /// announcement history. Defaults to <c>true</c>.
+    /// </summary>
+    [Parameter] public bool Replayable { get; set; } = true;
+
     /// <summary>
     /// An event that is fired  after the busy state has finished and the indicator is hidden.
     /// </summary>
@@ -184,10 +190,11 @@ public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
     /// <param name="liveRegionType">The politeness level of the live region (defaults to Assertive).</param>
     private async Task MakeAnnouncement(string ariaText, AnnouncementType announcementType, string indicatorTrigger,  bool showing, LiveRegionType liveRegionType = LiveRegionType.Assertive)
     {
+        var hasError     = showing ? false : announcementType == AnnouncementType.SystemError; 
         var announceType = showing ? AnnouncementType.OperationStarted : announcementType;
         var announcement = new Announcement(ariaText, announceType, indicatorTrigger, liveRegionType);
 
-        await LiveRegionService.MakeAnnouncement(announcement);
+        await LiveRegionService.MakeAnnouncement(announcement,hasError || Replayable);
     }
 
     private async ValueTask StartBusyIndicator(ElementReference busyIndicatorRef, string displayModifierClass, int displayTimeoutMs, OverlayPosition overlay)
