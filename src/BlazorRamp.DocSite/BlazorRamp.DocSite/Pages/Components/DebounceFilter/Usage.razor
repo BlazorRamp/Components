@@ -91,21 +91,22 @@
     {
         if (result.ExceptionMessage is not null || false == result.IsValid) return;
 
-        await FilterTable(result.FilterValue);
-
-        _filterRowMessage = result.ClearCalled ? "No filter applied showing all 10 rows" : $"Showing {_filteredForecasts.Count} rows";
-
-        await _liveRegionService.MakeAnnouncement(new Announcement(_filterRowMessage));
-        await InvokeAsync(StateHasChanged);
+        await FilterTable(result.FilterValue, result.ClearCalled);
     }
 
-    private async Task FilterTable(string filterValue)
+    private async Task FilterTable(string filterValue, bool clearCalled)
     {
         _filteredForecasts = _forecasts!.Where(a => a.Summary!.ToLower().Contains(filterValue.ToLower())
                                  || a.TemperatureC.ToString().Contains(filterValue)
                                  || a.TemperatureF.ToString().Contains(filterValue)
                                  || a.Date.ToString().Contains(filterValue)
                                  || filterValue == String.Empty).ToList();
+
+        _filterRowMessage = clearCalled ? "No filter applied showing all 10 rows" : $"Showing {_filteredForecasts.Count} rows";
+
+        await _liveRegionService.MakeAnnouncement(new Announcement(_filterRowMessage));
+        await InvokeAsync(StateHasChanged);
+
     }
 
     private async Task ClearFilter()
