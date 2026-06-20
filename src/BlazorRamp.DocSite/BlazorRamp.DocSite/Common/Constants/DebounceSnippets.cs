@@ -76,7 +76,7 @@ public class DebounceSnippets
 
             private async Task FilterTable(string filterValue)
             {
-                _filteredForecasts = _forecasts!.Where(a => a.Summary!.ToLower().Contains(filterValue)
+                _filteredForecasts = _forecasts!.Where(a => a.Summary!.ToLower().Contains(filterValue.ToLower())
                                          || a.TemperatureC.ToString().Contains(filterValue)
                                          || a.TemperatureF.ToString().Contains(filterValue)
                                          || a.Date.ToString().Contains(filterValue)
