@@ -1,5 +1,54 @@
 ﻿@use "_root-pager";
 
-.br-pager{
+@mixin icon {
+    display: inline-block;
+    background-color: currentColor;
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
 
+    @media (forced-colors: active) {
+        background-color: CanvasText;
+        color: Canvas;
+    }
+
+    @media(dir:rtl) {
+        transform: scaleX(-1);
+    }
+}
+.br-pager {
+
+
+    &__buton {
+    }
+
+    &__link {
+    }
+
+    &__icon {
+        @include icon;
+
+        &--next {
+            mask-image: var(--svg-pager-next-icon);
+        }
+
+        &--prev {
+            mask-image: var(--svg-pager-prev-icon);
+        }
+
+        &--first {
+            mask-image: var(--svg-pager-first-icon);
+        }
+
+        &--last {
+            mask-image: var(--svg-pager-last-icon);
+        }
+    }
+
+    &__selector-text{
+
+    }
+
+    &__information{
+
+    }
 }

@@ -1,0 +1,56 @@
+﻿
+<nav class="@GlobalValues.Pager_Class">
+
+   <div class="@GlobalValues.Pager_Group_Class">
+        @if(_pagerSelectorType == PagerSelectorType.Button)
+        {
+            <button class="@GlobalValues.Pager_Button_Class">
+                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_First_Modifier"></span>
+                 <span class="@GlobalValues.Pager_Selector_Text_Class">@_firstText</span>
+            </button>
+            <button class="@GlobalValues.Pager_Button_Class">
+                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Prev_Modifier"></span>
+                <span class="@GlobalValues.Pager_Selector_Text_Class">@_prevText</span>
+            </button>
+        }
+        else
+        {
+            <a class="@GlobalValues.Pager_Link_Class">
+                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_First_Modifier"></span>
+                <span class="@GlobalValues.Pager_Selector_Text_Class">@_firstText</span>
+            </a>
+            <a class="@GlobalValues.Pager_Link_Class">
+                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Prev_Modifier"></span>
+                <span class="@GlobalValues.Pager_Selector_Text_Class">@_prevText</span>
+            </a>
+        }
+    </div>
+
+   <div class="@GlobalValues.Pager_Information_Class">@_informationText</div>
+
+    <div class="@GlobalValues.Pager_Group_Class">
+        @if (_pagerSelectorType == PagerSelectorType.Button)
+        {
+            <button class="@GlobalValues.Pager_Button_Class">
+                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Next_Modifier"></span>
+                <span class="@GlobalValues.Pager_Selector_Text_Class">@_nextText</span>
+            </button>
+            <button class="@GlobalValues.Pager_Button_Class">
+                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Last_Modifier"></span>
+                <span class="@GlobalValues.Pager_Selector_Text_Class">@_lastText</span>
+            </button>
+        }
+        else
+        {
+            <a class="@GlobalValues.Pager_Link_Class">
+                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Next_Modifier"></span>
+                <span class="@GlobalValues.Pager_Selector_Text_Class">@_nextText</span>
+            </a>
+            <a class="@GlobalValues.Pager_Link_Class">
+                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Last_Modifier"></span>
+                <span class="@GlobalValues.Pager_Selector_Text_Class">@_lastText</span>
+            </a>
+        }
+    </div>
+
+</nav>
