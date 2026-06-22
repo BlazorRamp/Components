@@ -15,13 +15,16 @@ Welcome to your new app.
                 FilterLabelText="Filter Results" HintText="Data filtered on pause of typing." OnDebounceFilterResult="HandleDebounce"  ParseErrorMessage="System error, filtering is unavailable at this time." />
 
 <div>
-    Just som text in here to see it move
+   @_payload
 </div>
 
 <button type="button" @onclick="Clear">Clear</button>
 
 <button type="button">Focus On Me</button>
+
+
 @code{
+    private string _payload = String.Empty;
 
     public DebounceFilter control { get; set; }
 
@@ -32,9 +35,11 @@ Welcome to your new app.
             var inputValue = result.FilterValue;
 
             /*
-                * Pass the input value to your filtering mechanism 
-                * And remember to inform Blazor as callback is using a Func not EventCallback.
-            */
+            * Pass the input value to your filtering mechanism 
+            * And remember to inform Blazor as callback is using a Func not EventCallback.
+                */
+
+            _payload = result.ToString();
             await InvokeAsync(StateHasChanged); 
 
         }
@@ -45,4 +50,12 @@ Welcome to your new app.
     {
         await control.ClearFilter();
     }
+
+
+    protected override bool ShouldRender()
+    {
+        return false;
+    }
+
+
 }

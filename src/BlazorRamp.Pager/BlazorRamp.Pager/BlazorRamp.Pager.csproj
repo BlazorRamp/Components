@@ -1,0 +1,81 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+	  <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
+    <Title>BlazorRamp.Pager</Title>
+    <Version>1.0.0</Version>
+    <Authors>Paul Kent</Authors>
+    <Description>Pagination component for the Blazor Ramp ecosystem</Description>
+    <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
+    <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
+    <PackageTags>Blazor; Accessible Components; Accessibility; Pager; Pagination; ARIA; </PackageTags>
+    <PackageReleaseNotes>Initial release of the Blazor Ramp Pager component</PackageReleaseNotes>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+  </PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Remove="compilerconfig.json" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="BlazorRamp.Core" Version="1.1.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.28" />
+		<PackageReference Include="BuildWebCompiler2022" Version="1.14.15">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+
+		<!-- 
+		It seems having the typesript msbuild causes the static asset errors. The compiler works without it
+		but you cannot debug - so include it when debugging.
+	  -->
+		<!--<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="6.0.3">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>-->
+	</ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\css\" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="BlazorRamp.Pager.Tests.Unit" key="002400000480000094000000060200000024000052534131000400000100010091764439b057aa648d9b6fae0af179aacf637c9e9eb0c53eb2d2480ebc4eadc7ad2cc8ddaca110281c6da8f466eea56e22ce7f6cada84d657f1b2e4a6c5169a03c7e272c3bc7b14930364f0c1a5c5a75a8631dd303454f3569bf32a95db99132838602a24d64b3b92124827682ee19d6df5921a6bc4bd77a999b26c9420337df" />
+	</ItemGroup>
+
+</Project>
