@@ -10,7 +10,7 @@
         break;
 }
 
-<div id="@AccordionPanelID" class="@GlobalValues.Accordion_Panel_Class" aria-labelledby="@AccordionButtonID" tabindex="@(PanelHasTabIndex ? "0" : null)" 
+<div id="@AccordionPanelID" class="@GlobalValues.Accordion_Panel_Class" aria-labelledby="@(PanelIsRegion ? AccordionHeadingID : null)" tabindex="@(PanelHasTabIndex ? "0" : null)"
 role="@(PanelIsRegion ? "region" : null)" data-br-panel-expanded="@IsExpanded.ToString().ToLower()">
     
     @if (IsExpanded || _persistContent)
