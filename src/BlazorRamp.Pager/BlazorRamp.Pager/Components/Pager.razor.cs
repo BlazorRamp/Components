@@ -3,6 +3,7 @@ using BlazorRamp.Core.Common.Models;
 using BlazorRamp.Core.Services;
 using BlazorRamp.Pager.Common.Constants;
 using Microsoft.AspNetCore.Components;
+using System.Diagnostics;
 
 namespace BlazorRamp.Pager.Components;
 
@@ -43,7 +44,6 @@ public partial class Pager
     private PagerSelectorType    _pagerSelectorType    = PagerSelectorType.Button;
     private PagerAnnouncmentType _pagerAnnouncmentType = PagerAnnouncmentType.WithAnnouncement;
 
-
     private string _queryParamName = GlobalValues.Pager_Query_String_Param_Name;
     private string _nextText       = GlobalValues.Pager_Selector_Next_Text;
     private string _prevText       = GlobalValues.Pager_Selector_Prev_Text;
@@ -68,39 +68,41 @@ public partial class Pager
     private bool _pageChanged = false;
     private bool _showFirstLast = true;
 
+    private CancellationTokenSource _announceDebounceTS = new();
 
-    protected override void OnParametersSet()
-{
-    _totalItemCount   = TotalItemCount;
-    _currentItemCount = CurrentItemCount > TotalItemCount ? TotalItemCount : CurrentItemCount;
-
-    _pageCountText   = String.IsNullOrWhiteSpace(PageCountText)   ? GlobalValues.Pager_Count_Text        : PageCountText.Trim();
-    _filterCountText = String.IsNullOrWhiteSpace(FilterCountText) ? GlobalValues.Pager_Filter_Count_Text : FilterCountText.Trim();
-    _noRecordsText   = String.IsNullOrWhiteSpace(NoRecordsText)   ? GlobalValues.Pager_No_Records_Text   : NoRecordsText.Trim();
-
-    _nextText  = String.IsNullOrWhiteSpace(NextText)     ? GlobalValues.Pager_Selector_Next_Text  : NextText.Trim();
-    _prevText  = String.IsNullOrWhiteSpace(PreviousText) ? GlobalValues.Pager_Selector_Prev_Text  : PreviousText.Trim();
-    _lastText  = String.IsNullOrWhiteSpace(LastText)     ? GlobalValues.Pager_Selector_Last_Text  : LastText.Trim();
-    _firstText = String.IsNullOrWhiteSpace(FirstText)    ? GlobalValues.Pager_Selector_First_Text : FirstText.Trim();
-
-    _pagerAnnouncmentType = PagerAnnouncmentType;
-    _lastPage             = (CurrentItemCount < 1 || ItemsPerPage < 1) ? 1 : (int)Math.Ceiling((double)CurrentItemCount / ItemsPerPage);
-
-    if (_pagerSelectorType == PagerSelectorType.Link)
+    protected override async Task OnParametersSetAsync()
     {
-        var uri   = new Uri(NavigationManager.Uri);
-        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
-        _currentPage = int.TryParse(query[_queryParamName], out int pageFromUrl)
-                       ? Math.Clamp(pageFromUrl, 1, _lastPage)
-                       : Math.Clamp(CurrentPage, 1, _lastPage);
-    }
-    else
-    {
-        _currentPage = Math.Clamp(CurrentPage, 1, _lastPage);
-    }
+        _totalItemCount   = TotalItemCount;
+        _currentItemCount = CurrentItemCount > TotalItemCount ? TotalItemCount : CurrentItemCount;
 
-    _informationText = SetInformationText(_currentPage, _lastPage, ItemsPerPage, _currentItemCount, _totalItemCount, _pageCountText, _filterCountText, _noRecordsText);
-}
+        _pageCountText   = String.IsNullOrWhiteSpace(PageCountText)   ? GlobalValues.Pager_Count_Text        : PageCountText.Trim();
+        _filterCountText = String.IsNullOrWhiteSpace(FilterCountText) ? GlobalValues.Pager_Filter_Count_Text : FilterCountText.Trim();
+        _noRecordsText   = String.IsNullOrWhiteSpace(NoRecordsText)   ? GlobalValues.Pager_No_Records_Text   : NoRecordsText.Trim();
+
+        _nextText  = String.IsNullOrWhiteSpace(NextText)     ? GlobalValues.Pager_Selector_Next_Text  : NextText.Trim();
+        _prevText  = String.IsNullOrWhiteSpace(PreviousText) ? GlobalValues.Pager_Selector_Prev_Text  : PreviousText.Trim();
+        _lastText  = String.IsNullOrWhiteSpace(LastText)     ? GlobalValues.Pager_Selector_Last_Text  : LastText.Trim();
+        _firstText = String.IsNullOrWhiteSpace(FirstText)    ? GlobalValues.Pager_Selector_First_Text : FirstText.Trim();
+
+        _pagerAnnouncmentType = PagerAnnouncmentType;
+        _lastPage             = (CurrentItemCount < 1 || ItemsPerPage < 1) ? 1 : (int)Math.Ceiling((double)CurrentItemCount / ItemsPerPage);
+
+        if (_pagerSelectorType == PagerSelectorType.Link)
+        {
+            var uri   = new Uri(NavigationManager.Uri);
+            var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+            _currentPage = int.TryParse(query[_queryParamName], out int pageFromUrl)
+                           ? Math.Clamp(pageFromUrl, 1, _lastPage)
+                           : Math.Clamp(CurrentPage, 1, _lastPage);
+        }
+        else
+        {
+            _currentPage = Math.Clamp(CurrentPage, 1, _lastPage);
+        }
+
+        _informationText = SetInformationText(_currentPage, _lastPage, ItemsPerPage, _currentItemCount, _totalItemCount, _pageCountText, _filterCountText, _noRecordsText);
+
+    }
     protected override void OnInitialized()
     {
         _pagerSelectorType  = PagerSelectorType;
@@ -128,7 +130,7 @@ public partial class Pager
 
         return $"{infoText} {filteredString}".TrimEnd(); 
     }
-    private async Task CheckSetPagerState(NavFocusType setFocusOn = NavFocusType.None)
+    private async Task RequestPageChange(NavFocusType setFocusOn = NavFocusType.None)
     {
         var currentPage = _currentPage;
 
@@ -157,9 +159,20 @@ public partial class Pager
         }
 
         _pageChanged = currentPage != _currentPage;
+
         if (CurrentPageChanged.HasDelegate) await CurrentPageChanged.InvokeAsync(_currentPage);
 
-        _informationText = SetInformationText(_currentPage, _lastPage,ItemsPerPage,_currentItemCount, _totalItemCount, _pageCountText,_filterCountText,_noRecordsText);
+        await Task.Yield();
+
+        switch (_setFocusOn)
+        {
+            case NavFocusType.First: await FirstNavRef.FocusAsync(); break;
+            case NavFocusType.Last: await LastNavRef.FocusAsync(); break;
+            case NavFocusType.Previous: await PreviousNavRef.FocusAsync(); break;
+            case NavFocusType.Next: await NextNavRef.FocusAsync(); break;
+        }
+
+        _setFocusOn = NavFocusType.None;
     }
 
     private string? CheckSetDisableButton(NavFocusType navItem, int currentPage, int lastPage, int currentItemCount, int totalItemCount)
@@ -191,22 +204,25 @@ public partial class Pager
     {
         if(firstRender) _informationText = SetInformationText(_currentPage, _lastPage, ItemsPerPage,_currentItemCount,_totalItemCount,_pageCountText,_filterCountText,_noRecordsText);
 
+        await MakeAnnouncement(_pagerAnnouncmentType, _informationText, _ariaLabel, _pageChanged);
 
-        if (_pageChanged && PagerAnnouncmentType == PagerAnnouncmentType.WithAnnouncement)
+    }
+
+    private async Task MakeAnnouncement(PagerAnnouncmentType announcementType, string informationText, string triggerLabel, bool pageChanged = true)
+    {
+        if (pageChanged && announcementType == PagerAnnouncmentType.WithAnnouncement)
         {
             _pageChanged = false;
-            Announcement announcement = new(_informationText, AnnouncementType.Info, _ariaLabel, LiveRegionType.Assertive);
-            await LiveRegionService.MakeAnnouncement(announcement, false);
-            
-        }
-        switch (_setFocusOn)
-        {
-            case NavFocusType.First: await FirstNavRef.FocusAsync(); break;
-            case NavFocusType.Last: await LastNavRef.FocusAsync(); break;
-            case NavFocusType.Previous: await PreviousNavRef.FocusAsync(); break;
-            case NavFocusType.Next: await NextNavRef.FocusAsync(); break;
-        }
+            _announceDebounceTS.Cancel();
+            _announceDebounceTS = new CancellationTokenSource();
 
-        _setFocusOn = NavFocusType.None;
+            try
+            {
+                await Task.Delay(500, _announceDebounceTS.Token);
+                Announcement announcement = new(informationText, AnnouncementType.Info, triggerLabel, LiveRegionType.Assertive);
+                await LiveRegionService.MakeAnnouncement(announcement, false);
+            }
+            catch (TaskCanceledException) { }
+        }
     }
 }
