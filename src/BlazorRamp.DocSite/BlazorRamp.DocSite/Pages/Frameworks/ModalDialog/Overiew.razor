@@ -21,7 +21,9 @@
     As the HTML dialog makes everything beneath it inert, this also makes any centralised aria live regions inert. However, the announcement history component and its associated live regions
     react to dialog openings and are moved, so the live regions are always available via the live region service.
 </p>
-
+<p>
+    <strong>Note:</strong> For accessibility, if the user cancels any dialog via the escape key then the focus must be returned to the triggering element.
+</p>
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Toggletip}/{GlobalValues.Common_Page_Path_Usage}")">
         <span aria-hidden="true"></span>

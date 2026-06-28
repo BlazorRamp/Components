@@ -1,56 +1,115 @@
 ﻿
-<nav class="@GlobalValues.Pager_Class">
 
-   <div class="@GlobalValues.Pager_Group_Class">
-        @if(_pagerSelectorType == PagerSelectorType.Button)
-        {
-            <button class="@GlobalValues.Pager_Button_Class">
-                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_First_Modifier"></span>
-                 <span class="@GlobalValues.Pager_Selector_Text_Class">@_firstText</span>
-            </button>
-            <button class="@GlobalValues.Pager_Button_Class">
-                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Prev_Modifier"></span>
-                <span class="@GlobalValues.Pager_Selector_Text_Class">@_prevText</span>
-            </button>
-        }
-        else
-        {
-            <a class="@GlobalValues.Pager_Link_Class">
-                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_First_Modifier"></span>
-                <span class="@GlobalValues.Pager_Selector_Text_Class">@_firstText</span>
-            </a>
-            <a class="@GlobalValues.Pager_Link_Class">
-                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Prev_Modifier"></span>
-                <span class="@GlobalValues.Pager_Selector_Text_Class">@_prevText</span>
-            </a>
-        }
-    </div>
+<nav class="@GlobalValues.Pager_Class" aria-labelledby="@_ariaLabelID @_infoTextID">
+    
+    <span id="@_ariaLabelID">@_ariaLabel</span>
 
-   <div class="@GlobalValues.Pager_Information_Class">@_informationText</div>
+    <div class="@GlobalValues.Pager_Items_Class">
 
-    <div class="@GlobalValues.Pager_Group_Class">
+        <div id="@_infoTextID" class="@GlobalValues.Pager_Information_Class">@_informationText</div>
+
         @if (_pagerSelectorType == PagerSelectorType.Button)
         {
-            <button class="@GlobalValues.Pager_Button_Class">
-                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Next_Modifier"></span>
+            @if (_showFirstLast)
+            {
+                <button @ref="FirstNavRef" class="@GlobalValues.Pager_Button_Class @GlobalValues.Pager_Button_First_Modifier" @onclick="() => CheckSetPagerState(NavFocusType.First)"
+                        disabled="@CheckSetDisableButton(NavFocusType.First, _currentPage, _lastPage, _currentItemCount, _totalItemCount)"
+                        aria-hidden="@CheckSetDisableButton(NavFocusType.First, _currentPage, _lastPage, _currentItemCount, _totalItemCount)">
+                    <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_First_Modifier"></span>
+                    <span class="@GlobalValues.Pager_Selector_Text_Class">@_firstText</span>
+                </button>
+            }
+ 
+            <button @ref="PreviousNavRef" class="@GlobalValues.Pager_Button_Class @GlobalValues.Pager_Button_Previous_Modifier" @onclick="() => CheckSetPagerState(NavFocusType.Previous)" 
+                    disabled="@CheckSetDisableButton(NavFocusType.Previous, _currentPage, _lastPage, _currentItemCount, _totalItemCount)"
+                    aria-hidden="@CheckSetDisableButton(NavFocusType.Previous, _currentPage, _lastPage, _currentItemCount, _totalItemCount)">
+                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Prev_Modifier"></span>
+                <span class="@GlobalValues.Pager_Selector_Text_Class">@_prevText</span>
+            </button>
+
+            <button @ref="NextNavRef" class="@GlobalValues.Pager_Button_Class @GlobalValues.Pager_Button_Next_Modifier" @onclick="() => CheckSetPagerState(NavFocusType.Next)" 
+                    disabled="@CheckSetDisableButton(NavFocusType.Next, _currentPage, _lastPage, _currentItemCount, _totalItemCount)"
+                    aria-hidden="@CheckSetDisableButton(NavFocusType.Next, _currentPage, _lastPage, _currentItemCount, _totalItemCount)">
                 <span class="@GlobalValues.Pager_Selector_Text_Class">@_nextText</span>
+                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Next_Modifier"></span>
             </button>
-            <button class="@GlobalValues.Pager_Button_Class">
-                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Last_Modifier"></span>
-                <span class="@GlobalValues.Pager_Selector_Text_Class">@_lastText</span>
-            </button>
+
+            @if (_showFirstLast)
+            {
+                <button @ref="LastNavRef" class="@GlobalValues.Pager_Button_Class @GlobalValues.Pager_Button_Last_Modifier" @onclick="() => CheckSetPagerState(NavFocusType.Last)"
+                        disabled="@CheckSetDisableButton(NavFocusType.Last, _currentPage, _lastPage, _currentItemCount, _totalItemCount)"
+                        aria-hidden="@CheckSetDisableButton(NavFocusType.Last, _currentPage, _lastPage, _currentItemCount, _totalItemCount)">
+                    <span class="@GlobalValues.Pager_Selector_Text_Class">@_lastText</span>
+                    <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Last_Modifier"></span>
+                </button>
+            }
         }
         else
         {
-            <a class="@GlobalValues.Pager_Link_Class">
-                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Next_Modifier"></span>
-                <span class="@GlobalValues.Pager_Selector_Text_Class">@_nextText</span>
-            </a>
-            <a class="@GlobalValues.Pager_Link_Class">
-                <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Last_Modifier"></span>
-                <span class="@GlobalValues.Pager_Selector_Text_Class">@_lastText</span>
-            </a>
+            @if (CheckSetShowLinks(true, _currentPage, _lastPage))
+            {
+                @if(_showFirstLast)
+                {
+                    <a @ref="FirstNavRef" href="@UpdateUriQueryParams(1, _queryParamName)" class="@GlobalValues.Pager_Link_Class @GlobalValues.Pager_Link_First_Modifier" @onclick="() => CheckSetPagerState(NavFocusType.First)">
+                        <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_First_Modifier"></span>
+                        <span class="@GlobalValues.Pager_Selector_Text_Class">@_firstText</span>
+                    </a>
+                }
+
+                <a @ref="PreviousNavRef" href="@UpdateUriQueryParams(_currentPage - 1, _queryParamName)" class="@GlobalValues.Pager_Link_Class @GlobalValues.Pager_Link_Previous_Modifier" @onclick="() => CheckSetPagerState(NavFocusType.Previous)">
+                    <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Prev_Modifier"></span>
+                    <span class="@GlobalValues.Pager_Selector_Text_Class">@_prevText</span>
+                </a>
+            }
+            else
+            {
+
+                @if (_showFirstLast)
+                {
+                    <a class="@GlobalValues.Pager_Link_Class @GlobalValues.Pager_Link_First_Modifier" aria-hidden="true">
+                        <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_First_Modifier"></span>
+                        <span class="@GlobalValues.Pager_Selector_Text_Class">@_firstText</span>
+                    </a>
+                }
+
+                <a class="@GlobalValues.Pager_Link_Class @GlobalValues.Pager_Link_Previous_Modifier" aria-hidden="true">
+                    <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Prev_Modifier"></span>
+                    <span class="@GlobalValues.Pager_Selector_Text_Class">@_prevText</span>
+                </a>
+
+            }
+
+            @if (CheckSetShowLinks(false, _currentPage, _lastPage))
+            {
+
+                <a @ref="NextNavRef" href="@UpdateUriQueryParams(_currentPage + 1, _queryParamName)" class="@GlobalValues.Pager_Link_Class @GlobalValues.Pager_Link_Next_Modifier" @onclick="() => CheckSetPagerState(NavFocusType.Next)">
+                    <span class="@GlobalValues.Pager_Selector_Text_Class">@_nextText</span>
+                    <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Next_Modifier"></span>
+                </a>
+                @if (_showFirstLast)
+                {
+                    <a @ref="LastNavRef" href="@UpdateUriQueryParams(_lastPage, _queryParamName)" class="@GlobalValues.Pager_Link_Class @GlobalValues.Pager_Link_Last_Modifier" @onclick="() => CheckSetPagerState(NavFocusType.Last)">
+                        <span class="@GlobalValues.Pager_Selector_Text_Class">@_lastText</span>
+                        <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Last_Modifier"></span>
+                    </a>
+                }
+
+            }
+            else
+            {
+                <a class="@GlobalValues.Pager_Link_Class @GlobalValues.Pager_Link_Next_Modifier" aria-hidden="true">
+                    <span class="@GlobalValues.Pager_Selector_Text_Class">@_nextText</span>
+                    <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Next_Modifier"></span>
+                </a>
+                @if (_showFirstLast)
+                {
+                    <a class="@GlobalValues.Pager_Link_Class @GlobalValues.Pager_Link_Last_Modifier" aria-hidden="true">
+                        <span class="@GlobalValues.Pager_Selector_Text_Class">@_lastText</span>
+                        <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Last_Modifier"></span>
+                    </a>
+                }
+
+            }
         }
     </div>
-
 </nav>
