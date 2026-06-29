@@ -87,28 +87,20 @@ public partial class Pager
         _pagerAnnouncmentType = PagerAnnouncmentType;
         _lastPage             = (CurrentItemCount < 1 || ItemsPerPage < 1) ? 1 : (int)Math.Ceiling((double)CurrentItemCount / ItemsPerPage);
 
-        if (_pagerSelectorType == PagerSelectorType.Link)
-        {
-            var uri   = new Uri(NavigationManager.Uri);
-            var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
-            _currentPage = int.TryParse(query[_queryParamName], out int pageFromUrl)
-                           ? Math.Clamp(pageFromUrl, 1, _lastPage)
-                           : Math.Clamp(CurrentPage, 1, _lastPage);
-        }
-        else
-        {
-            _currentPage = Math.Clamp(CurrentPage, 1, _lastPage);
-        }
+
+       _currentPage = Math.Clamp(CurrentPage, 1, _lastPage);
 
         _informationText = SetInformationText(_currentPage, _lastPage, ItemsPerPage, _currentItemCount, _totalItemCount, _pageCountText, _filterCountText, _noRecordsText);
 
     }
+
     protected override void OnInitialized()
     {
-        _pagerSelectorType  = PagerSelectorType;
-        _ariaLabel          = String.IsNullOrWhiteSpace(AriaLabel) ? GlobalValues.Pager_Aria_Label : AriaLabel.Trim();
-        _showFirstLast      = ShowFirstLast;
+        _pagerSelectorType = PagerSelectorType;
+        _ariaLabel = String.IsNullOrWhiteSpace(AriaLabel) ? GlobalValues.Pager_Aria_Label : AriaLabel.Trim();
+        _showFirstLast = ShowFirstLast;
     }
+    
 
     private static string SetInformationText(int currentPage, int totalPages, int itemsPerPage, int currentItems, int totalItems, 
                                              string pageCountText, string filterCountText, string noRecordsText)
@@ -143,7 +135,7 @@ public partial class Pager
 
             case NavFocusType.Last:
                 _currentPage = _lastPage;
-                _setFocusOn = NavFocusType.Previous; ;
+                _setFocusOn = NavFocusType.Previous;
                 break;
 
             case NavFocusType.Previous:
@@ -155,7 +147,6 @@ public partial class Pager
                 _currentPage = _currentPage + 1 >= _lastPage ? _lastPage : _currentPage + 1;
                 _setFocusOn = _currentPage == _lastPage ? NavFocusType.Previous : setFocusOn;
                 break;
-
         }
 
         _pageChanged = currentPage != _currentPage;
@@ -173,6 +164,8 @@ public partial class Pager
         }
 
         _setFocusOn = NavFocusType.None;
+        
+        if (_pagerSelectorType == PagerSelectorType.Link) NavigationManager.NavigateTo(UpdateUriQueryParams(_currentPage, _queryParamName));
     }
 
     private string? CheckSetDisableButton(NavFocusType navItem, int currentPage, int lastPage, int currentItemCount, int totalItemCount)
@@ -218,7 +211,7 @@ public partial class Pager
 
             try
             {
-                await Task.Delay(500, _announceDebounceTS.Token);
+                await Task.Delay(400, _announceDebounceTS.Token);
                 Announcement announcement = new(informationText, AnnouncementType.Info, triggerLabel, LiveRegionType.Assertive);
                 await LiveRegionService.MakeAnnouncement(announcement, false);
             }

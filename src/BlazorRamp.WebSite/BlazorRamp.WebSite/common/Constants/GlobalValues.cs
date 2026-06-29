@@ -93,6 +93,7 @@ public static class GlobalValues
     public const string Component_Name_Errors_Summary    = "Input Errors Summary";
 
     public const string Component_Name_NavGroup  = "Nav Group";
+    public const string Component_Name_Pager     = "Pager";
     public const string Component_Name_SkipTo    = "Skip To";
     public const string Component_Name_Switch    = "Switch";
     public const string Component_Name_Tabs      = "Tabs";
@@ -114,6 +115,7 @@ public static class GlobalValues
     public const string Component_Path_Part_RadioInputGroup = "radio-input-group";
     public const string Component_Path_Part_SelectInput     = "select-input";
     public const string Component_Path_Part_ErrorsSummary   = "errors-summary";
+    public const string Component_Path_Part_Pager           = "pager";
     public const string Component_Path_Part_SkipTo          = "skip-to";
     public const string Component_Path_Part_Switch          = "switch";
     public const string Component_Path_Part_Tabs            = "tabs";

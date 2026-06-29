@@ -1,0 +1,104 @@
+﻿@using System.Web
+@using Microsoft.AspNetCore.Components.Sections
+
+@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Pager}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
+
+@inject NavigationManager _navigationManager
+
+<PageTitle>@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Overview_Tests</h1>
+
+
+    <p>
+        <b>EXPERIMENTAL: </b> under review and testing.
+    </p>
+</section>
+
+<section class="@GlobalValues.Main_Nav_Section_Heading_SkipTo @GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
+    <p>
+
+    </p>
+    <p>
+
+    </p>
+
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+    <ul>
+        <li>
+            Once focus reaches the main skip to at the top of the page it becomes visible, and screen reader users ere notified of the link with the text "Skip to content".
+            Sighted users will see the same text, but in addition to the text I have placed a little icon of a running person that is aria hidden as its purely decorative.
+        </li>
+        <li>
+            Activating the main skip to link with either the enter key or mouse will move focus to the main content area.
+        </li>
+        <li>
+            Once the secondary skip to link has focus, it becomes visible and screen reader users are notified of the link with the text "Skip list of items".
+            Sighted, users will see the same text. I removed the icon for this test.
+        </li>
+        <li>
+            Activating the secondary skip to link with either the enter key or mouse will move the focus to the content in the target contain which is
+            immediately after the list of 10 tab stop list items.
+        </li>
+    </ul>
+    <p>
+        <strong>Note: </strong>Starting from here you will encounter the list and secondary skip to link before reaching the main skip to link.
+    </p>
+
+    <h3 id="skip-to-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h3>
+    <ul aria-labelledby="skip-to-keyboard">
+        <li><kbd>Enter</kbd> - when focus is on the skip to link executes the link and moves focus to the link target.</li>
+    </ul>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h3 tabindex="0">Tab stop before a filtered data table pager without the actual table</h3>
+    
+        <Pager @bind-CurrentPage="_linkCurrentPage" TotalItemCount="100" CurrentItemCount="100" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Link" ShowFirstLast="true"></Pager>
+
+</section>
+
+@code{
+    // [Parameter]
+    // [SupplyParameterFromQuery(Name = "page")]
+    // private int? PageNumber { get; set; }
+
+    /*
+        * The above will get the query string page value on every page number change and trigger the OnParameterSet so you could use that to check it
+        * instead of the HandleOnPageChangeEvent and use the @bind:CurrentPage syntax for two binding.
+        *
+        * Or if its a one time thing check the query string on initiliazation and use event as normal etc
+     */
+    private int _buttonCurrentPage = 1;
+    private int _linkCurrentPage = 1;
+
+    protected override void OnInitialized()
+    {
+        //One time thing
+        var pageValue = HttpUtility.ParseQueryString(new Uri(_navigationManager.Uri).Query).Get("page");
+        _linkCurrentPage = int.TryParse(pageValue, out int number) ? number : 1;
+    }
+}
+
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_NavGroup}/{GlobalValues.Common_Page_Path_Quirks_Issues}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_NavGroup - @GlobalValues.Common_Page_Title_Quirks_Issues</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_SkipTo}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_SkipTo - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
