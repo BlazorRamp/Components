@@ -11,10 +11,10 @@
 Welcome to your new app.
 
 <p>
-    <Pager @bind-CurrentPage="buttonCurrentPage" TotalItemCount="100" CurrentItemCount="69" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="false"></Pager>
+    <Pager PageAlignment="PageAlignment.Start"  @bind-CurrentPage="buttonCurrentPage" TotalItemCount="100" CurrentItemCount="69" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="false"></Pager>
 </p>
 <p>
-    <Pager @bind-CurrentPage="buttonCurrentPage" TotalItemCount="100" CurrentItemCount="69" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true"></Pager>
+    <Pager PageAlignment="PageAlignment.End" @bind-CurrentPage="buttonCurrentPage" TotalItemCount="100" CurrentItemCount="69" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true"></Pager>
 </p>
 <p>
     <Pager @bind-CurrentPage="linkCurrentPage" TotalItemCount="100" CurrentItemCount="100" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Link" ShowFirstLast="false"></Pager>

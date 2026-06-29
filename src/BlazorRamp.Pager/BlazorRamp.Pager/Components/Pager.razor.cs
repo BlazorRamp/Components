@@ -11,6 +11,7 @@ public partial class Pager
 {
     [Parameter] public PagerSelectorType    PagerSelectorType    { get; set; } = PagerSelectorType.Button;
     [Parameter] public PagerAnnouncmentType PagerAnnouncmentType { get; set; } = PagerAnnouncmentType.WithAnnouncement;
+    [Parameter] public PageAlignment        PageAlignment        { get; set; } = PageAlignment.Centred;
 
     [Parameter] public string AriaLabel    { get; set; } 
     [Parameter] public string NextText      { get; set; } = GlobalValues.Pager_Selector_Next_Text;
@@ -200,6 +201,16 @@ public partial class Pager
         await MakeAnnouncement(_pagerAnnouncmentType, _informationText, _ariaLabel, _pageChanged);
 
     }
+
+
+    private string GetPagerClasses(PageAlignment alignment)
+
+        => alignment switch
+        {
+            PageAlignment.Start => $"{GlobalValues.Pager_Class} {GlobalValues.Pager_Align_Start_Modifier}",
+            PageAlignment.End   => $"{GlobalValues.Pager_Class} {GlobalValues.Pager_Align_End_Modifier}",
+            _ => $"{GlobalValues.Pager_Class}",
+        };
 
     private async Task MakeAnnouncement(PagerAnnouncmentType announcementType, string informationText, string triggerLabel, bool pageChanged = true)
     {

@@ -14,6 +14,9 @@ internal class GlobalValues
 
     public const string Pager_Class           = "br-pager";
 
+    public const string Pager_Align_Start_Modifier  = $"{Pager_Class}--start";
+    public const string Pager_Align_End_Modifier    = $"{Pager_Class}--end";
+
     public const string Pager_Items_Class     = $"{Pager_Class}__items";
 
     public const string Pager_Button_Class    = $"{Pager_Class}__button";

@@ -561,7 +561,8 @@ body #app__main {
   margin-bottom: var(--br-unit-space-5);
   border-radius: var(--br-unit-radius-5);
   border: 1px solid var(--br-unit-colour-neutral-30);
-  min-width: fit-content;
+  overflow-x: auto;
+  min-width: 0;
   /*    & ul {
           list-style: none;
           margin-left: 1rem;

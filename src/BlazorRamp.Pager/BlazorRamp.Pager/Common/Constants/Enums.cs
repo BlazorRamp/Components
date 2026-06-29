@@ -20,3 +20,10 @@ internal enum NavFocusType : int
     Next = 3,
     Last = 4
 }
+
+public enum PageAlignment : int
+{
+    Centred = 0,
+    Start   = 1,
+    End     = 2
+}
