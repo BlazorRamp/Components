@@ -513,6 +513,14 @@ body #app__main {
   background-color: var(--br-unit-colour-canvas);
 }
 
+.tab-stop:focus {
+  border-radius: var(--br-unit-radius-2);
+  outline-offset: var(--br-comp-all-outline-offset);
+  outline-width: calc(var(--br-comp-all-outline-width));
+  outline-style: var(--br-comp-all-outline-style);
+  outline-color: var(--br-comp-all-outline-colour);
+}
+
 .main-navigation > ul {
   all: unset;
   box-sizing: border-box;

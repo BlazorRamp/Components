@@ -20,82 +20,93 @@
 
     <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
     <p>
-
+        The structure of the component is simply a <span class="code-span">nav</span> element that contains either buttons or links dependant on the components configuration options.
+        The  <span class="code-span">nav</span> element has the <span class="code-span">aria-labelledby</span> attribute that uses two identifiers. The first part is a name such as Data Pager,
+        the second points to the information seen above the buttons or links, so screen reader users on entering the pager or via landmark lists, will 
+        have both the name of the pager and its state announced such as Data Pager, Current page 5 of 10;
     </p>
     <p>
-
+        The Pager component has various design time and runtime configurable options, such as whether it uses buttons for when used with a data table or
+        links for when used to page product listings. You can configure whether or not to show the first and last button/links. 
     </p>
-
+    <p>
+        The text above the buttons or links is runtime configurable and uses replacement tokens, so these can be shorter or longer to suit the context.
+    </p>
+    <p>
+        If a button or link is not required such as the first and previous ones when on the first page then these are styled differently and are effectively disabled 
+        so they are not focusable, to negate this tab stop. Buttons that are not required have the <span class="code-span">disabled</span> 
+        attribute added, with links having <span class="code-span">href</span> removed, the <span class="code-span">role="link"</span> and the <span class="code-span">aria-disabled</span> 
+        attributes added.
+    </p>
+    <p>
+        Screen reader users on activating a button or link will have the information that is displayed above the buttons or links announced.
+        <strong>Note: </strong>I use the my Live Region Service for these announcements, and the pager has been configured not to add these announcements
+        to the rolling log normally viewed using the announcement history dialog, Alerts Button, bottom right of the page or use <kbd>Ctrl + Shift + H</kbd> key
+        combination.
+    </p>
+    <p>
+        <strong>Important:</strong> When you activate the Previous or First button/ink when on page 2, focus is moved to the button or link labelled Next.
+        Equally if you activated the Last or Next button/link whilst on the penultimate page, focus is moved to the button or link labelled Previous.
+    </p>
+    <p>
+        <strong>Note:</strong> As this is a site is single page application, the links will not lose focus unless you choose ot open in a new window
+        in which case you would be at the start of the page and have to navigate back to the pager.
+    </p>
 </section>
 
 <section class="@GlobalValues.Info_Box_Class">
 
-    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
-
-    <ul>
-        <li>
-            Once focus reaches the main skip to at the top of the page it becomes visible, and screen reader users ere notified of the link with the text "Skip to content".
-            Sighted users will see the same text, but in addition to the text I have placed a little icon of a running person that is aria hidden as its purely decorative.
-        </li>
-        <li>
-            Activating the main skip to link with either the enter key or mouse will move focus to the main content area.
-        </li>
-        <li>
-            Once the secondary skip to link has focus, it becomes visible and screen reader users are notified of the link with the text "Skip list of items".
-            Sighted, users will see the same text. I removed the icon for this test.
-        </li>
-        <li>
-            Activating the secondary skip to link with either the enter key or mouse will move the focus to the content in the target contain which is
-            immediately after the list of 10 tab stop list items.
-        </li>
-    </ul>
-    <p>
-        <strong>Note: </strong>Starting from here you will encounter the list and secondary skip to link before reaching the main skip to link.
-    </p>
-
     <h3 id="skip-to-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h3>
+
     <ul aria-labelledby="skip-to-keyboard">
-        <li><kbd>Enter</kbd> - when focus is on the skip to link executes the link and moves focus to the link target.</li>
+        <li><kbd>Tab, Shift + Tab</kbd> - to set focus on a link or button, and move in either direction.</li>
+        <li><kbd>Enter or Space</kbd> - when on a button activates it and changes the data page.</li>
+        <li><kbd>Enter</kbd> - when on a link activates it and changes result page.</li>
     </ul>
+
 </section>
 
 
-<section>
-    <h2>Pager examples using buttons normally used above or below data tables</h2>
+<section class="@GlobalValues.Info_Box_Class">
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Pager examples using buttons normally used above or below data tables</h2>
 
     <section class="@GlobalValues.Info_Box_Class">
 
-        <h3 tabindex="0">Tab stop before a filtered data table pager (no table), first, previous, next and last buttons</h3>
+        <h3 class="@GlobalValues.Info_Box_Heading_Class @GlobalValues.Tab_Stop_Indicaor_Class" tabindex="0">Tab stop before a filtered data table pager (without table), first, previous, next and last buttons</h3>
     
-            <Pager @bind-CurrentPage="_fullButtonCurrentPage" TotalItemCount="100" CurrentItemCount="80" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true"></Pager>
+            <Pager @bind-CurrentPage="_fullButtonCurrentPage" AriaLabel="Four button pager" TotalItemCount="100" CurrentItemCount="80" ItemsPerPage="10" 
+                PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true"></Pager>
 
     </section>
     <section class="@GlobalValues.Info_Box_Class">
 
-        <h3 tabindex="0">Tab stop before a data table pager (no table), only previous and next buttons</h3>
+        <h3 class="@GlobalValues.Info_Box_Heading_Class @GlobalValues.Tab_Stop_Indicaor_Class" tabindex="0">Tab stop before a data table pager (without table), only previous and next buttons</h3>
 
-        <Pager @bind-CurrentPage="_minButtonCurrentPage" TotalItemCount="50" CurrentItemCount="50" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="false"></Pager>
+        <Pager @bind-CurrentPage="_minButtonCurrentPage" AriaLabel="Two button pager" TotalItemCount="50" CurrentItemCount="50" ItemsPerPage="10" 
+            PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="false"></Pager>
 
     </section>
 </section>
 
-<section>
+<section class="@GlobalValues.Info_Box_Class">
 
-    <h2>Pager examples using links, that are typically seen at the top or bottom of search page results</h2>
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Pager examples using links, the type typically seen at the top or bottom of page results</h2>
 
 
     <section class="@GlobalValues.Info_Box_Class">
 
-        <h3 tabindex="0">Tab stop before some page results pager, first, previous, next and last links</h3>
+        <h3 class="@GlobalValues.Info_Box_Heading_Class @GlobalValues.Tab_Stop_Indicaor_Class" tabindex="0">Tab stop before a page results pager (without results), first, previous, next and last links</h3>
 
-        <Pager @bind-CurrentPage="_fullLinkCurrentPage" TotalItemCount="100" CurrentItemCount="100" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Link" ShowFirstLast="true"></Pager>
+        <Pager @bind-CurrentPage="_fullLinkCurrentPage" AriaLabel="Four links pager" TotalItemCount="100" CurrentItemCount="100" ItemsPerPage="10" 
+            PagerSelectorType="PagerSelectorType.Link" ShowFirstLast="true"></Pager>
 
     </section>
     <section class="@GlobalValues.Info_Box_Class">
 
-        <h3 tabindex="0">Tab stop before a data table pager (no table), only previous and next buttons</h3>
+        <h3 class="@GlobalValues.Info_Box_Heading_Class @GlobalValues.Tab_Stop_Indicaor_Class" tabindex="0">Tab stop before a page results pager (without results), only the previous and next links</h3>
 
-        <Pager @bind-CurrentPage="_minLinkCurrentPage" TotalItemCount="50" CurrentItemCount="50" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Link" ShowFirstLast="false"></Pager>
+        <Pager @bind-CurrentPage="_minLinkCurrentPage" QueryParamName="another-page" AriaLabel="Two links pager" TotalItemCount="50" CurrentItemCount="50" 
+        ItemsPerPage="10" PageCountText="Current page {firstpage} of {lastpage}" PagerSelectorType="PagerSelectorType.Link" ShowFirstLast="false"></Pager>
 
     </section>
 </section>
@@ -119,8 +130,11 @@
     protected override void OnInitialized()
     {
         //One time thing
-        var pageValue = HttpUtility.ParseQueryString(new Uri(_navigationManager.Uri).Query).Get("page");
-        _minLinkCurrentPage = int.TryParse(pageValue, out int number) ? number : 1;
+        var pageValueFull = HttpUtility.ParseQueryString(new Uri(_navigationManager.Uri).Query).Get("page");
+        var pageValueMin = HttpUtility.ParseQueryString(new Uri(_navigationManager.Uri).Query).Get("another-page");
+
+        _fullLinkCurrentPage = int.TryParse(pageValueFull, out int full) ? full : 1;
+        _minLinkCurrentPage = int.TryParse(pageValueMin, out int min) ? min : 1;
     }
 }
 

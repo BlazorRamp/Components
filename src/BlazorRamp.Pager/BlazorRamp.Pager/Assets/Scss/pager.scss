@@ -20,16 +20,16 @@
 .br-pager {
     box-sizing: border-box;
     container-type: inline-size;
-
     width: 100%;
     display: flex;
-    justify-content:center;
+    justify-content: center;
 
-    &--start{
-        justify-content:start;
+    &--start {
+        justify-content: start;
     }
-    &--end{
-        justify-content:end;
+
+    &--end {
+        justify-content: end;
     }
 
     & > span {
@@ -101,7 +101,8 @@
 
         &[disabled] {
             cursor: not-allowed;
-            opacity: var(--br-comp-pager-disabled-opacity);
+            border: none;
+            background: transparent;
         }
 
 
@@ -134,7 +135,6 @@
         display: flex;
         align-items: center;
         gap: var(--br-unit-space-3);
-        background: var(--br-comp-pager-button-background);
         color: var(--br-comp-pager-button-text);
         font-family: var(--br-comp-pager-button-font-family);
         font-size: var(--br-comp-pager-button-font-size);
@@ -148,12 +148,12 @@
         border-radius: var(--br-comp-pager-button-border-radius);
         border-color: transparent;
 
-        &:hover:not([aria-hidden]) {
+        &:hover:not([aria-disabled]) {
             border-color: var(--br-comp-pager-button-border-colour);
             background-color: var(--br-comp-pager-button-state-hover);
         }
 
-        &:focus:not([aria-hidden]) {
+        &:focus:not([aria-disabled]) {
             border-color: var(--br-comp-pager-button-border-colour);
             outline-offset: var(--br-comp-pager-button-outline-offset);
             outline-width: var(--br-comp-pager-button-outline-width);
@@ -169,13 +169,15 @@
             justify-content: end;
         }
 
-        &[aria-hidden] {
+        &[aria-disabled] {
             text-decoration: underline;
             cursor: not-allowed;
-            opacity: var(--br-comp-pager-disabled-opacity);
+            //opacity: var(--br-comp-pager-disabled-opacity);
+            text-decoration: line-through;
+            border: none;
         }
 
-            &[aria-hidden]:hover {
+            &[aria-disabled]:hover {
                 border-color: transparent;
             }
     }

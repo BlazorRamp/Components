@@ -150,6 +150,8 @@ public static class GlobalValues
 
     public const string Modal_Screen_Dialog_Title_ID = "Screen-Dialog-Title-ID";
 
+    public const string Tab_Stop_Indicaor_Class = "tab-stop";
+
     public const int Start_Width_For_Collapsed_Menu = 576;
 
     public const string Site_Link_Docs_Busy           = "https://docs.blazorramp.uk/components/debounce-filter/overview";

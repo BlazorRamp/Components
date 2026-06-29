@@ -97,9 +97,10 @@ public partial class Pager
 
     protected override void OnInitialized()
     {
-        _pagerSelectorType = PagerSelectorType;
-        _ariaLabel = String.IsNullOrWhiteSpace(AriaLabel) ? GlobalValues.Pager_Aria_Label : AriaLabel.Trim();
-        _showFirstLast = ShowFirstLast;
+        _pagerSelectorType  = PagerSelectorType;
+        _ariaLabel          = String.IsNullOrWhiteSpace(AriaLabel) ? GlobalValues.Pager_Aria_Label : AriaLabel.Trim();
+        _showFirstLast      = ShowFirstLast;
+        _queryParamName     = String.IsNullOrWhiteSpace(QueryParamName) ? GlobalValues.Pager_Query_String_Param_Name : QueryParamName.Trim(); 
     }
     
 
@@ -188,6 +189,10 @@ public partial class Pager
         => isStartGroup ? (currentPage < 2 ? false : true)
                         : (currentPage >= lastPage ? false : true);
 
+    private string? CheckSetMakeInert(bool isStartGroup, int currentPage, int lastPage)
+
+        => isStartGroup ? (currentPage < 2 ? "true" : null)
+                        : (currentPage >= lastPage ? "true" : null);
 
     private string UpdateUriQueryParams(int pageNo, string queryParamName)
 
