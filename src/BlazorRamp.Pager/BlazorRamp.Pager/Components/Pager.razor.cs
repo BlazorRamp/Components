@@ -43,7 +43,7 @@ public partial class Pager
 
     private NavFocusType         _setFocusOn           = NavFocusType.None;
     private PagerSelectorType    _pagerSelectorType    = PagerSelectorType.Button;
-    private PagerAnnouncmentType _pagerAnnouncmentType = PagerAnnouncmentType.WithAnnouncement;
+    private PagerAnnouncmentType _pagerAnnouncementType = PagerAnnouncmentType.WithAnnouncement;
 
     private string _queryParamName = GlobalValues.Pager_Query_String_Param_Name;
     private string _nextText       = GlobalValues.Pager_Selector_Next_Text;
@@ -85,7 +85,7 @@ public partial class Pager
         _lastText  = String.IsNullOrWhiteSpace(LastText)     ? GlobalValues.Pager_Selector_Last_Text  : LastText.Trim();
         _firstText = String.IsNullOrWhiteSpace(FirstText)    ? GlobalValues.Pager_Selector_First_Text : FirstText.Trim();
 
-        _pagerAnnouncmentType = PagerAnnouncmentType;
+        _pagerAnnouncementType = PagerAnnouncmentType;
         _lastPage             = (CurrentItemCount < 1 || ItemsPerPage < 1) ? 1 : (int)Math.Ceiling((double)CurrentItemCount / ItemsPerPage);
 
 
@@ -205,7 +205,7 @@ public partial class Pager
         }
 
 
-        await MakeAnnouncement(_pagerAnnouncmentType, _informationText, _ariaLabel, _pageChanged);
+        await MakeAnnouncement(_pagerAnnouncementType, _informationText, _ariaLabel, _pageChanged);
 
     }
 
