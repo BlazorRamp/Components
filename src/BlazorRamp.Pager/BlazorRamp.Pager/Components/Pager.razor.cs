@@ -190,10 +190,6 @@ public partial class Pager
         => isStartGroup ? (currentPage < 2 ? false : true)
                         : (currentPage >= lastPage ? false : true);
 
-    private string? CheckSetMakeInert(bool isStartGroup, int currentPage, int lastPage)
-
-        => isStartGroup ? (currentPage < 2 ? "true" : null)
-                        : (currentPage >= lastPage ? "true" : null);
 
     private string UpdateUriQueryParams(int pageNo, string queryParamName)
 
