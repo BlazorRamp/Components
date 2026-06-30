@@ -93,6 +93,7 @@ public partial class Pager
 
         _informationText = SetInformationText(_currentPage, _lastPage, ItemsPerPage, _currentItemCount, _totalItemCount, _pageCountText, _filterCountText, _noRecordsText);
 
+        Debug.WriteLine(_currentPage.ToString());
     }
 
     protected override void OnInitialized()
@@ -201,7 +202,12 @@ public partial class Pager
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if(firstRender) _informationText = SetInformationText(_currentPage, _lastPage, ItemsPerPage,_currentItemCount,_totalItemCount,_pageCountText,_filterCountText,_noRecordsText);
+        if(firstRender)
+        {
+            _informationText = SetInformationText(_currentPage, _lastPage, ItemsPerPage,_currentItemCount,_totalItemCount,_pageCountText,_filterCountText,_noRecordsText);
+
+        }
+
 
         await MakeAnnouncement(_pagerAnnouncmentType, _informationText, _ariaLabel, _pageChanged);
 

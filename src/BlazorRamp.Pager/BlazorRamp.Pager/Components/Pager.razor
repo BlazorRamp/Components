@@ -12,20 +12,20 @@
         {
             @if (_showFirstLast)
             {
-                <button @ref="FirstNavRef" class="@GlobalValues.Pager_Button_Class @GlobalValues.Pager_Button_First_Modifier" @onclick="() => RequestPageChange(NavFocusType.First)"
+                <button @ref="FirstNavRef" type="button" class="@GlobalValues.Pager_Button_Class @GlobalValues.Pager_Button_First_Modifier" @onclick="() => RequestPageChange(NavFocusType.First)"
                         disabled="@CheckSetDisableButton(NavFocusType.First, _currentPage, _lastPage, _currentItemCount, _totalItemCount)">
                     <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_First_Modifier"></span>
                     <span class="@GlobalValues.Pager_Selector_Text_Class">@_firstText</span>
                 </button>
             }
  
-            <button @ref="PreviousNavRef" class="@GlobalValues.Pager_Button_Class @GlobalValues.Pager_Button_Previous_Modifier" @onclick="() => RequestPageChange(NavFocusType.Previous)"
+            <button @ref="PreviousNavRef" type="button" class="@GlobalValues.Pager_Button_Class @GlobalValues.Pager_Button_Previous_Modifier" @onclick="() => RequestPageChange(NavFocusType.Previous)"
                     disabled="@CheckSetDisableButton(NavFocusType.Previous, _currentPage, _lastPage, _currentItemCount, _totalItemCount)">
                 <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Prev_Modifier"></span>
                 <span class="@GlobalValues.Pager_Selector_Text_Class">@_prevText</span>
             </button>
 
-            <button @ref="NextNavRef" class="@GlobalValues.Pager_Button_Class @GlobalValues.Pager_Button_Next_Modifier" @onclick="() => RequestPageChange(NavFocusType.Next)"
+            <button @ref="NextNavRef" type="button" class="@GlobalValues.Pager_Button_Class @GlobalValues.Pager_Button_Next_Modifier" @onclick="() => RequestPageChange(NavFocusType.Next)"
                     disabled="@CheckSetDisableButton(NavFocusType.Next, _currentPage, _lastPage, _currentItemCount, _totalItemCount)">
                 <span class="@GlobalValues.Pager_Selector_Text_Class">@_nextText</span>
                 <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Next_Modifier"></span>
@@ -33,7 +33,7 @@
 
             @if (_showFirstLast)
             {
-                <button @ref="LastNavRef" class="@GlobalValues.Pager_Button_Class @GlobalValues.Pager_Button_Last_Modifier" @onclick="() => RequestPageChange(NavFocusType.Last)"
+                <button @ref="LastNavRef" type="button" class="@GlobalValues.Pager_Button_Class @GlobalValues.Pager_Button_Last_Modifier" @onclick="() => RequestPageChange(NavFocusType.Last)"
                         disabled="@CheckSetDisableButton(NavFocusType.Last, _currentPage, _lastPage, _currentItemCount, _totalItemCount)">
                     <span class="@GlobalValues.Pager_Selector_Text_Class">@_lastText</span>
                     <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Last_Modifier"></span>
