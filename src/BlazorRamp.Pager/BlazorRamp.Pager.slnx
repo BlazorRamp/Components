@@ -2,7 +2,10 @@
   <Folder Name="/01 - Component Source/">
     <Project Path="BlazorRamp.Pager/BlazorRamp.Pager.csproj" />
   </Folder>
-  <Folder Name="/02 - Sandbox/" />
+  <Folder Name="/02 - Sandbox/">
+    <Project Path="Sandbox/Sandbox.Client/Sandbox.Client.csproj" Id="8cd122da-2958-4422-affd-efc10edacc36" />
+    <Project Path="Sandbox/Sandbox/Sandbox.csproj" Id="a51ddb33-0073-45b2-b19b-1c68f2d1eb9a" />
+  </Folder>
   <Folder Name="/03 - Tests/">
     <Project Path="BlazorRamp.Pager.Tests.Unit/BlazorRamp.Pager.Tests.Unit.csproj" />
   </Folder>
