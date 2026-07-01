@@ -99,27 +99,27 @@
             justify-content: end;
         }
 
-        &[disabled] {
+        &[aria-disabled] {
             cursor: not-allowed;
             border: none;
             background: transparent;
         }
 
 
-        &:active:not([disabled]) {
+        &:active:not([aria-disabled]) {
             transform: scale(var(--br-comp-pager-button-state-active-scale));
             filter: brightness(var(--br-comp-pager-button-state-active-brightness));
             outline: none;
         }
 
-        &:focus {
+        &:focus:not([aria-disabled]) {
             outline-offset: var(--br-comp-pager-button-outline-offset);
             outline-width: var(--br-comp-pager-button-outline-width);
             outline-style: var(--br-comp-pager-button-outline-style);
             outline-color: var(--br-comp-pager-button-outline-colour);
         }
 
-        &:hover:not([disabled]) {
+        &:hover:not([aria-disabled]) {
             background-color: var(--br-comp-pager-button-state-hover);
         }
     }

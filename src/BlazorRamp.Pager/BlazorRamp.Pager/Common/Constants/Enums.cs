@@ -3,16 +3,16 @@
 public enum PagerSelectorType : int
 {
     Button = 0,
-    Link   = 1
+    Link = 1
 }
 
-public enum PagerAnnouncmentType : int
+public enum PagerAnnouncementType : int
 {
-    WithAnnouncement    = 0,
+    WithAnnouncement = 0,
     WithoutAnnouncement = 1
 }
 
-internal enum NavFocusType : int
+public enum NavSelectorType : int
 {
     None = 0,
     First = 1,
@@ -24,6 +24,6 @@ internal enum NavFocusType : int
 public enum PageAlignment : int
 {
     Centred = 0,
-    Start   = 1,
-    End     = 2
+    Start = 1,
+    End = 2
 }

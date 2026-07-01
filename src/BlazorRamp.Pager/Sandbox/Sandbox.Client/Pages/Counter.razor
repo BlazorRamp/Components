@@ -1,5 +1,5 @@
 ﻿@page "/counter"
-@rendermode InteractiveAuto
+@rendermode InteractiveWebAssembly
 
 <PageTitle>Counter</PageTitle>
 
@@ -9,7 +9,28 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+
+@* <p>
+    <Pager @bind-CurrentPage="buttonCurrentPage" AriaLabel="Min Button" TotalItemCount="100" CurrentItemCount="69" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="false"></Pager>
+</p> *@
+<p>
+    <Pager @bind-CurrentPage="buttonCurrentPage" AriaLabel="Full Button" TotalItemCount="100" CurrentItemCount="69" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true"></Pager>
+</p>
+@* <p>
+    <Pager @bind-CurrentPage="linkCurrentPage" AriaLabel="Min LInk" TotalItemCount="100" CurrentItemCount="100" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Link" ShowFirstLast="false"></Pager>
+</p>
+<p>
+    <Pager @bind-CurrentPage="linkCurrentPage" AriaLabel="Full Link" TotalItemCount="100" CurrentItemCount="100" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Link" ShowFirstLast="true"></Pager>
+</p>
+ *@
+<button @onclick="() => linkCurrentPage = 3">Set to zero</button>
+
+
+
+
 @code {
+    private int buttonCurrentPage = 1;
+    private int linkCurrentPage = 1;
     private int currentCount = 0;
 
     private void IncrementCount()
