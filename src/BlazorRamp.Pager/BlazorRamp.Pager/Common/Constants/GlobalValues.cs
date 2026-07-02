@@ -2,8 +2,9 @@
 
 internal class GlobalValues
 {
-    public const string JS_File_Path = "./_content/BlazorRamp.Pager/assets/js/pager.js";
-    public const string JS_Set_Selector_Focus_Func = "setSelectorFocus";
+    public const string JS_File_Path                    = "./_content/BlazorRamp.Pager/assets/js/pager.js";
+    public const string JS_Register_Focus_In_Callback   = "registerElementFocusInHandler";
+    public const string JS_Unregister_Focus_In_Callback = "unregisterElementFocusInHandler";
 
     public const string Pager_No_Records_Text         = "No entries found.";
     public const string Pager_Query_String_Param_Name = "page";

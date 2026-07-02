@@ -4,14 +4,16 @@ using BlazorRamp.Core.Services;
 using BlazorRamp.Pager.Common.Constants;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System.ComponentModel.Design;
+using System.Diagnostics;
 
 namespace BlazorRamp.Pager.Components;
 
 public partial class Pager : IAsyncDisposable
 {
-    [Parameter] public PagerSelectorType PagerSelectorType { get; set; } = PagerSelectorType.Button;
+    [Parameter] public PagerSelectorType PagerSelectorType         { get; set; } = PagerSelectorType.Button;
     [Parameter] public PagerAnnouncementType PagerAnnouncementType { get; set; } = PagerAnnouncementType.WithAnnouncement;
-    [Parameter] public PageAlignment PageAlignment { get; set; } = PageAlignment.Centred;
+    [Parameter] public PageAlignment PageAlignment                 { get; set; } = PageAlignment.Centred;
 
     [Parameter] public string AriaLabel { get; set; } = GlobalValues.Pager_Aria_Label;
     [Parameter] public string NextText { get; set; } = GlobalValues.Pager_Selector_Next_Text;
@@ -19,83 +21,82 @@ public partial class Pager : IAsyncDisposable
     [Parameter] public string FirstText { get; set; } = GlobalValues.Pager_Selector_First_Text;
     [Parameter] public string LastText { get; set; } = GlobalValues.Pager_Selector_Last_Text;
 
-    [Parameter] public bool ShowFirstLast { get; set; } = true;
-    [Parameter] public string QueryParamName { get; set; } = GlobalValues.Pager_Query_String_Param_Name;
+    [Parameter] public bool ShowFirstLast     { get; set; } = true;
+    [Parameter] public string QueryParamName  { get; set; } = GlobalValues.Pager_Query_String_Param_Name;
 
-    [Parameter] public string PageCountText { get; set; } = default!;
+    [Parameter] public string PageCountText   { get; set; } = default!;
     [Parameter] public string FilterCountText { get; set; } = default!;
-    [Parameter] public string NoRecordsText { get; set; } = default!;
+    [Parameter] public string NoRecordsText   { get; set; } = default!;
 
-    [Parameter] public int TotalItemCount { get; set; } = 0;
-    [Parameter] public int CurrentItemCount { get; set; } = 0;
-    [Parameter] public int ItemsPerPage { get; set; } = GlobalValues.Pager_Rows_Per_Page;
-    [Parameter] public int CurrentPage { get; set; } = 0;
+    [Parameter] public int TotalItemCount     { get; set; } = 0;
+    [Parameter] public int CurrentItemCount   { get; set; } = 0;
+    [Parameter] public int ItemsPerPage       { get; set; } = GlobalValues.Pager_Rows_Per_Page;
+    [Parameter] public int CurrentPage        { get; set; } = 0;
 
     [Parameter] public EventCallback<int> CurrentPageChanged { get; set; }
 
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
     [Inject] private ILiveRegionService LiveRegionService { get; set; } = default!;
+        
     [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
-
     private IJSObjectReference? _jSModule = null;
+    
+    private DotNetObjectReference<Pager>? _dotNetObjectRef;
 
-    private ElementReference FirstNavRef { get; set; }
-    private ElementReference LastNavRef { get; set; }
-    private ElementReference NextNavRef { get; set; }
-    private ElementReference PreviousNavRef { get; set; }
+    private ElementReference NavElementRef   { get; set; }
+    private ElementReference NextNavRef      { get; set; }
+    private ElementReference PreviousNavRef  { get; set; }
 
 
-    private NavSelectorType _setFocusOn = NavSelectorType.None;
-    private PagerSelectorType _pagerSelectorType = PagerSelectorType.Button;
+    private NavSelectorType       _setFocusOn            = NavSelectorType.None;
+    private PagerSelectorType     _pagerSelectorType     = PagerSelectorType.Button;
     private PagerAnnouncementType _pagerAnnouncementType = PagerAnnouncementType.WithAnnouncement;
 
     private string _queryParamName = GlobalValues.Pager_Query_String_Param_Name;
-    private string _nextText = GlobalValues.Pager_Selector_Next_Text;
-    private string _prevText = GlobalValues.Pager_Selector_Prev_Text;
-    private string _firstText = GlobalValues.Pager_Selector_First_Text;
-    private string _lastText = GlobalValues.Pager_Selector_Last_Text;
+    private string _nextText       = GlobalValues.Pager_Selector_Next_Text;
+    private string _prevText       = GlobalValues.Pager_Selector_Prev_Text;
+    private string _firstText      = GlobalValues.Pager_Selector_First_Text;
+    private string _lastText       = GlobalValues.Pager_Selector_Last_Text;
 
-    private string _ariaLabel = GlobalValues.Pager_Aria_Label;
+    private string _ariaLabel   = GlobalValues.Pager_Aria_Label;
     private string _ariaLabelID = Guid.NewGuid().ToString();
-    private string _infoTextID = Guid.NewGuid().ToString();
+    private string _infoTextID  = Guid.NewGuid().ToString();
 
-    private string _navSelectorFirstID = Guid.NewGuid().ToString();
-    private string _navSelectorPreviousID = Guid.NewGuid().ToString();
-    private string _navSelectorNextID = Guid.NewGuid().ToString();
-    private string _navSelectorLastID = Guid.NewGuid().ToString();
-
-    private string _pageCountText = GlobalValues.Pager_Count_Text;
+    private string _pageCountText   = GlobalValues.Pager_Count_Text;
     private string _filterCountText = GlobalValues.Pager_Filter_Count_Text;
     private string _informationText = GlobalValues.Pager_No_Records_Text;
-    private string _noRecordsText = GlobalValues.Pager_No_Records_Text;
+    private string _noRecordsText   = GlobalValues.Pager_No_Records_Text;
 
-    private int _lastPage = 7;
-    private int _currentPage = 0;
+    private int _lastPage        = 0;
+    private int _currentPage     = 0;
     private int _currentRowCount = 0;
-    private int _totalRowCount = 0;
-    private int _rowsPerPage = GlobalValues.Pager_Rows_Per_Page;
+    private int _totalRowCount   = 0;
+    private int _rowsPerPage     = GlobalValues.Pager_Rows_Per_Page;
 
     private bool _userChangeRequest = false;
     private bool _showFirstLast     = true;
 
-    private int _pageRequested = 0;
+    private int  _pageRequested = 0;
+    private bool _isServer      = true;
+
+    private string _ariaLabelledbyIDs = String.Empty;
 
     private CancellationTokenSource _announceDebounceTS = new();
 
     protected override void OnParametersSet()
     {
-        _rowsPerPage = ItemsPerPage < 1 ? GlobalValues.Pager_Rows_Per_Page : ItemsPerPage;
-        _totalRowCount = TotalItemCount;
+        _rowsPerPage     = ItemsPerPage < 1 ? GlobalValues.Pager_Rows_Per_Page : ItemsPerPage;
+        _totalRowCount   = TotalItemCount;
         _currentRowCount = CurrentItemCount > TotalItemCount ? TotalItemCount : CurrentItemCount;
 
-        _pageCountText = String.IsNullOrWhiteSpace(PageCountText) ? GlobalValues.Pager_Count_Text : PageCountText.Trim();
+        _pageCountText   = String.IsNullOrWhiteSpace(PageCountText) ? GlobalValues.Pager_Count_Text : PageCountText.Trim();
         _filterCountText = String.IsNullOrWhiteSpace(FilterCountText) ? GlobalValues.Pager_Filter_Count_Text : FilterCountText.Trim();
-        _noRecordsText = String.IsNullOrWhiteSpace(NoRecordsText) ? GlobalValues.Pager_No_Records_Text : NoRecordsText.Trim();
+        _noRecordsText   = String.IsNullOrWhiteSpace(NoRecordsText) ? GlobalValues.Pager_No_Records_Text : NoRecordsText.Trim();
 
-        _nextText = String.IsNullOrWhiteSpace(NextText) ? GlobalValues.Pager_Selector_Next_Text : NextText.Trim();
-        _prevText = String.IsNullOrWhiteSpace(PreviousText) ? GlobalValues.Pager_Selector_Prev_Text : PreviousText.Trim();
-        _lastText = String.IsNullOrWhiteSpace(LastText) ? GlobalValues.Pager_Selector_Last_Text : LastText.Trim();
-        _firstText = String.IsNullOrWhiteSpace(FirstText) ? GlobalValues.Pager_Selector_First_Text : FirstText.Trim();
+        _nextText       = String.IsNullOrWhiteSpace(NextText) ? GlobalValues.Pager_Selector_Next_Text : NextText.Trim();
+        _prevText       = String.IsNullOrWhiteSpace(PreviousText) ? GlobalValues.Pager_Selector_Prev_Text : PreviousText.Trim();
+        _lastText       = String.IsNullOrWhiteSpace(LastText) ? GlobalValues.Pager_Selector_Last_Text : LastText.Trim();
+        _firstText      = String.IsNullOrWhiteSpace(FirstText) ? GlobalValues.Pager_Selector_First_Text : FirstText.Trim();
 
         _pagerAnnouncementType = PagerAnnouncementType;
 
@@ -108,16 +109,28 @@ public partial class Pager : IAsyncDisposable
 
     protected override void OnInitialized()
     {
-        _pagerSelectorType = PagerSelectorType;
-        _ariaLabel = String.IsNullOrWhiteSpace(AriaLabel) ? GlobalValues.Pager_Aria_Label : AriaLabel.Trim();
-        _showFirstLast = ShowFirstLast;
-        _queryParamName = String.IsNullOrWhiteSpace(QueryParamName) ? GlobalValues.Pager_Query_String_Param_Name : QueryParamName.Trim();
+        _pagerSelectorType  = PagerSelectorType;
+        _ariaLabel          = String.IsNullOrWhiteSpace(AriaLabel) ? GlobalValues.Pager_Aria_Label : AriaLabel.Trim();
+        _showFirstLast      = ShowFirstLast;
+        _queryParamName     = String.IsNullOrWhiteSpace(QueryParamName) ? GlobalValues.Pager_Query_String_Param_Name : QueryParamName.Trim();
+        _isServer           = OperatingSystem.IsBrowser() ? false : true;
+
+        _ariaLabelledbyIDs  = _isServer ? _ariaLabelID : $"{_ariaLabelID} {_infoTextID}";
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
 
-      
+        if(true == firstRender && _isServer)
+        {
+            _jSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_File_Path);
+
+            _dotNetObjectRef = DotNetObjectReference.Create(this);
+
+            if (_jSModule is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Register_Focus_In_Callback, NavElementRef, _dotNetObjectRef, nameof(NavigationEntered));
+        }
+
+        _informationText = SetInformationText(_currentPage, _lastPage, _rowsPerPage, _currentRowCount, _totalRowCount, _pageCountText, _filterCountText, _noRecordsText);
 
         if (_setFocusOn != NavSelectorType.None && _userChangeRequest)
         {
@@ -127,9 +140,10 @@ public partial class Pager : IAsyncDisposable
             if (_setFocusOn == NavSelectorType.Next) await NextNavRef.FocusAsync();
 
             _setFocusOn = NavSelectorType.None;
-          
+
         }
         await MakeAnnouncement(_pagerAnnouncementType, _informationText, _ariaLabel, _userChangeRequest);
+
 
         _userChangeRequest = false;
     }
@@ -237,31 +251,39 @@ public partial class Pager : IAsyncDisposable
     {
         if (pageChanged && announcementType == PagerAnnouncementType.WithAnnouncement)
         {
-
             _announceDebounceTS.Cancel();
             _announceDebounceTS = new CancellationTokenSource();
 
             try
             {
                 await Task.Delay(400, _announceDebounceTS.Token);
-                Announcement announcement = new(informationText, AnnouncementType.Info, triggerLabel, LiveRegionType.Assertive);
-                await LiveRegionService.MakeAnnouncement(announcement, true);
+                Announcement announcement = new(informationText, AnnouncementType.Info, triggerLabel, LiveRegionType.Polite);
+                await LiveRegionService.MakeAnnouncement(announcement, false);
             }
             catch (TaskCanceledException) { }
         }
     }
 
+    [JSInvokable]
+    public async Task NavigationEntered()
+        
+        => await MakeAnnouncement(_pagerAnnouncementType, _informationText, _ariaLabelID, true);
+    
     public async ValueTask DisposeAsync()
     {
+        _dotNetObjectRef?.Dispose();
+
         if (_jSModule is not null)
         {
             try
             {
+                await _jSModule.InvokeVoidAsync(GlobalValues.JS_Unregister_Focus_In_Callback);
                 await _jSModule.DisposeAsync();
+
             }
             catch { }
         }
+
     }
 }
-
 
