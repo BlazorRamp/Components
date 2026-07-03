@@ -18,11 +18,13 @@
                     <span class="@GlobalValues.Pager_Selector_Text_Class">@_firstText</span>
                 </button>
             }
+            
             <button type="button" class="@GlobalValues.Pager_Button_Class @GlobalValues.Pager_Button_Previous_Modifier" @onclick="() => RequestPageChange(NavSelectorType.Previous, _currentPage, _currentPage - 1, _lastPage)"
             aria-disabled="@CheckSetDisableButton(NavSelectorType.Previous, _currentPage, _lastPage, _currentRowCount, _totalRowCount)" >
                 <span class="@GlobalValues.Pager_Icon_Class @GlobalValues.Pager_Icon_Prev_Modifier"></span>
                 <span class="@GlobalValues.Pager_Selector_Text_Class">@_prevText</span>
             </button>
+
             <button type="button" class="@GlobalValues.Pager_Button_Class @GlobalValues.Pager_Button_Next_Modifier" @onclick="() => RequestPageChange(NavSelectorType.Next, _currentPage, _currentPage + 1, _lastPage)"
             aria-disabled="@CheckSetDisableButton(NavSelectorType.Next, _currentPage, _lastPage, _currentRowCount, _totalRowCount)" >
                 <span class="@GlobalValues.Pager_Selector_Text_Class">@_nextText</span>

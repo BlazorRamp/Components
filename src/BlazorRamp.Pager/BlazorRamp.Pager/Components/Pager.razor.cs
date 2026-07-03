@@ -148,7 +148,6 @@ public partial class Pager : IAsyncDisposable
 
     private ElementReference NavElementRef   { get; set; }
 
-    private NavSelectorType       _setFocusOn            = NavSelectorType.None;
     private PagerSelectorType     _pagerSelectorType     = PagerSelectorType.Button;
     private PagerAnnouncementType _pagerAnnouncementType = PagerAnnouncementType.WithAnnouncement;
 

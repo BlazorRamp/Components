@@ -23,7 +23,7 @@
         The structure of the component is simply a <span class="code-span">nav</span> element that contains either buttons or links dependant on the components configuration options.
         The  <span class="code-span">nav</span> element has the <span class="code-span">aria-labelledby</span> attribute that uses two identifiers. The first part is a name such as Data Pager,
         the second points to the information seen above the buttons or links, so screen reader users on entering the pager or via landmark lists, will 
-        have both the name of the pager and its state announced such as Data Pager, Current page 5 of 10;
+        have both the name of the pager and its state announced such as Data Pager, Current page 5 of 10.
     </p>
     <p>
         The Pager component has various design time and runtime configurable options, such as whether it uses buttons for when used with a data table or
@@ -34,19 +34,13 @@
     </p>
     <p>
         If a button or link is not required such as the first and previous ones when on the first page,these are styled differently and use <span class="code-span">aria-disabled</span> 
-        setting either <span class="code-span">tabindex=-"1"</span> or removing the <span class="code-span">href</span> so they are not focusable (to negate this tab stop). 
-        <strong>Note:</strong> Some of this may seem odd but there are lots of issues with JAWS on Blazor Server (this is Blazor WASM, the component is used for both) that necessitated 
-       this as opposed to say just using the <span class="code-span">disabled</span> attribute to remove the tab stop etc.
+        as an indicator to screen reader users that there is currently nothing the button or link can do. Activating it just announces the current page information.
     </p>
     <p>
         Screen reader users on activating a button or link will have the information that is displayed next to th the buttons or links announced.
         <strong>Note: </strong>I use the my Live Region Service for these announcements, and the pager has been configured not to add these announcements
         to the rolling log normally viewed using the announcement history dialog accessed via the Alerts Button, bottom right of the page or using the
         key combination <kbd>Ctrl + Shift + H</kbd>.
-    </p>
-    <p>
-        <strong>Important:</strong> When you activate the Previous or First button/ink when on page 2, focus is moved to the button or link labelled Next.
-        Equally if you activated the Last or Next button/link whilst on the penultimate page, focus is moved to the button or link labelled Previous.
     </p>
     <p>
         <strong>Note:</strong> As this is a site is single page application, the links will not lose focus unless you choose ot open in a new window
