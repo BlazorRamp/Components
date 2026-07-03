@@ -1,4 +1,5 @@
 ﻿@page "/counter"
+@inject NavigationManager _navigationManager
 @rendermode InteractiveWebAssembly
 
 <PageTitle>Counter</PageTitle>
@@ -10,31 +11,34 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 
-@* <p>
-    <Pager @bind-CurrentPage="buttonCurrentPage" AriaLabel="Min Button" TotalItemCount="100" CurrentItemCount="69" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="false"></Pager>
-</p> *@
 <p>
-    <Pager @bind-CurrentPage="buttonCurrentPage" AriaLabel="Full Button" TotalItemCount="100" CurrentItemCount="69" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true"></Pager>
-</p>
-@* <p>
-    <Pager @bind-CurrentPage="linkCurrentPage" AriaLabel="Min LInk" TotalItemCount="100" CurrentItemCount="100" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Link" ShowFirstLast="false"></Pager>
+    <Pager @bind-CurrentPage="_buttonCurrentPage" AriaLabel="Full Button" TotalItemCount="100" CurrentItemCount="69" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true"></Pager>
 </p>
 <p>
-    <Pager @bind-CurrentPage="linkCurrentPage" AriaLabel="Full Link" TotalItemCount="100" CurrentItemCount="100" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Link" ShowFirstLast="true"></Pager>
+    <Pager @bind-CurrentPage="_linkCurrentPage" AriaLabel="Full Link" TotalItemCount="100" CurrentItemCount="100" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Link" ShowFirstLast="true"></Pager>
 </p>
- *@
-<button @onclick="() => linkCurrentPage = 3">Set to zero</button>
+
+
 
 
 
 
 @code {
-    private int buttonCurrentPage = 1;
-    private int linkCurrentPage = 1;
+    private int _buttonCurrentPage = 1;
+    private int _linkCurrentPage = 1;
+
     private int currentCount = 0;
 
     private void IncrementCount()
     {
         currentCount++;
+    }
+    protected override void OnInitialized()
+    {
+        //One time thing
+        var pageValueFull = HttpUtility.ParseQueryString(new Uri(_navigationManager.Uri).Query).Get("page");
+
+        _linkCurrentPage = int.TryParse(pageValueFull, out int full) ? full : 1;
+
     }
 }

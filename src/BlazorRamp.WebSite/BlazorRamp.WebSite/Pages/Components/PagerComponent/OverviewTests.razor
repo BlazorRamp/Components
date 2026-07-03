@@ -30,19 +30,19 @@
         links for when used to page product listings. You can configure whether or not to show the first and last button/links. 
     </p>
     <p>
-        The text above the buttons or links is runtime configurable and uses replacement tokens, so these can be shorter or longer to suit the context.
+        The page information is runtime configurable and uses replacement tokens, so this text can be shorter or longer to suit the context.
     </p>
     <p>
-        If a button or link is not required such as the first and previous ones when on the first page then these are styled differently and are effectively disabled 
-        so they are not focusable, to negate this tab stop. Buttons that are not required have the <span class="code-span">disabled</span> 
-        attribute added, with links having <span class="code-span">href</span> removed, the <span class="code-span">role="link"</span> and the <span class="code-span">aria-disabled</span> 
-        attributes added.
+        If a button or link is not required such as the first and previous ones when on the first page,these are styled differently and use <span class="code-span">aria-disabled</span> 
+        setting either <span class="code-span">tabindex=-"1"</span> or removing the <span class="code-span">href</span> so they are not focusable (to negate this tab stop). 
+        <strong>Note:</strong> Some of this may seem odd but there are lots of issues with JAWS on Blazor Server (this is Blazor WASM, the component is used for both) that necessitated 
+       this as opposed to say just using the <span class="code-span">disabled</span> attribute to remove the tab stop etc.
     </p>
     <p>
-        Screen reader users on activating a button or link will have the information that is displayed above the buttons or links announced.
+        Screen reader users on activating a button or link will have the information that is displayed next to th the buttons or links announced.
         <strong>Note: </strong>I use the my Live Region Service for these announcements, and the pager has been configured not to add these announcements
-        to the rolling log normally viewed using the announcement history dialog, Alerts Button, bottom right of the page or use <kbd>Ctrl + Shift + H</kbd> key
-        combination.
+        to the rolling log normally viewed using the announcement history dialog accessed via the Alerts Button, bottom right of the page or using the
+        key combination <kbd>Ctrl + Shift + H</kbd>.
     </p>
     <p>
         <strong>Important:</strong> When you activate the Previous or First button/ink when on page 2, focus is moved to the button or link labelled Next.
@@ -50,7 +50,9 @@
     </p>
     <p>
         <strong>Note:</strong> As this is a site is single page application, the links will not lose focus unless you choose ot open in a new window
-        in which case you would be at the start of the page and have to navigate back to the pager.
+        in which case you would be at the start of the page and have to navigate back to the pager. Also note, this is hosted on GitPages which needs
+        a bit of script for Blazor, I have not amended this, so you will not see any page numbers in the address bar as you normally would when using the 
+        link style pagers.
     </p>
 </section>
 
