@@ -1,0 +1,38 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Pager}/{GlobalValues.Common_Page_Path_Usage}")]
+
+<PageTitle>@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Usage</PageTitle>
+
+<h1>@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Usage</h1>
+
+<p>
+    Practical examples showing the Skip To component configured with various parameters.
+</p>
+
+<p>The following example shows the parameters used for the skip to link on this site which is hidden top left of the page before the left hand navigation.</p>
+
+@* <CodeBox CodeBlock="@PagerSnippets.Skip_To_Params_Example" AriaLabel="Skip to example code block" /> *@
+
+
+
+<p>The following example is the skip to on this page using the <span class="code-span">SkipToType.Section</span></p>
+
+@* <CodeBox CodeBlock="@SkipToSnippets.Skip_To_Section_Example" AriaLabel="Skip to section example code block" /> *@
+
+
+
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Pager}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Pager - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_SkipTo}/{GlobalValues.Common_Page_Path_Overview}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_SkipTo - @GlobalValues.Common_Page_Title_Overview</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}

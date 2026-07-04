@@ -83,6 +83,7 @@ public class GlobalValues
     public const string Component_Name_Input_Errors_Summary = "Input Errors Summary";
 
     public const string Component_Name_NavGroup     = "Nav Group";
+    public const string Component_Name_Pager        = "Pager";
     public const string Component_Name_SkipTo       = "Skip To";
     public const string Component_Name_Switch       = "Switch";
     public const string Component_Name_Tabs         = "Tabs";
@@ -104,14 +105,15 @@ public class GlobalValues
     public const string Component_Path_Part_RadioInputGroup = "radio-input-group";
     public const string Component_Path_Part_InputErrors     = "input-errors-summary";
     public const string Component_Path_Part_SkipTo          = "skip-to";
+    public const string Component_Path_Part_Pager           = "pager";
     public const string Component_Path_Part_Switch          = "switch";
     public const string Component_Path_Part_Tabs            = "tabs";
     public const string Component_Path_Part_Toggletip       = "toggletip";
     public const string Component_Path_Part_NavGroup        = "nav-group";
 
 
-    public const string Service_Name_Live_Region = "Live Region";
-    public const string Service_Path_Part_Live_Region  = "live-region";
+    public const string Service_Name_Live_Region        = "Live Region";
+    public const string Service_Path_Part_Live_Region   = "live-region";
 
     public const string Framework_Name_Modal         = "Modal Dialog";
     public const string Framework_Path_Part_Modal   = "modal-dialog";

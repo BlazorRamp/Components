@@ -50,6 +50,6 @@ internal class GlobalValues
     public const string Pager_Information_Class   = $"{Pager_Class}__information";
 
 
-    public const string Pager_Count_Text        = "Current page {firstpage} of {lastpage}, items {startrow} to {endrow}";
+    public const string Pager_Count_Text        = "Current page {currentpage} of {lastpage}, items {startrow} to {endrow}";
     public const string Pager_Filter_Count_Text = ", {filteredrows} items filtered from {totalrows}.";
 }

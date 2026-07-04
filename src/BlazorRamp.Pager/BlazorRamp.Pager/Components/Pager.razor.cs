@@ -266,7 +266,7 @@ public partial class Pager : IAsyncDisposable
     private static string SetInformationText(int currentPage, int totalPages, int rowsPerPage, int currentRows, int totalRows,
                                          string pageCountText, string filterCountText, string noRecordsText)
     {
-        if (currentRows < 1 || totalRows < 1) return GlobalValues.Pager_No_Records_Text;
+        if (currentRows < 1 || totalRows < 1) return noRecordsText;
 
         var rowStart = (rowsPerPage * currentPage) - (rowsPerPage - 1);
         var rowEnd = Math.Min(rowsPerPage * currentPage, currentRows);
@@ -275,7 +275,7 @@ public partial class Pager : IAsyncDisposable
         var filteredString = isFiltered ? $"{filterCountText.Replace("{filteredrows}", currentRows.ToString()).Replace("{totalrows}", totalRows.ToString())}"
                                         : String.Empty;
 
-        var infoText = pageCountText.Replace("{firstpage}", currentPage.ToString())
+        var infoText = pageCountText.Replace("{currentpage}", currentPage.ToString())
                                     .Replace("{lastpage}", totalPages.ToString())
                                     .Replace("{startrow}", rowStart.ToString())
                                     .Replace("{endrow}", rowEnd.ToString())
@@ -365,6 +365,7 @@ public partial class Pager : IAsyncDisposable
     public async ValueTask DisposeAsync()
     {
         _dotNetObjectRef?.Dispose();
+        _announceDebounceTS.Cancel();
 
         if (_jSModule is not null)
         {
