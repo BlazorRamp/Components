@@ -70,7 +70,7 @@
 
         <h3 class="@GlobalValues.Info_Box_Heading_Class @GlobalValues.Tab_Stop_Indicaor_Class" tabindex="0">Tab stop before a filtered data table pager (without table), first, previous, next and last buttons</h3>
     
-            <Pager @bind-CurrentPage="_fullButtonCurrentPage" AriaLabel="Four button pager" TotalItemCount="100" CurrentItemCount="80" ItemsPerPage="10" 
+            <Pager @bind-CurrentPage="@_fullButtonCurrentPage" AriaLabel="Four button pager" TotalItemCount="100" CurrentItemCount="80" ItemsPerPage="10" 
                 PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true"></Pager>
 
     </section>

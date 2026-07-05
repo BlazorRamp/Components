@@ -14,6 +14,12 @@
 
 
 .br-pager {
+    background-color: var(--br-comp-pager-pane-base-background);
+    border-style: var(--br-comp-pager-pane-base-border-style); 
+    border-color: var(--br-comp-pager-pane-base-border-colour);
+    border-width: var(--br-comp-pager-pane-base-border-width); 
+    border-radius:var(--br-comp-pager-pane-base-border-radius);
+
     box-sizing: border-box;
     container-type: inline-size;
     width: 100%;
@@ -72,16 +78,16 @@
         display: flex;
         align-items: center;
         gap: var(--br-unit-space-3);
-        background: var(--br-comp-pager-button-background);
-        color: var(--br-comp-pager-button-text);
-        font-family: var(--br-comp-pager-button-font-family);
-        font-size: var(--br-comp-pager-button-font-size);
-        font-weight: var(--br-comp-pager-button-font-weight);
-        line-height: var(--br-comp-pager-button-line-height);
-        border-style: var(--br-comp-pager-button-border-style);
-        border-color: var(--br-comp-pager-button-border-colour);
-        border-width: var(--br-comp-pager-button-border-width);
-        border-radius: var(--br-comp-pager-button-border-radius);
+        background: var(--br-comp-pager-selector-background);
+        color: var(--br-comp-pager-selector-text);
+        font-family: var(--br-comp-pager-selector-font-family);
+        font-size: var(--br-comp-pager-selector-font-size);
+        font-weight: var(--br-comp-pager-selector-font-weight);
+        line-height: var(--br-comp-pager-selector-line-height);
+        border-style: var(--br-comp-pager-selector-border-style);
+        border-color: var(--br-comp-pager-selector-border-colour);
+        border-width: var(--br-comp-pager-selector-border-width);
+        border-radius: var(--br-comp-pager-selector-border-radius);
         padding-block: var(--br-unit-space-1);
         padding-inline: var(--br-unit-space-4);
         min-height: var(--br-unit-wcag-target-2a);
@@ -106,21 +112,21 @@
 
 
         &:active:not([aria-disabled]) {
-            transform: scale(var(--br-comp-pager-button-state-active-scale));
-            filter: brightness(var(--br-comp-pager-button-state-active-brightness));
+            transform: scale(var(--br-comp-pager-selector-state-active-scale));
+            filter: brightness(var(--br-comp-pager-selector-state-active-brightness));
             outline: none;
         }
 
         &:focus-visible {
-            outline-offset: var(--br-comp-pager-button-outline-offset);
-            outline-width: var(--br-comp-pager-button-outline-width);
-            outline-style: var(--br-comp-pager-button-outline-style);
-            outline-color: var(--br-comp-pager-button-outline-colour);
+            outline-offset: var(--br-comp-pager-selector-outline-offset);
+            outline-width: var(--br-comp-pager-selector-outline-width);
+            outline-style: var(--br-comp-pager-selector-outline-style);
+            outline-color: var(--br-comp-pager-selector-outline-colour);
         }
 
 
         &:hover:not([aria-disabled]) {
-            background-color: var(--br-comp-pager-button-state-hover);
+            background-color: var(--br-comp-pager-selector-state-hover);
         }
     }
 
@@ -135,22 +141,22 @@
         display: flex;
         align-items: center;
         gap: var(--br-unit-space-3);
-        color: var(--br-comp-pager-button-text);
-        font-family: var(--br-comp-pager-button-font-family);
-        font-size: var(--br-comp-pager-button-font-size);
-        font-weight: var(--br-comp-pager-button-font-weight);
-        line-height: var(--br-comp-pager-button-line-height);
+        color: var(--br-comp-pager-selector-text);
+        font-family: var(--br-comp-pager-selector-font-family);
+        font-size: var(--br-comp-pager-selector-font-size);
+        font-weight: var(--br-comp-pager-selector-font-weight);
+        line-height: var(--br-comp-pager-selector-line-height);
         padding-block: var(--br-unit-space-1);
         padding-inline: var(--br-unit-space-4);
         min-height: var(--br-unit-wcag-target-2a);
-        border-style: var(--br-comp-pager-button-border-style);
-        border-width: var(--br-comp-pager-button-border-width);
-        border-radius: var(--br-comp-pager-button-border-radius);
+        border-style: var(--br-comp-pager-selector-border-style);
+        border-width: var(--br-comp-pager-selector-border-width);
+        border-radius: var(--br-comp-pager-selector-border-radius);
         border-color: transparent;
 
         &:hover:not([aria-disabled]) {
-            border-color: var(--br-comp-pager-button-border-colour);
-            background-color: var(--br-comp-pager-button-state-hover);
+            border-color: var(--br-comp-pager-selector-border-colour);
+            background-color: var(--br-comp-pager-selector-state-hover);
         }
 
 
@@ -180,15 +186,15 @@
         }
 
         &:focus-visible:not([aria-disabled]) {
-            border-color: var(--br-comp-pager-button-border-colour);
+            border-color: var(--br-comp-pager-selector-border-colour);
 
         }
 
         &:focus-visible {
-            outline-offset: var(--br-comp-pager-button-outline-offset);
-            outline-width: var(--br-comp-pager-button-outline-width);
-            outline-style: var(--br-comp-pager-button-outline-style);
-            outline-color: var(--br-comp-pager-button-outline-colour);
+            outline-offset: var(--br-comp-pager-selector-outline-offset);
+            outline-width: var(--br-comp-pager-selector-outline-width);
+            outline-style: var(--br-comp-pager-selector-outline-style);
+            outline-color: var(--br-comp-pager-selector-outline-colour);
         }
     }
 

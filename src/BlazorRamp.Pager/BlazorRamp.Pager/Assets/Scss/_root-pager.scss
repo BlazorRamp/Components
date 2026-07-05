@@ -4,28 +4,33 @@
     --svg-pager-last-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='m7 17.308l-.708-.708l4.6-4.6l-4.6-4.6L7 6.692L12.308 12zm9.5.192v-11h1v11z'/%3E%3C/svg%3E");
     --svg-pager-first-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M6.5 17.5v-11h1v11zm10.5-.192L11.692 12L17 6.692l.708.708l-4.6 4.6l4.6 4.6z'/%3E%3C/svg%3E");
     //
-    --br-comp-pager-button-background: var(--br-comp-all-button-background);
-    --br-comp-pager-button-text: var(--br-comp-all-button-text);
-    --br-comp-pager-button-font-family: var(--br-comp-all-button-font-family);
-    --br-comp-pager-button-font-size: var(--br-comp-all-button-font-size);
-    --br-comp-pager-button-font-weight: 500;
-    --br-comp-pager-button-line-height: var(--br-comp-all-button-line-height);
-    --br-comp-pager-button-border-style: var(--br-comp-all-button-border-style);
-    --br-comp-pager-button-border-colour: var(--br-comp-all-button-border-colour);
-    --br-comp-pager-button-border-width: var(--br-comp-all-button-border-width);
-    --br-comp-pager-button-border-radius: var(--br-comp-all-button-border-radius);
+    --br-comp-pager-pane-base-background: transparent;
+    --br-comp-pager-pane-base-border-style: var(--br-comp-all-pane-base-border-style);
+    --br-comp-pager-pane-base-border-colour: var(--br-comp-all-pane-base-border-colour);
+    --br-comp-pager-pane-base-border-width: var(--br-comp-all-pane-base-border-width);
+    --br-comp-pager-pane-base-border-radius: var(--br-comp-all-pane-base-border-radius);
     //
-    --br-comp-pager-button-state-hover: var(--br-comp-all-button-state-hover);
-    --br-comp-pager-button-state-active-brightness: var(--br-comp-all-button-state-active-brightness);
-    --br-comp-pager-button-state-active-scale: var(--br-comp-all-button-state-active-scale);
+    --br-comp-pager-selector-background: var(--br-comp-all-button-background);
+    --br-comp-pager-selector-text: var(--br-comp-all-button-text);
+    --br-comp-pager-selector-font-family: var(--br-comp-all-button-font-family);
+    --br-comp-pager-selector-font-size: var(--br-comp-all-button-font-size);
+    --br-comp-pager-selector-font-weight: 500;
+    --br-comp-pager-selector-line-height: var(--br-comp-all-button-line-height);
+    --br-comp-pager-selector-border-style: var(--br-comp-all-button-border-style);
+    --br-comp-pager-selector-border-colour: var(--br-comp-all-button-border-colour);
+    --br-comp-pager-selector-border-width: var(--br-comp-all-button-border-width);
+    --br-comp-pager-selector-border-radius: var(--br-comp-all-button-border-radius);
     //
-    --br-comp-pager-button-outline-style: var(--br-comp-all-outline-style);
-    --br-comp-pager-button-outline-width: var(--br-comp-all-outline-width);
-    --br-comp-pager-button-outline-offset: var(--br-comp-all-outline-offset);
-    --br-comp-pager-button-outline-colour: var(--br-comp-all-outline-colour);
-
+    --br-comp-pager-selector-state-hover: var(--br-comp-all-button-state-hover);
+    --br-comp-pager-selector-state-active-brightness: var(--br-comp-all-button-state-active-brightness);
+    --br-comp-pager-selector-state-active-scale: var(--br-comp-all-button-state-active-scale);
     //
-    --br-comp-pager-display-font-size: var(--br-unit-font-size-1); 
+    --br-comp-pager-selector-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-pager-selector-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-pager-selector-outline-offset: var(--br-comp-all-outline-offset);
+    --br-comp-pager-selector-outline-colour: var(--br-comp-all-outline-colour);
+    //
+    --br-comp-pager-display-font-size: var(--br-unit-font-size-1);
     --br-comp-pager-display-font-weight: var(--br-unit-font-weight-500);
     --br-comp-pager-display-text: var(--br-comp-all-area-header-text);
     --br-comp-pager-display-background: inherit;
