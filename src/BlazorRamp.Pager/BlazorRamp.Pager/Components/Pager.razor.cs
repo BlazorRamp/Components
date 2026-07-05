@@ -87,7 +87,7 @@ public partial class Pager : IAsyncDisposable
     /// are replaced with the current values at render time. When not supplied, a default English template is
     /// used.
     /// </summary>
-    [Parameter] public string PageCountText   { get; set; } = default!;
+    [Parameter] public string PageCountText   { get; set; } = GlobalValues.Pager_Count_Text;
 
     /// <summary>
     /// Gets or sets the template appended to the information text when <see cref="CurrentItemCount"/> differs
@@ -95,13 +95,13 @@ public partial class Pager : IAsyncDisposable
     /// Supports the placeholders <c>{filteredrows}</c> and <c>{totalrows}</c>. When not supplied, a default
     /// English template is used.
     /// </summary>
-    [Parameter] public string FilterCountText { get; set; } = default!;
+    [Parameter] public string FilterCountText { get; set; } = GlobalValues.Pager_Filter_Count_Text;
 
     /// <summary>
     /// Gets or sets the text displayed and announced in place of the information text when there are no
     /// records to page through. When not supplied, a default English message is used.
     /// </summary>
-    [Parameter] public string NoRecordsText   { get; set; } = default!;
+    [Parameter] public string NoRecordsText { get; set; } = GlobalValues.Pager_No_Records_Text;
 
 
     /// <summary>
@@ -189,21 +189,21 @@ public partial class Pager : IAsyncDisposable
     /// </summary>
     protected override void OnParametersSet()
     {
-        _pageChanged      = _previousCurrent != CurrentPage;
+        _pageChanged     = _previousCurrent != CurrentPage;
         _previousCurrent = CurrentPage;
 
         _rowsPerPage     = ItemsPerPage < 1 ? GlobalValues.Pager_Rows_Per_Page : ItemsPerPage;
         _totalRowCount   = TotalItemCount;
         _currentRowCount = CurrentItemCount > TotalItemCount ? TotalItemCount : CurrentItemCount;
 
-        _pageCountText   = String.IsNullOrWhiteSpace(PageCountText) ? GlobalValues.Pager_Count_Text : PageCountText.Trim();
+        _pageCountText   = String.IsNullOrWhiteSpace(PageCountText)   ? GlobalValues.Pager_Count_Text        : PageCountText.Trim();
         _filterCountText = String.IsNullOrWhiteSpace(FilterCountText) ? GlobalValues.Pager_Filter_Count_Text : FilterCountText.Trim();
-        _noRecordsText   = String.IsNullOrWhiteSpace(NoRecordsText) ? GlobalValues.Pager_No_Records_Text : NoRecordsText.Trim();
+        _noRecordsText   = String.IsNullOrWhiteSpace(NoRecordsText)   ? GlobalValues.Pager_No_Records_Text   : NoRecordsText.Trim();
 
-        _nextText       = String.IsNullOrWhiteSpace(NextText) ? GlobalValues.Pager_Selector_Next_Text : NextText.Trim();
-        _prevText       = String.IsNullOrWhiteSpace(PreviousText) ? GlobalValues.Pager_Selector_Prev_Text : PreviousText.Trim();
-        _lastText       = String.IsNullOrWhiteSpace(LastText) ? GlobalValues.Pager_Selector_Last_Text : LastText.Trim();
-        _firstText      = String.IsNullOrWhiteSpace(FirstText) ? GlobalValues.Pager_Selector_First_Text : FirstText.Trim();
+        _nextText        = String.IsNullOrWhiteSpace(NextText)     ? GlobalValues.Pager_Selector_Next_Text  : NextText.Trim();
+        _prevText        = String.IsNullOrWhiteSpace(PreviousText) ? GlobalValues.Pager_Selector_Prev_Text  : PreviousText.Trim();
+        _lastText        = String.IsNullOrWhiteSpace(LastText)     ? GlobalValues.Pager_Selector_Last_Text  : LastText.Trim();
+        _firstText       = String.IsNullOrWhiteSpace(FirstText)    ? GlobalValues.Pager_Selector_First_Text : FirstText.Trim();
 
         _pagerAnnouncementType = PagerAnnouncementType;
 

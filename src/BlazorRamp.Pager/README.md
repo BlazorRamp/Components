@@ -15,18 +15,18 @@ this package separately (but it can be if you only require the Live Regions Serv
 ## Installation
 
 
-1. Add the BlazorRamp.NavGroup nuget package to your project using the Nuget Package Manager or the dotnet CLI.
+1. Add the BlazorRamp.Pager nuget package to your project using the Nuget Package Manager or the dotnet CLI.
 
 ```c#
 dotnet add package BlazorRamp.NavGroup
 ```
-2. Add the following Core and NavGroup style references to the `<head>` section of your application:
+2. Add the following Core and Pager style references to the `<head>` section of your application:
 - Blazor Web App / Blazor Server → App.razor
 - Blazor WebAssembly → wwwroot/index.html
 ```html
 <head>
 	<link rel="stylesheet" href="_content/BlazorRamp.Core/assets/css/core.min.css" />
-	<link rel="stylesheet" href="_content/BlazorRamp.NavGroup/assets/css/nav-group.min.css" />
+	<link rel="stylesheet" href="_content/BlazorRamp.Pager/assets/css/pager.min.css" />
 </head>
 ```
  
@@ -59,30 +59,11 @@ Title="Recent Announcements" TriggerVisible="true" TriggerText="Alerts" />
 <Router AppAssembly . . .
 ```
 
-## Using the NavGroup component
+## Using the Pager component
 
-The Nav Group component is designed to be used within an HTMLnav element. It uses what is known as a "disclosure" pattern in accessibility terms, meaning it has a 
-button that, when pressed, shows or hides content. In this instance it pushes content out of the way, as opposed to a dropdown where a panel may obscure content, 
-and as such was designed for side navigation systems. in fact, the reason it was built was for the Blazor Ramp documenation site.
 
-The Nav Group itself can contain `NavGroupLink` components, `NavSection` components (which provide the disclosure behaviour), or a `NavSeparator` (decorative line / separator). 
-Each `NavSection` can in turn contain `NavGroupLink`, `NavSeparator` and `NavSection` components allowing you to build 'N'-level deep menu systems.
 
-The following example (at time or writing) is the Frameworks section of the Blazor Ramp documenation site:
-```
-<h2 id="framework-section" class="main-menu__heading">Frameworks</h2>
-<NavGroup AriaLabelledBy="framework-section">
-    <NavSeparator />
-    <NavSection Title="Modal Dialog">
-        <NavGroupLink Href="/frameworks/modal-dialog/overview" VisuallyHiddenPrefix="Modal Dialogl" LinkText="Overview" />
-        <NavGroupLink Href="/frameworks/modal-dialog/installation" VisuallyHiddenPrefix="Modal Dialog" LinkText="Installation" />
-        <NavGroupLink Href="/frameworks/modal-dialog/accessibility" VisuallyHiddenPrefix="Modal Dialog" LinkText="Accessibility" />
-        <NavGroupLink Href="/frameworks/modal-dialog/api" VisuallyHiddenPrefix="Modal Dialog" LinkText="API Reference" />
-        <NavGroupLink Href="/frameworks/modal-dialog/usage" VisuallyHiddenPrefix="Modal Dialog" LinkText="Usage" />
-    </NavSection>    
-</NavGroup>
 
-```
 
 **Note:** For the full documentation please see https://docs.blazorramp.uk
 

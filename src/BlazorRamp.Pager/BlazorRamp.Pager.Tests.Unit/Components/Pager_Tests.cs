@@ -277,7 +277,7 @@ public class Pager_Tests
         [InlineData("")]
         [InlineData("   ")]
         [InlineData("My page {currentpage} {lastpage} {startrow} {endrow}")]
-        public async Task Should_be_able_to_set_the_ne_page_count_text_which_defaults_if_null_empty_or_whitespace(string? pageCountText)
+        public async Task Should_be_able_to_set_the_page_count_text_which_defaults_if_null_empty_or_whitespace(string? pageCountText)
         {
             await using var context = new BunitContext();
 
@@ -354,6 +354,18 @@ public class Pager_Tests
                                    .Replace("{startrow}", rowStart.ToString()).Replace("{endrow}", rowEnd.ToString());
 
             pager.Find($".{GlobalValues.Pager_Information_Class}").TextContent.Should().Be(pageCountText);
+
+        }
+
+
+
+        [Fact]
+        public async Task Should_be_able_to_set_the_page_query_param_name()//need playwright
+        {
+            await using var context = new BunitContext();
+
+            var pager = CreatePager(context, p => p.Add(x => x.QueryParamName, "my-page"));
+            pager.Instance.QueryParamName.Should().Be("my-page");
 
         }
 

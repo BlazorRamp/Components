@@ -96,7 +96,12 @@
 
         &[aria-disabled] {
             cursor: not-allowed;
-            text-decoration: line-through;
+            border-color: transparent;
+
+            @media (forced-colors: active) {
+                border-color: GrayText;
+                color: GrayText;
+            }
         }
 
 
@@ -149,14 +154,6 @@
         }
 
 
-        &:focus-visible {
-            border-color: var(--br-comp-pager-button-border-colour);
-            outline-offset: var(--br-comp-pager-button-outline-offset);
-            outline-width: var(--br-comp-pager-button-outline-width);
-            outline-style: var(--br-comp-pager-button-outline-style);
-            outline-color: var(--br-comp-pager-button-outline-colour);
-        }
-
         &--next {
             justify-content: end;
         }
@@ -167,12 +164,32 @@
 
         &[aria-disabled] {
             cursor: not-allowed;
-            text-decoration: line-through;
+            text-decoration: none;
+
+            @media (forced-colors: active) {
+                color: GrayText;
+            }
+
+            &:hover {
+                border-color: transparent;
+
+                @media (forced-colors: active) {
+                    border-color: GrayText;
+                }
+            }
         }
 
-            &[aria-disabled]:hover {
-                border-color: transparent;
-            }
+        &:focus-visible:not([aria-disabled]) {
+            border-color: var(--br-comp-pager-button-border-colour);
+
+        }
+
+        &:focus-visible {
+            outline-offset: var(--br-comp-pager-button-outline-offset);
+            outline-width: var(--br-comp-pager-button-outline-width);
+            outline-style: var(--br-comp-pager-button-outline-style);
+            outline-color: var(--br-comp-pager-button-outline-colour);
+        }
     }
 
     &__button, &__link {
@@ -246,8 +263,3 @@
         text-align: center;
     }
 }
-
-/*.br-pager__button:focus:not(:focus-visible) {
-    outline: 2px solid red;
-}*/
-
