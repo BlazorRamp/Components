@@ -5,7 +5,7 @@
 <h1>@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Api</h1>
 
 <p>
-    Everything you need to work with the Skip To component: parameters, methods, models, enums, and CSS variables for styling.
+    Everything you need to work with the Pager component: parameters, methods, models, enums, and CSS variables for styling.
 </p>
 
 
@@ -20,9 +20,9 @@
 
     <section class="code-table">
 
-        <h3 id="skip-to-component-parameters" class="code-table__heading">Pager component parameters</h3>
+        <h3 id="pager-component-parameters" class="code-table__heading">Pager component parameters</h3>
 
-        <table aria-labelledby="skip-to-component-parameters">
+        <table aria-labelledby="pager-component-parameters">
 
             <thead>
                 <tr>
@@ -33,27 +33,177 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>SkipToText</td>
+                    <td>AriaLabel</td>
                     <td>string</td>
-                    <td>The text displayed by the skip to link. Defaults to "Skip to content".</td>
-                </tr>
-                <tr>
-                    <td>TargetID</td>
-                    <td>string</td>
-                    <td>The ID of the target element to move focus to. Defaults to "main-content".</td>
-                </tr>
-                <tr>
-                    <td>SkipToType</td>
-                    <td>SkipToType (enum)</td>
                     <td>
-                        Sets whether the skip link is positioned for the entire page or a specific section.
-                        Defaults to <span class="code-span">SkipToType.Site</span>.
+                        Gets or sets the accessible label describing the purpose of the pager, exposed to assistive technology
+                        via the pager's <span class="code-span">nav</span> landmark. Defaults to <span class="code-span">Results Pager</span>.
+                        <br />
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes there after are ignored.
                     </td>
                 </tr>
                 <tr>
-                    <td>IconVisible</td>
+                    <td>PagerSelectorType</td>
+                    <td>PagerSelectorType (enum)</td>
+                    <td>
+                        Gets or sets whether the pager renders its navigation controls as button elements or as
+                        anchor elements. For anchors the current page number is added to the address bar, but the
+                        default <span class="code-span">href</span> has been supressed, but it can be used for favourites or
+                        open in new page etc. Defaults to <span class="code-span">PagerSelectorType.Button</span>.
+                        <br />
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes there after are ignored.
+                    </td>
+                </tr>
+                <tr>
+                    <td>PagerAnnouncementType</td>
+                    <td>PagerAnnouncementType (enum)</td>
+                    <td>
+                        Gets or sets whether page changes are announced to assistive technology via the live region. Defaults to
+                        <span class="code-span">PagerAnnouncementType.WithAnnouncement</span>. You would only want to use
+                        <span class="code-span">PagerAnnouncementType.WithoutAnnouncement</span> to suppress announcements for situations
+                        where you had two pagers bound to the same variables, for example when having a pager both above and below the results being paged.
+                    </td>
+                </tr>
+                <tr>
+                    <td>PageAlignment</td>
+                    <td>PageAlignment (enum)</td>
+                    <td>
+                        Gets or sets the horizontal alignment of the pager within its container. Defaults to <span class="code-span">PageAlignment.Centred</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>FirstText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the visible and accessible name for the "first page" control. Only rendered when
+                        <span class="code-span">ShowFirstLast</span> is true. Defaults to <span class="code-span">First</span>.
+                        <br />
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes there after are ignored.
+                    </td>
+                </tr>
+                <tr>
+                    <td>PreviousText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the visible and accessible name for the "previous page" control. Defaults to <span class="code-span">Previous</span>.
+                        <br />
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes there after are ignored.
+                    </td>
+                </tr>
+                <tr>
+                    <td>NextText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the visible and accessible name for the "next page" control. Defaults to <span class="code-span">Next</span>.
+                        <br />
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes there after are ignored.
+                    </td>
+                </tr>
+                <tr>
+                    <td>LastText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the visible and accessible name for the "last page" control. Only rendered when
+                        <span class="code-span">ShowFirstLast</span> is true. Defaults to <span class="code-span">First</span>.
+                        <br />
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes there after are ignored.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ShowFirstLast</td>
                     <td>bool</td>
-                    <td>Indicates whether to display the skip link icon (person running). Defaults to true. </td>
+                    <td>
+                        Gets or sets whether the "first page" and "last page" controls are rendered in addition to previous and next.
+                        Defaults to <span class="code-span">true</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>QueryParamName</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the name of the query string parameter used to encode the page number when anchors are used. Defaults to "page".
+                    </td>
+                </tr>
+                <tr>
+                    <td>PageCountText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the template used to build the pager's information text. Supports the placeholders
+                        <span class="code-span">{currentpage}</span>, <span class="code-span">{lastpage}</span>, <span class="code-span">{startrow}</span>,
+                        <span class="code-span">{endrow}</span>, and <span class="code-span">{totalrows}</span>, which
+                        are replaced with the current values at render time.
+                        <br />
+                        Defaults to <span class="code-span">Current page {currentpage} of {lastpage}, items {startrow} to {endrow}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>FilterCountText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the template appended to the information text when <see cref="CurrentItemCount" /> differs
+                        from <span class="code-span">TotalItemCount</span>, indicating that the current row count reflects an active filter.
+                        Supports the placeholders <span class="code-span">{filteredrows}</span> and <span class="code-span">{totalrows}</span>.
+                        <br />
+                        Defaults to <span class="code-span">, {filteredrows} items filtered from {totalrows}.</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>NoRecordsText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the text displayed and announced in place of the information text when there are no
+                        records to page through. Defaults to <span class="code-span">No entries found.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>TotalItemCount</td>
+                    <td>int</td>
+                    <td>
+                        Gets or sets the total number of records available, before any filtering is applied. Used together with
+                        <span class="code-span">CurrentItemCount</span> to determine whether the information text should indicate that the
+                        results are filtered. Defaults to <span class="code-span">0</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>CurrentItemCount</td>
+                    <td>int</td>
+                    <td>
+                        Gets or sets the number of records available after any filtering is applied. Used to calculate the
+                        total number of pages and the row range shown in the information text. Values greater than
+                        <span class="code-span">TotalItemCount</span> are clamped to <span class="code-span">TotalItemCount</span>.
+                        Defaults to <span class="code-span">0</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ItemsPerPage</td>
+                    <td>int</td>
+                    <td>
+                        Gets or sets the number of records shown per page. Values less than <span class="code-span">1</span> fall back to the default
+                        of <span class="code-span">10</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>CurrentPage</td>
+                    <td>int</td>
+                    <td>
+                        Gets or sets the currently displayed page number, using a 1-based index. Values outside the valid range
+                        are clamped between <span class="code-span">1</span> and the last available page.
+                    </td>
+                </tr>
+                <tr>
+                    <td>CurrentPageChanged</td>
+                    <td>EventCallback&lt;int&gt;</td>
+                    <td>
+                        Gets or sets the callback invoked when the user requests a page change, receiving the newly requested
+                        1-based page number. The pager does not update <span class="code-span">CurrentPage</span> itself; consumers are expected
+                        to handle this callback and pass the new value back in via the <span class="code-span">CurrentPage</span> parameter.
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -61,7 +211,116 @@
 </section>
 
 <section>
-    <h2 class="page-heading">CSS variables defined for the skip to component.</h2>
+    <h2 class="page-heading">Supporting enums</h2>
+
+    <section class="code-table">
+
+        <h3 id="pager-selector-type-enum" class="code-table__heading">PagerSelectorType enum</h3>
+
+        <table aria-labelledby="pager-selector-type-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>PagerSelectorType</td>
+                    <td>
+                        Navigation controls are rendered as button elements.
+                        This is the default value.
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Blank</td>
+                    <td>
+                        Navigation controls are rendered as anchor elements.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="pager-announcement-type-enum" class="code-table__heading">PagerAnnouncementType enum</h3>
+
+        <table aria-labelledby="pager-announcement-type-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>WithAnnouncement</td>
+                    <td>Page changes are announced to assistive technology via the live region service.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>WithoutAnnouncement</td>
+                    <td>Page changes are not announced by the pager. Useful for when two pagers are being used for the same data set</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <strong>Note: </strong>The announcements sent to the live region services are flagged as not replayable so they will not be
+            included in the rolling log / shown in the announcement history viewer.
+        </p>
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="pager-alignment-enum" class="code-table__heading">PageAlignment enum</h3>
+
+        <table aria-labelledby="pager-alignment-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Centred</td>
+                    <td>
+                        The pager is centred within its container. (nav element).
+                        This is the default value.
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Start</td>
+                    <td>The pager is aligned to the start of its container (nav element).</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>End</td>
+                    <td>The pager is aligned to the end of its container</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </section>
+
+</section>
+
+<section>
+    <h2 class="page-heading">CSS variables defined for the pager component.</h2>
 
     <p>
         The following sections outline all of the css variables that can be set to alter the styling of the skip to component.
@@ -70,9 +329,9 @@
 
     <section class="code-table">
 
-        <h3 id="skip-to-outline-variables" class="code-table__heading">Skip to outline variables</h3>
+        <h3 id="pane-base-variables" class="code-table__heading">Pane base variables</h3>
 
-        <table aria-labelledby="skip-to-outline-variables">
+        <table aria-labelledby="pane-base-variables">
 
             <thead>
                 <tr>
@@ -83,141 +342,227 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>--br-comp-skip-to-outline-style</td>
-                    <td>var(--br-comp-all-outline-style)</td>
-                    <td>Style of the outline around the component on focus - uses the shared component variable.</td>
+                    <td>--br-comp-pager-pane-base-background</td>
+                    <td>transparent</td>
+                    <td>The background colour of the base pane (this is the entire pager area) - <b>does not use the shared component variable.</b></td>
                 </tr>
                 <tr>
-                    <td>--br-comp-skip-to-outline-width</td>
+                    <td>--br-comp-pager-pane-base-border-style</td>
+                    <td>var(--br-comp-all-pane-base-border-style:)</td>
+                    <td>The border style - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-pane-base-border-width</td>
+                    <td>var(--br-comp-all-pane-base-border-width)</td>
+                    <td>
+                        The border width - uses the shared component variable. 
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-pane-base-border-colour</td>
+                    <td>var(--br-comp-all-pane-base-border-colour)</td>
+                    <td>The border colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-pane-base-border-radius</td>
+                    <td> var(--br-comp-all-pane-base-border-radius)</td>
+                    <td>The border radius - uses the shared component variable.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="pager-header-variables" class="code-table__heading">Header area variables</h3>
+        <p>
+            I treat the area with the pager information above the button/links as the header area
+            contents.
+        </p>
+        <table aria-labelledby="pager-header-variables">
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-pager-area-header-text</td>
+                    <td>var(--br-comp-all-area-header-text)</td>
+                    <td>
+                        The text colour used for pager information - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-area-header-background</td>
+                    <td>transparent</td>
+                    <td>The background colour of the heading area - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-area-header-font-family</td>
+                    <td>var(--br-comp-all-area-header-font-family)</td>
+                    <td>The font family used - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-area-header-font-size</td>
+                    <td>var(--br-unit-font-size-1)</td>
+                    <td>The size of the heading font - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-area-header-font-weight</td>
+                    <td>var(--br-unit-font-weight-500)</td>
+                    <td>The font weight -  <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-area-header-line-height</td>
+                    <td>var(--br-comp-all-area-header-line-height)</td>
+                    <td>The line height - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-area-header-border-style</td>
+                    <td>var(--br-comp-all-area-header-border-style)</td>
+                    <td>The border style - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-area-header-border-colour</td>
+                    <td>var(--br-comp-all-divider-colour)</td>
+                    <td>The colour of the border -  <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-area-header-border-width</td>
+                    <td>var(--br-unit-border-0)</td>
+                    <td>The border width - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-area-header-border-radius</td>
+                    <td>var(--br-comp-all-area-header-border-radius)</td>
+                    <td>The radius applied to each border corner - uses the shared component variable.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="internal-button-variables" class="code-table__heading">Pager button/link variables</h3>
+        <p>
+            Both buttons and links share the same border and outline properties, however the
+            borders are not shown on links unless its focus-visible.
+        </p>
+        <table aria-labelledby="internal-button-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-pager-selector-background</td>
+                    <td>var(--br-comp-all-button-background)</td>
+                    <td>
+                        The background colour of the button - uses the shared component variable.
+                        Links have nothing set and the button comp variable is transparent by default.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-selector-text</td>
+                    <td>var(--br-comp-all-button-text)</td>
+                    <td>The text colour used on the button/links - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-selector-font-family</td>
+                    <td>var(--br-comp-all-button-font-family)</td>
+                    <td>The font family used - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-selector-font-size</td>
+                    <td>var(--br-comp-all-button-font-size)</td>
+                    <td>The font size - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-selector-font-weight</td>
+                    <td>var(--br-unit-font-weight-500)</td>
+                    <td>The font weight - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-selector-line-height</td>
+                    <td>var(--br-comp-all-button-line-height)</td>
+                    <td>The line height - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-selector-border-style</td>
+                    <td>var(--br-comp-all-button-border-style)</td>
+                    <td>The border style - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-selector-border-colour</td>
+                    <td>var(--br-comp-all-button-border-colour)</td>
+                    <td>The border colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-selector-border-width</td>
+                    <td>var(--br-comp-all-button-border-width)</td>
+                    <td>The border width - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-selector-border-radius</td>
+                    <td>var(--br-comp-all-button-border-radius)</td>
+                    <td>The border radius - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-selector-outline-style</td>
+                    <td>var(--br-comp-all-outline-style)</td>
+                    <td>Style of the outline around the buttons and links -  uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-pager-selector-outline-width</td>
                     <td>var(--br-comp-all-outline-width)</td>
                     <td>Width of the outline - uses the shared component variable.</td>
                 </tr>
                 <tr>
-                    <td>--br-comp-skip-to-outline-offset</td>
-                    <td>var(--br-unit-outline-offset-0)</td>
-                    <td>Outline offset - <b>does not use the shared component variable.</b></td>
+                    <td>--br-comp-pager-selector-outline-offset</td>
+                    <td> var(--br-comp-all-outline-offset)</td>
+                    <td>Outline offset - uses the shared component variable.</td>
                 </tr>
                 <tr>
-                    <td>--br-comp-skip-to-outline-colour</td>
+                    <td>--br-comp-pager-selector-outline-colour</td>
                     <td>var(--br-comp-all-outline-colour)</td>
                     <td>The outline colour - uses the shared component variable.</td>
                 </tr>
-            </tbody>
-        </table>
-
-        <p>
-            <strong>Note: </strong> Given that the Skip To is likely to be placed top left, there was more risk of contrast violations with an offset outline.
-            To simulate just the outline and its offset, a border is used that has the same colour as the canvas and then an outline is applied without an offset.
-        </p>
-    </section>
-
-    <section class="code-table">
-
-        <h3 id="pane-surface-variables" class="code-table__heading">Pane surface variables</h3>
-
-        <table aria-labelledby="pane-surface-variables">
-
-            <thead>
                 <tr>
-                    <th scope="col">Variable Name</th>
-                    <th scope="col">Default Value</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>--br-comp-skip-to-pane-surface-background</td>
-                    <td>var(--br-unit-colour-canvas-inverted)</td>
-                    <td>The background colour of the surface pane - <b>does not use the shared component variable.</b></td>
-                </tr>
-                <tr>
-                    <td>--br-comp-skip-to-pane-surface-border-style</td>
-                    <td>var(--br-comp-all-area-header-border-style:)</td>
-                    <td>The border style - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-skip-to-pane-surface-border-width</td>
-                    <td>var(--br-comp-all-outline-offset)</td>
+                    <td>--br-comp-pager-selector-state-hover:</td>
+                    <td>var(--br-comp-all-button-state-hover)</td>
                     <td>
-                        The border width - <b>does not use the shared component variable</b> It uses the outline offset as its using
-                        an outline without an offset. In this instance the border is the acting as an offset.
+                        Changes the background colour of the button or link on hover - uses the shared component variable.
                     </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-skip-to-pane-surface-border-colour</td>
-                    <td>var(--br-unit-colour-canvas)</td>
-                    <td>The border colour - <b>does not use the shared component variable.</b></td>
+                    <td>--br-comp-pager-selector-state-active-brightness</td>
+                    <td> var(--br-comp-all-button-state-active-brightness)</td>
+                    <td>
+                        Slight shift in brightness when the button is activated.
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-skip-to-pane-surface-border-radius-top-right</td>
-                    <td>var(--br-unit-radius-5)</td>
-                    <td>The border radius of the top right corner - <b>no shared variable so uses the unit value directly.</b></td>
-                </tr>
-                <tr>
-                    <td>--br-comp-skip-to-pane-surface-border-radius-top-left</td>
-                    <td>var(--br-unit-radius-5)</td>
-                    <td>The border radius of the top left corner - <b>no shared variable so uses the unit value directly.</b></td>
-                </tr>
-                <tr>
-                    <td>--br-comp-skip-to-pane-surface-border-radius-bottom-right</td>
-                    <td>var(--br-unit-radius-5)</td>
-                    <td>The border radius of the bottom right corner - <b>no shared variable so uses the unit value directly.</b></td>
-                </tr>
-                <tr>
-                    <td>--br-comp-skip-to-pane-surface-border-radius-bottom-left</td>
-                    <td>var(--br-unit-radius-5)</td>
-                    <td>The border radius of the bottom left corner - <b>no shared variable so uses the unit value directly.</b></td>
+                    <td>-br-comp-pager-selector-state-active-scale</td>
+                    <td>var(--br-comp-all-button-state-active-scale)</td>
+                    <td>
+                        Slight transformation that scales down the button when activated - uses the shared component variable.
+                    </td>
                 </tr>
             </tbody>
         </table>
 
     </section>
 
-    <section class="code-table">
 
-        <h3 id="content-area-variables" class="code-table__heading">Content area variables</h3>
-        <p>
-            The content area in the busy indicator is just for the optional text part.
-        </p>
-        <table aria-labelledby="content-area-variables">
-
-            <thead>
-                <tr>
-                    <th scope="col">Variable Name</th>
-                    <th scope="col">Default Value</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>--br-comp-skip-to-area-content-background</td>
-                    <td>var(--br-unit-colour-canvas-inverted)</td>
-                    <td>The background colour of the content areas - <b>does not use the shared component variable</b>.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-skip-to-area-content-text</td>
-                    <td>var(--br-unit-colour-canvas-text-inverted)</td>
-                    <td>The text colour on the content area - <b>does not use the shared component variable</b>.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-skip-to-area-content-font-family</td>
-                    <td>var(--br-comp-all-area-content-font-family)</td>
-                    <td>The font family used - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-skip-to-area-content-font-weight</td>
-                    <td>var(--br-comp-al-area-content-font-weight)</td>
-                    <td>The font weight - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-skip-to-area-content-font-size</td>
-                    <td>var(--br-comp-all-area-content-font-size)</td>
-                    <td>The font size - uses the shared component variable.</td>
-                </tr>
-            </tbody>
-        </table>
-
-    </section>
     <section class="code-table">
 
         <h3 id="misc-variables" class="code-table__heading">Miscellaneous variables</h3>
@@ -233,15 +578,36 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>--br-comp-skip-to-z-index</td>
-                    <td>999</td>
-                    <td>The z-index of the component - <b>No shared variable for this property.</b></td>
+                    <td>--svg-pager-next-icon</td>
+                    <td>
+                        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='m13.292 12l-4.6-4.6l.708-.708L14.708 12L9.4 17.308l-.708-.708z'/%3E%3C/svg%3E");
+                    </td>
+                    <td>A decorative icon for the next selector - <b>No shared variable for this property.</b></td>
                 </tr>
                 <tr>
-                    <td>--br-comp-skip-to-margin</td>
-                    <td>var(--br-unit-space-5)</td>
-                    <td>The margin all around the component - <b>No shared variable for this property.</b></td>
+                    <td>--svg-pager-prev-icon</td>
+                    <td>
+                        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M14 17.308L8.692 12L14 6.692l.708.708l-4.6 4.6l4.6 4.6z'/%3E%3C/svg%3E");
+                    </td>
+                    <td>A decorative icon for the previous selector - <b>No shared variable for this property.</b></td>
                 </tr>
+                <tr>
+                    <td>
+                        --svg-pager-first-icon
+                    </td>
+                    <td>
+                        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M6.5 17.5v-11h1v11zm10.5-.192L11.692 12L17 6.692l.708.708l-4.6 4.6l4.6 4.6z'/%3E%3C/svg%3E");
+                    </td>
+                    <td>A decorative icon for the first selector - <b>No shared variable for this property.</b></td>
+                </tr>
+                <tr>
+                    <td>--svg-pager-last-icon</td>
+                    <td>
+                        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='m7 17.308l-.708-.708l4.6-4.6l-4.6-4.6L7 6.692L12.308 12zm9.5.192v-11h1v11z'/%3E%3C/svg%3E");
+                    </td>
+                    <td>A decorative icon for the last selector - <b>No shared variable for this property.</b></td>
+                </tr>
+
             </tbody>
         </table>
 
@@ -266,67 +632,29 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>--br-comp-skip-to-outline-offset</td>
-                    <td>var(--br-unit-outline-offset-0)</td>
-                    <td>Outline offset - <b>does not use the shared component variable.</b></td>
+                    <td>--br-comp-pager-area-header-background</td>
+                    <td>transparent</td>
+                    <td>The background colour of the heading area - <b>does not use the shared variable.</b></td>
                 </tr>
                 <tr>
-                    <td>--br-comp-skip-to-pane-surface-border-width</td>
-                    <td>var(--br-comp-all-outline-offset)</td>
-                    <td>
-                        The border width - <b>does not use the shared component variable</b> It uses the outline offset as its using
-                        an outline without an offset. In this instance the border is the acting as an offset.
-                    </td>
+                    <td>--br-comp-pager-area-header-font-size</td>
+                    <td>var(--br-unit-font-size-1)</td>
+                    <td>The size of the heading font - <b>does not use the shared variable.</b></td>
                 </tr>
                 <tr>
-                    <td>--br-comp-skip-to-pane-surface-background</td>
-                    <td>var(--br-unit-colour-canvas-inverted)</td>
-                    <td>The background colour of the surface pane - <b>does not use the shared component variable.</b></td>
+                    <td>--br-comp-pager-area-header-font-weight</td>
+                    <td>var(--br-unit-font-weight-500)</td>
+                    <td>The font weight -  <b>does not use the shared variable.</b></td>
                 </tr>
                 <tr>
-                    <td>--br-comp-skip-to-pane-surface-border-colour</td>
-                    <td>var(--br-unit-colour-canvas)</td>
-                    <td>The border colour - <b>does not use the shared component variable.</b></td>
+                    <td>--br-comp-pager-area-header-border-colour</td>
+                    <td>var(--br-comp-all-divider-colour)</td>
+                    <td>The colour of the border -  <b>does not use the shared header variable.</b></td>
                 </tr>
                 <tr>
-                    <td>--br-comp-skip-to-pane-surface-border-radius-top-right</td>
-                    <td>var(--br-unit-radius-5)</td>
-                    <td>The border radius of the top right corner - <b>no shared variable so uses the unit value directly.</b></td>
-                </tr>
-                <tr>
-                    <td>--br-comp-skip-to-pane-surface-border-radius-top-left</td>
-                    <td>var(--br-unit-radius-5)</td>
-                    <td>The border radius of the top left corner - <b>no shared variable so uses the unit value directly.</b></td>
-                </tr>
-                <tr>
-                    <td>--br-comp-skip-to-pane-surface-border-radius-bottom-right</td>
-                    <td>var(--br-unit-radius-5)</td>
-                    <td>The border radius of the bottom right corner - <b>no shared variable so uses the unit value directly.</b></td>
-                </tr>
-                <tr>
-                    <td>--br-comp-skip-to-pane-surface-border-radius-bottom-left</td>
-                    <td>var(--br-unit-radius-5)</td>
-                    <td>The border radius of the bottom left corner - <b>no shared variable so uses the unit value directly.</b></td>
-                </tr>
-                <tr>
-                    <td>--br-comp-skip-to-area-content-background</td>
-                    <td>var(--br-unit-colour-canvas-inverted)</td>
-                    <td>The background colour of the content areas - <b>does not use the shared component variable</b>.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-skip-to-area-content-text</td>
-                    <td>var(--br-unit-colour-canvas-text-inverted)</td>
-                    <td>The text colour on the content area - <b>does not use the shared component variable</b>.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-skip-to-z-index</td>
-                    <td>999</td>
-                    <td>The z-index of the component - <b>No shared variable for this property.</b></td>
-                </tr>
-                <tr>
-                    <td>--br-comp-skip-to-margin</td>
-                    <td>var(--br-unit-space-5)</td>
-                    <td>The margin all around the component - <b>No shared variable for this property.</b></td>
+                    <td>--br-comp-pager-selector-font-weight</td>
+                    <td>var(--br-unit-font-weight-500)</td>
+                    <td>The font weight - <b>does not use the shared variable.</b></td>
                 </tr>
             </tbody>
         </table>

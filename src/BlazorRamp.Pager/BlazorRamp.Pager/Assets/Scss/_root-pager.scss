@@ -14,7 +14,7 @@
     --br-comp-pager-selector-text: var(--br-comp-all-button-text);
     --br-comp-pager-selector-font-family: var(--br-comp-all-button-font-family);
     --br-comp-pager-selector-font-size: var(--br-comp-all-button-font-size);
-    --br-comp-pager-selector-font-weight: 500;
+    --br-comp-pager-selector-font-weight: var(--br-unit-font-weight-500);
     --br-comp-pager-selector-line-height: var(--br-comp-all-button-line-height);
     --br-comp-pager-selector-border-style: var(--br-comp-all-button-border-style);
     --br-comp-pager-selector-border-colour: var(--br-comp-all-button-border-colour);
@@ -30,8 +30,14 @@
     --br-comp-pager-selector-outline-offset: var(--br-comp-all-outline-offset);
     --br-comp-pager-selector-outline-colour: var(--br-comp-all-outline-colour);
     //
-    --br-comp-pager-display-font-size: var(--br-unit-font-size-1);
-    --br-comp-pager-display-font-weight: var(--br-unit-font-weight-500);
-    --br-comp-pager-display-text: var(--br-comp-all-area-header-text);
-    --br-comp-pager-display-background: inherit;
+    --br-comp-pager-area-header-font-size: var(--br-unit-font-size-1);
+    --br-comp-pager-area-header-font-weight: var(--br-unit-font-weight-500);
+    --br-comp-pager-area-header-text: var(--br-comp-all-area-header-text);
+    --br-comp-pager-area-header-background: transparent;
+    --br-comp-pager-area-header-font-family: var(--br-comp-all-area-header-font-family);
+    --br-comp-pager-area-header-line-height: var(--br-comp-all-area-header-line-height);
+    --br-comp-pager-area-header-border-style: var(--br-comp-all-area-header-border-style);
+    --br-comp-pager-area-header-border-colour: var(--br-comp-all-area-header-border-colour);
+    --br-comp-pager-area-header-border-width: var(--br-comp-all-area-header-border-width);
+    --br-comp-pager-area-header-border-radius: var(--br-comp-all-area-header-border-radius);
 }

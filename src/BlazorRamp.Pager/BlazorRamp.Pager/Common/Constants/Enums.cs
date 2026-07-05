@@ -33,17 +33,41 @@ public enum PagerAnnouncementType : int
     WithAnnouncement = 0,
 
     /// <summary>
-    /// Page changes are not announced by the pager. Use this when the consuming page handles its own
-    /// announcement of the updated content.
+    /// Page changes are not announced by the pager. Useful for when two pagers
+    /// are being used for the same data set.
     /// </summary>
     WithoutAnnouncement = 1
+}
+
+
+
+/// <summary>
+/// Specifies the horizontal alignment of the <see cref="BlazorRamp.Pager.Components.Pager"/> within its
+/// container.
+/// </summary>
+public enum PageAlignment : int
+{
+    /// <summary>
+    /// The pager is centred within its container.
+    /// </summary>
+    Centred = 0,
+
+    /// <summary>
+    /// The pager is aligned to the start of its container.
+    /// </summary>
+    Start = 1,
+
+    /// <summary>
+    /// The pager is aligned to the end of its container.
+    /// </summary>
+    End = 2
 }
 
 /// <summary>
 /// Identifies which navigation control within the <see cref="BlazorRamp.Pager.Components.Pager"/> is being
 /// interacted with.
 /// </summary>
-public enum NavSelectorType : int
+internal enum NavSelectorType : int
 {
     /// <summary>
     /// No navigation control; the default/unset value.
@@ -69,26 +93,4 @@ public enum NavSelectorType : int
     /// The control that requests the last page.
     /// </summary>
     Last = 4
-}
-
-/// <summary>
-/// Specifies the horizontal alignment of the <see cref="BlazorRamp.Pager.Components.Pager"/> within its
-/// container.
-/// </summary>
-public enum PageAlignment : int
-{
-    /// <summary>
-    /// The pager is centred within its container.
-    /// </summary>
-    Centred = 0,
-
-    /// <summary>
-    /// The pager is aligned to the start of its container.
-    /// </summary>
-    Start = 1,
-
-    /// <summary>
-    /// The pager is aligned to the end of its container.
-    /// </summary>
-    End = 2
 }

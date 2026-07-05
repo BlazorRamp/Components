@@ -15,11 +15,10 @@
 
 .br-pager {
     background-color: var(--br-comp-pager-pane-base-background);
-    border-style: var(--br-comp-pager-pane-base-border-style); 
+    border-style: var(--br-comp-pager-pane-base-border-style);
     border-color: var(--br-comp-pager-pane-base-border-colour);
-    border-width: var(--br-comp-pager-pane-base-border-width); 
-    border-radius:var(--br-comp-pager-pane-base-border-radius);
-
+    border-width: var(--br-comp-pager-pane-base-border-width);
+    border-radius: var(--br-comp-pager-pane-base-border-radius);
     box-sizing: border-box;
     container-type: inline-size;
     width: 100%;
@@ -103,7 +102,7 @@
         &[aria-disabled] {
             cursor: not-allowed;
             border-color: transparent;
-
+            background-color:transparent;
             @media (forced-colors: active) {
                 border-color: GrayText;
                 color: GrayText;
@@ -187,7 +186,6 @@
 
         &:focus-visible:not([aria-disabled]) {
             border-color: var(--br-comp-pager-selector-border-colour);
-
         }
 
         &:focus-visible {
@@ -262,10 +260,16 @@
     &__information {
         grid-column: 1 / -1;
         grid-row: 1;
-        font-size: var(--br-comp-pager-display-font-size);
-        font-weight: var(--br-comp-pager-display-font-weight);
-        color: var(--br-comp-pager-display-text);
-        background-color: var(--br-comp-pager-display-background);
+        font-size: var(--br-comp-pager-area-header-font-size);
+        font-weight: var(--br-comp-pager-area-header-font-weight);
+        color: var(--br-comp-pager-area-header-text);
+        background-color: var(--br-comp-pager-area-header-background);
         text-align: center;
+        font-family: var(--br-comp-pager-area-header-font-family); 
+        line-height: var(--br-comp-pager-area-header-line-height); 
+        border-style: var(--br-comp-pager-area-header-border-style);
+        border-color: var(--br-comp-pager-area-header-border-colour);
+        border-width: var(--br-comp-pager-area-header-border-width);
+        border-radius: var(--br-comp-pager-area-header-border-radius);
     }
 }

@@ -19,9 +19,10 @@ public partial class Pager : IAsyncDisposable
 {
     /// <summary>
     /// Gets or sets whether the pager renders its navigation controls as <c>button</c> elements or as
-    /// <c>anchor</c> elements. Use <see cref="PagerSelectorType.Button"/> when paging does not change the
-    /// current page (e.g. a data table), or <see cref="PagerSelectorType.Link"/> when paging may navigate to a
-    /// different page (e.g. a listing page). Defaults to <see cref="PagerSelectorType.Button"/>.
+    /// <c>anchor</c> elements. Use <see cref="PagerSelectorType.Button"/> when paging would not normally change the
+    /// current page (e.g. a data table), or <see cref="PagerSelectorType.Link"/> when you want the page number to appear
+    /// in the address bar, as would be seen with a pager for a product listing page.
+    /// Defaults to <see cref="PagerSelectorType.Button"/>.
     /// </summary>
     [Parameter] public PagerSelectorType PagerSelectorType         { get; set; } = PagerSelectorType.Button;
 
@@ -83,7 +84,7 @@ public partial class Pager : IAsyncDisposable
 
     /// <summary>
     /// Gets or sets the template used to build the pager's information text. Supports the placeholders
-    /// <c>{firstpage}</c>, <c>{lastpage}</c>, <c>{startrow}</c>, <c>{endrow}</c>, and <c>{totalrows}</c>, which
+    /// <c>{currentpage}</c>, <c>{lastpage}</c>, <c>{startrow}</c>, <c>{endrow}</c>, and <c>{totalrows}</c>, which
     /// are replaced with the current values at render time. When not supplied, a default English template is
     /// used.
     /// </summary>
@@ -200,11 +201,6 @@ public partial class Pager : IAsyncDisposable
         _filterCountText = String.IsNullOrWhiteSpace(FilterCountText) ? GlobalValues.Pager_Filter_Count_Text : FilterCountText.Trim();
         _noRecordsText   = String.IsNullOrWhiteSpace(NoRecordsText)   ? GlobalValues.Pager_No_Records_Text   : NoRecordsText.Trim();
 
-        _nextText        = String.IsNullOrWhiteSpace(NextText)     ? GlobalValues.Pager_Selector_Next_Text  : NextText.Trim();
-        _prevText        = String.IsNullOrWhiteSpace(PreviousText) ? GlobalValues.Pager_Selector_Prev_Text  : PreviousText.Trim();
-        _lastText        = String.IsNullOrWhiteSpace(LastText)     ? GlobalValues.Pager_Selector_Last_Text  : LastText.Trim();
-        _firstText       = String.IsNullOrWhiteSpace(FirstText)    ? GlobalValues.Pager_Selector_First_Text : FirstText.Trim();
-
         _pagerAnnouncementType = PagerAnnouncementType;
 
         _lastPage = (_currentRowCount < 1) ? 1 : (int)Math.Ceiling((double)_currentRowCount / _rowsPerPage);
@@ -225,7 +221,12 @@ public partial class Pager : IAsyncDisposable
         _pagerSelectorType  = PagerSelectorType;
         _ariaLabel          = String.IsNullOrWhiteSpace(AriaLabel) ? GlobalValues.Pager_Aria_Label : AriaLabel.Trim();
         _showFirstLast      = ShowFirstLast;
-        _queryParamName     = String.IsNullOrWhiteSpace(QueryParamName) ? GlobalValues.Pager_Query_String_Param_Name : QueryParamName.Trim();
+        _nextText           = String.IsNullOrWhiteSpace(NextText) ? GlobalValues.Pager_Selector_Next_Text : NextText.Trim();
+        _prevText           = String.IsNullOrWhiteSpace(PreviousText) ? GlobalValues.Pager_Selector_Prev_Text : PreviousText.Trim();
+        _lastText           = String.IsNullOrWhiteSpace(LastText) ? GlobalValues.Pager_Selector_Last_Text : LastText.Trim();
+        _firstText          = String.IsNullOrWhiteSpace(FirstText) ? GlobalValues.Pager_Selector_First_Text : FirstText.Trim();
+
+        _queryParamName = String.IsNullOrWhiteSpace(QueryParamName) ? GlobalValues.Pager_Query_String_Param_Name : QueryParamName.Trim();
         _isServer           = OperatingSystem.IsBrowser() ? false : true;
 
         _ariaLabelledbyIDs  = _isServer ? _ariaLabelID : $"{_ariaLabelID} {_infoTextID}";
