@@ -1,4 +1,4 @@
-﻿# Blazor Ramp - NavGroup
+﻿# Blazor Ramp - Pager
 
 The Blazor Ramp project aims to provide a suite of modular, accessibility-first Blazor components. 
 
@@ -18,7 +18,7 @@ this package separately (but it can be if you only require the Live Regions Serv
 1. Add the BlazorRamp.Pager nuget package to your project using the Nuget Package Manager or the dotnet CLI.
 
 ```c#
-dotnet add package BlazorRamp.NavGroup
+dotnet add package BlazorRamp.Pager
 ```
 2. Add the following Core and Pager style references to the `<head>` section of your application:
 - Blazor Web App / Blazor Server → App.razor
@@ -61,7 +61,7 @@ Title="Recent Announcements" TriggerVisible="true" TriggerText="Alerts" />
 
 ## Using the Pager component
 
-he Pager has two modes of operation: one that uses buttons for paging, typically used with data tables, and the other that uses links, typically used on product listing pages.
+The Pager has two modes of operation: one that uses buttons for paging, typically used with data tables, and the other that uses links, typically used on product listing pages.
 
 Both require interactivity, and given the nature of Blazor, the link version has its href suppressed so that only the address bar is updated - technically, you could use either 
 version for either scenario; the link version simply adds a query parameter to the URL shown in the address bar.
@@ -74,7 +74,7 @@ announced to screen reader users on entering the pager, along with its current s
 You provide the Pager with the total record count for the data set, the number of records per page, and, if filtering is used, the current record count. The Pager uses these to 
 calculate the number of pages and to determine whether filtering is in use, which it does by checking whether the current record count equals the total record count; if they differ, filtering is assumed.
 
-The following example shows a typical Pager set-up, using the default text (which is in English) for the displayed selector names and page information, that has a data set that has been filtered so
+The following example shows a typical Pager set-up, using the default text for the displayed selector names and page information, that has a data set that has been filtered so
 is providing values for both the `TotalItemCount` and `CurrentItemCount` parameters.
 
 ```

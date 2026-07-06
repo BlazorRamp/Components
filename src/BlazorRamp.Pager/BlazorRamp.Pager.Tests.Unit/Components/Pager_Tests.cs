@@ -369,6 +369,25 @@ public class Pager_Tests
 
         }
 
+        [Fact]
+        public async Task Should_capture_unmatched_attributed_and_apply_to_the_component()
+        {
+            await using var context = new BunitContext();
+
+            var pager = CreatePager(context, p => p.AddUnmatched("style", "color:red;"));
+
+            using(new AssertionScope())
+            {
+                pager.Instance.AdditionalAttributes.Should().ContainKey("style").WhoseValue.Should().Be("color:red;");
+
+                var styleAttrib = pager.Find("nav").GetAttribute("style");
+
+                styleAttrib.Should().Be("color:red;");
+
+            }
+
+        }
+
     }
 
     public class RequestPageChange

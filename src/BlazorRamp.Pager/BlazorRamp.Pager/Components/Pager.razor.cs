@@ -139,6 +139,13 @@ public partial class Pager : IAsyncDisposable
     /// </summary>
     [Parameter] public EventCallback<int> CurrentPageChanged { get; set; }
 
+
+    /// <summary>
+    /// Gets or sets additional attributes that will be applied to the component
+    /// root, the nav element.
+    /// </summary>
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
     [Inject] private ILiveRegionService LiveRegionService { get; set; } = default!;
         
