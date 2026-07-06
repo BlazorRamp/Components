@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
 	  <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
@@ -20,7 +20,8 @@
 announcements are logged to the announcement history.</PackageReleaseNotes>
     <AssemblyVersion>1.1.0</AssemblyVersion>
     <FileVersion>1.1.0</FileVersion>
-	  	  <PackageLicenseFile>LICENSE</PackageLicenseFile>	  	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	   <PackageLicenseFile>LICENSE</PackageLicenseFile>	  	 
+	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
