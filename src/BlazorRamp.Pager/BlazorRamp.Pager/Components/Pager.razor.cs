@@ -189,7 +189,7 @@ public partial class Pager : IAsyncDisposable
 
     private CancellationTokenSource _announceDebounceTS = new();
 
-
+    private string _previousInfoText = String.Empty;
 
     /// <summary>
     /// Recomputes derived paging state (row counts, last page, clamped current page, and the information text)
@@ -197,7 +197,6 @@ public partial class Pager : IAsyncDisposable
     /// </summary>
     protected override void OnParametersSet()
     {
-        _pageChanged     = _previousCurrent != CurrentPage;
         _previousCurrent = CurrentPage;
 
         _rowsPerPage     = ItemsPerPage < 1 ? GlobalValues.Pager_Rows_Per_Page : ItemsPerPage;
@@ -215,6 +214,10 @@ public partial class Pager : IAsyncDisposable
         _currentPage = Math.Clamp(CurrentPage, 1, _lastPage);
 
         _informationText = SetInformationText(_currentPage, _lastPage, _rowsPerPage, _currentRowCount, _totalRowCount, _pageCountText, _filterCountText, _noRecordsText);
+
+        _pageChanged = _previousInfoText != _informationText;
+
+        _previousInfoText = _informationText;
     }
 
     /// <summary>
@@ -246,7 +249,6 @@ public partial class Pager : IAsyncDisposable
     /// </summary>
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        _informationText = SetInformationText(_currentPage, _lastPage, _rowsPerPage, _currentRowCount, _totalRowCount, _pageCountText, _filterCountText, _noRecordsText);
 
         if (true == firstRender && _isServer)
         {
@@ -259,10 +261,8 @@ public partial class Pager : IAsyncDisposable
             return;
         }
 
-       if (_pageChanged) await MakeAnnouncement(_pagerAnnouncementType, _informationText, _ariaLabel);
+       if (_pageChanged && false == firstRender) await MakeAnnouncement(_pagerAnnouncementType, _informationText, _ariaLabel);
        
-        _pageChanged = false;
-
      }
 
     private string UpdateUriQueryParams(int pageNo, int currentPage, int lastPage, string queryParamName)

@@ -1,32 +1,93 @@
-﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Pager}/{GlobalValues.Common_Page_Path_Overview}")]
+﻿@using System.Web
+
+@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Pager}/{GlobalValues.Common_Page_Path_Overview}")]
 
 <PageTitle>@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Overview</PageTitle>
 
 <h1>@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Overview</h1>
 <p>
-The Pager has two modes of operation: one that uses buttons for paging, typically used with data tables, and the other that uses links, typically used on product listing pages.
+    The Pager has two modes of operation: one that uses buttons for paging, typically used with data tables, and the other that uses links, typically used on product listing pages.
 </p>
 <p>
-Both require interactivity, and given the nature of Blazor, the link version has its href suppressed so that only the address bar is updated - technically, you could use either 
-version for either scenario; the link version simply adds a query parameter to the URL shown in the address bar.
+    Both require interactivity, and given the nature of Blazor, the link version has its href suppressed so that only the address bar is updated - technically, you could use either
+    version for either scenario; the link version simply adds a query parameter to the URL shown in the address bar.
 </p>
 <p>
-For smaller data sets, rather than displaying all four selectors - First, Previous, Next and Last - you can choose to show only Previous and Next, reducing the number of tab stops.
+    For smaller data sets, rather than displaying all four selectors - First, Previous, Next and Last - you can choose to show only Previous and Next, reducing the number of tab stops.
 </p>
 <p>
-The information displayed above the selectors is what is announced to screen reader users as they navigate through the pages. As this is a navigation landmark, the provided name is 
-announced to screen reader users on entering the pager, along with its current state — the information displayed above the selectors.
+    The information displayed above the selectors is what is announced to screen reader users as they navigate through the pages. As this is a navigation landmark, the provided name is
+    announced to screen reader users on entering the pager, along with its current state — the information displayed above the selectors.
 </p>
 <p>
-You provide the Pager with the total record count for the data set, the number of records per page, and, if filtering is used, the current record count. The Pager uses these to 
-calculate the number of pages and to determine whether filtering is in use, which it does by checking whether the current record count equals the total record count; if they differ, filtering is assumed.
+    You provide the Pager with the total record count for the data set, the number of records per page, and, if filtering is used, the current record count. The Pager uses these to
+    calculate the number of pages and to determine whether filtering is in use, which it does by checking whether the current record count equals the total record count; if they differ, filtering is assumed.
 </p>
 <p>
-The following example shows a typical Pager set-up, using the default text for the displayed selector names and page information, that has a data set that has been filtered so
-is providing values for both the <span class="code-span">TotalItemCount</span> and <span class="code-span">CurrentItemCount</span> parameters.
+    The following examples shows typical Pager set-ups with both non-filtered and filtered data sets, using the default text for the displayed selector names and default page information templates.
+</p>
+<p>
+    The first two examples are configured to use buttons, the next two configured to use links. The first of each example uses all four selectors and simulated filtered data, the second of each example
+    is not filtered and given its a smaller data set are configured not to show the First and Last selectors, to reduce the number of tab stops for keyboard users.
+</p>
+<p>
+    <strong>Note:</strong> As this is a site is single page application, the links will not lose focus unless you choose ot open in a new window
+    in which case you would be at the start of the page and have to navigate back to the pager. Also note, this is hosted on GitPages which needs
+    a bit of script for Blazor, I have not amended this, so you will not see any page numbers in the address bar as you normally would when using the
+    link style pagers.
+</p>
+<p>
+    If you want to see the page numbers in the url, just right click on the link example and open in a new windows, code in the OnInitialized event reads the page number
+    and assigns it to the current page param.
 </p>
 
+<section class="@GlobalValues.Info_Box_Class">
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Pager examples using buttons normally used above or below data tables</h2>
 
+    <section class="@GlobalValues.Info_Box_Class">
+
+        <h3 class="@GlobalValues.Info_Box_Heading_Class @GlobalValues.Tab_Stop_Indicator_Class" tabindex="0">Tab stop before a filtered data table pager (without table), first, previous, next and last buttons</h3>
+
+        <Pager @bind-CurrentPage="@_fullButtonCurrentPage" AriaLabel="Four button pager" TotalItemCount="100" CurrentItemCount="80" ItemsPerPage="10"
+               PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" />
+
+    </section>
+    <section class="@GlobalValues.Info_Box_Class">
+
+        <h3 class="@GlobalValues.Info_Box_Heading_Class @GlobalValues.Tab_Stop_Indicator_Class" tabindex="0">Tab stop before a data table pager (without table), only previous and next buttons</h3>
+
+        <Pager @bind-CurrentPage="_minButtonCurrentPage" AriaLabel="Two button pager" TotalItemCount="50" CurrentItemCount="50" ItemsPerPage="10"
+               PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="false" />
+
+    </section>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Pager examples using links, the type typically seen at the top or bottom of product listings</h2>
+
+
+    <section class="@GlobalValues.Info_Box_Class">
+
+        <h3 class="@GlobalValues.Info_Box_Heading_Class @GlobalValues.Tab_Stop_Indicator_Class" tabindex="0">Tab stop before a page results pager (without results), first, previous, next and last links</h3>
+
+        <Pager @bind-CurrentPage="_fullLinkCurrentPage" AriaLabel="Four links pager" TotalItemCount="100" CurrentItemCount="100" ItemsPerPage="10"
+               PagerSelectorType="PagerSelectorType.Link" ShowFirstLast="true" />
+
+    </section>
+    <section class="@GlobalValues.Info_Box_Class">
+
+        <h3 class="@GlobalValues.Info_Box_Heading_Class @GlobalValues.Tab_Stop_Indicator_Class" tabindex="0">Tab stop before a page results pager (without results), only the previous and next links</h3>
+
+        <Pager @bind-CurrentPage="_minLinkCurrentPage" QueryParamName="another-page" AriaLabel="Two links pager" TotalItemCount="50" CurrentItemCount="50"
+               ItemsPerPage="10" PageCountText="Current page {currentpage} of {lastpage}" PagerSelectorType="PagerSelectorType.Link" ShowFirstLast="false" />
+
+    </section>
+</section>
+<p>
+    Below is the code used in the examples.
+</p>
+<CodeBox CodeBlock="@PagerSnippets.Overview_Code_Example" AriaLabel="Pager overview code" />
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_NavGroup}/{GlobalValues.Common_Page_Path_Usage}")">
         <span aria-hidden="true"></span>
@@ -39,6 +100,29 @@ is providing values for both the <span class="code-span">TotalItemCount</span> a
         <span aria-hidden="true"></span>
     </a>
 </div>
+
 @code {
+
+    [Inject] NavigationManager _navigationManager { get; set; } = default!;
+
+    private int _fullButtonCurrentPage = 1;
+    private int _minButtonCurrentPage = 1;
+    private int _fullLinkCurrentPage = 1;
+    private int _minLinkCurrentPage = 1;
+
+    protected override void OnInitialized()
+    {
+        /*
+            * Only used if you open in new window.
+            *
+            * One time thing uses binding there after - you can also use [SupplyParameterFromQuery(Name = "page")] but that will tigger onparameterset on this page
+         */
+
+        var pageValueFull = HttpUtility.ParseQueryString(new Uri(_navigationManager.Uri).Query).Get("page");
+        var pageValueMin = HttpUtility.ParseQueryString(new Uri(_navigationManager.Uri).Query).Get("another-page");
+
+        _fullLinkCurrentPage = int.TryParse(pageValueFull, out int full) ? full : 1;
+        _minLinkCurrentPage = int.TryParse(pageValueMin, out int min) ? min : 1;
+    }
 
 }

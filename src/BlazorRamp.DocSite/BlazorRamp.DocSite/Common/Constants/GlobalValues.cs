@@ -129,6 +129,8 @@ public class GlobalValues
     public const string Link_Button_Right_Arrow_Modifier = $"{Link_Button_Class}--right-arrow";
     public const string Link_Button_Left_Arrow_Modifier = $"{Link_Button_Class}--left-arrow";
 
+    public const string Tab_Stop_Indicator_Class = "tab-stop";
+
     public const string Web_Site_Path_Component_Test = "https://blazorramp.uk";
     public const string Web_Site_Path_GitHub_Repo = "https://github.com/BlazorRamp/Components";
 

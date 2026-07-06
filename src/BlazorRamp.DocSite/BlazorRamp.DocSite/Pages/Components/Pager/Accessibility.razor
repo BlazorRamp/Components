@@ -3,14 +3,27 @@
 <PageTitle>@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Accessibility</PageTitle>
 
 <h1>@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Accessibility</h1>
+<p>
+    The structure of the component is simply a <span class="code-span">nav</span> element that contains either buttons or links dependant on the components configuration options.
+    The  <span class="code-span">nav</span> element has the <span class="code-span">aria-labelledby</span> attribute that uses two identifiers. The first part is 
+    the <span class="code-span">AriaLabel</span> parameter value, such as Data Pager,  the second points to the page information seen above the buttons or links, so screen reader 
+    users on entering the pager or via landmark lists, will have both the name of the pager and its state announced such as Data Pager, Current page 5 of 10.
+</p>
+
+<p>
+    <strong>Note: </strong>The two identifier approach is only used for Blazor WASM, when its Blazor Server only the first identifier is used and the live region service is then utilised 
+    to announce the page information. It was architected this way to negate certain issues that JAWS has with the Blazor Server diff mechanism and the way in which it handles its virtual buffers.
+</p>
 
 
+<h3 id="pager-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h3>
 
-<h2 id="skip-to-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
-
-<ul aria-labelledby="skip-to-keyboard" class="keyboard-list">
-    <li><kbd>Enter</kbd> - activates the link and moves focus to the target element.</li>
+<ul aria-labelledby="pager-keyboard">
+    <li><kbd>Tab, Shift + Tab</kbd> - to set focus on a link or button, and move in either direction.</li>
+    <li><kbd>Enter or Space</kbd> - when on a button activates it and changes the data page.</li>
+    <li><kbd>Enter</kbd> - when on a link activates it and changes result page.</li>
 </ul>
+
 <p>
     <strong>Note: </strong>These keyboard interactions are primarily aimed at keyboard-only users. Screen reader users will often navigate differently using their assistive technology's
     built-in commands, though the patterns also apply when a screen reader is operating in interaction mode.
@@ -29,7 +42,14 @@
 <p>
     <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were available at the time of testing (see release history on the installation page for approximate testing dates)
 </p>
-
+<h2 id="screen-reader-quirks">Screen reader quirks or known issues</h2>
+<ul aria-labelledby="screen-reader-quirks">
+    <li>
+        <b>Narrator - </b>The Pager uses the <span class="code-span">aria-disabled</span> attribute when buttons or links are not needed such as First and Previous when on the first page.
+        If an <span class="code-span">aria-disabled</span> item is activated the current pager information is just re-announced, however, Narrator blocks this interaction 
+        when <span class="code-span">aria-disabled</span> is present.
+    </li>
+</ul>
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Pager}/{GlobalValues.Common_Page_Path_Installation}")">
         <span aria-hidden="true"></span>

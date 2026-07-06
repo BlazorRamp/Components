@@ -8,7 +8,7 @@
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
     <Title>BlazorRamp.Pager</Title>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>Paul Kent</Authors>
     <Description>Pagination component for the Blazor Ramp ecosystem</Description>
     <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
@@ -16,9 +16,9 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; Pager; Pagination; ARIA; </PackageTags>
-    <PackageReleaseNotes>Initial release of the Blazor Ramp Pager component</PackageReleaseNotes>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
-    <FileVersion>1.0.0</FileVersion>
+    <PackageReleaseNotes>Fix: Prevent unnecessary announcement during pager initialisation.</PackageReleaseNotes>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>

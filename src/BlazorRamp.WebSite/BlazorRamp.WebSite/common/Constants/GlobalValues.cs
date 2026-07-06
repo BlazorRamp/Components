@@ -150,7 +150,7 @@ public static class GlobalValues
 
     public const string Modal_Screen_Dialog_Title_ID = "Screen-Dialog-Title-ID";
 
-    public const string Tab_Stop_Indicaor_Class = "tab-stop";
+    public const string Tab_Stop_Indicator_Class = "tab-stop";
 
     public const int Start_Width_For_Collapsed_Menu = 576;
 
