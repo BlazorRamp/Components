@@ -1,4 +1,3 @@
 <Solution>
-  <Project Path="../BlazorRamp.Pager/BlazorRamp.Pager/BlazorRamp.Pager.csproj" />
   <Project Path="BlazorRamp.DocSite/BlazorRamp.DocSite.csproj" />
 </Solution>

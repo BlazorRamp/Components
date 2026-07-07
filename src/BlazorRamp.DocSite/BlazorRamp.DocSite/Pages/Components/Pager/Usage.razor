@@ -8,17 +8,25 @@
 <p>
     Practical examples showing the Pager component configured with various parameters.
 </p>
-<div class="br-input-row">
-    <DebounceFilter class="br-col-xs-6" FilterLabelText="Filter table" HintText="Data filtered across all columns on pause of typing."
-                    DebounceDelayMs="500" SvgIcon="--svg-filter-icon" Replayable="true"
+<p>
+    For this demo I basically put the Debounce Filter component with 250ms delay above the Blazor Weather Table and the Pager component below it. I generated 100 rows of data and set the
+    items per page to 10. Ideally you should view this with a screen reader so you can see/hear how it all fits together.
+</p>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+<h2 id="table-title">Weather table</h2>
+
+<div class="br-input-row" >
+    <DebounceFilter class="br-col-xs-12 br-col-sm-6" FilterLabelText="Filter table" HintText="Data filtered across all columns on pause of typing."
+                    DebounceDelayMs="250" SvgIcon="--svg-filter-icon" Replayable="false"
                     RegexPattern="^[A-Za-z0-9]*$" ValidationMessage="Invalid filter, filtering paused, letters and numbers only"
                     OnDebounceFilterResult="HandleDebounce" ParseErrorMessage="System error, filtering is unavailable at this time." />
 
 </div>
-<div class="weather-table">
 
-    <table>
-        <caption>Weather Table</caption>
+<div class="weather-table">
+    <table aria-labelledby="table-title">
         <thead>
             <tr>
                 <th scope="col">Date</th>
@@ -39,11 +47,16 @@
             }
         </tbody>
     </table>
-    <Pager CurrentPage="@_currentPage" CurrentPageChanged="HandleCurrentPageChanged" AriaLabel="Weather pager" TotalItemCount="@_totalItemCount" CurrentItemCount="@_currentItemCount" ItemsPerPage="10"
-           PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" />
 </div>
+<Pager CurrentPage="@_currentPage" CurrentPageChanged="HandleCurrentPageChanged" AriaLabel="Weather pager" TotalItemCount="@_totalItemCount" CurrentItemCount="@_currentItemCount" ItemsPerPage="10"
+        PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" />
 
+</section>
 
+<p>
+    Below is the code used in the examples.
+</p>
+<CodeBox CodeBlock="@PagerSnippets.Usage_Code_Example" AriaLabel="Pager usage code" />
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Pager}/{GlobalValues.Common_Page_Path_Api}")">
@@ -83,23 +96,25 @@
     }
     private async Task HandleCurrentPageChanged(int requestedPage)
     {
-        _pagedForecasts = _forecasts.Skip((requestedPage -1) * _itemsPerPage).Take(_itemsPerPage).ToList();
+        if (String.IsNullOrWhiteSpace(_filterText))
+        {
+            _pagedForecasts = _forecasts.Skip((requestedPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
+        }
+        else
+        {
+            _pagedForecasts = _filteredForecasts.Skip((requestedPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
+        }
         _currentPage = requestedPage;
-    }
-
-    private record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-    {
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
     }
 
     private async Task HandleDebounce(DebouncedFilterResult result)
     {
         if (result.ExceptionMessage is not null || false == result.IsValid) return;
 
-        await FilterTable(result.FilterValue, result.ClearCalled);
+        await FilterTable(result.FilterValue);
     }
 
-    private async Task FilterTable(string filterValue, bool clearCalled)
+    private async Task FilterTable(string filterValue)
     {
         _filteredForecasts = _forecasts!.Where(a => a.Summary!.ToLower().Contains(filterValue.ToLower())
                                  || a.TemperatureC.ToString().Contains(filterValue)
@@ -110,8 +125,16 @@
         _currentItemCount = _filteredForecasts.Count;
         _pagedForecasts   = _filteredForecasts.Take(_itemsPerPage).ToList();
         _currentPage      = _currentItemCount > 0 ? 1 : 0;
-
+        _filterText       = filterValue;
         await InvokeAsync(StateHasChanged);
+        /*
+            * Debounce uses a Func not an EventCallback so no renders occur if the filter is invalid 
+            * As we are here its valid so call state as changed to render the page and child components. 
+        */
+    }
 
+    private record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+    {
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
     }
 }

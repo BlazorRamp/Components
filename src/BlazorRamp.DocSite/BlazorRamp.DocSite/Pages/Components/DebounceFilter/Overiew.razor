@@ -28,7 +28,7 @@
         An example of the debounce filter with an optional icon, but without any regex validation is shown below. The default debounce delay of 500 milliseconds has been used and content of the 
         <span class="code-span">DebouncedFilterResult</span> object is shown below the debounce filter. 
     </p>
-    <DebounceFilter FilterLabelText="Filter Results" HintText="Results filtered on pause of typing" DebounceDelayMs="500" SvgIcon="--svg-filter-icon" OnDebounceFilterResult="HandleDebounce" />
+    <DebounceFilter FilterLabelText="Filter Results" HintText="Results filtered on pause of typing" DebounceDelayMs="500" SvgIcon="--svg-filter-icon" OnDebounceFilterResult="HandleDebounce"  />
     <p>
         <pre>
         @if(false == String.IsNullOrWhiteSpace(_debounceResult))
