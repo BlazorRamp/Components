@@ -8,7 +8,7 @@
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
     <Title>BlazorRamp.Pager</Title>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>Paul Kent</Authors>
     <Description>Pagination component for the Blazor Ramp ecosystem</Description>
     <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
@@ -16,9 +16,9 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; Pager; Pagination; ARIA; </PackageTags>
-    <PackageReleaseNotes>Fix: Prevent unnecessary announcement during pager initialisation.</PackageReleaseNotes>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>
+    <PackageReleaseNotes>Fixed: {totalrows} in PageCountText now always resolves to the true unfiltered total if used. A new {currentrows} placeholder was added for the filtered/current row count if required.</PackageReleaseNotes>
+    <AssemblyVersion>1.0.2</AssemblyVersion>
+    <FileVersion>1.0.2</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>

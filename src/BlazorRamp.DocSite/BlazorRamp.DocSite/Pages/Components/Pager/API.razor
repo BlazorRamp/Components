@@ -135,9 +135,9 @@
                     <td>string</td>
                     <td>
                         Gets or sets the template used to build the pager's information text. Supports the placeholders
-                        <span class="code-span">{currentpage}</span>, <span class="code-span">{lastpage}</span>, <span class="code-span">{startrow}</span>,
-                        <span class="code-span">{endrow}</span>, and <span class="code-span">{totalrows}</span>, which
-                        are replaced with the current values at render time.
+                        <span class="code-span">{currentpage}</span>, <span class="code-span">{lastpage}</span>, <span class="code-span">{startrow}</span>, <span class="code-span">{endrow}</span>,
+                        <span class="code-span">{currentrows}</span> (the rowcount after filtering, if any), and <span class="code-span">{totalrows}</span> (the true, unfiltered row count), which are
+                        replaced with the current values at render time. 
                         <br />
                         Defaults to <span class="code-span">Current page {currentpage} of {lastpage}, items {startrow} to {endrow}</span>
                     </td>
@@ -146,9 +146,11 @@
                     <td>FilterCountText</td>
                     <td>string</td>
                     <td>
-                        Gets or sets the template appended to the information text when <see cref="CurrentItemCount" /> differs
-                        from <span class="code-span">TotalItemCount</span>, indicating that the current row count reflects an active filter.
-                        Supports the placeholders <span class="code-span">{filteredrows}</span> and <span class="code-span">{totalrows}</span>.
+                        Gets or sets the template appended directly after the main information text when
+                        <span class="code-span">CurrentItemCount</span> differs from <span class="code-span">TotalItemCount</span>,
+                        indicating that the current row count reflects an active filter. Supports the placeholders <span class="code-span">{filteredrows}</span>
+                        and <span class="code-span">{totalrows}</span>. No separator is inserted between the two templates, so a custom value should include its own leading
+                        punctuation or spacing (the default begins with ", ").
                         <br />
                         Defaults to <span class="code-span">, {filteredrows} items filtered from {totalrows}.</span>.
                     </td>

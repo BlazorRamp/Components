@@ -25,24 +25,24 @@
         included in the filtered result set.
     </p>
     <p>
-        The debounce filter can have an optional validation check applied against the entered value, checked per keystoke. Validation failures are shown belwo the 
-        filter input with the  message announceded to screen reader users. For this test validation has been enabled and characters other than letters or nunmbers will
+        The debounce filter can have an optional validation check applied against the entered value, checked per keystroke. Validation failures are shown below the 
+        filter input with the  message announced to screen reader users. For this test validation has been enabled and characters other than letters or numbers will
         cause a validation error. Unless cleared using the Clear Filter button, a green tick icon appears to the right of the input signifying a valid entry with a red cross
-        icon sigifying a validation errror. 
+        icon signifying a validation error. 
     </p>
     <p>
         The debounce filter uses the Blazor Ramp live region service to announce any validation errors to the user. As with all announcements sent via the live region service,
-        the developer has the option to have this inluded or excluded from messages that get added to a rolling log containing the last 20 announcments made, viewable 
+        the developer has the option to have this included or excluded from messages that get added to a rolling log containing the last 20 announcements made, viewable 
         using the <b>Announcement History dialog</b>. This dialog can be accessed at any time using the keyboard shortcut <span class="br-visually-hidden">Control plus Shift plus the H key</span>
         <span aria-hidden="true"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd></span> or by pressing the <b>Alerts button</b> located at the bottom-right of the screen. While this 
         component supports a hidden, "focus-visible only" mode for a cleaner UI, it is currently configured to be always visible for any user to access.
     </p>
     <p>
-        The purpose of the test is primarily for the debounce filter, however, as rows may be filtered, additional announcements are made to inform users of the number of rews resulting from the
-        filter. For the beneift of all users, I have not disabled logging of these trivial announcements so they too will be availavle to view in the announcment history dialog.
+        The purpose of the test is primarily for the debounce filter, however, as rows may be filtered, additional announcements are made to inform users of the number of rows resulting from the
+        filter. For the benefit of all users, I have not disabled logging of these trivial announcements so they too will be available to view in the announcement history dialog.
     </p>
     <p>
-        The debounce filter can be programatically cleared, a Clear Filter button appears below the table for any tests.
+        The debounce filter can be programmatically cleared, a Clear Filter button appears below the table for any tests.
     </p>
 </section>
 
@@ -60,17 +60,17 @@
             this information being announced to screen reader users.
         </li>
         <li>
-            If a validation failure occurs, the <span class="code-span">aria-invlaid</span> attribued is used to inform screen reader users. 
+            If a validation failure occurs, the <span class="code-span">aria-invalid</span> attribute is used to inform screen reader users. 
             Screen reader users entering an invalid input should be informed that the current entry is invalid.
             <strong>Note: </strong>The debounce filter opted to uses the live region service for validation failures as it could better throttle these as opposed to using
             the <span class="code-span">aria-describedby</span> attribute.
         </li>
         <li>
-            Activating the Clear Filter button will clear the filter input, this in turn raises an event, which in this instance is used to clear the filtered table so it shows the intial 10
+            Activating the Clear Filter button will clear the filter input, this in turn raises an event, which in this instance is used to clear the filtered table so it shows the initial 10
             rows, this information is also announced to screen reader users.
         </li>
         <li>
-            As all announcments were optionally added to the rolling log, all announcements that were made for screen reader users should be availabe to view in the announcment history dialog.
+            As all announcements were optionally added to the rolling log, all announcements that were made for screen reader users should be available to view in the announcement history dialog.
         </li>
     </ul>
 

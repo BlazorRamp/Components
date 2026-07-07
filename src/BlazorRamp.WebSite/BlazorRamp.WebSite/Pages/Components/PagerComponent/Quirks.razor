@@ -1,0 +1,38 @@
+﻿@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Pager}/{GlobalValues.Common_Page_Path_Quirks_Issues}")]
+
+<PageTitle>@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Quirks_Issues</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Quirks_Issues</h1>
+
+    <p>
+        Below are all the quirks and/or issues that I experienced whilst testing the Pager component.
+    </p>
+
+</section>
+
+<section class="section-box">
+    <h2 id="screen-reader-quirks" class="@GlobalValues.Info_Box_Heading_Class">Screen reader quirks</h2>
+    <ul aria-labelledby="screen-reader-quirks">
+        <li>
+            <b>Narrator</b> unlike the other screen readers used in the tests, will squash the action of the interactive element if <span class="code-span">aria-disabled</span>
+            is present. With regards to the Pager, this means that if a user presses the enter or space key whilst on a disabled selector, unlike the other screen readers, no
+            announcement, repeating the current page information is made.
+        </li>
+    </ul>
+
+</section>
+
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Pager}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Pager - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_SkipTo}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_SkipTo - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>

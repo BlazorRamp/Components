@@ -84,17 +84,19 @@ public partial class Pager : IAsyncDisposable
 
     /// <summary>
     /// Gets or sets the template used to build the pager's information text. Supports the placeholders
-    /// <c>{currentpage}</c>, <c>{lastpage}</c>, <c>{startrow}</c>, <c>{endrow}</c>, and <c>{totalrows}</c>, which
-    /// are replaced with the current values at render time. When not supplied, a default English template is
-    /// used.
+    /// <c>{currentpage}</c>, <c>{lastpage}</c>, <c>{startrow}</c>, <c>{endrow}</c>, <c>{currentrows}</c> (the row
+    /// count after filtering, if any), and <c>{totalrows}</c> (the true, unfiltered row count), which are
+    /// replaced with the current values at render time. When not supplied, a default English template is used.
     /// </summary>
     [Parameter] public string PageCountText   { get; set; } = GlobalValues.Pager_Count_Text;
 
     /// <summary>
-    /// Gets or sets the template appended to the information text when <see cref="CurrentItemCount"/> differs
-    /// from <see cref="TotalItemCount"/>, indicating that the current row count reflects an active filter.
-    /// Supports the placeholders <c>{filteredrows}</c> and <c>{totalrows}</c>. When not supplied, a default
-    /// English template is used.
+    /// Gets or sets the template appended directly after the main information text when
+    /// <see cref="CurrentItemCount"/> differs from <see cref="TotalItemCount"/>, indicating that the current row
+    /// count reflects an active filter. Supports the placeholders <c>{filteredrows}</c> and <c>{totalrows}</c>.
+    /// No separator is inserted between the two templates, so a custom value should include its own leading
+    /// punctuation or spacing (the default begins with <c>", "</c>). When not supplied, a default English
+    /// template is used.
     /// </summary>
     [Parameter] public string FilterCountText { get; set; } = GlobalValues.Pager_Filter_Count_Text;
 
@@ -284,12 +286,13 @@ public partial class Pager : IAsyncDisposable
                                         : String.Empty;
 
         var infoText = pageCountText.Replace("{currentpage}", currentPage.ToString())
-                                    .Replace("{lastpage}", totalPages.ToString())
-                                    .Replace("{startrow}", rowStart.ToString())
-                                    .Replace("{endrow}", rowEnd.ToString())
-                                    .Replace("{totalrows}", currentRows.ToString());
+                                .Replace("{lastpage}", totalPages.ToString())
+                                .Replace("{startrow}", rowStart.ToString())
+                                .Replace("{endrow}", rowEnd.ToString())
+                                .Replace("{currentrows}", currentRows.ToString())
+                                .Replace("{totalrows}", totalRows.ToString());
 
-        return $"{infoText} {filteredString}".TrimEnd();
+        return $"{infoText}{filteredString}".TrimEnd();
     }
 
     private async Task RequestPageChange(NavSelectorType currentSelector, int currentPage, int pageRequested, int lastPage)

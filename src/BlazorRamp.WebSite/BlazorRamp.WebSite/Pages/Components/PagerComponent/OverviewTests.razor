@@ -10,9 +10,12 @@
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
     <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Overview_Tests</h1>
 
-
     <p>
-        <b>EXPERIMENTAL: </b> under review and testing.
+        The Pager component is used to help navigate between result set pages, such as pages of records displayed in a data table or pages that contains product listings. 
+        For data tables the pager can be configured to use buttons for the page selectors and links when displaying product listings.
+    </p>
+    <p>
+        <b>Released: </b>Current version <b>v1.0.2</b> See the documentation site for more information: <a target="_blank" class="@GlobalValues.Link_Class" href="@GlobalValues.Site_Link_Docs_Pager">Pager documentation (opens in new window)</a>
     </p>
 </section>
 
@@ -48,10 +51,11 @@
         a bit of script for Blazor, I have not amended this, so you will not see any page numbers in the address bar as you normally would when using the 
         link style pagers.
     </p>
-</section>
 
-<section class="@GlobalValues.Info_Box_Class">
-
+    <p>
+        Below are four examples of the pagers using both buttons and links, with and without the First and Last selectors.
+        Using the keys specified below to change navigate the result sets.
+    </p>
     <h3 id="pager-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h3>
 
     <ul aria-labelledby="pager-keyboard">
@@ -61,7 +65,39 @@
     </ul>
 
 </section>
+<section class="@GlobalValues.Info_Box_Class">
 
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+    <ul>
+        <li>
+            Tabbing or shift tabbing to the component should set focus on the first or last button or link within the pager.
+        </li>
+        <li>
+            On entering the pager, screen reader users should have announced the name of the pager and its current state.
+        </li>
+        <li>
+            Tabbing or shift tabbing should allow you to traverse the pager selectors.
+        </li>
+        <li>
+            Using the enter or space key on a button should change the page, with the page information being announced to screen reader users. 
+            If the result set is not filtered screen readers users will have announced what is displayed, the current page, number of pages and items. For a filtered
+            result set the additional information shown is also announced such as 80 items filtered from 100.
+        </li>
+        <li>
+            Using the enter key on a link should change the page, with the page information being announced to screen reader users.
+            If the result set is not filtered screen readers users will have announced what is displayed, the current page, number of pages and items. For a filtered
+            result set the additional information shown is also announced such as 80 items filtered from 100.
+        </li>
+        <li>
+            If a page selector is not required such as the First and Previous selectors when the current page is 1, then these selectors will have the <span class="code-span">aria-disabled</span>
+            attribute added. Excluding Narrator (see the next page quirks and issues), activating a disabled selector just announces the current page information., 
+        </li>
+        <li>
+            Voice control users should be able to navigate the pager by using the appropriate commands along with the visible name such as click Next.
+        </li>
+    </ul>
+</section>
 
 <section class="@GlobalValues.Info_Box_Class">
     <h2 class="@GlobalValues.Info_Box_Heading_Class">Pager examples using buttons normally used above or below data tables</h2>
@@ -132,9 +168,10 @@
         <span>@GlobalValues.Component_Name_NavGroup - @GlobalValues.Common_Page_Title_Quirks_Issues</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_SkipTo}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Pager}/{GlobalValues.Common_Page_Path_Quirks_Issues}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Component_Name_SkipTo - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span>@GlobalValues.Component_Name_Pager - @GlobalValues.Common_Page_Title_Quirks_Issues</span>
         <span aria-hidden="true"></span>
     </a>
+
 </div>

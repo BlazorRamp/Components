@@ -158,6 +158,7 @@ public static class GlobalValues
     public const string Site_Link_Docs_DebounceFilter = "https://docs.blazorramp.uk/components/busy-indicator/overview";
     public const string Site_Link_Docs_Switch         = "https://docs.blazorramp.uk/components/switch/overview";
     public const string Site_Link_Docs_SkipTo         = "https://docs.blazorramp.uk/components/skip-to/overview";
+    public const string Site_Link_Docs_Pager          = "https://docs.blazorramp.uk/components/pager/overview";
     public const string Site_Link_Docs_Modal_Dialog   = "https://docs.blazorramp.uk/frameworks/modal-dialog/overview";
     public const string Site_Link_Docs_ToggleTip      = "https://docs.blazorramp.uk/components/toggletip/overview";
     public const string Site_Link_Docs_Tabs           = "https://docs.blazorramp.uk/components/tabs/overview";
