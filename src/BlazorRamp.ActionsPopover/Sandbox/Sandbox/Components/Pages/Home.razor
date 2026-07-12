@@ -21,10 +21,10 @@ Welcome to your new app.
 </pre>
 <ActionsPopover SvgIcon="--svg-food-icon" ActionsPopoverPosition="ActionsPopoverPosition.CentreLeft">
     <PopoverItems>
-        <ActionPopoverButton TData="object" ButtonText="My Action One" SvgIcon="--svg-food-icon" OnClick="HandleOnclick"/>
+        <ActionPopoverButton TData="object" ButtonText="My Action One" SvgIcon="--svg-food-icon" OnClick="HandleOnclick" IconColour="red"/>
         <ActionPopoverSeparator />
         <ActionPopoverButton TData="object" ButtonText="My Action Two" SvgIcon="--svg-food-icon" />
-        <ActionPopoverLink TData="object" Path="/weather" TargetType="TargetType.Blank" LinkText="Test" SvgIcon="--svg-food-icon" OnClick="HandleOnLinkclick" PreventDefault="false" />
+        <ActionPopoverLink TData="object" Path="/weather" TargetType="TargetType.Self" LinkText="Test" SvgIcon="--svg-food-icon" OnClick="HandleOnLinkclick" PreventDefault="true" />
     </PopoverItems>
 </ActionsPopover>
 

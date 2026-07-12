@@ -2,15 +2,25 @@
 using BlazorRamp.ActionsPopover.Common.Utilities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System.Reflection.Emit;
 
 namespace BlazorRamp.ActionsPopover.Components;
 
+/// <summary>
+/// A trigger button that opens a popover panel containing a list of actions — for example,
+/// a row-actions button in a data table offering Edit, Delete, or View.
+/// </summary>
 partial class ActionsPopover : IAsyncDisposable
 {
-
+    /// <summary>
+    /// Gets or sets the action items rendered inside the popover panel, typically
+    /// a combination of <see cref="ActionPopoverButton{TData}"/>, <see cref="ActionPopoverLink{TData}"/>,
+    /// and <see cref="ActionPopoverSeparator"/>.
+    /// </summary>
     [Parameter] public RenderFragment? PopoverItems { get; set; }
 
+    /// <summary>
+    /// Gets or sets the text displayed on the trigger button. Defaults to <c>"Actions"</c>.
+    /// </summary>
     [Parameter] public string TriggerText { get; set; } = GlobalValues.Actions_Popover_Trigger_Text!;
 
     /// <summary>
@@ -38,10 +48,22 @@ partial class ActionsPopover : IAsyncDisposable
     private string _popoverPosition = "bottom-left";
     private string? _svgIcon        = null;
 
+
+    /// <summary>
+    /// Resolves <see cref="SvgIcon"/> into a CSS custom property style.
+    /// </summary>
     protected override void OnParametersSet()
     {
         _svgIcon = GeneralHelpers.CheckSetSvgVariable(SvgIcon, GlobalValues.Actions_Popover_Trigger_Icon_Svg_Css_Variable_Name);
+        base.OnParametersSet();
     }
+
+    /// <summary>
+    /// Resolves <see cref="ActionsPopoverPosition"/> into its corresponding data-attribute string value.
+    /// Evaluated once at initialization, since the preferred position is a fixed placement choice —
+    /// actual on-screen positioning is handled dynamically by CSS anchor positioning fallbacks
+    /// regardless of this value.
+    /// </summary>
     protected override void OnInitialized()
     {
 
@@ -94,7 +116,7 @@ partial class ActionsPopover : IAsyncDisposable
         {
             try
             {
-                await _jSModule.InvokeVoidAsync(GlobalValues.JS_Unregister_Focus_Out_Handler);
+                await _jSModule.InvokeVoidAsync(GlobalValues.JS_Unregister_Focus_Out_Handler, ContainerElementRef, PopoverElementRef);
                 await _jSModule.DisposeAsync();
 
             }

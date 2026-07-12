@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlazorRamp.ActionsPopover.Common.Utilities;
 
-internal class GeneralHelpers
+internal static class GeneralHelpers
 {
     /// <summary>
     /// Validates that a SvgIcon parameter and returns a CSS inline style string
@@ -21,5 +21,11 @@ internal class GeneralHelpers
                                 : svgIcon.TrimStart().StartsWith("--") ? $"var({svgIcon!.Trim().TrimEnd(':')})" : null;
 
         return iconVariable is null ? null : $"{variableName}:{iconVariable};";
+    }
+
+    internal static string? CheckSetColourVariable(string? colourValue, string variableName)
+    {
+        var value = String.IsNullOrWhiteSpace(colourValue) ? null : colourValue.Trim().TrimEnd(';');
+        return value is null ? null : $"{variableName}:{value};";
     }
 }

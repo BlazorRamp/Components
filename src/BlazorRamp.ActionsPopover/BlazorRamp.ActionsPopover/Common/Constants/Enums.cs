@@ -1,4 +1,6 @@
-﻿namespace BlazorRamp.ActionsPopover.Common.Constants;
+﻿using BlazorRamp.ActionsPopover.Components;
+
+namespace BlazorRamp.ActionsPopover.Common.Constants;
 
 
 /// <summary>
@@ -40,6 +42,17 @@ public enum ActionsPopoverPosition : int
     BottomRight = 7,
 }
 
-public enum MenuItemType : int { Action, Url }
-
-public enum TargetType : int { Self, Blank }
+/// <summary>
+/// Defines the <c>target</c> attribute behaviour of an <see cref="ActionPopoverLink{TData}"/>.
+/// </summary>
+public enum TargetType : int
+{
+    /// <summary>
+    /// Opens the link in the same browsing context (<c>target="_self"</c>).
+    /// </summary>
+    Self,
+    /// <summary>
+    /// Opens the link in a new browsing context (<c>target="_blank"</c>).
+    /// </summary>
+    Blank
+}

@@ -3,16 +3,46 @@ using BlazorRamp.ActionsPopover.Common.Models;
 using BlazorRamp.ActionsPopover.Common.Utilities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System.Runtime.InteropServices;
 
 namespace BlazorRamp.ActionsPopover.Components;
 
+/// <summary>
+/// Represents a single link action item rendered within an <see cref="ActionsPopover"/> panel.
+/// Renders as an anchor element so standard link behaviours (open in new tab, copy link,
+/// browser context menu) keep working, while still raising an <see cref="OnClick"/> callback.
+/// </summary>
 public partial class ActionPopoverLink<TData> : ComponentBase, IAsyncDisposable
 {
-    
-    [Parameter] public string     LinkText       { get; set; }
+    /// <summary>
+    /// Gets or sets the text displayed for this action link.
+    /// </summary>
+    /// <exception cref="ArgumentNullException">
+    /// Thrown if the value is <see langword="null"/>, empty, or consists only of whitespace.
+    /// </exception>
+    [Parameter] public string     LinkText       { get; set; } = default!;
+
+    /// <summary>
+    /// Gets or sets an optional payload associated with this action, made available via
+    /// <see cref="LinkActionData{TData}.TryGetData"/> in the <see cref="OnClick"/> callback.
+    /// </summary>
     [Parameter] public TData?     ItemData       { get; set; }
+
+    /// <summary>
+    /// Gets or sets the browsing context the link opens in. Defaults to <see cref="TargetType.Self"/>.
+    /// </summary>
     [Parameter] public TargetType TargetType     { get; set; } = TargetType.Self;
+
+    /// <summary>
+    /// Gets or sets the <c>href</c> for this link. Defaults to <c>"/"</c>.
+    /// </summary>
     [Parameter] public string     Path           { get; set; } = "/";
+
+    /// <summary>
+    /// Gets or sets whether the default navigation behaviour of the link is suppressed,
+    /// allowing the consumer to handle navigation manually via <see cref="OnClick"/>.
+    /// Evaluated once on initialization; changing this after the first render has no effect.
+    /// </summary>
     [Parameter] public bool       PreventDefault { get; set; } = false;
 
     /// <summary>
@@ -21,6 +51,14 @@ public partial class ActionPopoverLink<TData> : ComponentBase, IAsyncDisposable
     /// For example: <c>--svg-my-icon</c>.
     /// </summary>
     [Parameter] public string? SvgIcon { get; set; } = default;
+
+    /// <summary>
+    /// Gets or sets a CSS colour value (hex, named colour, or <c>var(--token)</c> reference) used to
+    /// tint this action item's icon. Has no effect when forced colours mode (e.g. Windows High Contrast)
+    /// is active, since accessibility requires the system-defined colour to take precedence.
+    /// </summary>
+    [Parameter] public string? IconColour { get; set; }
+
 
     /// <summary>
     /// Invoked when the action button is clicked. Unlike <see cref="EventCallback"/>, this does
@@ -39,17 +77,32 @@ public partial class ActionPopoverLink<TData> : ComponentBase, IAsyncDisposable
 
     private string? _svgIcon        = null;
     private bool    _preventDefault = false;
+    private string   _path          = "/";
+    private string?  _iconColour    = null;
+
+    /// <summary>
+    /// Validates <see cref="LinkText"/> and resolves <see cref="SvgIcon"/> into a CSS custom property style.
+    /// </summary>
     protected override void OnParametersSet()
     {
         if (true == String.IsNullOrWhiteSpace(LinkText)) throw new ArgumentNullException(nameof(LinkText), GlobalValues.Actions_Popover_Link_Text_Exception_Message);
-        _svgIcon = GeneralHelpers.CheckSetSvgVariable(SvgIcon, GlobalValues.Actions_Popover_Action_Icon_Svg_Css_Variable_Name);
+       
+        _path       = String.IsNullOrWhiteSpace(Path) ? "/" : Path.Trim();
+        _svgIcon    = GeneralHelpers.CheckSetSvgVariable(SvgIcon, GlobalValues.Actions_Popover_Action_Icon_Svg_Css_Variable_Name);
+        _iconColour = GeneralHelpers.CheckSetColourVariable(IconColour, GlobalValues.Actions_Popover_Action_Icon_Colour_Variable_Name);
+
         base.OnParametersSet();
     }
 
+    /// <summary>
+    /// Captures the initial value of <see cref="PreventDefault"/> for use during
+    /// <see cref="OnAfterRenderAsync"/>, since JS registration only happens once on first render.
+    /// </summary>
     protected override void OnInitialized()
     {
         _preventDefault = PreventDefault;
     }
+
     private async Task RaiseOnClick(string linkText, TData? itemData, TargetType targetType, string path)
     {
         var actionData = CreateActionData(linkText, itemData, targetType, path);
@@ -91,7 +144,7 @@ public partial class ActionPopoverLink<TData> : ComponentBase, IAsyncDisposable
         {
             try
             {
-                if(true == _preventDefault )await _jSModule.InvokeVoidAsync(GlobalValues.JS_Unregister_Prevent_Click_Action_Handler);
+                if(true == _preventDefault )await _jSModule.InvokeVoidAsync(GlobalValues.JS_Unregister_Prevent_Click_Action_Handler, AnchorElementRef);
                 await _jSModule.DisposeAsync();
 
             }

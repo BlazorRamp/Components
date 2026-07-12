@@ -2,16 +2,17 @@
 
 <li>
     <a @ref="AnchorElementRef" class="@GlobalValues.Actions_Popover_Action_Link_Class"
-            href="@Path"
+            href="@_path"
             target="@(TargetType == TargetType.Blank ? "_blank" : "_self")"
             tabindex="0"
             rel="@(TargetType == TargetType.Blank ? "noopener noreferrer" : null)"
             @onclick:stopPropagation="true"
-            @onclick="() => RaiseOnClick(LinkText, ItemData, TargetType, Path)">
+            @onclick="() => RaiseOnClick(LinkText, ItemData, TargetType, _path)">
 
-        <span aria-hidden="true" 
+        <span 
+              aria-hidden="true" 
               class="@(_svgIcon is null ? GlobalValues.Actions_Popover_Action_Icon_Slot_Class : $"{GlobalValues.Actions_Popover_Action_Icon_Slot_Class} {GlobalValues.Actions_Popover_Action_Icon_Slot_Modifier}")" 
-               style="@_svgIcon">
+              style="@($"{_svgIcon}{_iconColour}")">
         </span>
 
         <span class="@GlobalValues.Actions_Popover_Action_Text_Class">

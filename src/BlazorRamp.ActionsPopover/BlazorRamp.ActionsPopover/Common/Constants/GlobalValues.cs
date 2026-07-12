@@ -20,6 +20,8 @@ internal class GlobalValues
     public const string Actions_Popover_Trigger_Icon_Svg_Css_Variable_Name = "--_br-svg-popover-trigger-icon";
     public const string Actions_Popover_Action_Icon_Svg_Css_Variable_Name  = "--_br-svg-popover-action-icon";
 
+    public const string Actions_Popover_Action_Icon_Colour_Variable_Name  ="--_br-svg-popover-action-icon-colour";
+
     public const string Actions_Popover_Class                        = "br-actions-popover";
     public const string Actions_Popover_Trigger_Class                = $"{Actions_Popover_Class}__trigger";
     public const string Actions_Popover_Trigger_Text_Class           = $"{Actions_Popover_Class}__trigger-text";

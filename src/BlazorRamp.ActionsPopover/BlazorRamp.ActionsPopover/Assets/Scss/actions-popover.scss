@@ -293,11 +293,11 @@
         padding: 0;
 
         &--with-icon {
-            @include icon;
             mask-image: var(--_br-svg-popover-action-icon);
             aspect-ratio: 1/1;
             height: calc(var(--_icon-size) * 1.25);
-            color: var(--br-unit-colour-canvas-text);
+            color: var(--_br-svg-popover-action-icon-colour, var(--br-unit-colour-canvas-text));
+            @include icon;
         }
     }
 
