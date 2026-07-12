@@ -6,7 +6,7 @@
     --br-comp-all-outline-offset: var(--br-unit-outline-offset-2);
     --br-comp-all-outline-colour: var(--br-comp-all-focus-indicator-colour);
     //
-    --br-comp-actions-popover-trigger-background: var(--br-comp-all-button-background);
+    --br-comp-actions-popover-trigger-background: var(--br-unit-colour-neutral-5);//var(--br-comp-all-button-background);
     --br-comp-actions-popover-trigger-text: var(--br-comp-all-button-text);
     --br-comp-actions-popover-trigger-font-family: var(--br-comp-all-button-font-family);
     --br-comp-actions-popover-trigger-font-size: var(--br-comp-all-button-font-size);
@@ -34,7 +34,6 @@
     --br-comp-actions-popover-item-border-colour: var(--br-comp-all-button-border-colour);
     --br-comp-actions-popover-item-border-width: var(--br-comp-all-button-border-width);
     --br-comp-actions-popover-item-border-radius: var(--br-unit-radius-2);
-   
     --br-comp-actions-popover-item-state-active-brightness: var(--br-comp-all-button-state-active-brightness);
     --br-comp-actions-popover-item-state-active-scale: var(--br-comp-all-button-state-active-scale);
     --br-comp-actions-popover-item-outline-style: var(--br-comp-all-outline-style);
@@ -43,16 +42,11 @@
     --br-comp-actions-popover-item-outline-colour: var(--br-comp-all-outline-colour);
     //
     --br-comp-actions-popover-item-state-hover: var(--br-comp-all-link-hover-background-colour);
-    //
-    --br-comp-all-pane-base-background: var(--br-unit-colour-neutral-10);
-    --br-comp-all-pane-base-border-style: solid;
-    --br-comp-all-pane-base-border-colour: transparent;
-    --br-comp-all-pane-base-border-width: var(--br-unit-border-0);
-    --br-comp-all-pane-base-border-radius: var(--br-unit-radius-3);
+
     /*
         * pane panel styles
     */
-    --br-comp-actions-popover-pane-panel-background: var(--br-comp-all-pane-panel-background);
+    --br-comp-actions-popover-pane-panel-background: var(--br-unit-colour-neutral-5);
     --br-comp-actions-popover-pane-panel-border-style: var(--br-comp-all-pane-panel-border-style);
     --br-comp-actions-popover-pane-panel-border-colour: var(--br-unit-colour-primary-40); //same as the buttons underlying value
     --br-comp-actions-popover-pane-panel-border-width: var(--br-unit-border-1);
