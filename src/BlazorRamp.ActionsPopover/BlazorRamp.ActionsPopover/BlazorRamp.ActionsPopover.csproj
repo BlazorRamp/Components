@@ -60,6 +60,7 @@ edit and delete</Description>
 	</ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\assets\css\" />
     <Folder Include="wwwroot\assets\js\" />
   </ItemGroup>
 

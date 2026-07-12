@@ -1,0 +1,25 @@
+﻿@typeparam TData
+
+<li>
+    <a @ref="AnchorElementRef" class="@GlobalValues.Actions_Popover_Action_Button_Class"
+            href="@Path"
+            target="@(TargetType == TargetType.Blank ? "_blank" : "_self")"
+            tabindex="0"
+            popovertarget="@PopoverID"
+            popovertargetaction="hide" 
+            @onchange:preventDefault="@PreventDefault" @onclick:stopPropagation="true"
+            @onclick="() => RaiseOnClick(LinkText, ItemData, TargetType, Path)">
+
+        <span aria-hidden="true" 
+              class="@(_svgIcon is null ? GlobalValues.Actions_Popover_Action_Icon_Slot_Class : $"{GlobalValues.Actions_Popover_Action_Icon_Slot_Class} {GlobalValues.Actions_Popover_Action_Icon_Slot_Modifier}")" 
+               style="@_svgIcon">
+        </span>
+
+        <span class="@GlobalValues.Actions_Popover_Action_Text_Class">
+            @LinkText
+        </span>
+
+    </a>
+</li>
+
+

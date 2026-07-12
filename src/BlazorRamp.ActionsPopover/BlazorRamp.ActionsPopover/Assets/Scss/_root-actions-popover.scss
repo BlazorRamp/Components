@@ -1,4 +1,64 @@
-﻿:root{
+﻿:root {
+    --svg-chevron-down-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' fill-rule='evenodd' d='M4.13 9.16a.5.5 0 0 1 .707-.024l7.16 6.68l7.16-6.68a.5.5 0 0 1 .683.731l-7.5 7a.5.5 0 0 1-.682 0l-7.5-7a.5.5 0 0 1-.025-.707z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    //
+    --br-comp-all-outline-style: solid;
+    --br-comp-all-outline-width: var(--br-unit-outline-2);
+    --br-comp-all-outline-offset: var(--br-unit-outline-offset-2);
+    --br-comp-all-outline-colour: var(--br-comp-all-focus-indicator-colour);
+    //
+    --br-comp-actions-popover-trigger-background: var(--br-comp-all-button-background);
+    --br-comp-actions-popover-trigger-text: var(--br-comp-all-button-text);
+    --br-comp-actions-popover-trigger-font-family: var(--br-comp-all-button-font-family);
+    --br-comp-actions-popover-trigger-font-size: var(--br-comp-all-button-font-size);
+    --br-comp-actions-popover-trigger-font-weight: 500; //var(--br-comp-all-button-font-weight);
+    --br-comp-actions-popover-trigger-line-height: var(--br-comp-all-button-line-height);
+    --br-comp-actions-popover-trigger-border-style: var(--br-comp-all-button-border-style);
+    --br-comp-actions-popover-trigger-border-colour: var(--br-comp-all-button-border-colour);
+    --br-comp-actions-popover-trigger-border-width: var(--br-comp-all-button-border-width);
+    --br-comp-actions-popover-trigger-border-radius: var(--br-unit-radius-3);
+    --br-comp-actions-popover-trigger-state-hover: var(--br-comp-all-button-state-hover);
+    --br-comp-actions-popover-trigger-state-active-brightness: var(--br-comp-all-button-state-active-brightness);
+    --br-comp-actions-popover-trigger-state-active-scale: var(--br-comp-all-button-state-active-scale);
+    --br-comp-actions-popover-trigger-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-actions-popover-trigger-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-actions-popover-trigger-outline-offset: var(--br-comp-all-outline-offset);
+    --br-comp-actions-popover-trigger-outline-colour: var(--br-comp-all-outline-colour);
+    //
+    --br-comp-actions-popover-button-background: var(--br-comp-all-button-background);
+    --br-comp-actions-popover-button-text: var(--br-comp-all-button-text);
+    --br-comp-actions-popover-button-font-family: var(--br-comp-all-button-font-family);
+    --br-comp-actions-popover-button-font-size: var(--br-comp-all-button-font-size);
+    --br-comp-actions-popover-button-font-weight: var(--br-comp-all-button-font-weight);
+    --br-comp-actions-popover-button-line-height: var(--br-comp-all-button-line-height);
+    --br-comp-actions-popover-button-border-style: var(--br-comp-all-button-border-style);
+    --br-comp-actions-popover-button-border-colour: var(--br-comp-all-button-border-colour);
+    --br-comp-actions-popover-button-border-width: var(--br-comp-all-button-border-width);
+    --br-comp-actions-popover-button-border-radius: var(--br-unit-radius-2);
+    --br-comp-actions-popover-button-state-hover: var(--br-comp-all-button-state-hover);
+    --br-comp-actions-popover-button-state-active-brightness: var(--br-comp-all-button-state-active-brightness);
+    --br-comp-actions-popover-button-state-active-scale: var(--br-comp-all-button-state-active-scale);
+    --br-comp-actions-popover-button-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-actions-popover-button-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-actions-popover-button-outline-offset: var(--br-unit-outline-offset-1);
+    --br-comp-actions-popover-button-outline-colour: var(--br-comp-all-outline-colour);
+    //
+    --br-comp-all-pane-base-background: var(--br-unit-colour-neutral-10);
+    --br-comp-all-pane-base-border-style: solid;
+    --br-comp-all-pane-base-border-colour: transparent;
+    --br-comp-all-pane-base-border-width: var(--br-unit-border-0);
+    --br-comp-all-pane-base-border-radius: var(--br-unit-radius-3);
+    /*
+        * pane panel styles
+    */
+    --br-comp-actions-popover-pane-panel-background: var(--br-comp-all-pane-panel-background);
+    --br-comp-actions-popover-pane-panel-border-style: var(--br-comp-all-pane-panel-border-style);
+    --br-comp-actions-popover-pane-panel-border-colour: var(--br-unit-colour-primary-40); //same as the buttons underlying value
+    --br-comp-actions-popover-pane-panel-border-width: var(--br-unit-border-1);
+    --br-comp-actions-popover-pane-panel-border-radius: var(--br-unit-radius-3);
+    //
 
 
+    --br-comp-actions-popover-separator-border-colour: var(--br-comp-all-divider-colour);
+    --br-comp-actions-popover-separator-border-style: solid;
+    --br-comp-actions-popover-separator-border-width: var(--br-unit-border-1);
 }

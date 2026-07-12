@@ -1,7 +1,37 @@
 ﻿@page "/"
+@using BlazorRamp.ActionsPopover.Components
+@rendermode @(new InteractiveServerRenderMode(false))
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
-
+f
 Welcome to your new app.
+
+<ActionsPopover SvgIcon="--svg-food-icon">
+    <PopoverItems>
+        <ActionPopoverButton TData="object" ButtonText="My Action One" SvgIcon="--svg-food-icon" OnClick="HandleOnclick"/>
+        <ActionPopoverSeparator />
+        <ActionPopoverButton TData="object" ButtonText="My Action Two" SvgIcon="--svg-food-icon" />
+        <ActionPopoverLink TData="object" Path="/weather" TargetType="TargetType.Blank" LinkText="Test" SvgIcon="--svg-food-icon" OnClick="HandleOnLinkclick" PreventDefault="false" />
+    </PopoverItems>
+</ActionsPopover>
+
+<div>
+    <p>
+        some text after the popover that gets covered along with the next tabstop
+    </p>
+    <label for="tabstop">Tab Stop Input</label>
+    <input id="tabstop" type="text" />
+</div>
+
+@code{
+    public async Task HandleOnclick(ButtonActionData<object> actionData)
+    {
+        
+    }
+    public async Task HandleOnLinkclick(LinkActionData<object> actionData)
+    {
+
+    }
+}

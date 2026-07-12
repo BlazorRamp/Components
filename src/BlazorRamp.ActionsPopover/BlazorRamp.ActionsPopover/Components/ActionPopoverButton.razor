@@ -1,0 +1,12 @@
+﻿
+@typeparam TData
+<li>
+    <button type="button" class="@GlobalValues.Actions_Popover_Action_Button_Class"
+            popovertarget="@PopoverID"
+            popovertargetaction="hide" @onclick="() => RaiseOnClick(ButtonText, ItemData)">
+        <span aria-hidden="true" class="@(_svgIcon is null ? GlobalValues.Actions_Popover_Action_Icon_Slot_Class : $"{GlobalValues.Actions_Popover_Action_Icon_Slot_Class} {GlobalValues.Actions_Popover_Action_Icon_Slot_Modifier}")" style="@_svgIcon"></span>
+        <span class="@GlobalValues.Actions_Popover_Action_Text_Class">
+            @ButtonText
+        </span>
+     </button>
+</li>

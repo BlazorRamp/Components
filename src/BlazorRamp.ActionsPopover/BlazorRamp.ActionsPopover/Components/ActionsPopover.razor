@@ -1,3 +1,30 @@
-﻿<h3>ActionsPopover</h3>
+﻿
+<div @ref="ContainerElementRef" class="@GlobalValues.Actions_Popover_Class">
+
+    <button type="button" class="@GlobalValues.Actions_Popover_Trigger_Class" popovertarget="@_popoverPanelID">
+
+        <span aria-hidden="true" class="@(_svgIcon is null ? GlobalValues.Actions_Popover_Trigger_Icon_Slot_Class : $"{GlobalValues.Actions_Popover_Trigger_Icon_Slot_Class} {GlobalValues.Actions_Popover_Trigger_Icon_Slot_Modifier}")" style="@_svgIcon"></span>
+
+        <span id="@_triggerTextID">@TriggerText</span>
+
+        <span class="@GlobalValues.Actions_Popover_Trigger_Expander_Icon_Class">
+            <span></span>
+        </span>
+    </button>
+
+    <div id="@_popoverPanelID" @ref="PopoverElementRef" 
+        class="@GlobalValues.Actions_Popover_Panel_Class" 
+        popover="auto" 
+        data-br-actions-popover-position="@_popoverPosition">
+        
+        <ul aria-labelledby="@_triggerTextID">
+            <CascadingValue Name="@GlobalValues.Actions_Popover_Panel_Cascading_ID_Name" Value="@_popoverPanelID" IsFixed="true">
+                @PopoverItems
+            </CascadingValue>
+        </ul>
+
+    </div>
+
+</div>
 
 
