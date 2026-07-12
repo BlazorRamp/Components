@@ -59,7 +59,7 @@ partial class ActionsPopover : IAsyncDisposable
         {
             _jSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_File_Path);
 
-            if (_jSModule is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Register_Focus_Out_Handler,ContainerElementRef, PopoverElementRef);
+           // if (_jSModule is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Register_Focus_Out_Handler,ContainerElementRef, PopoverElementRef);
 
         }
     }

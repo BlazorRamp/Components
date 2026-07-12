@@ -1,13 +1,12 @@
 ﻿@typeparam TData
 
 <li>
-    <a @ref="AnchorElementRef" class="@GlobalValues.Actions_Popover_Action_Button_Class"
+    <a @ref="AnchorElementRef" class="@GlobalValues.Actions_Popover_Action_Link_Class"
             href="@Path"
             target="@(TargetType == TargetType.Blank ? "_blank" : "_self")"
             tabindex="0"
-            popovertarget="@PopoverID"
-            popovertargetaction="hide" 
-            @onchange:preventDefault="@PreventDefault" @onclick:stopPropagation="true"
+            rel="@(TargetType == TargetType.Blank ? "noopener noreferrer" : null)"
+            @onclick:stopPropagation="true"
             @onclick="() => RaiseOnClick(LinkText, ItemData, TargetType, Path)">
 
         <span aria-hidden="true" 

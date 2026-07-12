@@ -24,23 +24,25 @@
     --br-comp-actions-popover-trigger-outline-offset: var(--br-comp-all-outline-offset);
     --br-comp-actions-popover-trigger-outline-colour: var(--br-comp-all-outline-colour);
     //
-    --br-comp-actions-popover-button-background: var(--br-comp-all-button-background);
-    --br-comp-actions-popover-button-text: var(--br-comp-all-button-text);
-    --br-comp-actions-popover-button-font-family: var(--br-comp-all-button-font-family);
-    --br-comp-actions-popover-button-font-size: var(--br-comp-all-button-font-size);
-    --br-comp-actions-popover-button-font-weight: var(--br-comp-all-button-font-weight);
-    --br-comp-actions-popover-button-line-height: var(--br-comp-all-button-line-height);
-    --br-comp-actions-popover-button-border-style: var(--br-comp-all-button-border-style);
-    --br-comp-actions-popover-button-border-colour: var(--br-comp-all-button-border-colour);
-    --br-comp-actions-popover-button-border-width: var(--br-comp-all-button-border-width);
-    --br-comp-actions-popover-button-border-radius: var(--br-unit-radius-2);
-    --br-comp-actions-popover-button-state-hover: var(--br-comp-all-button-state-hover);
-    --br-comp-actions-popover-button-state-active-brightness: var(--br-comp-all-button-state-active-brightness);
-    --br-comp-actions-popover-button-state-active-scale: var(--br-comp-all-button-state-active-scale);
-    --br-comp-actions-popover-button-outline-style: var(--br-comp-all-outline-style);
-    --br-comp-actions-popover-button-outline-width: var(--br-comp-all-outline-width);
-    --br-comp-actions-popover-button-outline-offset: var(--br-unit-outline-offset-1);
-    --br-comp-actions-popover-button-outline-colour: var(--br-comp-all-outline-colour);
+    --br-comp-actions-popover-item-background: var(--br-comp-all-button-background);
+    --br-comp-actions-popover-item-text: var(--br-comp-all-button-text);
+    --br-comp-actions-popover-item-font-family: var(--br-comp-all-button-font-family);
+    --br-comp-actions-popover-item-font-size: var(--br-comp-all-button-font-size);
+    --br-comp-actions-popover-item-font-weight: var(--br-comp-all-button-font-weight);
+    --br-comp-actions-popover-item-line-height: var(--br-comp-all-button-line-height);
+    --br-comp-actions-popover-item-border-style: var(--br-comp-all-button-border-style);
+    --br-comp-actions-popover-item-border-colour: var(--br-comp-all-button-border-colour);
+    --br-comp-actions-popover-item-border-width: var(--br-comp-all-button-border-width);
+    --br-comp-actions-popover-item-border-radius: var(--br-unit-radius-2);
+   
+    --br-comp-actions-popover-item-state-active-brightness: var(--br-comp-all-button-state-active-brightness);
+    --br-comp-actions-popover-item-state-active-scale: var(--br-comp-all-button-state-active-scale);
+    --br-comp-actions-popover-item-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-actions-popover-item-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-actions-popover-item-outline-offset: var(--br-unit-outline-offset-1);
+    --br-comp-actions-popover-item-outline-colour: var(--br-comp-all-outline-colour);
+    //
+    --br-comp-actions-popover-item-state-hover: var(--br-comp-all-link-hover-background-colour);
     //
     --br-comp-all-pane-base-background: var(--br-unit-colour-neutral-10);
     --br-comp-all-pane-base-border-style: solid;

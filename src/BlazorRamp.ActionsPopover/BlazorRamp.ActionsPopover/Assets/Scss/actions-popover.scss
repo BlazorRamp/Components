@@ -30,6 +30,7 @@
     width: fit-content;
     anchor-scope: --popover-anchor;
     box-sizing: border-box;
+    color: inherit;
     --_br-svg-popover-trigger-icon: none;
     --_br-svg-popover-action-icon: none;
     --_icon-size: 1em;
@@ -49,7 +50,7 @@
         border-color: var(--br-comp-actions-popover-trigger-border-colour);
         border-width: var(--br-comp-actions-popover-trigger-border-width);
         border-radius: var(--br-comp-actions-popover-trigger-border-radius);
-        color: var(--br-comp-actions-popover-trigger-text);
+        color: inherit;
         font-family: var(--br-comp-actions-popover-trigger-font-family);
         font-size: var(--br-comp-actions-popover-trigger-font-size);
         font-weight: var(--br-comp-actions-popover-trigger-font-weight);
@@ -58,7 +59,7 @@
         padding-inline: var(--br-unit-space-4);
 
         &:hover {
-            background-color: var(--br-comp-actions-popover-button-state-hover);
+            background-color: var(--br-comp-actions-popover-item-state-hover);
         }
 
         &:active {
@@ -68,6 +69,7 @@
         }
 
         &:focus-visible {
+            color: var(--br-comp-actions-popover-trigger-text);
             outline-style: var(--br-comp-actions-popover-trigger-outline-style);
             outline-width: var(--br-comp-actions-popover-trigger-outline-width);
             outline-offset: var(--br-comp-actions-popover-trigger-outline-offset);
@@ -95,6 +97,8 @@
     }
 
     &:has(:popover-open) {
+        color: var(--br-comp-actions-popover-trigger-text);
+
         .br-actions-popover__trigger-expander-icon {
             transform: rotate(180deg);
         }
@@ -118,12 +122,10 @@
     }
 
     &__panel {
+        position-anchor: --popover-anchor;
 
         &:popover-open {
             display: grid;
-            /*            &[aria-expanded="true"]:hover {
-                background-color: var(--br-comp-nav-group-selected-hover);
-            }*/
         }
 
         grid-auto-rows: min-content;
@@ -139,40 +141,59 @@
         border-width: var(--br-comp-actions-popover-pane-panel-border-width);
         border-radius: var(--br-comp-actions-popover-pane-panel-border-radius);
         align-items: center;
+        position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+        //position-try-order: most-space;
 
         &:not(:has(.br-actions-popover__icon-slot--with-icon)) {
             grid-template-columns: 1fr;
         }
 
         &[data-br-actions-popover-position="top-centre"] {
+            margin-block-end: 0.5rem;
+            position-area: block-start;
+            position-try-fallbacks: flip-block;
         }
 
         &[data-br-actions-popover-position="top-left"] {
-        }
-
-        &[data-br-actions-popover-position="top-centre"] {
+            margin-block-end: 0.5rem;
+            position-area: block-start span-inline-end;
+            position-try-fallbacks: flip-block, flip-inline;
         }
 
         &[data-br-actions-popover-position="top-right"] {
+            margin-block-end: 0.5rem;
+            position-area: block-start span-inline-start;
+            position-try-fallbacks: flip-block, flip-inline;
         }
 
         &[data-br-actions-popover-position="bottom-left"] {
             margin-block-start: 0.5rem;
             position-area: block-end span-inline-end;
+            position-try-fallbacks: flip-block, flip-inline;
         }
 
         &[data-br-actions-popover-position="bottom-centre"] {
+            margin-block-start: 0.5rem;
+            position-area: block-end;
+            position-try-fallbacks: flip-block;
         }
 
         &[data-br-actions-popover-position="bottom-right"] {
             margin-block-start: 0.5rem;
             position-area: block-end span-inline-start;
-        }
-
-        &[data-br-actions-popover-position="centre-right"] {
+            position-try-fallbacks: flip-block, flip-inline;
         }
 
         &[data-br-actions-popover-position="centre-left"] {
+            margin-inline-end: 0.5rem;
+            position-area: inline-start;
+            position-try-fallbacks: flip-inline;
+        }
+
+        &[data-br-actions-popover-position="centre-right"] {
+            margin-inline-start: 0.5rem;
+            position-area: inline-end;
+            position-try-fallbacks: flip-inline;
         }
 
         & ul, & li {
@@ -190,33 +211,34 @@
         display: inline-grid;
         grid-template-columns: subgrid;
         align-items: center;
-        background-color: var(--br-comp-actions-popover-button-background);
-        border-color: var(--br-comp-actions-popover-button-border-colour);
-        border-width: var(--br-comp-actions-popover-button-border-width);
-        border-radius: var(--br-comp-actions-popover-button-border-radius);
-        color: var(--br-comp-actions-popover-button-text);
-        font-family: var(--br-comp-actions-popover-button-font-family);
-        font-size: var(--br-comp-actions-popover-button-font-size);
-        font-weight: var(--br-comp-actions-popover-button-font-weight);
-        line-height: var(--br-comp-actions-popover-button-line-height);
+        background-color: var(--br-comp-actions-popover-item-background);
+        border-color: var(--br-comp-actions-popover-item-border-colour);
+        border-width: var(--br-comp-actions-popover-item-border-width);
+        border-radius: var(--br-comp-actions-popover-item-border-radius);
+        color: var(--br-comp-actions-popover-item-text);
+        font-family: var(--br-comp-actions-popover-item-font-family);
+        font-size: var(--br-comp-actions-popover-item-font-size);
+        font-weight: var(--br-comp-actions-popover-item-font-weight);
+        line-height: var(--br-comp-actions-popover-item-line-height);
         padding-block: var(--br-unit-space-2);
         padding-inline: var(--br-unit-space-4);
+        min-height: var(--br-unit-wcag-target-2a);
 
         &:hover {
-            background-color: var(--br-comp-actions-popover-button-state-hover);
+            background-color: var(--br-comp-actions-popover-item-state-hover);
         }
 
         &:active {
-            transform: scale(var(--br-comp-actions-popover-button-state-active-scale));
-            filter: brightness(var(--br-comp-actions-popover-button-state-active-brightness));
+            transform: scale(var(--br-comp-actions-popover-item-state-active-scale));
+            filter: brightness(var(--br-comp-actions-popover-item-state-active-brightness));
             outline: none;
         }
 
         &:focus-visible {
-            outline-style: var(--br-comp-actions-popover-button-outline-style);
-            outline-width: var(--br-comp-actions-popover-button-outline-width);
-            outline-offset: var(--br-comp-actions-popover-button-outline-offset);
-            outline-color: var(--br-comp-actions-popover-button-outline-colour);
+            outline-style: var(--br-comp-actions-popover-item-outline-style);
+            outline-width: var(--br-comp-actions-popover-item-outline-width);
+            outline-offset: var(--br-comp-actions-popover-item-outline-offset);
+            outline-color: var(--br-comp-actions-popover-item-outline-colour);
         }
     }
 
@@ -225,38 +247,44 @@
         display: inline-grid;
         grid-template-columns: subgrid;
         align-items: center;
-        background-color: var(--br-comp-actions-popover-button-background);
-        border-color: var(--br-comp-actions-popover-button-border-colour);
-        border-width: var(--br-comp-actions-popover-button-border-width);
-        border-radius: var(--br-comp-actions-popover-button-border-radius);
-        color: var(--br-comp-actions-popover-button-text);
-        font-family: var(--br-comp-actions-popover-button-font-family);
-        font-size: var(--br-comp-actions-popover-button-font-size);
-        font-weight: var(--br-comp-actions-popover-button-font-weight);
-        line-height: var(--br-comp-actions-popover-button-line-height);
+        background-color: var(--br-comp-actions-popover-item-background);
+        border-color: var(--br-comp-actions-popover-item-border-colour);
+        border-width: var(--br-comp-actions-popover-item-border-width);
+        border-radius: var(--br-comp-actions-popover-item-border-radius);
+        color: var(--br-comp-actions-popover-item-text);
+        font-family: var(--br-comp-actions-popover-item-font-family);
+        font-size: var(--br-comp-actions-popover-item-font-size);
+        font-weight: var(--br-comp-actions-popover-item-font-weight);
+        line-height: var(--br-comp-actions-popover-item-line-height);
         padding-block: var(--br-unit-space-2);
         padding-inline: var(--br-unit-space-4);
+        min-height: var(--br-unit-wcag-target-2a);
 
         &:hover {
-            background-color: var(--br-comp-actions-popover-button-state-hover);
+            background-color: var(--br-comp-actions-popover-item-state-hover);
         }
 
         &:active {
-            transform: scale(var(--br-comp-actions-popover-button-state-active-scale));
-            filter: brightness(var(--br-comp-actions-popover-button-state-active-brightness));
+            transform: scale(var(--br-comp-actions-popover-item-state-active-scale));
+            filter: brightness(var(--br-comp-actions-popover-item-state-active-brightness));
             outline: none;
         }
 
         &:focus-visible {
-            outline-style: var(--br-comp-actions-popover-button-outline-style);
-            outline-width: var(--br-comp-actions-popover-button-outline-width);
-            outline-offset: var(--br-comp-actions-popover-button-outline-offset);
-            outline-color: var(--br-comp-actions-popover-button-outline-colour);
+            outline-style: var(--br-comp-actions-popover-item-outline-style);
+            outline-width: var(--br-comp-actions-popover-item-outline-width);
+            outline-offset: var(--br-comp-actions-popover-item-outline-offset);
+            outline-color: var(--br-comp-actions-popover-item-outline-colour);
+        }
+
+        &:visited {
+            color: inherit;
         }
     }
 
     &__action-text {
         grid-column: 2/3;
+        white-space: nowrap;
     }
 
     &__icon-slot {
@@ -269,6 +297,7 @@
             mask-image: var(--_br-svg-popover-action-icon);
             aspect-ratio: 1/1;
             height: calc(var(--_icon-size) * 1.25);
+            color: var(--br-unit-colour-canvas-text);
         }
     }
 
