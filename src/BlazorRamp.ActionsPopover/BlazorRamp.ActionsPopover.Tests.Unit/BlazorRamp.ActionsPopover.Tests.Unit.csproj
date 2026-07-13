@@ -32,8 +32,6 @@
 		<AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Common\" />
-	  <Folder Include="Common\Models\" />
 	  <Folder Include="Common\Utilities\" />
 	</ItemGroup>
 	<ItemGroup>

@@ -1,10 +1,7 @@
 ﻿using BlazorRamp.ActionsPopover.Common.Constants;
-using BlazorRamp.Core.Services;
 using Bunit;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.Extensions.DependencyInjection;
 using ActionsPopoverComponent = BlazorRamp.ActionsPopover.Components.ActionsPopover;
 
 namespace BlazorRamp.ActionsPopover.Tests.Unit.Components;

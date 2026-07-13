@@ -16,9 +16,9 @@ public class LinkActionData<TData>(string linkText, TData? payload, TargetType t
     public string LinkText { get; } = String.IsNullOrWhiteSpace(linkText) ? String.Empty : linkText.Trim();
 
     /// <summary>
-    /// Gets the trimmed <c>href</c> path for the clicked link.
+    /// Gets the trimmed <c>href</c> path for the clicked link. Defaults to "/".
     /// </summary>
-    public string?    Path       { get; } = String.IsNullOrWhiteSpace(path) ? String.Empty : path.Trim();
+    public string?    Path       { get; } = String.IsNullOrWhiteSpace(path) ? "/" : path.Trim();
 
     /// <summary>
     /// Gets the browsing context the link was opened in.
