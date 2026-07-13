@@ -79,7 +79,7 @@ public partial class ActionPopoverLink<TData> : ComponentBase, IAsyncDisposable
     private bool    _preventDefault = false;
     private string   _path          = "/";
     private string?  _iconColour    = null;
-
+    private string   _targetType    = "_self";
     /// <summary>
     /// Validates <see cref="LinkText"/> and resolves <see cref="SvgIcon"/> into a CSS custom property style.
     /// </summary>
@@ -90,6 +90,7 @@ public partial class ActionPopoverLink<TData> : ComponentBase, IAsyncDisposable
         _path       = String.IsNullOrWhiteSpace(Path) ? "/" : Path.Trim();
         _svgIcon    = GeneralHelpers.CheckSetSvgVariable(SvgIcon, GlobalValues.Actions_Popover_Action_Icon_Svg_Css_Variable_Name);
         _iconColour = GeneralHelpers.CheckSetColourVariable(IconColour, GlobalValues.Actions_Popover_Action_Icon_Colour_Variable_Name);
+        _targetType = GeneralHelpers.GetTargetType(TargetType);
 
         base.OnParametersSet();
     }

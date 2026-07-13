@@ -3,7 +3,7 @@
 <li>
     <a @ref="AnchorElementRef" class="@GlobalValues.Actions_Popover_Action_Link_Class"
             href="@_path"
-            target="@(TargetType == TargetType.Blank ? "_blank" : "_self")"
+            target="@_targetType"
             tabindex="0"
             rel="@(TargetType == TargetType.Blank ? "noopener noreferrer" : null)"
             @onclick:stopPropagation="true"

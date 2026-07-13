@@ -16,13 +16,16 @@ public class ButtonActionData<TData>(string buttonText, TData? payload)
     public string ButtonText { get; } = String.IsNullOrWhiteSpace(buttonText) ? String.Empty : buttonText.Trim();
 
     /// <summary>
-    /// Attempts to retrieve the item data associated with the clicked button.
+    /// Gets the item data associated with the clicked button, or <paramref name="fallback"/>
+    /// if no data was supplied.
     /// </summary>
-    /// <param name="itemData">The associated data, or <see langword="default"/> if none was supplied.</param>
-    /// <returns><see langword="true"/> if data was supplied; otherwise <see langword="false"/>.</returns>
-    public bool TryGetData(out TData? itemData)
-    {
-        itemData = _payload ?? default(TData);
-        return _payload is not null;
-    }
+    /// <remarks>
+    /// For non-nullable value-typed <typeparamref name="TData"/> (e.g. <c>int</c>, <c>bool</c>),
+    /// a default value (e.g. <c>0</c>) is indistinguishable from "no value was supplied" and is
+    /// always treated as a real value — <paramref name="fallback"/> will never be returned in that
+    /// case. Use a nullable value type (e.g. <c>int?</c>) as <typeparamref name="TData"/> if this
+    /// distinction matters to you.
+    /// </remarks>
+    /// <param name="fallback">The value to return if no data was supplied.</param>
+    public TData? GetValueOr(TData? fallback) => _payload ?? fallback;
 }

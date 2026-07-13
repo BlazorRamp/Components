@@ -47,28 +47,19 @@ partial class ActionsPopover : IAsyncDisposable
     private string _triggerTextID   = Guid.NewGuid().ToString();
     private string _popoverPosition = "bottom-left";
     private string? _svgIcon        = null;
-
+    private string _triggerText     = GlobalValues.Actions_Popover_Trigger_Text; 
 
     /// <summary>
     /// Resolves <see cref="SvgIcon"/> into a CSS custom property style.
     /// </summary>
     protected override void OnParametersSet()
     {
-        _svgIcon = GeneralHelpers.CheckSetSvgVariable(SvgIcon, GlobalValues.Actions_Popover_Trigger_Icon_Svg_Css_Variable_Name);
+        _svgIcon          = GeneralHelpers.CheckSetSvgVariable(SvgIcon, GlobalValues.Actions_Popover_Trigger_Icon_Svg_Css_Variable_Name);
+        _triggerText     = String.IsNullOrWhiteSpace(TriggerText) ?  GlobalValues.Actions_Popover_Trigger_Text : TriggerText.Trim();
+        _popoverPosition = GetActionsPopoverPositionFromEnum(ActionsPopoverPosition);
         base.OnParametersSet();
     }
 
-    /// <summary>
-    /// Resolves <see cref="ActionsPopoverPosition"/> into its corresponding data-attribute string value.
-    /// Evaluated once at initialization, since the preferred position is a fixed placement choice —
-    /// actual on-screen positioning is handled dynamically by CSS anchor positioning fallbacks
-    /// regardless of this value.
-    /// </summary>
-    protected override void OnInitialized()
-    {
-
-        _popoverPosition = GetActionsPopoverPositionFromEnum(ActionsPopoverPosition);
-    }
 
     /// <summary>
     /// Imports the JavaScript module and registers the focus-out handler used close the 
@@ -86,7 +77,7 @@ partial class ActionsPopover : IAsyncDisposable
         }
     }
 
-    internal string GetActionsPopoverPositionFromEnum(ActionsPopoverPosition popoverPosition)
+    private string GetActionsPopoverPositionFromEnum(ActionsPopoverPosition popoverPosition)
 
         => popoverPosition switch
         {

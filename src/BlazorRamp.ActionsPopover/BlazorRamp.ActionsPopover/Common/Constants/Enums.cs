@@ -50,9 +50,20 @@ public enum TargetType : int
     /// <summary>
     /// Opens the link in the same browsing context (<c>target="_self"</c>).
     /// </summary>
-    Self,
+    Self =0,
     /// <summary>
     /// Opens the link in a new browsing context (<c>target="_blank"</c>).
     /// </summary>
-    Blank
+    Blank = 1,
+    /// <summary>
+    /// Opens the link in the parent browsing context. Equivalent to <c>target="_parent"</c>.
+    /// Falls back to <c>_self</c> if there is no parent.
+    /// </summary>
+    Parent = 2,
+
+    /// <summary>
+    /// Opens the link in the topmost browsing context. Equivalent to <c>target="_top"</c>.
+    /// Falls back to <c>_self</c> if there is no parent.
+    /// </summary>
+    Top = 3
 }

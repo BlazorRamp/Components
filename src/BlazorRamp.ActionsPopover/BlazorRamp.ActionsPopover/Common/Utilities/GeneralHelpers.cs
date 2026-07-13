@@ -9,11 +9,7 @@ namespace BlazorRamp.ActionsPopover.Common.Utilities;
 
 internal static class GeneralHelpers
 {
-    /// <summary>
-    /// Validates that a SvgIcon parameter and returns a CSS inline style string
-    /// setting the internal SVG custom property, or <see langword="null"/> if the value is
-    /// absent or does not begin with <c>--</c>.
-    /// </summary>
+
     internal static string? CheckSetSvgVariable(string? svgIcon, string variableName)
     {
         var iconVariable = String.IsNullOrWhiteSpace(svgIcon)
@@ -28,4 +24,15 @@ internal static class GeneralHelpers
         var value = String.IsNullOrWhiteSpace(colourValue) ? null : colourValue.Trim().TrimEnd(';');
         return value is null ? null : $"{variableName}:{value};";
     }
+
+    internal static string GetTargetType(TargetType targetType)
+
+    => targetType switch
+    {
+        TargetType.Self   => "_self",
+        TargetType.Blank  => "_blank",
+        TargetType.Parent => "_parent",
+        TargetType.Top => "_top",
+        _ => "_self"
+    };
 }
