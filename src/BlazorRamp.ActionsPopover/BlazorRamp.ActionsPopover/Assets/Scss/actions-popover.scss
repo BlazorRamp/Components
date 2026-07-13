@@ -57,6 +57,7 @@
         line-height: var(--br-comp-actions-popover-trigger-line-height);
         padding-block: var(--br-unit-space-3);
         padding-inline: var(--br-unit-space-4);
+        cursor: pointer;
 
         &:hover {
             background-color: var(--br-comp-actions-popover-item-state-hover);
@@ -123,6 +124,7 @@
 
     &__panel {
         position-anchor: --popover-anchor;
+        box-shadow: var(--br-comp-actions-popover-pane-panel-box-shadow);
 
         &:popover-open {
             display: grid;
@@ -223,6 +225,7 @@
         padding-block: var(--br-unit-space-2);
         padding-inline: var(--br-unit-space-4);
         min-height: var(--br-unit-wcag-target-2a);
+        cursor: pointer;
 
         &:hover {
             background-color: var(--br-comp-actions-popover-item-state-hover);

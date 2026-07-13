@@ -53,6 +53,15 @@
     </a>
 </p>
 
+<ActionsPopover SvgIcon="--svg-food-icon" ActionsPopoverPosition="ActionsPopoverPosition.BottomCentre">
+    <PopoverItems>
+        <ActionPopoverButton TData="object" ButtonText="My Action One" SvgIcon="--svg-food-icon" IconColour="red"/>
+        <ActionPopoverSeparator />
+        <ActionPopoverButton TData="object" ButtonText="My Action Two" SvgIcon="--svg-food-icon" />
+        <ActionPopoverLink TData="object" Path="/weather" TargetType="BlazorRamp.ActionsPopover.Common.Constants.TargetType.Self" LinkText="Test" SvgIcon="--svg-food-icon" PreventDefault="true" />
+    </PopoverItems>
+</ActionsPopover>
+
 <div class="flex-content flex-content justify-content-end">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Installation}")">
         <span aria-hidden="true"></span>

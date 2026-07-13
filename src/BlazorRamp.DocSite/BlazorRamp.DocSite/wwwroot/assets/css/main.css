@@ -407,6 +407,7 @@
   --br-comp-input-error-colour: var(--br-unit-colour-danger-light);
   --br-comp-input-success-colour: var(--br-unit-colour-success-light);
   --br-comp-debounce-filter-error-colour: var(--br-unit-colour-danger-light);
+  --br-comp-all-pane-panel-background: var(--br-unit-colour-neutral-00);
 }
 
 *,
