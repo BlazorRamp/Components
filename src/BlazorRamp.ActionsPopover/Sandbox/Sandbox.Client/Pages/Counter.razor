@@ -1,5 +1,5 @@
 ﻿@page "/counter"
-@rendermode InteractiveAuto
+@rendermode @(new InteractiveWebAssemblyRenderMode(false))
 
 <PageTitle>Counter</PageTitle>
 
@@ -7,11 +7,40 @@
 
 <p role="status">Current count: @currentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<p>
+    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+</p>
+
+<ActionsPopover SvgIcon="--svg-food-icon" ActionsPopoverPosition="ActionsPopoverPosition.BottomCentre">
+    <PopoverItems>
+        <ActionPopoverButton TData="object" ButtonText="My Action One" SvgIcon="--svg-food-icon" OnClick="HandleOnClick" IconColour="red" />
+        <ActionPopoverSeparator />
+        <ActionPopoverButton TData="object" ButtonText="My Action Two" SvgIcon="--svg-food-icon" />
+        <ActionPopoverLink TData="object" Path="/weather" TargetType="TargetType.Self" LinkText="Test" SvgIcon="--svg-food-icon" OnClick="HandleOnLinkClick" PreventDefault="false" />
+    </PopoverItems>
+</ActionsPopover>
+
+<div>
+    <p>
+        some text after the popover that gets covered along with the next tabstop
+    </p>
+    <label for="tabstop">Tab Stop Input</label>
+    <input @ref="myRef" id="tabstop" type="text" />
+</div>
 
 @code {
     private int currentCount = 0;
 
+    public ElementReference myRef { get; set; }
+
+    public async Task HandleOnClick(ButtonActionData<object> actionData)
+    {
+        await myRef.FocusAsync();
+    }
+    public async Task HandleOnLinkClick(LinkActionData<object> actionData)
+    {
+
+    }
     private void IncrementCount()
     {
         currentCount++;

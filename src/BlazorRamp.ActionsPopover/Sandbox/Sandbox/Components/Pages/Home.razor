@@ -1,5 +1,5 @@
 ﻿@page "/"
-@using BlazorRamp.ActionsPopover.Components
+
 @rendermode @(new InteractiveServerRenderMode(false))
 
 <PageTitle>Home</PageTitle>
@@ -7,26 +7,13 @@
 <h1>Hello, world!</h1>
 f
 Welcome to your new app.
-<pre>
-    dd
 
-
-
-
-    dd
-
-
-
-
-
-    d
-</pre>
 <ActionsPopover SvgIcon="--svg-food-icon" ActionsPopoverPosition="ActionsPopoverPosition.BottomCentre">
     <PopoverItems>
-        <ActionPopoverButton TData="object" ButtonText="My Action One" SvgIcon="--svg-food-icon" OnClick="HandleOnclick" IconColour="red"/>
+        <ActionPopoverButton TData="object" ButtonText="My Action One" SvgIcon="--svg-food-icon" OnClick="HandleOnClick" IconColour="red"/>
         <ActionPopoverSeparator />
         <ActionPopoverButton TData="object" ButtonText="My Action Two" SvgIcon="--svg-food-icon" />
-        <ActionPopoverLink TData="object" Path="/weather" TargetType="TargetType.Self" LinkText="Test" SvgIcon="--svg-food-icon" OnClick="HandleOnLinkclick" PreventDefault="false" />
+        <ActionPopoverLink TData="object" Path="/weather" TargetType="TargetType.Self" LinkText="Test" SvgIcon="--svg-food-icon" OnClick="HandleOnLinkClick" PreventDefault="false" />
     </PopoverItems>
 </ActionsPopover>
 
@@ -38,18 +25,15 @@ Welcome to your new app.
     <input @ref="myRef" id="tabstop" type="text" />
 </div>
 
-
-<div style="width:200px;height:200px; background-color:var(--br-unit-colour-neutral-5);">
-</div>
-
 @code{
 
     public ElementReference myRef { get; set; }
-    public async Task HandleOnclick(ButtonActionData<object> actionData)
+
+    public async Task HandleOnClick(ButtonActionData<object> actionData)
     {
         await myRef.FocusAsync();
     }
-    public async Task HandleOnLinkclick(LinkActionData<object> actionData)
+    public async Task HandleOnLinkClick(LinkActionData<object> actionData)
     {
 
     }
