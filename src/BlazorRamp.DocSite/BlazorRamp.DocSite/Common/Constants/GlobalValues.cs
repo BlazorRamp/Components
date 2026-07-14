@@ -65,6 +65,7 @@ public class GlobalValues
 
 
     public const string Component_Name_Accordion          = "Accordion";
+    public const string Component_Name_Actions_Popover    = "Actions Popover";
     public const string Component_Name_Announcement       = "Announcement History";
     public const string Component_Name_Busy               = "Busy Indicator";
     public const string Component_Name_Debounce_Filter    = "Debounce Filter";
@@ -90,6 +91,7 @@ public class GlobalValues
     public const string Component_Name_Toggletip    = "Toggletip";
 
     public const string Component_Path_Part_Accordion       = "accordion";
+    public const string Component_Path_Part_ActionsPopover  = "actions-popover";
     public const string Component_Path_Part_Announcement    = "announcement-history";
     public const string Component_Path_Part_Busy            = "busy-indicator";
     public const string Component_Path_Part_DebounceFilter  = "debounce-filter";

@@ -1,0 +1,26 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_ActionsPopover}/{GlobalValues.Common_Page_Path_Overview}")]
+
+<PageTitle>@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Overview</PageTitle>
+
+<h1>@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Overview</h1>
+
+<p>
+
+</p>
+
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Usage}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Accordion - @GlobalValues.Common_Page_Title_Usage</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_ActionsPopover}/{GlobalValues.Common_Page_Path_Installation}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Actions_Popover - @GlobalValues.Common_Page_Title_Installation</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}

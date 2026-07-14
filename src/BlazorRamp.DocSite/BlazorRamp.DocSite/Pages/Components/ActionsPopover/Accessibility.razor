@@ -1,0 +1,62 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_ActionsPopover}/{GlobalValues.Common_Page_Path_Accessibility}")]
+
+<PageTitle>@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Accessibility</PageTitle>
+
+<h1>@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Accessibility</h1>
+
+<p>
+    The Actions Popover was built using the HTML Popover API so has the escape key and light dismiss functionality is handled by the browsers. Additionally
+    a focus out handler was added so on tabbing out of the actions popover it would also close, in order to prevent it obscuring items beneath it especially 
+    when used a row actions popover in a data table.
+</p>
+
+<h2 id="history-dialog-keyboard">Keyboard interaction</h2>
+<p>
+    The following keys are used for both the alerts button and the announcement history dialog.
+</p>
+<h2 id="actions-popover-keyboard">Actions popover keys</h2>
+<ul aria-labelledby="actions-popover-keyboard">
+    <li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd> - short cut keys to open the dialog.</li>
+    <li><kbd>Escape</kbd> - closes the dialog. Returns focus to the alerts button if opened with the button.</li>
+    <li><kbd>Tab</kbd> - moves focus to the next focusable item in the tab sequence.</li>
+    <li><kbd>Tab</kbd> <b>+</b> <kbd>Shift</kbd> - moves focus to the previous focusable item in the tab sequence.</li>
+    <li><kbd>Enter</kbd> - activates the focused button.</li>
+    <li><kbd>Space</kbd> - activates the focused button.</li>
+</ul>
+<p>
+    The dialog remains open when focus is moved to an element outside of the dialog.
+    <strong>Note:</strong> Clicking outside of the dialog with the mouse closes the dialog.
+</p>
+
+
+<h2 id="device-testing">Accessibility device testing</h2>
+<ul aria-labelledby="device-testing">
+    <li>JAWS, Narrator and NVDA on Windows were each paired with every one of the following browsers: Google Chrome, Microsoft Edge and Mozilla Firefox.</li>
+    <li>VoiceOver on macOS was paired with Apple's Safari.</li>
+    <li>VoiceOver on iPhone was paired with mobile Safari.</li>
+    <li>Talkback on Android was paired with mobile Google Chrome.</li>
+    <li>Voice access on Windows 11</li>
+</ul>
+
+<p>
+    <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were available at the time of testing (see release history on the installation page for approximate testing dates)
+</p>
+
+
+
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_ActionsPopover}/{GlobalValues.Common_Page_Path_Installation}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Actions_Popover - @GlobalValues.Common_Page_Title_Installation</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_ActionsPopover}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Actions_Popover - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}

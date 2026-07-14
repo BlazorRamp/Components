@@ -21,7 +21,7 @@ public partial class ActionPopoverButton<TData> : ComponentBase
 
     /// <summary>
     /// Gets or sets an optional payload associated with this action, made available via
-    /// <see cref="ButtonActionData{TData}.TryGetData"/> in the <see cref="OnClick"/> callback.
+    /// <see cref="ButtonActionData{TData}.GetValueOr(TData)"/> in the <see cref="OnClick"/> callback.
     /// </summary>
     [Parameter] public TData? ItemData   { get; set; }
 

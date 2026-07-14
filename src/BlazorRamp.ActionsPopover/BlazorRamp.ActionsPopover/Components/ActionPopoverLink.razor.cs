@@ -24,7 +24,7 @@ public partial class ActionPopoverLink<TData> : ComponentBase, IAsyncDisposable
 
     /// <summary>
     /// Gets or sets an optional payload associated with this action, made available via
-    /// <see cref="LinkActionData{TData}.TryGetData"/> in the <see cref="OnClick"/> callback.
+    /// <see cref="LinkActionData{TData}.GetValueOr(TData)"/> in the <see cref="OnClick"/> callback.
     /// </summary>
     [Parameter] public TData?     ItemData       { get; set; }
 

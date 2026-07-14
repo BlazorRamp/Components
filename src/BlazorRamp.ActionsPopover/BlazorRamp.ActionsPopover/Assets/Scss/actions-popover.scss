@@ -213,6 +213,7 @@
         display: inline-grid;
         grid-template-columns: subgrid;
         align-items: center;
+      
         background-color: var(--br-comp-actions-popover-item-background);
         border-color: var(--br-comp-actions-popover-item-border-colour);
         border-width: var(--br-comp-actions-popover-item-border-width);
@@ -288,6 +289,7 @@
     &__action-text {
         grid-column: 2/3;
         white-space: nowrap;
+        text-align:start;
     }
 
     &__icon-slot {
