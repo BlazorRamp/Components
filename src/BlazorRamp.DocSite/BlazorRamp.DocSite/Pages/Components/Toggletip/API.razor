@@ -37,12 +37,19 @@
                     <td>
                         Text shown next to the icon button and is used as an aria-label for the icon button when not shown.
                         Defaults to "supplemental information" if not entered.
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
                     </td>
                 </tr>
                 <tr>
                     <td>CloseText</td>
                     <td>string</td>
-                    <td>Text shown on the optional close button. Defaults to "Close" if not entered.</td>
+                    <td>
+                        Text shown on the optional close button. Defaults to "Close" if not entered.
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
+                    </td>
+
                 </tr>
                 <tr>
                     <td>ShowLabel</td>
@@ -62,7 +69,11 @@
                 <tr>
                     <td>ToggleTipPosition</td>
                     <td>ToggleTipPosition (enum)</td>
-                    <td>Value that determines the position of the toggletip popover in relation to the icon button. Defaults to <span class="code-span">ToggleTipPosition.TopCentre</span></td>
+                    <td>
+                        Value that determines the position of the toggletip popover in relation to the icon button. Defaults to <span class="code-span">ToggleTipPosition.TopCentre</span>
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
+                    </td>
                 </tr>
                 <tr>
                     <td>ToggleTipSize</td>

@@ -55,6 +55,8 @@
                     <td>
                         Gets or sets the name used for the input control label.
                         If the value is null, empty, or whitespace then the field name is used.
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
                     </td>
                 </tr>
                 <tr>
@@ -63,6 +65,8 @@
                     <td>
                         Gets or sets the <span class="code-span">id</span> attribute applied to the underlying <span class="code-span">&lt;input&gt;</span>
                         element. When null, empty, or whitespace a <span class="code-span">Guid</span> string is generated automatically. Leading and trailing whitespace is trimmed before use.
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
                     </td>
                 </tr>
                 <tr>
@@ -115,6 +119,8 @@
                         Gets or sets the accessible label for the tabbable error region, used when
                         <span class="code-span">ValidationDisplayMode</span> is set to <span class="code-span">ValidationDisplayMode.TabbableWithHint</span>.
                         Defaults to <span class="code-span">Errors</span>.
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
                     </td>
                 </tr>
                 <tr>

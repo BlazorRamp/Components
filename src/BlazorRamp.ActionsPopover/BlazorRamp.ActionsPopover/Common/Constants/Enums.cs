@@ -20,8 +20,8 @@ public enum ActionsPopoverPosition : int
     /// Positions the popover above and aligned to the right of the trigger.
     /// </summary>
     TopRight = 2,
-    /// <summary
-    /// >Positions the popover to the left and vertically centred on the trigger.
+    /// <summary>
+    /// Positions the popover to the left and vertically centred on the trigger.
     /// </summary>
     CentreLeft = 3,
     /// <summary>

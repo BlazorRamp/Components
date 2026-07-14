@@ -1,6 +1,4 @@
-﻿@using BlazorRamp.DocSite.Pages.GettingStarted
-@using BlazorRamp.DocSite.Pages.Services.LiveRegion
-@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextAreaInput}/{GlobalValues.Common_Page_Path_Api}")]
+﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextAreaInput}/{GlobalValues.Common_Page_Path_Api}")]
 
 <PageTitle>@GlobalValues.Component_Name_TextArea_Input @GlobalValues.Common_Page_Title_Api</PageTitle>
 
@@ -59,6 +57,8 @@
                     <td>
                         Gets or sets the name used for the input control label.
                         If the value is null, empty, or whitespace then the field name is used.
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
                     </td>
                 </tr>
                 <tr>
@@ -67,6 +67,8 @@
                     <td>
                         Gets or sets the <span class="code-span">id</span> attribute applied to the underlying <span class="code-span">&lt;input&gt;</span>
                         element. When null, empty, or whitespace a <span class="code-span">Guid</span> string is generated automatically. Leading and trailing whitespace is trimmed before use.
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
                     </td>
                 </tr>
                 <tr>
@@ -103,9 +105,9 @@
                         Gets or sets the maximum number of characters for the textarea counter
                         and screen reader announcements. This does not restrict the actual number of characters
                         that can be entered.Used Values less than 1 fallback to the default of 8000.
-                        <b>Note: </b>Although you can set the <span class="code-span">maxlegnth</span> attribute via attribute
-                        splatting it is recommended just to use validaion to enforce the length and let the user
-                        adjust thier entry if necessary.
+                        <b>Note: </b>Although you can set the <span class="code-span">maxlength</span> attribute via attribute
+                        splatting it is recommended just to use validation to enforce the length and let the user
+                        adjust their entry if necessary.
                     </td>
                 </tr>
                 <tr>
@@ -116,6 +118,8 @@
                         is within the character limit. Must contain the <span class="code-span">{count}</span> token (with the braces), which is
                         replaced with the number of characters remaining. When null, empty, whitespace, or missing the token,
                         falls back to the default of: "You have {count} characters remaining.".
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
                     </td>
                 </tr>
                 <tr>
@@ -126,6 +130,8 @@
                         has exceeded the character limit. Must contain the <span class="code-span">{count}</span> token (with the braces),
                         which is replaced with the number of characters over the limit. When null, empty, whitespace, or missing the token,
                         falls back to the default of: "You are {count} characters over the limit".
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
                     </td>
                 </tr>
                 <tr>
@@ -184,6 +190,8 @@
                         Gets or sets the accessible label for the tabbable error region, used when
                         <span class="code-span">ValidationDisplayMode</span> is set to <span class="code-span">ValidationDisplayMode.TabbableWithHint</span>.
                         Defaults to <span class="code-span">Errors</span>.
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
                     </td>
                 </tr>
                 <tr>

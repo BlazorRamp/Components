@@ -37,6 +37,8 @@
                     <td>
                         Gets or sets the name used for the filter input control label.
                         If the value is null, empty, or whitespace then the default of "Filter" is used. 
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
                     </td>
                 </tr>
                 <tr>
@@ -45,7 +47,9 @@
                     <td>
                         Gets or sets the <span class="code-span">id</span> attribute applied to the underlying <c>&lt;input&gt;</c>
                         element. When null, empty, or whitespace a <see cref="Guid"/> string is generated automatically. 
-                        Leading and trailing whitespace is trimmed before use.         
+                        Leading and trailing whitespace is trimmed before use.     
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
                     </td>
                     </tr>
                 <tr>
@@ -81,6 +85,8 @@
                     <td>
                         Gets or sets the debounce delay in milliseconds used.
                         Defaults to 500ms.
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
                     </td>
                 </tr>
                 <tr>
@@ -89,6 +95,8 @@
                     <td>
                         Gets or sets the regular expression pattern used to validate the filter input.
                         When null or empty no validation is applied.
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
                     </td>
                 </tr>
                 <tr>
@@ -96,6 +104,8 @@
                     <td>string?</td>
                     <td>
                         Gets or sets the validation message displayed when the regex pattern is not matched.
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
                     </td>
                 </tr>
                 <tr>
@@ -104,6 +114,8 @@
                     <td>
                         Gets or sets the error message displayed when the regex pattern fails to compile.
                         Defaults to "System error, filtering is unavailable at this time."
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
                     </td>
                 </tr>
                 <tr>

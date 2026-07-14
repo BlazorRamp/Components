@@ -7,6 +7,740 @@
     Everything you need to work with the Actions Popover component: parameters, methods, models, enums, and CSS variables for styling.
 </p>
 
+<section>
+    <h2 class="page-heading">
+        Component parameters, methods, supporting classes and enums.
+    </h2>
+    <p>
+        The following sections cover all components that make up this feature, including their parameters,
+        public methods, and any supporting classes or enumerations required for use.
+    </p>
+    <section class="code-table">
+
+        <h3 id="actions-popover-component-parameters" class="code-table__heading">ActionsPopover component (container/button) parameters</h3>
+
+        <table aria-labelledby="actions-popover-component-parameters">
+
+            <thead>
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>PopoverItems</td>
+                    <td>RenderFragment?</td>
+                    <td>
+                        Gets or sets the action items rendered inside the popover panel, typically
+                        a combination of <span class="code-span">ActionPopoverButton&lt;TData&gt;</span>, 
+                        <span class="code-span">ActionPopoverLink&lt;TData&gt;</span>,
+                        and <span class="code-span">ActionPopoverSeparator</span> components.
+                    </td>
+                </tr>
+                <tr>
+                    <td>TriggerText</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the text displayed on the trigger button. Defaults to <span class="code-span">Actions</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ActionsPopoverPosition</td>
+                    <td>ActionsPopoverPosition (enum)</td>
+                    <td>
+                        Gets or sets the position of the popover relative to the trigger.
+                        Defaults to <span class="code-span">ActionsPopoverPosition.BottomLeft</span>
+                        Automatically moves if there is not enough space to accommodate it.
+                    </td>
+                </tr>
+                <tr>
+                    <td>SvgIcon</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
+                        used as a mask-image icon alongside the tab title. Must begin with <span class="code-span">--</span>.
+                        For example: <span class="code-span">--svg-my-icon</span>.
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="action-popover-button-component-parameters" class="code-table__heading">ActionPopoverButton component parameters</h3>
+
+        <table aria-labelledby="action-popover-button-component-parameters">
+
+            <thead>
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ButtonText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the text displayed for this action button.
+                        Throws an <span class="code-span">ArgumentNullException</span> exception if the value is null, empty or whitespace.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ItemData</td>
+                    <td>TData?</td>
+                    <td>
+                        Gets or sets an optional payload associated with this action, made available via
+                        <span class="code-span">ButtonActionData&lt;TData&gt;.GetValueOr(TData)</span> via the <span class="code-span">OnClick</span> Func callback.
+                    </td>
+                </tr>
+                <tr>
+                    <td>SvgIcon</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
+                        used as a mask-image icon alongside the tab title. Must begin with <span class="code-span">--</span>.
+                        For example: <span class="code-span">--svg-my-icon</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>IconColour</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets a CSS colour value (hex, named colour, or var(--token) reference) used to
+                        tint this action item's icon. Has no effect when forced colours mode (e.g. Windows High Contrast)
+                        is active, since accessibility requires the system-defined colour to take precedence.
+                    </td>
+                </tr>
+                <tr>
+                    <td>OnClick</td>
+                    <td>Func&lt;ButtonActionData&lt;TData&gt;, Task&gt;?</td>
+                    <td>
+                        Invoked when the action button is clicked. Unlike <span class="code-span">EventCallback</span>, this does
+                        <b>not</b> automatically trigger a re-render of the consuming component - call
+                        <span class="code-span">StateHasChanged()</span> yourself if the action needs to update the UI.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+        <h3 id="action-popover-link-component-parameters" class="code-table__heading">ActionPopoverLink component parameters</h3>
+
+        <table aria-labelledby="action-popover-link-component-parameters">
+
+            <thead>
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>LinText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the text displayed for this action link.
+                        Throws an <span class="code-span">ArgumentNullException</span> exception if the value is null, empty or whitespace.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ItemData</td>
+                    <td>TData?</td>
+                    <td>
+                        Gets or sets an optional payload associated with this action, made available via
+                        <span class="code-span">LinkActionData&lt;TData&gt;.GetValueOr(TData)</span> via the <span class="code-span">OnClick</span> Func callback.
+                    </td>
+                </tr>
+                <tr>
+                    <td>TargetType</td>
+                    <td>TargetType (enum)</td>
+                    <td>
+                        Gets or sets the browsing context the link opens in. Defaults to <span class="code-span">TargetType.Self</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Path</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the <span class="code-span">href</span> attribute ,for this link. Defaults to  <span class="code-span">"/"</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>PreventDefault</td>
+                    <td>bool</td>
+                    <td>
+                        Gets or sets whether the default navigation behaviour of the link is suppressed,
+                        allowing the consumer to handle navigation manually via <span class="code-span">OnClick</span>.
+                        <br />
+                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        and changes thereafter are ignored.
+                    </td>
+                </tr>
+                <tr>
+                    <td>SvgIcon</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
+                        used as a mask-image icon alongside the tab title. Must begin with <span class="code-span">--</span>.
+                        For example: <span class="code-span">--svg-my-icon</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>IconColour</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets a CSS colour value (hex, named colour, or var(--token) reference) used to
+                        tint this action item's icon. Has no effect when forced colours mode (e.g. Windows High Contrast)
+                        is active, since accessibility requires the system-defined colour to take precedence.
+                    </td>
+                </tr>
+                <tr>
+                    <td>OnClick</td>
+                    <td>Func&lt;LinkActionData&lt;TData&gt;, Task&gt;?</td>
+                    <td>
+                        Invoked when the action link is clicked. Unlike <span class="code-span">EventCallback</span>, this does
+                        <b>not</b> automatically trigger a re-render of the consuming component - call
+                        <span class="code-span">StateHasChanged()</span> yourself if the action needs to update the UI.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section class="code-table">
+        <h3 id="action-popover-separator-component-parameters" class="code-table__heading">ActionPopoverSeparator component parameters</h3>
+        <p>
+            This component has no parameters an merely outputs a styled <span class="code-span">hr</span> to act as separator between groups of
+            related actions.
+        </p>
+    </section>
+    <section class="code-table">
+
+        <h3 id="action-popover-button-class" class="code-table__heading">ActionPopoverButton&lt;TData&gt; class</h3>
+
+        <table aria-labelledby="action-popover-button-class">
+
+            <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Property/Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>string</td>
+                    <td>ButtonText</td>
+                    <td>
+                        Gets the trimmed text of the button that was clicked.
+                    </td>
+                </tr>
+                <tr>
+                    <td>TData</td>
+                    <td>GetValueOr(TData? fallback)</td>
+                    <td>
+                        Gets the item data associated with the clicked button, or a fallback value if no data was supplied.
+                        For non-nullable value-typed <span class="code-span">TData</span> (e.g. int, bool),
+                        a default value (e.g. 0) is indistinguishable from "no value was supplied" and is
+                        always treated as a real value — <span class="code-span">fallback</span> will never be returned in that
+                        case. Use a nullable value type (e.g. int?) as <span class="code-span">TData</span> if this
+                        distinction matters to you.
+                        <span class="code-span">fallback</span>The value to return if no data was supplied.
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <b>Constructor:</b><br />
+                        ButtonActionData&lt;TData&gt;(string buttonText, TData? payload)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="action-popover-link-class" class="code-table__heading">ActionPopoverLink&lt;TData&gt; class</h3>
+
+        <table aria-labelledby="action-popover-link-class">
+
+            <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Property/Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>string</td>
+                    <td>LinkText</td>
+                    <td>
+                        Gets the trimmed text of the link that was clicked.
+                    </td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Path</td>
+                    <td>
+                        Gets the trimmed <span class="code-span">href</span> path for the clicked link. 
+                        Defaults to <span class="code-span">"/"</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>TargetType (enum)</td>
+                    <td>TargetType</td>
+                    <td>
+                        Gets the browsing context the link was opened in.
+                    </td>
+                </tr>
+                <tr>
+                    <td>TData</td>
+                    <td>GetValueOr(TData? fallback)</td>
+                    <td>
+                        Gets the item data associated with the clicked link, or a fallback value if no data was supplied.
+                        For non-nullable value-typed <span class="code-span">TData</span> (e.g. int, bool),
+                        a default value (e.g. 0) is indistinguishable from "no value was supplied" and is
+                        always treated as a real value — <span class="code-span">fallback</span> will never be returned in that
+                        case. Use a nullable value type (e.g. int?) as <span class="code-span">TData</span> if this
+                        distinction matters to you.
+                        <span class="code-span">fallback</span>The value to return if no data was supplied.
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <b>Constructor:</b><br />
+                        LinkActionData&lt;TData&gt;(string linkText, TData? payload, TargetType targetType = TargetType.Self, string path = "/")
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting enums</h2>
+
+    <section class="code-table">
+
+        <h3 id="actions-popover-position-enum" class="code-table__heading">ActionsPopoverPosition enum</h3>
+
+        <table aria-labelledby="actions-popover-position-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>TopCentre</td>
+                    <td>Positions the popover above and centred on the trigger.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>TopLeft</td>
+                    <td>Positions the popover above and aligned to the left of the trigger.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>TopRight</td>
+                    <td>Positions the popover above and aligned to the right of the trigger.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>CentreLeft</td>
+                    <td>Positions the popover to the left and vertically centred on the trigger.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>CentreRight</td>
+                    <td>Positions the popover to the right and vertically centred on the trigger.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>BottomCentre</td>
+                    <td>Positions the popover below and centred on the trigger.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>BottomLeft</td>
+                    <td>Positions the popover below and aligned to the left of the trigger.</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>BottomRight</td>
+                    <td>Positions the popover below and aligned to the right of the trigger.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="target-type-enum" class="code-table__heading">TargetType enum</h3>
+
+        <table aria-labelledby="target-type-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Self</td>
+                    <td>
+                        Opens the link in the same browsing context. Equivalent to <span class="code-span">target="_self"</span>
+                        This is the default value.
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Blank</td>
+                    <td>Opens the link in a new tab or window. Equivalent to <span class="code-span">target="_blank"</span></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Parent</td>
+                    <td>Opens the link in the parent browsing context. Equivalent to <span class="code-span">target="_parent"</span></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Top</td>
+                    <td>Opens the link in the topmost browsing context.Equivalent to <span class="code-span">target="_top"</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+
+</section>
+
+<section>
+    <h2 class="page-heading">CSS variables defined for the nav group components.</h2>
+
+    <p>
+        The following sections outline all of the css variables that can be set to alter the styling of the Nav Group components.
+        You can of course also override its style classes directly.
+    </p>
+
+    <section class="code-table">
+
+        <h3 id="outline-variables" class="code-table__heading">Outline variables</h3>
+        <p>
+            There are the focus indicators (outlines) applied using <span class="code-span">:focus-visible</span> for the NavSection and NavGroupLinks.
+        </p>
+        <table aria-labelledby="outline-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-nav-group-outline-style</td>
+                    <td>var(--br-comp-all-outline-style)</td>
+                    <td>The style of the outline - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-outline-width</td>
+                    <td>var(--br-comp-all-outline-width)</td>
+                    <td>The outline colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-outline-offset</td>
+                    <td>var(--br-comp-all-outline-offset)</td>
+                    <td>The outline offset - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-outline-colour</td>
+                    <td>var(--br-comp-all-outline-colour)</td>
+                    <td>The outline colour - uses the shared component variable.</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </section>
+    <section class="code-table">
+
+        <h3 id="hover-variables" class="code-table__heading">Hover & selected variables</h3>
+        <p>
+            There are hte backgrounds applied to the NavSection (button) and NavGroupLink components when hovered, focused
+            and when the NavGroupLink matches the current page.
+        </p>
+        <table aria-labelledby="hover-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>--br-comp-nav-group-current-page-background</td>
+                    <td>var(--br-comp-all-link-current-page-background-colour)</td>
+                    <td>Background colour of the NavGroupLink when its the current page.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-hover-background</td>
+                    <td>var(--br-comp-all-link-hover-background-colour)</td>
+                    <td>
+                        Background colour of the NavSection button or NavGroupLink for the hover state. And used as the background colour
+                        of the NavGroup when focused.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-active-background</td>
+                    <td>var(--br-comp-all-link-active-background-colour)</td>
+                    <td>Background colour of the NavGroupLink when in the active state.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-selected-hover</td>
+                    <td>var(--br-comp-all-selection-colour)</td>
+                    <td>Background colour of the NavSection button when its expanded and is hovered.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-link-focused-background</td>
+                    <td>var(--br-comp-all-link-focused-background-colour)</td>
+                    <td>Background colour of the NavGroupLink when its focused.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section class="code-table">
+
+        <h3 id="nav-section-header-variables" class="code-table__heading">Header area variables</h3>
+        <p>
+            I treat the NavSection (button) as the header area area as it acts as the heading for its
+            contents.
+        </p>
+        <table aria-labelledby="nav-section-header-variables">
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-text</td>
+                    <td>var(--br-comp-all-area-header-text)</td>
+                    <td>
+                        The text colour used for the heading and icons - uses the shared component variable.
+                        <br /><strong>Note: </strong>This colour is only applied when the section is focused or expanded
+                        otherwise the colour is inherited which means it will use the page text colour.
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-background</td>
+                    <td>inherit</td>
+                    <td>The background colour of the heading area - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-font-family</td>
+                    <td>var(--br-comp-all-area-header-font-family)</td>
+                    <td>The font family used - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The size of the heading font - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-font-weight</td>
+                    <td>var(--br-comp-all-area-header-font-weight)</td>
+                    <td>The font weight - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-line-height</td>
+                    <td>var(--br-comp-all-area-header-line-height)</td>
+                    <td>The line height - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-border-style</td>
+                    <td>var(--br-comp-all-area-header-border-style)</td>
+                    <td>The border style - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-border-colour</td>
+                    <td>var(--br-comp-all-divider-colour)</td>
+                    <td>The colour of the border -  <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-border-width</td>
+                    <td>var(--br-unit-border-0)</td>
+                    <td>The border width - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-border-radius</td>
+                    <td>var(--br-comp-all-area-header-border-radius)</td>
+                    <td>The radius applied to each border corner - uses the shared component variable.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="nav-group-content-area-variables" class="code-table__heading">Content area variables</h3>
+        <p>
+            Used for the NavGroupLink and NavSeparator. The NavGroupLink uses the border radius for the
+            focus indicator outline, the other border properties are used for the decorative NavSeparator.
+        </p>
+
+        <table aria-labelledby="nav-group-content-area-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-background</td>
+                    <td>inherit</td>
+                    <td>The background colour - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-text</td>
+                    <td>var(--br-comp-all-area-content-text)</td>
+                    <td>The text colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-font-family</td>
+                    <td>var(--br-comp-all-area-content-font-family)</td>
+                    <td>The font family - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The font size - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-font-weight</td>
+                    <td>var(--br-comp-all-area-content-font-weight)</td>
+                    <td>The font weight - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-line-height</td>
+                    <td>var(--br-comp-all-area-content-line-height)</td>
+                    <td>The line height - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-border-style</td>
+                    <td>var(--br-comp-all-area-content-border-style)</td>
+                    <td>The border style - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-border-colour</td>
+                    <td>var(--br-comp-all-divider-colour)</td>
+                    <td>The colour border which uses the shared component variable - <b>does not use the shared variable.</b></td>
+
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The border width - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-border-radius</td>
+                    <td>var(--br-comp-all-area-content-border-radius)</td>
+                    <td>The radius applied to each border corner - uses the shared component variable.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
+        <p>
+            The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
+            by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
+        </p>
+
+        <table aria-labelledby="unmapped-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-background</td>
+                    <td>inherit</td>
+                    <td>The background colour of the heading area - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The size of the heading font - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-border-colour</td>
+                    <td>var(--br-comp-all-divider-colour)</td>
+                    <td>The colour of the border -  <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-header-border-width</td>
+                    <td>var(--br-unit-border-0)</td>
+                    <td>The border width - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-background</td>
+                    <td>inherit</td>
+                    <td>The background colour - <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The font size -  <b>does not use the shared variable.</b></td>
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-border-colour</td>
+                    <td>var(--br-comp-all-divider-colour)</td>
+                    <td>The colour border which uses the shared component variable - <b>does not use the shared variable.</b></td>
+
+                </tr>
+                <tr>
+                    <td>--br-comp-nav-group-area-content-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The border width - <b>does not use the shared variable.</b></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+</section>
 
 
 
