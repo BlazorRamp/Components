@@ -1,10 +1,6 @@
 ﻿:root {
     --svg-chevron-down-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' fill-rule='evenodd' d='M4.13 9.16a.5.5 0 0 1 .707-.024l7.16 6.68l7.16-6.68a.5.5 0 0 1 .683.731l-7.5 7a.5.5 0 0 1-.682 0l-7.5-7a.5.5 0 0 1-.025-.707z' clip-rule='evenodd'/%3E%3C/svg%3E");
     //
-    --br-comp-all-outline-style: solid;
-    --br-comp-all-outline-width: var(--br-unit-outline-2);
-    --br-comp-all-outline-offset: var(--br-unit-outline-offset-2);
-    --br-comp-all-outline-colour: var(--br-comp-all-focus-indicator-colour);
     //
     --br-comp-actions-popover-trigger-background: var(--br-comp-all-pane-panel-background); //var(--br-comp-all-button-background);
     --br-comp-actions-popover-trigger-text: var(--br-comp-all-button-text);
@@ -24,7 +20,7 @@
     --br-comp-actions-popover-trigger-outline-offset: var(--br-comp-all-outline-offset);
     --br-comp-actions-popover-trigger-outline-colour: var(--br-comp-all-outline-colour);
     //
-    --br-comp-actions-popover-item-background: inherit; //var(--br-comp-all-button-background);
+    --br-comp-actions-popover-item-background: inherit; 
     --br-comp-actions-popover-item-text: var(--br-comp-all-button-text);
     --br-comp-actions-popover-item-font-family: var(--br-comp-all-button-font-family);
     --br-comp-actions-popover-item-font-size: var(--br-comp-all-button-font-size);
@@ -40,7 +36,6 @@
     --br-comp-actions-popover-item-outline-width: var(--br-comp-all-outline-width);
     --br-comp-actions-popover-item-outline-offset: var(--br-unit-outline-offset-1);
     --br-comp-actions-popover-item-outline-colour: var(--br-comp-all-outline-colour);
-    //
     --br-comp-actions-popover-item-state-hover: var(--br-comp-all-link-hover-background-colour);
     /*
         * pane panel styles

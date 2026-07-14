@@ -2,7 +2,7 @@
 
 <PageTitle>@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Api</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Api . . . In Progress . . .</h1>
+<h1>@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Api</h1>
 <p>
     Everything you need to work with the Actions Popover component: parameters, methods, models, enums, and CSS variables for styling.
 </p>
@@ -34,7 +34,7 @@
                     <td>RenderFragment?</td>
                     <td>
                         Gets or sets the action items rendered inside the popover panel, typically
-                        a combination of <span class="code-span">ActionPopoverButton&lt;TData&gt;</span>, 
+                        a combination of <span class="code-span">ActionPopoverButton&lt;TData&gt;</span>,
                         <span class="code-span">ActionPopoverLink&lt;TData&gt;</span>,
                         and <span class="code-span">ActionPopoverSeparator</span> components.
                     </td>
@@ -290,7 +290,7 @@
                     <td>string</td>
                     <td>Path</td>
                     <td>
-                        Gets the trimmed <span class="code-span">href</span> path for the clicked link. 
+                        Gets the trimmed <span class="code-span">href</span> path for the clicked link.
                         Defaults to <span class="code-span">"/"</span>
                     </td>
                 </tr>
@@ -436,16 +436,14 @@
     <h2 class="page-heading">CSS variables defined for the nav group components.</h2>
 
     <p>
-        The following sections outline all of the css variables that can be set to alter the styling of the Nav Group components.
+        The following sections outline all of the css variables that can be set to alter the styling of the Action Popover components.
         You can of course also override its style classes directly.
     </p>
 
     <section class="code-table">
 
-        <h3 id="outline-variables" class="code-table__heading">Outline variables</h3>
-        <p>
-            There are the focus indicators (outlines) applied using <span class="code-span">:focus-visible</span> for the NavSection and NavGroupLinks.
-        </p>
+        <h3 id="actions-popover-trigger-variables" class="code-table__heading">Action popover triggering button variables</h3>
+
         <table aria-labelledby="outline-variables">
 
             <thead>
@@ -457,37 +455,133 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>--br-comp-nav-group-outline-style</td>
-                    <td>var(--br-comp-all-outline-style)</td>
-                    <td>The style of the outline - uses the shared component variable.</td>
+                    <td>--br-comp-actions-popover-trigger-background</td>
+                    <td>var(--br-comp-all-pane-panel-background);</td>
+                    <td>
+                        uses the shared component variable from the pane panel not the shared button variable.
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-outline-width</td>
-                    <td>var(--br-comp-all-outline-width)</td>
-                    <td>The outline colour - uses the shared component variable.</td>
+                    <td>--br-comp-actions-popover-trigger-text</td>
+                    <td>var(--br-comp-all-button-text);</td>
+                    <td>
+                        the text colour - uses the shared component variable.
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-outline-offset</td>
-                    <td>var(--br-comp-all-outline-offset)</td>
-                    <td>The outline offset - uses the shared component variable.</td>
+                    <td>--br-comp-actions-popover-trigger-font-family</td>
+                    <td>var(--br-comp-all-button-font-family);</td>
+                    <td>
+                        The font family - uses the shared component variable.
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-outline-colour</td>
-                    <td>var(--br-comp-all-outline-colour)</td>
-                    <td>The outline colour - uses the shared component variable.</td>
+                    <td>--br-comp-actions-popover-trigger-font-size</td>
+                    <td>var(--br-comp-all-button-font-size);</td>
+                    <td>
+                        The font size - uses the shared component variable.
+                    </td>
                 </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-trigger-font-weight</td>
+                    <td>var(--br-comp-all-button-font-weight);</td>
+                    <td>
+                        The font weight - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-trigger-line-height</td>
+                    <td>var(--br-comp-all-button-line-height);</td>
+                    <td>
+                        The line height - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-trigger-border-style</td>
+                    <td>var(--br-comp-all-button-border-style);</td>
+                    <td>
+                        The border style - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-trigger-border-colour</td>
+                    <td>var(--br-comp-all-button-border-colour);</td>
+                    <td>
+                        The border colour - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-trigger-border-width</td>
+                    <td>var(--br-comp-all-button-border-width);</td>
+                    <td>
+                        The border width - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-trigger-border-radius</td>
+                    <td>var(--br-unit-radius-3);</td>
+                    <td>
+                        The radius of all corners - <b>does not use the shared component variable.</b>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-trigger-state-hover</td>
+                    <td>var(--br-comp-all-button-state-hover);</td>
+                    <td>
+                        The background colour on mouse over - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-trigger-state-active-brightness</td>
+                    <td>var(--br-comp-all-button-state-active-brightness);</td>
+                    <td>
+                        Brightness filter applied when active - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-trigger-state-active-scale</td>
+                    <td>var(--br-comp-all-button-state-active-scale);</td>
+                    <td>
+                        Scale transformation when active - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-trigger-outline-style</td>
+                    <td>var(--br-comp-all-outline-style);</td>
+                    <td>
+                        The outline style - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-trigger-outline-width</td>
+                    <td>var(--br-comp-all-outline-width);</td>
+                    <td>
+                        The outline width - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-trigger-outline-offset</td>
+                    <td>var(--br-comp-all-outline-offset);</td>
+                    <td>
+                        The outline offset - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-trigger-outline-colour</td>
+                    <td>var(--br-comp-all-outline-colour);</td>
+                    <td>
+                        The outline colour - uses the shared component variable.
+                    </td>
+                </tr>
             </tbody>
         </table>
     </section>
     <section class="code-table">
 
-        <h3 id="hover-variables" class="code-table__heading">Hover & selected variables</h3>
-        <p>
-            There are hte backgrounds applied to the NavSection (button) and NavGroupLink components when hovered, focused
-            and when the NavGroupLink matches the current page.
-        </p>
-        <table aria-labelledby="hover-variables">
+        <h3 id="action-popover-item-variables" class="code-table__heading">Action popover item (button and link) variables</h3>
+
+        <table aria-labelledby="action-popover-item-variables">
 
             <thead>
                 <tr>
@@ -497,44 +591,133 @@
                 </tr>
             </thead>
             <tbody>
-
                 <tr>
-                    <td>--br-comp-nav-group-current-page-background</td>
-                    <td>var(--br-comp-all-link-current-page-background-colour)</td>
-                    <td>Background colour of the NavGroupLink when its the current page.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-nav-group-hover-background</td>
-                    <td>var(--br-comp-all-link-hover-background-colour)</td>
+                    <td>--br-comp-actions-popover-item-background</td>
+                    <td>inherit;</td>
                     <td>
-                        Background colour of the NavSection button or NavGroupLink for the hover state. And used as the background colour
-                        of the NavGroup when focused.
+                        The background colour of each item - <b>does not use the shared variable.</b>
                     </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-active-background</td>
-                    <td>var(--br-comp-all-link-active-background-colour)</td>
-                    <td>Background colour of the NavGroupLink when in the active state.</td>
+                    <td>--br-comp-actions-popover-item-text</td>
+                    <td>var(--br-comp-all-button-text);</td>
+                    <td>
+                        The text colour of each item - uses the shared component variable.
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-selected-hover</td>
-                    <td>var(--br-comp-all-selection-colour)</td>
-                    <td>Background colour of the NavSection button when its expanded and is hovered.</td>
+                    <td>--br-comp-actions-popover-item-font-family</td>
+                    <td>var(--br-comp-all-button-font-family);</td>
+                    <td>
+                        The font family of each item - uses the shared component variable.
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-link-focused-background</td>
-                    <td>var(--br-comp-all-link-focused-background-colour)</td>
-                    <td>Background colour of the NavGroupLink when its focused.</td>
+                    <td>--br-comp-actions-popover-item-font-size</td>
+                    <td>var(--br-comp-all-button-font-size);</td>
+                    <td>
+                        The font size of each item - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-item-font-weight</td>
+                    <td>var(--br-comp-all-button-font-weight);</td>
+                    <td>
+                        The font weight of each item - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-item-line-height</td>
+                    <td>var(--br-comp-all-button-line-height);</td>
+                    <td>
+                        The line height of each item - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-item-border-style</td>
+                    <td>var(--br-comp-all-button-border-style);</td>
+                    <td>
+                        The border style for each item - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-item-border-colour</td>
+                    <td>var(--br-comp-all-button-border-colour);</td>
+                    <td>
+                        The border colour of each item - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-item-border-width</td>
+                    <td>var(--br-comp-all-button-border-width);</td>
+                    <td>
+                        The border width of each item - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-item-border-radius</td>
+                    <td>var(--br-unit-radius-2);</td>
+                    <td>
+                        The radius of each corner on each item - <b>does not use the shared component variable.</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-item-state-active-brightness</td>
+                    <td>var(--br-comp-all-button-state-active-brightness);</td>
+                    <td>
+                        Brightness filter applied to each item when active  - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-item-state-active-scale</td>
+                    <td>var(--br-comp-all-button-state-active-scale);</td>
+                    <td>
+                        Scale transformation applied only to buttons when active - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-item-outline-style</td>
+                    <td>var(--br-comp-all-outline-style);</td>
+                    <td>
+                        The outline style of each item - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-item-outline-width</td>
+                    <td>var(--br-comp-all-outline-width);</td>
+                    <td>
+                        The outline width of each item - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-item-outline-offset</td>
+                    <td>var(--br-unit-outline-offset-1);</td>
+                    <td>
+                        The outline offset of each item - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-item-outline-colour</td>
+                    <td>var(--br-comp-all-outline-colour);</td>
+                    <td>
+                        The outline colour of each item - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-actions-popover-item-state-hover</td>
+                    <td>var(--br-comp-all-link-hover-background-colour);</td>
+                    <td>
+                        The background colour of each item when mouse over - uses the shared component variable.
+                    </td>
                 </tr>
             </tbody>
         </table>
     </section>
     <section class="code-table">
 
-        <h3 id="nav-section-header-variables" class="code-table__heading">Header area variables</h3>
+        <h3 id="pane-panel-variables" class="code-table__heading">Pane panel variables</h3>
         <p>
-            I treat the NavSection (button) as the header area area as it acts as the heading for its
-            contents.
+            The panel that the buttons and links sit on.
         </p>
         <table aria-labelledby="nav-section-header-variables">
             <thead>
@@ -546,59 +729,46 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>--br-comp-nav-group-area-header-text</td>
-                    <td>var(--br-comp-all-area-header-text)</td>
+                    <td>--br-comp-actions-popover-pane-panel-box-shadow</td>
+                    <td>var(--br-unit-box-shadow-1);</td>
                     <td>
-                        The text colour used for the heading and icons - uses the shared component variable.
-                        <br /><strong>Note: </strong>This colour is only applied when the section is focused or expanded
-                        otherwise the colour is inherited which means it will use the page text colour.
-
+                        Box shadow around the panel - <b>no shared component variable uses a direct unit value.</b>
                     </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-area-header-background</td>
-                    <td>inherit</td>
-                    <td>The background colour of the heading area - <b>does not use the shared variable.</b></td>
+                    <td>--br-comp-actions-popover-pane-panel-background</td>
+                    <td>var(--br-comp-all-pane-panel-background);</td>
+                    <td>
+                        The background colour of the panel - uses the shared component variable.
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-area-header-font-family</td>
-                    <td>var(--br-comp-all-area-header-font-family)</td>
-                    <td>The font family used - uses the shared component variable.</td>
+                    <td>--br-comp-actions-popover-pane-panel-border-style</td>
+                    <td>var(--br-comp-all-pane-panel-border-style);</td>
+                    <td>
+                        The border style of the panel - uses the shared component variable.
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-area-header-font-size</td>
-                    <td>var(--br-unit-font-size-label)</td>
-                    <td>The size of the heading font - <b>does not use the shared variable.</b></td>
+                    <td>--br-comp-actions-popover-pane-panel-border-colour</td>
+                    <td>var(--br-unit-colour-primary-40);</td>
+                    <td>
+                        The border colour of the panel - <b>does not use the shared component variable.</b>
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-area-header-font-weight</td>
-                    <td>var(--br-comp-all-area-header-font-weight)</td>
-                    <td>The font weight - uses the shared component variable.</td>
+                    <td>--br-comp-actions-popover-pane-panel-border-width</td>
+                    <td>var(--br-unit-border-1);</td>
+                    <td>
+                        The width of the panel border - <b>does not use the shared component variable.</b>
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-area-header-line-height</td>
-                    <td>var(--br-comp-all-area-header-line-height)</td>
-                    <td>The line height - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-nav-group-area-header-border-style</td>
-                    <td>var(--br-comp-all-area-header-border-style)</td>
-                    <td>The border style - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-nav-group-area-header-border-colour</td>
-                    <td>var(--br-comp-all-divider-colour)</td>
-                    <td>The colour of the border -  <b>does not use the shared variable.</b></td>
-                </tr>
-                <tr>
-                    <td>--br-comp-nav-group-area-header-border-width</td>
-                    <td>var(--br-unit-border-0)</td>
-                    <td>The border width - <b>does not use the shared variable.</b></td>
-                </tr>
-                <tr>
-                    <td>--br-comp-nav-group-area-header-border-radius</td>
-                    <td>var(--br-comp-all-area-header-border-radius)</td>
-                    <td>The radius applied to each border corner - uses the shared component variable.</td>
+                    <td>--br-comp-actions-popover-pane-panel-border-radius</td>
+                    <td>var(--br-unit-radius-3);</td>
+                    <td>
+                        The radius of each panel corner - <b>does not use the shared component variable.</b>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -606,11 +776,7 @@
     </section>
     <section class="code-table">
 
-        <h3 id="nav-group-content-area-variables" class="code-table__heading">Content area variables</h3>
-        <p>
-            Used for the NavGroupLink and NavSeparator. The NavGroupLink uses the border radius for the
-            focus indicator outline, the other border properties are used for the decorative NavSeparator.
-        </p>
+        <h3 id="separator-variables" class="code-table__heading">Action popover separator variables</h3>
 
         <table aria-labelledby="nav-group-content-area-variables">
 
@@ -623,55 +789,25 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>--br-comp-nav-group-area-content-background</td>
-                    <td>inherit</td>
-                    <td>The background colour - <b>does not use the shared variable.</b></td>
+                    <td>--br-comp-actions-popover-separator-border-colour</td>
+                    <td>var(--br-comp-all-divider-colour);</td>
+                    <td>
+                        The border colour - uses the shared component variable.
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-area-content-text</td>
-                    <td>var(--br-comp-all-area-content-text)</td>
-                    <td>The text colour - uses the shared component variable.</td>
+                    <td>--br-comp-actions-popover-separator-border-style</td>
+                    <td>solid;</td>
+                    <td>
+                        The border style - <b>no shared component variable, uses a css value directly.</b>
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-area-content-font-family</td>
-                    <td>var(--br-comp-all-area-content-font-family)</td>
-                    <td>The font family - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-nav-group-area-content-font-size</td>
-                    <td>var(--br-unit-font-size-label)</td>
-                    <td>The font size - <b>does not use the shared variable.</b></td>
-                </tr>
-                <tr>
-                    <td>--br-comp-nav-group-area-content-font-weight</td>
-                    <td>var(--br-comp-all-area-content-font-weight)</td>
-                    <td>The font weight - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-nav-group-area-content-line-height</td>
-                    <td>var(--br-comp-all-area-content-line-height)</td>
-                    <td>The line height - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-nav-group-area-content-border-style</td>
-                    <td>var(--br-comp-all-area-content-border-style)</td>
-                    <td>The border style - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-nav-group-area-content-border-colour</td>
-                    <td>var(--br-comp-all-divider-colour)</td>
-                    <td>The colour border which uses the shared component variable - <b>does not use the shared variable.</b></td>
-
-                </tr>
-                <tr>
-                    <td>--br-comp-nav-group-area-content-border-width</td>
-                    <td>var(--br-unit-border-1)</td>
-                    <td>The border width - <b>does not use the shared variable.</b></td>
-                </tr>
-                <tr>
-                    <td>--br-comp-nav-group-area-content-border-radius</td>
-                    <td>var(--br-comp-all-area-content-border-radius)</td>
-                    <td>The radius applied to each border corner - uses the shared component variable.</td>
+                    <td>--br-comp-actions-popover-separator-border-width</td>
+                    <td>var(--br-unit-border-1);</td>
+                    <td>
+                        The border width -  <b>no shared component variable so use a unit value directly.</b>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -696,45 +832,60 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>--br-comp-nav-group-area-header-background</td>
-                    <td>inherit</td>
-                    <td>The background colour of the heading area - <b>does not use the shared variable.</b></td>
+                    <td>--br-comp-actions-popover-item-background</td>
+                    <td>inherit;</td>
+                    <td>
+                        The background colour of each item - <b>does not use the shared component variable.</b>
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-area-header-font-size</td>
-                    <td>var(--br-unit-font-size-label)</td>
-                    <td>The size of the heading font - <b>does not use the shared variable.</b></td>
+                    <td>--br-comp-actions-popover-item-border-radius</td>
+                    <td>var(--br-unit-radius-2);</td>
+                    <td>
+                        The radius of each corner on each item - <b>does not use the shared component variable.</b>
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-area-header-border-colour</td>
-                    <td>var(--br-comp-all-divider-colour)</td>
-                    <td>The colour of the border -  <b>does not use the shared variable.</b></td>
+                    <td>--br-comp-actions-popover-pane-panel-box-shadow</td>
+                    <td>var(--br-unit-box-shadow-1);</td>
+                    <td>
+                        Box shadow around the panel - <b>no shared component variable uses a direct unit value.</b>
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-area-header-border-width</td>
-                    <td>var(--br-unit-border-0)</td>
-                    <td>The border width - <b>does not use the shared variable.</b></td>
+                    <td>--br-comp-actions-popover-pane-panel-border-colour</td>
+                    <td>var(--br-unit-colour-primary-40);</td>
+                    <td>
+                        The border colour of the panel - <b>does not use the shared component variable.</b>
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-area-content-background</td>
-                    <td>inherit</td>
-                    <td>The background colour - <b>does not use the shared variable.</b></td>
+                    <td>--br-comp-actions-popover-pane-panel-border-width</td>
+                    <td>var(--br-unit-border-1);</td>
+                    <td>
+                        The width of the panel border - <b>does not use the shared component variable.</b>
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-area-content-font-size</td>
-                    <td>var(--br-unit-font-size-label)</td>
-                    <td>The font size -  <b>does not use the shared variable.</b></td>
+                    <td>--br-comp-actions-popover-pane-panel-border-radius</td>
+                    <td>var(--br-unit-radius-3);</td>
+                    <td>
+                        The radius of each panel corner - <b>does not use the shared component variable.</b>
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-area-content-border-colour</td>
-                    <td>var(--br-comp-all-divider-colour)</td>
-                    <td>The colour border which uses the shared component variable - <b>does not use the shared variable.</b></td>
-
+                    <td>--br-comp-actions-popover-separator-border-style</td>
+                    <td>solid;</td>
+                    <td>
+                        The border style - <b>no shared component variable, uses a css value directly.</b>
+                    </td>
                 </tr>
                 <tr>
-                    <td>--br-comp-nav-group-area-content-border-width</td>
-                    <td>var(--br-unit-border-1)</td>
-                    <td>The border width - <b>does not use the shared variable.</b></td>
+                    <td>--br-comp-actions-popover-separator-border-width</td>
+                    <td>var(--br-unit-border-1);</td>
+                    <td>
+                        The border width -  <b>no shared component variable so use a unit value directly.</b>
+                    </td>
                 </tr>
             </tbody>
         </table>

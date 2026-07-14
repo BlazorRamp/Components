@@ -269,7 +269,6 @@
         }
 
         &:active {
-            transform: scale(var(--br-comp-actions-popover-item-state-active-scale));
             filter: brightness(var(--br-comp-actions-popover-item-state-active-brightness));
             outline: none;
         }
