@@ -36,3 +36,4 @@ app.MapRazorComponents<App>()
     .AddAdditionalAssemblies(typeof(Sandbox.Client._Imports).Assembly);
 
 app.Run();
+public partial class Program { }

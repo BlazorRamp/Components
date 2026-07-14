@@ -18,6 +18,9 @@
 		<PackageReference Include="Deque.AxeCore.Commons" Version="4.12.0" />
 		<PackageReference Include="Deque.AxeCore.Playwright" Version="4.12.0" />
 		<PackageReference Include="FluentAssertions" Version="8.10.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.3.11" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.9" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.9" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.7.0" />
 		<PackageReference Include="Microsoft.Playwright.Xunit.v3" Version="1.61.0" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
@@ -35,6 +38,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\BlazorRamp.ActionsPopover\BlazorRamp.ActionsPopover.csproj" />
+	  <ProjectReference Include="..\Sandbox\Sandbox\Sandbox.csproj" />
 	</ItemGroup>
   <ItemGroup>
     <Using Include="Xunit" />

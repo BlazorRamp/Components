@@ -1,19 +1,26 @@
-﻿using Microsoft.Playwright;
+﻿using BlazorRamp.ActionsPopover.Tests.Integration.Fixtures;
+using Microsoft.Playwright;
 using Microsoft.Playwright.Xunit.v3;
 using Xunit;
 
 namespace BlazorRamp.ActionsPopover.Tests.Integration;
 
-public class ActionsPopover_Tests : PageTest
+
+[Collection("Sandbox")]
+public class ActionsPopover_Tests(SandboxServerFixture sandbox) : PageTest
 {
-    private const string BaseUrl = "https://localhost:44348";
-
-    [Fact]
-    public async Task Should_open_the_popover_and_show_all_action_items_when_trigger_is_clicked()
+    [Theory]
+    [InlineData("/", 5_000)]          // InteractiveServer — near-instant over the SignalR circuit
+    [InlineData("/counter", 10_000)]  // InteractiveWebAssembly — first hit downloads/boots the runtime
+    public async Task Should_open_the_popover_and_show_all_action_items_when_trigger_is_clicked(
+        string route, int triggerTimeoutMs)
     {
-        await Page.GotoAsync(BaseUrl);
+        await Page.GotoAsync($"{sandbox.BaseUrl}{route}");
 
-        await Page.GetByRole(AriaRole.Button, new() { Name = "Actions" }).ClickAsync();
+        var trigger = Page.GetByRole(AriaRole.Button, new() { Name = "Actions" });
+        await Expect(trigger).ToBeVisibleAsync(new() { Timeout = triggerTimeoutMs });
+
+        await trigger.ClickAsync();
 
         var popover = Page.GetByLabel("Actions");
 
