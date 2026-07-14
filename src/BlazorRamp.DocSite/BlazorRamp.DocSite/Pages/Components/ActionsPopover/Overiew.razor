@@ -5,8 +5,26 @@
 <h1>@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Overview . . . In Progress . . .</h1>
 
 <p>
-
+    ActionsPopover is a lightweight component for grouping related actions - buttons, links, or a mix of both, behind a single trigger.
 </p>
+<p>
+    It's built on the native HTML Popover API for toggling, top-layer stacking, and dismiss behaviour like click-outside and Escape, 
+    combined with CSS anchor positioning to place the panel relative to its trigger.
+</p>
+<p>
+    The native behaviour was extended to include closing the popover when tabbing puts the focus on an item outside of the actions popover.
+</p>
+<p>
+    Use it standalone as a page-level actions panel, or embed it anywhere you need a compact set of contextual actions — such as the last column of a table row
+</p>
+<p>
+    Items are reached via standard Tab order. Each action can carry its own icon, colour, and associated data via ItemData, and both buttons and links 
+    respect forced-colours mode automatically, so high-contrast users always get a legible, system-consistent result regardless of what colours you configure.
+</p>
+<p>
+    <strong>Note: </strong>The actions popover just uses the simple disclosure pattern and as such no ARIA role or custom keyboard support was necessary.
+</p>
+
 
 
 <div class="flex-content justify-content-between">

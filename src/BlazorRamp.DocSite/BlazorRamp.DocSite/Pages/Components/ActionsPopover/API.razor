@@ -64,7 +64,14 @@
                         For example: <span class="code-span">--svg-my-icon</span>.
                     </td>
                 </tr>
-
+                <tr>
+                    <td>AdditionalAttributes</td>
+                    <td>Dictionary&lt;string, object&gt;?</td>
+                    <td>
+                        Gets or sets additional attributes that will be applied to the components button 
+                        element, the popover trigger.
+                    </td>
+                </tr>
             </tbody>
         </table>
 
@@ -124,6 +131,13 @@
                         Invoked when the action button is clicked. Unlike <span class="code-span">EventCallback</span>, this does
                         <b>not</b> automatically trigger a re-render of the consuming component - call
                         <span class="code-span">StateHasChanged()</span> yourself if the action needs to update the UI.
+                    </td>
+                </tr>
+                <tr>
+                    <td>AdditionalAttributes</td>
+                    <td>Dictionary&lt;string, object&gt;?</td>
+                    <td>
+                        Gets or sets additional attributes that will be applied to the components button element.
                     </td>
                 </tr>
             </tbody>
@@ -209,6 +223,13 @@
                         Invoked when the action link is clicked. Unlike <span class="code-span">EventCallback</span>, this does
                         <b>not</b> automatically trigger a re-render of the consuming component - call
                         <span class="code-span">StateHasChanged()</span> yourself if the action needs to update the UI.
+                    </td>
+                </tr>
+                <tr>
+                    <td>AdditionalAttributes</td>
+                    <td>Dictionary&lt;string, object&gt;?</td>
+                    <td>
+                        Gets or sets additional attributes that will be applied to the components anchor element.
                     </td>
                 </tr>
             </tbody>

@@ -169,7 +169,24 @@ public class ActionsPopover_Tests
             await act.Should().NotThrowAsync();
         }
 
+        [Fact]
+        public async Task Should_capture_unmatched_attributed_and_apply_to_the_component()
+        {
+            await using var context = new BunitContext();
 
+            var popover = CreateActionsPopover(context, p => p.AddUnmatched("style", "color:red;"));
+
+            using (new AssertionScope())
+            {
+                popover.Instance.AdditionalAttributes.Should().ContainKey("style").WhoseValue.Should().Be("color:red;");
+
+                var styleAttrib = popover.Find("button").GetAttribute("style");
+
+                styleAttrib.Should().Be("color:red;");
+
+            }
+
+        }
 
     }
 }

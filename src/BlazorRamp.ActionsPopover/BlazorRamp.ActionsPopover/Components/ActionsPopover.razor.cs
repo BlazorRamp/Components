@@ -37,6 +37,13 @@ partial class ActionsPopover : IAsyncDisposable
     /// </summary>
     [Parameter] public string? SvgIcon { get; set; } = default;
 
+    /// <summary>
+    /// Gets or sets additional attributes that will be applied to the components button element,
+    /// the popover trigger.
+    /// </summary>
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
     private ElementReference PopoverElementRef   { get; set; }
     private ElementReference ContainerElementRef { get; set; }
 

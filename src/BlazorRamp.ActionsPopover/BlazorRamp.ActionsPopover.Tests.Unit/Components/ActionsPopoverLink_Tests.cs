@@ -208,6 +208,25 @@ public class ActionPopoverLink_Tests
                 iconSlot.GetAttribute("style").Should().Contain("red");
             }
         }
+
+        [Fact]
+        public async Task Should_capture_unmatched_attributed_and_apply_to_the_component()
+        {
+            await using var context = new BunitContext();
+
+            var link = CreateActionPopoverLink<string>(context, p => p.Add(x => x.LinkText, "My Link").AddUnmatched("style", "color:red;"));
+
+            using (new AssertionScope())
+            {
+                link.Instance.AdditionalAttributes.Should().ContainKey("style").WhoseValue.Should().Be("color:red;");
+
+                var styleAttrib = link.Find("a").GetAttribute("style");
+
+                styleAttrib.Should().Be("color:red;");
+
+            }
+
+        }
     }
 
     public class RaiseOnClick

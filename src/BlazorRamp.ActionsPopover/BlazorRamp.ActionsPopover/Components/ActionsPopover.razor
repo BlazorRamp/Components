@@ -1,7 +1,7 @@
 ﻿
 <div @ref="ContainerElementRef" class="@GlobalValues.Actions_Popover_Class">
 
-    <button type="button" class="@GlobalValues.Actions_Popover_Trigger_Class" popovertarget="@_popoverPanelID">
+    <button @attributes="@AdditionalAttributes" type="button" class="@GlobalValues.Actions_Popover_Trigger_Class" popovertarget="@_popoverPanelID">
 
         <span aria-hidden="true" class="@(_svgIcon is null ? GlobalValues.Actions_Popover_Trigger_Icon_Slot_Class : $"{GlobalValues.Actions_Popover_Trigger_Icon_Slot_Class} {GlobalValues.Actions_Popover_Trigger_Icon_Slot_Modifier}")" style="@_svgIcon"></span>
 

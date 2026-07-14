@@ -47,6 +47,12 @@ public partial class ActionPopoverButton<TData> : ComponentBase
     /// </summary>
     [Parameter] public Func<ButtonActionData<TData>, Task>? OnClick { get; set; }
 
+    /// <summary>
+    /// Gets or sets additional attributes that will be applied to the components button element.
+    /// </summary>
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
     [CascadingParameter(Name = $"{GlobalValues.Actions_Popover_Panel_Cascading_ID_Name}")]
     private string? PopoverID { get; set; }
 
