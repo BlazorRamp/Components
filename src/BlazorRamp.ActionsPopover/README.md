@@ -73,10 +73,10 @@ Use it standalone as a page-level actions panel, or embed it anywhere you need a
 Items are reached via standard Tab order. Each action can carry its own icon, colour, and associated data via ItemData, and both buttons and links 
 respect forced-colours mode automatically, so high-contrast users always get a legible, system-consistent result regardless of what colours you configure.
 
-**Note:** The actions popover just uses the simple disclosure pattern and as such no ARIA role or custom keyboard support was necessary.
+**Note:** The actions popover just uses the simple disclosure pattern and as such no ARIA role or custom keyboard navigation support was necessary.
 
 The following example just shows the actions popover with two buttons and a link that opens in a new window, each with an optional icon. 
-You have to add a type param `TData` to each item, when its needed you can just assign it to object without populated the `ItemData` parameter.
+You have to add a type param `TData` to each item, when its not needed you can just assign it to object without populated the `ItemData` parameter.
 
 ```
 <ActionsPopover TriggerText="Available Actions" ActionsPopoverPosition="ActionsPopoverPosition.BottomCentre">
