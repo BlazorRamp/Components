@@ -6,7 +6,7 @@ namespace BlazorRamp.ActionsPopover.Common.Models;
 /// <summary>
 /// Represents the data supplied to an <see cref="ActionPopoverLink{TData}.OnClick"/> callback.
 /// </summary>
-public class LinkActionData<TData>(string linkText, TData? payload, TargetType targetType = TargetType.Self, string path = "/")
+public class LinkActionData<TData>(string linkText, TData? payload, PopoverLinkTargetType targetType = PopoverLinkTargetType.Self, string path = "/")
 {
     private readonly TData? _payload = payload;
 
@@ -23,7 +23,7 @@ public class LinkActionData<TData>(string linkText, TData? payload, TargetType t
     /// <summary>
     /// Gets the browsing context the link was opened in.
     /// </summary>
-    public TargetType TargetType { get; } = targetType;
+    public PopoverLinkTargetType TargetType { get; } = targetType;
 
     /// <summary>
     /// Gets the item data associated with the clicked link, or <paramref name="fallback"/>

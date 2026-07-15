@@ -79,11 +79,11 @@ public class ActionPopoverLink_Tests
         }
 
         [Theory]
-        [InlineData(TargetType.Self, "_self")]
-        [InlineData(TargetType.Blank, "_blank")]
-        [InlineData(TargetType.Parent, "_parent")]
-        [InlineData(TargetType.Top, "_top")]
-        public async Task Should_set_the_target_attribute_based_on_target_type(TargetType targetType, string expected)
+        [InlineData(PopoverLinkTargetType.Self, "_self")]
+        [InlineData(PopoverLinkTargetType.Blank, "_blank")]
+        [InlineData(PopoverLinkTargetType.Parent, "_parent")]
+        [InlineData(PopoverLinkTargetType.Top, "_top")]
+        public async Task Should_set_the_target_attribute_based_on_target_type(PopoverLinkTargetType targetType, string expected)
         {
             await using var context = new BunitContext();
 
@@ -109,17 +109,17 @@ public class ActionPopoverLink_Tests
         {
             await using var context = new BunitContext();
 
-            var link = CreateActionPopoverLink<string>(context, p => p.Add(x => x.LinkText, "View").Add(x => x.TargetType, (TargetType)999));
+            var link = CreateActionPopoverLink<string>(context, p => p.Add(x => x.LinkText, "View").Add(x => x.TargetType, (PopoverLinkTargetType)999));
 
             link.Find("a").GetAttribute("target").Should().Be("_self");
         }
 
         [Theory]
-        [InlineData(TargetType.Blank, "noopener noreferrer")]
-        [InlineData(TargetType.Self, null)]
-        [InlineData(TargetType.Parent, null)]
-        [InlineData(TargetType.Top, null)]
-        public async Task Should_only_set_rel_noopener_noreferrer_when_target_type_is_blank(TargetType targetType, string? expectedRel)
+        [InlineData(PopoverLinkTargetType.Blank, "noopener noreferrer")]
+        [InlineData(PopoverLinkTargetType.Self, null)]
+        [InlineData(PopoverLinkTargetType.Parent, null)]
+        [InlineData(PopoverLinkTargetType.Top, null)]
+        public async Task Should_only_set_rel_noopener_noreferrer_when_target_type_is_blank(PopoverLinkTargetType targetType, string? expectedRel)
         {
             await using var context = new BunitContext();
 
@@ -241,7 +241,7 @@ public class ActionPopoverLink_Tests
             var link = CreateActionPopoverLink<string>(context, p => p
                 .Add(x => x.LinkText, "View")
                 .Add(x => x.ItemData, "row-42")
-                .Add(x => x.TargetType, TargetType.Blank)
+                .Add(x => x.TargetType, PopoverLinkTargetType.Blank)
                 .Add(x => x.Path, "/items/42")
                 .Add(x => x.OnClick, (LinkActionData<string> data) =>
                 {
@@ -256,7 +256,7 @@ public class ActionPopoverLink_Tests
                 captured.Should().NotBeNull();
                 captured!.LinkText.Should().Be("View");
                 captured.GetValueOr("fallback").Should().Be("row-42");
-                captured.TargetType.Should().Be(TargetType.Blank);
+                captured.TargetType.Should().Be(PopoverLinkTargetType.Blank);
                 captured.Path.Should().Be("/items/42");
             }
         }

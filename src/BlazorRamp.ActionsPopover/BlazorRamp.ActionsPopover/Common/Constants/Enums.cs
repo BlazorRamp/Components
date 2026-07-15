@@ -45,7 +45,7 @@ public enum ActionsPopoverPosition : int
 /// <summary>
 /// Defines the <c>target</c> attribute behaviour of an <see cref="ActionPopoverLink{TData}"/>.
 /// </summary>
-public enum TargetType : int
+public enum PopoverLinkTargetType : int
 {
     /// <summary>
     /// Opens the link in the same browsing context (<c>target="_self"</c>).

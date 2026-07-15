@@ -25,14 +25,14 @@ internal static class GeneralHelpers
         return value is null ? null : $"{variableName}:{value};";
     }
 
-    internal static string GetTargetType(TargetType targetType)
+    internal static string GetTargetType(PopoverLinkTargetType targetType)
 
     => targetType switch
     {
-        TargetType.Self   => "_self",
-        TargetType.Blank  => "_blank",
-        TargetType.Parent => "_parent",
-        TargetType.Top => "_top",
+        PopoverLinkTargetType.Self   => "_self",
+        PopoverLinkTargetType.Blank  => "_blank",
+        PopoverLinkTargetType.Parent => "_parent",
+        PopoverLinkTargetType.Top => "_top",
         _ => "_self"
     };
 }

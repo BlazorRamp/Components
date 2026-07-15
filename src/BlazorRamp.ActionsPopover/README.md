@@ -83,7 +83,7 @@ You have to add a type param `TData` to each item, when its not needed you can j
     <PopoverItems>
         <ActionPopoverButton TData="object" ButtonText="Edit item" SvgIcon="--svg-pencil-icon" OnClick="HandleOnClick" IconColour="green" />
         <ActionPopoverButton TData="object" ButtonText="Delete item" SvgIcon="--svg-trash-can-icon" OnClick="HandleOnClick" IconColour="red" />
-        <ActionPopoverLink   TData="object" LinkText="View (opens in new window)" SvgIcon="--svg-overview-icon" TargetType="TargetType.Blank" Path="weather" />
+        <ActionPopoverLink   TData="object" LinkText="View (opens in new window)" SvgIcon="--svg-overview-icon" TargetType="PopoverLinkTargetType.Blank" Path="weather" />
     </PopoverItems>
 </ActionsPopover>
 ```

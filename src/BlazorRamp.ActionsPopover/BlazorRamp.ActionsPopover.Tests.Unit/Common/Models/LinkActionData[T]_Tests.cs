@@ -65,11 +65,11 @@ public class LinkActionData_Tests
     }
 
     [Theory]
-    [InlineData(TargetType.Self)]
-    [InlineData(TargetType.Blank)]
-    [InlineData(TargetType.Top)]
-    [InlineData(TargetType.Parent)]
-    public void Should_be_able_to_create_with_a_target_type(TargetType targetType)
+    [InlineData(PopoverLinkTargetType.Self)]
+    [InlineData(PopoverLinkTargetType.Blank)]
+    [InlineData(PopoverLinkTargetType.Top)]
+    [InlineData(PopoverLinkTargetType.Parent)]
+    public void Should_be_able_to_create_with_a_target_type(PopoverLinkTargetType targetType)
     {
         var actionData = new LinkActionData<string>("My Link", null,targetType);
 
@@ -81,7 +81,7 @@ public class LinkActionData_Tests
     {
         var actionData = new LinkActionData<string>("My Link", null);
 
-        actionData.TargetType.Should().Be(TargetType.Self);
+        actionData.TargetType.Should().Be(PopoverLinkTargetType.Self);
     }
 
 

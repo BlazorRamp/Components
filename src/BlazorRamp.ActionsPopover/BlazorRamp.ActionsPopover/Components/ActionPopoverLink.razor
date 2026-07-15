@@ -5,7 +5,7 @@
             href="@_path"
             target="@_targetType"
             tabindex="0"
-            rel="@(TargetType == TargetType.Blank ? "noopener noreferrer" : null)"
+       rel="@(TargetType == PopoverLinkTargetType.Blank ? "noopener noreferrer" : null)"
             @onclick:stopPropagation="true"
             @onclick="() => RaiseOnClick(LinkText, ItemData, TargetType, _path)">
 

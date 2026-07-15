@@ -48,6 +48,21 @@ public class ActionsPopover_Tests
         }
 
 
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("   ")]
+        [InlineData("not-a-css-variable")]
+        public async Task Should_not_render_the_icon_span_when_svg_icon_is_null_empty_whitespace_or_invalid(string? svgIcon)
+        {
+            await using var context = new BunitContext();
+
+            var popover = CreateActionsPopover(context, p => p.Add(x => x.SvgIcon, svgIcon));
+
+            popover.FindAll($".{GlobalValues.Actions_Popover_Trigger_Icon_Class}").Should().BeEmpty();
+        }
+
+
         [Fact]
         public async Task Should_render_the_icon_span_with_style_when_svg_icon_is_a_valid_css_variable()
         {

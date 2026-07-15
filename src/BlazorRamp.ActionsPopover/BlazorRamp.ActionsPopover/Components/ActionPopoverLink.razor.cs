@@ -29,9 +29,9 @@ public partial class ActionPopoverLink<TData> : ComponentBase, IAsyncDisposable
     [Parameter] public TData?     ItemData       { get; set; }
 
     /// <summary>
-    /// Gets or sets the browsing context the link opens in. Defaults to <see cref="TargetType.Self"/>.
+    /// Gets or sets the browsing context the link opens in. Defaults to <see cref="PopoverLinkTargetType.Self"/>.
     /// </summary>
-    [Parameter] public TargetType TargetType     { get; set; } = TargetType.Self;
+    [Parameter] public PopoverLinkTargetType TargetType     { get; set; } = PopoverLinkTargetType.Self;
 
     /// <summary>
     /// Gets or sets the <c>href</c> for this link. Defaults to <c>"/"</c>.
@@ -110,7 +110,7 @@ public partial class ActionPopoverLink<TData> : ComponentBase, IAsyncDisposable
         _preventDefault = PreventDefault;
     }
 
-    private async Task RaiseOnClick(string linkText, TData? itemData, TargetType targetType, string path)
+    private async Task RaiseOnClick(string linkText, TData? itemData, PopoverLinkTargetType targetType, string path)
     {
         var actionData = CreateActionData(linkText, itemData, targetType, path);
 
@@ -119,7 +119,7 @@ public partial class ActionPopoverLink<TData> : ComponentBase, IAsyncDisposable
         if (OnClick is not null) await OnClick.Invoke(actionData);
     }
 
-    private static LinkActionData<TData> CreateActionData(string linkText, TData? payload, TargetType targetType, string path)
+    private static LinkActionData<TData> CreateActionData(string linkText, TData? payload, PopoverLinkTargetType targetType, string path)
 
         => new(linkText, payload, targetType, path);
 
