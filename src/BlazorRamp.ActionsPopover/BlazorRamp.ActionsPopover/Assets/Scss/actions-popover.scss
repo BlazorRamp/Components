@@ -110,16 +110,13 @@
     }
 
 
-    &__trigger-icon-slot {
+    &__trigger-icon {
         height: calc(var(--_icon-size) * 1.25);
         aspect-ratio: 1/1;
         margin: 0;
         padding: 0;
-
-        &--with-icon {
-            @include icon;
-            mask-image: var(--_br-svg-popover-trigger-icon);
-        }
+        @include icon;
+        mask-image: var(--_br-svg-popover-trigger-icon);
     }
 
     &__panel {

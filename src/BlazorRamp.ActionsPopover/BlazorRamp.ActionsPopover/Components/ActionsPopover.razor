@@ -3,8 +3,10 @@
 
     <button @attributes="@AdditionalAttributes" type="button" class="@GlobalValues.Actions_Popover_Trigger_Class" popovertarget="@_popoverPanelID">
 
-        <span aria-hidden="true" class="@(_svgIcon is null ? GlobalValues.Actions_Popover_Trigger_Icon_Slot_Class : $"{GlobalValues.Actions_Popover_Trigger_Icon_Slot_Class} {GlobalValues.Actions_Popover_Trigger_Icon_Slot_Modifier}")" style="@_svgIcon"></span>
-
+        @if (_svgIcon is not null)
+        {
+            <span aria-hidden="true" class="@GlobalValues.Actions_Popover_Trigger_Icon_Class" style="@_svgIcon"></span>
+        }
         <span id="@_triggerTextID">@_triggerText</span>
 
         <span class="@GlobalValues.Actions_Popover_Trigger_Expander_Icon_Class" aria-hidden="true">

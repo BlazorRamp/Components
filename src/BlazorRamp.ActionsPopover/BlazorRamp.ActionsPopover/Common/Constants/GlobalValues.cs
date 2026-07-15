@@ -25,8 +25,7 @@ internal class GlobalValues
     public const string Actions_Popover_Class                        = "br-actions-popover";
     public const string Actions_Popover_Trigger_Class                = $"{Actions_Popover_Class}__trigger";
     public const string Actions_Popover_Trigger_Text_Class           = $"{Actions_Popover_Class}__trigger-text";
-    public const string Actions_Popover_Trigger_Icon_Slot_Class      = $"{Actions_Popover_Class}__trigger-icon-slot";
-    public const string Actions_Popover_Trigger_Icon_Slot_Modifier   = $"{Actions_Popover_Trigger_Icon_Slot_Class}--with-icon";
+    public const string Actions_Popover_Trigger_Icon_Class           = $"{Actions_Popover_Class}__trigger-icon";
     public const string Actions_Popover_Trigger_Expander_Icon_Class  = $"{Actions_Popover_Class}__trigger-expander-icon";
     public const string Actions_Popover_Panel_Class                  = $"{Actions_Popover_Class}__panel";
     public const string Actions_Popover_Action_Button_Class          = $"{Actions_Popover_Class}__action-button";
