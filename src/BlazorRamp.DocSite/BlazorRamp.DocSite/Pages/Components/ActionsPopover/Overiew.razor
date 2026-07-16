@@ -33,16 +33,22 @@
     the default <span class="code-span">href</span> navigation if you would like to handle this yourself.
 </p>
 <p>
-    For the example, I have used the Live Region Service to announce the information that is show below the "My Actions" trigger on activatinge an item. I set
-    the replayable option to true so the output is add to the rolling announcement log, viewable by using the announcement history dialog, shortcut keys <kbd>Ctrl + Shift + H</kbd> 
+    For the example below, I have used the Live Region Service to announce the information that is show below the "My Actions" trigger when an item is activated. I set
+    the replayable option to true so the output is added to the rolling announcement log, viewable by using the announcement history dialog, shortcut keys <kbd>Ctrl + Shift + H</kbd> 
     or activate the alerts button, button right of the screen.
+</p>
+<p>
+    I also added the <span class="code-span">&lt;ActionPopoverSeparator /&gt;</span> component beween each button or link. 
+    The example on the usages page does not use the separator. 
 </p>
 <section class="section-box">
     <h2 style="margin-bottom:var(--br-unit-space-5);">Actions popover standalone example</h2>
     <ActionsPopover ActionsPopoverPosition="ActionsPopoverPosition.BottomCentre" TriggerText="My Actions">
         <PopoverItems>
             <ActionPopoverButton TData="int" ItemData="42" ButtonText="Edit" SvgIcon="--svg-pencil-icon" OnClick="HandleOnEdit" />
+            <ActionPopoverSeparator />
             <ActionPopoverButton TData="Contact" ItemData="@_testContact" ButtonText="Delete" SvgIcon="--svg-trash-can-icon" IconColour="red" OnClick="HandleOnDelete" />
+            <ActionPopoverSeparator />
             <ActionPopoverLink TData="object" TargetType="PopoverLinkTargetType.Self" LinkText="View" PreventDefault="true" 
                 SvgIcon="--svg-overview-icon" Path="/components/actions-popover/installation" OnClick="HandleOnView" />
         </PopoverItems>
@@ -84,7 +90,7 @@
     private async Task HandleOnDelete(ButtonActionData<Contact> itemData)
     {
         var data = itemData.GetValueOr(null);
-        _output = $"You activated the {itemData.ButtonText} option that contained the paload value of {(data is null ? "[null]" : data.ToString())}";
+        _output = $"You activated the {itemData.ButtonText} option that contained the payload value of {(data is null ? "[null]" : data.ToString())}";
         await LiveRegionService.MakeAnnouncement(new Announcement(_output, AnnouncementType.Info, $"My Actions - {itemData.ButtonText}"), true);
         await InvokeAsync(StateHasChanged);
     }

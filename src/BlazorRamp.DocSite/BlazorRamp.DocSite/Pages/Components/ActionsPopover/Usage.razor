@@ -1,21 +1,33 @@
-﻿
-@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_ActionsPopover}/{GlobalValues.Common_Page_Path_Usage}")]
+﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_ActionsPopover}/{GlobalValues.Common_Page_Path_Usage}")]
 
 <PageTitle>@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Usage . . . In Progress . . .</h1>
+<h1>@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
-
+    Practical examples showing the Actions Popover component configured with various parameters.
 </p>
 <p>
-
+    A typical use case for the actions popover would be to provide a compact list of row actions for a data table. The row data type can be
+    assigned as the type param so this data can then be provided as the payload in the <span class="code-span">OnClick</span> events.
+   <strong>Note: </strong>This mechanism uses a Func instead of the Blazor <span class="code-span">EventCallback</span> to prevent automatic renders, so you call the 
+   <span class="code-span">StateHasChanged</span> method if necessary.
 </p>
-
+<p>
+    The example uses the <span class="code-span">Stretch</span> parameter so the trigger buttons fill the available column space so they are the same size,
+    in this instance they all size to the widest button. The <span class="code-span">ActionsPopoverPosition</span> parameter was set so the popover displays
+    to the bottom right of the trigger. It uses anchor positioning with fallback so if you resize the page so the list would go off page and then open it, it
+    will shift to dispay above the trigger.
+</p>
+<p>
+    For the example below, I have used the Live Region Service to announce the information that is show below the table when an actionable item is activated. I set
+    the replayable option to true so the output is added to the rolling announcement log, viewable by using the announcement history dialog, shortcut keys <kbd>Ctrl + Shift + H</kbd>
+    or activate the alerts button, button right of the screen.
+</p>
 
 <section class="@GlobalValues.Info_Box_Class">
 
-    <h2 id="table-title">Contacts table</h2>
+    <h2 id="table-title">Contacts table (Northwind lives on)</h2>
 
     <div class="data-table">
         <table aria-labelledby="table-title">
@@ -36,11 +48,11 @@
                         <td>@contact.GivenName</td>
                         <td>@contact.FamilyName</td>
                         <td>@contact.JobTitle</td>
-                        <td>                            
-                            <ActionsPopover TriggerText="@($"For: {contact.GivenName} {contact.FamilyName}")" style="width:100%;" >
+                        <td style="width:1%;white-space:nowrap;">                            
+                            <ActionsPopover TriggerText="@($"For: {contact.GivenName} {contact.FamilyName}")" Stretch="true" ActionsPopoverPosition="ActionsPopoverPosition.BottomRight">
                                 <PopoverItems>
-                                    <ActionPopoverButton TData="Contact" ButtonText="Edit" />
-                                    <ActionPopoverButton TData="Contact" ButtonText="Delete" />
+                                    <ActionPopoverButton TData="Contact" ButtonText="Edit" SvgIcon="--svg-pencil-icon" OnClick="HandleOnEdit" ItemData="@contact"/>
+                                     <ActionPopoverButton TData="Contact" ButtonText="Delete" SvgIcon="--svg-trash-can-icon" OnClick="HandleOnDelete" ItemData="@contact" />
                                 </PopoverItems>
                             </ActionsPopover>
                         </td>
@@ -49,10 +61,14 @@
             </tbody>
         </table>
     </div>
-
+    <div style="margin-top:var(--br-unit-space-5);">
+        <p> @_output</p>
+    </div>
 </section>
-
-@* <CodeBox CodeBlock="@AnnouncementHistorySnippets.Add_Configure_Announcement_History_Component" AriaLabel="_Actions_Popover code block" /> *@
+<p>
+    Below is the code used in the example.
+</p>
+<CodeBox CodeBlock="@ActionsPopoverSnippets.Usage_Example_Row_Actions" AriaLabel="_Actions Popover usage code block" />
 
 
 <div class="flex-content justify-content-between">
@@ -68,6 +84,9 @@
     </a>
 </div>
 @code {
+    [Inject] ILiveRegionService LiveRegionService { get; set; } = default!;
+
+    private string _output = String.Empty;
 
     private Contact[] _contacts = new[]
     {
@@ -78,5 +97,23 @@
         new Contact(5, "Steven", "Buchanan", "Sales Manager")
     };
 
+    private async Task HandleOnEdit(ButtonActionData<Contact> itemData)
+    {
+        var data = itemData.GetValueOr(null);
+
+        _output = $"You activated the {itemData.ButtonText} option that contained the payload value of {(data is null ? "[null]" : data.ToString())}";
+        await LiveRegionService.MakeAnnouncement(new Announcement(_output, AnnouncementType.Info, $"My Actions - {itemData.ButtonText}"), true);
+        await InvokeAsync(StateHasChanged);
+    }
+    private async Task HandleOnDelete(ButtonActionData<Contact> itemData)
+    {
+        var data = itemData.GetValueOr(null);
+        _output = $"You activated the {itemData.ButtonText} option that contained the payload value of {(data is null ? "[null]" : data.ToString())}";
+        await LiveRegionService.MakeAnnouncement(new Announcement(_output, AnnouncementType.Info, $"My Actions - {itemData.ButtonText}"), true);
+        await InvokeAsync(StateHasChanged);
+    }
+
     private record Contact(int ContactID, string GivenName, string FamilyName, string JobTitle);
+
+
 }
