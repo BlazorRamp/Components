@@ -107,6 +107,7 @@
 
 
     &__trigger-text {
+        color:inherit;
     }
 
 
@@ -210,12 +211,10 @@
         display: inline-grid;
         grid-template-columns: subgrid;
         align-items: center;
-      
         background-color: var(--br-comp-actions-popover-item-background);
         border-color: var(--br-comp-actions-popover-item-border-colour);
         border-width: var(--br-comp-actions-popover-item-border-width);
         border-radius: var(--br-comp-actions-popover-item-border-radius);
-        color: var(--br-comp-actions-popover-item-text);
         font-family: var(--br-comp-actions-popover-item-font-family);
         font-size: var(--br-comp-actions-popover-item-font-size);
         font-weight: var(--br-comp-actions-popover-item-font-weight);
@@ -252,7 +251,6 @@
         border-color: var(--br-comp-actions-popover-item-border-colour);
         border-width: var(--br-comp-actions-popover-item-border-width);
         border-radius: var(--br-comp-actions-popover-item-border-radius);
-        color: var(--br-comp-actions-popover-item-text);
         font-family: var(--br-comp-actions-popover-item-font-family);
         font-size: var(--br-comp-actions-popover-item-font-size);
         font-weight: var(--br-comp-actions-popover-item-font-weight);
@@ -260,6 +258,8 @@
         padding-block: var(--br-unit-space-2);
         padding-inline: var(--br-unit-space-4);
         min-height: var(--br-unit-wcag-target-2a);
+        color: var(--br-comp-actions-popover-item-text);
+        text-decoration-color: currentcolor;
 
         &:hover {
             background-color: var(--br-comp-actions-popover-item-state-hover);
@@ -277,15 +277,13 @@
             outline-color: var(--br-comp-actions-popover-item-outline-colour);
         }
 
-        &:visited {
-            color: inherit;
-        }
-    }
+     }
 
     &__action-text {
         grid-column: 2/3;
         white-space: nowrap;
-        text-align:start;
+        text-align: start;
+        color: var(--br-comp-actions-popover-item-text);
     }
 
     &__icon-slot {

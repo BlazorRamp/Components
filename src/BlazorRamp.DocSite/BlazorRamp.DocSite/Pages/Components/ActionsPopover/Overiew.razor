@@ -22,10 +22,29 @@
     respect forced-colours mode automatically, so high-contrast users always get a legible, system-consistent result regardless of what colours you configure.
 </p>
 <p>
-    <strong>Note: </strong>The actions popover just uses the simple disclosure pattern and as such no ARIA role or custom keyboard support was necessary.
+    <strong>Note: </strong>The actions popover just uses the simple disclosure pattern and as such no ARIA role or custom keyboard navigation support was necessary.
 </p>
 
+<p>
+    Both the <span class="code-span">ActionPopoverButton</span> and <span class="code-span">ActionPopoverLink</span> components have an OnClick event defined using a Func to 
+    prevent the automatic rendering in the parent component that occurs with <span class="code-span">EventCallbak</span>.
+    With regards to the <span class="code-span">ActionPopoverLink</span> component it has a <span class="code-span">PreventDefault</span> parameter that can be used to prevent 
+    the default <span class="code-span">href</span> navigation if you would like to handle this yourself.
+</p>
 
+<section class="section-box">
+    <h2>Example</h2>
+    <ActionsPopover ActionsPopoverPosition="ActionsPopoverPosition.BottomLeft" TriggerText="My Actions">
+        <PopoverItems>
+            <ActionPopoverButton TData="int" ButtonText="Edit" SvgIcon="--svg-pencil-icon" />
+            <ActionPopoverButton TData="int" ButtonText="Delete" SvgIcon="--svg-trash-can-icon" IconColour="red" />
+            <ActionPopoverLink TData="object" TargetType="PopoverLinkTargetType.Self" LinkText="View" PreventDefault="true" SvgIcon="--svg-overview-icon" Path="/components/actions-popover/installation" />
+        </PopoverItems>
+    </ActionsPopover>
+    <div>
+
+    </div>
+</section>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Usage}")">
