@@ -27,6 +27,7 @@
 }
 
 .br-actions-popover {
+    display: inline-block;
     width: fit-content;
     anchor-scope: --popover-anchor;
     box-sizing: border-box;
@@ -34,6 +35,11 @@
     --_br-svg-popover-trigger-icon: none;
     --_br-svg-popover-action-icon: none;
     --_icon-size: 1em;
+
+    &--stretch {
+        display: block;
+        width: 100%;
+    }
 
     button.br-actions-popover__trigger {
         position: relative;
@@ -58,14 +64,15 @@
         padding-block: var(--br-unit-space-3);
         padding-inline: var(--br-unit-space-4);
         cursor: pointer;
+        width: 100%;
 
         &:hover {
             background-color: var(--br-comp-actions-popover-item-state-hover);
         }
 
         &:active {
-            transform: scale(var(--br-comp-actions-popover-trigger-state-active-scale));
             filter: brightness(var(--br-comp-actions-popover-trigger-state-active-brightness));
+            background-color: var(--br-comp-actions-popover-trigger-background);
             outline: none;
         }
 
@@ -107,7 +114,7 @@
 
 
     &__trigger-text {
-        color:inherit;
+        color: inherit;
     }
 
 
@@ -276,8 +283,7 @@
             outline-offset: var(--br-comp-actions-popover-item-outline-offset);
             outline-color: var(--br-comp-actions-popover-item-outline-colour);
         }
-
-     }
+    }
 
     &__action-text {
         grid-column: 2/3;

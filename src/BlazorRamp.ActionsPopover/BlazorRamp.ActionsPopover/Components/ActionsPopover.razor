@@ -1,5 +1,5 @@
 ﻿
-<div @ref="ContainerElementRef" class="@GlobalValues.Actions_Popover_Class">
+<div @ref="ContainerElementRef" class="@(Stretch ? $"{GlobalValues.Actions_Popover_Class} {GlobalValues.Actions_Popover_Stretch_Modifier}" : GlobalValues.Actions_Popover_Class)">
 
     <button @attributes="@AdditionalAttributes" type="button" class="@GlobalValues.Actions_Popover_Trigger_Class" popovertarget="@_popoverPanelID">
 

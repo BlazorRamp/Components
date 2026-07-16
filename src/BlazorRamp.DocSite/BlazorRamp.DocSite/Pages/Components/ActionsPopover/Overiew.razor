@@ -1,8 +1,9 @@
-﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_ActionsPopover}/{GlobalValues.Common_Page_Path_Overview}")]
+﻿@using BlazorRamp.ActionsPopover.Common.Models
+@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_ActionsPopover}/{GlobalValues.Common_Page_Path_Overview}")]
 
 <PageTitle>@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Overview</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Overview . . . In Progress . . .</h1>
+<h1>@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Overview</h1>
 
 <p>
     ActionsPopover is a lightweight component for grouping related actions - buttons, links, or a mix of both, behind a single trigger.
@@ -31,18 +32,23 @@
     With regards to the <span class="code-span">ActionPopoverLink</span> component it has a <span class="code-span">PreventDefault</span> parameter that can be used to prevent 
     the default <span class="code-span">href</span> navigation if you would like to handle this yourself.
 </p>
-
+<p>
+    For the example, I have used the Live Region Service to announce the information that is show below the "My Actions" trigger on activatinge an item. I set
+    the replayable option to true so the output is add to the rolling announcement log, viewable by using the announcement history dialog, shortcut keys <kbd>Ctrl + Shift + H</kbd> 
+    or activate the alerts button, button right of the screen.
+</p>
 <section class="section-box">
-    <h2>Example</h2>
-    <ActionsPopover ActionsPopoverPosition="ActionsPopoverPosition.BottomLeft" TriggerText="My Actions">
+    <h2 style="margin-bottom:var(--br-unit-space-5);">Actions popover standalone example</h2>
+    <ActionsPopover ActionsPopoverPosition="ActionsPopoverPosition.BottomCentre" TriggerText="My Actions">
         <PopoverItems>
-            <ActionPopoverButton TData="int" ButtonText="Edit" SvgIcon="--svg-pencil-icon" />
-            <ActionPopoverButton TData="int" ButtonText="Delete" SvgIcon="--svg-trash-can-icon" IconColour="red" />
-            <ActionPopoverLink TData="object" TargetType="PopoverLinkTargetType.Self" LinkText="View" PreventDefault="true" SvgIcon="--svg-overview-icon" Path="/components/actions-popover/installation" />
+            <ActionPopoverButton TData="int" ItemData="42" ButtonText="Edit" SvgIcon="--svg-pencil-icon" OnClick="HandleOnEdit" />
+            <ActionPopoverButton TData="Contact" ItemData="@_testContact" ButtonText="Delete" SvgIcon="--svg-trash-can-icon" IconColour="red" OnClick="HandleOnDelete" />
+            <ActionPopoverLink TData="object" TargetType="PopoverLinkTargetType.Self" LinkText="View" PreventDefault="true" 
+                SvgIcon="--svg-overview-icon" Path="/components/actions-popover/installation" OnClick="HandleOnView" />
         </PopoverItems>
     </ActionsPopover>
-    <div>
-
+    <div style="margin-top:var(--br-unit-space-5);">
+        <p> @_output</p>
     </div>
 </section>
 
@@ -60,4 +66,32 @@
 </div>
 @code {
 
+    [Inject] ILiveRegionService LiveRegionService { get; set; } = default!;
+
+    private string _output = String.Empty;
+
+    private Contact _testContact = new("John Doe", "Managing Director");
+    private record Contact(string Name, string Title);
+
+    private async Task HandleOnEdit(ButtonActionData<int> itemData)
+    {
+        var data = itemData.GetValueOr(42);
+
+        _output = $"You activated the {itemData.ButtonText} option that contained the payload value of {data}";
+        await LiveRegionService.MakeAnnouncement(new Announcement(_output, AnnouncementType.Info, $"My Actions - {itemData.ButtonText}"), true);
+        await InvokeAsync(StateHasChanged);
+    }    
+    private async Task HandleOnDelete(ButtonActionData<Contact> itemData)
+    {
+        var data = itemData.GetValueOr(null);
+        _output = $"You activated the {itemData.ButtonText} option that contained the paload value of {(data is null ? "[null]" : data.ToString())}";
+        await LiveRegionService.MakeAnnouncement(new Announcement(_output, AnnouncementType.Info, $"My Actions - {itemData.ButtonText}"), true);
+        await InvokeAsync(StateHasChanged);
+    }
+    private async Task HandleOnView(LinkActionData<object> itemData)
+    {
+        _output = $"You activated the {itemData.LinkText} option that contained no payload, and had its default navigation action prevented.";
+        await LiveRegionService.MakeAnnouncement(new Announcement(_output, AnnouncementType.Info, $"My Actions - {itemData.LinkText}"), true);
+        await InvokeAsync(StateHasChanged);
+    }
 }

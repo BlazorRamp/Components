@@ -24,6 +24,19 @@ partial class ActionsPopover : IAsyncDisposable
     [Parameter] public string TriggerText { get; set; } = GlobalValues.Actions_Popover_Trigger_Text!;
 
     /// <summary>
+    /// Gets or sets whether the trigger should stretch to fill the width of its container,
+    /// rather than shrinking to fit its own content.
+    /// </summary>
+    /// <remarks>
+    /// Defaults to <c>false</c>, so the trigger sizes to its content by default. Set to
+    /// <c>true</c> for contexts like table rows, where every trigger in a column should
+    /// share the same width — combined with the browser's own table column sizing, the
+    /// widest trigger in the column determines the width, and <see cref="Stretch"/> makes
+    /// every other row's trigger fill that same width rather than staying narrower.
+    /// </remarks>
+    [Parameter] public bool Stretch { get; set; } = false;
+
+    /// <summary>
     /// Gets or sets the position of the popover relative to the trigger.
     /// Defaults to <see cref="ActionsPopoverPosition.BottomLeft"/>.
     /// </summary>

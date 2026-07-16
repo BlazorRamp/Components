@@ -12,12 +12,44 @@
 
 </p>
 
-<section class="section-box">
-    <ActionsPopover TriggerText="My Actions" ActionsPopoverPosition="ActionsPopoverPosition.BottomLeft">
-        <PopoverItems>
 
-        </PopoverItems>
-    </ActionsPopover>
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 id="table-title">Contacts table</h2>
+
+    <div class="data-table">
+        <table aria-labelledby="table-title">
+            <thead>
+                <tr>
+                    <th scope="col">Contact ID</th>
+                    <th scope="col">Given Name</th>
+                    <th scope="col">Family Name</th>
+                    <th scope="col">Job Title</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var contact in _contacts)
+                {
+                    <tr>
+                        <td>@contact.ContactID</td>
+                        <td>@contact.GivenName</td>
+                        <td>@contact.FamilyName</td>
+                        <td>@contact.JobTitle</td>
+                        <td>                            
+                            <ActionsPopover TriggerText="@($"For: {contact.GivenName} {contact.FamilyName}")" style="width:100%;" >
+                                <PopoverItems>
+                                    <ActionPopoverButton TData="Contact" ButtonText="Edit" />
+                                    <ActionPopoverButton TData="Contact" ButtonText="Delete" />
+                                </PopoverItems>
+                            </ActionsPopover>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
 </section>
 
 @* <CodeBox CodeBlock="@AnnouncementHistorySnippets.Add_Configure_Announcement_History_Component" AriaLabel="_Actions_Popover code block" /> *@
@@ -37,4 +69,14 @@
 </div>
 @code {
 
+    private Contact[] _contacts = new[]
+    {
+        new Contact(1, "Nancy", "Davolio", "Sales Representative"),
+        new Contact(2, "Andrew", "Fuller", "Vice President, Sales"),
+        new Contact(3, "Janet", "Leverling", "Sales Representative"),
+        new Contact(4, "Margaret", "Peacock", "Sales Representative"),
+        new Contact(5, "Steven", "Buchanan", "Sales Manager")
+    };
+
+    private record Contact(int ContactID, string GivenName, string FamilyName, string JobTitle);
 }

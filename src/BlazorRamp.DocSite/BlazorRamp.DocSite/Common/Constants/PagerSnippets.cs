@@ -65,7 +65,7 @@ public class PagerSnippets
 
         </div>
 
-        <div class="weather-table">
+        <div class="data-table">
             <table aria-labelledby="table-title">
                 <thead>
                     <tr>

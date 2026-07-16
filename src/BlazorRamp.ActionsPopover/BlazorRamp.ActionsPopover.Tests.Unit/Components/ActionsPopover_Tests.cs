@@ -180,5 +180,24 @@ public class ActionsPopover_Tests
 
         }
 
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public async Task Should_apply_the_stretch_modifier_class_based_on_the_stretch_parameter(bool stretch)
+        {
+            await using var context = new BunitContext();
+
+            var popover = CreateActionsPopover(context, p => p.Add(x => x.Stretch, stretch));
+
+            var wrapper = popover.Find($".{GlobalValues.Actions_Popover_Class}");
+
+            if (stretch)
+            {
+                wrapper.ClassList.Should().Contain(GlobalValues.Actions_Popover_Stretch_Modifier);
+                return;
+            }
+            wrapper.ClassList.Should().NotContain(GlobalValues.Actions_Popover_Stretch_Modifier);
+        }
+
     }
 }

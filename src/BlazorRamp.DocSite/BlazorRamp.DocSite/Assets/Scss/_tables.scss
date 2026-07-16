@@ -95,7 +95,7 @@
     }
 }
 
-.weather-table {
+.data-table {
     overflow-x: auto;
 
     & table {
@@ -139,7 +139,7 @@
         font-size: var(--br-unit-font-size-label);
         color: var(--br-code-block-text);
         border-top: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
-        width: 25%;
+       
         padding: var(--br-unit-space-3);
         border-left: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
 

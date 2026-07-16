@@ -21,7 +21,7 @@ public class DebounceSnippets
                             OnDebounceFilterResult="HandleDebounce" ParseErrorMessage="System error, filtering is unavailable at this time." />
 
         </div>
-        <div class="weather-table">
+        <div class="data-table">
 
             <table>
                 <caption>Weather Table</caption>
