@@ -2,6 +2,7 @@
 using BlazorRamp.ActionsPopover.Common.Models;
 using BlazorRamp.ActionsPopover.Common.Utilities;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace BlazorRamp.ActionsPopover.Components;
 /// <summary>
@@ -9,7 +10,7 @@ namespace BlazorRamp.ActionsPopover.Components;
 /// Use this for actions handled entirely in code, such as Edit or Delete, as opposed to
 /// <see cref="ActionPopoverLink{TData}"/> which renders an anchor for navigation.
 /// </summary>
-public partial class ActionPopoverButton<TData> : ComponentBase
+public partial class ActionPopoverButton<TData> : ComponentBase, IAsyncDisposable
 {
     /// <summary>
     /// Gets or sets the text displayed for this action button.
@@ -56,6 +57,9 @@ public partial class ActionPopoverButton<TData> : ComponentBase
     [CascadingParameter(Name = $"{GlobalValues.Actions_Popover_Panel_Cascading_ID_Name}")]
     private string? PopoverID { get; set; }
 
+    [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
+    private IJSObjectReference? _jSModule = null;
+
     private string? _svgIcon    = null;
     private string? _iconColour = null;
     /// <summary>
@@ -71,10 +75,20 @@ public partial class ActionPopoverButton<TData> : ComponentBase
         base.OnParametersSet();
     }
 
+    /// <summary>
+    /// Imports the JavaScript module to access the hide popover function
+    /// </summary>
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+
+        if (true == firstRender) _jSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_File_Path);
+    }
 
     private async Task RaiseOnClick(string buttonText, TData? itemData)
     {
         var actionData = CreateActionData(buttonText, itemData);
+
+        if (_jSModule != null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Hide_Popover_Func, PopoverID);
         if (OnClick is not null) await OnClick.Invoke(actionData);
     }
 
@@ -82,4 +96,20 @@ public partial class ActionPopoverButton<TData> : ComponentBase
 
         => new(buttonText, payload);
 
+    /// <summary>
+    /// Releases the JavaScript module reference set during <c>OnAfterRenderAsync</c>.
+    /// </summary>
+    public async ValueTask DisposeAsync()
+    {
+
+        if (_jSModule is not null)
+        {
+            try
+            {
+                await _jSModule.DisposeAsync();
+            }
+            catch { }
+        }
+
+    }
 }

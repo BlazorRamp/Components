@@ -14,6 +14,9 @@ public class ActionPopoverButton_Tests
         BunitContext context,
         Action<ComponentParameterCollectionBuilder<ActionPopoverButton<TData>>>? parameters = null)
     {
+        var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_File_Path);
+
+        moduleInterop.SetupVoid(GlobalValues.JS_Hide_Popover_Func, _ => true).SetVoidResult();
         var component = context.Render<ActionPopoverButton<TData>>(
             builder => parameters?.Invoke(builder));
 
@@ -44,18 +47,6 @@ public class ActionPopoverButton_Tests
             var button = CreateActionPopoverButton<string>(context, p => p.Add(x => x.ButtonText, "Edit"));
 
             button.Find($".{GlobalValues.Actions_Popover_Action_Text_Class}").TextContent.Trim().Should().Be("Edit");
-        }
-
-        [Fact]
-        public async Task Should_set_the_popovertarget_attribute_from_the_cascaded_popover_id()
-        {
-            await using var context = new BunitContext();
-
-            var button = CreateActionPopoverButton<string>(context, p => p
-                .Add(x => x.ButtonText, "Edit")
-                .AddCascadingValue(GlobalValues.Actions_Popover_Panel_Cascading_ID_Name, "test-popover-id"));
-
-            button.Find("button").GetAttribute("popovertarget").Should().Be("test-popover-id");
         }
 
         [Theory]

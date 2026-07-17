@@ -3,8 +3,7 @@
 <li>
     <button @attributes="@AdditionalAttributes"
         type="button" class="@GlobalValues.Actions_Popover_Action_Button_Class"
-        popovertarget="@PopoverID"
-        popovertargetaction="hide" @onclick="() => RaiseOnClick(ButtonText, ItemData)">
+        @onclick="() => RaiseOnClick(ButtonText, ItemData)">
         
         <span 
             aria-hidden="true" 
