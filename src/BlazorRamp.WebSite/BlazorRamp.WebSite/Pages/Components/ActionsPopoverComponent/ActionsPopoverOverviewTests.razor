@@ -1,0 +1,146 @@
+﻿
+@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_ActionsPopover}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
+
+<PageTitle>@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Overview_Tests</h1>
+    <p>
+        ActionsPopover is a lightweight component for grouping related actions - buttons, links, or a mix of both, behind a single trigger.
+    </p>
+    <p>
+        It's built on the native HTML Popover API for toggling, top-layer stacking, and dismiss behaviour like click-outside and Escape,
+        combined with CSS anchor positioning to place the panel relative to its trigger.
+        The native behaviour was extended to include closing the popover when tabbing puts the focus on an item outside of the actions popover.
+    </p>
+    <p>
+        <b>Released: </b>Current version <b>v2.1.1</b> See the documentation site for more information: <a target="_blank" class="@GlobalValues.Link_Class" href="@GlobalValues.Site_Link_Docs_Actions_Popover">Actions popopver documentation (opens in new window)</a>
+    </p>
+
+</section>
+
+<section class="@GlobalValues.Main_Nav_Section_Heading_SkipTo @GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
+
+    <p>
+        Select and open the My Actions popover.
+    </p>
+    <p>
+        Whilst the popover is open select and activate any of the three available actions, there are two buttons and one link and can be selected/activated.
+    </p>
+
+    <h3 id="pager-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h3>
+
+    <ul aria-labelledby="pager-keyboard">
+        <li><kbd>Tab, Shift + Tab</kbd> - to set focus on the component trigger and/or move between actions on the popover.</li>
+        <li><kbd>Enter or Space</kbd> - when on the component trigger or button in the popover activates it.</li>
+        <li><kbd>Enter</kbd> - when on a link activates it.</li>
+        <li><kbd>Escape</kbd> - closes the popover</li>
+    </ul>
+    <p style="margin-top:var(--br-unit-space-5);">
+        <strong>Note: </strong>Activating any item within the popover will also close the popover.
+    </p>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+    <ul>
+        <li>
+            When focus is set on the closed (collapsed) component trigger, the My Actions button, screen reader users should be advised that the button is currently collapsed.
+        </li>
+        <li>
+            Activating the trigger will show the popover panel and screen reader users should be advised that the popover is now open, expanded.
+        </li>
+        <li>
+            Activating the trigger, toggles the popover state, collapsed or expanded.
+        </li>
+        <li>
+            Pressing the escape key closes the popover returning focus to the trigger. 
+        </li>
+        <li>
+            Using the tab key sets focus to each item in the popover in turn; tabbing away from the popover closes it with focus going to the next 
+            focusable element on the page.
+        </li>
+        <li>
+            Activating either of the two buttons contained within the popover, closes the popover, in this instance returning focus to the component trigger.
+            To simulate an action, a message is displayed below the trigger, with the details of the action and any data (payload) associated with it.
+            This same information is also announced for screen reader users as well as added to the rolling announcement log viewable by using the 
+            announcement history viewer, short cut keys <span class="code-span">Ctrl + Shift + H</span> or by activating the Alerts button, bottom right of the screen.
+        </li>
+        <li>
+            The last item in the list is a link, but it has been configured to have the default action prevented. As such, a message is displayed below the component trigger
+            indicator that this item was activated, again with screen reader users also being advised of the action that they activated.
+        </li>
+        <li>
+            Voice control users can just use the displayed accessible names with their normal commands to operate the actions popover.
+        </li>
+    </ul>
+
+
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h3>Actions popover test</h3>
+    <ActionsPopover ActionsPopoverPosition="ActionsPopoverPosition.BottomCentre" TriggerText="My Actions">
+        <PopoverItems>
+            <ActionPopoverButton TData="int" ItemData="42" ButtonText="Edit" SvgIcon="--svg-pencil-icon" OnClick="HandleOnEdit" />
+            <ActionPopoverSeparator />
+            <ActionPopoverButton TData="Contact" ItemData="@_testContact" ButtonText="Delete" SvgIcon="--svg-trash-can-icon" IconColour="red" OnClick="HandleOnDelete" />
+            <ActionPopoverSeparator />
+            <ActionPopoverLink TData="object" TargetType="PopoverLinkTargetType.Self" LinkText="View" PreventDefault="true" 
+                SvgIcon="--svg-overview-icon" Path="/components/actions-popover/installation" OnClick="HandleOnView" />
+        </PopoverItems>
+    </ActionsPopover>
+    <div style="margin-top:var(--br-unit-space-5);">
+        <p> @_output</p>
+    </div>
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Quirks_Issues}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Accordion - @GlobalValues.Common_Page_Title_Quirks_Issues</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Busy_Overview_Page_Test}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Busy - @GlobalValues.Common_Page_Path_Busy_Overview_Page_Test</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+
+    [Inject] ILiveRegionService LiveRegionService { get; set; } = default!;
+
+    private string _output = String.Empty;
+
+    private Contact _testContact = new("John Doe", "Managing Director");
+    private record Contact(string Name, string Title);
+
+    private async Task HandleOnEdit(ButtonActionData<int> itemData)
+    {
+        var data = itemData.GetValueOr(42);
+
+        _output = $"You activated the {itemData.ButtonText} option that contained the payload value of {data}";
+        await LiveRegionService.MakeAnnouncement(new Announcement(_output, AnnouncementType.Info, $"My Actions - {itemData.ButtonText},"), true);
+        await InvokeAsync(StateHasChanged);
+    }
+    private async Task HandleOnDelete(ButtonActionData<Contact> itemData)
+    {
+        var data = itemData.GetValueOr(null);
+        _output = $"You activated the {itemData.ButtonText} option that contained the payload value of {(data is null ? "[null]" : data.ToString())}";
+        await LiveRegionService.MakeAnnouncement(new Announcement(_output, AnnouncementType.Info, $"My Actions - {itemData.ButtonText}"), true);
+        await InvokeAsync(StateHasChanged);
+    }
+    private async Task HandleOnView(LinkActionData<object> itemData)
+    {
+        _output = $"You activated the {itemData.LinkText} option that contained no payload, and had its default navigation action prevented.";
+        await LiveRegionService.MakeAnnouncement(new Announcement(_output, AnnouncementType.Info, $"My Actions - {itemData.LinkText}"), true);
+        await InvokeAsync(StateHasChanged);
+    }
+}
