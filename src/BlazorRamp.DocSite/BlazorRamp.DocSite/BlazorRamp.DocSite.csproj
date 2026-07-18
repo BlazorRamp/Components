@@ -13,7 +13,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="BlazorRamp.Accordion" Version="1.0.0" />
+		<PackageReference Include="BlazorRamp.Accordion" Version="1.0.1" />
 		<PackageReference Include="BlazorRamp.ActionsPopover" Version="2.1.1" />
 		<PackageReference Include="BlazorRamp.BusyIndicator" Version="1.1.0" />
 		<PackageReference Include="BlazorRamp.Core" Version="1.1.1" />
