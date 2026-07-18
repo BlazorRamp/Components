@@ -5,7 +5,7 @@ Blazor Ramp aims to provide a suite of modular, accessible-first Blazor componen
 Please check back **regularly** during this **initial** phase whilst I put in place everything you would expect.
 
 The Core project containing the live region service and announcement history component have been released, along with other projects containing the busy indicator component, 
-the modal dialog framework, switch, skip to, toggletip, tabs, accordion, nav group, a host of inputs, a debounce filter and recently a pagination component. 
+the modal dialog framework, switch, skip to, toggletip, tabs, accordion, nav group, a host of inputs, a debounce filter, pager and recently an actions popover  component. 
 
 The full documentation is available at: [https://docs.blazorramp.uk](https://docs.blazorramp.uk). 
 
