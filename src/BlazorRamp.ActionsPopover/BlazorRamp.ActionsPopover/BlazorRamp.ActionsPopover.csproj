@@ -16,10 +16,10 @@ edit and delete</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; Actions Popover; ARIA; </PackageTags>
-    <PackageReleaseNotes>Exposed circle border style CSS variable that goes around the chevron icon so its easier to turn off.</PackageReleaseNotes>
-    <Version>2.1.2</Version>
-    <AssemblyVersion>2.1.2</AssemblyVersion>
-    <FileVersion>2.1.2</FileVersion>
+    <PackageReleaseNotes>Exposed circle outline style CSS variable (in stead of border) that goes around the chevron icon so its easier to turn off.</PackageReleaseNotes>
+    <Version>2.1.3</Version>
+    <AssemblyVersion>2.1.3</AssemblyVersion>
+    <FileVersion>2.1.3</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
