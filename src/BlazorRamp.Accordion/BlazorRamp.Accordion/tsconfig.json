@@ -1,16 +1,17 @@
 {
-    "compileOnSave": true,
-    "compilerOptions": {
-        "noImplicitAny": false,
-        "noEmitOnError": true,
-        "removeComments": false,
-        "sourceMap": true,
-        "target": "es2020",
-        "module": "es2020",
-        "outDir": "wwwroot/assets/js",
-        "strict": true
-    },
-    "include": [
-        "Assets/Scripts/*"
-    ]
+  "compileOnSave": true,
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es2020",
+    "module": "es2020",
+    "rootDir": "Assets/Scripts",
+    "outDir": "wwwroot/assets/js",
+    "strict": true
+  },
+  "include": [
+    "Assets/Scripts/*"
+  ]
 }
