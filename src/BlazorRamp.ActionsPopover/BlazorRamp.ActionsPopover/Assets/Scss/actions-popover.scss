@@ -85,7 +85,9 @@
         }
 
             &:focus-visible .br-actions-popover__trigger-expander-icon, &:hover .br-actions-popover__trigger-expander-icon {
-                box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
+                border-width: 1px;
+                border-color: currentColor;
+                border-style: var(--br-comp-actions-popover-state-circle-border-style);
             }
     }
 
@@ -96,6 +98,9 @@
         align-items: center;
         border-radius: 50%;
         transition: transform 200ms ease;
+        border-width:1px;
+        border-style:solid;
+        border-color:transparent;
 
         & > span {
             height: calc(var(--_icon-size) * 1.25);
@@ -149,7 +154,7 @@
         border-radius: var(--br-comp-actions-popover-pane-panel-border-radius);
         align-items: center;
         position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
- 
+
         &:not(:has(.br-actions-popover__icon-slot--with-icon)) {
             grid-template-columns: 1fr;
         }

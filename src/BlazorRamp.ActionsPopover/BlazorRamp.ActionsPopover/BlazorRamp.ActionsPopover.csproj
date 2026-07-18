@@ -16,10 +16,10 @@ edit and delete</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; Actions Popover; ARIA; </PackageTags>
-    <PackageReleaseNotes>Fix: Buttons inside the popover panel were incorrectly announced as "expanded" only with VoiceOver on macOS (initially thought to be a quirk). Changed the closing mechanisms to resolve this.</PackageReleaseNotes>
-    <Version>2.1.1</Version>
-    <AssemblyVersion>2.1.1</AssemblyVersion>
-    <FileVersion>2.1.1</FileVersion>
+    <PackageReleaseNotes>Exposed circle border style CSS variable that goes around the chevron icon so its easier to turn off.</PackageReleaseNotes>
+    <Version>2.1.2</Version>
+    <AssemblyVersion>2.1.2</AssemblyVersion>
+    <FileVersion>2.1.2</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
