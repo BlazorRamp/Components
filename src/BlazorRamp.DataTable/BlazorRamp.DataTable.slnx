@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/01 - Component Source/">
+    <Project Path="BlazorRamp.DataTable/BlazorRamp.DataTable.csproj" />
+  </Folder>
+  <Folder Name="/02 - Sandbox/">
+    <Project Path="Sandbox/Sandbox.Client/Sandbox.Client.csproj" Id="d1d6543c-a315-4d79-ad8a-4f27513f7ff1" />
+    <Project Path="Sandbox/Sandbox/Sandbox.csproj" Id="b3123f31-8480-4808-8282-8b55610591cd" />
+  </Folder>
+</Solution>
