@@ -1,7 +1,36 @@
 ﻿@page "/"
 
+
+
+@rendermode @(new InteractiveServerRenderMode(false))
+
 <PageTitle>Home</PageTitle>
+<p>Before table paragraph</p>
 
-<h1>Hello, world!</h1>
+<DataTable TData="Contact" TitleAlignment="ContentAlignment.Start" 
+        FilterAlignment="ContentAlignment.End" BottomPagerAlignment="ContentAlignment.End">
+    <Filter>
+        <DebounceFilter HintText="Filters across all columns of the table"
+                        RegexPattern="^[A-Za-z0-9]*$"
+                        ValidationMessage="Invalid filter, filtering paused, letters and numbers only" />
+    </Filter>
+    <BottomPager>
+        <Pager @bind-CurrentPage="_currentPage" AriaLabel="Two button pager" TotalItemCount="50" CurrentItemCount="50" ItemsPerPage="10"
+               PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="false" PageAlignment="PageAlignment.End" />
+    </BottomPager>
+</DataTable>
+<p>After table paragraph</p>
 
-Welcome to your new app.
+@code{
+
+    private int _currentPage = 1;
+
+    private List<Contact> _contacts = [];
+
+    protected override void OnInitialized()
+    {
+        _contacts = StaticData.GetContacts(100000);
+
+        base.OnInitialized();
+    }
+}

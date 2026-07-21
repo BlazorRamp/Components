@@ -11,7 +11,7 @@
     <ProjectReference Include="..\..\BlazorRamp.Pager\BlazorRamp.Pager.csproj" />
     <ProjectReference Include="..\Sandbox.Client\Sandbox.Client.csproj" />
     <PackageReference Include="BlazorRamp.Core" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.10" />
   </ItemGroup>
 
 </Project>

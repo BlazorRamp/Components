@@ -1,0 +1,23 @@
+﻿@page "/table"
+
+
+@rendermode @(new InteractiveWebAssemblyRenderMode(true));
+<p>@_location</p>
+
+@code {
+
+    private string _location = String.Empty;
+    private List<Contact> _contacts = [];
+
+    protected override void OnInitialized()
+    {
+        _location =  "Server";
+
+        if (OperatingSystem.IsBrowser())
+        {
+            _contacts = StaticData.GetContacts(100000);
+            _location = "Client";
+        }
+
+    }
+}

@@ -11,6 +11,8 @@
     <ProjectReference Include="..\..\BlazorRamp.DataTable\BlazorRamp.DataTable.csproj" />
     <ProjectReference Include="..\Sandbox.Client\Sandbox.Client.csproj" />
     <PackageReference Include="BlazorRamp.Core" Version="1.1.1" />
+    <PackageReference Include="BlazorRamp.DebounceFilter" Version="1.1.0" />
+    <PackageReference Include="BlazorRamp.Pager" Version="1.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.10" />
   </ItemGroup>
 

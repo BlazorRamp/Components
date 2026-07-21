@@ -10,7 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\BlazorRamp.Core\BlazorRamp.Core.csproj" />
     <ProjectReference Include="..\Sandbox.Client\Sandbox.Client.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.10" />
   </ItemGroup>
 
 </Project>

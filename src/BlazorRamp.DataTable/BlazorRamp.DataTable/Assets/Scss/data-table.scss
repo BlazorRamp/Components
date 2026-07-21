@@ -1,1 +1,65 @@
 ﻿@use "_root-data-table";
+
+
+.br-data-table {
+    box-sizing: border-box;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content min-content min-content auto min-content;
+
+
+
+    &__title {
+        grid-row: 1/2;
+        display: flex;
+    }
+
+    &__filter {
+        container-type: inline-size;
+        grid-row: 2/3;
+        display: flex;
+        width: auto;
+
+        > * {
+            width: fit-content !important;
+        }
+
+        @media (max-width: 576px) {
+            > * {
+                width: 100% !important; /* Matches !important to successfully override */
+            }
+        }
+
+        @container (max-width: 400px) {
+            > * {
+                width: 100% !important; /* Matches !important to successfully override */
+            }
+        }
+    }
+
+    &__contents {
+        grid-row: 3/4;
+    }
+
+    &__top-pager {
+        grid-row: 4/5;
+        display: flex;
+    }
+
+    &__bottom-pager {
+        grid-row: 5/6;
+    }
+
+    & [data-br-data-position="start"] {
+        justify-content: start;
+    }
+
+    & [data-br-data-position="centre"] {
+        justify-content: center;
+    }
+
+    & [data-br-data-position="end"] {
+        justify-content: end;
+    }
+}

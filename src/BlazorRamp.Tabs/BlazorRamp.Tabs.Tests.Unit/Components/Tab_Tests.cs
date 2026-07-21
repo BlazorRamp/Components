@@ -2,8 +2,6 @@
 using Bunit;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using Newtonsoft.Json.Linq;
-using System.Reflection.Metadata.Ecma335;
 using TabComponent = BlazorRamp.Tabs.Components.Tab;
 using TabsComponent = BlazorRamp.Tabs.Components.Tabs;
 

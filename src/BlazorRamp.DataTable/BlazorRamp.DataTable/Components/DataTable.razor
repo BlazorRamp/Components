@@ -1,0 +1,34 @@
+﻿@using BlazorRamp.DataTable.Common.Utilities
+@typeparam TData
+@attribute [CascadingTypeParameter(nameof(TData))]
+
+<CascadingValue Value="this" IsFixed="true">
+    @TableColumns
+</CascadingValue>
+
+@* @if (_tableColumns.Count == 0) return; *@
+
+<div class="@GlobalValues.DataTable_Class">
+
+    <div class="@GlobalValues.DataTable_Title_Class" data-br-data-position="@DataTableHelper.GetDataPosition(TitleAlignment)">
+        @_title
+    </div>
+
+    <div class="@GlobalValues.DataTable_Filter_Class" data-br-data-position="@DataTableHelper.GetDataPosition(FilterAlignment)">
+        @if (Filter is not null){@Filter}
+       
+    </div>
+
+    <div class="@GlobalValues.DataTable_Top_Pager_Class" >
+
+    </div>
+
+    <div class="@GlobalValues.DataTable_Content_Class">
+
+    </div>
+
+    <div class="@GlobalValues.DataTable_Bottom_Pager_Class">
+        @if (BottomPager is not null) {@BottomPager}
+    </div>
+
+</div>
