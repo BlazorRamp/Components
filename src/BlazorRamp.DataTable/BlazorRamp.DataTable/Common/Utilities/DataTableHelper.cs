@@ -52,4 +52,7 @@ internal static class DataTableHelper
             _                       => GlobalValues.DataTable_Data_Position_Start
         };
 
+    public static string BuildClassList(params string[] classList)
+
+        => String.Join(" ", classList.Where(c => !string.IsNullOrWhiteSpace(c)));
 }

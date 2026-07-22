@@ -18,6 +18,8 @@ public abstract class ColumnBase<TData> : ComponentBase, IDisposable
     public PropertyInfo?        PropertyInfo       { get; protected set; } = null;
     public ColumnSortDirection ColumnSortDirection { get; set; } = ColumnSortDirection.NotSorted;
 
+    public Func<TData, object>? ValueGetter { get; protected set; } = null;
+
     public string FieldName     => _fieldName;
     public string Title         => _title;
     public bool HasFormatString => _hasStringFormat;
@@ -32,7 +34,7 @@ public abstract class ColumnBase<TData> : ComponentBase, IDisposable
     protected override void OnInitialized()
     {
         _formatString    = String.IsNullOrWhiteSpace(Format) ? String.Empty : Format.Trim();
-        _hasStringFormat = _formatString is not null;
+        _hasStringFormat = !string.IsNullOrEmpty(_formatString);
 
         ParentTable.AddDataTableColumn(this);
     }

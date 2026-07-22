@@ -20,6 +20,8 @@ public partial class DataColumn<TData> : ColumnBase<TData>
         
         PropertyInfo = typeof(TData).GetProperty(_fieldName);
 
+        ValueGetter = DataTableHelper.CreatePropertyValueGetter<TData>(PropertyInfo!);
+
         base.OnInitialized();//Other stuff gets set in the column base and the column is added to the parent, the data table.
 
     }

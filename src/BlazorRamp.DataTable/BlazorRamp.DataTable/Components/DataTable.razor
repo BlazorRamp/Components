@@ -1,4 +1,5 @@
 ﻿@using BlazorRamp.DataTable.Common.Utilities
+@using Microsoft.AspNetCore.Components.Web.Virtualization
 @typeparam TData
 @attribute [CascadingTypeParameter(nameof(TData))]
 
@@ -10,25 +11,168 @@
 
 <div class="@GlobalValues.DataTable_Class">
 
-    <div class="@GlobalValues.DataTable_Title_Class" data-br-data-position="@DataTableHelper.GetDataPosition(TitleAlignment)">
+    <div id="@_tableTitleID" class="@(TitleHidden ? $"{GlobalValues.DataTable_Title_Class} {GlobalValues.DataTable_Title_Hidden_Modifier}" : GlobalValues.DataTable_Title_Class)" data-br-data-position="@DataTableHelper.GetDataPosition(TitleAlignment)">
+        @*   <span id="@_tableTitleID">@_title</span> *@
         @_title
     </div>
 
-    <div class="@GlobalValues.DataTable_Filter_Class" data-br-data-position="@DataTableHelper.GetDataPosition(FilterAlignment)">
-        @if (Filter is not null){@Filter}
-       
+    <div class="@GlobalValues.DataTable_Filter_Class" data-br-filter-position="@DataTableHelper.GetDataPosition(FilterAlignment)">@Filter</div>
+
+    <div class="@GlobalValues.DataTable_Top_Pager_Class">@TopPager</div>
+
+    <div class="@GlobalValues.DataTable_Content_Class" style="height:500px;">
+
+        <table aria-labelledby="@_tableTitleID">
+            <thead>
+                <tr>
+                    @foreach (var column in _tableColumns)
+                    {
+                        @if (column is DataColumn<TData> dataColumn)
+                        {
+                            var ariaSortValue = column.ColumnSortDirection == ColumnSortDirection.NotSorted ? null : (column.ColumnSortDirection == ColumnSortDirection.Ascending ? "ascending" : "descending");
+                            <th aria-sort="@ariaSortValue" scope="col" data-br-data-position="@DataTableHelper.GetDataPosition(dataColumn.ColumnAlignment)">
+                                @{
+                                    CheckAddSortable(dataColumn, ariaSortValue);
+                                }
+                            </th>
+                            continue;
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @if (PagerBinding is not null || (PagerBinding is null && VirtualizeItemSizePX < 1))
+                {
+                    AddRows();
+                }
+                else
+                {
+                    AddVirtualizedRows();
+                }
+
+@*                 @if (_dataPage.Count == 0)
+                {
+                    <tr class="@GlobalValues.DataTable_Row_No_Data_Class"><td colspan="@_dataTableColumns.Count">@_noDataLabel</td></tr>
+                } *@
+            </tbody>
+        </table>
+
     </div>
 
-    <div class="@GlobalValues.DataTable_Top_Pager_Class" >
-
-    </div>
-
-    <div class="@GlobalValues.DataTable_Content_Class">
-
-    </div>
-
-    <div class="@GlobalValues.DataTable_Bottom_Pager_Class">
-        @if (BottomPager is not null) {@BottomPager}
-    </div>
+    <div class="@GlobalValues.DataTable_Bottom_Pager_Class">@BottomPager</div>
 
 </div>
+
+@{
+    void CheckAddSortable(DataColumn<TData> dataColumn, string? sortDirection)
+    {
+        @if (true == dataColumn.IsSortable)
+        {
+            <button type="button" class="@GlobalValues.DataTable_Column_Sorter_Class" @onclick="() => HandleColumnHeaderClick(dataColumn)" data-br-data-position="@DataTableHelper.GetDataPosition(dataColumn.ColumnAlignment)">
+                <span class="@GlobalValues.DataTable_Column_Title_Class">@dataColumn.Title</span>
+                <span class="@GlobalValues.DataTable_Column_Icon_Class" data-br-aria-sort="@sortDirection" aria-hidden="true"></span>
+            </button>
+            return;
+        }
+        <span class="@GlobalValues.DataTable_Column_Title_Class">@dataColumn.Title</span>
+    }
+
+    void AddRows()
+    {
+         var isRowSelectable = RowSelectionMode != RowSelectionMode.None;
+         var selectableModifier = isRowSelectable ? GlobalValues.DataTable_Data_Row_Selectable_Modifier : "";
+
+        @for (int index = 0; index < _dataPage.Count; index++)
+        {
+            var rowItem     = _dataPage[index];
+            var containsRow = _selectedRows.Contains(rowItem);
+            var isSelected = isRowSelectable && containsRow;
+            var selectClass = isSelected ? GlobalValues.DataTable_Data_Row_Selected_Modifier : selectableModifier;
+
+            <tr @key="@rowItem" class="@DataTableHelper.BuildClassList(GlobalValues.DataTable_Data_Row_Class, selectClass)" style="@(RowStyleFunc is not null ? RowStyleFunc(rowItem) : null)"
+                @onclick="() => HandleOnSelectedRow(rowItem)">
+
+                @foreach (var column in _tableColumns)
+                {
+                    @if (column is DataColumn<TData> dataColumn)
+                    {
+                        var dataValue = dataColumn.ValueGetter!(rowItem);
+                        var cellFuncStyle = dataColumn.CellStyleFunc is not null ? dataColumn.CellStyleFunc(rowItem) : null;
+
+                        @if (dataColumn.CellTemplate is null)
+                        {
+                            <td data-br-data-position="@DataTableHelper.GetDataPosition(dataColumn.ColumnAlignment)" style="@($"{column.CellStyle}{(cellFuncStyle is null ? null : cellFuncStyle)}")">
+                                @(column.HasFormatString ? DataTableHelper.FormatValue(dataValue, dataColumn.FormatString) : dataValue)
+                            </td>
+
+                        }
+                        else
+                        {
+                            <td data-br-data-position="@DataTableHelper.GetDataPosition(dataColumn.ColumnAlignment)" style="@column.CellStyle">@dataColumn.CellTemplate!(rowItem)</td>
+                        }
+                        continue;
+                    }
+                    <td data-br-data-position="@DataTableHelper.GetDataPosition(column.ColumnAlignment)" style="@column.CellStyle">@column.CellTemplate!(rowItem)</td>
+                }
+                @if (isRowSelectable) { AddCheckBox(rowItem, containsRow); }
+            </tr>
+        }
+    }
+
+
+
+    void AddVirtualizedRows()
+    {
+        var isRowSelectable = RowSelectionMode != RowSelectionMode.None;
+        var selectableModifier = isRowSelectable ? GlobalValues.DataTable_Data_Row_Selectable_Modifier : "";
+
+        <Virtualize TItem="TData" Items="@_dataPage" Context="rowItem" ItemSize="@VirtualizeItemSizePX" SpacerElement="tr">
+            @{
+                var containsRow = _selectedRows.Contains(rowItem);
+                var isSelected = isRowSelectable && containsRow;
+                var selectClass = isSelected ? GlobalValues.DataTable_Data_Row_Selected_Modifier : selectableModifier;
+            }
+            <tr @key="rowItem">
+
+                @foreach (var column in _tableColumns)
+                {
+                    @if (column is DataColumn<TData> dataColumn)
+                    {
+
+                        var dataValue = dataColumn.ValueGetter!(rowItem);
+                        var cellFuncStyle = dataColumn.CellStyleFunc is not null ? dataColumn.CellStyleFunc(rowItem) : null;
+
+                        @if (dataColumn.CellTemplate is null)
+                        {
+                            <td data-br-data-position="@DataTableHelper.GetDataPosition(dataColumn.ColumnAlignment)" style="@($"{column.CellStyle}{(cellFuncStyle is null ? null : cellFuncStyle)}")">
+                                @(column.HasFormatString ? DataTableHelper.FormatValue(dataValue, dataColumn.FormatString) : dataValue)
+                            </td>
+                        }
+                        else
+                        {
+                            <td data-br-data-position="@DataTableHelper.GetDataPosition(dataColumn.ColumnAlignment)" style="@column.CellStyle">@dataColumn.CellTemplate!(rowItem)</td>
+                        }
+                        continue;
+                    }
+
+                    <td data-br-data-position="@DataTableHelper.GetDataPosition(column.ColumnAlignment)" style="@column.CellStyle">@column.CellTemplate!(rowItem)</td>
+                }
+
+
+            </tr>
+        </Virtualize>
+    }
+    void AddCheckBoxColumnHeader()
+    {
+        // <th class="@DataTableHelper.BuildClassList(GlobalValues.DataTable_Column_Header_Class)" scope="col" style="width:2rem;">
+        //     <span aria-label="@_selectRowLabel"></span> <!-- NVDA did not read the label when on the th tag so added the span as content -->
+        // </th>
+    }
+    void AddCheckBox(TData rowItem, bool containsRow)
+    {
+        // <td>
+        //     <input type="checkbox" class="@GlobalValues.DataTable_Checkbox_Selector_Class" checked="@containsRow"
+        //            aria-label="@_selectRowLabel" @onchange="(args) => ToggleSelection((bool)args.Value!, rowItem)" />
+        // </td>
+    }
+}
