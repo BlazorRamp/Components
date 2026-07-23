@@ -7,16 +7,20 @@
     @TableColumns
 </CascadingValue>
 
-@* @if (_tableColumns.Count == 0) return; *@
+@if (_tableColumns.Count == 0) return;
 
 <div class="@GlobalValues.DataTable_Class">
 
-    <div id="@_tableTitleID" class="@(TitleHidden ? $"{GlobalValues.DataTable_Title_Class} {GlobalValues.DataTable_Title_Hidden_Modifier}" : GlobalValues.DataTable_Title_Class)" data-br-data-position="@DataTableHelper.GetDataPosition(TitleAlignment)">
-        @*   <span id="@_tableTitleID">@_title</span> *@
+    <div id="@_tableTitleID" class="@(TitleHidden ? $"{GlobalValues.DataTable_Title_Class} {GlobalValues.DataTable_Title_Hidden_Modifier}" : GlobalValues.DataTable_Title_Class)" 
+        data-br-data-position="@DataTableHelper.GetTitlePosition(TitleAlignment)">
         @_title
     </div>
 
-    <div class="@GlobalValues.DataTable_Filter_Class" data-br-filter-position="@DataTableHelper.GetDataPosition(FilterAlignment)">@Filter</div>
+    <div class="@GlobalValues.DataTable_Filter_Area_Class">
+        <div data-br-filter-position="@DataTableHelper.GetFilterPosition(FilterAlignment)">
+            @Filter
+        </div>
+    </div>
 
     <div class="@GlobalValues.DataTable_Top_Pager_Class">@TopPager</div>
 

@@ -7,17 +7,17 @@
 <PageTitle>Home</PageTitle>
 <p>Before table paragraph</p>
 
-<DataTable TData="Contact" TitleAlignment="ContentAlignment.Start" FilterAlignment="ContentAlignment.End" TitleHidden="false" DataSource="@_contacts"
+<DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts"
            PagerBinding="@_pagerBinding" FilterRule="@_filterRule">
     <Filter>
-        <DebounceFilter HintText="Filters across all columns of the table" RegexPattern="^[A-Za-z0-9]*$"
-        ValidationMessage="Invalid filter, filtering paused, letters and numbers only" OnDebounceFilterResult="HandleOnDebounce" />
+        <DebounceFilter HintText="Filters across all columns of the table" RegexPattern="^[A-Za-z0-9]*$" OnDebounceFilterResult="HandleOnDebounce"
+        ValidationMessage="Invalid filter, filtering paused, letters and numbers only"  />
     </Filter>
     <TableColumns>
         <DataColumn DataProperty="d => d.ContactID" DisplayName="Contact id" IsSortable="true"  />
         <DataColumn DataProperty="d => d.Title" DisplayName="Title" IsSortable="true" />
         <DataColumn DataProperty="d => d.GivenName" DisplayName="First name" IsSortable="true" />
-        <DataColumn DataProperty="d => d.FamilyName" DisplayName="Surname" IsSortable="true" />
+        <DataColumn DataProperty="d => d.FamilyName" DisplayName="Surname" IsSortable="true" ColumnAlignment="ContentAlignment.Start" />
         <DataColumn DataProperty="d => d.Country" DisplayName="Country of residence" IsSortable="true" />
         <DataColumn DataProperty="d => d.DateOfBirth" DisplayName="Date of birth" ColumnAlignment="ContentAlignment.Centre" />
     </TableColumns>

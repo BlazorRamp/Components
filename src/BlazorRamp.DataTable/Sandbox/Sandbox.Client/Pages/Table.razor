@@ -8,10 +8,10 @@
 
 <p>Before table paragraph</p>
 
-<DataTable TData="Contact" TitleAlignment="ContentAlignment.Start" FilterAlignment="ContentAlignment.End" TitleHidden="false" DataSource="@_contacts"
-            FilterRule="@_filterRule">
+<DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts"
+            FilterRule="@_filterRule" DefaultSortIndex="3">
     <Filter>
-        <DebounceFilter HintText="Filters across all columns of the table" RegexPattern="^[A-Za-z0-9]*$"
+        <DebounceFilter HintText="Filters across all columns of the table" RegexPattern="^[A-Za-z0-9]*$" DebounceDelayMs="5"
                         ValidationMessage="Invalid filter, filtering paused, letters and numbers only" OnDebounceFilterResult="HandleOnDebounce" />
     </Filter>
     <TableColumns>
@@ -51,12 +51,12 @@
     {
         if (debounceResult.IsValid)
         {
-            _filterRule = (data) => data.ContactID.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
-                                    || data.GivenName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
-                                    || data.FamilyName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
-                                    || data.Country.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
-                                    || (data.DateOfBirth.ToString() ?? string.Empty).Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
-
+            // _filterRule = (data) => data.ContactID.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+            //                         || data.GivenName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+            //                         || data.FamilyName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+            //                         || data.Country.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+            //                         || (data.DateOfBirth.ToString() ?? string.Empty).Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
+            _filterRule = (data) => data.Country.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase) && data.FamilyName.StartsWith(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
 
             await InvokeAsync(StateHasChanged);
         }

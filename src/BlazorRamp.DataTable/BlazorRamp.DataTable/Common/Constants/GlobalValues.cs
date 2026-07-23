@@ -17,7 +17,7 @@ internal class GlobalValues
 
     public const string DataTable_Title_Class               = $"{DataTable_Class}__title";
     public const string DataTable_Title_Hidden_Modifier     = $"{DataTable_Title_Class}--hidden";
-    public const string DataTable_Filter_Class              = $"{DataTable_Class}__filter";
+    public const string DataTable_Filter_Area_Class         = $"{DataTable_Class}__filter-area";
     public const string DataTable_Top_Pager_Class           = $"{DataTable_Class}__top-pager";
     public const string DataTable_Content_Class             = $"{DataTable_Class}__content";
     public const string DataTable_Bottom_Pager_Class        = $"{DataTable_Class}__bottom-pager";

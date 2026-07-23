@@ -35,35 +35,45 @@
         }
     }
 
-    &__filter {
+    &__filter-area {
         container-type: inline-size;
         grid-row: 2/3;
         display: flex;
         width: auto;
-        justify-content: start;
+        display: inline-grid;
+        grid-template-columns: repeat(12, 1fr);
 
-        &[data-br-filter-position="centre"] {
+        > * {
+            grid-column: 1/-1;
+        }
+
+        > [data-br-filter-position="start"] {
+            grid-column: 1/7;
+            display: inline-flex;
+            justify-content: start;
+        }
+
+        > [data-br-filter-position="centre"] {
+            grid-column: 4/10;
+            display: inline-flex;
             justify-content: center;
         }
 
-        &[data-br-filter-position="end"] {
+        > [data-br-filter-position="end"] {
+            grid-column: 7/13;
+            display: inline-flex;
             justify-content: end;
         }
 
-        > * {
-            min-width: fit-content !important;
-            width: 50% !important;
-        }
-
-        @media (max-width: 576px) {
-            > * {
-                width: 100% !important; /* Matches !important to successfully override */
+        @container (max-width:400px) {
+            > [data-br-filter-position] {
+                grid-column: 1/-1;
             }
         }
 
-        @container (max-width: 400px) {
-            > * {
-                width: 100% !important; /* Matches !important to successfully override */
+        @media (max-width: 576px) {
+            > [data-br-filter-position] {
+                grid-column: 1/-1;
             }
         }
     }
@@ -181,6 +191,11 @@
         }
 
         th, td {
+
+            &[data-br-data-position="start"] {
+                text-align: start;
+            }
+
             &[data-br-data-position="centre"] {
                 text-align: center;
             }
@@ -223,6 +238,10 @@
         justify-content: start;
         align-items: center;
         color: currentColor;
+
+        &[data-br-data-position="start"] {
+            justify-content: start;
+        }
 
         &[data-br-data-position="centre"] {
             justify-content: center;

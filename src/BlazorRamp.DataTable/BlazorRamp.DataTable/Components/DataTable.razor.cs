@@ -7,16 +7,16 @@ using System.Diagnostics;
 
 namespace BlazorRamp.DataTable.Components;
 
-public partial class DataTable<TData>
+public partial class DataTable<TData> : ComponentBase
 {
 
     [Parameter] public RenderFragment TableColumns { get; set; } = default!;
 
     [Parameter] public string           Title                { get; set; } = default!;
-    [Parameter] public ContentAlignment TitleAlignment       { get; set; } = ContentAlignment.Start;
+    [Parameter] public TitleAlignment  TitleAlignment       { get; set; } = TitleAlignment.Start;
     [Parameter] public bool             TitleHidden          { get; set; } = false;
     [Parameter] public RenderFragment?  Filter               { get; set; }
-    [Parameter] public ContentAlignment FilterAlignment      { get; set; } = ContentAlignment.Start;
+    [Parameter] public FilterAlignment  FilterAlignment      { get; set; } = FilterAlignment.End;
     [Parameter] public RenderFragment?  TopPager             { get; set; }
     [Parameter] public RenderFragment?  BottomPager          { get; set; }
     [Parameter] public int              VirtualizeItemSizePX { get; set; } = 32;
@@ -28,6 +28,7 @@ public partial class DataTable<TData>
     [Parameter] public Func<TData, string?>?       RowStyleFunc     { get; set; } = null;
     [Parameter] public Func<TData, bool>?          FilterRule       { get; set; }
 
+    [Parameter] public int DefaultSortIndex { get; set; } = -1;
     [Parameter] public EventCallback<List<TData>> SelectedRowsChanged { get; set; }
 
 
@@ -99,6 +100,21 @@ public partial class DataTable<TData>
         _dataSource      = DataSource;
     }
 
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(true == firstRender)
+        {
+            if (DefaultSortIndex > -1 && DefaultSortIndex < _tableColumns.Where(a => a is DataColumn<TData>).ToList().Count)
+            {
+                _lastSortedColumnIndex = await ToggleSortData(_tableColumns[DefaultSortIndex], _dataSource);
+
+                if(true == _usePaging)  _dataPage = GetDataPage(PagerBinding!.CurrentPage, PagerBinding.ItemsPerPage, _dataSource);
+
+                await InvokeAsync(StateHasChanged);
+            }
+        }
+    }
     internal void AddDataTableColumn(ColumnBase<TData> dataColumn)
     {
         _columnAlignments[dataColumn.FieldName] = DataTableHelper.GetDataPosition(dataColumn.ColumnAlignment);

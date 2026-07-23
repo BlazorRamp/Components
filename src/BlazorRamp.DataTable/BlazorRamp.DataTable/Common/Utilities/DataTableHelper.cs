@@ -41,7 +41,16 @@ internal static class DataTableHelper
 
         return memberExpression.Member.Name;
     }
+    public static string? GetFilterPosition(FilterAlignment alignment)
 
+        => alignment switch
+        {
+            FilterAlignment.Start => GlobalValues.DataTable_Data_Position_Start,
+            FilterAlignment.End => GlobalValues.DataTable_Data_Position_End,
+            FilterAlignment.Centre => GlobalValues.DataTable_Data_Position_Centre,
+            _ => null
+
+        };
 
     public static string GetDataPosition(ContentAlignment alignment)
 
@@ -49,9 +58,18 @@ internal static class DataTableHelper
         {
             ContentAlignment.End    => GlobalValues.DataTable_Data_Position_End,
             ContentAlignment.Centre => GlobalValues.DataTable_Data_Position_Centre,
-            _                       => GlobalValues.DataTable_Data_Position_Start
-        };
+            _                       => GlobalValues.DataTable_Data_Position_Start,
 
+        };
+    public static string GetTitlePosition(TitleAlignment alignment)
+
+        => alignment switch
+        {
+            TitleAlignment.End      => GlobalValues.DataTable_Data_Position_End,
+            TitleAlignment.Centre   => GlobalValues.DataTable_Data_Position_Centre,
+            _ => GlobalValues.DataTable_Data_Position_Start,
+
+        };
     public static string BuildClassList(params string[] classList)
 
         => String.Join(" ", classList.Where(c => !string.IsNullOrWhiteSpace(c)));
