@@ -17,8 +17,9 @@
     position: relative;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: min-content min-content min-content auto min-content;
-
+    grid-template-rows: min-content min-content min-content minmax(auto, min-content) min-content min-content;
+    height: 100%;
+    min-height: 0;
 
     &__title {
         grid-row: 1/2;
@@ -78,9 +79,16 @@
         }
     }
 
+    &__top-pager {
+        grid-row: 3/4;
+        display: flex;
+    }
+
+
     &__content {
         overflow: auto;
-        grid-row: 3/4;
+        grid-row: 4/5;
+        min-height: 0;
         margin-block: var(--br-unit-space-5);
         border-radius: var(--br-comp-data-table-area-header-border-radius);
         border-color: var(--br-comp-data-table-area-header-border-colour);
@@ -147,10 +155,14 @@
             border-style: none;
             border-color: var(--br-comp-data-table-area-header-border-colour);
             border-width: var(--br-comp-data-table-area-header-border-width);
+            border-bottom-style: var(--br-comp-data-table-area-header-border-style);
+            border-right-style: var(--br-comp-data-table-area-header-border-style);
             background-color: var(--br-comp-all-area-header-background);
             color: var(--br-comp-data-table-area-header-text);
-            border-bottom-style: var(--br-comp-data-table-area-content-border-style);
-            border-right-style: var(--br-comp-data-table-area-content-border-style);
+            font-family: var(--br-comp-data-table-area-headert-font-family);
+            font-size: var(--br-comp-data-table-area-headert-font-size);
+            font-weight: var(--br-comp-data-table-area-header-font-weight);
+            line-height: var(--br-comp-data-table-area-headert-line-height);
             padding: 0;
             margin: 0;
 
@@ -173,6 +185,10 @@
             border-width: var(--br-comp-data-table-area-content-border-width);
             border-right-style: var(--br-comp-data-table-area-content-border-style);
             border-bottom-style: var(--br-comp-data-table-area-content-border-style);
+            font-family: var(--br-comp-data-table-area-content-font-family);
+            font-size: var(--br-comp-data-table-area-content-font-size);
+            font-weight: var(--br-comp-data-table-area-content-font-weight);
+            line-height: var(--br-comp-data-table-area-content-line-height);
             overflow-wrap: break-word;
             max-width: 0;
             word-break: keep-all;
@@ -184,11 +200,12 @@
             }
         }
 
-        tr:last-child {
-            & td {
+        tr[data-br-last-row="true"] {
+            td {
                 border-bottom: none;
             }
         }
+
 
         th, td {
 
@@ -212,16 +229,18 @@
         }
 
         &--selectable {
+            cursor: pointer;
         }
-    }
 
-    &__top-pager {
-        grid-row: 4/5;
-        display: flex;
-    }
-
-    &__bottom-pager {
-        grid-row: 5/6;
+        &--no-data {
+            text-align: center;
+            background-color: inherit;
+            color: var(--br-comp-data-table-area-header-text);
+            font-size: var(--br-comp-data-table-area-header-font-size);
+            font-weight: var(--br-comp-data-table-area-header-font-weight);
+            font-family: var(--br-comp-data-table-area-header-font-family);
+            line-height: var(--br-comp-data-table-area-header-line-height);
+        }
     }
 
     &__column-sorter {
@@ -238,6 +257,7 @@
         justify-content: start;
         align-items: center;
         color: currentColor;
+        font:inherit;
 
         &[data-br-data-position="start"] {
             justify-content: start;
@@ -275,5 +295,34 @@
         &[data-br-aria-sort="descending"] {
             mask-image: var(--svg-sort-down-icon);
         }
+    }
+
+    &__column-selector {
+        width: 3rem;
+    }
+
+    &__row-selector {
+        text-align: center;
+
+        > input[type="checkbox"] {
+            aspect-ratio: 1/1;
+            accent-color: var(--br-unit-colour-primary);
+            cursor: pointer;
+        }
+    }
+
+    &__bottom-pager {
+        grid-row: 5/6;
+    }
+
+    &__messages {
+        grid-row: 6/7;
+        text-align: start;
+        background-color: inherit;
+        color: var(--br-comp-data-table-area-header-text);
+        font-size: var(--br-comp-data-table-area-header-font-size);
+        font-weight: var(--br-comp-data-table-area-header-font-weight);
+        font-family: var(--br-comp-data-table-area-header-font-family);
+        line-height: var(--br-comp-data-table-area-header-line-height);
     }
 }

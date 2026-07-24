@@ -5,48 +5,68 @@
 @rendermode @(new InteractiveWebAssemblyRenderMode(true));
 <p>@_location</p>
 
+<div style="height:900px; ">
 
-<p>Before table paragraph</p>
+    <DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts"
+               FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.Single">
+        <Filter>
+            <DebounceFilter HintText="Filters across all columns of the table" RegexPattern="^[A-Za-z0-9]*$" OnDebounceFilterResult="HandleOnDebounce"
+                            ValidationMessage="Invalid filter, filtering paused, letters and numbers only" />
+        </Filter>
+        <TableColumns>
+            <DataColumn DataProperty="d => d.ContactID" DisplayName="Contact id" IsSortable="true" />
+            <DataColumn DataProperty="d => d.Title" DisplayName="Title" IsSortable="true" />
+            <DataColumn DataProperty="d => d.GivenName" DisplayName="First name" IsSortable="true" />
+            <DataColumn DataProperty="d => d.FamilyName" DisplayName="Surname" IsSortable="true" ColumnAlignment="ContentAlignment.Start" />
+            <DataColumn DataProperty="d => d.Country" DisplayName="Country of residence" IsSortable="true" />
+            <DataColumn DataProperty="d => d.DateOfBirth" DisplayName="Date of birth" ColumnAlignment="ContentAlignment.Centre" />
+        </TableColumns>
+        <BottomPager>
+            @*         <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Two button pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount" ItemsPerPage="@_pagerBinding.ItemsPerPage"
+        PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End"   /> *@
+        </BottomPager>
+    </DataTable>
 
-<DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts"
-            FilterRule="@_filterRule" DefaultSortIndex="3">
-    <Filter>
-        <DebounceFilter HintText="Filters across all columns of the table" RegexPattern="^[A-Za-z0-9]*$" DebounceDelayMs="5"
-                        ValidationMessage="Invalid filter, filtering paused, letters and numbers only" OnDebounceFilterResult="HandleOnDebounce" />
-    </Filter>
-    <TableColumns>
-        <DataColumn DataProperty="d => d.ContactID" DisplayName="Contact id" IsSortable="true" />
-        <DataColumn DataProperty="d => d.Title" DisplayName="Title" IsSortable="true" />
-        <DataColumn DataProperty="d => d.GivenName" DisplayName="First name" IsSortable="true" />
-        <DataColumn DataProperty="d => d.FamilyName" DisplayName="Surname" IsSortable="true" />
-        <DataColumn DataProperty="d => d.Country" DisplayName="Country of residence" IsSortable="true" />
-        <DataColumn DataProperty="d => d.DateOfBirth" DisplayName="Date of birth" ColumnAlignment="ContentAlignment.Centre" />
-    </TableColumns>
-    <BottomPager>
-        <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Two button pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount" ItemsPerPage="@_pagerBinding.ItemsPerPage"
-               PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" />
-    </BottomPager>
-</DataTable>
+</div>
 <p>After table paragraph</p>
 
-@code{
+@code {
 
     private PagerBinding _pagerBinding = new(0, 0, 0, 10);
+
     private List<Contact> _contacts = [];
-    private string _location = String.Empty;
+
     private Func<Contact, bool>? _filterRule = null;
 
+    private string _location = String.Empty;
     protected override void OnInitialized()
     {
-        _location =  "Server";
+
+        _location = "Server";
 
         if (OperatingSystem.IsBrowser())
         {
             _contacts = StaticData.GetContacts(100000);
             _location = "Client";
         }
-
+        base.OnInitialized();
     }
+
+    // private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
+    // {
+    //     if (debounceResult.IsValid)
+    //     {
+    //         _filterRule = (data) => data.ContactID.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+    //                                 || data.GivenName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+    //                                 || data.FamilyName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+    //                                 || data.Country.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+    //                                 || (data.DateOfBirth.ToString() ?? string.Empty).Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
+
+
+    //         await InvokeAsync(StateHasChanged);
+    //     }
+    // }
+
     private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
     {
         if (debounceResult.IsValid)
@@ -61,4 +81,6 @@
             await InvokeAsync(StateHasChanged);
         }
     }
+
+
 }

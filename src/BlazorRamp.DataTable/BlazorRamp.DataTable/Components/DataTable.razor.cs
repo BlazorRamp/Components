@@ -1,4 +1,7 @@
-﻿using BlazorRamp.DataTable.Common.Constants;
+﻿using BlazorRamp.Core.Common.Constants;
+using BlazorRamp.Core.Common.Models;
+using BlazorRamp.Core.Services;
+using BlazorRamp.DataTable.Common.Constants;
 using BlazorRamp.DataTable.Common.Models;
 using BlazorRamp.DataTable.Common.Utilities;
 using Microsoft.AspNetCore.Components;
@@ -21,6 +24,11 @@ public partial class DataTable<TData> : ComponentBase
     [Parameter] public RenderFragment?  BottomPager          { get; set; }
     [Parameter] public int              VirtualizeItemSizePX { get; set; } = 32;
     [Parameter] public PagerBinding?    PagerBinding         { get; set; } = null;
+    [Parameter] public int              DefaultSortIndex     { get; set; } = -1;
+    [Parameter] public string?          AriaSelectRowLabel   { get; set; }
+    [Parameter] public string?          NoRecordText         { get; set; } = GlobalValues.DataTable_No_Records_Text;
+    [Parameter] public string?          FilterCountText      { get; set; } = GlobalValues.DataTable_Filter_Count_Text;
+    [Parameter] public string?          RecordCountText      { get; set; } = GlobalValues.DataTable_Record_Count_Text;
 
     [Parameter, EditorRequired] public List<TData> DataSource       { get; set; } = [];
     [Parameter] public RowSelectionMode            RowSelectionMode { get; set; } = RowSelectionMode.None;
@@ -28,10 +36,10 @@ public partial class DataTable<TData> : ComponentBase
     [Parameter] public Func<TData, string?>?       RowStyleFunc     { get; set; } = null;
     [Parameter] public Func<TData, bool>?          FilterRule       { get; set; }
 
-    [Parameter] public int DefaultSortIndex { get; set; } = -1;
+
     [Parameter] public EventCallback<List<TData>> SelectedRowsChanged { get; set; }
 
-
+    [Inject] private ILiveRegionService LiveRegionService { get; set; }
 
     private readonly List<ColumnBase<TData>>    _tableColumns = [];
     private readonly Dictionary<string, string> _columnAlignments = [];
@@ -43,15 +51,26 @@ public partial class DataTable<TData> : ComponentBase
     private List<TData> _previousDataRef = [];
     private List<TData> _selectedRows    = [];
 
+    private string _noDataText            = GlobalValues.DataTable_No_Records_Text;
+    private string _selectRowLabel        = GlobalValues.DataTable_Select_Row_Text;
     private string _tableTitleID          = Guid.NewGuid().ToString();
-    private string _title                 = GlobalValues.DataTable_Title_Text;
+    private string _tableTitle            = GlobalValues.DataTable_Title_Text;
     private int    _lastSortedColumnIndex = -1;
-    private bool    _usePaging            = false;
+    private bool   _usePaging             = false;
+    private string _filterCountText       = GlobalValues.DataTable_Filter_Count_Text;
+    private string _recordCountText       = GlobalValues.DataTable_Record_Count_Text;
+    private string _displayCountMessage   = String.Empty;
+
     protected override async Task OnParametersSetAsync()
     {
         var rowsChanged = false;
 
-        _title = String.IsNullOrWhiteSpace(Title) ? GlobalValues.DataTable_Title_Text : Title.Trim();
+        _tableTitle      = String.IsNullOrWhiteSpace(Title)           ? GlobalValues.DataTable_Title_Text        : Title.Trim();
+        _noDataText      = String.IsNullOrWhiteSpace(NoRecordText)    ? GlobalValues.DataTable_No_Records_Text   : NoRecordText.Trim();
+        _filterCountText = String.IsNullOrWhiteSpace(FilterCountText) ? GlobalValues.DataTable_Filter_Count_Text : FilterCountText.Trim();
+        _recordCountText = String.IsNullOrWhiteSpace(RecordCountText) ? GlobalValues.DataTable_Record_Count_Text : RecordCountText.Trim();
+
+        _displayCountMessage = _recordCountText.Replace("{totalrows}", DataSource.Count.ToString());
 
         if (false == ReferenceEquals(_previousDataRef, DataSource)) //new search / datasource
         {
@@ -84,17 +103,31 @@ public partial class DataTable<TData> : ComponentBase
             
             //await ToggleTableSpinner(false);
             if(_usePaging) CheckSetPagingInfo(_dataSource, false);
+
+            if(_dataSource.Count > 0 && false == _usePaging)
+            {
+
+                _displayCountMessage = _dataSource.Count == DataSource.Count ? _recordCountText.Replace("{totalrows}", DataSource.Count.ToString())
+                                                                             : _filterCountText.Replace("{filteredrows}", _dataSource.Count.ToString()).Replace("{totalrows}", DataSource.Count.ToString());
+
+                //displayCountMessage = _filterCountText.Replace("{filteredrows}", _dataSource.Count.ToString()).Replace("{totalrows}", DataSource.Count.ToString());
+
+                await MakeAnnouncement(_displayCountMessage, _tableTitle);
+            }
+
         }
 
         _selectedRows = SelectedRows ?? [];
         _dataPage     = _dataSource;
 
+        if (_dataSource.Count == 0) _displayCountMessage = String.Empty;
         if (_usePaging) _dataPage = GetDataPage(PagerBinding!.CurrentPage, PagerBinding.ItemsPerPage, _dataSource);
 
     }
 
     protected override void OnInitialized()
     {
+        _selectRowLabel = String.IsNullOrWhiteSpace(AriaSelectRowLabel) ? GlobalValues.DataTable_Select_Row_Text : AriaSelectRowLabel.Trim();
         _usePaging       = PagerBinding != null;
         _previousDataRef = DataSource;
         _dataSource      = DataSource;
@@ -113,8 +146,25 @@ public partial class DataTable<TData> : ComponentBase
 
                 await InvokeAsync(StateHasChanged);
             }
+
+            return;
         }
+
+        if (_dataSource.Count == 0 && false == _usePaging)
+        {
+
+            await MakeAnnouncement(_noDataText, _tableTitle);
+        }
+        Debug.WriteLine("Debug test: " + _usePaging.ToString());
+        Console.WriteLine("Console test: " + _usePaging.ToString());
     }
+
+    private async Task MakeAnnouncement(string message, string trigger)
+    {
+        var announcement = new Announcement(message, AnnouncementType.Info, trigger, LiveRegionType.Polite);
+        await LiveRegionService.MakeAnnouncement(announcement, false);
+    }
+
     internal void AddDataTableColumn(ColumnBase<TData> dataColumn)
     {
         _columnAlignments[dataColumn.FieldName] = DataTableHelper.GetDataPosition(dataColumn.ColumnAlignment);
@@ -191,13 +241,36 @@ public partial class DataTable<TData> : ComponentBase
     {
         if (RowSelectionMode == RowSelectionMode.None) return;
 
-        if(_selectedRows.Contains(rowItem)) _selectedRows.Remove(rowItem);
-
-        _selectedRows.Add(rowItem);
+        if(_selectedRows.Contains(rowItem))
+        {
+            _selectedRows.Remove(rowItem);
+        }
+        else
+        {
+            _selectedRows.Add(rowItem);
+        }
 
         if (RowSelectionMode == RowSelectionMode.Single) _selectedRows.RemoveAll(row => !row!.Equals(rowItem));
 
         if (SelectedRowsChanged.HasDelegate) await SelectedRowsChanged.InvokeAsync(_selectedRows);
+    }
+    private async Task ToggleSelection(bool isSelected, TData rowItem)
+    {
+        if (true == isSelected && false == _selectedRows.Contains(rowItem)) _selectedRows.Add(rowItem);
+
+        if(false == isSelected) _selectedRows.Remove(rowItem);
+
+        if (RowSelectionMode == RowSelectionMode.Single) _selectedRows.RemoveAll(row => !row!.Equals(rowItem));
+
+        if (SelectedRowsChanged.HasDelegate)
+        {
+            await SelectedRowsChanged.InvokeAsync(_selectedRows);
+        }
+        else
+        {
+            await InvokeAsync(StateHasChanged);
+        }
+
     }
 
     private static async Task SortDataSource(bool sortAscending, List<TData> dataSource, ColumnBase<TData> dataColumn)

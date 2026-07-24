@@ -9,9 +9,12 @@ internal class GlobalValues
     public const string DataTable_Data_Position_End    = "end";
 
 
+    public const string DataTable_No_Records_Text   = "No entries found.";
+    public const string DataTable_Title_Text        = "Results table";
+    public const string DataTable_Select_Row_Text   = "Select row";
 
-    public const string DataTable_Title_Text = "Results table";
-
+    public const string DataTable_Filter_Count_Text = "Showing {filteredrows} filtered rows from a total of {totalrows}.";
+    public const string DataTable_Record_Count_Text = "Showing {totalrows} rows.";
 
     public const string DataTable_Class = "br-data-table";
 
@@ -24,11 +27,18 @@ internal class GlobalValues
     public const string DataTable_Column_Sorter_Class       = $"{DataTable_Class}__column-sorter";
     public const string DataTable_Column_Title_Class        = $"{DataTable_Class}__column-title";
     public const string DataTable_Column_Icon_Class         = $"{DataTable_Class}__column-icon";
+    public const string DataTable_Column_Selector_Class     = $"{DataTable_Class}__column-selector";
+    public const string DataTable_Messages_Class            = $"{DataTable_Class}__messages";
 
+
+
+    public const string DataTable_Row_Selector_Class        = $"{DataTable_Class}__row-selector";
 
     public const string DataTable_Data_Row_Class               = $"{DataTable_Class}__data-row";
     public const string DataTable_Data_Row_Selectable_Modifier = $"{DataTable_Data_Row_Class}--selectable";
     public const string DataTable_Data_Row_Selected_Modifier   = $"{DataTable_Data_Row_Class}--selected";
+
+    public const string DataTable_Row_No_Data_Class = $"{DataTable_Data_Row_Class}--no-data";
 
 
 

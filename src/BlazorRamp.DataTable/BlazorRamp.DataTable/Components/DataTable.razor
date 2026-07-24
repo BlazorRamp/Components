@@ -13,7 +13,7 @@
 
     <div id="@_tableTitleID" class="@(TitleHidden ? $"{GlobalValues.DataTable_Title_Class} {GlobalValues.DataTable_Title_Hidden_Modifier}" : GlobalValues.DataTable_Title_Class)" 
         data-br-data-position="@DataTableHelper.GetTitlePosition(TitleAlignment)">
-        @_title
+        @_tableTitle
     </div>
 
     <div class="@GlobalValues.DataTable_Filter_Area_Class">
@@ -24,9 +24,9 @@
 
     <div class="@GlobalValues.DataTable_Top_Pager_Class">@TopPager</div>
 
-    <div class="@GlobalValues.DataTable_Content_Class" style="height:500px;">
+    <div class="@GlobalValues.DataTable_Content_Class">
 
-        <table aria-labelledby="@_tableTitleID">
+        <table aria-labelledby="@_tableTitleID" aria-rowcount="@_dataSource.Count">
             <thead>
                 <tr>
                     @foreach (var column in _tableColumns)
@@ -42,9 +42,11 @@
                             continue;
                         }
                     }
+                    @if (RowSelectionMode != RowSelectionMode.None) { AddCheckBoxColumnHeader(); }
                 </tr>
             </thead>
             <tbody>
+
                 @if (PagerBinding is not null || (PagerBinding is null && VirtualizeItemSizePX < 1))
                 {
                     AddRows();
@@ -53,17 +55,22 @@
                 {
                     AddVirtualizedRows();
                 }
-
-@*                 @if (_dataPage.Count == 0)
+                @if (_dataPage.Count == 0)
                 {
-                    <tr class="@GlobalValues.DataTable_Row_No_Data_Class"><td colspan="@_dataTableColumns.Count">@_noDataLabel</td></tr>
-                } *@
+                    <tr class="@GlobalValues.DataTable_Row_No_Data_Class" data-br-last-row="true"><td colspan="@_tableColumns.Count">@_noDataText</td></tr>
+                }
             </tbody>
         </table>
 
     </div>
 
     <div class="@GlobalValues.DataTable_Bottom_Pager_Class">@BottomPager</div>
+
+    @if(false == _usePaging)
+    {
+        <div class="@GlobalValues.DataTable_Messages_Class">@_displayCountMessage</div>
+    }
+   
 
 </div>
 
@@ -83,6 +90,8 @@
 
     void AddRows()
     {
+        @if (_dataPage.Count == 0) { return; }
+
          var isRowSelectable = RowSelectionMode != RowSelectionMode.None;
          var selectableModifier = isRowSelectable ? GlobalValues.DataTable_Data_Row_Selectable_Modifier : "";
 
@@ -90,11 +99,12 @@
         {
             var rowItem     = _dataPage[index];
             var containsRow = _selectedRows.Contains(rowItem);
-            var isSelected = isRowSelectable && containsRow;
+            var isSelected  = isRowSelectable && containsRow;
             var selectClass = isSelected ? GlobalValues.DataTable_Data_Row_Selected_Modifier : selectableModifier;
+            string? lastRow = index == _dataPage.Count - 1 ? "true" : null;
 
             <tr @key="@rowItem" class="@DataTableHelper.BuildClassList(GlobalValues.DataTable_Data_Row_Class, selectClass)" style="@(RowStyleFunc is not null ? RowStyleFunc(rowItem) : null)"
-                @onclick="() => HandleOnSelectedRow(rowItem)">
+                @onclick="() => HandleOnSelectedRow(rowItem)" data-br-last-row="@lastRow">
 
                 @foreach (var column in _tableColumns)
                 {
@@ -124,9 +134,11 @@
     }
 
 
-
     void AddVirtualizedRows()
     {
+
+        @if(_dataPage.Count == 0){ return; }
+
         var isRowSelectable = RowSelectionMode != RowSelectionMode.None;
         var selectableModifier = isRowSelectable ? GlobalValues.DataTable_Data_Row_Selectable_Modifier : "";
 
@@ -135,8 +147,11 @@
                 var containsRow = _selectedRows.Contains(rowItem);
                 var isSelected = isRowSelectable && containsRow;
                 var selectClass = isSelected ? GlobalValues.DataTable_Data_Row_Selected_Modifier : selectableModifier;
+                var lastRow = _dataPage.Count > 0 && EqualityComparer<TData>.Default.Equals(rowItem, _dataPage[^1]) ? "true" : null;
+
             }
-            <tr @key="rowItem">
+            <tr @key="@rowItem" class="@DataTableHelper.BuildClassList(GlobalValues.DataTable_Data_Row_Class, selectClass)" style="@(RowStyleFunc is not null ? RowStyleFunc(rowItem) : null)"
+                @onclick="() => HandleOnSelectedRow(rowItem)" data-br-last-row="@lastRow">
 
                 @foreach (var column in _tableColumns)
                 {
@@ -161,22 +176,28 @@
 
                     <td data-br-data-position="@DataTableHelper.GetDataPosition(column.ColumnAlignment)" style="@column.CellStyle">@column.CellTemplate!(rowItem)</td>
                 }
-
+                @if (isRowSelectable)
+                {
+                    <td class="@GlobalValues.DataTable_Row_Selector_Class">
+                        <input type="checkbox" checked="@containsRow"
+                               aria-label="@_selectRowLabel" @onchange="(args) => ToggleSelection((bool)args.Value!, rowItem)" />
+                    </td>
+                }
 
             </tr>
         </Virtualize>
     }
     void AddCheckBoxColumnHeader()
     {
-        // <th class="@DataTableHelper.BuildClassList(GlobalValues.DataTable_Column_Header_Class)" scope="col" style="width:2rem;">
-        //     <span aria-label="@_selectRowLabel"></span> <!-- NVDA did not read the label when on the th tag so added the span as content -->
-        // </th>
+        <th scope="col" class="@GlobalValues.DataTable_Column_Selector_Class">
+            <span aria-label="@_selectRowLabel"></span> <!-- NVDA did not read the label when on the th tag so added the span as content -->
+        </th>
     }
     void AddCheckBox(TData rowItem, bool containsRow)
     {
-        // <td>
-        //     <input type="checkbox" class="@GlobalValues.DataTable_Checkbox_Selector_Class" checked="@containsRow"
-        //            aria-label="@_selectRowLabel" @onchange="(args) => ToggleSelection((bool)args.Value!, rowItem)" />
-        // </td>
+        <td class="@GlobalValues.DataTable_Row_Selector_Class">
+            <input type="checkbox" checked="@containsRow"
+                   aria-label="@_selectRowLabel" @onchange="(args) => ToggleSelection((bool)args.Value!, rowItem)" />
+        </td>
     }
 }
