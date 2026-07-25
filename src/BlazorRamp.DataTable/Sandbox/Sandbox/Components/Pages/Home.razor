@@ -18,6 +18,7 @@
     <TopPager>
 
 
+
     </TopPager>
     <TableColumns>
         <DataColumn DataProperty="d => d.ContactID" DisplayName="Contact id" IsSortable="true"  />
@@ -29,7 +30,7 @@
     </TableColumns>
     <BottomPager>
             <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Two button pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount" ItemsPerPage="@_pagerBinding.ItemsPerPage"
-                   PagerSelectorType="PagerSelectorType.Link" ShowFirstLast="true" PageAlignment="PageAlignment.End" />
+                   PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" AddApplicationRole="true" />
     </BottomPager>
 </DataTable>
 

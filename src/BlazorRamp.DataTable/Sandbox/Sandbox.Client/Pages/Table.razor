@@ -8,7 +8,7 @@
 <div style="height:900px; ">
 
     <DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts"
-               FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.Single">
+               FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.Single" PagerBinding="@_pagerBinding">
         <Filter>
             <DebounceFilter HintText="Filters across all columns of the table" RegexPattern="^[A-Za-z0-9]*$" OnDebounceFilterResult="HandleOnDebounce"
                             ValidationMessage="Invalid filter, filtering paused, letters and numbers only" />
@@ -22,8 +22,8 @@
             <DataColumn DataProperty="d => d.DateOfBirth" DisplayName="Date of birth" ColumnAlignment="ContentAlignment.Centre" />
         </TableColumns>
         <BottomPager>
-            @*         <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Two button pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount" ItemsPerPage="@_pagerBinding.ItemsPerPage"
-        PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End"   /> *@
+            <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Two button pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount" ItemsPerPage="@_pagerBinding.ItemsPerPage"
+                   PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" />
         </BottomPager>
     </DataTable>
 

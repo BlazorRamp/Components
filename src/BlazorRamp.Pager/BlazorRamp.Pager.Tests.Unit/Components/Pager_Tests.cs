@@ -38,7 +38,7 @@ public class Pager_Tests
 
             var pager = CreatePager(context, p => p.Add(x => x.PagerSelectorType, selectorType));
 
-            var element = pager.Find($".{@GlobalValues.Pager_Items_Class}").FirstChild!;
+            var element = pager.Find($".{@GlobalValues.Pager_Items_Class}").Children[1]!;//first node is a div
 
             if (selectorType == PagerSelectorType.Link)
             {
@@ -141,7 +141,7 @@ public class Pager_Tests
             await using var context = new BunitContext();
 
             var pager = CreatePager(context, p => p.Add(x => x.PreviousText, selectorText));
-            var selectors = pager.Find($".{GlobalValues.Pager_Items_Class}").Children;
+            var selectors = pager.Find($".{GlobalValues.Pager_Items_Class}").Children.Where(a => a.TagName == "BUTTON").ToArray(); ;
 
             using (new AssertionScope())
             {
@@ -165,7 +165,7 @@ public class Pager_Tests
             await using var context = new BunitContext();
 
             var pager = CreatePager(context, p => p.Add(x => x.NextText, selectorText));
-            var selectors = pager.Find($".{GlobalValues.Pager_Items_Class}").Children;
+            var selectors = pager.Find($".{GlobalValues.Pager_Items_Class}").Children.Where(a => a.TagName == "BUTTON").ToArray(); ;
 
             using (new AssertionScope())
             {
@@ -189,7 +189,7 @@ public class Pager_Tests
             await using var context = new BunitContext();
 
             var pager = CreatePager(context, p => p.Add(x => x.LastText, selectorText));
-            var selectors = pager.Find($".{GlobalValues.Pager_Items_Class}").Children;
+            var selectors = pager.Find($".{GlobalValues.Pager_Items_Class}").Children.Where(a => a.TagName == "BUTTON").ToArray(); ;
 
             using (new AssertionScope())
             {
@@ -204,6 +204,33 @@ public class Pager_Tests
 
         }
 
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public async Task Should_be_able_to_add_application_role_for_Jaws_when_trues(bool addRole)
+        {
+            await using var context = new BunitContext();
+            var pager = CreatePager(context, p => p.Add(x => x.AddApplicationRole, addRole));
+
+            var itemsDiv = pager.Find($".{GlobalValues.Pager_Items_Class}");
+
+            using (new AssertionScope())
+            {
+                if (true == addRole)
+                {
+                    itemsDiv.GetAttribute("role").Should().Be("application");
+                    itemsDiv.GetAttribute("aria-labelledby").Should().NotBeNull();
+                    return;
+                }
+
+                itemsDiv.GetAttribute("role").Should().BeNull();
+                itemsDiv.GetAttribute("aria-labelledby").Should().BeNull();
+            }
+
+        }
+
+
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
@@ -212,7 +239,7 @@ public class Pager_Tests
             await using var context = new BunitContext();
             var pager = CreatePager(context, p => p.Add(x => x.ShowFirstLast, showFirstLast));
 
-            var selectors = pager.Find($".{GlobalValues.Pager_Items_Class}").Children;
+            var selectors = pager.Find($".{GlobalValues.Pager_Items_Class}").Children.Where(a => a.TagName=="BUTTON").ToArray();
 
             using (new AssertionScope())
             {

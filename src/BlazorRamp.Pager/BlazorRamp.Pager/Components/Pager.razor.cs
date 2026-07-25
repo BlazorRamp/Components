@@ -140,7 +140,14 @@ public partial class Pager : IAsyncDisposable
     /// to handle this callback and pass the new value back in via the <see cref="CurrentPage"/> parameter.
     /// </summary>
     [Parameter] public EventCallback<int> CurrentPageChanged { get; set; }
-
+    /// <summary>
+    /// Gets or sets whether the role of application is added to the div that contains the buttons or links
+    /// as a workaround for a JAWS screen reader virtual cursor bug. This issue is JAWS\Blazor specific, noticeably
+    /// worse on Server than WASM. Repeated button presses can cause the virtual cursor to shift focus 
+    /// away from the focused pager selector. Turning off the virtual cursor or using role=application whilst
+    /// on the pager selectors resolves the issue.
+    /// </summary>
+    [Parameter] public bool AddApplicationRole { get; set; } = false; 
 
     /// <summary>
     /// Gets or sets additional attributes that will be applied to the component
@@ -193,6 +200,8 @@ public partial class Pager : IAsyncDisposable
 
     private string _previousInfoText = String.Empty;
 
+    private string? _applicationRole = null;
+
     /// <summary>
     /// Recomputes derived paging state (row counts, last page, clamped current page, and the information text)
     /// whenever the component's parameters change.
@@ -240,6 +249,8 @@ public partial class Pager : IAsyncDisposable
 
         _queryParamName = String.IsNullOrWhiteSpace(QueryParamName) ? GlobalValues.Pager_Query_String_Param_Name : QueryParamName.Trim();
         _isServer           = OperatingSystem.IsBrowser() ? false : true;
+
+        _applicationRole = AddApplicationRole ? "application" : null;
 
         _ariaLabelledbyIDs  = _isServer ? _ariaLabelID : $"{_ariaLabelID} {_infoTextID}";
     }
