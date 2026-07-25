@@ -145,7 +145,7 @@ public partial class Pager : IAsyncDisposable
     /// as a workaround for a JAWS screen reader virtual cursor bug. This issue is JAWS\Blazor specific, noticeably
     /// worse on Server than WASM. Repeated button presses can cause the virtual cursor to shift focus 
     /// away from the focused pager selector. Turning off the virtual cursor or using role=application whilst
-    /// on the pager selectors resolves the issue.
+    /// on the pager selectors resolves the issue. Defaults to <c>false</c>.
     /// </summary>
     [Parameter] public bool AddApplicationRole { get; set; } = false; 
 
