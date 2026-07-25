@@ -197,7 +197,7 @@
     {
         <td class="@GlobalValues.DataTable_Row_Selector_Class">
             <input type="checkbox" checked="@containsRow"
-                   aria-label="@_selectRowLabel" @onchange="(args) => ToggleSelection((bool)args.Value!, rowItem)" />
+                   aria-labelledby="@_selectRowLabelID" @onchange="(args) => ToggleSelection((bool)args.Value!, rowItem)" />
         </td>
     }
 }

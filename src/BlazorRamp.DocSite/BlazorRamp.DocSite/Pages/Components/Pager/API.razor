@@ -33,6 +33,25 @@
             </thead>
             <tbody>
                 <tr>
+                    <td>AddApplicationRole</td>
+                    <td>bool</td>
+                    <td>
+                        <p>
+                            Gets or sets whether the role of application is added to the div that contains the buttons or links
+                            as a <strong>workaround for a JAWS screen reader virtual cursor bug</strong>.
+                        </p>
+                        <p>
+                            This issue is JAWS\Blazor specific, noticeably
+                            worse on Server than WASM. Repeated button presses can cause the virtual cursor to shift focus
+                            away from the focused pager selector. Turning off the virtual cursor or using role=application whilst
+                            on the pager selectors resolves the issue. Defaults to <span class="code-span">false</span>.
+                        </p>
+                        <p>
+                            Please see the accessibility page for more details.
+                        </p>
+                    </td>
+                </tr>
+                <tr>
                     <td>AriaLabel</td>
                     <td>string</td>
                     <td>
@@ -137,7 +156,7 @@
                         Gets or sets the template used to build the pager's information text. Supports the placeholders
                         <span class="code-span">{currentpage}</span>, <span class="code-span">{lastpage}</span>, <span class="code-span">{startrow}</span>, <span class="code-span">{endrow}</span>,
                         <span class="code-span">{currentrows}</span> (the rowcount after filtering, if any), and <span class="code-span">{totalrows}</span> (the true, unfiltered row count), which are
-                        replaced with the current values at render time. 
+                        replaced with the current values at render time.
                         <br />
                         Defaults to <span class="code-span">Current page {currentpage} of {lastpage}, items {startrow} to {endrow}</span>
                     </td>
@@ -362,7 +381,7 @@
                     <td>--br-comp-pager-pane-base-border-width</td>
                     <td>var(--br-comp-all-pane-base-border-width)</td>
                     <td>
-                        The border width - uses the shared component variable. 
+                        The border width - uses the shared component variable.
                     </td>
                 </tr>
                 <tr>

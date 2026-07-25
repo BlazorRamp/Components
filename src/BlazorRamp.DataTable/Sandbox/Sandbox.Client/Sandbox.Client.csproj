@@ -12,11 +12,11 @@
   <ItemGroup>
     <PackageReference Include="BlazorRamp.Core" Version="1.1.1" />
     <PackageReference Include="BlazorRamp.DebounceFilter" Version="1.1.0" />
+    <PackageReference Include="BlazorRamp.Pager" Version="1.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.10" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\BlazorRamp.Pager\BlazorRamp.Pager\BlazorRamp.Pager.csproj" />
     <ProjectReference Include="..\..\BlazorRamp.DataTable\BlazorRamp.DataTable.csproj" />
   </ItemGroup>
 

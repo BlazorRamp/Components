@@ -16,7 +16,7 @@ public partial class DataTable<TData> : ComponentBase
     [Parameter] public RenderFragment TableColumns { get; set; } = default!;
 
     [Parameter] public string           Title                { get; set; } = default!;
-    [Parameter] public TitleAlignment  TitleAlignment       { get; set; } = TitleAlignment.Start;
+    [Parameter] public TitleAlignment   TitleAlignment       { get; set; } = TitleAlignment.Start;
     [Parameter] public bool             TitleHidden          { get; set; } = false;
     [Parameter] public RenderFragment?  Filter               { get; set; }
     [Parameter] public FilterAlignment  FilterAlignment      { get; set; } = FilterAlignment.End;
@@ -53,6 +53,7 @@ public partial class DataTable<TData> : ComponentBase
 
     private string _noDataText            = GlobalValues.DataTable_No_Records_Text;
     private string _selectRowLabel        = GlobalValues.DataTable_Select_Row_Text;
+    private string _selectRowLabelID      = Guid.NewGuid().ToString();
     private string _tableTitleID          = Guid.NewGuid().ToString();
     private string _tableTitle            = GlobalValues.DataTable_Title_Text;
     private int    _lastSortedColumnIndex = -1;
@@ -155,8 +156,6 @@ public partial class DataTable<TData> : ComponentBase
 
             await MakeAnnouncement(_noDataText, _tableTitle);
         }
-        Debug.WriteLine("Debug test: " + _usePaging.ToString());
-        Console.WriteLine("Console test: " + _usePaging.ToString());
     }
 
     private async Task MakeAnnouncement(string message, string trigger)
