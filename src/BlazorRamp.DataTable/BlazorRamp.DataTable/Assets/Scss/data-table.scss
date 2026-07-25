@@ -257,7 +257,7 @@
         justify-content: start;
         align-items: center;
         color: currentColor;
-        font:inherit;
+        font: inherit;
 
         &[data-br-data-position="start"] {
             justify-content: start;
@@ -324,5 +324,17 @@
         font-weight: var(--br-comp-data-table-area-header-font-weight);
         font-family: var(--br-comp-data-table-area-header-font-family);
         line-height: var(--br-comp-data-table-area-header-line-height);
+    }
+
+    &__visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        clip-path: inset(50%);
+        white-space: nowrap;
+        border: 0;
     }
 }

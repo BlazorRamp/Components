@@ -16,6 +16,8 @@ internal class GlobalValues
     public const string DataTable_Filter_Count_Text = "Showing {filteredrows} filtered rows from a total of {totalrows}.";
     public const string DataTable_Record_Count_Text = "Showing {totalrows} rows.";
 
+    public const string DataTable_Row_Identifier_Heading_Text = "Row identifier";
+
     public const string DataTable_Class = "br-data-table";
 
     public const string DataTable_Title_Class               = $"{DataTable_Class}__title";
@@ -30,7 +32,7 @@ internal class GlobalValues
     public const string DataTable_Column_Selector_Class     = $"{DataTable_Class}__column-selector";
     public const string DataTable_Messages_Class            = $"{DataTable_Class}__messages";
 
-
+    public const string DataTable_Visually_Hidden_Class     = $"{DataTable_Class}__visually-hidden"; 
 
     public const string DataTable_Row_Selector_Class        = $"{DataTable_Class}__row-selector";
 
@@ -41,6 +43,6 @@ internal class GlobalValues
     public const string DataTable_Row_No_Data_Class = $"{DataTable_Data_Row_Class}--no-data";
 
 
-
+    
 
 }

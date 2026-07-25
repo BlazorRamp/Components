@@ -190,19 +190,28 @@
     void AddCheckBoxColumnHeader()
     {
         <th scope="col" class="@GlobalValues.DataTable_Column_Selector_Class">
-            <span aria-label="@_rowSelectHeading"></span> <!-- NVDA did not read the label when on the th tag so added the span as content -->
+            <span class="@GlobalValues.DataTable_Visually_Hidden_Class">@_rowSelectHeading</span> 
         </th>
     }
     void AddCheckBox(TData rowItem, bool containsRow)
     {
+        var checkboxLabel = RowIdentifierFunc is not null ? RowIdentifierFunc(rowItem) : null;
+
         <td class="@GlobalValues.DataTable_Row_Selector_Class">
-            @{
-                var checkboxLabel = RowIdentifierFunc is not null ? RowIdentifierFunc(rowItem) : null; 
-            }
             <input type="checkbox" checked="@containsRow"
                    aria-label="@checkboxLabel" aria-labelledby="@(checkboxLabel is null ? _selectRowLabelID : null)" @onchange="(args) => ToggleSelection((bool)args.Value!, rowItem)" />
         </td>
     }
 
-    
+    void AddIdentityColumn()
+    {
+        <th scope="col"><span class="@GlobalValues.DataTable_Visually_Hidden_Class">@_rowIdentifierHeading</span></th>
+    }
+
+    void AddIdentityRowHeader(TData rowItem)
+    {
+        var rowHeading = RowIdentifierFunc is not null ? RowIdentifierFunc(rowItem) : null; 
+        
+        <th scope="row"><span class="@GlobalValues.DataTable_Visually_Hidden_Class">@rowHeading</span></th>
+    }
 }

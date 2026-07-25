@@ -10,7 +10,7 @@
 <div style="height:900px; ">
 
 <DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts" PagerBinding="@_pagerBinding"
-               FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.Single" RowStyleFunc="@rowStyleFunc" AriaRowSelectHeading="Select row" RowIdentifierFunc="checkboxLabel">
+               FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.Single" RowStyleFunc="@rowStyleFunc" RowSelectHeading="Select row" RowIdentifierFunc="checkboxLabel">
     <Filter>
         <DebounceFilter HintText="Filters across all columns of the table" RegexPattern="^[A-Za-z0-9]*$" OnDebounceFilterResult="HandleOnDebounce"
         ValidationMessage="Invalid filter, filtering paused, letters and numbers only"  />

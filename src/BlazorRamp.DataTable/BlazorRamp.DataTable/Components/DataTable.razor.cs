@@ -15,18 +15,18 @@ public partial class DataTable<TData> : ComponentBase
 
     [Parameter] public RenderFragment TableColumns { get; set; } = default!;
 
-    [Parameter] public string           Title                { get; set; } = default!;
-    [Parameter] public TitleAlignment   TitleAlignment       { get; set; } = TitleAlignment.Start;
-    [Parameter] public bool             TitleHidden          { get; set; } = false;
-    [Parameter] public RenderFragment?  Filter               { get; set; }
-    [Parameter] public FilterAlignment  FilterAlignment      { get; set; } = FilterAlignment.End;
-    [Parameter] public RenderFragment?  TopPager             { get; set; }
-    [Parameter] public RenderFragment?  BottomPager          { get; set; }
-    [Parameter] public int              VirtualizeItemSizePX { get; set; } = 32;
-    [Parameter] public PagerBinding?    PagerBinding         { get; set; } = null;
-    [Parameter] public int              DefaultSortIndex     { get; set; } = -1;
-    [Parameter] public string?          AriaRowSelectHeading { get; set; }
-
+    [Parameter] public string           Title                 { get; set; } = default!;
+    [Parameter] public TitleAlignment   TitleAlignment        { get; set; } = TitleAlignment.Start;
+    [Parameter] public bool             TitleHidden           { get; set; } = false;
+    [Parameter] public RenderFragment?  Filter                { get; set; }
+    [Parameter] public FilterAlignment  FilterAlignment       { get; set; } = FilterAlignment.End;
+    [Parameter] public RenderFragment?  TopPager              { get; set; }
+    [Parameter] public RenderFragment?  BottomPager           { get; set; }
+    [Parameter] public int              VirtualizeItemSizePX  { get; set; } = 32;
+    [Parameter] public PagerBinding?    PagerBinding          { get; set; } = null;
+    [Parameter] public int              DefaultSortIndex      { get; set; } = -1;
+    [Parameter] public string?          RowSelectHeading      { get; set; }
+    [Parameter] public string?          RowIdentifierHeading  { get; set; }
     [Parameter] public Func<TData, string>? RowIdentifierFunc { get; set; }
 
     //[Parameter] public Func<TData,string>? Ar
@@ -57,6 +57,7 @@ public partial class DataTable<TData> : ComponentBase
 
     private string _noDataText            = GlobalValues.DataTable_No_Records_Text;
     private string _rowSelectHeading      = GlobalValues.DataTable_Row_Selected_Header_Text;
+    private string _rowIdentifierHeading = GlobalValues.DataTable_Row_Identifier_Heading_Text;
     private string _selectRowLabelID      = Guid.NewGuid().ToString();
     private string _tableTitleID          = Guid.NewGuid().ToString();
     private string _tableTitle            = GlobalValues.DataTable_Title_Text;
@@ -132,10 +133,11 @@ public partial class DataTable<TData> : ComponentBase
 
     protected override void OnInitialized()
     {
-        _rowSelectHeading = String.IsNullOrWhiteSpace(AriaRowSelectHeading) ? GlobalValues.DataTable_Row_Selected_Header_Text : AriaRowSelectHeading.Trim();
-        _usePaging       = PagerBinding != null;
-        _previousDataRef = DataSource;
-        _dataSource      = DataSource;
+        _rowSelectHeading     = String.IsNullOrWhiteSpace(RowSelectHeading) ? GlobalValues.DataTable_Row_Selected_Header_Text : RowSelectHeading.Trim();
+        _rowIdentifierHeading = String.IsNullOrWhiteSpace(RowIdentifierHeading) ? GlobalValues.DataTable_Row_Identifier_Heading_Text : RowIdentifierHeading.Trim();
+        _usePaging            = PagerBinding != null;
+        _previousDataRef      = DataSource;
+        _dataSource           = DataSource;
     }
 
 
