@@ -10,7 +10,7 @@
 <div style="height:900px; ">
 
 <DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts" PagerBinding="@_pagerBinding"
-               FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.Single" >
+               FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.Single" RowStyleFunc="@rowStyleFunc" AriaRowSelectHeading="Select row" RowIdentifierFunc="checkboxLabel">
     <Filter>
         <DebounceFilter HintText="Filters across all columns of the table" RegexPattern="^[A-Za-z0-9]*$" OnDebounceFilterResult="HandleOnDebounce"
         ValidationMessage="Invalid filter, filtering paused, letters and numbers only"  />
@@ -25,7 +25,22 @@
         <DataColumn DataProperty="d => d.Title" DisplayName="Title" IsSortable="true" />
         <DataColumn DataProperty="d => d.GivenName" DisplayName="First name" IsSortable="true" />
         <DataColumn DataProperty="d => d.FamilyName" DisplayName="Surname" IsSortable="true" ColumnAlignment="ContentAlignment.Start" />
-        <DataColumn DataProperty="d => d.Country" DisplayName="Country of residence" IsSortable="true" />
+        <DataColumn DataProperty="d => d.Country" DisplayName="Country of residence" IsSortable="true">
+                <CellTemplate Context="rowItem">
+                    @if (rowItem.Country == "United Kingdom")
+                    {
+                        <span style="display:inline-flex;align-items:center;gap:0.75rem;">
+                            <span class="united-kingdom-flag-icon" aria-hidden="true"></span>
+                            <a href="https://www.rct.uk/visit/buckingham-palace" target="_blank">
+                                @rowItem.Country
+                            </a>
+                        </span>
+
+                        return;
+                    }
+                    @rowItem.Country
+                </CellTemplate>
+        </DataColumn>
         <DataColumn DataProperty="d => d.DateOfBirth" DisplayName="Date of birth" ColumnAlignment="ContentAlignment.Centre" />
     </TableColumns>
     <BottomPager>
@@ -44,6 +59,11 @@
     private List<Contact> _contacts = [];
 
     private Func<Contact, bool>? _filterRule = null;
+
+
+    private Func<Contact, string?> rowStyleFunc = (data) => data.FamilyName == "Adams" ? "color:red" : null;
+
+    private Func<Contact, string> checkboxLabel = (data) => $"For contact {data.ContactID}, {data.GivenName} {data.FamilyName}";
 
     protected override void OnInitialized()
     {

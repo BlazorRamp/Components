@@ -25,7 +25,11 @@ public partial class DataTable<TData> : ComponentBase
     [Parameter] public int              VirtualizeItemSizePX { get; set; } = 32;
     [Parameter] public PagerBinding?    PagerBinding         { get; set; } = null;
     [Parameter] public int              DefaultSortIndex     { get; set; } = -1;
-    [Parameter] public string?          AriaSelectRowLabel   { get; set; }
+    [Parameter] public string?          AriaRowSelectHeading { get; set; }
+
+    [Parameter] public Func<TData, string>? RowIdentifierFunc { get; set; }
+
+    //[Parameter] public Func<TData,string>? Ar
     [Parameter] public string?          NoRecordText         { get; set; } = GlobalValues.DataTable_No_Records_Text;
     [Parameter] public string?          FilterCountText      { get; set; } = GlobalValues.DataTable_Filter_Count_Text;
     [Parameter] public string?          RecordCountText      { get; set; } = GlobalValues.DataTable_Record_Count_Text;
@@ -52,7 +56,7 @@ public partial class DataTable<TData> : ComponentBase
     private List<TData> _selectedRows    = [];
 
     private string _noDataText            = GlobalValues.DataTable_No_Records_Text;
-    private string _selectRowLabel        = GlobalValues.DataTable_Select_Row_Text;
+    private string _rowSelectHeading      = GlobalValues.DataTable_Row_Selected_Header_Text;
     private string _selectRowLabelID      = Guid.NewGuid().ToString();
     private string _tableTitleID          = Guid.NewGuid().ToString();
     private string _tableTitle            = GlobalValues.DataTable_Title_Text;
@@ -128,7 +132,7 @@ public partial class DataTable<TData> : ComponentBase
 
     protected override void OnInitialized()
     {
-        _selectRowLabel = String.IsNullOrWhiteSpace(AriaSelectRowLabel) ? GlobalValues.DataTable_Select_Row_Text : AriaSelectRowLabel.Trim();
+        _rowSelectHeading = String.IsNullOrWhiteSpace(AriaRowSelectHeading) ? GlobalValues.DataTable_Row_Selected_Header_Text : AriaRowSelectHeading.Trim();
         _usePaging       = PagerBinding != null;
         _previousDataRef = DataSource;
         _dataSource      = DataSource;
