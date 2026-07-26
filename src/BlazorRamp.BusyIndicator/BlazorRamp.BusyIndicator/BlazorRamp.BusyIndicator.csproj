@@ -16,11 +16,10 @@ Uses the Blazor Ramp Core Live Region Service to infrom screen reader users when
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
 	<PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region; Busy Indicator</PackageTags>
-	<PackageReleaseNotes>Added a Replayable parameter to BusyIndicator for controlling whether indicator
-announcements are logged to the announcement history.</PackageReleaseNotes>
-	  <AssemblyVersion>1.1.0</AssemblyVersion>
-	  <FileVersion>1.1.0</FileVersion>
-	  <Version>1.1.0</Version>
+	<PackageReleaseNotes>Changed: Busy indicator spinner now uses CSS transform animation instead of SMIL, to prevent it freezing during long-running synchronous operations.</PackageReleaseNotes>
+	  <AssemblyVersion>1.1.1</AssemblyVersion>
+	  <FileVersion>1.1.1</FileVersion>
+	  <Version>1.1.1</Version>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>

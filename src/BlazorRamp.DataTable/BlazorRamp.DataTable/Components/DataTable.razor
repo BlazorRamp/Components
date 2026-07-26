@@ -1,5 +1,4 @@
-﻿@using BlazorRamp.DataTable.Common.Utilities
-@using Microsoft.AspNetCore.Components.Web.Virtualization
+﻿
 @typeparam TData
 @attribute [CascadingTypeParameter(nameof(TData))]
 
@@ -10,6 +9,9 @@
 @if (_tableColumns.Count == 0) return;
 
 <div class="@GlobalValues.DataTable_Class">
+
+@*     <BusyIndicator ShowIndicator="@_showSpinner" Replayable="false" AriaEndText="Operation complete" ContentPosition="ContentPosition.Centre"></BusyIndicator> *@
+
 
     <div id="@_tableTitleID" class="@(TitleHidden ? $"{GlobalValues.DataTable_Title_Class} {GlobalValues.DataTable_Title_Hidden_Modifier}" : GlobalValues.DataTable_Title_Class)" 
         data-br-data-position="@DataTableHelper.GetTitlePosition(TitleAlignment)">

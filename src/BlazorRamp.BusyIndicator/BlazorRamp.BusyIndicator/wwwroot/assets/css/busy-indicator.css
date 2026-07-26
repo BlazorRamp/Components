@@ -7,9 +7,10 @@
   --br-comp-busy-area-content-font-family: var(--br-comp-all-area-content-font-family);
   --br-comp-busy-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
   --br-comp-busy-area-content-text: var(--br-unit-colour-canvas-text-inverted);
-  --br-comp-busy-area-content-font-size:var(--br-unit-font-size-label);
+  --br-comp-busy-area-content-font-size: var(--br-unit-font-size-label);
   --br-comp-busy-spinner-colour: var(--br-comp-all-focus-indicator-colour);
   --br-comp-busy-area-content-border-radius: var(--br-comp-all-area-content-border-radius);
+  --br-busy-svg-quarter-circle-icon-static: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z' opacity='0.25'/%3E%3Cpath fill='%23000' d='M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z'/%3E%3C/svg%3E");
 }
 
 .br-busy-indicator {
@@ -64,9 +65,10 @@
   color: var(--br-comp-busy-spinner-colour);
   display: inline-block;
   background-color: currentColor;
-  mask-image: var(--br-svg-quarter-circle-icon);
+  mask-image: var(--br-busy-svg-quarter-circle-icon-static);
   mask-repeat: no-repeat;
   mask-size: 100% 100%;
+  animation: br-busy-spin 750ms linear infinite;
 }
 @media (forced-colors: active) {
   .br-busy-indicator__spinner {
@@ -81,11 +83,17 @@
     mask-image: var(--br-svg-hourglass-icon);
     mask-repeat: no-repeat;
     mask-size: 100% 100%;
+    animation: none;
   }
 }
 @media (prefers-reduced-motion: reduce) and (forced-colors: active) {
   .br-busy-indicator__spinner {
     background-color: CanvasText;
     color: Canvas;
+  }
+}
+@keyframes br-busy-spin {
+  to {
+    transform: rotate(360deg);
   }
 }

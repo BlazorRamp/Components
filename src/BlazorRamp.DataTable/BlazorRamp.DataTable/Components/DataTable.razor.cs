@@ -67,6 +67,8 @@ public partial class DataTable<TData> : ComponentBase
     private string _recordCountText       = GlobalValues.DataTable_Record_Count_Text;
     private string _displayCountMessage   = String.Empty;
 
+
+    private bool _showTableSpinner = false;
     protected override async Task OnParametersSetAsync()
     {
         var rowsChanged = false;
@@ -101,13 +103,13 @@ public partial class DataTable<TData> : ComponentBase
 
         if (FilterRule is not null && (FilterRule != _previousFilterRule || true == rowsChanged))
         {
-            //await ToggleTableSpinner(true, DataSource.Count);
+            await ToggleTableSpinner(true, DataSource.Count);
             _previousFilterRule = FilterRule;
             _dataSource = [.. DataSource.Where(FilterRule)];
             
             await CheckAndResortLastColumn(_dataSource, _tableColumns, _lastSortedColumnIndex);
             
-            //await ToggleTableSpinner(false);
+           
             if(_usePaging) CheckSetPagingInfo(_dataSource, false);
 
             if(_dataSource.Count > 0 && false == _usePaging)
@@ -120,7 +122,7 @@ public partial class DataTable<TData> : ComponentBase
 
                 await MakeAnnouncement(_displayCountMessage, _tableTitle);
             }
-
+            await ToggleTableSpinner(false);
         }
 
         _selectedRows = SelectedRows ?? [];
@@ -197,9 +199,20 @@ public partial class DataTable<TData> : ComponentBase
             }
         }
     }
+
+    private async Task ToggleTableSpinner(bool showSpinner, int rowCount = 0)
+    {
+        _showTableSpinner = showSpinner;
+        /*
+            * In this instance / context given where the code is called from you should use Task.Yield but I noticed that on the very odd occasion with filtering 
+            * the spinner did not show so used the hack of Task.Delay(1) which solved the issue.
+        */
+        if (true == showSpinner && rowCount >= 2500) await Task.Delay(1);
+    }
+
     private async Task<int> ToggleSortData(ColumnBase<TData> dataColumn, List<TData> dataSource)
     {
-        //await ToggleTableSpinner(true, dataSource.Count);
+        await ToggleTableSpinner(true, dataSource.Count);
 
         var sortDirection = dataColumn.ColumnSortDirection;
 
@@ -209,7 +222,7 @@ public partial class DataTable<TData> : ComponentBase
 
         await SortDataSource((dataColumn.ColumnSortDirection == ColumnSortDirection.Ascending), dataSource, dataColumn);
 
-        //await ToggleTableSpinner(false);
+        await ToggleTableSpinner(false);
 
         return _tableColumns.IndexOf(dataColumn);
     }
@@ -233,10 +246,11 @@ public partial class DataTable<TData> : ComponentBase
             if (isNewData) PagerBinding.TotalItemCount = dataSource.Count;
         }
     }
-    private static async Task CheckAndResortLastColumn(List<TData> dataSource, List<ColumnBase<TData>> tableColumns, int lastSortedColumnIndex)
+    private async Task CheckAndResortLastColumn(List<TData> dataSource, List<ColumnBase<TData>> tableColumns, int lastSortedColumnIndex)
     {
         if (lastSortedColumnIndex != -1)
         {
+
             var dataColumn = tableColumns[lastSortedColumnIndex];
             await SortDataSource((dataColumn.ColumnSortDirection == ColumnSortDirection.Ascending), dataSource, dataColumn);
         }
@@ -278,8 +292,9 @@ public partial class DataTable<TData> : ComponentBase
 
     }
 
-    private static async Task SortDataSource(bool sortAscending, List<TData> dataSource, ColumnBase<TData> dataColumn)
+    private async Task SortDataSource(bool sortAscending, List<TData> dataSource, ColumnBase<TData> dataColumn)
     {
+
         Stopwatch stopwatch = Stopwatch.StartNew();
 
         if (dataColumn.PropertyInfo == null || dataSource.Count <= 1) return;

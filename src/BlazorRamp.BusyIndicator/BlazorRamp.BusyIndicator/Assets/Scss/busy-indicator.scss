@@ -6,6 +6,7 @@
     mask-image: var(--br-svg-hourglass-icon);
     mask-repeat: no-repeat;
     mask-size: 100% 100%;
+    animation: none; // explicit — see note below
 
     @media (forced-colors: active) {
         background-color: CanvasText;
@@ -13,12 +14,14 @@
     }
 }
 
+
 @mixin quarter-circle-icon {
     display: inline-block;
     background-color: currentColor;
-    mask-image: var(--br-svg-quarter-circle-icon);
+    mask-image: var(--br-busy-svg-quarter-circle-icon-static);
     mask-repeat: no-repeat;
     mask-size: 100% 100%;
+    animation: br-busy-spin 750ms linear infinite;
 
     @media (forced-colors: active) {
         background-color: CanvasText;
@@ -88,6 +91,12 @@
     @media (prefers-reduced-motion: reduce) {
         &__spinner {
             @include hourglass-icon;
+        }
+    }
+
+    @keyframes br-busy-spin {
+        to {
+            transform: rotate(360deg);
         }
     }
 }
