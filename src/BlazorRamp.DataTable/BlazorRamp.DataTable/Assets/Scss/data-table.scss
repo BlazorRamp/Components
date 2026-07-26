@@ -298,12 +298,13 @@
     }
 
     &__column-selector {
-        width: 3rem;
+        padding-block: var(--br-unit-space-3);
+        padding-inline: var(--br-unit-space-4);
+        text-align: center;
     }
 
     &__row-selector {
         text-align: center;
-
         > input[type="checkbox"] {
             aspect-ratio: 1/1;
             accent-color: var(--br-unit-colour-primary);
@@ -326,15 +327,4 @@
         line-height: var(--br-comp-data-table-area-header-line-height);
     }
 
-    &__visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        clip-path: inset(50%);
-        white-space: nowrap;
-        border: 0;
-    }
 }

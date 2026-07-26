@@ -285,7 +285,8 @@ public partial class DataTable<TData> : ComponentBase
         if (dataColumn.PropertyInfo == null || dataSource.Count <= 1) return;
 
         var propertyInfo = dataColumn.PropertyInfo;
-        var getter = DataTableHelper.CreatePropertyValueGetter<TData>(propertyInfo);
+       
+        var getter = dataColumn.ValueGetter!;
 
         if (propertyInfo.PropertyType == typeof(string))
         {

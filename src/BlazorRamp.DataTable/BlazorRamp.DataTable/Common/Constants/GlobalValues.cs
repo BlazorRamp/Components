@@ -11,7 +11,7 @@ internal class GlobalValues
 
     public const string DataTable_No_Records_Text           = "No entries found.";
     public const string DataTable_Title_Text                = "Results table";
-    public const string DataTable_Row_Selected_Header_Text  = "Select row";
+    public const string DataTable_Row_Selected_Header_Text  = "Select";
 
     public const string DataTable_Filter_Count_Text = "Showing {filteredrows} filtered rows from a total of {totalrows}.";
     public const string DataTable_Record_Count_Text = "Showing {totalrows} rows.";
@@ -31,8 +31,6 @@ internal class GlobalValues
     public const string DataTable_Column_Icon_Class         = $"{DataTable_Class}__column-icon";
     public const string DataTable_Column_Selector_Class     = $"{DataTable_Class}__column-selector";
     public const string DataTable_Messages_Class            = $"{DataTable_Class}__messages";
-
-    public const string DataTable_Visually_Hidden_Class     = $"{DataTable_Class}__visually-hidden"; 
 
     public const string DataTable_Row_Selector_Class        = $"{DataTable_Class}__row-selector";
 

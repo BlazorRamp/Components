@@ -9,8 +9,8 @@
 
 <div style="height:900px; ">
 
-<DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts" PagerBinding="@_pagerBinding"
-               FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.Single" RowStyleFunc="@rowStyleFunc" RowSelectHeading="Select row" RowIdentifierFunc="checkboxLabel">
+<DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts" 
+               FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.Single" RowStyleFunc="@rowStyleFunc" RowSelectHeading="Pick" RowIdentifierFunc="checkboxLabel">
     <Filter>
         <DebounceFilter HintText="Filters across all columns of the table" RegexPattern="^[A-Za-z0-9]*$" OnDebounceFilterResult="HandleOnDebounce"
         ValidationMessage="Invalid filter, filtering paused, letters and numbers only"  />
@@ -44,8 +44,8 @@
         <DataColumn DataProperty="d => d.DateOfBirth" DisplayName="Date of birth" ColumnAlignment="ContentAlignment.Centre" />
     </TableColumns>
     <BottomPager>
-            <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Two button pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount" ItemsPerPage="@_pagerBinding.ItemsPerPage"
-                   PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" AddApplicationRole="true" />
+@*             <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Two button pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount" ItemsPerPage="@_pagerBinding.ItemsPerPage"
+                   PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" AddApplicationRole="true" /> *@
     </BottomPager>
 </DataTable>
 
@@ -87,18 +87,5 @@
         }
     }
 
-    // private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
-    // {
-    //     if (debounceResult.IsValid)
-    //     {
-    //         _filterRule = (data) => data.ContactID.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
-    //                                 || data.GivenName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
-    //                                 || data.FamilyName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
-    //                                 || data.Country.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
-    //                                 || (data.DateOfBirth.ToString() ?? string.Empty).Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
-    //         _filterRule = (data) => data.Country.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase) && data.FamilyName.StartsWith(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
 
-    //         await InvokeAsync(StateHasChanged);
-    //     }
-    // }
 }

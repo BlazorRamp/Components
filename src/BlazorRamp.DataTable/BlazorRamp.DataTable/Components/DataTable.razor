@@ -178,9 +178,11 @@
                 }
                 @if (isRowSelectable)
                 {
+                    var checkboxLabel = RowIdentifierFunc is not null ? RowIdentifierFunc(rowItem) : null;
+
                     <td class="@GlobalValues.DataTable_Row_Selector_Class">
                         <input type="checkbox" checked="@containsRow"
-                               aria-label="@_rowSelectHeading" @onchange="(args) => ToggleSelection((bool)args.Value!, rowItem)" />
+                               aria-label="@checkboxLabel" aria-labelledby="@(checkboxLabel is null ? _selectRowLabelID : null)" @onchange="(args) => ToggleSelection((bool)args.Value!, rowItem)" />
                     </td>
                 }
 
@@ -190,7 +192,7 @@
     void AddCheckBoxColumnHeader()
     {
         <th scope="col" class="@GlobalValues.DataTable_Column_Selector_Class">
-            <span class="@GlobalValues.DataTable_Visually_Hidden_Class">@_rowSelectHeading</span> 
+           @_rowSelectHeading
         </th>
     }
     void AddCheckBox(TData rowItem, bool containsRow)
@@ -203,15 +205,5 @@
         </td>
     }
 
-    void AddIdentityColumn()
-    {
-        <th scope="col"><span class="@GlobalValues.DataTable_Visually_Hidden_Class">@_rowIdentifierHeading</span></th>
-    }
 
-    void AddIdentityRowHeader(TData rowItem)
-    {
-        var rowHeading = RowIdentifierFunc is not null ? RowIdentifierFunc(rowItem) : null; 
-        
-        <th scope="row"><span class="@GlobalValues.DataTable_Visually_Hidden_Class">@rowHeading</span></th>
-    }
 }
