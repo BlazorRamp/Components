@@ -1,13 +1,11 @@
 ﻿using BlazorRamp.BusyIndicator.Common.Constants;
 using BlazorRamp.Core.Common.Constants;
 using BlazorRamp.Core.Common.Models;
-using BlazorRamp.Core.Common.Utilities;
 using BlazorRamp.Core.Services;
 using Bunit;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.Extensions.DependencyInjection;
-using static BlazorRamp.BusyIndicator.Components.BusyIndicator;
 using BusyIndicatorComponent = BlazorRamp.BusyIndicator.Components.BusyIndicator;
 
 
@@ -372,6 +370,26 @@ public class BusyIndicator_Tests
 
         }
 
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public async Task No_overlay_colour_if_true_should_turn_off_the_overlay_colour_so_its_transparent(bool noOverlayColour)
+        {
+            await using var context = new BunitContext();
+
+            var busyIndicator = CreateBusyIndicatorWithParamByName<bool>(context, nameof(BusyIndicatorComponent.UseClearOverlay),noOverlayColour);
+
+            var classList = busyIndicator.Find("div").ClassList;
+
+            if(true == noOverlayColour)
+            {
+                classList.Should().Contain(GlobalValues.Busy_Overlay_Colour_Modifier);
+                return;
+            }
+
+            classList.Should().NotContain(GlobalValues.Busy_Overlay_Colour_Modifier);
+        }
     }
 
     public class OnBusyCompleted 

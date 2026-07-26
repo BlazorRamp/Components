@@ -86,6 +86,7 @@
 
 
     &__content {
+        position:relative;
         overflow: auto;
         grid-row: 4/5;
         min-height: 0;
@@ -328,38 +329,4 @@
         line-height: var(--br-comp-data-table-area-header-line-height);
     }
 
-
-
-
-
-
-
-    &__spinner-backdrop {
-        z-index: 1;
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(255,255,255,0.5);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    &__spinner {
-        height: 2.5rem;
-        width: 2.5rem;
-        border: 3px solid red;//var(--control-focus-clr);
-        border-bottom: 3px solid white;
-        border-radius: 50%;
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        animation: spin 750ms linear infinite;
-    }
 }

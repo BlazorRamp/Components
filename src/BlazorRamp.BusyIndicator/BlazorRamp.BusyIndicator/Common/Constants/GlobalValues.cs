@@ -17,6 +17,9 @@ internal static class GlobalValues
     public const string Busy_Fix_At_Container_Modifier  = $"{Busy_Class}--unfixed";
     public const string Busy_Centred_Modifier           = $"{Busy_Class}--centred";
     public const string Busy_Display_Modifier           = $"{Busy_Class}--display-flex";
+    public const string Busy_Overlay_Colour_Modifier    = $"{Busy_Class}--no-overlay";
+
+
 
     public const int Busy_Indicator_Timeout_MS = 30_000;
 

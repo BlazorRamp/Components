@@ -16,10 +16,10 @@ Uses the Blazor Ramp Core Live Region Service to infrom screen reader users when
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
 	<PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region; Busy Indicator</PackageTags>
-	<PackageReleaseNotes>Changed: Busy indicator spinner now uses CSS transform animation instead of SMIL, to prevent it freezing during long-running synchronous operations.</PackageReleaseNotes>
-	  <AssemblyVersion>1.1.1</AssemblyVersion>
-	  <FileVersion>1.1.1</FileVersion>
-	  <Version>1.1.1</Version>
+	<PackageReleaseNotes>Feature: Added the ability to turn off assertive live regions announcements (the default) which then uses polite as well as the ability to use a clear overlay (defaults to false). </PackageReleaseNotes>
+	  <AssemblyVersion>1.2.0</AssemblyVersion>
+	  <FileVersion>1.2.0</FileVersion>
+	  <Version>1.2.0</Version>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>

@@ -6,6 +6,7 @@ using BlazorRamp.Core.Common.Utilities;
 using BlazorRamp.Core.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System.Runtime.InteropServices;
 
 namespace BlazorRamp.BusyIndicator.Components;
 /// <summary>
@@ -82,6 +83,18 @@ public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
     [Parameter] public bool Replayable { get; set; } = true;
 
     /// <summary>
+    /// Gets or sets whether the overlay should be clear.
+    /// Defaults to <c>false</c>
+    /// </summary>
+    [Parameter] public bool UseClearOverlay { get; set; } = false;
+
+    /// <summary>
+    /// Gets or sets whether the announcements made via the live regions service
+    /// are polite or assertive. Defaults to <c>true</c>
+    /// </summary>
+    [Parameter] public bool UseAssertive { get; set; } = true;
+
+    /// <summary>
     /// An event that is fired  after the busy state has finished and the indicator is hidden.
     /// </summary>
     [Parameter] public EventCallback    OnBusyCompleted  { get; set; }
@@ -105,6 +118,8 @@ public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
     private string  _ariaEndText        = GlobalValues.Busy_Indicator_End_Text;
     private string  _indicatorTrigger   = String.Empty;
 
+    private LiveRegionType _liveRegionType = LiveRegionType.Assertive;
+
     private bool _disposed = false;
 
     private OverlayPosition _overlayPosition = OverlayPosition.Container;
@@ -116,13 +131,14 @@ public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
     /// </summary>
     protected override void OnParametersSet()
     {
-        _busyClasses        = BuildBusyClasses(_overlayPosition, ContentPosition);
+        _busyClasses        = BuildBusyClasses(_overlayPosition, ContentPosition, UseClearOverlay);
         _busyContentClasses = GlobalValues.Busy_Content_Class;
         _busyText           = String.IsNullOrWhiteSpace(BusyText) ? String.Empty : BusyText.Trim();
         _timeOut            = DisplayTimeoutMS <= 0 ? GlobalValues.Busy_Indicator_Timeout_MS : DisplayTimeoutMS;
         _indicatorTrigger   = String.IsNullOrWhiteSpace(IndicatorTrigger) ? String.Empty : IndicatorTrigger.Trim();
         _ariaStartText      = String.IsNullOrWhiteSpace(AriaStartText) ? String.Empty : AriaStartText.Trim();
         _ariaEndText        = String.IsNullOrWhiteSpace(AriaEndText)  ? GlobalValues.Busy_Indicator_End_Text : AriaEndText.Trim(); 
+        _liveRegionType     = UseAssertive ? LiveRegionType.Assertive : LiveRegionType.Polite;
 
     }
     /// <summary>
@@ -162,12 +178,12 @@ public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
         if (ShowIndicator)
         {
             await StartBusyIndicator(BusyIndicatorRef, GlobalValues.Busy_Display_Modifier, _timeOut, _overlayPosition);
-            await MakeAnnouncement(announcementText, EndStatus, _indicatorTrigger, ShowIndicator);
+            await MakeAnnouncement(announcementText, EndStatus, _indicatorTrigger, ShowIndicator, _liveRegionType);
         }
         else
         {
 
-            await MakeAnnouncement(announcementText, EndStatus, _indicatorTrigger, ShowIndicator);
+            await MakeAnnouncement(announcementText, EndStatus, _indicatorTrigger, ShowIndicator, _liveRegionType);
             
             //time needed to finish reading before ending otherwise SR may start reading content due to a focus event
 
@@ -211,14 +227,17 @@ public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
     /// </summary>
     /// <param name="overlay">The positioning behaviour (Container or Screen).</param>
     /// <param name="content">The vertical/horizontal alignment of the spinner and text.</param>
+    /// <param name="useClearOverlay">Turns off the overlay colour so its clear.</param>
     /// <returns>A space-separated string of CSS classes.</returns>
-    private static string BuildBusyClasses(OverlayPosition overlay, ContentPosition content)
+    private static string BuildBusyClasses(OverlayPosition overlay, ContentPosition content, bool useClearOverlay)
     {
         var classes = new List<string> { GlobalValues.Busy_Class };
 
         if (overlay == OverlayPosition.Container) classes.Add(GlobalValues.Busy_Fix_At_Container_Modifier);
 
         if (content == ContentPosition.Centre) classes.Add(GlobalValues.Busy_Centred_Modifier);
+
+        if (true== useClearOverlay) classes.Add(GlobalValues.Busy_Overlay_Colour_Modifier);
 
         return string.Join(" ", classes);
     }

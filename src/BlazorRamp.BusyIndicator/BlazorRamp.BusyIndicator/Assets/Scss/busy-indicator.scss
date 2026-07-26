@@ -44,6 +44,10 @@
     border-radius: var(--br-comp-busy-pane-base-border-radius);
     pointer-events: none;
 
+    &--no-overlay{
+        background-color:transparent;
+    }
+
     &--display-flex {
         display: flex;
     }

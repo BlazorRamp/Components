@@ -27,6 +27,9 @@
   border-radius: var(--br-comp-busy-pane-base-border-radius);
   pointer-events: none;
 }
+.br-busy-indicator--no-overlay {
+  background-color: transparent;
+}
 .br-busy-indicator--display-flex {
   display: flex;
 }
