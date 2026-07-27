@@ -13,6 +13,13 @@ internal class GlobalValues
     public const string DataTable_Title_Text                = "Results table";
     public const string DataTable_Row_Selected_Header_Text  = "Select";
 
+
+    public const string DataTable_Sort_Up_Status_Text      = "Sort up completed.";
+    public const string DataTable_Sort_Down_Status_Text    = "Sort down completed.";
+    public const string DataTable_Sort_Removed_Status_Text = "Sort  completed.";
+    public const string DataTable_Filtered_Status_Text     = "Filtering completed.";
+
+
     public const string DataTable_Filter_Count_Text = "Showing {filteredrows} filtered rows from a total of {totalrows}.";
     public const string DataTable_Record_Count_Text = "Showing {totalrows} rows.";
 

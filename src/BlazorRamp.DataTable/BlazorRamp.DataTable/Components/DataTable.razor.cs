@@ -41,9 +41,14 @@ public partial class DataTable<TData> : ComponentBase
     [Parameter] public Func<TData, bool>?          FilterRule       { get; set; }
 
 
+    [Parameter] public string FilteredStatusText    { get; set; } = GlobalValues.DataTable_Filtered_Status_Text;
+    [Parameter] public string SortUpStatusText      { get; set; } = GlobalValues.DataTable_Sort_Up_Status_Text;
+    [Parameter] public string SortDownStatusText    { get; set; } = GlobalValues.DataTable_Sort_Down_Status_Text;
+    [Parameter] public string SortRemovedStatusText { get; set; } = GlobalValues.DataTable_Sort_Down_Status_Text;
+
     [Parameter] public EventCallback<List<TData>> SelectedRowsChanged { get; set; }
 
-    [Inject] private ILiveRegionService LiveRegionService { get; set; }
+    [Inject] private ILiveRegionService? LiveRegionService { get; set; }
 
     private readonly List<ColumnBase<TData>>    _tableColumns = [];
     private readonly Dictionary<string, string> _columnAlignments = [];
@@ -68,15 +73,28 @@ public partial class DataTable<TData> : ComponentBase
     private string _displayCountMessage   = String.Empty;
     private bool   _hasAnnouncedNoData    = false;
 
+    private string _sortUpCompleted      =  GlobalValues.DataTable_Sort_Up_Status_Text;
+    private string _sortDownCompleted    = GlobalValues.DataTable_Sort_Down_Status_Text;
+    private string _sortRemovedCompleted = GlobalValues.DataTable_Sort_Removed_Status_Text;
+    private string _filteringCompleted   = GlobalValues.DataTable_Filtered_Status_Text;
+
+
+    private string _operationCompletedAnnouncement = String.Empty;
+
     private bool _showTableSpinner = false;
     protected override async Task OnParametersSetAsync()
     {
         var rowsChanged = false;
 
-        _tableTitle      = String.IsNullOrWhiteSpace(Title)           ? GlobalValues.DataTable_Title_Text        : Title.Trim();
-        _noDataText      = String.IsNullOrWhiteSpace(NoRecordText)    ? GlobalValues.DataTable_No_Records_Text   : NoRecordText.Trim();
-        _filterCountText = String.IsNullOrWhiteSpace(FilterCountText) ? GlobalValues.DataTable_Filter_Count_Text : FilterCountText.Trim();
-        _recordCountText = String.IsNullOrWhiteSpace(RecordCountText) ? GlobalValues.DataTable_Record_Count_Text : RecordCountText.Trim();
+        _tableTitle           = String.IsNullOrWhiteSpace(Title)                 ? GlobalValues.DataTable_Title_Text               : Title.Trim();
+        _noDataText           = String.IsNullOrWhiteSpace(NoRecordText)          ? GlobalValues.DataTable_No_Records_Text          : NoRecordText.Trim();
+        _filterCountText      = String.IsNullOrWhiteSpace(FilterCountText)       ? GlobalValues.DataTable_Filter_Count_Text        : FilterCountText.Trim();
+        _recordCountText      = String.IsNullOrWhiteSpace(RecordCountText)       ? GlobalValues.DataTable_Record_Count_Text        : RecordCountText.Trim();
+        _sortUpCompleted      = String.IsNullOrWhiteSpace(SortUpStatusText)      ? GlobalValues.DataTable_Sort_Up_Status_Text      : SortUpStatusText.Trim();
+        _sortDownCompleted    = String.IsNullOrWhiteSpace(SortDownStatusText)    ? GlobalValues.DataTable_Sort_Down_Status_Text    : SortDownStatusText.Trim();
+        _sortRemovedCompleted = String.IsNullOrWhiteSpace(SortRemovedStatusText) ? GlobalValues.DataTable_Sort_Removed_Status_Text : SortRemovedStatusText.Trim();
+        _filteringCompleted   = String.IsNullOrWhiteSpace(RecordCountText)       ? GlobalValues.DataTable_Filtered_Status_Text     : FilteredStatusText;
+
 
         //_displayCountMessage = _recordCountText.Replace("{totalrows}", DataSource.Count.ToString());
 
@@ -103,7 +121,7 @@ public partial class DataTable<TData> : ComponentBase
 
         if (FilterRule is not null && (FilterRule != _previousFilterRule || true == rowsChanged))
         {
-             await ToggleTableSpinner(true, DataSource.Count);
+             await ToggleTableSpinner(true, "");
             _previousFilterRule = FilterRule;
 
             _dataSource = [.. DataSource.Where(FilterRule)];
@@ -123,7 +141,7 @@ public partial class DataTable<TData> : ComponentBase
                 await MakeAnnouncement(_displayCountMessage, _tableTitle);
             }
             
-            await ToggleTableSpinner(false);
+            await ToggleTableSpinner(false, _filteringCompleted);
         }
 
         _selectedRows = SelectedRows ?? [];
@@ -185,7 +203,7 @@ public partial class DataTable<TData> : ComponentBase
     private async Task MakeAnnouncement(string message, string trigger)
     {
         var announcement = new Announcement(message, AnnouncementType.Info, trigger, LiveRegionType.Polite);
-        await LiveRegionService.MakeAnnouncement(announcement, false);
+        if (LiveRegionService is not null) await LiveRegionService.MakeAnnouncement(announcement, false);
     }
 
     internal void AddDataTableColumn(ColumnBase<TData> dataColumn)
@@ -217,20 +235,19 @@ public partial class DataTable<TData> : ComponentBase
     }
 
 
-    private async Task ToggleTableSpinner(bool showSpinner, int rowCount = 0)
+    private async Task ToggleTableSpinner(bool showSpinner, string endMessage = "")
     {
+        _operationCompletedAnnouncement = endMessage;
         _showTableSpinner = showSpinner;
-        /*
-            * In this instance / context given where the code is called from you should use Task.Yield but I noticed that on the very odd occasion with filtering 
-            * the spinner did not show so used the hack of Task.Delay(1) which solved the issue.
-        */
-        if (true == showSpinner && rowCount >= 2500) await Task.Delay(1);
+
+        await Task.Yield();
+
     }
 
 
     private async Task<int> ToggleSortData(ColumnBase<TData> dataColumn, List<TData> dataSource)
     {
-        await ToggleTableSpinner(true, dataSource.Count);
+        await ToggleTableSpinner(true);
 
         var sortDirection = dataColumn.ColumnSortDirection;
 
@@ -240,7 +257,9 @@ public partial class DataTable<TData> : ComponentBase
 
         await SortDataSource((dataColumn.ColumnSortDirection == ColumnSortDirection.Ascending), dataSource, dataColumn);
 
-        await ToggleTableSpinner(false);
+        var sortingText = dataColumn.ColumnSortDirection == ColumnSortDirection.Ascending ? _sortUpCompleted : _sortDownCompleted;
+
+        await ToggleTableSpinner(false, sortingText);
 
         return _tableColumns.IndexOf(dataColumn);
     }
@@ -312,13 +331,13 @@ public partial class DataTable<TData> : ComponentBase
     private async Task SortDataSource(bool sortAscending, List<TData> dataSource, ColumnBase<TData> dataColumn)
     {
 
-        Stopwatch stopwatch = Stopwatch.StartNew();
 
         if (dataColumn.PropertyInfo == null || dataSource.Count <= 1) return;
 
         var propertyInfo = dataColumn.PropertyInfo;
 
         var getter = dataColumn.ValueGetter!;
+
         if (propertyInfo.PropertyType == typeof(string))
         {
             var sortArray = new (TData Item, string Key, int OriginalIndex)[dataSource.Count];
@@ -382,11 +401,6 @@ public partial class DataTable<TData> : ComponentBase
                 dataSource[i] = sortArray[i].Item;
             }
         }
-
-        stopwatch.Stop();
-
-        Console.WriteLine("Time: " + stopwatch.ElapsedMilliseconds);
-        Debug.WriteLine("Time: " + stopwatch.ElapsedMilliseconds);
 
         await Task.CompletedTask;
     }
