@@ -3,6 +3,7 @@ const ANNOUNCEMENT_COMPONENTS_ID = "blazor-ramp-announcement-history-components"
 const BS_COMPONENT_NAME = "Busy Indicator";
 const AH_COMPONENT_NAME = "Announcement History";
 const INERT_ATTRIBUTE = "inert";
+const BR_INERT_ATTRIBUTE = "data-br-inert";
 const BUSY_INDICATOR_TIMEOUT = 30000;
 const _indicatorMap = new WeakMap();
 const _ahCompsElement = document.getElementById(ANNOUNCEMENT_COMPONENTS_ID);
@@ -16,11 +17,11 @@ const getSetInertElements = (busyElement, activatingElement, inertElements = [])
         return inertElements;
     Array.from(busyElement.parentElement.children).forEach(child => {
         if (child !== busyElement && child instanceof HTMLElement)
-            inertElements = recurseTree(child, activatingElement, inertElements);
+            inertElements = recurseTree(child, busyElement.id, activatingElement, inertElements);
     });
     return inertElements;
 };
-const recurseTree = (element, activatingElement, inertElements = []) => {
+const recurseTree = (element, busyElementId, activatingElement, inertElements = []) => {
     const tagName = element.tagName.toLowerCase();
     const shouldSkip = element.hasAttribute(INERT_ATTRIBUTE) || element.getAttribute("aria-live") !== null ||
         element.getAttribute("data-br-component") === BS_COMPONENT_NAME || element.id === ANNOUNCEMENT_COMPONENTS_ID ||
@@ -31,11 +32,12 @@ const recurseTree = (element, activatingElement, inertElements = []) => {
     if (activatingElement && element.contains(activatingElement)) {
         Array.from(element.children).forEach(child => {
             if (child instanceof HTMLElement && child !== activatingElement)
-                inertElements = recurseTree(child, activatingElement, inertElements);
+                inertElements = recurseTree(child, busyElementId, activatingElement, inertElements);
         });
         return inertElements;
     }
     element.setAttribute(INERT_ATTRIBUTE, "true");
+    element.setAttribute(BR_INERT_ATTRIBUTE, busyElementId);
     inertElements.push(element);
     return inertElements;
 };
@@ -60,11 +62,18 @@ const getParentElement = (busyElement, overlay) => {
         return [dialogElement, inDialog];
     return [document.body, false];
 };
+const checkRemoveInertById = (elementId) => {
+    document.querySelectorAll(`[data-br-inert="${elementId}"]`).forEach(el => {
+        el.removeAttribute(INERT_ATTRIBUTE);
+        el.removeAttribute(BR_INERT_ATTRIBUTE);
+    });
+};
 const startBusyIndicator = (busyElement, displayModifier, timeout = BUSY_INDICATOR_TIMEOUT, overlay = "container") => {
     if (!busyElement || !busyElement.parentElement)
         return;
     let [targetParent, inDialog] = getParentElement(busyElement, overlay);
     targetParent = targetParent ?? busyElement.parentElement; //should be no nulls here but keep typscript happy
+    checkRemoveInertById(busyElement.id); //safety net incase same indicator gets started stopped out of sequence.
     let indicatorData = _indicatorMap.get(busyElement);
     if (!indicatorData) {
         indicatorData = { element: busyElement, originalParent: busyElement.parentElement, displayModifier: displayModifier, inModalDialog: inDialog };
@@ -93,7 +102,8 @@ const stopBusyIndicator = (busyElement) => {
         clearTimeout(timerId);
         indicatorData.timerId = undefined;
     }
-    inertElements?.forEach(inertElement => inertElement.removeAttribute(INERT_ATTRIBUTE));
+    //inertElements?.forEach(inertElement => inertElement.removeAttribute(INERT_ATTRIBUTE));
+    checkRemoveInertById(busyElement.id); //nano seconds slower but safer
     indicatorData.inertElements = undefined;
     if (element.parentElement !== originalParent) {
         originalParent.appendChild(element);

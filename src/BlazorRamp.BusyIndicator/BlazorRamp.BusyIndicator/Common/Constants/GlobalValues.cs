@@ -30,5 +30,6 @@ internal static class GlobalValues
 
     public const int Live_Region_Buffer_MS = 50;
 
+    public const int Live_Region_Delay_MS = 400;
 }
 

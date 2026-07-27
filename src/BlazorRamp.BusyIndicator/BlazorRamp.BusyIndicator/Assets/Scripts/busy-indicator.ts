@@ -8,6 +8,7 @@ const ANNOUNCEMENT_COMPONENTS_ID = "blazor-ramp-announcement-history-components"
 const BS_COMPONENT_NAME          = "Busy Indicator";
 const AH_COMPONENT_NAME          = "Announcement History";
 const INERT_ATTRIBUTE            = "inert";
+const BR_INERT_ATTRIBUTE         = "data-br-inert";
 const BUSY_INDICATOR_TIMEOUT     = 30_000;
 const _indicatorMap              = new WeakMap<HTMLElement, IndicatorData>();
 
@@ -26,14 +27,14 @@ const getSetInertElements = (busyElement: HTMLElement | null, activatingElement:
 
     Array.from(busyElement.parentElement.children).forEach(child => {
 
-        if (child !== busyElement && child instanceof HTMLElement) inertElements = recurseTree(child, activatingElement, inertElements);
+        if (child !== busyElement && child instanceof HTMLElement) inertElements = recurseTree(child,busyElement.id, activatingElement, inertElements);
         
     });
 
     return inertElements;
 };
 
-const recurseTree = (element: HTMLElement, activatingElement: HTMLElement | null, inertElements: HTMLElement[] = []): HTMLElement[] => {
+const recurseTree = (element: HTMLElement, busyElementId:string, activatingElement: HTMLElement | null, inertElements: HTMLElement[] = []): HTMLElement[] => {
 
     const tagName = element.tagName.toLowerCase();
 
@@ -47,12 +48,13 @@ const recurseTree = (element: HTMLElement, activatingElement: HTMLElement | null
     if (activatingElement && element.contains(activatingElement)) {
         Array.from(element.children).forEach(child => {
 
-            if (child instanceof HTMLElement && child !== activatingElement) inertElements = recurseTree(child, activatingElement, inertElements);
+            if (child instanceof HTMLElement && child !== activatingElement) inertElements = recurseTree(child, busyElementId, activatingElement, inertElements);
 
         });
         return inertElements;
     }
     element.setAttribute(INERT_ATTRIBUTE, "true");
+    element.setAttribute(BR_INERT_ATTRIBUTE,busyElementId);
 
     inertElements.push(element);
 
@@ -88,6 +90,14 @@ const getParentElement = (busyElement: HTMLElement, overlay: string): [HTMLEleme
    
 }
 
+const checkRemoveInertById = (elementId: string): void => {
+
+    document.querySelectorAll(`[data-br-inert="${elementId}"]`).forEach(el => {
+        el.removeAttribute(INERT_ATTRIBUTE);
+        el.removeAttribute(BR_INERT_ATTRIBUTE);
+    });
+};
+
 const startBusyIndicator = (busyElement: HTMLElement, displayModifier: string, timeout: number = BUSY_INDICATOR_TIMEOUT, overlay:string = "container" ): void => {
 
     if (!busyElement || !busyElement.parentElement) return;
@@ -95,6 +105,8 @@ const startBusyIndicator = (busyElement: HTMLElement, displayModifier: string, t
     let [targetParent, inDialog] = getParentElement(busyElement, overlay);
 
     targetParent = targetParent ?? busyElement.parentElement;  //should be no nulls here but keep typscript happy
+
+    checkRemoveInertById(busyElement.id);//safety net incase same indicator gets started stopped out of sequence.
 
     let indicatorData = _indicatorMap.get(busyElement);
 
@@ -104,7 +116,7 @@ const startBusyIndicator = (busyElement: HTMLElement, displayModifier: string, t
 
         _indicatorMap.set(busyElement, indicatorData);
     }
-    
+  
     const { element, displayModifier: modifier} = indicatorData;
 
     if (!element.classList.contains(modifier)) element.classList.add(modifier);
@@ -115,7 +127,7 @@ const startBusyIndicator = (busyElement: HTMLElement, displayModifier: string, t
 
     indicatorData.inertElements = getSetInertElements(element, indicatorData.activatingElement);
 
-    if (indicatorData.timerId)  clearTimeout(indicatorData.timerId);
+    if (indicatorData.timerId) clearTimeout(indicatorData.timerId);
 
     const timerId = setTimeout(() => {
         stopBusyIndicator(element);
@@ -140,7 +152,9 @@ const stopBusyIndicator = (busyElement: HTMLElement): void => {
         indicatorData.timerId = undefined;
     }
 
-    inertElements?.forEach(inertElement => inertElement.removeAttribute(INERT_ATTRIBUTE));
+    //inertElements?.forEach(inertElement => inertElement.removeAttribute(INERT_ATTRIBUTE));
+
+    checkRemoveInertById(busyElement.id);//nano seconds slower but safer
 
     indicatorData.inertElements = undefined;
 

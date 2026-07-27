@@ -390,6 +390,16 @@ public class BusyIndicator_Tests
 
             classList.Should().NotContain(GlobalValues.Busy_Overlay_Colour_Modifier);
         }
+
+        [Fact]
+        public async Task Should_be_able_to_set_the_delay_before_close_value()
+        {
+            await using var context = new BunitContext();
+
+            var busyIndicator = CreateBusyIndicatorWithParamByName<int>(context, nameof(BusyIndicatorComponent.DelayBeforeClosetMS),200);
+
+            busyIndicator.Instance.DelayBeforeClosetMS.Should().Be(200);
+        }
     }
 
     public class OnBusyCompleted 

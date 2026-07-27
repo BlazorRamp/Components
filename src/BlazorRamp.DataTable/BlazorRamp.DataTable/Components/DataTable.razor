@@ -27,8 +27,8 @@
     <div class="@GlobalValues.DataTable_Top_Pager_Class">@TopPager</div>
 
     <div class="@GlobalValues.DataTable_Content_Class">
-@*         <BusyIndicator ShowIndicator="@_showTableSpinner" Replayable="false" AriaEndText="Operation complete"  ContentPosition="ContentPosition.Centre" UseAssertive="false" UseClearOverlay="true"></BusyIndicator>
- *@        <table aria-labelledby="@_tableTitleID" aria-rowcount="@_dataSource.Count">
+        <BusyIndicator ShowIndicator="@_showTableSpinner" Replayable="false" AriaEndText="Operation complete"  ContentPosition="ContentPosition.Centre" UseAssertive="false" UseClearOverlay="true"></BusyIndicator>
+        <table aria-labelledby="@_tableTitleID" aria-rowcount="@_dataSource.Count">
             <thead>
                 <tr>
                     @foreach (var column in _tableColumns)
@@ -68,7 +68,7 @@
 
     <div class="@GlobalValues.DataTable_Bottom_Pager_Class">@BottomPager</div>
 
-    @if(false == _usePaging)
+    @if(false == _usePaging && _dataSource.Count > 0)
     {
         <div class="@GlobalValues.DataTable_Messages_Class">@_displayCountMessage</div>
     }

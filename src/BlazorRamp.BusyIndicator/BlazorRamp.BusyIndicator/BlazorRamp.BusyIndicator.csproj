@@ -16,10 +16,11 @@ Uses the Blazor Ramp Core Live Region Service to infrom screen reader users when
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
 	<PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region; Busy Indicator</PackageTags>
-	<PackageReleaseNotes>Feature: Added the ability to turn off assertive live regions announcements (the default) which then uses polite as well as the ability to use a clear overlay (defaults to false). </PackageReleaseNotes>
-	  <AssemblyVersion>1.2.0</AssemblyVersion>
-	  <FileVersion>1.2.0</FileVersion>
-	  <Version>1.2.0</Version>
+	<PackageReleaseNotes>Feature: Added the DelayBeforeCloseMS parameter to give users control over any delay before closing the indicator. Defaults to 400ms.
+Altered the underlying JavaScript to add and remove inert attributes using the indicator's identity added as an attribute to the inert elements.</PackageReleaseNotes>
+	  <AssemblyVersion>1.3.0</AssemblyVersion>
+	  <FileVersion>1.3.0</FileVersion>
+	  <Version>1.3.0</Version>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>

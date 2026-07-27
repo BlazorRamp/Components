@@ -62,4 +62,8 @@
     <Folder Include="wwwroot\assets\css\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\BlazorRamp.BusyIndicator\BlazorRamp.BusyIndicator\BlazorRamp.BusyIndicator.csproj" />
+  </ItemGroup>
+
 </Project>

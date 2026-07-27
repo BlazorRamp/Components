@@ -29,9 +29,9 @@
             <DataColumn DataProperty="d => d.DateOfBirth" DisplayName="Date of birth" ColumnAlignment="ContentAlignment.Centre" />
         </TableColumns>
         <BottomPager>
-            @*             <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Two button pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount" ItemsPerPage="@_pagerBinding.ItemsPerPage"
-                   PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" AddApplicationRole="true" /> *@
-        </BottomPager>
+@*                 <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Two button pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount" ItemsPerPage="@_pagerBinding.ItemsPerPage"
+            PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" AddApplicationRole="true" />
+ *@        </BottomPager>
     </DataTable>
 
 </div>
@@ -64,30 +64,30 @@
         base.OnInitialized();
     }
 
-    // private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
-    // {
-    //     if (debounceResult.IsValid)
-    //     {
-    //         _filterRule = (data) => data.ContactID.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
-    //                                 || data.GivenName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
-    //                                 || data.FamilyName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
-    //                                 || data.Country.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
-    //                                 || (data.DateOfBirth.ToString() ?? string.Empty).Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
-
-
-    //         await InvokeAsync(StateHasChanged);
-    //     }
-    // }
     private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
     {
         if (debounceResult.IsValid)
         {
-            _filterRule = (data) => data.GivenName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
-            && data.Country.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
+            _filterRule = (data) => data.ContactID.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.GivenName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.FamilyName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.Country.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || (data.DateOfBirth.ToString() ?? string.Empty).Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
 
 
             await InvokeAsync(StateHasChanged);
         }
     }
+    // private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
+    // {
+    //     if (debounceResult.IsValid)
+    //     {
+    //         _filterRule = (data) => data.GivenName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+    //         && data.Country.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
+
+
+    //         await InvokeAsync(StateHasChanged);
+    //     }
+    // }
 
 }

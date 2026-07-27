@@ -66,7 +66,7 @@ public partial class DataTable<TData> : ComponentBase
     private string _filterCountText       = GlobalValues.DataTable_Filter_Count_Text;
     private string _recordCountText       = GlobalValues.DataTable_Record_Count_Text;
     private string _displayCountMessage   = String.Empty;
-
+    private bool   _hasAnnouncedNoData    = false;
 
     private bool _showTableSpinner = false;
     protected override async Task OnParametersSetAsync()
@@ -78,7 +78,7 @@ public partial class DataTable<TData> : ComponentBase
         _filterCountText = String.IsNullOrWhiteSpace(FilterCountText) ? GlobalValues.DataTable_Filter_Count_Text : FilterCountText.Trim();
         _recordCountText = String.IsNullOrWhiteSpace(RecordCountText) ? GlobalValues.DataTable_Record_Count_Text : RecordCountText.Trim();
 
-        _displayCountMessage = _recordCountText.Replace("{totalrows}", DataSource.Count.ToString());
+        //_displayCountMessage = _recordCountText.Replace("{totalrows}", DataSource.Count.ToString());
 
         if (false == ReferenceEquals(_previousDataRef, DataSource)) //new search / datasource
         {
@@ -88,7 +88,7 @@ public partial class DataTable<TData> : ComponentBase
 
             await CheckAndResortLastColumn(_dataSource, _tableColumns, _lastSortedColumnIndex);
 
-            if(_usePaging) CheckSetPagingInfo(DataSource, true);
+            if (_usePaging) CheckSetPagingInfo(DataSource, true);
         }
         else if ((_usePaging == true && DataSource.Count != PagerBinding!.TotalItemCount))//existing data source with items added or deleted
         {
@@ -103,10 +103,12 @@ public partial class DataTable<TData> : ComponentBase
 
         if (FilterRule is not null && (FilterRule != _previousFilterRule || true == rowsChanged))
         {
-            await ToggleTableSpinner(true, DataSource.Count);
+             await ToggleTableSpinner(true, DataSource.Count);
             _previousFilterRule = FilterRule;
+
             _dataSource = [.. DataSource.Where(FilterRule)];
-            
+
+
             await CheckAndResortLastColumn(_dataSource, _tableColumns, _lastSortedColumnIndex);
             
            
@@ -118,10 +120,9 @@ public partial class DataTable<TData> : ComponentBase
                 _displayCountMessage = _dataSource.Count == DataSource.Count ? _recordCountText.Replace("{totalrows}", DataSource.Count.ToString())
                                                                              : _filterCountText.Replace("{filteredrows}", _dataSource.Count.ToString()).Replace("{totalrows}", DataSource.Count.ToString());
 
-                //displayCountMessage = _filterCountText.Replace("{filteredrows}", _dataSource.Count.ToString()).Replace("{totalrows}", DataSource.Count.ToString());
-
                 await MakeAnnouncement(_displayCountMessage, _tableTitle);
             }
+            
             await ToggleTableSpinner(false);
         }
 
@@ -140,13 +141,15 @@ public partial class DataTable<TData> : ComponentBase
         _usePaging            = PagerBinding != null;
         _previousDataRef      = DataSource;
         _dataSource           = DataSource;
+        _displayCountMessage = _recordCountText.Replace("{totalrows}", DataSource.Count.ToString());
     }
 
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if(true == firstRender)
+        if (true == firstRender)
         {
+
             if (DefaultSortIndex > -1 && DefaultSortIndex < _tableColumns.Where(a => a is DataColumn<TData>).ToList().Count)
             {
                 _lastSortedColumnIndex = await ToggleSortData(_tableColumns[DefaultSortIndex], _dataSource);
@@ -159,11 +162,24 @@ public partial class DataTable<TData> : ComponentBase
             return;
         }
 
+
         if (_dataSource.Count == 0 && false == _usePaging)
         {
+            /*
+                * Needed as the spinner causes another OnAfterRenderAsync - without the OnParametersSetAsync being triggered
+              */
+            if (false == _hasAnnouncedNoData)
+            {
+                _hasAnnouncedNoData = true;
+                await MakeAnnouncement(_noDataText, _tableTitle);
+                return;
+            }
 
-            await MakeAnnouncement(_noDataText, _tableTitle);
+            _hasAnnouncedNoData = false;
         }
+
+
+
     }
 
     private async Task MakeAnnouncement(string message, string trigger)
@@ -200,6 +216,7 @@ public partial class DataTable<TData> : ComponentBase
         }
     }
 
+
     private async Task ToggleTableSpinner(bool showSpinner, int rowCount = 0)
     {
         _showTableSpinner = showSpinner;
@@ -209,6 +226,7 @@ public partial class DataTable<TData> : ComponentBase
         */
         if (true == showSpinner && rowCount >= 2500) await Task.Delay(1);
     }
+
 
     private async Task<int> ToggleSortData(ColumnBase<TData> dataColumn, List<TData> dataSource)
     {
@@ -250,7 +268,6 @@ public partial class DataTable<TData> : ComponentBase
     {
         if (lastSortedColumnIndex != -1)
         {
-
             var dataColumn = tableColumns[lastSortedColumnIndex];
             await SortDataSource((dataColumn.ColumnSortDirection == ColumnSortDirection.Ascending), dataSource, dataColumn);
         }
@@ -300,12 +317,10 @@ public partial class DataTable<TData> : ComponentBase
         if (dataColumn.PropertyInfo == null || dataSource.Count <= 1) return;
 
         var propertyInfo = dataColumn.PropertyInfo;
-       
-        var getter = dataColumn.ValueGetter!;
 
+        var getter = dataColumn.ValueGetter!;
         if (propertyInfo.PropertyType == typeof(string))
         {
-    
             var sortArray = new (TData Item, string Key, int OriginalIndex)[dataSource.Count];
             for (int i = 0; i < dataSource.Count; i++)
             {
@@ -318,17 +333,17 @@ public partial class DataTable<TData> : ComponentBase
 
                 if (compare == 0)
                 {
-                    return sortAscending  ? x.OriginalIndex.CompareTo(y.OriginalIndex)  : y.OriginalIndex.CompareTo(x.OriginalIndex);
+                    return x.OriginalIndex.CompareTo(y.OriginalIndex);
                 }
 
                 return sortAscending ? compare : -compare;
             });
+
             for (int i = 0; i < dataSource.Count; i++)
             {
                 dataSource[i] = sortArray[i].Item;
             }
         }
-
         else
         {
             var sortArray = new (TData Item, IComparable Key, int OriginalIndex)[dataSource.Count];
@@ -356,9 +371,7 @@ public partial class DataTable<TData> : ComponentBase
 
                 if (compare == 0)
                 {
-                    return sortAscending
-                        ? x.OriginalIndex.CompareTo(y.OriginalIndex)
-                        : y.OriginalIndex.CompareTo(x.OriginalIndex);
+                    return x.OriginalIndex.CompareTo(y.OriginalIndex);
                 }
 
                 return sortAscending ? compare : -compare;
@@ -369,6 +382,7 @@ public partial class DataTable<TData> : ComponentBase
                 dataSource[i] = sortArray[i].Item;
             }
         }
+
         stopwatch.Stop();
 
         Console.WriteLine("Time: " + stopwatch.ElapsedMilliseconds);
@@ -376,4 +390,30 @@ public partial class DataTable<TData> : ComponentBase
 
         await Task.CompletedTask;
     }
+
+
+    //private static async Task SortDataSource(bool sortAscending, List<TData> dataSource, ColumnBase<TData> dataColumn)
+    //{
+    //    Stopwatch stopwatch = Stopwatch.StartNew();
+    //    if (dataColumn.PropertyInfo == null) return;
+
+    //    var propertyValueGetter = dataColumn.ValueGetter!;//DataTableHelper.CreatePropertyValueGetter<TData>(dataColumn.PropertyInfo);
+
+    //    List<TData> sortedData = [];
+
+    //    if(sortAscending == true)
+    //    {
+    //        sortedData = [.. dataSource.OrderBy(item => propertyValueGetter(item))];
+    //    }
+    //    else
+    //    {
+    //        sortedData = [.. dataSource.OrderByDescending(item => propertyValueGetter(item))];
+    //    }
+
+    //    //Do in place swap with sorted results to keep equality reference
+    //    for (int index = 0; index < dataSource.Count; index++) dataSource[index] = sortedData[index];
+
+    //    Console.WriteLine("Time: " + stopwatch.ElapsedMilliseconds);
+    //    await Task.CompletedTask;
+    //}
 }
