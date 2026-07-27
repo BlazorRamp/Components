@@ -396,9 +396,9 @@ public class BusyIndicator_Tests
         {
             await using var context = new BunitContext();
 
-            var busyIndicator = CreateBusyIndicatorWithParamByName<int>(context, nameof(BusyIndicatorComponent.DelayBeforeClosetMS),200);
+            var busyIndicator = CreateBusyIndicatorWithParamByName<int>(context, nameof(BusyIndicatorComponent.DelayBeforeCloseMS),200);
 
-            busyIndicator.Instance.DelayBeforeClosetMS.Should().Be(200);
+            busyIndicator.Instance.DelayBeforeCloseMS.Should().Be(200);
         }
     }
 

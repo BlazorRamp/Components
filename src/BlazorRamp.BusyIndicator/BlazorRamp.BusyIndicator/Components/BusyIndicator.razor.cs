@@ -77,7 +77,7 @@ public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
     /// is not need you can reduce it to the minimum of 1ms otherwise the default 
     /// of 400ms is used. 
     /// </summary>
-    [Parameter] public int DelayBeforeClosetMS { get; set; } = GlobalValues.Live_Region_Delay_MS;
+    [Parameter] public int DelayBeforeCloseMS { get; set; } = GlobalValues.Live_Region_Delay_MS;
     /// <summary>
     /// Gets or sets the type of announcement made when the operation completes.
     /// A default value of 2 (OperationCompleted) is used if not provided. Currently this
@@ -126,7 +126,7 @@ public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
     private string  _ariaStartText      = GlobalValues.Busy_Indicator_Start_Text;
     private string  _ariaEndText        = GlobalValues.Busy_Indicator_End_Text;
     private string  _indicatorTrigger   = String.Empty;
-    private int     _delayBeforeClose   = GlobalValues.Live_Region_Delay_MS;
+    private int     _delayBeforeCloseMS = GlobalValues.Live_Region_Delay_MS;
 
     private LiveRegionType _liveRegionType = LiveRegionType.Assertive;
 
@@ -150,7 +150,7 @@ public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
         _ariaEndText        = String.IsNullOrWhiteSpace(AriaEndText)  ? GlobalValues.Busy_Indicator_End_Text : AriaEndText.Trim(); 
         _liveRegionType     = UseAssertive ? LiveRegionType.Assertive : LiveRegionType.Polite;
 
-        _delayBeforeClose = DelayBeforeClosetMS <= 0 ? GlobalValues.Live_Region_Delay_MS : DelayBeforeClosetMS;
+        _delayBeforeCloseMS = DelayBeforeCloseMS <= 0 ? GlobalValues.Live_Region_Delay_MS : DelayBeforeCloseMS;
     }
     /// <summary>
     /// Captures the initial overlay position during component initialization 
@@ -198,7 +198,7 @@ public sealed partial class BusyIndicator : ComponentBase, IAsyncDisposable
             
             //time needed to finish reading before ending otherwise SR may start reading content due to a focus event
 
-            await Task.Delay(_delayBeforeClose);//changed from using core global value of 1200 to local of 400
+            await Task.Delay(_delayBeforeCloseMS);//changed from using core global value of 1200 to local of 400
 
             await StopBusyIndicator(BusyIndicatorRef);
 
