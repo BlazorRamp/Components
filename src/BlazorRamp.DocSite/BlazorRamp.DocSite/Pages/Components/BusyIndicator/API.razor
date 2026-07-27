@@ -83,6 +83,17 @@
                     <td>Maximum time in milliseconds before auto-dismissing (content remains inert until dismissed). Defaults to 30s.</td>
                 </tr>
                 <tr>
+                    <td>DelayBeforeClosetMS</td>
+                    <td>int</td>
+                    <td>
+                        Gets or sets the amount of time in milliseconds to delay the closing.
+                        The end announcement is first started and if closing causes issue due to
+                        screen reader refocus events, a longer time may help. Equally,if the time
+                        is not needed you can reduce it to the minimum of 1ms otherwise the default
+                        of <span class="code-span">400ms</span> is used.
+                    </td>
+                </tr>
+                <tr>
                     <td>EndStatus</td>
                     <td>AnnouncementType (enum)</td>
                     <td>Type of announcement made when the operation completes. Defaults to OperationCompleted.</td>
