@@ -44,7 +44,7 @@ public partial class DataTable<TData> : ComponentBase
     [Parameter] public string FilteredStatusText    { get; set; } = GlobalValues.DataTable_Filtered_Status_Text;
     [Parameter] public string SortUpStatusText      { get; set; } = GlobalValues.DataTable_Sort_Up_Status_Text;
     [Parameter] public string SortDownStatusText    { get; set; } = GlobalValues.DataTable_Sort_Down_Status_Text;
-    [Parameter] public string SortRemovedStatusText { get; set; } = GlobalValues.DataTable_Sort_Down_Status_Text;
+    [Parameter] public string SortRemovedStatusText { get; set; } = GlobalValues.DataTable_Sort_Removed_Status_Text;
 
     [Parameter] public EventCallback<List<TData>> SelectedRowsChanged { get; set; }
 
@@ -95,16 +95,13 @@ public partial class DataTable<TData> : ComponentBase
         _sortRemovedCompleted = String.IsNullOrWhiteSpace(SortRemovedStatusText) ? GlobalValues.DataTable_Sort_Removed_Status_Text : SortRemovedStatusText.Trim();
         _filteringCompleted   = String.IsNullOrWhiteSpace(RecordCountText)       ? GlobalValues.DataTable_Filtered_Status_Text     : FilteredStatusText;
 
-
-        //_displayCountMessage = _recordCountText.Replace("{totalrows}", DataSource.Count.ToString());
-
         if (false == ReferenceEquals(_previousDataRef, DataSource)) //new search / datasource
         {
             _selectedRows.Clear();//new datasource so different equality, we could end up with duplicates if left.
             _previousDataRef = DataSource;
-            _dataSource      = DataSource;
+            _dataSource = [.. DataSource];   
 
-            await CheckAndResortLastColumn(_dataSource, _tableColumns, _lastSortedColumnIndex);
+            await CheckAndResortLastColumn(_dataSource, _tableColumns, _lastSortedColumnIndex, DataSource);
 
             if (_usePaging) CheckSetPagingInfo(DataSource, true);
         }
@@ -121,15 +118,13 @@ public partial class DataTable<TData> : ComponentBase
 
         if (FilterRule is not null && (FilterRule != _previousFilterRule || true == rowsChanged))
         {
-             await ToggleTableSpinner(true, "");
+             await ToggleBusyIndicator(true, "");
             _previousFilterRule = FilterRule;
 
             _dataSource = [.. DataSource.Where(FilterRule)];
 
-
-            await CheckAndResortLastColumn(_dataSource, _tableColumns, _lastSortedColumnIndex);
+            await CheckAndResortLastColumn(_dataSource, _tableColumns, _lastSortedColumnIndex, DataSource);
             
-           
             if(_usePaging) CheckSetPagingInfo(_dataSource, false);
 
             if(_dataSource.Count > 0 && false == _usePaging)
@@ -141,7 +136,7 @@ public partial class DataTable<TData> : ComponentBase
                 await MakeAnnouncement(_displayCountMessage, _tableTitle);
             }
             
-            await ToggleTableSpinner(false, _filteringCompleted);
+            await ToggleBusyIndicator(false, _filteringCompleted);
         }
 
         _selectedRows = SelectedRows ?? [];
@@ -152,13 +147,17 @@ public partial class DataTable<TData> : ComponentBase
 
     }
 
+    
+
     protected override void OnInitialized()
     {
         _rowSelectHeading     = String.IsNullOrWhiteSpace(RowSelectHeading) ? GlobalValues.DataTable_Row_Selected_Header_Text : RowSelectHeading.Trim();
         _rowIdentifierHeading = String.IsNullOrWhiteSpace(RowIdentifierHeading) ? GlobalValues.DataTable_Row_Identifier_Heading_Text : RowIdentifierHeading.Trim();
         _usePaging            = PagerBinding != null;
         _previousDataRef      = DataSource;
-        _dataSource           = DataSource;
+        //_dataSource           = DataSource;
+         _dataSource = [.. DataSource];
+
         _displayCountMessage = _recordCountText.Replace("{totalrows}", DataSource.Count.ToString());
     }
 
@@ -170,7 +169,7 @@ public partial class DataTable<TData> : ComponentBase
 
             if (DefaultSortIndex > -1 && DefaultSortIndex < _tableColumns.Where(a => a is DataColumn<TData>).ToList().Count)
             {
-                _lastSortedColumnIndex = await ToggleSortData(_tableColumns[DefaultSortIndex], _dataSource);
+                _lastSortedColumnIndex = await ToggleSortData(_tableColumns[DefaultSortIndex], _dataSource, DataSource);
 
                 if(true == _usePaging)  _dataPage = GetDataPage(PagerBinding!.CurrentPage, PagerBinding.ItemsPerPage, _dataSource);
 
@@ -224,7 +223,7 @@ public partial class DataTable<TData> : ComponentBase
     {
         if (true == column.IsSortable)
         {
-            _lastSortedColumnIndex = await ToggleSortData(column, _dataSource);
+            _lastSortedColumnIndex = await ToggleSortData(column, _dataSource, DataSource);
 
             if (true == _usePaging)
             {
@@ -235,31 +234,37 @@ public partial class DataTable<TData> : ComponentBase
     }
 
 
-    private async Task ToggleTableSpinner(bool showSpinner, string endMessage = "")
+    private async Task ToggleBusyIndicator(bool showSpinner, string endMessage = "")
     {
         _operationCompletedAnnouncement = endMessage;
+        
         _showTableSpinner = showSpinner;
 
         await Task.Yield();
-
     }
 
-
-    private async Task<int> ToggleSortData(ColumnBase<TData> dataColumn, List<TData> dataSource)
+    private async Task<int> ToggleSortData(ColumnBase<TData> dataColumn, List<TData> dataSource, List<TData> originalDataSource)
     {
-        await ToggleTableSpinner(true);
+        await ToggleBusyIndicator(true);
 
         var sortDirection = dataColumn.ColumnSortDirection;
 
         foreach (var column in _tableColumns) column.ColumnSortDirection = ColumnSortDirection.NotSorted;
 
-        dataColumn.ColumnSortDirection = sortDirection == ColumnSortDirection.Ascending ? ColumnSortDirection.Descending : ColumnSortDirection.Ascending;
+        dataColumn.ColumnSortDirection = sortDirection switch { ColumnSortDirection.NotSorted => ColumnSortDirection.Ascending, ColumnSortDirection.Ascending => ColumnSortDirection.Descending, _ => ColumnSortDirection.NotSorted };
 
-        await SortDataSource((dataColumn.ColumnSortDirection == ColumnSortDirection.Ascending), dataSource, dataColumn);
+        if(dataColumn.ColumnSortDirection == ColumnSortDirection.NotSorted)
+        {
+            UnSortDataSource(dataSource, originalDataSource, FilterRule);
+        }
+        else
+        {
+            await SortDataSource(dataColumn.ColumnSortDirection, dataSource, dataColumn);
+        }
 
-        var sortingText = dataColumn.ColumnSortDirection == ColumnSortDirection.Ascending ? _sortUpCompleted : _sortDownCompleted;
+        var sortingText = dataColumn.ColumnSortDirection switch { ColumnSortDirection.Ascending => _sortUpCompleted, ColumnSortDirection.Descending => _sortDownCompleted, _ => _sortRemovedCompleted };
 
-        await ToggleTableSpinner(false, sortingText);
+        await ToggleBusyIndicator(false, sortingText);
 
         return _tableColumns.IndexOf(dataColumn);
     }
@@ -273,6 +278,7 @@ public partial class DataTable<TData> : ComponentBase
 
         return [.. dataSource.Skip(start).Take(itemsPerPage)];
     }
+
     private void CheckSetPagingInfo(List<TData> dataSource, bool isNewData)
     {
         if (PagerBinding is not null)
@@ -283,12 +289,13 @@ public partial class DataTable<TData> : ComponentBase
             if (isNewData) PagerBinding.TotalItemCount = dataSource.Count;
         }
     }
-    private async Task CheckAndResortLastColumn(List<TData> dataSource, List<ColumnBase<TData>> tableColumns, int lastSortedColumnIndex)
+    
+    private async Task CheckAndResortLastColumn(List<TData> dataSource, List<ColumnBase<TData>> tableColumns, int lastSortedColumnIndex, List<TData> originalDataSource)
     {
         if (lastSortedColumnIndex != -1)
         {
             var dataColumn = tableColumns[lastSortedColumnIndex];
-            await SortDataSource((dataColumn.ColumnSortDirection == ColumnSortDirection.Ascending), dataSource, dataColumn);
+            await SortDataSource(dataColumn.ColumnSortDirection, dataSource, dataColumn);
         }
     }
 
@@ -309,6 +316,8 @@ public partial class DataTable<TData> : ComponentBase
 
         if (SelectedRowsChanged.HasDelegate) await SelectedRowsChanged.InvokeAsync(_selectedRows);
     }
+
+
     private async Task ToggleSelection(bool isSelected, TData rowItem)
     {
         if (true == isSelected && false == _selectedRows.Contains(rowItem)) _selectedRows.Add(rowItem);
@@ -328,11 +337,20 @@ public partial class DataTable<TData> : ComponentBase
 
     }
 
-    private async Task SortDataSource(bool sortAscending, List<TData> dataSource, ColumnBase<TData> dataColumn)
+
+    private void UnSortDataSource(List<TData> dataSource, List<TData> originalDataSource, Func<TData, bool>? filter)
+    {
+        var filteredData = filter is null ? originalDataSource.ToList() : originalDataSource.Where(filter!).ToList();
+
+        for (int index = 0; index < dataSource.Count; index++) dataSource[index] = filteredData[index];
+    }
+
+    private async Task SortDataSource(ColumnSortDirection sortDirection, List<TData> dataSource, ColumnBase<TData> dataColumn)
     {
 
-
         if (dataColumn.PropertyInfo == null || dataSource.Count <= 1) return;
+
+        var sortAscending = sortDirection == ColumnSortDirection.Ascending ? true : false;
 
         var propertyInfo = dataColumn.PropertyInfo;
 

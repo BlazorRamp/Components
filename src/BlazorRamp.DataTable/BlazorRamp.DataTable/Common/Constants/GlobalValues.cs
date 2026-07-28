@@ -16,7 +16,7 @@ internal class GlobalValues
 
     public const string DataTable_Sort_Up_Status_Text      = "Sort up completed.";
     public const string DataTable_Sort_Down_Status_Text    = "Sort down completed.";
-    public const string DataTable_Sort_Removed_Status_Text = "Sort  completed.";
+    public const string DataTable_Sort_Removed_Status_Text = "Sort  removed.";
     public const string DataTable_Filtered_Status_Text     = "Filtering completed.";
 
 
