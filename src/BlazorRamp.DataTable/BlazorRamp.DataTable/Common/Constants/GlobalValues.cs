@@ -18,6 +18,7 @@ internal class GlobalValues
     public const string DataTable_Sort_Down_Status_Text    = "Sort down completed.";
     public const string DataTable_Sort_Removed_Status_Text = "Sort  removed.";
     public const string DataTable_Filtered_Status_Text     = "Filtering completed.";
+    public const string DataTable_Press_To_Sort_Text       = "Press to sort.";
 
 
     public const string DataTable_Filter_Count_Text = "Showing {filteredrows} filtered rows from a total of {totalrows}.";

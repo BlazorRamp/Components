@@ -9,10 +9,6 @@
 @if (_tableColumns.Count == 0) return;
 
 <div class="@GlobalValues.DataTable_Class">
-
-
-
-
     <div id="@_tableTitleID" class="@(TitleHidden ? $"{GlobalValues.DataTable_Title_Class} {GlobalValues.DataTable_Title_Hidden_Modifier}" : GlobalValues.DataTable_Title_Class)" 
         data-br-data-position="@DataTableHelper.GetTitlePosition(TitleAlignment)">
         @_tableTitle
@@ -64,7 +60,7 @@
                 }
             </tbody>
         </table>
-
+        <span id="@_pressSortTextID" hidden>@_pressToSortText</span>
     </div>
 
     <div class="@GlobalValues.DataTable_Bottom_Pager_Class">@BottomPager</div>
@@ -82,7 +78,8 @@
     {
         @if (true == dataColumn.IsSortable)
         {
-            <button type="button" class="@GlobalValues.DataTable_Column_Sorter_Class" @onclick="() => HandleColumnHeaderClick(dataColumn)" data-br-data-position="@DataTableHelper.GetDataPosition(dataColumn.ColumnAlignment)">
+            <button type="button" class="@GlobalValues.DataTable_Column_Sorter_Class" @onclick="() => HandleColumnHeaderClick(dataColumn)" 
+                    data-br-data-position="@DataTableHelper.GetDataPosition(dataColumn.ColumnAlignment)" aria-describedby="@_pressSortTextID">
                 <span class="@GlobalValues.DataTable_Column_Title_Class">@dataColumn.Title</span>
                 <span class="@GlobalValues.DataTable_Column_Icon_Class" data-br-aria-sort="@sortDirection" aria-hidden="true"></span>
             </button>
