@@ -16,7 +16,7 @@ public partial class DataTable<TData> : ComponentBase
 
     [Parameter] public RenderFragment TableColumns { get; set; } = default!;
 
-    [Parameter] public string           Title                 { get; set; } = default!;
+    [Parameter] public string           Title                 { get; set; } = GlobalValues.DataTable_Title_Text;
     [Parameter] public TitleAlignment   TitleAlignment        { get; set; } = TitleAlignment.Start;
     [Parameter] public bool             TitleHidden           { get; set; } = false;
     [Parameter] public RenderFragment?  Filter                { get; set; }
@@ -253,7 +253,7 @@ public partial class DataTable<TData> : ComponentBase
         // guarantee Blazor has flushed the pending render batch to the DOM. Both the visual
         // spinner AND the live-region announcement depend on that DOM flush actually happening;
         // without it, screen reader announcements can be silently dropped, not just delayed.
-        // Task.Delay(1) uses the timer queue instead of SynchronizationContext.Post, which
+        // Task.Delay(10) uses the timer queue instead of SynchronizationContext.Post, which
         // reliably allows the render batch to flush before the (synchronous) filter/sort
         // work resumes. Confirmed via testing: Task.Yield() was unreliable for both paint
         // and SR announcements, especially when filtering+sorting together.
