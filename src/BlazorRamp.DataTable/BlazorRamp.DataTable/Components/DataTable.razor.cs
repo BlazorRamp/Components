@@ -177,6 +177,8 @@ public partial class DataTable<TData> : ComponentBase
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        Debug.WriteLine("In OnAfterRenderAsync");
+
         if (true == firstRender)
         {
 
@@ -246,6 +248,8 @@ public partial class DataTable<TData> : ComponentBase
 
     private async Task ToggleBusyIndicator(bool showSpinner, string endMessage = "")
     {
+
+        Debug.WriteLine("In ToggleBusyIndicator showSpinner: " + showSpinner.ToString());
         _operationCompletedAnnouncement = endMessage;
         
         _showTableSpinner = showSpinner;
@@ -262,6 +266,7 @@ public partial class DataTable<TData> : ComponentBase
 
     private async Task<int> ToggleSortData(ColumnBase<TData> dataColumn, List<TData> dataSource, List<TData> originalDataSource, List<TData>? filteredUnsortedDataSource, Func<TData, bool>? filterRule)
     {
+        Debug.WriteLine("ToggleSortData Start for column: " + dataColumn.DisplayName);
         await ToggleBusyIndicator(true);
 
         var sortDirection = dataColumn.ColumnSortDirection;
@@ -282,7 +287,7 @@ public partial class DataTable<TData> : ComponentBase
         var sortingText = dataColumn.ColumnSortDirection switch { ColumnSortDirection.Ascending => _sortUpCompleted, ColumnSortDirection.Descending => _sortDownCompleted, _ => _sortRemovedCompleted };
 
         await ToggleBusyIndicator(false, sortingText);
-
+        Debug.WriteLine("ToggleSortData Stopped for column: " + dataColumn.DisplayName);
         return _tableColumns.IndexOf(dataColumn);
     }
 

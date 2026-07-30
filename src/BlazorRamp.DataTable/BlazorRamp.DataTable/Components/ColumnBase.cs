@@ -31,6 +31,10 @@ public abstract class ColumnBase<TData> : ComponentBase, IDisposable
     protected bool   _hasStringFormat  = false;
 
 
+    internal string _columnHeaderID       = Guid.NewGuid().ToString();
+    internal string _columnHeaderButtonID = Guid.NewGuid().ToString();
+
+
     protected override void OnInitialized()
     {
         _formatString    = String.IsNullOrWhiteSpace(Format) ? String.Empty : Format.Trim();
