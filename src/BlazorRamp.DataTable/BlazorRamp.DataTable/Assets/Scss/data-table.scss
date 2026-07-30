@@ -25,11 +25,11 @@
         grid-row: 1/2;
         display: flex;
         background-color: inherit;
-        color: var(--br-comp-data-table-area-header-text);
-        font-size: var(--br-comp-data-table-area-header-font-size);
-        font-weight: var(--br-comp-data-table-area-header-font-weight);
-        font-family: var(--br-comp-data-table-area-header-font-family);
-        line-height: var(--br-comp-data-table-area-header-line-height);
+        color: var(--br-comp-data-table-title-info-text);
+        font-size: var(--br-comp-data-table-title-info-font-size);
+        font-weight: var(--br-comp-data-table-title-info-font-weight);
+        font-family: var(--br-comp-data-table-title-info-font-family);
+        line-height: var(--br-comp-data-table-title-info-line-height);
 
         &--hidden {
             display: none;
@@ -334,10 +334,10 @@
         grid-row: 6/7;
         text-align: start;
         background-color: inherit;
-        color: var(--br-comp-data-table-area-header-text);
-        font-size: var(--br-comp-data-table-area-header-font-size);
-        font-weight: var(--br-comp-data-table-area-header-font-weight);
-        font-family: var(--br-comp-data-table-area-header-font-family);
-        line-height: var(--br-comp-data-table-area-header-line-height);
+        color: var(--br-comp-data-table-title-info-text);
+        font-size: var(--br-comp-data-table-title-info-font-size);
+        font-weight: var(--br-comp-data-table-title-info-font-weight);
+        font-family: var(--br-comp-data-table-title-info-font-family);
+        line-height: var(--br-comp-data-table-title-info-line-height);
     }
 }
