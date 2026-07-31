@@ -11,7 +11,7 @@ internal class GlobalValues
 
     public const string DataTable_No_Records_Text           = "No entries found.";
     public const string DataTable_Title_Text                = "Results";
-    public const string DataTable_Row_Selected_Header_Text  = "Select";
+    public const string DataTable_Row_Selector_Header_Text  = "Select";
 
 
     public const string DataTable_Sort_Up_Status_Text      = "Sort up completed.";

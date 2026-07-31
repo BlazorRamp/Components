@@ -64,7 +64,7 @@ public partial class DataTable<TData> : ComponentBase
     private List<TData> _selectedRows               = [];
 
     private string _noDataText            = GlobalValues.DataTable_No_Records_Text;
-    private string _rowSelectHeading      = GlobalValues.DataTable_Row_Selected_Header_Text;
+    private string _rowSelectHeading      = GlobalValues.DataTable_Row_Selector_Header_Text;
     private string _rowIdentifierHeading = GlobalValues.DataTable_Row_Identifier_Heading_Text;
     private string _selectRowLabelID      = Guid.NewGuid().ToString();
     private string _tableTitleID          = Guid.NewGuid().ToString();
@@ -83,6 +83,8 @@ public partial class DataTable<TData> : ComponentBase
     private string _filteringCompleted   = GlobalValues.DataTable_Filtered_Status_Text;
     private string _pressToSortText      = GlobalValues.DataTable_Press_To_Sort_Text;
 
+
+    private string _headerKey = Guid.NewGuid().ToString();
 
     private string _operationCompletedAnnouncement = String.Empty;
 
@@ -123,6 +125,8 @@ public partial class DataTable<TData> : ComponentBase
             PagerBinding!.TotalItemCount = DataSource.Count;
             PagerBinding.CurrentItemCount = DataSource.Count;
         }
+
+        _displayCountMessage = GetDisplayCountMessage(_dataSource.Count, DataSource.Count);
 
         await CheckSetApplyFilterRule(FilterRule, _previousFilterRule, rowsChanged);
 
@@ -165,13 +169,13 @@ public partial class DataTable<TData> : ComponentBase
 
     protected override void OnInitialized()
     {
-        _rowSelectHeading     = String.IsNullOrWhiteSpace(RowSelectHeading) ? GlobalValues.DataTable_Row_Selected_Header_Text : RowSelectHeading.Trim();
-        _rowIdentifierHeading = String.IsNullOrWhiteSpace(RowIdentifierHeading) ? GlobalValues.DataTable_Row_Identifier_Heading_Text : RowIdentifierHeading.Trim();
+        _rowSelectHeading     = String.IsNullOrWhiteSpace(RowSelectHeading) ? GlobalValues.DataTable_Row_Selector_Header_Text : RowSelectHeading.Trim();
+        _rowIdentifierHeading = String.IsNullOrWhiteSpace(RowIdentifierHeading) ? GlobalValues.DataTable_Row_Identifier_Heading_Text : RowIdentifierHeading.Trim();//TODO ??
         _usePaging            = PagerBinding != null;
         _previousDataRef      = DataSource;
          _dataSource          = [.. DataSource];
 
-        _displayCountMessage = GetDisplayCountMessage(_dataSource.Count, DataSource.Count);
+        //_displayCountMessage = GetDisplayCountMessage(_dataSource.Count, DataSource.Count);
     }
 
 

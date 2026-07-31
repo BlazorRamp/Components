@@ -33,14 +33,14 @@
                         @if (column is DataColumn<TData> dataColumn)
                         {
                             var ariaSortValue = column.ColumnSortDirection == ColumnSortDirection.NotSorted ? null : (column.ColumnSortDirection == ColumnSortDirection.Ascending ? "ascending" : "descending");
-                            <th aria-sort="@ariaSortValue" scope="col" data-br-data-position="@DataTableHelper.GetDataPosition(dataColumn.ColumnAlignment)" @key="column._columnHeaderID">
+                            <th aria-sort="@ariaSortValue" scope="col" data-br-data-position="@DataTableHelper.GetDataPosition(dataColumn.ColumnAlignment)">
                                 @{
                                     CheckAddSortable(dataColumn, ariaSortValue);
                                 }
                             </th>
                             continue;
                         }
-                        <th scope="col" data-br-data-position="@DataTableHelper.GetDataPosition(column.ColumnAlignment)" style="@column.HeaderStyle" @key="column._columnHeaderID">
+                        <th scope="col" data-br-data-position="@DataTableHelper.GetDataPosition(column.ColumnAlignment)" style="@column.HeaderStyle">
 
                             @if (column is TemplateColumn<TData> templateColumn && templateColumn.HeaderTemplate is not null)
                             {
@@ -90,8 +90,7 @@
         @if (true == dataColumn.IsSortable)
         {
             <button type="button" class="@GlobalValues.DataTable_Column_Sorter_Class" @onclick="() => HandleColumnHeaderClick(dataColumn)" 
-                    data-br-data-position="@DataTableHelper.GetDataPosition(dataColumn.ColumnAlignment)" aria-describedby="@_pressSortTextID" 
-                    @key="dataColumn._columnHeaderButtonID" id="@dataColumn._columnHeaderButtonID">
+                    data-br-data-position="@DataTableHelper.GetDataPosition(dataColumn.ColumnAlignment)" aria-describedby="@_pressSortTextID">
 
                 <span class="@GlobalValues.DataTable_Column_Title_Class">@dataColumn.Title</span>
                 <span class="@GlobalValues.DataTable_Column_Icon_Class" data-br-aria-sort="@sortDirection" aria-hidden="true"></span>
