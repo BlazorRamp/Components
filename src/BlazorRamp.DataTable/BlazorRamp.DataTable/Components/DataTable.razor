@@ -33,7 +33,7 @@
                         @if (column is DataColumn<TData> dataColumn)
                         {
                             var ariaSortValue = column.ColumnSortDirection == ColumnSortDirection.NotSorted ? null : (column.ColumnSortDirection == ColumnSortDirection.Ascending ? "ascending" : "descending");
-                            <th aria-sort="@ariaSortValue" scope="col" data-br-data-position="@DataTableHelper.GetDataPosition(dataColumn.ColumnAlignment)">
+                            <th aria-sort="@ariaSortValue" scope="col" data-br-data-position="@DataTableHelper.GetDataPosition(dataColumn.ColumnAlignment)" style="@dataColumn.HeaderStyle" >
                                 @{
                                     CheckAddSortable(dataColumn, ariaSortValue);
                                 }
@@ -195,7 +195,7 @@
 
                     <td class="@GlobalValues.DataTable_Row_Selector_Class">
                         <input type="checkbox" checked="@containsRow"
-                               aria-label="@checkboxLabel" aria-labelledby="@(checkboxLabel is null ? _selectRowLabelID : null)" @onchange="(args) => ToggleSelection((bool)args.Value!, rowItem)" />
+                               aria-label="@checkboxLabel" aria-labelledby="@(checkboxLabel is null ? _selectRowLabelID : null)" @onchange="(args) => ToggleSelection((bool)args.Value!, rowItem)" @onclick:stopPropagation="true" />
                     </td>
                 }
 
@@ -214,7 +214,7 @@
 
         <td class="@GlobalValues.DataTable_Row_Selector_Class">
             <input type="checkbox" checked="@containsRow"
-                   aria-label="@checkboxLabel" aria-labelledby="@(checkboxLabel is null ? _selectRowLabelID : null)" @onchange="(args) => ToggleSelection((bool)args.Value!, rowItem)" />
+                   aria-label="@checkboxLabel" aria-labelledby="@(checkboxLabel is null ? _selectRowLabelID : null)" @onchange="(args) => ToggleSelection((bool)args.Value!, rowItem)" @onclick:stopPropagation="true" />
         </td>
     }
 

@@ -5,6 +5,8 @@ using BlazorRamp.DataTable.Components;
 using Microsoft.AspNetCore.Components;
 using System.Linq.Expressions;
 
+namespace BlazorRamp.DataTable.Components;
+
 public partial class DataColumn<TData> : ColumnBase<TData>
 {
     [Parameter, EditorRequired] public Expression<Func<TData, object>>? DataProperty { get; set; } = default;
