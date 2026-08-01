@@ -52,12 +52,12 @@ internal static class DataTableHelper
 
         };
 
-    public static string GetDataPosition(ContentAlignment alignment)
+    public static string GetDataPosition(ColumnAlignment alignment)
 
         => alignment switch
         {
-            ContentAlignment.End    => GlobalValues.DataTable_Data_Position_End,
-            ContentAlignment.Centre => GlobalValues.DataTable_Data_Position_Centre,
+            ColumnAlignment.End    => GlobalValues.DataTable_Data_Position_End,
+            ColumnAlignment.Centre => GlobalValues.DataTable_Data_Position_Centre,
             _                       => GlobalValues.DataTable_Data_Position_Start,
 
         };

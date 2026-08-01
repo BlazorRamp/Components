@@ -51,10 +51,10 @@ public class DataColumn_Tests
         }
 
         [Theory]
-        [InlineData(ContentAlignment.Start)]
-        [InlineData(ContentAlignment.Centre)]
-        [InlineData(ContentAlignment.End)]
-        public async Task Should_be_able_to_set_the_column_alignment(ContentAlignment columnAlignment)
+        [InlineData(ColumnAlignment.Start)]
+        [InlineData(ColumnAlignment.Centre)]
+        [InlineData(ColumnAlignment.End)]
+        public async Task Should_be_able_to_set_the_column_alignment(ColumnAlignment columnAlignment)
         {
             await using var context = new BunitContext();
 

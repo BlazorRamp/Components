@@ -22,11 +22,11 @@
             <DataColumn DataProperty="d => d.ContactID" DisplayName="Contact id" IsSortable="true" />
             <DataColumn DataProperty="d => d.Title" DisplayName="Title" IsSortable="true" />
             <DataColumn DataProperty="d => d.GivenName" DisplayName="First name" IsSortable="true" />
-            <DataColumn DataProperty="d => d.FamilyName" DisplayName="Surname" IsSortable="true" ColumnAlignment="ContentAlignment.Start" />
+            <DataColumn DataProperty="d => d.FamilyName" DisplayName="Surname" IsSortable="true" ColumnAlignment="ColumnAlignment.Start" />
             <DataColumn DataProperty="d => d.Country" DisplayName="Country of residence" IsSortable="true">
 
             </DataColumn>
-            <DataColumn DataProperty="d => d.DateOfBirth" DisplayName="Date of birth" ColumnAlignment="ContentAlignment.Centre" />
+            <DataColumn DataProperty="d => d.DateOfBirth" DisplayName="Date of birth" ColumnAlignment="ColumnAlignment.Centre" />
         </TableColumns>
         <BottomPager>
          <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Two button pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount" ItemsPerPage="@_pagerBinding.ItemsPerPage"

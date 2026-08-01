@@ -13,7 +13,7 @@ public abstract class ColumnBase<TData> : ComponentBase, IDisposable
     [Parameter] public string? CellStyle                   { get; set; } = null;
     [Parameter] public string DisplayName                  { get; set; } = default!;
     [Parameter] public string? CellFormat                  { get; set; } = null;
-    [Parameter] public ContentAlignment ColumnAlignment    { get; set; } = ContentAlignment.Start;
+    [Parameter] public ColumnAlignment ColumnAlignment    { get; set; } = ColumnAlignment.Start;
 
     public PropertyInfo?        PropertyInfo       { get; protected set; } = null;
     public ColumnSortDirection ColumnSortDirection { get; set; } = ColumnSortDirection.NotSorted;

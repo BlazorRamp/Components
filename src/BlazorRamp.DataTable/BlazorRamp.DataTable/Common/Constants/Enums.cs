@@ -6,7 +6,7 @@ public enum TitleAlignment : int
     Centre = 1,
     End = 2
 }
-public enum ContentAlignment : int 
+public enum ColumnAlignment : int 
 { 
     Start  = 0, 
     Centre = 1, 

@@ -26,7 +26,7 @@
         <DataColumn DataProperty="d => d.ContactID" DisplayName="Contact id" IsSortable="true" />
         <DataColumn DataProperty="d => d.Title" DisplayName="Title" IsSortable="true" />
         <DataColumn DataProperty="d => d.GivenName" DisplayName="First name" IsSortable="true" />
-        <DataColumn DataProperty="d => d.FamilyName" DisplayName="Surname" IsSortable="true" ColumnAlignment="ContentAlignment.Start" />
+        <DataColumn DataProperty="d => d.FamilyName" DisplayName="Surname" IsSortable="true" ColumnAlignment="ColumnAlignment.Start" />
         <DataColumn DataProperty="d => d.Country" DisplayName="Country of residence" IsSortable="true">
                 <CellTemplate Context="rowItem">
                     @if (rowItem.Country == "United Kingdom")
@@ -43,8 +43,8 @@
                     @rowItem.Country
                 </CellTemplate>
         </DataColumn>
-        <DataColumn DataProperty="d => d.DateOfBirth" DisplayName="Date of birth" ColumnAlignment="ContentAlignment.Centre" />
-        <DataColumn DataProperty="d => d.Rate" DisplayName="Hourly Rate" ColumnAlignment="ContentAlignment.End" CellFormat="C" />
+            <DataColumn DataProperty="d => d.DateOfBirth" DisplayName="Date of birth" ColumnAlignment="ColumnAlignment.Centre" />
+            <DataColumn DataProperty="d => d.Rate" DisplayName="Hourly Rate" ColumnAlignment="ColumnAlignment.End" CellFormat="C" IsSortable="true" />
 @*         <TemplateColumn ColumnAlignment="ContentAlignment.Centre" CellStyle="width:100px;word-break: keep-all;" HeaderStyle="width:100px;">
             <HeaderTemplate>Test</HeaderTemplate>
             <CellTemplate Context="rowItem" >nothing</CellTemplate>
