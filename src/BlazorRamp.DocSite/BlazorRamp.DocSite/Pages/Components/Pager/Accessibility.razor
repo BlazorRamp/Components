@@ -5,18 +5,18 @@
 <h1>@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Accessibility</h1>
 <p>
     The structure of the component is simply a <span class="code-span">nav</span> element that contains either buttons or links dependant on the components configuration options.
-    The  <span class="code-span">nav</span> element has the <span class="code-span">aria-labelledby</span> attribute that uses two identifiers. The first part is 
-    the <span class="code-span">AriaLabel</span> parameter value, such as Data Pager,  the second points to the page information seen above the buttons or links, so screen reader 
+    The  <span class="code-span">nav</span> element has the <span class="code-span">aria-labelledby</span> attribute that uses two identifiers. The first part is
+    the <span class="code-span">AriaLabel</span> parameter value, such as Data Pager,  the second points to the page information seen above the buttons or links, so screen reader
     users on entering the pager or via landmark lists, will have both the name of the pager and its state announced such as Data Pager, Current page 5 of 10.
 </p>
 
 <p>
-    <strong>Note: </strong>The two identifier approach is only used for Blazor WASM, when its Blazor Server only the first identifier is used and the live region service is then utilised 
+    <strong>Note: </strong>The two identifier approach is only used for Blazor WASM, when its Blazor Server only the first identifier is used and the live region service is then utilised
     to announce the page information. It was architected this way to negate certain issues that JAWS has with the Blazor Server diff mechanism and the way in which it handles its virtual buffers.
 </p>
 <p>
     <strong>Important: </strong>Given the current JAWS virtual cursor bug as listed below, you should consider whether or not to set the <span class="code-span">AddApplicationRole</span> parameter to true,
-    or just to add text to inform JAWS users to turn of the virtual cursor whilst on the pager selectors. Enabling this option disables the arrow keys for all screen readers, whilst on the 
+    or just to add text to inform JAWS users to turn of the virtual cursor whilst on the pager selectors. Enabling this option disables the arrow keys for all screen readers, whilst on the
     pager selectors. It is highly unlikely that this would be an issue for the user as if they needed to read the button text they would just turn on the virtual cursor, and or tab away and back again
     and it would be announced as usual.
 </p>
@@ -51,12 +51,15 @@
 <ul aria-labelledby="screen-reader-quirks">
     <li>
         <b>Narrator - </b>The Pager uses the <span class="code-span">aria-disabled</span> attribute when buttons or links are not needed such as First and Previous when on the first page.
-        If an <span class="code-span">aria-disabled</span> item is activated the current pager information is just re-announced, however, Narrator blocks this interaction 
+        If an <span class="code-span">aria-disabled</span> item is activated the current pager information is just re-announced, however, Narrator blocks this interaction
         when <span class="code-span">aria-disabled</span> is present.
     </li>
     <li>
         <p>
-            <strong>JAWS Virtual Cursor Bug</strong> There appears to be a virtual cursor bug that affects both Server and WASM when using the newer combined Blazor Web App Templates.
+            <strong>JAWS Virtual Cursor Bug</strong> There appears to be a virtual cursor bug that affects both Server and WASM when using the newer combined
+            Blazor Web App Template choice - Auto (Server and WebAssembly). Using Server (Global) or WASM (Global) seem unaffected by the description below.
+        </p>
+        <p>
             When you repeatedly press a pager button such as Next, JAWS will lose/move focus. As a workaround an optional <span class="code-span">AddApplicationRole</span> parameter
             was added to the Pager component that when set to true adds the attribute and value <span class="code-span">role="application"</span> to the element that contains the pager
             buttons or links. This effectively disables the Virtual cursor whilst on the pager selectors. The alternative whilst the JAWS team resolve the issue is to advise JAWS users to

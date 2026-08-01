@@ -21,7 +21,10 @@
         </li>
         <li>
             <p>
-                <strong>JAWS Virtual Cursor Bug</strong> There appears to be a virtual cursor bug that affects both Server and WASM when using the newer combined Blazor Web App Templates.
+                <strong>JAWS Virtual Cursor Bug</strong> There appears to be a virtual cursor bug that affects both Server and WASM when using the newer combined
+                Blazor Web App Template choice - Auto (Server and WebAssembly). Using Server (Global) or WASM (Global) seem unaffected by the description below.
+            </p>
+            <p>
                 When you repeatedly press a pager button such as Next, JAWS will lose/move focus. As a workaround an optional <span class="code-span">AddApplicationRole</span> parameter
                 was added to the Pager component that when set to true adds the attribute and value <span class="code-span">role="application"</span> to the element that contains the pager
                 buttons or links. This effectively disables the Virtual cursor whilst on the pager selectors. The alternative whilst the JAWS team resolve the issue is to advise JAWS users to

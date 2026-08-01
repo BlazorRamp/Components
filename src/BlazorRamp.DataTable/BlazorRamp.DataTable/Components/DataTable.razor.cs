@@ -6,9 +6,6 @@ using BlazorRamp.DataTable.Common.Models;
 using BlazorRamp.DataTable.Common.Utilities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using System.Data.Common;
-using System.Diagnostics;
-using System.Formats.Asn1;
 
 namespace BlazorRamp.DataTable.Components;
 
@@ -84,8 +81,6 @@ public partial class DataTable<TData> : ComponentBase
     private string _filteringCompleted   = GlobalValues.DataTable_Filtered_Status_Text;
     private string _pressToSortText      = GlobalValues.DataTable_Press_To_Sort_Text;
 
-
-    private string _headerKey = Guid.NewGuid().ToString();
 
     private string _operationCompletedAnnouncement = String.Empty;
 
@@ -251,7 +246,6 @@ public partial class DataTable<TData> : ComponentBase
 
     private async Task ToggleBusyIndicator(bool showSpinner, string endMessage = "")
     {
-
         _operationCompletedAnnouncement = endMessage;
         
         _showTableSpinner = showSpinner;
@@ -453,28 +447,4 @@ public partial class DataTable<TData> : ComponentBase
     }
 
 
-    //private static async Task SortDataSource(bool sortAscending, List<TData> dataSource, ColumnBase<TData> dataColumn)
-    //{
-    //    Stopwatch stopwatch = Stopwatch.StartNew();
-    //    if (dataColumn.PropertyInfo == null) return;
-
-    //    var propertyValueGetter = dataColumn.ValueGetter!;//DataTableHelper.CreatePropertyValueGetter<TData>(dataColumn.PropertyInfo);
-
-    //    List<TData> sortedData = [];
-
-    //    if(sortAscending == true)
-    //    {
-    //        sortedData = [.. dataSource.OrderBy(item => propertyValueGetter(item))];
-    //    }
-    //    else
-    //    {
-    //        sortedData = [.. dataSource.OrderByDescending(item => propertyValueGetter(item))];
-    //    }
-
-    //    //Do in place swap with sorted results to keep equality reference
-    //    for (int index = 0; index < dataSource.Count; index++) dataSource[index] = sortedData[index];
-
-    //    Console.WriteLine("Time: " + stopwatch.ElapsedMilliseconds);
-    //    await Task.CompletedTask;
-    //}
 }

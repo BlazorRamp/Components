@@ -1,7 +1,6 @@
 ﻿
 using BlazorRamp.DataTable.Common.Constants;
 using BlazorRamp.DataTable.Common.Utilities;
-using BlazorRamp.DataTable.Components;
 using Microsoft.AspNetCore.Components;
 using System.Linq.Expressions;
 
