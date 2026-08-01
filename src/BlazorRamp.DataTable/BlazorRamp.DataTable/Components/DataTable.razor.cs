@@ -5,6 +5,7 @@ using BlazorRamp.DataTable.Common.Constants;
 using BlazorRamp.DataTable.Common.Models;
 using BlazorRamp.DataTable.Common.Utilities;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System.Data.Common;
 using System.Diagnostics;
 using System.Formats.Asn1;
@@ -328,9 +329,9 @@ public partial class DataTable<TData> : ComponentBase
         }
     }
 
-    private async Task HandleOnSelectedRow(TData rowItem)
+    private async Task HandleOnSelectedRow(MouseEventArgs args, TData rowItem)
     {
-        if (RowSelectionMode == RowSelectionMode.None) return;
+        if (RowSelectionMode == RowSelectionMode.None || args.Buttons != 0) return;
 
         if(_selectedRows.Contains(rowItem))
         {

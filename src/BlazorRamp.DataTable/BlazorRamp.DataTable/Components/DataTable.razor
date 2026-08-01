@@ -117,7 +117,7 @@
             string? lastRow = index == _dataPage.Count - 1 ? "true" : null;
 
             <tr @key="@rowItem" class="@DataTableHelper.BuildClassList(GlobalValues.DataTable_Data_Row_Class, selectClass)" style="@(RowStyleFunc is not null ? RowStyleFunc(rowItem) : null)"
-                @onclick="() => HandleOnSelectedRow(rowItem)" data-br-last-row="@lastRow">
+                @onclick="(e) => HandleOnSelectedRow(e, rowItem)" data-br-last-row="@lastRow">
 
                 @foreach (var column in _tableColumns)
                 {
@@ -164,7 +164,7 @@
 
             }
             <tr @key="@rowItem" class="@DataTableHelper.BuildClassList(GlobalValues.DataTable_Data_Row_Class, selectClass)" style="@(RowStyleFunc is not null ? RowStyleFunc(rowItem) : null)"
-                @onclick="() => HandleOnSelectedRow(rowItem)" data-br-last-row="@lastRow">
+                @onclick="(e) => HandleOnSelectedRow(e, rowItem)" data-br-last-row="@lastRow">
 
                 @foreach (var column in _tableColumns)
                 {

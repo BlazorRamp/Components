@@ -11,7 +11,7 @@
 <div style="height:900px; ">
 
 <DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts" DefaultSortIndex="2"
-               FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.Multiple" RowStyleFunc="@rowStyleFunc" RowSelectHeading="Pick" RowIdentifierFunc="checkboxLabel"
+               FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.Single" RowStyleFunc="@rowStyleFunc" RowSelectHeading="Pick" RowIdentifierFunc="checkboxLabel"
                SelectedRowsChanged="HandleRowsChanged">
     <Filter>
         <DebounceFilter HintText="Filters across all columns of the table" RegexPattern="^[A-Za-z0-9]*$" OnDebounceFilterResult="HandleOnDebounce"
@@ -45,10 +45,10 @@
         </DataColumn>
         <DataColumn DataProperty="d => d.DateOfBirth" DisplayName="Date of birth" ColumnAlignment="ContentAlignment.Centre" />
         <DataColumn DataProperty="d => d.Rate" DisplayName="Hourly Rate" ColumnAlignment="ContentAlignment.End" CellFormat="C" />
-        <TemplateColumn ColumnAlignment="ContentAlignment.Centre" CellStyle="width:100px;word-break: keep-all;" HeaderStyle="width:100px;">
+@*         <TemplateColumn ColumnAlignment="ContentAlignment.Centre" CellStyle="width:100px;word-break: keep-all;" HeaderStyle="width:100px;">
             <HeaderTemplate>Test</HeaderTemplate>
             <CellTemplate Context="rowItem" >nothing</CellTemplate>
-        </TemplateColumn>
+        </TemplateColumn> *@
     </TableColumns>
     <BottomPager>
 @*             <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Two button pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount" ItemsPerPage="@_pagerBinding.ItemsPerPage"
