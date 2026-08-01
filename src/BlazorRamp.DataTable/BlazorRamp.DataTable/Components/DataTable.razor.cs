@@ -9,43 +9,156 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace BlazorRamp.DataTable.Components;
 
+
+/// <summary>
+/// An accessible, sortable, filterable data table for an in-memory list of <typeparamref name="TData"/> items.
+/// Supports optional paging, virtualization, row selection, and screen reader announcements for sort,
+/// filter, and empty-result states.
+/// </summary>
+/// <typeparam name="TData">The row item type displayed by the table.</typeparam>
 public partial class DataTable<TData> : ComponentBase
 {
-
+    /// <summary>
+    /// The <see cref="DataColumn{TData}"/>/<see cref="TemplateColumn{TData}"/> definitions for this table.
+    /// </summary>
     [Parameter] public RenderFragment TableColumns { get; set; } = default!;
 
+    /// <summary>
+    /// The table's title, shown above the content and used as the accessible name for the table.
+    /// </summary>
     [Parameter] public string           Title                 { get; set; } = GlobalValues.DataTable_Title_Text;
+
+    /// <summary>
+    /// Horizontal alignment of the title.
+    /// </summary>
     [Parameter] public TitleAlignment   TitleAlignment        { get; set; } = TitleAlignment.Start;
+
+    /// <summary>
+    /// Whether the title is visually hidden while remaining available to assistive technology.
+    /// </summary>
     [Parameter] public bool             TitleHidden           { get; set; } = false;
+
+    /// <summary
+    /// >Optional markup for a custom filter UI, rendered above the table.
+    /// </summary>
     [Parameter] public RenderFragment?  Filter                { get; set; }
+
+    /// <summary>
+    /// Horizontal alignment of the filter area.
+    /// </summary>
     [Parameter] public FilterAlignment  FilterAlignment       { get; set; } = FilterAlignment.End;
+
+    /// <summary>
+    /// Optional markup for a pager rendered above the table.
+    /// </summary>
     [Parameter] public RenderFragment?  TopPager              { get; set; }
+
+    /// <summary>
+    /// Optional markup for a pager rendered below the table.
+    /// </summary>
     [Parameter] public RenderFragment?  BottomPager           { get; set; }
+
+    /// <summary>
+    /// The estimated pixel height of each row, used by the virtualized rendering path. Set below 1 to disable virtualization.
+    /// </summary>
     [Parameter] public int              VirtualizeItemSizePX  { get; set; } = 32;
+
+    /// <summary>
+    /// When supplied, enables paging and binds the table to the given paging state.
+    /// </summary>
     [Parameter] public PagerBinding?    PagerBinding          { get; set; } = null;
+
+    /// <summary>
+    /// The index of the column to sort by on first render, or -1 for no default sort.
+    /// </summary>
     [Parameter] public int              DefaultSortIndex      { get; set; } = -1;
+
+    /// <summary>
+    /// Header text for the row-selection column. Defaults if null, empty, or whitespace
+    /// .</summary>
     [Parameter] public string?          RowSelectHeading      { get; set; }
+
+    /// <summary>
+    /// Heading used to describe the row-selection checkbox column to assistive technology when <see cref="RowIdentifierFunc"/> is not supplied.
+    /// </summary>
     [Parameter] public string?          RowIdentifierHeading  { get; set; }
+
+    /// <summary>
+    /// Optional function producing a per-row accessible label for that row's selection checkbox or text
+    /// added to a column button to make a better/unique accessible name.
+    /// </summary>
     [Parameter] public Func<TData, string>? RowIdentifierFunc { get; set; }
 
-    //[Parameter] public Func<TData,string>? Ar
+
+    /// <summary>
+    /// Text shown when there are no rows to display. Defaults if null, empty, or whitespace.
+    /// </summary>
     [Parameter] public string?          NoRecordText         { get; set; } = GlobalValues.DataTable_No_Records_Text;
+
+    /// <summary>
+    /// Template for the row-count message shown when a filter is active. Supports {filteredrows} and {totalrows} tokens.
+    /// </summary>
     [Parameter] public string?          FilterCountText      { get; set; } = GlobalValues.DataTable_Filter_Count_Text;
+
+    /// <summary>
+    /// Template for the row-count message shown when no filter is active. Supports the {totalrows} token.
+    /// </summary>
     [Parameter] public string?          RecordCountText      { get; set; } = GlobalValues.DataTable_Record_Count_Text;
 
+    /// <summary>
+    /// The full, list of rows to display. Required.
+    /// </summary>
     [Parameter, EditorRequired] public List<TData> DataSource       { get; set; } = [];
+
+    /// <summary>
+    /// Whether rows can be selected, and if so, whether selection is single or multiple.
+    /// </summary>
     [Parameter] public RowSelectionMode            RowSelectionMode { get; set; } = RowSelectionMode.None;
+
+    /// <summary>
+    /// The currently selected rows.
+    /// </summary>
     [Parameter] public List<TData>                 SelectedRows     { get; set; } = [];
+
+    /// <summary>
+    /// Optional function returning inline CSS for a row's <c>&lt;tr&gt;</c> element.
+    /// </summary>
     [Parameter] public Func<TData, string?>?       RowStyleFunc     { get; set; } = null;
+
+    /// <summary>
+    /// Predicate used to filter <see cref="DataSource"/>. Supplying a new delegate instance triggers
+    /// re-filtering; reusing the same instance across renders will not.
+    /// </summary>
     [Parameter] public Func<TData, bool>?          FilterRule       { get; set; }
 
-
+    /// <summary>
+    /// Screen reader announcement text used when a filter has been applied.
+    /// </summary>
     [Parameter] public string FilteredStatusText    { get; set; } = GlobalValues.DataTable_Filtered_Status_Text;
+
+    /// <summary>
+    /// Screen reader announcement text used when a column is sorted ascending.
+    /// </summary>
     [Parameter] public string SortUpStatusText      { get; set; } = GlobalValues.DataTable_Sort_Up_Status_Text;
+
+    /// <summary>
+    /// Screen reader announcement text used when a column is sorted descending.
+    /// </summary>
     [Parameter] public string SortDownStatusText    { get; set; } = GlobalValues.DataTable_Sort_Down_Status_Text;
+
+    /// <summary>
+    /// Screen reader announcement text used when a column's sort is cleared.
+    /// </summary>
     [Parameter] public string SortRemovedStatusText { get; set; } = GlobalValues.DataTable_Sort_Removed_Status_Text;
+
+    /// <summary>
+    /// Hidden hint text describing sort buttons to assistive technology, referenced via <c>aria-describedby</c>.
+    /// </summary>
     [Parameter] public string PressToSortText       { get; set; } = GlobalValues.DataTable_Press_To_Sort_Text;
 
+    /// <summary>
+    /// Raised whenever the selected rows change.
+    /// </summary>
     [Parameter] public EventCallback<List<TData>> SelectedRowsChanged { get; set; }
 
     [Inject] private ILiveRegionService? LiveRegionService { get; set; }
@@ -134,6 +247,12 @@ public partial class DataTable<TData> : ComponentBase
 
     }
 
+
+    /// <summary>
+    /// Applies <paramref name="currentFilterRule"/> to <see cref="DataSource"/> if it has changed (or
+    /// <paramref name="rowsChanged"/> is true), caches the filtered-but-unsorted result, re-applies
+    /// the last active sort, and announces the resulting row count.
+    /// </summary>
     private async Task CheckSetApplyFilterRule(Func<TData, bool>? currentFilterRule, Func<TData, bool>? previousFilterRule, bool rowsChanged)
     {
         if (currentFilterRule is null || (currentFilterRule == previousFilterRule && false == rowsChanged)) return;
@@ -158,6 +277,9 @@ public partial class DataTable<TData> : ComponentBase
         await ToggleBusyIndicator(false, _filteringCompleted);
     }
 
+    /// <summary>
+    /// Builds the "showing N of M rows" style message, choosing the filtered or unfiltered template as appropriate.
+    /// </summary>
     private string GetDisplayCountMessage(int currentRowCount, int originalRowCount)
 
         => currentRowCount == originalRowCount ? _recordCountText.Replace("{totalrows}", originalRowCount.ToString())
@@ -170,8 +292,6 @@ public partial class DataTable<TData> : ComponentBase
         _usePaging            = PagerBinding != null;
         _previousDataRef      = DataSource;
          _dataSource          = [.. DataSource];
-
-        //_displayCountMessage = GetDisplayCountMessage(_dataSource.Count, DataSource.Count);
     }
 
 
@@ -210,12 +330,19 @@ public partial class DataTable<TData> : ComponentBase
 
     }
 
+    /// <summary>
+    /// Sends a polite live-region announcement via <see cref="ILiveRegionService"/>, if one is available.
+    /// </summary>
     private async Task MakeAnnouncement(string message, string trigger)
     {
         var announcement = new Announcement(message, AnnouncementType.Info, trigger, LiveRegionType.Polite);
         if (LiveRegionService is not null) await LiveRegionService.MakeAnnouncement(announcement, false);
     }
 
+
+    /// <summary>
+    /// Registers a column with this table. Called by <see cref="ColumnBase{TData}"/> during initialization.
+    /// </summary>
     internal void AddDataTableColumn(ColumnBase<TData> dataColumn)
     {
         _columnAlignments[dataColumn.FieldName] = DataTableHelper.GetDataPosition(dataColumn.ColumnAlignment);
@@ -225,6 +352,9 @@ public partial class DataTable<TData> : ComponentBase
         StateHasChanged();
     }
 
+    /// <summary>
+    /// Unregisters a column from this table. Called by <see cref="ColumnBase{TData}"/> when disposed.
+    /// </summary>
     internal void RemoveDataTableColumn(ColumnBase<TData> dataColumn)
     { 
         if (true == _tableColumns.Contains(dataColumn)) _tableColumns.Remove(dataColumn);
@@ -244,6 +374,11 @@ public partial class DataTable<TData> : ComponentBase
         }
     }
 
+
+    /// <summary>
+    /// Shows or hides the busy indicator. Uses <see cref="Task.Delay(int)"/> rather than <see cref="Task.Yield"/>
+    /// to guarantee the render batch has flushed to the DOM before returning — see inline comment for details.
+    /// </summary>
     private async Task ToggleBusyIndicator(bool showSpinner, string endMessage = "")
     {
         _operationCompletedAnnouncement = endMessage;
@@ -260,6 +395,11 @@ public partial class DataTable<TData> : ComponentBase
         await Task.Delay(10);
     }
 
+
+    /// <summary>
+    /// Cycles the given column's sort state (NotSorted → Ascending → Descending → NotSorted), applies the
+    /// resulting sort (or restores original order), and returns the column's index for use as <c>_lastSortedColumnIndex</c>.
+    /// </summary>
     private async Task<int> ToggleSortData(ColumnBase<TData> dataColumn, List<TData> dataSource, List<TData> originalDataSource, List<TData>? filteredUnsortedDataSource, Func<TData, bool>? filterRule)
     {
         await ToggleBusyIndicator(true);
@@ -286,7 +426,9 @@ public partial class DataTable<TData> : ComponentBase
         return _tableColumns.IndexOf(dataColumn);
     }
 
-
+    /// <summary>
+    /// Returns the slice of <paramref name="dataSource"/> for the given page.
+    /// </summary>
     private static List<TData> GetDataPage(int currentPage, int itemsPerPage, List<TData> dataSource)
     {
         if (dataSource.Count == 0) return [];
@@ -306,7 +448,11 @@ public partial class DataTable<TData> : ComponentBase
             if (isNewData) PagerBinding.TotalItemCount = dataSource.Count;
         }
     }
-    
+
+    /// <summary>
+    /// Re-applies the sort (or restores original order) for the last-sorted column against a freshly
+    /// filtered or replaced <paramref name="dataSource"/>, so sort state survives filter and data source changes.
+    /// </summary>
     private async Task CheckAndResortLastColumn(List<TData> dataSource, List<ColumnBase<TData>> tableColumns, int lastSortedColumnIndex, List<TData> originalDataSource, List<TData>? filteredUnsortedDataSource, Func<TData,bool>? filterRule)
     {
         if (lastSortedColumnIndex == -1) return;
@@ -323,6 +469,13 @@ public partial class DataTable<TData> : ComponentBase
         }
     }
 
+    /// <summary>
+    /// Toggles selection for a row clicked directly (not via its checkbox). Ignores clicks where
+    /// <see cref="MouseEventArgs.Buttons"/> is non-zero, which per the UI Events spec indicates a
+    /// synthetic/keyboard/assistive-technology-triggered click rather than a genuine mouse click —
+    /// this prevents screen reader table-navigation activation (Enter/Space on a cell) from also
+    /// toggling the row's checkbox via bubbling.
+    /// </summary>
     private async Task HandleOnSelectedRow(MouseEventArgs args, TData rowItem)
     {
         if (RowSelectionMode == RowSelectionMode.None || args.Buttons != 0) return;
@@ -341,7 +494,9 @@ public partial class DataTable<TData> : ComponentBase
         if (SelectedRowsChanged.HasDelegate) await SelectedRowsChanged.InvokeAsync(_selectedRows);
     }
 
-
+    /// <summary>
+    /// Sets selection state for a row via its checkbox's change event.
+    /// </summary>
     private async Task ToggleSelection(bool isSelected, TData rowItem)
     {
         if (true == isSelected && false == _selectedRows.Contains(rowItem)) _selectedRows.Add(rowItem);
@@ -361,13 +516,23 @@ public partial class DataTable<TData> : ComponentBase
 
     }
 
-
+    /// <summary>
+    /// Restores <paramref name="dataSource"/> to its original (pre-sort) order. Uses the cached
+    /// <paramref name="filteredUnsortedDataSource"/> when a filter is active to avoid re-filtering the
+    /// full <paramref name="originalDataSource"/>; falls back to re-deriving it if the cache is unavailable.
+    /// </summary>
     private void UnSortDataSource(List<TData> dataSource, List<TData> originalDataSource, List<TData>? filteredUnsortedDataSource = null, Func<TData, bool>? filterRule = null)
     {
         var sourceData = filterRule is null ? originalDataSource : filteredUnsortedDataSource ?? [.. originalDataSource.Where(filterRule)];
 
         for (int index = 0; index < dataSource.Count; index++) dataSource[index] = sourceData[index];
     }
+
+    /// <summary>
+    /// Sorts <paramref name="dataSource"/> in place by <paramref name="dataColumn"/>'s bound property.
+    /// Uses a stable comparison (ties broken by original index, unaffected by sort direction) so equal
+    /// values retain their relative order regardless of ascending/descending.
+    /// </summary>
     private async Task SortDataSource(ColumnSortDirection sortDirection, List<TData> dataSource, ColumnBase<TData> dataColumn)
     {
 

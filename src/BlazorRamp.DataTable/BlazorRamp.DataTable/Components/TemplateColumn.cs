@@ -2,8 +2,16 @@
 
 namespace BlazorRamp.DataTable.Components;
 
+/// <summary>
+/// A column not bound to any property, rendered entirely via <see cref="ColumnBase{TData}.CellTemplate"/>
+/// and an optional <see cref="HeaderTemplate"/>. Not sortable, since there is no underlying value to sort by.
+/// </summary>
+/// <typeparam name="TData">The row item type displayed by the parent table.</typeparam>
 public class TemplateColumn<TData> : ColumnBase<TData>
 {
+    /// <summary>
+    /// Optional template used to render the column header. Receives the column's display name.
+    /// </summary>
     [Parameter] public RenderFragment<string>? HeaderTemplate { get; set; } = default!;
     protected override void OnInitialized()
     {
