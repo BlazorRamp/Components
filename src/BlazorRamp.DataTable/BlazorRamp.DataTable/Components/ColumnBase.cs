@@ -66,12 +66,29 @@ public abstract class ColumnBase<TData> : ComponentBase, IDisposable
     internal bool HasFormatString => _hasStringFormat;
     internal string FormatString  => _formatString;
 
-    protected string _fieldName        = String.Empty;
-    protected string _title            = String.Empty;
-    protected string _formatString     = String.Empty;
-    protected bool   _hasStringFormat  = false;
+    /// <summary>
+    /// The underlying property/field name used as this column's dictionary key for alignment lookups.
+    /// </summary>
+    protected string _fieldName = String.Empty;
 
+    /// <summary>
+    /// The resolved header text for this column.
+    /// </summary>
+    protected string _title = String.Empty;
 
+    /// <summary>
+    /// The trimmed format string derived from <see cref="CellFormat"/>.
+    /// </summary>
+    protected string _formatString = String.Empty;
+
+    /// <summary>
+    /// Whether a non-empty <see cref="CellFormat"/> was supplied.
+    /// </summary>
+    protected bool _hasStringFormat = false;
+
+    /// <summary>
+    /// Resolves the cell format and registers this column with its parent table.
+    /// </summary>
     protected override void OnInitialized()
     {
         _formatString    = String.IsNullOrWhiteSpace(CellFormat) ? String.Empty : CellFormat.Trim();
@@ -79,6 +96,8 @@ public abstract class ColumnBase<TData> : ComponentBase, IDisposable
 
         ParentTable.AddDataTableColumn(this);
     }
+
+
     /// <summary>
     /// Unregisters this column from its parent table when the column is removed from the render tree.
     /// </summary>

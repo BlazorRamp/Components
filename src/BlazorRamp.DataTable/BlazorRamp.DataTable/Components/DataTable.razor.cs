@@ -198,6 +198,11 @@ public partial class DataTable<TData> : ComponentBase
     private string _operationCompletedAnnouncement = String.Empty;
 
     private bool _showTableSpinner = false;
+
+
+    /// <summary>
+    /// Resolves default text parameters, detects data source/filter changes, and refreshes paging and row-count state on every parameter set.
+    /// </summary>
     protected override async Task OnParametersSetAsync()
     {
         var rowsChanged = false;
@@ -284,7 +289,10 @@ public partial class DataTable<TData> : ComponentBase
 
         => currentRowCount == originalRowCount ? _recordCountText.Replace("{totalrows}", originalRowCount.ToString())
                                                : _filterCountText.Replace("{filteredrows}", currentRowCount.ToString()).Replace("{totalrows}", originalRowCount.ToString());
-
+    
+    /// <summary>
+    /// Resolves default text parameters and takes the initial copy of <see cref="DataSource"/> 
+    /// on first initialization.</summary>
     protected override void OnInitialized()
     {
         _rowSelectHeading     = String.IsNullOrWhiteSpace(RowSelectHeading) ? GlobalValues.DataTable_Row_Selector_Header_Text : RowSelectHeading.Trim();
@@ -294,7 +302,9 @@ public partial class DataTable<TData> : ComponentBase
          _dataSource          = [.. DataSource];
     }
 
-
+    /// <summary>
+    /// Applies the default sort on first render, and announces the no-data state once per empty result while avoiding duplicate announcements from extra render passes.
+    /// </summary>
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
 

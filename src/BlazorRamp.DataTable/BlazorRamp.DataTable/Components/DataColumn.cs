@@ -28,6 +28,9 @@ public partial class DataColumn<TData> : ColumnBase<TData>
     /// </summary>
     [Parameter] public bool IsSortable { get; set; } = false;
 
+    /// <summary>
+    /// Resolves <see cref="DataProperty"/> into reflection metadata and a compiled value getter, then registers the column.
+    /// </summary>
     protected override void OnInitialized()
     {
         if (DataProperty is null) throw new ArgumentNullException(nameof(DataProperty), GlobalValues.DataTable_Data_Property_Exception_Message);

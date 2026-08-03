@@ -13,6 +13,11 @@ public class TemplateColumn<TData> : ColumnBase<TData>
     /// Optional template used to render the column header. Receives the column's display name.
     /// </summary>
     [Parameter] public RenderFragment<string>? HeaderTemplate { get; set; } = default!;
+
+
+    /// <summary>
+    /// Assigns a synthetic field name (since there is no bound property) and registers the column.
+    /// </summary>
     protected override void OnInitialized()
     {
         _fieldName  = Guid.NewGuid().ToString();//just something to get alignments as these get added to a dictionary with the field as the key
