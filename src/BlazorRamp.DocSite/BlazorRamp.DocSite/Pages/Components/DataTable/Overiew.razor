@@ -1,0 +1,67 @@
+﻿
+@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DebounceFilter}/{GlobalValues.Common_Page_Path_Overview}")]
+
+<PageTitle>@GlobalValues.Component_Name_Debounce_Filter @GlobalValues.Common_Page_Title_Overview</PageTitle>
+
+<h1>@GlobalValues.Component_Name_Debounce_Filter @GlobalValues.Common_Page_Title_Overview</h1>
+
+
+<p>
+    DebounceFilter is an accessible text input for any scenario where you need to react to what a user
+    is typing — searching, filtering a table, narrowing a list — without re-rendering on every keystroke.
+</p>
+
+<p>
+    Rather than binding to a property and triggering Blazor's render cycle on every character, keystroke handling and debounce timing is handled entirely in JavaScript. Control is only 
+    handed back to Blazor once the user has paused typing for a configurable delay, and results are returned via a <span class="code-span">Func&lt;DebouncedFilterResult, Task&gt;</span> 
+    rather than a typical <span class="code-span">EventCallback</span>, so you decide exactly when <span class="code-span">StateHasChanged</span> is called instead of paying for a 
+    render on every keystroke.
+</p>
+
+<p>
+    Optionally, the input can be validated against a regular expression as part of the same timer cycle, so invalid input is caught and surfaced before your callback ever fires. Validation feedback is
+    announced through BlazorRamp's shared live region service, so screen reader users get the same feedback sighted users see, without you needing to wire up a separate live region.
+</p>
+
+<section class="info-box info-box--container-test" style="margin-top:2rem;">
+    <p>
+        An example of the debounce filter with an optional icon, but without any regex validation is shown below. The default debounce delay of 500 milliseconds has been used and content of the 
+        <span class="code-span">DebouncedFilterResult</span> object is shown below the debounce filter. 
+    </p>
+    <DebounceFilter FilterLabelText="Filter Results" HintText="Results filtered on pause of typing" DebounceDelayMs="500" SvgIcon="--svg-filter-icon" OnDebounceFilterResult="HandleDebounce"  />
+    <p>
+        <pre>
+        @if(false == String.IsNullOrWhiteSpace(_debounceResult))
+        {
+            @_debounceResult;
+        }
+        </pre>
+    </p>
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Usage}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Busy - @GlobalValues.Common_Page_Title_Usage</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DebounceFilter}/{GlobalValues.Common_Page_Path_Installation}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Debounce_Filter - @GlobalValues.Common_Page_Title_Installation</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+
+    private string _debounceResult = String.Empty;
+
+    public async Task HandleDebounce(DebouncedFilterResult result)
+    {
+        _debounceResult = result.ToString();
+        await InvokeAsync(StateHasChanged);
+    }
+}
+
+
+

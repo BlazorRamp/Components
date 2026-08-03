@@ -51,6 +51,16 @@ public class GlobalValues
     public const string Common_Page_Path_CSS_Variables  = "css-variables";
     public const string Common_Page_Path_Questions      = "questions";
 
+    public const string Common_Page_Path_About          = "about";
+    public const string Common_Page_Path_Basic_Usage    = "basic-usage";
+    public const string Common_Page_Path_Filtering      = "filter";
+    public const string Common_Page_Path_Sorting        = "sorting";
+    public const string Common_Page_Path_Styling        = "styling";
+    public const string Common_Page_Path_Paging         = "paging";
+    public const string Common_Page_Path_Templating     = "templating";
+    public const string Common_Page_Path_Virtualizing   = "virtualizing";
+    public const string Common_Page_Path_Typical_Usage  = "typical-usage";
+
     public const string Common_Page_Title_Introduction   = "Introduction";
     public const string Common_Page_Title_Roadmap        = "Roadmap";
     public const string Common_Page_Title_Overview       = "Overview";
@@ -60,14 +70,24 @@ public class GlobalValues
     public const string Common_Page_Title_Usage          = "Usage";
     public const string Common_Page_Title_Core_Variables = "Core CSS Variables";
     public const string Common_Page_Title_Shared_CSS     = "Shared CSS Variables";
+    public const string Common_Page_Title_FAQ_Questions  = "Frequently Asked Questions";
 
-    public const string Common_Page_Title_FAQ_Questions = "Frequently Asked Questions";
+    public const string Common_Page_Title_Usage_About   = "About The Examples";
+    public const string Common_Page_Title_Usage_Basic   = "Basic Usage";
+    public const string Common_Page_Title_Usage_Typical = "Typical Usage";
+    public const string Common_Page_Title_Filtering     = "Filtering";
+    public const string Common_Page_Title_Sorting       = "Sorting";
+    public const string Common_Page_Title_Styling       = "Styling";
+    public const string Common_Page_Title_Templating    = "Templating";
+    public const string Common_Page_Title_Paging        = "Paging";
+    public const string Common_Page_Title_Virtualizing  = "Virtualizing";
 
 
     public const string Component_Name_Accordion          = "Accordion";
     public const string Component_Name_Actions_Popover    = "Actions Popover";
     public const string Component_Name_Announcement       = "Announcement History";
     public const string Component_Name_Busy               = "Busy Indicator";
+    public const string Component_Name_Data_Table         = "Data Table";
     public const string Component_Name_Debounce_Filter    = "Debounce Filter";
 
     public const string Component_Name_Inputs             = "Inputs";
@@ -94,6 +114,7 @@ public class GlobalValues
     public const string Component_Path_Part_ActionsPopover  = "actions-popover";
     public const string Component_Path_Part_Announcement    = "announcement-history";
     public const string Component_Path_Part_Busy            = "busy-indicator";
+    public const string Component_Path_Part_DataTable       = "data-table";
     public const string Component_Path_Part_DebounceFilter  = "debounce-filter";
     public const string Component_Path_Part_Inputs          = "inputs";
     public const string Component_Path_Part_TextInput       = "text-input";
@@ -112,6 +133,7 @@ public class GlobalValues
     public const string Component_Path_Part_Tabs            = "tabs";
     public const string Component_Path_Part_Toggletip       = "toggletip";
     public const string Component_Path_Part_NavGroup        = "nav-group";
+    public const string Component_Path_Part_Usage           = "usage";
 
 
     public const string Service_Name_Live_Region        = "Live Region";

@@ -1,0 +1,26 @@
+﻿@using BlazorRamp.DocSite.Pages.GettingStarted
+@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Api</PageTitle>
+
+<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Api . . . In Progress . . .</h1>
+<p>
+    Everything you need to work with the Data Table component: parameters, methods, models, enums, and CSS variables for styling.
+</p>
+
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Accessibility}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Data_Table - @GlobalValues.Common_Page_Title_Accessibility</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Usage}/{GlobalValues.Common_Page_Path_About}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Data_Table - @GlobalValues.Common_Page_Title_Usage_About</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}
