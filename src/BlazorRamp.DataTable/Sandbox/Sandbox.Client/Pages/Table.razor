@@ -58,7 +58,7 @@
 
         if (OperatingSystem.IsBrowser())
         {
-            _contacts = StaticData.GetContacts(100000);
+            _contacts = StaticData.GetContacts(100_000);
             _location = "Client";
         }
         base.OnInitialized();

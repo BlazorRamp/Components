@@ -11,12 +11,13 @@
 
     --br-comp-data-table-selected-row: var(--br-comp-all-selection-colour);
     --br-comp-data-table-selectable-row: var( --br-comp-all-link-hover-background-colour);
+    --br-comp-data-table-alternate-row: var(--br-unit-colour-neutral-10);
     //
 
     --br-comp-data-table-area-header-font-size: var(--br-unit-font-size-label);
-    --br-comp-data-table-area-header-font-weight: var(--br-unit-font-weight-500);
+    --br-comp-data-table-area-header-font-weight: var(--br-unit-font-weight-500, bold);
     --br-comp-data-table-area-header-text: var(--br-comp-all-area-header-text);
-    --br-comp-data-table-area-header-background: var(--br-comp-all-area-header-background);
+    --br-comp-data-table-area-header-background: var(--br-unit-colour-neutral-10);
     --br-comp-data-table-area-header-font-family: var(--br-comp-all-area-header-font-family);
     --br-comp-data-table-area-header-line-height: var(--br-comp-all-area-header-line-height);
     --br-comp-data-table-area-header-border-style: var(--br-comp-all-area-header-border-style);

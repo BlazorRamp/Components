@@ -21,7 +21,7 @@
         </li>
         <li>
             <p>
-                <strong>JAWS Virtual Cursor Bug</strong> There appears to be a virtual cursor bug that affects both Server and WASM when using the newer combined
+                <strong>JAWS Virtual Cursor Bug - </strong> there appears to be a virtual cursor bug that affects both Server and WASM when using the newer combined
                 Blazor Web App Template choice - Auto (Server and WebAssembly). Using Server (Global) or WASM (Global) seem unaffected by the description below.
             </p>
             <p>
@@ -32,6 +32,10 @@
             </p>
             <p>
                 <b>Note: </b>This site uses the older Standalone WASM template which appears to be unaffected by the aforementioned JAWS issue and as such the role attribute was not added to the pager tests.
+            </p>
+            <p>
+                <strong>Update - </strong> I narrowed the issue down further, it appears the bug only affects the aforementioned template, and only on pages that have
+                pre-rendering disabled. I logged an issue with both the JAWS and Blazor teams regarding this - will update when I know more.
             </p>
         </li>
     </ul>

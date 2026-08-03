@@ -8,9 +8,9 @@
 <PageTitle>Home</PageTitle>
 <p>Before table paragraph</p>
 
-<div style="height:900px; ">
+<div style="height:900px; background-color:var(--br-comp-all-area-content-background)">
 
-<DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts" DefaultSortIndex="2"
+<DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts" DefaultSortIndex="2" 
                FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.Single" RowStyleFunc="@rowStyleFunc" RowSelectHeading="Pick" RowIdentifierFunc="checkboxLabel"
                SelectedRowsChanged="HandleRowsChanged">
     <Filter>
@@ -74,7 +74,7 @@
 
     protected override void OnInitialized()
     {
-        _contacts = StaticData.GetContacts(100000);
+        _contacts = StaticData.GetContacts(100_000);
 
         base.OnInitialized();
     }
