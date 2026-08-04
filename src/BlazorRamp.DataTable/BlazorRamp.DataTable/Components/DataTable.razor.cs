@@ -61,7 +61,10 @@ public partial class DataTable<TData> : ComponentBase
     /// <summary>
     /// The estimated pixel height of each row, used by the virtualized rendering path. Set below 1 to disable virtualization.
     /// </summary>
-    [Parameter] public int              VirtualizeItemSizePX  { get; set; } = 32;
+    [Parameter] public int              VirtualizeItemSizePX  { get; set; } = GlobalValues.DataTable_VirtualizePX;
+
+    /// <summary>The number of extra rows rendered above and below the visible viewport when virtualization is active, to reduce blank space during fast scrolling.</summary>
+    [Parameter] public int OverscanCount { get; set; } = GlobalValues.DataTable_OverscanCount;
 
     /// <summary>
     /// When supplied, enables paging and binds the table to the given paging state.

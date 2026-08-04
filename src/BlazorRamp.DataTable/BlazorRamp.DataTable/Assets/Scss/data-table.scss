@@ -95,11 +95,16 @@
         display: flex;
     }
 
+    &__content-wrapper {
+        position: relative;
+        grid-row: 4/5;
+        min-height: 0;
+        display: grid; // or flex/block — just needs to be a real box, not `contents`
+    }
 
     &__content {
         position: relative;
         overflow: auto;
-        grid-row: 4/5;
         min-height: 0;
         margin-block: var(--br-unit-space-5);
         border-radius: var(--br-comp-data-table-area-header-border-radius);
@@ -235,8 +240,12 @@
 
     &__data-row {
 
-        &:nth-of-type(odd) {
+/*        &:nth-of-type(odd) {
             background-color: var(--br-comp-data-table-alternate-row)
+        }*/
+
+        &:nth-child(even of .br-data-table__data-row) {
+            background-color: var(--br-comp-data-table-alternate-row);
         }
 
         &--selected {
@@ -298,8 +307,8 @@
             outline-color: var(--br-comp-data-table-area-header-sort-outline-colour);
         }
 
-        > span.br-data-table__column-title{
-           padding:0;
+        > span.br-data-table__column-title {
+            padding: 0;
         }
     }
 

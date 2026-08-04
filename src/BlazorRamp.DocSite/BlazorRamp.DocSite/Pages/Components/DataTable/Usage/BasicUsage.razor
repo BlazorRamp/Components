@@ -5,17 +5,53 @@
 
 <h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Usage_Basic . . . In Progress . . .</h1>
 
+<p>
+    The following example is a basic setup, similar to the one I'd use with results retrieved from the server, however, I wouldn't be using 100K rows, 
+    as in the example - quite the opposite. I'd retrieve as few rows as possible, so there's less for the user to have to go through.
+</p>
+<p>
+    As this site is just hosted on GitHub Pages, I simply generated 100K rows rather than calling an API. As a side note, from years of experience, the maximum number of rows
+    I'd ever want to retrieve from an API and pull down to a SPA is around 3K to 7K, depending on the number of columns - but generally those numbers are fast.
+</p>
+<p>
+    For reasons beyond me, it seems to be in vogue to use 100K rows for demos, which, in my experience and opinion, is a little silly given that it's probably only around
+    1% to 5% of applications that actually need 100K rows on screen for the user. But to keep you all happy ...
+</p>
 
-<DataTable TData="Contact" DataSource="@_dataSource" DefaultSortIndex="-1" Title="Contact Results" RowSelectionMode="RowSelectionMode.Multiple">
-    <TableColumns>
-        <DataColumn DataProperty="c => c.ContactID" DisplayName="Contact ID" />
-        <DataColumn DataProperty="c => c.GivenName" DisplayName="First Name" IsSortable="true" />
-        <DataColumn DataProperty="c => c.GivenName" DisplayName="Surname" />
-        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Data of Birth" ColumnAlignment="ColumnAlignment.Centre" />
-        <DataColumn DataProperty="c => c.Country" DisplayName="Residence" />
-        <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" ColumnAlignment="ColumnAlignment.End" />
-    </TableColumns>
-</DataTable>
+
+<div style="height:700px;">
+    <DataTable TData="Contact" DataSource="@_dataSource" DefaultSortIndex="-1" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule">
+        <Filter>
+            <DebounceFilter HintText="Filters across first name, surname and country" RegexPattern="^[A-Za-z ]*$" OnDebounceFilterResult="HandleOnDebounce"
+                            ValidationMessage="Invalid filter, filtering paused, letters and spaces only"  />
+        </Filter>
+        <TableColumns>
+            <DataColumn DataProperty="c => c.ContactID"   DisplayName="Contact ID"    IsSortable="true" />
+            <DataColumn DataProperty="c => c.GivenName"   DisplayName="First Name"    IsSortable="true" />
+            <DataColumn DataProperty="c => c.FamilyName"  DisplayName="Surname"       IsSortable="true" />
+            <DataColumn DataProperty="c => c.Country"     DisplayName="Country"       IsSortable="true" />
+            <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Data of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
+            <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
+        </TableColumns>
+        <BottomPager>
+         <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Two button pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount" 
+         ItemsPerPage="@_pagerBinding.ItemsPerPage" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" AddApplicationRole="true" />
+        </BottomPager>
+    </DataTable>
+</div>
+
+<p>
+    The Data Table doesn't come with a pager or filtering mechanism — you simply add your own, or drop in the BlazorRamp Debounce Filter and Pager, as I've done here. 
+    They all work together and make all the appropriate screen reader announcements for whatever's being used.
+</p>
+<p>
+    I will at some stage be creating an advanced filter component that you will be able to drop into the data table filter slot, and/or for you to use your own adhoc tables.
+</p>
+<p>
+    I haven't done any performance testing or tuning; the code just uses simple reflection without source generators, so I may revisit this. 
+</p>
+
+
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_About}")">
@@ -35,10 +71,25 @@
 
 @code{
 
-    private List<Contact> _dataSource = [];
+    private Func<Contact, bool>? _filterRule   = null;
+    private PagerBinding         _pagerBinding = new(0, 0, 0, 10);
+    private List<Contact>        _dataSource   = [];
 
-    protected override void OnInitialized()
+
+    protected override async Task OnInitializedAsync()
+    
+        => _dataSource = await StaticData.GetContacts(100_000);
+ 
+    private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
     {
-        _dataSource = StaticData.GetContacts(100);
+        if (debounceResult.IsValid)
+        {
+            _filterRule = (data) => data.GivenName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.FamilyName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.Country.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
+
+
+            await InvokeAsync(StateHasChanged);
+        }
     }
 }

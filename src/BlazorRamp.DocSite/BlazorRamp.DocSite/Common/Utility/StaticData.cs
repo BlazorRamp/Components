@@ -39,7 +39,7 @@ public class StaticData
                                             "Forbes", "Murray", "Owen", "Lloyd", "Reynolds", "Ellis", "Richards", "Griffiths", "Stevens", "Webb", "Hunt", "Davies", "Russell", "Ford", "Phillips", "Ellis", "Marlow", "Howell", "Vaughan", "Bevan"
                                         ];
 
-    public static List<Contact> GetContacts(int numberToGenerate)
+    public static Task<List<Contact>> GetContacts(int numberToGenerate)
     {
         var startDate = new DateOnly(1900, 1, 1);
         var ednDate = new DateOnly(2026, 1, 1);
@@ -51,6 +51,7 @@ public class StaticData
         decimal minRate = 25.00m;
         decimal maxRate = 75.00m;
 
+        if (numberToGenerate == 100_000 && _contacts100K.Count == numberToGenerate) return Task.FromResult(_contacts100K);
 
         List<Contact> contacts = new List<Contact>(numberToGenerate);
 
@@ -67,6 +68,17 @@ public class StaticData
             contacts.Add(new(index + 1, title, givenName, familyName, dob, country, rate));
         }
 
-        return contacts;
+        if (numberToGenerate == 100_000)
+        {
+            _contacts100K = [.. contacts];
+            HasLargeContactsList = true;
+            return Task.FromResult(_contacts100K);
+        }
+
+        return Task.FromResult(contacts);
     }
+
+    public static bool HasLargeContactsList = false;
+
+    private static List<Contact> _contacts100K = [];
 }

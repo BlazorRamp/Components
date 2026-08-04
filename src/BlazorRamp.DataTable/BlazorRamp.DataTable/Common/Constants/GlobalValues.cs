@@ -33,6 +33,7 @@ internal class GlobalValues
     public const string DataTable_Filter_Area_Class         = $"{DataTable_Class}__filter-area";
     public const string DataTable_Top_Pager_Class           = $"{DataTable_Class}__top-pager";
     public const string DataTable_Content_Class             = $"{DataTable_Class}__content";
+    public const string DataTable_Content_Wrapper_Class     = $"{DataTable_Class}__content-wrapper";
     public const string DataTable_Bottom_Pager_Class        = $"{DataTable_Class}__bottom-pager";
     public const string DataTable_Column_Sorter_Class       = $"{DataTable_Class}__column-sorter";
     public const string DataTable_Column_Title_Class        = $"{DataTable_Class}__column-title";
@@ -48,7 +49,8 @@ internal class GlobalValues
 
     public const string DataTable_Row_No_Data_Class = $"{DataTable_Data_Row_Class}--no-data";
 
-
+    public const int DataTable_VirtualizePX  = 32;
+    public const int DataTable_OverscanCount = 50;
     
 
 }
