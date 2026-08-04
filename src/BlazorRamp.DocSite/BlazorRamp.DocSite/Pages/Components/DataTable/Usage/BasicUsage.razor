@@ -20,7 +20,7 @@
 
 
 <div style="height:700px;">
-    <DataTable TData="Contact" DataSource="@_dataSource" DefaultSortIndex="-1" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule">
+    <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule">
         <Filter>
             <DebounceFilter HintText="Filters across first name, surname and country" RegexPattern="^[A-Za-z ]*$" OnDebounceFilterResult="HandleOnDebounce"
                             ValidationMessage="Invalid filter, filtering paused, letters and spaces only"  />
@@ -39,10 +39,14 @@
         </BottomPager>
     </DataTable>
 </div>
+@* 
+    Note that the DataTable is inside a container with a height specified. You adjust to suit you needs and the tables contents 
+*@
 
 <p>
     The Data Table doesn't come with a pager or filtering mechanism — you simply add your own, or drop in the BlazorRamp Debounce Filter and Pager, as I've done here. 
-    They all work together and make all the appropriate screen reader announcements for whatever's being used.
+    They all work together and make all the appropriate screen reader announcements for whatever's being used. The demo filter just uses Where the First Name contains OR Surname
+    contains OR Country contains the filter value (see code snippet below).
 </p>
 <p>
     I will at some stage be creating an advanced filter component that you will be able to drop into the data table filter slot, and/or for you to use your own adhoc tables.
@@ -50,7 +54,13 @@
 <p>
     I haven't done any performance testing or tuning; the code just uses simple reflection without source generators, so I may revisit this. 
 </p>
+<p>
+    <strong>Note: </strong>the DataTable is inside a container with a height specified. You adjust to suit your needs and the tables contents
+    as you could also have a top pager and/or want more visible rows (ItemsPerPage or more visible Virtualised Rows). If the container is too small 
+    the table will add a scroll bar for its body of rows with the pager.
+</p>
 
+<CodeBox CodeBlock="@DataTableSnippets.Basic_Usage_Example" AriaLabel="Basic usage code example." />
 
 
 <div class="flex-content justify-content-between">
@@ -72,13 +82,13 @@
 @code{
 
     private Func<Contact, bool>? _filterRule   = null;
-    private PagerBinding         _pagerBinding = new(0, 0, 0, 10);
+    private PagerBinding         _pagerBinding = new(currentPage: 0,currentItemCount: 0, totalItemCount: 0,itemsPerPage: 10);
     private List<Contact>        _dataSource   = [];
 
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     
-        => _dataSource = await StaticData.GetContacts(100_000);
+        => _dataSource = StaticData.GetContacts(100_000);
  
     private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
     {
@@ -88,7 +98,10 @@
                                     || data.FamilyName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
                                     || data.Country.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
 
-
+            /*
+                * The debounce uses a Func not an EventCallback to negate renders if the filter value is invalid so
+                * you call StateHasChanged if all is well. 
+            */
             await InvokeAsync(StateHasChanged);
         }
     }
