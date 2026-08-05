@@ -41,29 +41,41 @@ public class StaticData
 
     public static List<Contact> GetContacts(int numberToGenerate)
     {
-        var startDate = new DateOnly(1900, 1, 1);
-        var ednDate = new DateOnly(2026, 1, 1);
-        int dayRange = ednDate.DayNumber - startDate.DayNumber;
+        var startDate    = new DateOnly(1900, 1, 1);
+        var ednDate      = new DateOnly(2026, 1, 1);
+        int dayRange     = ednDate.DayNumber - startDate.DayNumber;
         var countryCount = Countries.Count;
-        var boysCount = BoysNames.Count;
-        var girlsCount = GirlsNames.Count;
-        var familyCount = FamilyNames.Count;
-        decimal minRate = 25.00m;
-        decimal maxRate = 75.00m;
+        var boysCount    = BoysNames.Count;
+        var girlsCount   = GirlsNames.Count;
+        var familyCount  = FamilyNames.Count;
+        decimal minRate  = 25.00m;
+        decimal maxRate  = 75.00m;
 
         if (numberToGenerate == 100_000 && _contacts100K.Count == numberToGenerate) return _contacts100K;
 
         List<Contact> contacts = new List<Contact>(numberToGenerate);
 
+        Random random = new Random(1);//get same values easier for styling demo 
+
         for (int index = 0; index < numberToGenerate; index++)
         {
-            var isBoy = index % 2 == 0;
-            var country = Countries[Random.Shared.Next(countryCount)];
-            var dob = startDate.AddDays(Random.Shared.Next(dayRange));
-            var familyName = FamilyNames[Random.Shared.Next(familyCount)];
-            var givenName = isBoy ? BoysNames[Random.Shared.Next(boysCount)] : GirlsNames[Random.Shared.Next(girlsCount)];
-            var title = isBoy ? "Mr." : "Ms.";
-            decimal rate = Math.Round(minRate + (decimal)Random.Shared.NextDouble() * (maxRate - minRate), 2);
+            //var isBoy = index % 2 == 0;
+            //var country = Countries[Random.Shared.Next(countryCount)];
+            //var dob = startDate.AddDays(Random.Shared.Next(dayRange));
+            //var familyName = FamilyNames[Random.Shared.Next(familyCount)];
+            //var givenName = isBoy ? BoysNames[Random.Shared.Next(boysCount)] : GirlsNames[Random.Shared.Next(girlsCount)];
+            //var title = isBoy ? "Mr." : "Ms.";
+            //decimal rate = Math.Round(minRate + (decimal)Random.Shared.NextDouble() * (maxRate - minRate), 2);
+
+
+            var isBoy       = index % 2 == 0;
+            var country     = Countries[random.Next(countryCount)];
+            var dob         = startDate.AddDays(random.Next(dayRange));
+            var familyName  = FamilyNames[random.Next(familyCount)];
+            var givenName   = isBoy ? BoysNames[random.Next(boysCount)] : GirlsNames[random.Next(girlsCount)];
+            var title       = isBoy ? "Mr." : "Ms.";
+            decimal rate    = Math.Round(minRate + (decimal)random.NextDouble() * (maxRate - minRate), 2);
+
 
             contacts.Add(new(index + 1, title, givenName, familyName, dob, country, rate));
         }
@@ -71,14 +83,11 @@ public class StaticData
         if (numberToGenerate == 100_000)
         {
             _contacts100K = [.. contacts];
-            HasLargeContactsList = true;
             return _contacts100K;
         }
 
         return contacts;
     }
-
-    public static bool HasLargeContactsList = false;
 
     private static List<Contact> _contacts100K = [];
 }

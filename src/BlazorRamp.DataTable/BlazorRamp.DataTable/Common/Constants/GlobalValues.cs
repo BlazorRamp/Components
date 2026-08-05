@@ -51,6 +51,8 @@ internal class GlobalValues
 
     public const int DataTable_VirtualizePX  = 32;
     public const int DataTable_OverscanCount = 50;
+
+    public const string DataTable_Max_Table_Height = "500px;";
     
 
 }

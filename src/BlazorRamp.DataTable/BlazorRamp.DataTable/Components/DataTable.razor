@@ -26,8 +26,8 @@
 
         <BusyIndicator ShowIndicator="@_showTableSpinner" Replayable="false" AriaEndText="@_operationCompletedAnnouncement"
                        ContentPosition="ContentPosition.Centre" UseAssertive="false" UseClearOverlay="true" DelayBeforeCloseMS="100"></BusyIndicator>
-
-        <div class="@GlobalValues.DataTable_Content_Class">
+        
+        <div class="@GlobalValues.DataTable_Content_Class" style="@_tableHeightStyle">
 
         <table aria-labelledby="@_tableTitleID" aria-rowcount="@_dataSource.Count">
             <thead>

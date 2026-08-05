@@ -67,6 +67,14 @@ public partial class DataTable<TData> : ComponentBase
     [Parameter] public int OverscanCount { get; set; } = GlobalValues.DataTable_OverscanCount;
 
     /// <summary>
+    /// The table's height, in any valid CSS unit. Applied as a fixed <c>height</c> when using virtualized
+    /// rendering (required, since the Virtualize component needs a definite height to measure against),
+    /// or as a <c>max-height</c> when paging is enabled, allowing the table to shrink for fewer rows.
+    /// Defaults if null, empty, or whitespace.
+    /// </summary>
+    [Parameter] public string? TableHeight { get; set; } = GlobalValues.DataTable_Max_Table_Height;
+
+    /// <summary>
     /// When supplied, enables paging and binds the table to the given paging state.
     /// </summary>
     [Parameter] public PagerBinding?    PagerBinding          { get; set; } = null;
@@ -197,6 +205,8 @@ public partial class DataTable<TData> : ComponentBase
     private string _filteringCompleted   = GlobalValues.DataTable_Filtered_Status_Text;
     private string _pressToSortText      = GlobalValues.DataTable_Press_To_Sort_Text;
 
+    private string _tableHeight      = GlobalValues.DataTable_Max_Table_Height;
+    private string _tableHeightStyle = String.Empty;
 
     private string _operationCompletedAnnouncement = String.Empty;
 
@@ -219,8 +229,14 @@ public partial class DataTable<TData> : ComponentBase
         _sortRemovedCompleted = String.IsNullOrWhiteSpace(SortRemovedStatusText) ? GlobalValues.DataTable_Sort_Removed_Status_Text : SortRemovedStatusText.Trim();
         _filteringCompleted   = String.IsNullOrWhiteSpace(RecordCountText)       ? GlobalValues.DataTable_Filtered_Status_Text     : FilteredStatusText;
         _pressToSortText      = String.IsNullOrWhiteSpace(PressToSortText)       ? GlobalValues.DataTable_Press_To_Sort_Text       : PressToSortText.Trim();
+        _tableHeight          = String.IsNullOrWhiteSpace(TableHeight)           ? GlobalValues.DataTable_Max_Table_Height         : TableHeight.Trim();
 
-        var isSameDataSource = ReferenceEquals(_previousDataRef, DataSource); 
+        if (false == _tableHeight.EndsWith(';')) _tableHeight += ';'; 
+        
+        _tableHeightStyle = _usePaging ? $"max-height: {_tableHeight}" : $"height: {_tableHeight}";
+
+        var isSameDataSource = ReferenceEquals(_previousDataRef, DataSource);
+
 
         if (false == isSameDataSource) //new search / datasource
         {

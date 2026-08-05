@@ -3,9 +3,14 @@
 <PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Virtualizing</PageTitle>
 
 <h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Virtualizing . . . In Progress . . .</h1>
-
-
-<div style="height:700px;">
+<p>
+    When using the Data Table, if you do not set the <span class="code-span">PagerBinding</span> parameter, it will render the table rows using the Blazor Virtualize component.
+    <strong>Note: </strong> you can disable this and have the rows rendered normally by setting the <span class="code-span">VirtualizeItemSizePX</span> parameter to 0.
+</p>
+<p>
+    The following uses the same 100K rows as of the basic usage example.
+</p>
+<div style="min-height:0;max-height:700px;">
     <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" FilterRule="_filterRule">
         <Filter>
             <DebounceFilter HintText="Filters across first name, surname and country" RegexPattern="^[A-Za-z ]*$" OnDebounceFilterResult="HandleOnDebounce"
@@ -21,14 +26,21 @@
         </TableColumns>
     </DataTable>
 </div>
-
-
-
-
-
-
-
-
+@*
+    Note that the DataTable is inside a container with a height specified. You adjust to suit you needs and the tables contents
+*@
+<p>
+    The Data Table has the following two parameters that are passed on to the Virtualize component: <span class="code-span">VirtualizeItemSizePX</span> and <span class="code-span">OverscanCount</span>. <span class="code-span">VirtualizeItemSizePX</span> is used for the <b>ItemSize</b> parameter on the Virtualize component, which is the expected pixel height of each item. It uses this to estimate how many items fit in the viewport and to calculate scroll position and spacer sizing, before actually measuring the real rendered items. I have given this a default of 32, which in my own apps I have not needed to change.
+    The <span class="code-span">OverscanCount</span> parameter is passed on to the <b>OverscanCount</b> parameter on the Virtualize component, and sets how many extra items are rendered above and below the visible viewport, so that content is already in the DOM before it scrolls into view, rather than appearing as blank space. I have given this a default of 50 and have not had a need to change it.
+</p>
+<p>
+    It is important that the table have a fixed height set for the Virtualize component to measure against, a default of 500px is used. This value is changeable using the
+    <span class="code-span">TableHeight</span> parameter. As this is a string value you could use any applicable CSS height unit, for example 50vh.
+</p>
+<p>
+    The following is the code used in the example above.
+</p>
+<CodeBox CodeBlock="@DataTableSnippets.Virtualize_Usage_Example" AriaLabel="Virtualized rows usage code example." />
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Basic_Usage}")">
@@ -47,13 +59,11 @@
 @code {
 
     private Func<Contact, bool>? _filterRule = null;
-    private PagerBinding _pagerBinding = new(0, 0, 0, 10);
-    private List<Contact> _dataSource = [];
-
+    private List<Contact>        _dataSource = [];
 
     protected override void OnInitialized()
 
-=> _dataSource = StaticData.GetContacts(100_000);
+        => _dataSource = StaticData.GetContacts(100_000);
 
     private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
     {
@@ -63,7 +73,10 @@
                                     || data.FamilyName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
                                     || data.Country.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
 
-
+            /*
+                * The debounce uses a Func not an EventCallback to negate renders if the filter value is invalid so
+                * you call StateHasChanged if all is well.
+            */
             await InvokeAsync(StateHasChanged);
         }
     }

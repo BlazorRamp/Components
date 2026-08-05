@@ -10,38 +10,32 @@
     as in the example - quite the opposite. I'd retrieve as few rows as possible, so there's less for the user to have to go through.
 </p>
 <p>
+    For reasons beyond me, it seems to be in vogue to use 100K rows for demos, which, in my experience and opinion, is a little silly given that it's probably only around
+    1% to 5% of applications that actually need 100K rows on screen for the user. But to keep you all happy.
+</p>
+<p>
     As this site is just hosted on GitHub Pages, I simply generated 100K rows rather than calling an API. As a side note, from years of experience, the maximum number of rows
     I'd ever want to retrieve from an API and pull down to a SPA is around 3K to 7K, depending on the number of columns - but generally those numbers are fast.
 </p>
-<p>
-    For reasons beyond me, it seems to be in vogue to use 100K rows for demos, which, in my experience and opinion, is a little silly given that it's probably only around
-    1% to 5% of applications that actually need 100K rows on screen for the user. But to keep you all happy ...
-</p>
 
-
-<div style="height:700px;">
-    <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule">
-        <Filter>
-            <DebounceFilter HintText="Filters across first name, surname and country" RegexPattern="^[A-Za-z ]*$" OnDebounceFilterResult="HandleOnDebounce"
-                            ValidationMessage="Invalid filter, filtering paused, letters and spaces only"  />
-        </Filter>
-        <TableColumns>
-            <DataColumn DataProperty="c => c.ContactID"   DisplayName="Contact ID"    IsSortable="true" />
-            <DataColumn DataProperty="c => c.GivenName"   DisplayName="First Name"    IsSortable="true" />
-            <DataColumn DataProperty="c => c.FamilyName"  DisplayName="Surname"       IsSortable="true" />
-            <DataColumn DataProperty="c => c.Country"     DisplayName="Country"       IsSortable="true" />
-            <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Data of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
-            <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
-        </TableColumns>
-        <BottomPager>
-         <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Two button pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount" 
-         ItemsPerPage="@_pagerBinding.ItemsPerPage" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" AddApplicationRole="true" />
-        </BottomPager>
-    </DataTable>
-</div>
-@* 
-    Note that the DataTable is inside a container with a height specified. You adjust to suit you needs and the tables contents 
-*@
+<DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule">
+    <Filter>
+        <DebounceFilter HintText="Filters across first name, surname and country" RegexPattern="^[A-Za-z ]*$" OnDebounceFilterResult="HandleOnDebounce"
+                        ValidationMessage="Invalid filter, filtering paused, letters and spaces only"  />
+    </Filter>
+    <TableColumns>
+        <DataColumn DataProperty="c => c.ContactID"   DisplayName="Contact ID"    IsSortable="true" />
+        <DataColumn DataProperty="c => c.GivenName"   DisplayName="First Name"    IsSortable="true" />
+        <DataColumn DataProperty="c => c.FamilyName"  DisplayName="Surname"       IsSortable="true" />
+        <DataColumn DataProperty="c => c.Country"     DisplayName="Country"       IsSortable="true" />
+        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Data of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
+        <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
+    </TableColumns>
+    <BottomPager>
+        <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Two button pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount" 
+        ItemsPerPage="@_pagerBinding.ItemsPerPage" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" AddApplicationRole="true" />
+    </BottomPager>
+</DataTable>
 
 <p>
     The Data Table doesn't come with a pager or filtering mechanism — you simply add your own, or drop in the BlazorRamp Debounce Filter and Pager, as I've done here. 
@@ -52,12 +46,13 @@
     I will at some stage be creating an advanced filter component that you will be able to drop into the data table filter slot, and/or for you to use your own adhoc tables.
 </p>
 <p>
-    I haven't done any performance testing or tuning; the code just uses simple reflection without source generators, so I may revisit this. 
+    I haven't done any performance testing or tuning; the code just uses simple reflection without source generators, so I may revisit this at some point. The sort on WASM 
+    takes approx. 1 second for 100K rows with extra delay due to the busy indicator and approx 30 milliseconds on Server. Filtering depends on the number of columns and And-ing or Or-ing. 
 </p>
 <p>
-    <strong>Note: </strong>the DataTable is inside a container with a height specified. You adjust to suit your needs and the tables contents
-    as you could also have a top pager and/or want more visible rows (ItemsPerPage or more visible Virtualised Rows). If the container is too small 
-    the table will add a scroll bar for its body of rows with the pager.
+    <strong>Note: </strong> the Data Table has a <span class="code-span">TableHeight</span> parameter; when using paging this value constrains the maximum height that the entire 
+    table element can grow to, with a vertical scrollbar appearing if there is not enough height for the chosen items per page value. When using Virtualized rows, this is a
+    fixed height, necessary for the Virtualized component. The default value is 500px (this is a string value so you could change it to 50vh etc).
 </p>
 
 <CodeBox CodeBlock="@DataTableSnippets.Basic_Usage_Example" AriaLabel="Basic usage code example." />

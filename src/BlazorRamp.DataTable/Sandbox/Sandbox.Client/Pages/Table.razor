@@ -5,9 +5,9 @@
 @rendermode @(new InteractiveWebAssemblyRenderMode(true));
 <p>@_location</p>
 
-<div style="height:900px; ">
+@* <div style="height:900px; "> *@
 
-    <DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts"
+    <DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts" MaxTableHeight="600px;"
                FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.None" RowSelectHeading="Pick" RowIdentifierFunc="checkboxLabel"  PagerBinding="@_pagerBinding">
         <Filter>
             <DebounceFilter HintText="Filters across all columns of the table" RegexPattern="^[A-Za-z0-9]*$" OnDebounceFilterResult="HandleOnDebounce"
@@ -34,7 +34,7 @@
         </BottomPager>
     </DataTable>
 
-</div>
+@* </div> *@
 <p>After table paragraph</p>
 
 @code {

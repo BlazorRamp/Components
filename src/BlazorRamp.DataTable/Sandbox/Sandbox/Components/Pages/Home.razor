@@ -8,11 +8,11 @@
 <PageTitle>Home</PageTitle>
 <p>Before table paragraph</p>
 
-<div style="height:900px; background-color:var(--br-comp-all-area-content-background)">
+@* <div style="height:900px; background-color:var(--br-comp-all-area-content-background)"> *@
 
 <DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts" DefaultSortIndex="2" 
                FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.Single" RowStyleFunc="@rowStyleFunc" RowSelectHeading="Pick" 
-               SelectedRowsChanged="HandleRowsChanged">
+               SelectedRowsChanged="HandleRowsChanged" MaxTableHeight="900px">
     <Filter>
         <DebounceFilter HintText="Filters across all columns of the table" RegexPattern="^[A-Za-z0-9]*$" OnDebounceFilterResult="HandleOnDebounce"
         ValidationMessage="Invalid filter, filtering paused, letters and numbers only"  />
@@ -56,7 +56,7 @@
     </BottomPager>
 </DataTable>
 
-</div>
+@* </div> *@
 <p>After table paragraph</p>
 
 @code{
