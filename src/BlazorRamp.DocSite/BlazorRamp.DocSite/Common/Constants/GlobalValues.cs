@@ -53,7 +53,8 @@ public class GlobalValues
 
     public const string Common_Page_Path_About          = "about";
     public const string Common_Page_Path_Basic_Usage    = "basic-usage";
-    public const string Common_Page_Path_Filtering      = "filter";
+    public const string Common_Page_Path_Filtering      = "filtering";
+    public const string Common_Page_Path_Selecting      = "selecting";
     public const string Common_Page_Path_Sorting        = "sorting";
     public const string Common_Page_Path_Styling        = "styling";
     public const string Common_Page_Path_Paging         = "paging";
@@ -76,6 +77,7 @@ public class GlobalValues
     public const string Common_Page_Title_Usage_Basic   = "Basic Usage";
     public const string Common_Page_Title_Usage_Typical = "Typical Usage";
     public const string Common_Page_Title_Filtering     = "Filtering";
+    public const string Common_Page_Title_Selecting     = "Selecting";
     public const string Common_Page_Title_Sorting       = "Sorting";
     public const string Common_Page_Title_Styling       = "Styling";
     public const string Common_Page_Title_Templating    = "Templating";

@@ -39,15 +39,19 @@ public class StaticData
                                             "Forbes", "Murray", "Owen", "Lloyd", "Reynolds", "Ellis", "Richards", "Griffiths", "Stevens", "Webb", "Hunt", "Davies", "Russell", "Ford", "Phillips", "Ellis", "Marlow", "Howell", "Vaughan", "Bevan"
                                         ];
 
+    public static List<string> Availability = ["Available", "Unavailable", "Not Yet Approved", "Unknown"];
+
     public static List<Contact> GetContacts(int numberToGenerate)
     {
-        var startDate    = new DateOnly(1900, 1, 1);
-        var ednDate      = new DateOnly(2026, 1, 1);
-        int dayRange     = ednDate.DayNumber - startDate.DayNumber;
-        var countryCount = Countries.Count;
-        var boysCount    = BoysNames.Count;
-        var girlsCount   = GirlsNames.Count;
-        var familyCount  = FamilyNames.Count;
+        var startDate         = new DateOnly(1900, 1, 1);
+        var ednDate           = new DateOnly(2026, 1, 1);
+        int dayRange          = ednDate.DayNumber - startDate.DayNumber;
+        var countryCount      = Countries.Count;
+        var boysCount         = BoysNames.Count;
+        var girlsCount        = GirlsNames.Count;
+        var familyCount       = FamilyNames.Count;
+        var availabilityCount = Availability.Count;
+
         decimal minRate  = 25.00m;
         decimal maxRate  = 75.00m;
 
@@ -68,16 +72,16 @@ public class StaticData
             //decimal rate = Math.Round(minRate + (decimal)Random.Shared.NextDouble() * (maxRate - minRate), 2);
 
 
-            var isBoy       = index % 2 == 0;
-            var country     = Countries[random.Next(countryCount)];
-            var dob         = startDate.AddDays(random.Next(dayRange));
-            var familyName  = FamilyNames[random.Next(familyCount)];
-            var givenName   = isBoy ? BoysNames[random.Next(boysCount)] : GirlsNames[random.Next(girlsCount)];
-            var title       = isBoy ? "Mr." : "Ms.";
-            decimal rate    = Math.Round(minRate + (decimal)random.NextDouble() * (maxRate - minRate), 2);
+            var isBoy           = index % 2 == 0;
+            var country         = Countries[random.Next(countryCount)];
+            var dob             = startDate.AddDays(random.Next(dayRange));
+            var familyName      = FamilyNames[random.Next(familyCount)];
+            var givenName       = isBoy ? BoysNames[random.Next(boysCount)] : GirlsNames[random.Next(girlsCount)];
+            var title           = isBoy ? "Mr." : "Ms.";
+            decimal rate        = Math.Round(minRate + (decimal)random.NextDouble() * (maxRate - minRate), 2);
+            var availability    = Availability[random.Next(availabilityCount)]; 
 
-
-            contacts.Add(new(index + 1, title, givenName, familyName, dob, country, rate));
+            contacts.Add(new(index + 1, title, givenName, familyName, dob, country, rate, availability));
         }
 
         if (numberToGenerate == 100_000)

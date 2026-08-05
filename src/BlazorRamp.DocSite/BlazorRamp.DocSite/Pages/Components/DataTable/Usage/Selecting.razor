@@ -1,0 +1,87 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Selecting}")]
+
+<PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Selecting</PageTitle>
+
+<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Selecting . . . In Progress . . .</h1>
+
+<DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule"
+           RowSelectionMode="RowSelectionMode.Multiple" RowSelectHeading="Pick" SelectedRowsChanged="HandleSectionChanged">
+    <Filter>
+        <DebounceFilter HintText="Filters across first name, surname and country" RegexPattern="^[A-Za-z ]*$" OnDebounceFilterResult="HandleOnDebounce"
+                        ValidationMessage="Invalid filter, filtering paused, letters and spaces only" />
+    </Filter>
+    <TableColumns>
+        <DataColumn DataProperty="c => c.ContactID" DisplayName="Contact ID" IsSortable="true" />
+        <DataColumn DataProperty="c => c.GivenName" DisplayName="First Name" IsSortable="true" />
+        <DataColumn DataProperty="c => c.FamilyName" DisplayName="Surname" IsSortable="true" />
+        <DataColumn DataProperty="c => c.Country" DisplayName="Country" IsSortable="true" />
+        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Data of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
+        <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
+    </TableColumns>
+    <BottomPager>
+        <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Contacts pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount"
+               ItemsPerPage="@_pagerBinding.ItemsPerPage" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" AddApplicationRole="true" />
+    </BottomPager>
+</DataTable>
+
+<p>
+    Selected row(s):@if (_selectedRows.Count == 0) {<text>None selected;</text>}
+
+    @if (_selectedRows.Count > 0)
+    {
+        <ul>
+            @foreach (var row in _selectedRows)
+            {
+                <li>@row.ToString()</li>
+            }
+        </ul>
+    }
+</p>
+
+<CodeBox CodeBlock="@DataTableSnippets.Selection_Usage_Example" AriaLabel="Selecting usage code example." />
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Filtering}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Data_Table - @GlobalValues.Common_Page_Title_Filtering</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Styling}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Data_Table - @GlobalValues.Common_Page_Title_Styling</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+
+    private Func<Contact, bool>? _filterRule   = null;
+    private PagerBinding         _pagerBinding = new(currentPage: 0, currentItemCount: 0, totalItemCount: 0, itemsPerPage: 10);
+    private List<Contact>        _dataSource   = [];
+    private List<Contact>        _selectedRows = [];
+
+    protected override void OnInitialized()
+
+        => _dataSource = StaticData.GetContacts(1000);
+
+    private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
+    {
+        if (debounceResult.IsValid)
+        {
+            _filterRule = (data) => data.GivenName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.FamilyName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.Country.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
+
+            /*
+            * The debounce uses a Func not an EventCallback to negate renders if the filter value is invalid so
+            * you call StateHasChanged if all is well.
+            */
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private async Task HandleSectionChanged(List<Contact> selectedRows)
+
+        => _selectedRows = selectedRows;
+
+}

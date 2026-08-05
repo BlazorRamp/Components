@@ -90,11 +90,6 @@ public partial class DataTable<TData> : ComponentBase
     [Parameter] public string?          RowSelectHeading      { get; set; }
 
     /// <summary>
-    /// Heading used to describe the row-selection checkbox column to assistive technology when <see cref="RowIdentifierFunc"/> is not supplied.
-    /// </summary>
-    [Parameter] public string?          RowIdentifierHeading  { get; set; }
-
-    /// <summary>
     /// Optional function producing a per-row accessible label for that row's selection checkbox or text
     /// added to a column button to make a better/unique accessible name.
     /// </summary>
@@ -187,7 +182,6 @@ public partial class DataTable<TData> : ComponentBase
 
     private string _noDataText            = GlobalValues.DataTable_No_Records_Text;
     private string _rowSelectHeading      = GlobalValues.DataTable_Row_Selector_Header_Text;
-    private string _rowIdentifierHeading = GlobalValues.DataTable_Row_Identifier_Heading_Text;
     private string _selectRowLabelID      = Guid.NewGuid().ToString();
     private string _tableTitleID          = Guid.NewGuid().ToString();
     private string _pressSortTextID       = Guid.NewGuid().ToString();
@@ -315,7 +309,6 @@ public partial class DataTable<TData> : ComponentBase
     protected override void OnInitialized()
     {
         _rowSelectHeading     = String.IsNullOrWhiteSpace(RowSelectHeading) ? GlobalValues.DataTable_Row_Selector_Header_Text : RowSelectHeading.Trim();
-        _rowIdentifierHeading = String.IsNullOrWhiteSpace(RowIdentifierHeading) ? GlobalValues.DataTable_Row_Identifier_Heading_Text : RowIdentifierHeading.Trim();//TODO ??
         _usePaging            = PagerBinding != null;
         _previousDataRef      = DataSource;
          _dataSource          = [.. DataSource];

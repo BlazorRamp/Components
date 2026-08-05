@@ -32,11 +32,10 @@
         <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
     </TableColumns>
     <BottomPager>
-        <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Two button pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount" 
+        <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Contacts pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount"
         ItemsPerPage="@_pagerBinding.ItemsPerPage" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" AddApplicationRole="true" />
     </BottomPager>
 </DataTable>
-
 <p>
     The Data Table doesn't come with a pager or filtering mechanism — you simply add your own, or drop in the BlazorRamp Debounce Filter and Pager, as I've done here. 
     They all work together and make all the appropriate screen reader announcements for whatever's being used. The demo filter just uses Where the First Name contains OR Surname

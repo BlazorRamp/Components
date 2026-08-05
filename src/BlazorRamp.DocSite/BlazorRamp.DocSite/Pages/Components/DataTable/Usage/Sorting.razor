@@ -4,6 +4,22 @@
 
 <h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Sorting . . . In Progress . . .</h1>
 
+<DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" FilterRule="_filterRule" >
+    <Filter>
+        <DebounceFilter HintText="Filters across first name, surname and country" RegexPattern="^[A-Za-z ]*$" OnDebounceFilterResult="HandleOnDebounce"
+                        ValidationMessage="Invalid filter, filtering paused, letters and spaces only" />
+    </Filter>
+    <TableColumns>
+        <DataColumn DataProperty="c => c.ContactID" DisplayName="Contact ID" />
+        <DataColumn DataProperty="c => c.GivenName" DisplayName="First Name" IsSortable="true" />
+        <DataColumn DataProperty="c => c.FamilyName" DisplayName="Surname" IsSortable="true" />
+        <DataColumn DataProperty="c => c.Country" DisplayName="Country" />
+        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Data of Birth" ColumnAlignment="ColumnAlignment.Centre" />
+        <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
+    </TableColumns>
+
+</DataTable>
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Paging}")">
         <span aria-hidden="true"></span>
@@ -16,3 +32,31 @@
         <span aria-hidden="true"></span>
     </a>
 </div>
+
+
+@code {
+
+    private Func<Contact, bool>? _filterRule = null;
+    private List<Contact>        _dataSource = [];
+
+
+    protected override void OnInitialized()
+
+        => _dataSource = StaticData.GetContacts(10_000);
+
+    private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
+    {
+        if (debounceResult.IsValid)
+        {
+            _filterRule = (data) => data.GivenName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.FamilyName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.Country.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
+
+            /*
+                * The debounce uses a Func not an EventCallback to negate renders if the filter value is invalid so
+                * you call StateHasChanged if all is well.
+            */
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+}

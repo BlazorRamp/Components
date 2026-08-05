@@ -27,9 +27,9 @@ public class DataTableSnippets
                 <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
             </TableColumns>
             <BottomPager>
-                <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Two button pager" TotalItemCount="@_pagerBinding.TotalItemCount" 
+                <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Contacts pager" TotalItemCount="@_pagerBinding.TotalItemCount" 
                 CurrentItemCount="@_pagerBinding.CurrentItemCount" ItemsPerPage="@_pagerBinding.ItemsPerPage" PagerSelectorType="PagerSelectorType.Button" 
-                ShowFirstLast="true" PageAlignment="PageAlignment.End" AddApplicationRole="true" />
+                ShowFirstLast="true" PageAlignment="PageAlignment.End" />
             </BottomPager>
         </DataTable>
 
@@ -104,6 +104,115 @@ public class DataTableSnippets
                     await InvokeAsync(StateHasChanged);
                 }
             }
+        }
+        
+        """;
+
+    public const string Paging_Usage_Example = """
+
+        <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding">
+            <TopPager>
+                <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Contacts top pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount"
+                       ItemsPerPage="@_pagerBinding.ItemsPerPage" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="false" PageAlignment="PageAlignment.End" 
+                       PagerAnnouncementType="PagerAnnouncementType.WithoutAnnouncement" />
+            </TopPager>
+            <TableColumns>
+                <DataColumn DataProperty="c => c.ContactID" DisplayName="Contact ID" IsSortable="true" />
+                <DataColumn DataProperty="c => c.GivenName" DisplayName="First Name" IsSortable="true" />
+                <DataColumn DataProperty="c => c.FamilyName" DisplayName="Surname" IsSortable="true" />
+                <DataColumn DataProperty="c => c.Country" DisplayName="Country" IsSortable="true" />
+                <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Data of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
+                <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
+            </TableColumns>
+            <BottomPager>
+                <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Contacts bottom pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount"
+                       ItemsPerPage="@_pagerBinding.ItemsPerPage" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="false" PageAlignment="PageAlignment.Start" 
+                       PagerAnnouncementType="PagerAnnouncementType.WithAnnouncement" />
+            </BottomPager>
+        </DataTable>
+
+        @code{
+
+            private PagerBinding   _pagerBinding = new(currentPage: 0,currentItemCount: 0, totalItemCount: 0,itemsPerPage: 25);
+            private List<Contact>  _dataSource   = [];
+
+            protected override void OnInitialized()
+
+                => _dataSource = StaticData.GetContacts(100);
+
+        }
+
+        """;
+
+
+
+    public const string Selection_Usage_Example = """
+
+        <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule"
+                   RowSelectionMode="RowSelectionMode.Multiple" RowSelectHeading="Pick" SelectedRowsChanged="HandleSectionChanged">
+            <Filter>
+                <DebounceFilter HintText="Filters across first name, surname and country" RegexPattern="^[A-Za-z ]*$" OnDebounceFilterResult="HandleOnDebounce"
+                                ValidationMessage="Invalid filter, filtering paused, letters and spaces only" />
+            </Filter>
+            <TableColumns>
+                <DataColumn DataProperty="c => c.ContactID" DisplayName="Contact ID" IsSortable="true" />
+                <DataColumn DataProperty="c => c.GivenName" DisplayName="First Name" IsSortable="true" />
+                <DataColumn DataProperty="c => c.FamilyName" DisplayName="Surname" IsSortable="true" />
+                <DataColumn DataProperty="c => c.Country" DisplayName="Country" IsSortable="true" />
+                <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Data of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
+                <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
+            </TableColumns>
+            <BottomPager>
+                <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Contacts pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount"
+                       ItemsPerPage="@_pagerBinding.ItemsPerPage" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" AddApplicationRole="true" />
+            </BottomPager>
+        </DataTable>
+
+        <p>
+            Selected row(s):@if (_selectedRows.Count == 0) {<text>None selected;</text>}
+
+            @if (_selectedRows.Count > 0)
+            {
+                <ul>
+                    @foreach (var row in _selectedRows)
+                    {
+                        <li>@row.ToString()</li>
+                    }
+                </ul>
+            }
+        </p>
+        
+        @code {
+
+            private Func<Contact, bool>? _filterRule   = null;
+            private PagerBinding         _pagerBinding = new(currentPage: 0, currentItemCount: 0, totalItemCount: 0, itemsPerPage: 10);
+            private List<Contact>        _dataSource   = [];
+            private List<Contact>        _selectedRows = [];
+
+            protected override void OnInitialized()
+
+                => _dataSource = StaticData.GetContacts(1000);
+
+            private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
+            {
+                if (debounceResult.IsValid)
+                {
+                    _filterRule = (data) => data.GivenName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                            || data.FamilyName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                            || data.Country.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
+
+                    /*
+                    * The debounce uses a Func not an EventCallback to negate renders if the filter value is invalid so
+                    * you call StateHasChanged if all is well.
+                    */
+                    await InvokeAsync(StateHasChanged);
+                }
+            }
+
+            private async Task HandleSectionChanged(List<Contact> selectedRows)
+
+                => _selectedRows = selectedRows;
+
         }
         
         """;

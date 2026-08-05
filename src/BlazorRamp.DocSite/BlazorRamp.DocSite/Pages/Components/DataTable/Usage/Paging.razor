@@ -4,6 +4,30 @@
 
 <h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Paging . . . In Progress . . .</h1>
 
+
+<DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding">
+    <TopPager>
+        <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Contacts top pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount"
+               ItemsPerPage="@_pagerBinding.ItemsPerPage" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="false" PageAlignment="PageAlignment.End" 
+               PagerAnnouncementType="PagerAnnouncementType.WithoutAnnouncement" />
+    </TopPager>
+    <TableColumns>
+        <DataColumn DataProperty="c => c.ContactID" DisplayName="Contact ID" IsSortable="true" />
+        <DataColumn DataProperty="c => c.GivenName" DisplayName="First Name" IsSortable="true" />
+        <DataColumn DataProperty="c => c.FamilyName" DisplayName="Surname" IsSortable="true" />
+        <DataColumn DataProperty="c => c.Country" DisplayName="Country" IsSortable="true" />
+        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Data of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
+        <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
+    </TableColumns>
+    <BottomPager>
+        <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Contacts bottom pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount"
+               ItemsPerPage="@_pagerBinding.ItemsPerPage" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="false" PageAlignment="PageAlignment.Start" 
+               PagerAnnouncementType="PagerAnnouncementType.WithAnnouncement" />
+    </BottomPager>
+</DataTable>
+
+<CodeBox CodeBlock="@DataTableSnippets.Paging_Usage_Example" AriaLabel="Paging usage code example." />
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Virtualizing}")">
         <span aria-hidden="true"></span>
@@ -16,3 +40,15 @@
         <span aria-hidden="true"></span>
     </a>
 </div>
+
+
+@code{
+
+    private PagerBinding   _pagerBinding = new(currentPage: 0,currentItemCount: 0, totalItemCount: 0,itemsPerPage: 25);
+    private List<Contact>  _dataSource   = [];
+
+    protected override void OnInitialized()
+    
+        => _dataSource = StaticData.GetContacts(100);
+
+}
