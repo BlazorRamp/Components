@@ -35,8 +35,8 @@ public enum ColumnAlignment : int
     /// <summary>Centre the content.</summary>
     Centre = 1,
 
-    /// <summary>A
-    /// lign content to the end (right in LTR layouts).
+    /// <summary>
+    /// Align content to the end (right in LTR layouts).
     /// </summary>
     End = 2
 }

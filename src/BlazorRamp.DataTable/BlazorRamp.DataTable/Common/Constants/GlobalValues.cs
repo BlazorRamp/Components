@@ -4,6 +4,8 @@ internal class GlobalValues
 {
     public const string DataTable_Data_Property_Exception_Message = "The Data Property cannot be null";
 
+    public const string DataTable_Column_Not_Comparable_Exception_Message = "The column '{0}' is marked IsSortable=\"true\", but its property type '{1}' does not implement IComparable, so it cannot be sorted. Either set IsSortable to false for this column, or bind DataProperty to a comparable type.";
+
     public const string DataTable_Data_Position_Start  = "start";
     public const string DataTable_Data_Position_Centre = "centre";
     public const string DataTable_Data_Position_End    = "end";

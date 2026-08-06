@@ -2,7 +2,25 @@
 
 <PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Sorting</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Sorting . . . In Progress . . .</h1>
+<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Sorting.</h1>
+<p>
+    Sorting can be added to any <span class="code-span">DataColumn</span> just by setting its <span class="code-span">IsSortable</span> parameter to <span class="code-span">true</span>.
+</p>
+<p>
+    Sorting is not available for <span class="code-span">TemplateColumns</span>, or for the row-selection column when selection is enabled.
+</p>
+<p>
+    Clicking a sortable column's heading cycles through three states: unsorted to ascending, ascending to descending, and descending back to unsorted, which restores the original data source order. Only one column can be sorted at a time; sorting a new column clears the sort state of any previously sorted column.
+</p>
+<p>
+    Sort order is preserved across filtering and data source changes, so if the last-sorted column is still present, its sort is automatically re-applied to the new or filtered data.
+</p>
+<p>
+    Each sort change updates the <span class="code-span">aria-sort</span> attribute on the column heading and triggers a screen reader announcement, the wording of which can be customised via the <span class="code-span">SortUpStatusText</span>, <span class="code-span">SortDownStatusText</span>, and <span class="code-span">SortRemovedStatusText</span> parameters.
+</p>
+<p>
+    The following uses 10K rows.
+</p>
 
 <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" FilterRule="_filterRule" >
     <Filter>
@@ -10,15 +28,24 @@
                         ValidationMessage="Invalid filter, filtering paused, letters and spaces only" />
     </Filter>
     <TableColumns>
-        <DataColumn DataProperty="c => c.ContactID" DisplayName="Contact ID" />
-        <DataColumn DataProperty="c => c.GivenName" DisplayName="First Name" IsSortable="true" />
-        <DataColumn DataProperty="c => c.FamilyName" DisplayName="Surname" IsSortable="true" />
-        <DataColumn DataProperty="c => c.Country" DisplayName="Country" />
-        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Data of Birth" ColumnAlignment="ColumnAlignment.Centre" />
-        <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
+        <DataColumn DataProperty="c => c.ContactID"   DisplayName="ID" />
+        <DataColumn DataProperty="c => c.GivenName"   DisplayName="First Name" IsSortable="true" />
+        <DataColumn DataProperty="c => c.FamilyName"  DisplayName="Surname"    IsSortable="true" />
+        <DataColumn DataProperty="c => c.Country"     DisplayName="Country" />
+        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Date of Birth" ColumnAlignment="ColumnAlignment.Centre" />
+        <DataColumn DataProperty="c => c.Rate"        DisplayName="Hourly Rate" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
     </TableColumns>
-
 </DataTable>
+
+<p>
+    <strong>Note: </strong> sorting relies on the bound property implementing <span class="code-span">IComparable</span> (string properties are compared ordinally).
+    This covers virtually every everyday column type &ndash; numbers, text, dates, times, booleans, GUIDs, and enums are all comparable out of the box.
+    The exceptions are properties that would not usually be sortable anyway, such as entity relationships (navigation properties or collections),
+    binary data (e.g. <span class="code-span">rowversion</span>/<span class="code-span">byte[]</span> columns), and complex or spatial types.
+    An exception is thrown in the initialized method of the DataColumn if you have set <span class="code-span">IsSortable</span> to true on 
+    a column that is not IComparable.
+</p>
+
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Paging}")">
@@ -38,7 +65,6 @@
 
     private Func<Contact, bool>? _filterRule = null;
     private List<Contact>        _dataSource = [];
-
 
     protected override void OnInitialized()
 

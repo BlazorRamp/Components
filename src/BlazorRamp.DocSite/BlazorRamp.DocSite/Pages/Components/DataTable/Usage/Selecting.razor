@@ -2,21 +2,31 @@
 
 <PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Selecting</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Selecting . . . In Progress . . .</h1>
+<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Selecting</h1>
+
+<p>
+    You can enable the ability for a user to select single or multiple rows by changing the <span class="code-span">RowSelectionMode</span> parameter from its default value of <span class="code-span">RowSelectionMode.None</span> to either
+    <span class="code-span">RowSelectionMode.Single</span> or <span class="code-span">RowSelectionMode.Multiple</span>. Any value other than None will cause a column to be added to the end of the column list.
+</p>
+
+<p>
+    In the following example, I have used paging with 10K rows and set row selection to <span class="code-span">RowSelectionMode.Multiple</span>. Instead of using two-way binding, I opted to use the event to
+    output which rows are currently selected. This single event covers both selection modes, with the payload being either an empty list for no selections, or a list containing the selected items.
+</p>
 
 <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule"
-           RowSelectionMode="RowSelectionMode.Multiple" RowSelectHeading="Pick" SelectedRowsChanged="HandleSectionChanged">
+           RowSelectionMode="RowSelectionMode.Multiple" RowSelectHeading="Pick" SelectedRowsChanged="HandleSectionChanged" RowIdentifierFunc="@_checkboxLabel">
     <Filter>
         <DebounceFilter HintText="Filters across first name, surname and country" RegexPattern="^[A-Za-z ]*$" OnDebounceFilterResult="HandleOnDebounce"
                         ValidationMessage="Invalid filter, filtering paused, letters and spaces only" />
     </Filter>
     <TableColumns>
-        <DataColumn DataProperty="c => c.ContactID" DisplayName="Contact ID" IsSortable="true" />
-        <DataColumn DataProperty="c => c.GivenName" DisplayName="First Name" IsSortable="true" />
-        <DataColumn DataProperty="c => c.FamilyName" DisplayName="Surname" IsSortable="true" />
-        <DataColumn DataProperty="c => c.Country" DisplayName="Country" IsSortable="true" />
-        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Data of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
-        <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
+        <DataColumn DataProperty="c => c.ContactID"   DisplayName="ID"         IsSortable="true" />
+        <DataColumn DataProperty="c => c.GivenName"   DisplayName="First Name" IsSortable="true" />
+        <DataColumn DataProperty="c => c.FamilyName"  DisplayName="Surname"    IsSortable="true" />
+        <DataColumn DataProperty="c => c.Country"     DisplayName="Country"    IsSortable="true" />
+        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Date of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
+        <DataColumn DataProperty="c => c.Rate"        DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
     </TableColumns>
     <BottomPager>
         <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Contacts pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount"
@@ -38,6 +48,15 @@
     }
 </p>
 
+<p>
+    <strong>Important: </strong>there are two other associated parameters that should also be set: <span class="code-span">RowSelectHeading</span>, which sets the column header text (this
+    defaults to <span class="code-span">Select</span> if not provided), and <span class="code-span">RowIdentifierFunc</span>. The latter allows for a function that has access to the per-row data,
+    which you can use to build, preferably, a unique, human-readable string that provides the value for the <span class="code-span">aria-label</span> attribute added to the checkbox used for selection.
+    This provides more context for screen reader users. If this parameter is not provided, the <span class="code-span">aria-labelledby</span> attribute is instead given the id value of the associated column header.
+</p>
+<p>
+    Below is the code used for the demo.
+</p>
 <CodeBox CodeBlock="@DataTableSnippets.Selection_Usage_Example" AriaLabel="Selecting usage code example." />
 
 <div class="flex-content justify-content-between">
@@ -48,21 +67,22 @@
     </a>
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Styling}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Component_Name_Data_Table - @GlobalValues.Common_Page_Title_Styling</span>
+        <span>@GlobalValues.Component_Name_Data_Table - @GlobalValues.Common_Page_Title_Content_Styling</span>
         <span aria-hidden="true"></span>
     </a>
 </div>
 
 @code {
 
-    private Func<Contact, bool>? _filterRule   = null;
-    private PagerBinding         _pagerBinding = new(currentPage: 0, currentItemCount: 0, totalItemCount: 0, itemsPerPage: 10);
-    private List<Contact>        _dataSource   = [];
-    private List<Contact>        _selectedRows = [];
+    private Func<Contact, string> _checkboxLabel = c => $"For {c.GivenName} {c.FamilyName}, ID {c.ContactID}";
+    private Func<Contact, bool>? _filterRule     = null;
+    private PagerBinding         _pagerBinding   = new(currentPage: 0, currentItemCount: 0, totalItemCount: 0, itemsPerPage: 10);
+    private List<Contact>        _dataSource     = [];
+    private List<Contact>        _selectedRows   = [];
 
     protected override void OnInitialized()
 
-        => _dataSource = StaticData.GetContacts(1000);
+        => _dataSource = StaticData.GetContacts(10_000);
 
     private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
     {

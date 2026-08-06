@@ -36,8 +36,8 @@ public abstract class ColumnBase<TData> : ComponentBase, IDisposable
     /// </summary>
     [Parameter] public string DisplayName                  { get; set; } = default!;
 
-    /// <summary
-    /// >Optional .NET format string applied to the cell's value, e.g. for dates or numbers.
+    /// <summary>
+    /// Optional .NET format string applied to the cell's value, e.g. for dates or numbers.
     /// </summary>
     [Parameter] public string? CellFormat                  { get; set; } = null;
 

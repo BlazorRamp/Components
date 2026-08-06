@@ -2,7 +2,7 @@
 
 <PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Virtualizing</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Virtualizing . . . In Progress . . .</h1>
+<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Virtualizing</h1>
 <p>
     When using the Data Table, if you do not set the <span class="code-span">PagerBinding</span> parameter, it will render the table rows using the Blazor Virtualize component.
     <strong>Note: </strong> you can disable this and have the rows rendered normally by setting the <span class="code-span">VirtualizeItemSizePX</span> parameter to 0.
@@ -17,12 +17,12 @@
                             ValidationMessage="Invalid filter, filtering paused, letters and spaces only" />
         </Filter>
         <TableColumns>
-            <DataColumn DataProperty="c => c.ContactID" DisplayName="Contact ID" IsSortable="true" />
-            <DataColumn DataProperty="c => c.GivenName" DisplayName="First Name" IsSortable="true" />
-            <DataColumn DataProperty="c => c.FamilyName" DisplayName="Surname" IsSortable="true" />
-            <DataColumn DataProperty="c => c.Country" DisplayName="Country" IsSortable="true" />
+            <DataColumn DataProperty="c => c.ContactID"   DisplayName="ID"          IsSortable="true" />
+            <DataColumn DataProperty="c => c.GivenName"   DisplayName="First Name"  IsSortable="true" />
+            <DataColumn DataProperty="c => c.FamilyName"  DisplayName="Surname"     IsSortable="true" />
+            <DataColumn DataProperty="c => c.Country"     DisplayName="Country"     IsSortable="true" />
             <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Data of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
-            <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
+            <DataColumn DataProperty="c => c.Rate"        DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
         </TableColumns>
     </DataTable>
 </div>

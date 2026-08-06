@@ -4,10 +4,69 @@
 
 <h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Templating . . . In Progress . . .</h1>
 
+<p>
+    Templating gives you the ability to add custom markup to existing cells, and to add extra columns to the Data Table &ndash; complete with their own header markup &ndash; 
+    that are not present in the data source. A good example of an additional column is a row actions column.
+</p>
+<ul>
+    <li>
+        <span class="code-span">DataColumns</span> have a <span class="code-span">CellTemplate</span> parameter that is provided with the current data row.
+    </li>
+    <li>
+        <span class="code-span">TemplateColumns</span> have both a <span class="code-span">HeaderTemplate</span> and a <span class="code-span">CellTemplate</span> parameter. 
+        The <span class="code-span">HeaderTemplate</span> is provided with the <span class="code-span">DisplayName</span> set on the <span class="code-span">TemplateColumn</span>, 
+        if used. It may seem odd to set a <span class="code-span">DisplayName</span> on a <span class="code-span">TemplateColumn</span>, but remember that the template is placed 
+        inside the column's <span class="code-span">th</span> element &ndash; you may only want a plain text heading and just need to supply
+        a <span class="code-span">CellTemplate</span>, without needing a custom <span class="code-span">HeaderTemplate</span> too. 
+        The <span class="code-span">CellTemplate</span> is provided with the current data row, the same as on a <span class="code-span">DataColumn</span>.
+    </li>
+</ul>
+<p>
+    In the following example I have used the CellTemplate on the Country DataColumn to add custom markup when the Country is the United Kingdom.
+    I have also added a custom Row Actions column that will either output some data or delete the row dependant on selection. Please note, normally
+    you would pop up a modal to get confirmation. I have not done so for the example.
+</p>
+<p>
+    The following uses 10K rows. I did not need the HeaderTemplate, but just passed along the DisplayName value so you could see it in use.
+</p>
+<DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule">
+    <Filter>
+        <DebounceFilter HintText="Filters across first name, surname and country" RegexPattern="^[A-Za-z ]*$" OnDebounceFilterResult="HandleOnDebounce"
+                        ValidationMessage="Invalid filter, filtering paused, letters and spaces only" />
+    </Filter>
+    <TableColumns>
+        <DataColumn DataProperty="c => c.ContactID" DisplayName="ID" IsSortable="true" />
+        <DataColumn DataProperty="c => c.GivenName" DisplayName="First Name" IsSortable="true" />
+        <DataColumn DataProperty="c => c.FamilyName" DisplayName="Surname" IsSortable="true" />
+        <DataColumn DataProperty="c => c.Country" DisplayName="Country" IsSortable="true" />
+        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Date of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
+        <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
+        <TemplateColumn DisplayName="Actions" ColumnAlignment="ColumnAlignment.Centre" CellStyle="width: 1%; white-space: nowrap; max-width: none;">
+            <CellTemplate Context="rowItem">
+                <ActionsPopover TriggerText="@($"For: {rowItem.GivenName} {rowItem.FamilyName}, ID {rowItem.ContactID}")" Stretch="true" ActionsPopoverPosition="ActionsPopoverPosition.BottomRight">
+                    <PopoverItems>
+                        <ActionPopoverButton TData="Contact" ButtonText="Edit" SvgIcon="--svg-pencil-icon" ItemData="@rowItem" />
+                        <ActionPopoverButton TData="Contact" ButtonText="Delete" SvgIcon="--svg-trash-can-icon"  ItemData="@rowItem" />
+                    </PopoverItems>
+                </ActionsPopover>
+            </CellTemplate>
+        </TemplateColumn>
+
+    </TableColumns>
+    <BottomPager>
+        <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Contacts pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount"
+               ItemsPerPage="@_pagerBinding.ItemsPerPage" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" AddApplicationRole="true" />
+    </BottomPager>
+</DataTable>
+
+<p>
+    For the custom column I have used the Blazor Ramp Actions Popover component, with a unique label for better context for both screen reader and voice control users.
+</p>
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Styling}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Component_Name_Data_Table - @GlobalValues.Common_Page_Title_Styling</span>
+        <span>@GlobalValues.Component_Name_Data_Table - @GlobalValues.Common_Page_Title_Content_Styling</span>
         <span aria-hidden="true"></span>
     </a>
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Typical_Usage}")">
@@ -16,3 +75,43 @@
         <span aria-hidden="true"></span>
     </a>
 </div>
+@code {
+
+    private Func<Contact, bool>? _filterRule = null;
+    private PagerBinding _pagerBinding = new(currentPage: 0, currentItemCount: 0, totalItemCount: 0, itemsPerPage: 10);
+    private List<Contact> _dataSource = [];
+
+
+    protected override void OnInitialized()
+
+        => _dataSource = StaticData.GetContacts(3);
+
+    private async Task HandleRowView(ButtonActionData<Contact> payload)
+    {
+
+    }
+
+    private async Task HandleRowDelete(ButtonActionData<Contact> payload)
+    {
+        var rowItem = payload.GetValueOr(null);
+
+        if (rowItem is not null) _dataSource.Remove(rowItem);
+
+    }
+
+    private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
+    {
+        if (debounceResult.IsValid)
+        {
+            _filterRule = (data) => data.GivenName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.FamilyName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.Country.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
+
+            /*
+                * The debounce uses a Func not an EventCallback to negate renders if the filter value is invalid so
+                * you call StateHasChanged if all is well.
+            */
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+}

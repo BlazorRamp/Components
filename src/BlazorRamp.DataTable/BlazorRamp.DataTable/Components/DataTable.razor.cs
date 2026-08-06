@@ -38,8 +38,8 @@ public partial class DataTable<TData> : ComponentBase
     /// </summary>
     [Parameter] public bool             TitleHidden           { get; set; } = false;
 
-    /// <summary
-    /// >Optional markup for a custom filter UI, rendered above the table.
+    /// <summary>
+    /// Optional markup for a custom filter UI, rendered above the table.
     /// </summary>
     [Parameter] public RenderFragment?  Filter                { get; set; }
 
@@ -78,11 +78,6 @@ public partial class DataTable<TData> : ComponentBase
     /// When supplied, enables paging and binds the table to the given paging state.
     /// </summary>
     [Parameter] public PagerBinding?    PagerBinding          { get; set; } = null;
-
-    /// <summary>
-    /// The index of the column to sort by on first render, or -1 for no default sort.
-    /// </summary>
-    [Parameter] public int              DefaultSortIndex      { get; set; } = -1;
 
     /// <summary>
     /// Header text for the row-selection column. Defaults if null, empty, or whitespace
@@ -221,7 +216,7 @@ public partial class DataTable<TData> : ComponentBase
         _sortUpCompleted      = String.IsNullOrWhiteSpace(SortUpStatusText)      ? GlobalValues.DataTable_Sort_Up_Status_Text      : SortUpStatusText.Trim();
         _sortDownCompleted    = String.IsNullOrWhiteSpace(SortDownStatusText)    ? GlobalValues.DataTable_Sort_Down_Status_Text    : SortDownStatusText.Trim();
         _sortRemovedCompleted = String.IsNullOrWhiteSpace(SortRemovedStatusText) ? GlobalValues.DataTable_Sort_Removed_Status_Text : SortRemovedStatusText.Trim();
-        _filteringCompleted   = String.IsNullOrWhiteSpace(RecordCountText)       ? GlobalValues.DataTable_Filtered_Status_Text     : FilteredStatusText;
+        _filteringCompleted   = String.IsNullOrWhiteSpace(FilteredStatusText)    ? GlobalValues.DataTable_Filtered_Status_Text     : FilteredStatusText;
         _pressToSortText      = String.IsNullOrWhiteSpace(PressToSortText)       ? GlobalValues.DataTable_Press_To_Sort_Text       : PressToSortText.Trim();
         _tableHeight          = String.IsNullOrWhiteSpace(TableHeight)           ? GlobalValues.DataTable_Max_Table_Height         : TableHeight.Trim();
 
@@ -319,22 +314,6 @@ public partial class DataTable<TData> : ComponentBase
     /// </summary>
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-
-        if (true == firstRender)
-        {
-
-            if (DefaultSortIndex > -1 && DefaultSortIndex < _tableColumns.Where(a => a is DataColumn<TData>).ToList().Count)
-            {
-                _lastSortedColumnIndex = await ToggleSortData(_tableColumns[DefaultSortIndex], _dataSource, DataSource, _filteredUnsortedDataSource, FilterRule);
-
-                if(true == _usePaging)  _dataPage = GetDataPage(PagerBinding!.CurrentPage, PagerBinding.ItemsPerPage, _dataSource);
-
-                await InvokeAsync(StateHasChanged);
-            }
-
-            return;
-        }
-
         if (_dataSource.Count == 0 && false == _usePaging)
         {
             /*

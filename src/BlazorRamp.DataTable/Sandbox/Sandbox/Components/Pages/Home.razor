@@ -8,7 +8,7 @@
 <PageTitle>Home</PageTitle>
 <p>Before table paragraph</p>
 
-<DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts" DefaultSortIndex="2" 
+<DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts"
                FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.Single" RowStyleFunc="@rowStyleFunc" RowSelectHeading="Pick" 
                SelectedRowsChanged="HandleRowsChanged" TableHeight="500px">
     <Filter>
@@ -25,7 +25,7 @@
         <DataColumn DataProperty="d => d.Title" DisplayName="Title" IsSortable="true" />
         <DataColumn DataProperty="d => d.GivenName" DisplayName="First name" IsSortable="true" />
         <DataColumn DataProperty="d => d.FamilyName" DisplayName="Surname" IsSortable="true" ColumnAlignment="ColumnAlignment.Start" />
-        <DataColumn DataProperty="d => d.Country" DisplayName="Country of residence" IsSortable="true">
+        <DataColumn DataProperty="d => d.Country" DisplayName="Country" IsSortable="true" CellStyle="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" HeaderStyle="width:15ch;">
                 <CellTemplate Context="rowItem">
                     @if (rowItem.Country == "United Kingdom")
                     {

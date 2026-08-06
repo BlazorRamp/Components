@@ -73,16 +73,16 @@ public class GlobalValues
     public const string Common_Page_Title_Shared_CSS     = "Shared CSS Variables";
     public const string Common_Page_Title_FAQ_Questions  = "Frequently Asked Questions";
 
-    public const string Common_Page_Title_Usage_About   = "About The Examples";
-    public const string Common_Page_Title_Usage_Basic   = "Basic Usage";
-    public const string Common_Page_Title_Usage_Typical = "Typical Usage";
-    public const string Common_Page_Title_Filtering     = "Filtering";
-    public const string Common_Page_Title_Selecting     = "Selecting";
-    public const string Common_Page_Title_Sorting       = "Sorting";
-    public const string Common_Page_Title_Styling       = "Styling";
-    public const string Common_Page_Title_Templating    = "Templating";
-    public const string Common_Page_Title_Paging        = "Paging";
-    public const string Common_Page_Title_Virtualizing  = "Virtualizing";
+    public const string Common_Page_Title_Usage_About       = "About The Examples";
+    public const string Common_Page_Title_Usage_Basic       = "Basic Usage";
+    public const string Common_Page_Title_Usage_Typical     = "Typical Usage";
+    public const string Common_Page_Title_Filtering         = "Filtering";
+    public const string Common_Page_Title_Selecting         = "Selecting";
+    public const string Common_Page_Title_Sorting           = "Sorting";
+    public const string Common_Page_Title_Content_Styling   = "Content Styling";
+    public const string Common_Page_Title_Templating        = "Templating";
+    public const string Common_Page_Title_Paging            = "Paging";
+    public const string Common_Page_Title_Virtualizing      = "Virtualizing";
 
 
     public const string Component_Name_Accordion          = "Accordion";

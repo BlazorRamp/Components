@@ -2,7 +2,45 @@
 
 <PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Filtering</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Filtering . . . In Progress . . .</h1>
+<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Filtering</h1>
+
+<p>
+    All of the examples that have filtering are using the Debounce Filter component. When there is a pause in typing the entered value is provided which can then be used for your filtering function. 
+    This external filter function is then provided to the Data Table's <span class="code-span">FilterRule</span> parameter.
+</P>
+<p>
+    I designed the Data Table this way so you could create your own filtering GUI if need be and just drop it in the slot provided (the Filter RenderFragment); however, I will most likely at some stage create an 
+    accessible advanced filter for you to use with the Data Table or your own tables. Over the years I have found that just doing an initial search with a few field to reduce the number of records returned 
+    combined with a simple input that filters across all columns like the one shown is sufficient for most applications.
+</P>
+<p>
+    For this example I have used 10K rows and set the filtering logic to check every displayed column to see if it contains the string entered, probably the slowest filter you could possibly use.
+</p>
+
+<DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule">
+    <Filter>
+        <DebounceFilter HintText="Filters across all columns" RegexPattern="^[A-Za-z0-9 ]*$" OnDebounceFilterResult="HandleOnDebounce"
+                        ValidationMessage="Invalid filter, filtering paused, letters, numbers and spaces only"  />
+    </Filter>
+    <TableColumns>
+        <DataColumn DataProperty="c => c.ContactID"   DisplayName="ID"            IsSortable="true" />
+        <DataColumn DataProperty="c => c.GivenName"   DisplayName="First Name"    IsSortable="true" />
+        <DataColumn DataProperty="c => c.FamilyName"  DisplayName="Surname"       IsSortable="true" />
+        <DataColumn DataProperty="c => c.Country"     DisplayName="Country"       IsSortable="true" />
+        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Date of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
+        <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
+    </TableColumns>
+    <BottomPager>
+        <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Contacts pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount"
+        ItemsPerPage="@_pagerBinding.ItemsPerPage" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" AddApplicationRole="true" />
+    </BottomPager>
+</DataTable>
+
+<p>
+    The code used for the demo.
+</p>
+
+<CodeBox CodeBlock="@DataTableSnippets.Filtering_Usage_Example" AriaLabel="Filtering usage code example." />
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Sorting}")">
@@ -16,3 +54,34 @@
         <span aria-hidden="true"></span>
     </a>
 </div>
+
+
+@code {
+
+    private Func<Contact, bool>? _filterRule = null;
+    private PagerBinding _pagerBinding = new(currentPage: 0, currentItemCount: 0, totalItemCount: 0, itemsPerPage: 10);
+    private List<Contact> _dataSource = [];
+
+    protected override void OnInitialized()
+
+        => _dataSource = StaticData.GetContacts(10_000);
+
+    private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
+    {
+        if (debounceResult.IsValid)
+        {
+            _filterRule = (data) => data.ContactID.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.GivenName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.FamilyName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.Country.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.DateOfBirth.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.Rate.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
+
+            /*
+                * The debounce uses a Func not an EventCallback to negate renders if the filter value is invalid so
+                * you call StateHasChanged if all is well.
+            */
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+}

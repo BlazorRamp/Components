@@ -1,4 +1,5 @@
 ﻿using BlazorRamp.DataTable.Common.Constants;
+using BlazorRamp.DataTable.Components;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -72,4 +73,20 @@ internal static class DataTableHelper
     public static string BuildClassList(params string[] classList)
 
         => String.Join(" ", classList.Where(c => !string.IsNullOrWhiteSpace(c)));
+
+    /// <summary>
+    /// Throws if <paramref name="propertyInfo"/>'s type (or its underlying type, if nullable) does not
+    /// implement <see cref="IComparable"/>, since <see cref="ColumnBase{TData}"/>'s sort logic requires it.
+    /// </summary>
+    /// <summary>
+    /// Returns whether <paramref name="propertyInfo"/>'s type (or its underlying type, if nullable)
+    /// implements <see cref="IComparable"/>, since <see cref="ColumnBase{TData}"/>'s sort logic requires it.
+    /// </summary>
+    public static bool IsComparableType(PropertyInfo propertyInfo)
+    {
+        var propertyType = propertyInfo.PropertyType;
+        var underlyingType = Nullable.GetUnderlyingType(propertyType) ?? propertyType;
+
+        return typeof(IComparable).IsAssignableFrom(underlyingType);
+    }
 }

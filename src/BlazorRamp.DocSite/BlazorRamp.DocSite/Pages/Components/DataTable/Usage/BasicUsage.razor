@@ -3,7 +3,7 @@
 
 <PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Usage_Basic</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Usage_Basic . . . In Progress . . .</h1>
+<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Usage_Basic</h1>
 
 <p>
     The following example is a basic setup, similar to the one I'd use with results retrieved from the server, however, I wouldn't be using 100K rows, 
@@ -11,7 +11,7 @@
 </p>
 <p>
     For reasons beyond me, it seems to be in vogue to use 100K rows for demos, which, in my experience and opinion, is a little silly given that it's probably only around
-    1% to 5% of applications that actually need 100K rows on screen for the user. But to keep you all happy.
+    1% or 2% of applications that actually need 100K rows on screen for the user. But to keep you all happy.
 </p>
 <p>
     As this site is just hosted on GitHub Pages, I simply generated 100K rows rather than calling an API. As a side note, from years of experience, the maximum number of rows
@@ -24,11 +24,11 @@
                         ValidationMessage="Invalid filter, filtering paused, letters and spaces only"  />
     </Filter>
     <TableColumns>
-        <DataColumn DataProperty="c => c.ContactID"   DisplayName="Contact ID"    IsSortable="true" />
+        <DataColumn DataProperty="c => c.ContactID"   DisplayName="ID"            IsSortable="true" />
         <DataColumn DataProperty="c => c.GivenName"   DisplayName="First Name"    IsSortable="true" />
         <DataColumn DataProperty="c => c.FamilyName"  DisplayName="Surname"       IsSortable="true" />
         <DataColumn DataProperty="c => c.Country"     DisplayName="Country"       IsSortable="true" />
-        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Data of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
+        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Date of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
         <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
     </TableColumns>
     <BottomPager>

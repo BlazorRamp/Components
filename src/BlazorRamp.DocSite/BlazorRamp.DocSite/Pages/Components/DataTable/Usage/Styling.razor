@@ -1,29 +1,73 @@
 ﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Styling}")]
 
-<PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Styling</PageTitle>
+<PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Content_Styling</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Styling . . . In Progress . . .</h1>
+<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Content_Styling</h1>
+<p>
+    There are numerous ways to apply styling and they can be used individually or combined. You can if you wish use both CellStyleFunc and CellStyle on the same cell.
+</p>
+<ul>
+    <li>
+        RowStyleFunc: a function that accepts a row of data and returns a string containing css property value pairs which get placed inside a <span class="code-span">style</span> attribute added to the row (tr element).
+    </li>
+    <li>
+        CellStyleFunc:  a function that accepts a row of data and returns a string containing css property value pairs which get placed inside a <span class="code-span">style</span> attribute added to the cell (td element).
+    </li>
+    <li>
+        HeaderStyle: a string containing css property value pairs which get placed inside a <span class="code-span">style</span> attribute added to the column header (th element).
+    </li>
+    <li>
+        CellStyle: a string containing css property value pairs which get placed inside a <span class="code-span">style</span> attribute added to the cell header (td element).
+    </li>
+    <li>
+        CellFormat: although not strictly styling I have included it here for convenience. This takes and applies standard .NET format strings to formattable data types.
+    </li>
+</ul>
+<p>
+   For this example I have used all of the above with 10K rows. To see the RowStyleFunc filter using the text "Ki" as it applies a row style to contacts available in the United Kingdom. 
+   See below for information on everything that has been applied as it may not be obvious on first glance.
+</p>
 
-
-<DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule">
+<DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule" RowStyleFunc=UKAvailability>
     <Filter>
         <DebounceFilter HintText="Filters across first name, surname and country" RegexPattern="^[A-Za-z ]*$" OnDebounceFilterResult="HandleOnDebounce"
                         ValidationMessage="Invalid filter, filtering paused, letters and spaces only" />
     </Filter>
     <TableColumns>
-        <DataColumn DataProperty="c => c.ContactID" DisplayName="Contact ID" IsSortable="true" />
-        <DataColumn DataProperty="c => c.GivenName" DisplayName="First Name" IsSortable="true" />
-        <DataColumn DataProperty="c => c.FamilyName" DisplayName="Surname" IsSortable="true" />
-        <DataColumn DataProperty="c => c.Country" DisplayName="Country" IsSortable="true" CellStyle="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" />
-        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Data of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
-        <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
-        <DataColumn DataProperty="c => c.Availability" IsSortable="true" ColumnAlignment="ColumnAlignment.Centre" CellStyleFunc='r => r.Availability == "Unavailable" ? "color:red;" : String.Empty' />.
+        <DataColumn DataProperty="c => c.ContactID"   DisplayName="ID"            IsSortable="true" />
+        <DataColumn DataProperty="c => c.GivenName"   DisplayName="First Name"    IsSortable="true" />
+        <DataColumn DataProperty="c => c.FamilyName"  DisplayName="Surname"       IsSortable="true" />
+        <DataColumn DataProperty="c => c.Country"     DisplayName="Country"       IsSortable="true" CellStyle="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" HeaderStyle="min-width:16ch;" /> 
+            
+            
+        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Date of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" CellFormat="yyyy-MM-dd" HeaderStyle="min-width:16ch;" />
+        <DataColumn DataProperty="c => c.Rate"        DisplayName="Hourly Rate"   IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
+        <DataColumn DataProperty="c => c.Availability" IsSortable="true" ColumnAlignment="ColumnAlignment.Centre" 
+            CellStyleFunc='r => r.Availability == "Unavailable" ? "font-weight:bold; color:red;" : String.Empty' />
     </TableColumns>
     <BottomPager>
         <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Contacts pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount"
                ItemsPerPage="@_pagerBinding.ItemsPerPage" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" AddApplicationRole="true" />
     </BottomPager>
 </DataTable>
+<p>
+    By default the table defines the widths for the columns as it sees fit breaking content values if necessary. You can control this behaviour by specifying min-widths or widths on the columns concerned.
+</p>
+
+<p>
+    For the country column I added a min-width of 16ch using the <span class="code-span">HeaderStyle</span> parameter, but the more interesting thing, and you may need to
+    minimize the width of the browser window to see it, is I also used the Countries <span class="code-span">CellStyle</span> parameter to set a text-overflow:ellipsis. As a side note
+    this is only a visual thing, screen reader users get the full text. Its a useful technique for saving space.
+</p>
+<p>
+    As well as the aforementioned RowStyleFunc, I also applied a CellStyleFunc on the Availability column that just makes the text bold and red when the value is Unavailable.
+</p>
+<p>
+    For the Date of Birth column, I did two things, I added a HeaderStyle to stop the dates characters breaking and gave the CellFormat the .NET string format value of "yyyy-MM-dd" (ISO 8601 date format).
+</p>
+<p>
+    You will have most likely realised from all of the examples I have also been using a CellFormat value of "C" (currency) to display (your) locale currency symbol.
+</p>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Selecting}")">
@@ -44,11 +88,11 @@
     private PagerBinding _pagerBinding = new(currentPage: 0, currentItemCount: 0, totalItemCount: 0, itemsPerPage: 10);
     private List<Contact> _dataSource = [];
 
-
+    private Func<Contact, string?>? UKAvailability = c => c.Availability == "Available" && c.Country == "United Kingdom" ? "background-color:var(--br-unit-colour-success); color:white;" : null;
 
     protected override void OnInitialized()
 
-        => _dataSource = StaticData.GetContacts(100_000);
+        => _dataSource = StaticData.GetContacts(10_000);
 
     private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
     {
