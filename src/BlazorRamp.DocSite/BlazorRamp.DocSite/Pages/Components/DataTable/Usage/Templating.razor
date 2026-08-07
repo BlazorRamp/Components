@@ -29,7 +29,7 @@
 <p>
     The following uses 10K rows. I did not need the HeaderTemplate, but just passed along the DisplayName value so you could see it in use.
 </p>
-<DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule">
+<DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule" TableHeight="800px;">
     <Filter>
         <DebounceFilter HintText="Filters across first name, surname and country" RegexPattern="^[A-Za-z ]*$" OnDebounceFilterResult="HandleOnDebounce"
                         ValidationMessage="Invalid filter, filtering paused, letters and spaces only" />
@@ -41,12 +41,12 @@
         <DataColumn DataProperty="c => c.Country" DisplayName="Country" IsSortable="true" />
         <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Date of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
         <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
-        <TemplateColumn DisplayName="Actions" ColumnAlignment="ColumnAlignment.Centre" CellStyle="width: 1%; white-space: nowrap; max-width: none;">
+        <TemplateColumn DisplayName="Actions" ColumnAlignment="ColumnAlignment.Centre" CellStyle="white-space: nowrap;">
             <CellTemplate Context="rowItem">
                 <ActionsPopover TriggerText="@($"For: {rowItem.GivenName} {rowItem.FamilyName}, ID {rowItem.ContactID}")" Stretch="true" ActionsPopoverPosition="ActionsPopoverPosition.BottomRight">
                     <PopoverItems>
                         <ActionPopoverButton TData="Contact" ButtonText="Edit" SvgIcon="--svg-pencil-icon" ItemData="@rowItem" />
-                        <ActionPopoverButton TData="Contact" ButtonText="Delete" SvgIcon="--svg-trash-can-icon"  ItemData="@rowItem" />
+                        <ActionPopoverButton TData="Contact" ButtonText="Delete" SvgIcon="--svg-trash-can-icon"  ItemData="@rowItem" OnClick="HandleRowDelete"/>
                     </PopoverItems>
                 </ActionsPopover>
             </CellTemplate>
@@ -84,7 +84,7 @@
 
     protected override void OnInitialized()
 
-        => _dataSource = StaticData.GetContacts(3);
+        => _dataSource = StaticData.GetContacts(10_000);
 
     private async Task HandleRowView(ButtonActionData<Contact> payload)
     {
@@ -95,7 +95,12 @@
     {
         var rowItem = payload.GetValueOr(null);
 
-        if (rowItem is not null) _dataSource.Remove(rowItem);
+        if (rowItem is not null)
+        {
+            _dataSource.Remove(rowItem);
+
+            await InvokeAsync(StateHasChanged);
+        }
 
     }
 

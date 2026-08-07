@@ -201,6 +201,7 @@ public partial class DataTable<TData> : ComponentBase
 
     private bool _showTableSpinner = false;
 
+    int _previousRowCount = 0;//TODO
 
     /// <summary>
     /// Resolves default text parameters, detects data source/filter changes, and refreshes paging and row-count state on every parameter set.
@@ -224,11 +225,12 @@ public partial class DataTable<TData> : ComponentBase
         
         _tableHeightStyle = _usePaging ? $"max-height: {_tableHeight}" : $"height: {_tableHeight}";
 
-        var isSameDataSource = ReferenceEquals(_previousDataRef, DataSource);
+        var isSameDataSource = ReferenceEquals(_previousDataRef, DataSource); //&& _previousRowCount == DataSource.Count; 
 
 
         if (false == isSameDataSource) //new search / datasource
         {
+            //_previousRowCount = DataSource.Count;
             _selectedRows.Clear();//new datasource so different equality, we could end up with duplicates if left.
             _previousDataRef = DataSource;
             _dataSource = [.. DataSource];   

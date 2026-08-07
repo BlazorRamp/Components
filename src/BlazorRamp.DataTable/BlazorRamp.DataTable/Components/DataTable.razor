@@ -145,7 +145,9 @@
                         }
                         continue;
                     }
-                    <td data-br-data-position="@DataTableHelper.GetDataPosition(column.ColumnAlignment)" style="@column.CellStyle">@column.CellTemplate!(rowItem)</td>
+                    <td data-br-data-position="@DataTableHelper.GetDataPosition(column.ColumnAlignment)" style="@column.CellStyle">
+                        @if (column.CellTemplate is not null){@column.CellTemplate!(rowItem)}
+                    </td>
                 }
                 @if (isRowSelectable) { AddCheckBox(rowItem, containsRow); }
             </tr>
@@ -193,7 +195,9 @@
                         continue;
                     }
 
-                    <td data-br-data-position="@DataTableHelper.GetDataPosition(column.ColumnAlignment)" style="@column.CellStyle">@column.CellTemplate!(rowItem)</td>
+                    <td data-br-data-position="@DataTableHelper.GetDataPosition(column.ColumnAlignment)" style="@column.CellStyle">
+                        @if (column.CellTemplate is not null){@column.CellTemplate!(rowItem)}
+                    </td>
                 }
                 @if (isRowSelectable)
                 {
