@@ -30,6 +30,7 @@
         font-family: var(--br-comp-data-table-title-info-font-family);
         line-height: var(--br-comp-data-table-title-info-line-height);
 
+
         &--hidden {
             display: none;
         }
@@ -98,7 +99,7 @@
         position: relative;
         grid-row: 4/5;
         min-height: 0;
-        display: grid; // or flex/block — just needs to be a real box, not `contents`
+        display: grid;
     }
 
     &__content {
@@ -110,7 +111,15 @@
         border-color: var(--br-comp-data-table-area-header-border-colour);
         border-width: var(--br-comp-data-table-area-header-border-width);
         border-style: var(--br-comp-data-table-area-header-border-style);
-        //background-color: var(--br-comp-data-table-area-content-background);
+
+
+        &:has(table:focus) {
+            border-radius: var(--br-comp-data-table-area-header-border-radius);
+            outline-width: var(--br-comp-data-table-area-header-sort-outline-width);
+            outline-style: var(--br-comp-data-table-area-header-sort-outline-style);
+            outline-offset: var(--br-comp-data-table-area-header-sort-outline-offset);
+            outline-color: var(--br-comp-data-table-area-header-sort-outline-colour);
+        }
 
         &::-webkit-scrollbar {
             width: 16px;
@@ -148,19 +157,17 @@
                 display: none;
             }
 
-        &:focus-visible {
-            outline-offset: var(--br-comp-data-table-outline-offset);
-            outline-color: var(--br-comp-data-table-outline-colour);
-            outline-width: var(--br-comp-data-table-outline-width);
-            outline-style: var(--br-comp-data-table-outline-style);
-        }
+
 
         table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            //background-color: var(--br-comp-data-table-area-content-background);
             text-align: start;
+
+            &:focus {
+                outline: none;
+            }
         }
 
         th {
@@ -181,14 +188,12 @@
             padding: 0;
             margin: 0;
 
+
             &:last-child {
                 border-right: none;
             }
-            /*            > span.br-data-table__column-title {
-                padding-block: var(--br-unit-space-3);
-                padding-inline: var(--br-unit-space-4);
-            }*/
         }
+
 
         td {
             background-color: transparent;
@@ -203,11 +208,9 @@
             font-size: var(--br-comp-data-table-area-content-font-size);
             font-weight: var(--br-comp-data-table-area-content-font-weight);
             line-height: var(--br-comp-data-table-area-content-line-height);
-            overflow-wrap: break-word;
-/*            max-width: 0;*/
-            word-break: keep-all;
-            word-wrap: break-word;
+            max-width: 0;
             white-space: normal;
+            overflow-wrap: anywhere;
 
             &:last-child {
                 border-right: none;
@@ -238,9 +241,6 @@
     }
 
     &__data-row {
-        /*        &:nth-of-type(odd) {
-            background-color: var(--br-comp-data-table-alternate-row)
-        }*/
 
         &:nth-child(even of .br-data-table__data-row) {
             background-color: var(--br-comp-data-table-alternate-row);
@@ -353,6 +353,11 @@
                 outline-color: var(--br-comp-data-table-outline-colour);
             }
         }
+    }
+
+    td.br-data-table__template-column-cell {
+        max-width: none;
+        width: 1%;
     }
 
     &__bottom-pager {

@@ -14,7 +14,7 @@
     output which rows are currently selected. This single event covers both selection modes, with the payload being either an empty list for no selections, or a list containing the selected items.
 </p>
 
-<DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule"
+<DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule" 
            RowSelectionMode="RowSelectionMode.Multiple" RowSelectHeading="Pick" SelectedRowsChanged="HandleSectionChanged" RowIdentifierFunc="@_checkboxLabel">
     <Filter>
         <DebounceFilter HintText="Filters across first name, surname and country" RegexPattern="^[A-Za-z ]*$" OnDebounceFilterResult="HandleOnDebounce"
@@ -55,7 +55,7 @@
     This provides more context for screen reader users. If this parameter is not provided, the <span class="code-span">aria-labelledby</span> attribute is instead given the id value of the associated column header.
 </p>
 <p>
-    Below is the code used for the demo.
+    The code from the example above.
 </p>
 <CodeBox CodeBlock="@DataTableSnippets.Selection_Usage_Example" AriaLabel="Selecting usage code example." />
 

@@ -28,7 +28,7 @@
         <DataColumn DataProperty="c => c.GivenName"   DisplayName="First Name"    IsSortable="true" />
         <DataColumn DataProperty="c => c.FamilyName"  DisplayName="Surname"       IsSortable="true" />
         <DataColumn DataProperty="c => c.Country"     DisplayName="Country"       IsSortable="true" />
-        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Date of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
+        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Date of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true"  />
         <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
     </TableColumns>
     <BottomPager>
@@ -53,7 +53,9 @@
     table element can grow to, with a vertical scrollbar appearing if there is not enough height for the chosen items per page value. When using Virtualized rows, this is a
     fixed height, necessary for the Virtualized component. The default value is 500px (this is a string value so you could change it to 50vh etc).
 </p>
-
+<p>
+    The code from the example above.
+</p>
 <CodeBox CodeBlock="@DataTableSnippets.Basic_Usage_Example" AriaLabel="Basic usage code example." />
 
 

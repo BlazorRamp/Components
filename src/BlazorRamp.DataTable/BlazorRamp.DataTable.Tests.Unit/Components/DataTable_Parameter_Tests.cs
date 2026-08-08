@@ -190,18 +190,7 @@ public class DataTable_Parameter_Tests
         //No data source so the OnParametersSetAsync will set everything to zero excluding the items per page
         table.Instance.PagerBinding.Should().Match<PagerBinding>(b => b.CurrentPage == 0 && b.CurrentItemCount == 0 && b.TotalItemCount == 0 && b.ItemsPerPage == 50);
     }
-    [Theory]
-    [InlineData(1)]
-    [InlineData(2)]
-    [InlineData(-1)]//the default - will not add but should get this value. This determines if the table is sorted by the column on load.
-    public async Task Should_be_able_to_set_the_default_sort_index(int sortIndex)
-    {
-        await using var context = new BunitContext();
 
-        var table = sortIndex != 32 ? CreateDataTable(context, p => p.Add(x => x.DefaultSortIndex, sortIndex)) : CreateDataTable(context);
-        table.Instance.DefaultSortIndex.Should().Be(sortIndex);
-
-    }
 
     [Theory]
     [InlineData(null)]

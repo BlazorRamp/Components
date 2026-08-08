@@ -27,9 +27,9 @@
         <BusyIndicator ShowIndicator="@_showTableSpinner" Replayable="false" AriaEndText="@_operationCompletedAnnouncement"
                        ContentPosition="ContentPosition.Centre" UseAssertive="false" UseClearOverlay="true" DelayBeforeCloseMS="100"></BusyIndicator>
         
-        <div class="@GlobalValues.DataTable_Content_Class" style="@_tableHeightStyle">
+        <div class="@GlobalValues.DataTable_Content_Class" style="@_tableHeightStyle" >
 
-        <table aria-labelledby="@_tableTitleID" aria-rowcount="@_dataSource.Count">
+            <table aria-labelledby="@_tableTitleID" aria-rowcount="@_dataSource.Count" tabindex="@(AddTableTabIndex ? "0" : "-1")" @ref="@TableRef" >
             <thead>
                 <tr>
                     @foreach (var column in _tableColumns)
@@ -59,7 +59,7 @@
                     @if (RowSelectionMode != RowSelectionMode.None) { AddCheckBoxColumnHeader(); }
                 </tr>
             </thead>
-            <tbody>
+                <tbody>
 
                 @if (PagerBinding is not null || (PagerBinding is null && VirtualizeItemSizePX < 1))
                 {
@@ -145,7 +145,7 @@
                         }
                         continue;
                     }
-                    <td data-br-data-position="@DataTableHelper.GetDataPosition(column.ColumnAlignment)" style="@column.CellStyle">
+                    <td class="@GlobalValues.DataTable_Template_Column_Cell_Class" data-br-data-position="@DataTableHelper.GetDataPosition(column.ColumnAlignment)" style="@column.CellStyle">
                         @if (column.CellTemplate is not null){@column.CellTemplate!(rowItem)}
                     </td>
                 }
@@ -172,7 +172,7 @@
 
             }
             <tr @key="@rowItem" class="@DataTableHelper.BuildClassList(GlobalValues.DataTable_Data_Row_Class, selectClass)" style="@(RowStyleFunc is not null ? RowStyleFunc(rowItem) : null)"
-                @onclick="(e) => HandleOnSelectedRow(e, rowItem)" data-br-last-row="@lastRow">
+                @onclick="(e) => HandleOnSelectedRow(e, rowItem)" data-br-last-row="@lastRow" >
 
                 @foreach (var column in _tableColumns)
                 {

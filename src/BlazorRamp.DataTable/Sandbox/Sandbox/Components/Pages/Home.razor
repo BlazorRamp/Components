@@ -3,14 +3,14 @@
 
 
 
-@rendermode @(new InteractiveServerRenderMode(true))
+@rendermode @(new InteractiveServerRenderMode(false))
 
 <PageTitle>Home</PageTitle>
 <p>Before table paragraph</p>
 
 <DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts"
-               FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.Single" RowStyleFunc="@rowStyleFunc" RowSelectHeading="Pick" 
-               SelectedRowsChanged="HandleRowsChanged" TableHeight="500px">
+               FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.None" RowStyleFunc="@rowStyleFunc" RowSelectHeading="Pick" 
+               SelectedRowsChanged="HandleRowsChanged" TableHeight="500px" @ref="DataTableRef" AddTableTabIndex="true">
     <Filter>
         <DebounceFilter HintText="Filters across all columns of the table" RegexPattern="^[A-Za-z0-9]*$" OnDebounceFilterResult="HandleOnDebounce"
         ValidationMessage="Invalid filter, filtering paused, letters and numbers only"  />
@@ -25,28 +25,12 @@
         <DataColumn DataProperty="d => d.Title" DisplayName="Title" IsSortable="true" />
         <DataColumn DataProperty="d => d.GivenName" DisplayName="First name" IsSortable="true" />
         <DataColumn DataProperty="d => d.FamilyName" DisplayName="Surname" IsSortable="true" ColumnAlignment="ColumnAlignment.Start" />
-        <DataColumn DataProperty="d => d.Country" DisplayName="Country" IsSortable="true" CellStyle="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" HeaderStyle="width:15ch;">
-                <CellTemplate Context="rowItem">
-                    @if (rowItem.Country == "United Kingdom")
-                    {
-                        <span style="display:inline-flex;align-items:center;gap:0.75rem;">
-                            <span class="united-kingdom-flag-icon" aria-hidden="true"></span>
-                            <a href="https://www.rct.uk/visit/buckingham-palace" target="_blank">
-                                @rowItem.Country
-                            </a>
-                        </span>
+        <DataColumn DataProperty="d => d.Country" DisplayName="Country" IsSortable="true">
 
-                        return;
-                    }
-                    @rowItem.Country
-                </CellTemplate>
         </DataColumn>
             <DataColumn DataProperty="d => d.DateOfBirth" DisplayName="Date of birth" ColumnAlignment="ColumnAlignment.Centre" />
             <DataColumn DataProperty="d => d.Rate" DisplayName="Hourly Rate" ColumnAlignment="ColumnAlignment.End" CellFormat="C" IsSortable="true" />
-@*         <TemplateColumn ColumnAlignment="ContentAlignment.Centre" CellStyle="width:100px;word-break: keep-all;" HeaderStyle="width:100px;">
-            <HeaderTemplate>Test</HeaderTemplate>
-            <CellTemplate Context="rowItem" >nothing</CellTemplate>
-        </TemplateColumn> *@
+
     </TableColumns>
     <BottomPager>
 @*             <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Two button pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount" ItemsPerPage="@_pagerBinding.ItemsPerPage"
@@ -63,7 +47,10 @@
     Maecenas efficitur ultricies accumsan.
 </p>
 
+<button @onclick="SetFocus">Set Focus</button>
 @code{
+
+    private DataTable<Contact> DataTableRef { get; set; }
 
     private PagerBinding _pagerBinding = new(0, 0, 0, 10);
 
@@ -81,7 +68,18 @@
         _contacts = StaticData.GetContacts(100_000);
 
         base.OnInitialized();
+
     }
+
+    private async Task SetFocus()
+    {
+        ElementReference table = DataTableRef.TableElementReference;
+
+        if (table.Context is not null) await table.FocusAsync();
+
+        await InvokeAsync(StateHasChanged);
+    }
+
 
     private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
     {
@@ -104,6 +102,7 @@
         {
             Debug.WriteLine($"Selected contact {selectedData[0]}");
         }
-       
+
     }
+
 }

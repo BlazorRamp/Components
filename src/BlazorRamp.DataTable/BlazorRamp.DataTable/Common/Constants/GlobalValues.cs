@@ -23,8 +23,8 @@ internal class GlobalValues
     public const string DataTable_Press_To_Sort_Text       = "Press to sort.";
 
 
-    public const string DataTable_Filter_Count_Text = "Showing {filteredrows} filtered rows from a total of {totalrows}.";
-    public const string DataTable_Record_Count_Text = "Showing {totalrows} rows.";
+    public const string DataTable_Filter_Count_Text = "Showing {filteredrows} filtered items from a total of {totalrows}.";
+    public const string DataTable_Record_Count_Text = "Showing {totalrows} items.";
 
     public const string DataTable_Class = "br-data-table";
 
@@ -46,6 +46,8 @@ internal class GlobalValues
     public const string DataTable_Data_Row_Class               = $"{DataTable_Class}__data-row";
     public const string DataTable_Data_Row_Selectable_Modifier = $"{DataTable_Data_Row_Class}--selectable";
     public const string DataTable_Data_Row_Selected_Modifier   = $"{DataTable_Data_Row_Class}--selected";
+
+    public const string DataTable_Template_Column_Cell_Class = $"{DataTable_Class}__template-column-cell";
 
     public const string DataTable_Row_No_Data_Class = $"{DataTable_Data_Row_Class}--no-data";
 

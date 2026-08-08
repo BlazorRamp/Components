@@ -6,8 +6,9 @@ namespace BlazorRamp.DocSite.Common.Constants;
 public class GlobalValues
 {
     public const string JS_Module_File_Path = "./assets/js/doc-site.js";
-    public const string JS_Initialise_Func = "initialise";
-    public const string JS_Check_Close_Nav = "checkCloseSideNavigation";
+    public const string JS_Initialise_Func  = "initialise";
+    public const string JS_Check_Close_Nav  = "checkCloseSideNavigation";
+    public const string JS_Set_Focus        = "setFocus";
 
 
     public const string Info_Box_Class = "info-box";

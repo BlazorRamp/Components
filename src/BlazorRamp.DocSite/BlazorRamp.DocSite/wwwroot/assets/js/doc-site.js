@@ -50,5 +50,11 @@ const initialise = (menuButton, sideNavigation, mainContent, startMinWidth = 576
     registerBreakpointHandler(menuButton, `(max-width: ${startMinWidth}px)`);
     _initialised = true;
 };
-export { initialise, checkCloseSideNavigation };
+const setFocus = (elementId) => {
+    const element = document.getElementById(elementId);
+    if (!element)
+        return;
+    element.focus();
+};
+export { initialise, checkCloseSideNavigation, setFocus };
 //# sourceMappingURL=doc-site.js.map

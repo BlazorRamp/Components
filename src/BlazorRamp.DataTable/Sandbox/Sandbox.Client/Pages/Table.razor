@@ -5,7 +5,7 @@
 @rendermode @(new InteractiveWebAssemblyRenderMode(true));
 <p>@_location</p>
 
-    <DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts" 
+        <DataTable @ref="DataTableRef" TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts" AddTableTabIndex="true"
                FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.None" RowSelectHeading="Pick" RowIdentifierFunc="checkboxLabel"  PagerBinding="@_pagerBinding">
         <Filter>
             <DebounceFilter HintText="Filters across all columns of the table" RegexPattern="^[A-Za-z0-9]*$" OnDebounceFilterResult="HandleOnDebounce"
@@ -41,9 +41,10 @@
     ac varius. Fusce suscipit convallis ante maximus rhoncus. In ac dictum sem, nec finibus metus. Proin eget lectus faucibus, tincidunt lorem et, rhoncus nibh. 
     Maecenas efficitur ultricies accumsan.
 </p>
-
+<button @onclick="SetFocus">Set Focus</button>
 @code {
 
+    private DataTable<Contact> DataTableRef { get; set; }
     private PagerBinding _pagerBinding = new(0, 0, 0, 10);
 
     private List<Contact> _contacts = [];
@@ -56,6 +57,16 @@
     private Func<Contact, string> checkboxLabel = (data) => $"For contact {data.ContactID}, {data.GivenName} {data.FamilyName}";
 
     private string _location = String.Empty;
+
+    private async Task SetFocus()
+    {
+        ElementReference table = DataTableRef.TableElementReference;
+
+        if (table.Context is not null) await table.FocusAsync();
+
+        await InvokeAsync(StateHasChanged);
+    }
+
     protected override void OnInitialized()
     {
 

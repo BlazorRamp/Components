@@ -2,50 +2,115 @@
 
 <PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Templating</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Templating . . . In Progress . . .</h1>
+<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Templating</h1>
 
 <p>
-    Templating gives you the ability to add custom markup to existing cells, and to add extra columns to the Data Table &ndash; complete with their own header markup &ndash; 
-    that are not present in the data source. A good example of an additional column is a row actions column.
+    Templating gives you the ability to add custom markup to existing cells, and to add extra columns to the Data Table that are not present in the data source.
+    Custom columns can have their own header markup. A good example of an additional column is a row actions column.
 </p>
 <ul>
     <li>
-        <span class="code-span">DataColumns</span> have a <span class="code-span">CellTemplate</span> parameter that is provided with the current data row.
+        <b>DataColumns</b> have a <span class="code-span">CellTemplate</span> parameter that is provided with the current data row.
     </li>
     <li>
-        <span class="code-span">TemplateColumns</span> have both a <span class="code-span">HeaderTemplate</span> and a <span class="code-span">CellTemplate</span> parameter. 
-        The <span class="code-span">HeaderTemplate</span> is provided with the <span class="code-span">DisplayName</span> set on the <span class="code-span">TemplateColumn</span>, 
+        <b>TemplateColumns</b> have both a <span class="code-span">HeaderTemplate</span> and a <span class="code-span">CellTemplate</span> parameter. 
+        The <span class="code-span">HeaderTemplate</span> is provided with the <span class="code-span">DisplayName</span> set on the <b>TemplateColumn</b>, 
         if used. It may seem odd to set a <span class="code-span">DisplayName</span> on a <span class="code-span">TemplateColumn</span>, but remember that the template is placed 
         inside the column's <span class="code-span">th</span> element &ndash; you may only want a plain text heading and just need to supply
         a <span class="code-span">CellTemplate</span>, without needing a custom <span class="code-span">HeaderTemplate</span> too. 
-        The <span class="code-span">CellTemplate</span> is provided with the current data row, the same as on a <span class="code-span">DataColumn</span>.
+        The <span class="code-span">CellTemplate</span> is provided with the current data row, the same as on a <b>DataColumn</b>.
     </li>
 </ul>
 <p>
-    In the following example I have used the CellTemplate on the Country DataColumn to add custom markup when the Country is the United Kingdom.
+    In the following example I have used the <span class="code-span">CellTemplate</span> on the Country <b>DataColumn</b> to add custom markup when the Country is the <b>United Kingdom.</b>
     I have also added a custom Row Actions column that will either output some data or delete the row dependant on selection. Please note, normally
-    you would pop up a modal to get confirmation. I have not done so for the example.
+    you would pop up a modal to get confirmation. I have not done so for the example.Although shown in the code, I did not need the <span class="code-span">HeaderTemplate</span> for the row actions, as the plain <span class="code-span">th</span> element with
+    the <span class="code-span">DisplayName</span> parameter value would have sufficed;
 </p>
+
 <p>
-    The following uses 10K rows. I did not need the HeaderTemplate, but just passed along the DisplayName value so you could see it in use.
+    The following uses 10K rows. 
 </p>
-<DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule" TableHeight="800px;">
+
+
+<style>
+    /*
+        * The actions popover uses focus visible which is not triggered programmatically only by a keyobard, so we need to add a bit of style.
+        * just for this page so we see the indicator on focus. Or you can create a class and add it ot its class list and remove it on lost focus etc.
+    */
+    .br-actions-popover__trigger:focus {
+        border-radius:  var(--br-unit-radius-2);
+        outline-offset: var(--br-comp-all-outline-offset);
+        outline-width:  calc(var(--br-comp-all-outline-width));
+        outline-style:  var(--br-comp-all-outline-style);
+        outline-color:  var(--br-comp-all-outline-colour);
+    }
+
+    .united-kingdom-flag-icon {
+        display: inline-block;
+        min-height:3em;
+        min-width: 3em;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Cpath fill='%2300247d' d='M0 9.059V13h5.628zM4.664 31H13v-5.837zM23 25.164V31h8.335zM0 23v3.941L5.63 23zM31.337 5H23v5.837zM36 26.942V23h-5.631zM36 13V9.059L30.371 13zM13 5H4.664L13 10.837z'/%3E%3Cpath fill='%23cf1b2b' d='m25.14 23l9.712 6.801a4 4 0 0 0 .99-1.749L28.627 23zM13 23h-2.141l-9.711 6.8c.521.53 1.189.909 1.938 1.085L13 23.943zm10-10h2.141l9.711-6.8a4 4 0 0 0-1.937-1.085L23 12.057zm-12.141 0L1.148 6.2a4 4 0 0 0-.991 1.749L7.372 13z'/%3E%3Cpath fill='%23eee' d='M36 21H21v10h2v-5.836L31.335 31H32a4 4 0 0 0 2.852-1.199L25.14 23h3.487l7.215 5.052c.093-.337.158-.686.158-1.052v-.058L30.369 23H36zM0 21v2h5.63L0 26.941V27c0 1.091.439 2.078 1.148 2.8l9.711-6.8H13v.943l-9.914 6.941c.294.07.598.116.914.116h.664L13 25.163V31h2V21zM36 9a3.98 3.98 0 0 0-1.148-2.8L25.141 13H23v-.943l9.915-6.942A4 4 0 0 0 32 5h-.663L23 10.837V5h-2v10h15v-2h-5.629L36 9.059zM13 5v5.837L4.664 5H4a4 4 0 0 0-2.852 1.2l9.711 6.8H7.372L.157 7.949A4 4 0 0 0 0 9v.059L5.628 13H0v2h15V5z'/%3E%3Cpath fill='%23cf1b2b' d='M21 15V5h-6v10H0v6h15v10h6V21h15v-6z'/%3E%3C/svg%3E");
+        forced-color-adjust: none;
+    }
+    .uk-data{
+  
+        display:flex;
+        gap:0.5rem;
+        align-items: center;
+        white-space: nowrap;
+        > a{
+            display:flex;
+            flex-direction:column;
+            color:inherit;
+        }
+    }
+</style>
+<DataTable @ref="DataTableRef" TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule" TableHeight="800px;">
     <Filter>
         <DebounceFilter HintText="Filters across first name, surname and country" RegexPattern="^[A-Za-z ]*$" OnDebounceFilterResult="HandleOnDebounce"
                         ValidationMessage="Invalid filter, filtering paused, letters and spaces only" />
     </Filter>
     <TableColumns>
-        <DataColumn DataProperty="c => c.ContactID" DisplayName="ID" IsSortable="true" />
-        <DataColumn DataProperty="c => c.GivenName" DisplayName="First Name" IsSortable="true" />
+        <DataColumn DataProperty="c => c.ContactID"  DisplayName="ID" IsSortable="true" />
+        <DataColumn DataProperty="c => c.GivenName"  DisplayName="First Name" IsSortable="true" />
         <DataColumn DataProperty="c => c.FamilyName" DisplayName="Surname" IsSortable="true" />
-        <DataColumn DataProperty="c => c.Country" DisplayName="Country" IsSortable="true" />
-        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Date of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
-        <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
-        <TemplateColumn DisplayName="Actions" ColumnAlignment="ColumnAlignment.Centre" CellStyle="white-space: nowrap;">
+        <DataColumn DataProperty="c => c.Country"    DisplayName="Country" IsSortable="true" HeaderStyle="min-width:30ch;" >
+            
             <CellTemplate Context="rowItem">
-                <ActionsPopover TriggerText="@($"For: {rowItem.GivenName} {rowItem.FamilyName}, ID {rowItem.ContactID}")" Stretch="true" ActionsPopoverPosition="ActionsPopoverPosition.BottomRight">
+                
+                @if(rowItem.Country == "United Kingdom")
+                {
+                    <div class="uk-data">
+                        <span aria-hidden="true" class="united-kingdom-flag-icon"></span>
+                        <a href="@($"https://en.wikipedia.org/wiki/{rowItem.Country}")" target="_blank" rel="noopener noreferrer">
+                            <span>@rowItem.Country</span>
+                            <span>(opens in new window)</span>
+                        </a>
+                    </div>
+                    return;
+                }
+                @rowItem.Country
+
+            </CellTemplate>
+        </DataColumn>
+     
+        <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Date of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
+        <DataColumn DataProperty="c => c.Rate"        DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
+
+        <TemplateColumn DisplayName="Actions" ColumnAlignment="ColumnAlignment.Centre" CellStyle="white-space: nowrap;">
+            <HeaderTemplate Context="displayName">
+                @displayName
+            </HeaderTemplate>
+            <CellTemplate Context="rowItem">
+                @{
+                    var identifier = CreateIdentifier(rowItem);
+                }
+                <ActionsPopover TriggerText="@identifier" Stretch="true" ActionsPopoverPosition="ActionsPopoverPosition.BottomRight" id="@identifier">
                     <PopoverItems>
-                        <ActionPopoverButton TData="Contact" ButtonText="Edit" SvgIcon="--svg-pencil-icon" ItemData="@rowItem" />
+                        <ActionPopoverButton TData="Contact" ButtonText="View" SvgIcon="--svg-overview-icon" ItemData="@rowItem" onclick="HandleRowView" />
                         <ActionPopoverButton TData="Contact" ButtonText="Delete" SvgIcon="--svg-trash-can-icon"  ItemData="@rowItem" OnClick="HandleRowDelete"/>
                     </PopoverItems>
                 </ActionsPopover>
@@ -59,9 +124,23 @@
     </BottomPager>
 </DataTable>
 
-<p>
-    For the custom column I have used the Blazor Ramp Actions Popover component, with a unique label for better context for both screen reader and voice control users.
+<p style="margin-top:var(--br-unit-space-9);">
+    <b>Last viewed row: </b>@_dataRowDetails
 </p>
+
+<p>
+    For accessibility, if you are doing inline actions such as deleting a row its important to remember that after a delete you need to put the focus some where meaningful.
+    The code shows one way how you can get and set focus to the next logical row or if there are no more logical rows just fallback to setting focus on the table itself.
+</p>
+<p>
+    For the custom column I have used the Blazor Ramp Actions Popover component, with a unique label for better context for both screen reader and voice control users. I used the
+    same unique label value as for an id attribute added (splatted) for the actions popover tiggering button in order to be able to set focus on the next logical one after a deletion.
+    see the code sample below for how all of this was doen.
+</p>
+<p>
+    The code from the example above.
+</p>
+<CodeBox CodeBlock="@DataTableSnippets.Templating_Usage_Example" AriaLabel="Templating usage code example." />
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Styling}")">
@@ -77,10 +156,20 @@
 </div>
 @code {
 
-    private Func<Contact, bool>? _filterRule = null;
-    private PagerBinding _pagerBinding = new(currentPage: 0, currentItemCount: 0, totalItemCount: 0, itemsPerPage: 10);
-    private List<Contact> _dataSource = [];
+    @implements IAsyncDisposable
 
+    [Inject] IJSRuntime        JSRuntime    { get; set; }
+    private DataTable<Contact> DataTableRef { get; set; }
+
+    private IJSObjectReference?  _jsModule      = null;
+    private Func<Contact, bool>? _filterRule    = null;
+    private PagerBinding         _pagerBinding  = new(currentPage: 0, currentItemCount: 0, totalItemCount: 0, itemsPerPage: 10);
+    private List<Contact>        _dataSource    = [];
+    private string?              _dataRowDetails = String.Empty;
+
+    private string CreateIdentifier(Contact contact)
+
+      => $"For: {contact.GivenName} {contact.FamilyName}, ID {contact.ContactID}";
 
     protected override void OnInitialized()
 
@@ -88,20 +177,37 @@
 
     private async Task HandleRowView(ButtonActionData<Contact> payload)
     {
-
-    }
+        var rowData = payload.GetValueOr(null);
+        
+        if(rowData is not null)
+        {
+            _dataRowDetails = rowData.ToString();
+            await InvokeAsync(StateHasChanged);//Actions popover uses Func not EventCallBack so you can chooses whether or not to render.
+        }
+    }        
 
     private async Task HandleRowDelete(ButtonActionData<Contact> payload)
     {
         var rowItem = payload.GetValueOr(null);
 
-        if (rowItem is not null)
-        {
-            _dataSource.Remove(rowItem);
+        if (rowItem is null) return;
 
-            await InvokeAsync(StateHasChanged);
+        var adjacentRow = DataTableRef.GetAdjacentDisplayedRow(rowItem);
+
+        _dataSource.Remove(rowItem);
+
+        await DataTableRef.Refresh();
+
+        // OR _dataSource = [.._dataSource];
+        //await InvokeAsync(StateHasChanged);
+
+        if (adjacentRow != null && _jsModule != null)
+        {
+            await _jsModule.InvokeVoidAsync(GlobalValues.JS_Set_Focus, CreateIdentifier(adjacentRow));
+            return;
         }
 
+        await DataTableRef.TableElementReference.FocusAsync();
     }
 
     private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
@@ -119,4 +225,19 @@
             await InvokeAsync(StateHasChanged);
         }
     }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (true == firstRender) _jsModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Module_File_Path);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        try
+        {
+            if (_jsModule is not null) await _jsModule.DisposeAsync();
+        }
+        catch { }
+    }
+
 }

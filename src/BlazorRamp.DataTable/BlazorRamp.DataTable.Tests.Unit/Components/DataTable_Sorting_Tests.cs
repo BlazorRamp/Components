@@ -139,21 +139,7 @@ public class DataTable_Sorting_Tests
         }
     }
 
-    [Fact]
-    public async Task Should_sort_by_the_default_sort_index_column_on_first_render()
-    {
-        await using var context = new BunitContext();
 
-        var dataSource = new List<Contact> {
-                new Contact(2, "Mr", "Bob", "Doe", new DateOnly(1970,1,1), "UK", 1m),
-                new Contact(1, "Mrs", "Anne", "Doe", new DateOnly(1970,1,1), "UK", 1m),
-                new Contact(3, "Mr", "Cal", "Doe", new DateOnly(1970,1,1), "UK", 1m)
-            };
-
-        var table = CreateDataTable(context, p => p.Add(x => x.DataSource, dataSource).Add(x => x.DefaultSortIndex, 0));
-
-        table.WaitForAssertion(() => table.FindAll("tbody td").First().TextContent.Should().Be("Anne"));
-    }
 
 
     [Fact]

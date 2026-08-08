@@ -72,4 +72,13 @@ const initialise = (menuButton: HTMLButtonElement, sideNavigation: HTMLElement, 
 
 };
 
-export { initialise, checkCloseSideNavigation}
+const setFocus = (elementId: string): void => {
+
+    const element = document.getElementById(elementId);
+
+    if (!element) return;
+
+    element.focus();
+};
+
+export { initialise, checkCloseSideNavigation, setFocus}
