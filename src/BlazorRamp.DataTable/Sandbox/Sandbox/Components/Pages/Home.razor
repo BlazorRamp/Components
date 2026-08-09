@@ -10,7 +10,7 @@
 
 <DataTable TData="Contact" TitleAlignment="TitleAlignment.Start" FilterAlignment="FilterAlignment.End" TitleHidden="false" DataSource="@_contacts"
                FilterRule="@_filterRule" RowSelectionMode="RowSelectionMode.None" RowStyleFunc="@rowStyleFunc" RowSelectHeading="Pick" 
-               SelectedRowsChanged="HandleRowsChanged" TableHeight="500px" @ref="DataTableRef" AddTableTabIndex="true">
+               SelectedRowsChanged="HandleRowsChanged" TableHeight="500px" @ref="DataTableRef" AddTableTabIndex="false">
     <Filter>
         <DebounceFilter HintText="Filters across all columns of the table" RegexPattern="^[A-Za-z0-9]*$" OnDebounceFilterResult="HandleOnDebounce"
         ValidationMessage="Invalid filter, filtering paused, letters and numbers only"  />
@@ -25,7 +25,7 @@
         <DataColumn DataProperty="d => d.Title" DisplayName="Title" IsSortable="true" />
         <DataColumn DataProperty="d => d.GivenName" DisplayName="First name" IsSortable="true" />
         <DataColumn DataProperty="d => d.FamilyName" DisplayName="Surname" IsSortable="true" ColumnAlignment="ColumnAlignment.Start" />
-        <DataColumn DataProperty="d => d.Country" DisplayName="Country" IsSortable="true">
+        <DataColumn DataProperty="d => d.Country" DisplayName="Country" IsSortable="false">
 
         </DataColumn>
             <DataColumn DataProperty="d => d.DateOfBirth" DisplayName="Date of birth" ColumnAlignment="ColumnAlignment.Centre" />
@@ -73,11 +73,9 @@
 
     private async Task SetFocus()
     {
-        ElementReference table = DataTableRef.TableElementReference;
 
-        if (table.Context is not null) await table.FocusAsync();
 
-        await InvokeAsync(StateHasChanged);
+        await DataTableRef.SetTableFocus();
     }
 
 

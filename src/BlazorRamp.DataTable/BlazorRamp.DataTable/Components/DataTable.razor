@@ -27,9 +27,9 @@
         <BusyIndicator ShowIndicator="@_showTableSpinner" Replayable="false" AriaEndText="@_operationCompletedAnnouncement"
                        ContentPosition="ContentPosition.Centre" UseAssertive="false" UseClearOverlay="true" DelayBeforeCloseMS="100"></BusyIndicator>
         
-        <div class="@GlobalValues.DataTable_Content_Class" style="@_tableHeightStyle" >
+        <div @ref="ContentElementRef" class="@GlobalValues.DataTable_Content_Class" style="@_tableHeightStyle">
 
-            <table aria-labelledby="@_tableTitleID" aria-rowcount="@_dataSource.Count" tabindex="@(AddTableTabIndex ? "0" : "-1")" @ref="@TableRef" >
+            <table aria-labelledby="@_tableTitleID" aria-rowcount="@_dataSource.Count" tabindex="@(AddTableTabIndex ? "0" : "-1")" @ref="@TableElementRef">
             <thead>
                 <tr>
                     @foreach (var column in _tableColumns)

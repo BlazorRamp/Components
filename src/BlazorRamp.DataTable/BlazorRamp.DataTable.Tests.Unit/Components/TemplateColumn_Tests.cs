@@ -1,4 +1,5 @@
 ﻿using BlazorRamp.Core.Services;
+using BlazorRamp.DataTable.Common.Constants;
 using BlazorRamp.DataTable.Components;
 using BlazorRamp.DataTable.Tests.Unit.SharedTestModels;
 using Bunit;
@@ -24,7 +25,9 @@ public class TemplateColumn_Tests
 
         var busyModuleInterop = context.JSInterop.SetupModule("./_content/BlazorRamp.BusyIndicator/assets/js/busy-indicator.js");
         var coreModuleInterop = context.JSInterop.SetupModule("./_content/BlazorRamp.Core/assets/js/core-live-region.js");
+        var tableModuleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Module_File_Path);
 
+        tableModuleInterop.SetupVoid();
         busyModuleInterop.SetupVoid();
         coreModuleInterop.SetupVoid();
         coreModuleInterop.SetupVoid("announcement", _ => true).SetVoidResult();

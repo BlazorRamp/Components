@@ -130,12 +130,12 @@
 
 <p>
     For accessibility, if you are doing inline actions such as deleting a row its important to remember that after a delete you need to put the focus some where meaningful.
-    The code shows one way how you can get and set focus to the next logical row or if there are no more logical rows just fallback to setting focus on the table itself.
+    The code shows one way how you can get and set focus to the next logical row action button or if there are no more logical rows just fallback to setting focus on the table itself.
 </p>
 <p>
     For the custom column I have used the Blazor Ramp Actions Popover component, with a unique label for better context for both screen reader and voice control users. I used the
-    same unique label value as for an id attribute added (splatted) for the actions popover tiggering button in order to be able to set focus on the next logical one after a deletion.
-    see the code sample below for how all of this was doen.
+    same unique label value as for an id attribute added (splatted) for the actions popover triggering button in order to be able to set focus on the next logical one after a deletion.
+    see the code sample below for how all of this was done.
 </p>
 <p>
     The code from the example above.
@@ -148,9 +148,9 @@
         <span>@GlobalValues.Component_Name_Data_Table - @GlobalValues.Common_Page_Title_Content_Styling</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Typical_Usage}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DebounceFilter}/{GlobalValues.Common_Page_Path_Overview}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Component_Name_Data_Table - @GlobalValues.Common_Page_Title_Usage_Typical</span>
+        <span>@GlobalValues.Component_Name_Debounce_Filter - @GlobalValues.Common_Page_Title_Overview</span>
         <span aria-hidden="true"></span>
     </a>
 </div>
@@ -207,7 +207,7 @@
             return;
         }
 
-        await DataTableRef.TableElementReference.FocusAsync();
+        await DataTableRef.SetTableFocus();
     }
 
     private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)

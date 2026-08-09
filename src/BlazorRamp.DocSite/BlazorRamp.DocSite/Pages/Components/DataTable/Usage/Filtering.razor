@@ -15,9 +15,11 @@
 </P>
 <p>
     For this example I have used 10K rows and set the filtering logic to check every displayed column to see if it contains the string entered, probably the slowest filter you could possibly use.
+    I have also, set the <span class="code-span">FilterAlignment</span> and <span class="code-span">TitleAlignment</span> to show the elements Start and Centre respectively.
 </p>
 
-<DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule">
+<DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule"
+    FilterAlignment="FilterAlignment.Start" TitleAlignment="TitleAlignment.Centre">
     <Filter>
         <DebounceFilter HintText="Filters across all columns" RegexPattern="^[A-Za-z0-9 ]*$" OnDebounceFilterResult="HandleOnDebounce"
                         ValidationMessage="Invalid filter, filtering paused, letters, numbers and spaces only"  />

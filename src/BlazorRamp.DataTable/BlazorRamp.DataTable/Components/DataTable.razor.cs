@@ -6,6 +6,7 @@ using BlazorRamp.DataTable.Common.Models;
 using BlazorRamp.DataTable.Common.Utilities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
 using System.Diagnostics;
 
 namespace BlazorRamp.DataTable.Components;
@@ -17,7 +18,7 @@ namespace BlazorRamp.DataTable.Components;
 /// filter, and empty-result states.
 /// </summary>
 /// <typeparam name="TData">The row item type displayed by the table.</typeparam>
-public partial class DataTable<TData> : ComponentBase
+public partial class DataTable<TData> : ComponentBase,  IAsyncDisposable
 {
     /// <summary>
     /// The <see cref="DataColumn{TData}"/>/<see cref="TemplateColumn{TData}"/> definitions for this table.
@@ -177,8 +178,14 @@ public partial class DataTable<TData> : ComponentBase
     [Parameter] public EventCallback<List<TData>> SelectedRowsChanged { get; set; }
 
     [Inject] private ILiveRegionService? LiveRegionService { get; set; }
+    [Inject] private IJSRuntime          JSRuntime         { get; set; } = default!;
 
-    private ElementReference TableRef { get; set; }
+    private ElementReference ContentElementRef { get; set; }
+    private ElementReference TableElementRef   { get; set; }
+
+    private IJSObjectReference? _jSModule = null;
+
+
     private readonly List<ColumnBase<TData>>    _tableColumns = [];
     private readonly Dictionary<string, string> _columnAlignments = [];
 
@@ -216,15 +223,11 @@ public partial class DataTable<TData> : ComponentBase
 
     private bool _showTableSpinner = false;
 
-    /// <summary>
-    /// Gets an ElementReference to the underlying table element.
-    /// </summary>
-    public ElementReference TableElementReference { get; private set; } 
 
     /// <summary>
     /// Resolves default text parameters, detects data source/filter changes, and refreshes paging and row-count state on every parameter set.
     /// </summary>
-   protected override async Task OnParametersSetAsync()
+    protected override async Task OnParametersSetAsync()
     {
         _tableTitle           = String.IsNullOrWhiteSpace(Title)                 ? GlobalValues.DataTable_Title_Text               : Title.Trim();
         _noDataText           = String.IsNullOrWhiteSpace(NoRecordText)          ? GlobalValues.DataTable_No_Records_Text          : NoRecordText.Trim();
@@ -298,7 +301,7 @@ public partial class DataTable<TData> : ComponentBase
     /// </summary>
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if(firstRender == true) TableElementReference = TableRef;
+        if(firstRender == true) _jSModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Module_File_Path);
 
         if (_dataSource.Count == 0 && false == _usePaging)
         {
@@ -434,16 +437,7 @@ public partial class DataTable<TData> : ComponentBase
         return [.. dataSource.Skip(start).Take(itemsPerPage)];
     }
 
-    //private void CheckSetPagingInfo(List<TData> dataSource, bool isNewData)
-    //{
-    //    if (PagerBinding is not null)
-    //    {
-    //        PagerBinding.CurrentPage = dataSource.Count > 0 ? 1 : 0;
-    //        PagerBinding.CurrentItemCount = dataSource.Count;
 
-    //        if (isNewData) PagerBinding.TotalItemCount = dataSource.Count;
-    //    }
-    //}
     private void CheckSetPagingInfo(List<TData> dataSource, bool resetToFirstPage)
     {
         if (PagerBinding is null) return;
@@ -518,31 +512,6 @@ public partial class DataTable<TData> : ComponentBase
     }
 
 
-
-    /// <summary>
-    /// Returns the row adjacent to <paramref name="rowItem"/> in the currently displayed order — the
-    /// next row if one exists, otherwise the previous row, otherwise default if rowItem was the only
-    /// displayed row. 
-    /// </summary>
-    public TData? GetAdjacentDisplayedRow(TData rowItem)
-    {
-        var index = _dataSource.IndexOf(rowItem);
-
-        if (index < 0) return default;
-        if (index < _dataSource.Count - 1) return _dataSource[index + 1];
-        if (index > 0) return _dataSource[index - 1];
-        
-        return default;
-    }
-
-    /// <summary>
-    /// Returns the first currently displayed row, or default if there are none.
-    /// </summary>
-    public TData? GetFirstDisplayedRow() 
-        
-        => _dataSource.Count > 0 ? _dataSource[0] : default;
-
-
     /// <summary>
     /// Filters <see cref="DataSource"/> by <see cref="FilterRule"/>, or returns a plain copy if no filter is set.
     /// </summary>
@@ -605,5 +574,55 @@ public partial class DataTable<TData> : ComponentBase
         }
     }
 
+    public async Task SetTableFocus()
+    {
+
+        if(_jSModule != null && TableElementRef.Context != null && ContentElementRef.Context != null)
+        {
+            await _jSModule.InvokeVoidAsync(GlobalValues.JS_Set_Temp_Content_Focus_Modifier, TableElementRef, ContentElementRef, GlobalValues.DataTable_Content_Focused_Modifier);
+        }
+
+    }
+
+    /// <summary>
+    /// Returns the row adjacent to <paramref name="rowItem"/> in the currently displayed order — the
+    /// next row if one exists, otherwise the previous row, otherwise default if rowItem was the only
+    /// displayed row. 
+    /// </summary>
+    public TData? GetAdjacentDisplayedRow(TData rowItem)
+    {
+        var index = _dataSource.IndexOf(rowItem);
+
+        if (index < 0) return default;
+        if (index < _dataSource.Count - 1) return _dataSource[index + 1];
+        if (index > 0) return _dataSource[index - 1];
+
+        return default;
+    }
+
+    /// <summary>
+    /// Returns the first currently displayed row, or default if there are none.
+    /// </summary>
+    public TData? GetFirstDisplayedRow()
+
+        => _dataSource.Count > 0 ? _dataSource[0] : default;
+
+
+    /// <summary>
+    /// Performs asynchronous disposal of resources, including the JS module reference
+    /// </summary>
+    public async ValueTask DisposeAsync()
+    {
+
+        if (_jSModule is not null)
+        {
+            try
+            {
+                await _jSModule.DisposeAsync();
+            }
+            catch { }
+        }
+
+    }
 
 }

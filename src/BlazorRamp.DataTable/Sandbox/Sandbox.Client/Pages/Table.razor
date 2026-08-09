@@ -60,11 +60,8 @@
 
     private async Task SetFocus()
     {
-        ElementReference table = DataTableRef.TableElementReference;
 
-        if (table.Context is not null) await table.FocusAsync();
-
-        await InvokeAsync(StateHasChanged);
+        await DataTableRef.SetTableFocus();
     }
 
     protected override void OnInitialized()

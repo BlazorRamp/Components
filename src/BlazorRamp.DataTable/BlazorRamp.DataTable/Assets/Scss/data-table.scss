@@ -113,12 +113,18 @@
         border-style: var(--br-comp-data-table-area-header-border-style);
 
 
-        &:has(table:focus) {
-            border-radius: var(--br-comp-data-table-area-header-border-radius);
-            outline-width: var(--br-comp-data-table-area-header-sort-outline-width);
-            outline-style: var(--br-comp-data-table-area-header-sort-outline-style);
-            outline-offset: var(--br-comp-data-table-area-header-sort-outline-offset);
-            outline-color: var(--br-comp-data-table-area-header-sort-outline-colour);
+        &:has(table:focus-visible) {
+            outline-width: var(--br-comp-data-table-outline-width);
+            outline-style: var(--br-comp-data-table-outline-style);
+            outline-offset: var(--br-comp-data-table-outline-offset);
+            outline-color: var(--br-comp-data-table-outline-colour);
+        }
+
+        &--focused {
+            outline-width: var(--br-comp-data-table-outline-width);
+            outline-style: var(--br-comp-data-table-outline-style);
+            outline-offset: var(--br-comp-data-table-outline-offset);
+            outline-color: var(--br-comp-data-table-outline-colour);
         }
 
         &::-webkit-scrollbar {

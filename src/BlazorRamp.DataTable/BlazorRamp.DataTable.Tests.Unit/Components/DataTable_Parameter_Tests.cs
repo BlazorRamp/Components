@@ -22,7 +22,9 @@ public class DataTable_Parameter_Tests
 
         var busyModuleInterop = context.JSInterop.SetupModule("./_content/BlazorRamp.BusyIndicator/assets/js/busy-indicator.js");
         var coreModuleInterop = context.JSInterop.SetupModule("./_content/BlazorRamp.Core/assets/js/core-live-region.js");
+        var tableModuleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Module_File_Path);
 
+        tableModuleInterop.SetupVoid();
         busyModuleInterop.SetupVoid();
         coreModuleInterop.SetupVoid();
         coreModuleInterop.SetupVoid("announcement", _ => true).SetVoidResult();
@@ -277,7 +279,7 @@ public class DataTable_Parameter_Tests
 
         if (String.IsNullOrWhiteSpace(recordCountText))
         {
-            rowCountDisplay.Should().Be("Showing 1 rows.");
+            rowCountDisplay.Should().Be("Showing 1 items.");
             return;
         }
 
@@ -302,7 +304,7 @@ public class DataTable_Parameter_Tests
 
         var table = CreateDataTable(context, p => p.Add(x => x.FilterCountText, filterCountText).Add(x => x.DataSource, dataSource).Add(x => x.FilterRule, filter));
 
-        var expectedText = String.IsNullOrWhiteSpace(filterCountText) ? "Showing 1 filtered rows from a total of 2." : "You have 1 rows from the total of 2 rows";
+        var expectedText = String.IsNullOrWhiteSpace(filterCountText) ? "Showing 1 filtered items from a total of 2." : "You have 1 rows from the total of 2 rows";
 
 
         table.WaitForAssertion(() =>

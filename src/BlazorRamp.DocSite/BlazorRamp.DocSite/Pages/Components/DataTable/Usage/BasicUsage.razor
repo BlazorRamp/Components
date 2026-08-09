@@ -42,10 +42,10 @@
     contains OR Country contains the filter value (see code snippet below).
 </p>
 <p>
-    I will at some stage be creating an advanced filter component that you will be able to drop into the data table filter slot, and/or for you to use your own adhoc tables.
+    I will at some stage be creating an advanced filter component that you will be able to drop into the data table filter slot, and/or for you to use with your own adhoc tables.
 </p>
 <p>
-    I haven't done any performance testing or tuning; the code just uses simple reflection without source generators, so I may revisit this at some point. The sort on WASM 
+    I haven't done any performance testing or tuning; the code just uses simple reflection without source generators, so I may revisit this at some point. The sort on WASM
     takes approx. 1 second for 100K rows with extra delay due to the busy indicator and approx 30 milliseconds on Server. Filtering depends on the number of columns and And-ing or Or-ing. 
 </p>
 <p>

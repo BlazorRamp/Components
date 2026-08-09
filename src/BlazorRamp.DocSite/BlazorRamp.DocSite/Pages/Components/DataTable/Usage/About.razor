@@ -2,8 +2,61 @@
 
 <PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Usage_About</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Usage_About . . . In Progress . . .</h1>
-
+<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Usage_About</h1>
+<p>
+    The following pages are intended to highlight the various features of the Data Table, as well as to give you simple how-to examples. Pages such as Templating also highlight some important accessibility 
+    decisions around focus management, should you need inline deletes from a row action button.
+</p>
+<p>
+    As noted on Basic Usage, there appears to be a somewhat silly trend, in my opinion, of demonstrating tables with 100K rows or more. I am not sure what this is meant to prove, as in my experience you first 
+    provide a search mechanism to bring back the smallest reasonable number of rows, display them to the user and, if needed, provide an additional filtering mechanism for the on-screen data &ndash; this is 
+    before even considering that an object with just six properties will probably be 25+ MiB in size to transfer over the wire. I would estimate that it's only 1% or 2% of applications that genuinely need to 
+    handle that many rows at once.
+</p>
+<p>
+    I have included 100K rows for the tables on the Basic Usage and Virtualizing Usage pages, just so you have some idea of how long a sort takes for 100K rows on WASM. Spoiler alert: you probably won't have 
+    time to make a cup of tea.
+</p>
+<p>
+    I only used reflection, without source generators, so I am sure some performance improvements could be made &ndash; but to be honest, given everything is pretty much instant at reasonable row counts, I 
+    wouldn't hold your breath waiting for me to refactor.
+</p>
+<p>
+    I show a spinner for table sorting and filtering operations, and an announcement is made for screen readers at the end of each operation. All text sent to live regions is configurable (with sensible defaults), 
+    as is all the item/row information shown either directly underneath the table (when no pager is used) or provided by the Pager itself.
+</p>
+<p>
+    For most pages I use a fairly modest 10K rows, which is probably 9,500 more than most of MY users would ever see after performing a search. Excluding transfer size and time, you could work with considerably 
+    more, though I wouldn't advise going beyond 250K &ndash; not because the Data Table can't handle it, only because operations will start taking three or four seconds to complete, which may test the patience of 
+    some users.
+</p>
+<p>
+    <strong>Important:</strong> during development of the Data Table &ndash; or more precisely, during development of the Pager &ndash; I ran into a genuinely insidious issue with the JAWS screen reader. When 
+    pressing any button designed to be activated repeatedly, such as a pager's Next button or a table's sort toggle, JAWS can lose sync between its buffers and the DOM. What I mean by this is that JAWS will 
+    have its virtual cursor correctly highlighting the focused button, but on activation, JAWS instead sets focus on a different element &ndash; and if that element also happens to be a button, that button's 
+    click event fires instead.
+</p>
+<p>
+    Initially, I hoped this was a bug in my own code, since at least then I could fix it. But after a further six days on the issue (on top of time already spent on it while developing the Pager), nothing I 
+    did resolved it. All I knew at that point was that turning off the JAWS virtual cursor while pressing a button avoided the problem entirely. It was only by chance that I noticed one of my test pages, which 
+    had prerendering enabled, was unaffected.
+</p>
+<p>
+    I eventually narrowed the issue down to the Blazor Auto (Server and WASM) per-page render mode template, and only on pages with prerendering turned off. There is nothing I can physically do about this issue 
+    myself; the one saving grace is that it appears to affect only this template &ndash; Global Server and Global WASM both appear unaffected, and these are what the majority of interactive Blazor apps are built with.
+</p>
+<p>
+    If you do have to use the affected template, all I can advise is that JAWS users who experience lost focus when activating buttons should turn off the virtual cursor before doing so.
+</p>
+<p>
+    I have not encountered this issue on the aforementioned Blazor page template with any component carrying a named ARIA role &ndash; <span class="code-span">application</span> and <span class="code-span">grid</span> 
+    are both confirmed unaffected, and I have had no problems with tab controls either. I have not, however, tested every possible role, so I would stop short of calling named roles a guaranteed fix &ndash; only 
+    that everything I have tried, particularly roles that instruct JAWS to effectively disable the virtual cursor and let key presses pass straight through, has been unaffected.
+</p>
+<p>
+    Related issues logged:  <a class="@GlobalValues.Link_Class" target="_blank" href="@GlobalValues.JAWS_Issues_Link_Blazor">Issue logged against Blazor #68157 (opens in new window)</a> and 
+    <a class="@GlobalValues.Link_Class" target="_blank" href="@GlobalValues.JAWS_Issues_Link_FS">Issue logged against JAWS #959</a>.
+</p>
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Api}")">
         <span aria-hidden="true"></span>

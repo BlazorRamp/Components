@@ -166,4 +166,9 @@ public class GlobalValues
     public const string Validated_Blazor_Repo_Site = "https://github.com/code-dispenser/Validated-Blazor";
 
     public const string Test_Component_Path_ToggleTip = $"{Web_Site_Path_Component_Test}/toggle-tip/overview-tests";
+
+
+    public const string JAWS_Issues_Link_FS     = "https://github.com/FreedomScientific/standards-support/issues/959";
+    public const string JAWS_Issues_Link_Blazor = "https://github.com/dotnet/aspnetcore/issues/68157";
+
 }

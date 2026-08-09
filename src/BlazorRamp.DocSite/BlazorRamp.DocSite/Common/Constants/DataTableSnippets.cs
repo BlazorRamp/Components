@@ -146,7 +146,8 @@ public class DataTableSnippets
 
     public const string Filtering_Usage_Example = """
 
-        <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule">
+        <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule"
+            FilterAlignment="FilterAlignment.Start" TitleAlignment="TitleAlignment.Centre">
             <Filter>
                 <DebounceFilter HintText="Filters across all columns" RegexPattern="^[A-Za-z0-9 ]*$" OnDebounceFilterResult="HandleOnDebounce"
                                 ValidationMessage="Invalid filter, filtering paused, letters, numbers and spaces only"  />
@@ -198,8 +199,8 @@ public class DataTableSnippets
 
     public const string Selection_Usage_Example = """
 
-        <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule"
-                   RowSelectionMode="RowSelectionMode.Multiple" RowSelectHeading="Pick" SelectedRowsChanged="HandleSectionChanged">
+        <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule" 
+                   RowSelectionMode="RowSelectionMode.Multiple" RowSelectHeading="Pick" SelectedRowsChanged="HandleSectionChanged" RowIdentifierFunc="@_checkboxLabel">
             <Filter>
                 <DebounceFilter HintText="Filters across first name, surname and country" RegexPattern="^[A-Za-z ]*$" OnDebounceFilterResult="HandleOnDebounce"
                                 ValidationMessage="Invalid filter, filtering paused, letters and spaces only" />
@@ -209,8 +210,8 @@ public class DataTableSnippets
                 <DataColumn DataProperty="c => c.GivenName"   DisplayName="First Name" IsSortable="true" />
                 <DataColumn DataProperty="c => c.FamilyName"  DisplayName="Surname"    IsSortable="true" />
                 <DataColumn DataProperty="c => c.Country"     DisplayName="Country"    IsSortable="true" />
-                <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Data of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
-                <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
+                <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Date of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" />
+                <DataColumn DataProperty="c => c.Rate"        DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
             </TableColumns>
             <BottomPager>
                 <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Contacts pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount"
@@ -234,10 +235,11 @@ public class DataTableSnippets
         
         @code {
 
-            private Func<Contact, bool>? _filterRule   = null;
-            private PagerBinding         _pagerBinding = new(currentPage: 0, currentItemCount: 0, totalItemCount: 0, itemsPerPage: 10);
-            private List<Contact>        _dataSource   = [];
-            private List<Contact>        _selectedRows = [];
+            private Func<Contact, string> _checkboxLabel = c => $"For {c.GivenName} {c.FamilyName}, ID {c.ContactID}";
+            private Func<Contact, bool>? _filterRule     = null;
+            private PagerBinding         _pagerBinding   = new(currentPage: 0, currentItemCount: 0, totalItemCount: 0, itemsPerPage: 10);
+            private List<Contact>        _dataSource     = [];
+            private List<Contact>        _selectedRows   = [];
 
             protected override void OnInitialized()
 
@@ -517,7 +519,7 @@ public class DataTableSnippets
                     return;
                 }
 
-                await DataTableRef.TableElementReference.FocusAsync();
+                await DataTableRef.SetTableFocus();
             }
 
             private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)

@@ -2,6 +2,10 @@
 
 internal class GlobalValues
 {
+    public const string JS_Module_File_Path = "./_content/BlazorRamp.DataTable/assets/js/data-table.js";
+    public const string JS_Set_Temp_Content_Focus_Modifier = "setTempContentFocusModifier";
+
+
     public const string DataTable_Data_Property_Exception_Message = "The Data Property cannot be null";
 
     public const string DataTable_Column_Not_Comparable_Exception_Message = "The column '{0}' is marked IsSortable=\"true\", but its property type '{1}' does not implement IComparable, so it cannot be sorted. Either set IsSortable to false for this column, or bind DataProperty to a comparable type.";
@@ -33,6 +37,7 @@ internal class GlobalValues
     public const string DataTable_Filter_Area_Class         = $"{DataTable_Class}__filter-area";
     public const string DataTable_Top_Pager_Class           = $"{DataTable_Class}__top-pager";
     public const string DataTable_Content_Class             = $"{DataTable_Class}__content";
+    public const string DataTable_Content_Focused_Modifier  = $"{DataTable_Class}__content--focused";
     public const string DataTable_Content_Wrapper_Class     = $"{DataTable_Class}__content-wrapper";
     public const string DataTable_Bottom_Pager_Class        = $"{DataTable_Class}__bottom-pager";
     public const string DataTable_Column_Sorter_Class       = $"{DataTable_Class}__column-sorter";
