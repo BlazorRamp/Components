@@ -18,6 +18,7 @@
     <Version>1.0.0</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+	 <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
   </PropertyGroup>
