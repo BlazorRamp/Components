@@ -84,19 +84,20 @@ public partial class DataTable<TData> : ComponentBase,  IAsyncDisposable
     [Parameter] public PagerBinding?    PagerBinding          { get; set; } = null;
 
     /// <summary>
-    /// Header text for the row-selection column. Defaults if null, empty, or whitespace
+    /// Header text for the row-selection column. Defaults to Select, if null, empty, or whitespace
     /// .</summary>
-    [Parameter] public string?          RowSelectHeading      { get; set; }
+    [Parameter] public string? RowSelectHeading { get; set; } = GlobalValues.DataTable_Row_Selector_Header_Text;
 
     /// <summary>
-    /// Optional function producing a per-row accessible label for that row's selection checkbox or text
-    /// added to a column button to make a better/unique accessible name.
+    /// Optional function producing a per-row accessible label for that row's selection checkbox
+    /// to make a better/unique accessible name.
     /// </summary>
     [Parameter] public Func<TData, string>? RowIdentifierFunc { get; set; }
 
 
     /// <summary>
-    /// Text shown when there are no rows to display. Defaults if null, empty, or whitespace.
+    /// Text shown when there are no rows to display. Defaults to "No entries found." 
+    /// if null, empty, or whitespace.
     /// </summary>
     [Parameter] public string?          NoRecordText         { get; set; } = GlobalValues.DataTable_No_Records_Text;
 

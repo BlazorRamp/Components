@@ -2,14 +2,27 @@
 
 <PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Accessibility</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Accessibility . . . In Progress . . .</h1>
+<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Accessibility</h1>
 
 <p>
-
+    The Data Table is just a regular table so no special key handling is required. Keyboard only users can just use the <kbd>Tab, Enter or Space</kbd> keys as normal and can also
+    turn on the browser Caret browsing feature if they need to select any static text within the table. Screen reader users have access to all of their normal table shortcuts and 
+    navigational keys
 </p>
+
 <p>
-
+    If in the unlikely event, you have no interactive items, sortable headers, selection checkboxes or row action buttons within the table and the table is sized such that its vertical scrollbar appears,
+    then you should set the <span class="code-span">AddTableTabIndex</span> to true. This allows keyboard only users to activate the scrollbars, if there is a focusable item within in the table as mentioned
+    then this is not necessary.
 </p>
+
+<h2 id="pager-keyboard">Keyboard interaction</h2>
+
+<ul aria-labelledby="pager-keyboard">
+    <li><kbd>Tab, Shift + Tab</kbd> - to set focus on any sortable header and/or checkboxes used for selections.</li>
+    <li><kbd>Enter or Space</kbd> - when on sort button activates it.</li>
+    <li><kbd>Space</kbd> - when on a checkbox, selects or deselects it.</li>
+</ul>
 
 
 <h2 id="device-testing">Accessibility device testing</h2>
@@ -25,6 +38,29 @@
 <p>
     <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were available at the time of testing (see release history on the installation page for approximate testing dates)
 </p>
+<h2 id="screen-reader-quirks">Screen reader quirks or known issues</h2>
+<ul aria-labelledby="screen-reader-quirks">
+    <li>
+        <p>
+            <strong>JAWS Virtual Cursor Bug - </strong> there appears to be a virtual cursor bug that affects JAWS when using the newer combined
+            Blazor Web App Template choice - Auto (Server and WebAssembly) per page, but only on pages that have pre-rendering disabled.
+            JAWS on application using either the Server (Global) or WASM (Global) templates appears stable.
+        </p>
+        <p>
+            When you repeatedly press a sort header or pager button (if paging is used) JAWS will lose/move focus to some other element on the page. In some circumstances, you
+            can click a button, but a different button is activated - I have logged an issue with both the Blazor and JAWS teams regarding this.
+        </p>
+        <p>
+            There is nothing I can do nor workaround I can implement that would not cause some sort of hindrance to all screen reader users. If you have to use the
+            aforementioned Blazor template and have the Data Table on a page with pre-rendering disabled, you should add a note to inform JAWS users to turn off the 
+            the Virtual PC Cursor when toggling any sortable column headers.
+        </p>
+        <p>
+            <b>Note: </b>This site uses the older Standalone WASM template so is unaffected. I will update when there is any response from either team regarding the issue.
+        </p>
+
+    </li>
+</ul>
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Installation}")">
         <span aria-hidden="true"></span>

@@ -8,7 +8,363 @@
     Everything you need to work with the Data Table component: parameters, methods, models, enums, and CSS variables for styling.
 </p>
 
+<section>
+    <h2 class="page-heading">
+        Component parameters, methods, supporting classes and enums.
+    </h2>
+    <p>
+        The following sections cover all components that make up this feature, including their parameters,
+        public methods, and any supporting classes or enumerations required for use.
+    </p>
+    <section class="code-table">
 
+        <h3 id="data-table-component-parameters" class="code-table__heading">Data Table parent component parameters</h3>
+
+        <table aria-labelledby="data-table-component-parameters">
+
+            <thead>
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>TableColumns</td>
+                    <td>RenderFragment</td>
+                    <td>
+                        Placeholder for all of the <span class="code-span">DataColumn</span> and <span class="code-span">TemplateColumn</span>
+                        components, which get added to the tables column collection.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Title</td>
+                    <td>string</td>
+                    <td>Gets or sets the table's title, shown above the content and used as the accessible name for the table. Default value: <span class="code-span">Results</span>.</td>
+                </tr>
+                <tr>
+                    <td>TitleAlignment</td>
+                    <td>TitleAlignment (enum)</td>
+                    <td>Gets or sets the horizontal alignment of the title. Default value: <span class="code-span">TitleAlignment.Start</span>.</td>
+                </tr>
+                <tr>
+                    <td>TitleHidden</td>
+                    <td>bool</td>
+                    <td>Gets or sets whether the title is visually hidden while remaining available to assistive technology. Default value: <span class="code-span">false</span>.</td>
+                </tr>
+                <tr>
+                    <td>Filter</td>
+                    <td>RenderFragment?</td>
+                    <td>The optional markup for a custom filter UI, rendered above the table.</td>
+                </tr>
+                <tr>
+                    <td>FilterAlignment</td>
+                    <td>FilterAlignment</td>
+                    <td>Gets or sets the horizontal alignment of the filter area. Default value: <span class="code-span">FilterAlignment.End</span>.</td>
+                </tr>
+                <tr>
+                    <td>TopPager</td>
+                    <td>RenderFragment?</td>
+                    <td>The optional markup for a pager rendered above the table.</td>
+                </tr>
+                <tr>
+                    <td>BottomPager</td>
+                    <td>RenderFragment?</td>
+                    <td>The optional markup for a pager rendered below the table.</td>
+                </tr>
+                <tr>
+                    <td>VirtualizeItemSizePX</td>
+                    <td>int</td>
+                    <td>
+                        Gets or sets the estimated pixel height of each row, used by the virtualized rendering path. 
+                        Set below 1 to disable virtualization. Default value: <span class="code-span">32</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>OverscanCount</td>
+                    <td>int</td>
+                    <td>
+                        Gets or sets the number of extra rows rendered above and below the visible viewport when virtualization 
+                        is active, to reduce blank space during fast scrolling. 
+                        Default value: <span class="code-span">50</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>TableHeight</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the table's height, in any valid CSS unit. Applied as a fixed <span class="code-span">height</span> when 
+                        using virtualized rendering (required, since the Virtualize component needs a definite height to measure against), 
+                        or as a <span class="code-span">max-height</span> when paging is enabled, allowing the table to shrink for fewer rows. 
+                        Defaults if null, empty, or whitespace. Default value: <span class="code-span">500px</span>.</td>
+                </tr>
+                <tr>
+                    <td>PagerBinding</td>
+                    <td>PagerBinding?</td>
+                    <td>
+                        When supplied, enables paging and binds the table to the given paging state.
+                        Default value: <span class="code-span">null</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>RowSelectHeading</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the header text for the row-selection column. Defaults if null, empty, or whitespace.
+                        Default value: <span class="code-span">Select</span>.
+                        <br /><b>Note:</b> This value is captured during the OnInitialized method and changes thereafter are ignored.
+                    </td>
+                </tr>
+                <tr>
+                    <td>RowIdentifierFunc</td>
+                    <td>Func&lt;TData, string&gt;?</td>
+                    <td>
+                        Gets or sets an optional function producing a per-row accessible label for that row's selection checkbox to make a better/unique accessible name.
+                    </td>
+                </tr>
+                <tr>
+                    <td>NoRecordText</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the text shown when there are no rows to display. Defaults if null, empty, or whitespace.
+                        Default value: <span class="code-span">No entries found.</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>FilterCountText</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets a template for the row-count message shown when a filter is active. Supports {filteredrows} and {totalrows} tokens.
+                        Default value: <span class="code-span">Showing {filteredrows} filtered items from a total of {totalrows}.</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>RecordCountText</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets a template for the row-count message shown when no filter is active.
+                        Supports the {totalrows} token. Default value: <span class="code-span">Showing {totalrows} items.</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>DataSource</td>
+                    <td>List&lt;TData&gt;</td>
+                    <td>
+                        The full list of rows to display. Required. Treated as immutable: to add, remove, or otherwise change rows, 
+                        assign a new List instance rather than mutating this one in place — only a new reference is detected as a data change.
+                        If you mutate DataSource in place instead, call Refresh() afterwards via an ElementReference set on the DataTable i.e 
+                        <span class="code-span">private DataTable DataTableRef {get;set;}</span> with <span class="code-span">@@ref="DataTableRef"</span>
+                        Default value: <span class="code-span">[]</span>.</td>
+                </tr>
+                <tr>
+                    <td>RowSelectionMode</td>
+                    <td>RowSelectionMode (enum)</td>
+                    <td>
+                        Determines whether rows can be selected, and if so, whether selection is single or multiple. 
+                        Default value: <span class="code-span">RowSelectionMode.None</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>SelectedRows</td>
+                    <td>List&lt;TData&gt;</td>
+                    <td>
+                        The currently selected rows. Default value: <span class="code-span">[]</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>RowStyleFunc</td>
+                    <td>Func&lt;TData, string?&gt;?</td>
+                    <td>
+                        Gets or sets an optional function returning inline CSS for a row's <span class="code-span">&lt;tr&gt;</span> element.
+                        Default value: <span class="code-span">null</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>FilterRule</td>
+                    <td>Func&lt;TData, bool&gt;?</td>
+                    <td>
+                        Gets or sets an options predicate used to filter the DataSource. Supplying a new delegate instance triggers re-filtering; reusing the same instance across renders will not.
+                    </td>
+                </tr>
+                <tr>
+                    <td>FilteredStatusText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets screen reader announcement text used when a filter has been applied.
+                        Default value: <span class="code-span">Filtering completed.</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>SortUpStatusText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets screen reader announcement text used when a column is sorted ascending.
+                        Default value: <span class="code-span">Sort up completed.</span>. 
+                        <b>Note:</b> I find it audibly hard to distinguish, ascending / descending when using a screen reader
+                        up / down I never mis hear. 
+                    </td>
+                </tr>
+                <tr>
+                    <td>SortDownStatusText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets screen reader announcement text used when a column is sorted descending.
+                        Default value: <span class="code-span">Sort down completed.</span>.
+                        <b>Note:</b> I find it audibly hard to distinguish, ascending / descending when using a screen reader
+                        up / down I never mis hear.
+                    </td>
+                </tr>
+                <tr>
+                    <td>SortRemovedStatusText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets screen reader announcement text used when a column's sort is cleared.
+                        Default value: <span class="code-span">Sort removed.</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>PressToSortText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the hidden hint text describing sort buttons to assistive technology, referenced via
+                        <span class="code-span">aria-describedby</span>.
+                        Default value: <span class="code-span">Press to sort.</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>AddTableTabIndex</td>
+                    <td>bool</td>
+                    <td>
+                        Changes the tabindex of -1 to 0 on the table element. You would only need to do this if 
+                        the table was scrollable without any interactive focusable elements such as sortable headers, selection checkboxes or custom row actions. 
+                        A focusable item on the table allows keyboard only users the ability move any scrollbars. Default value: <span class="code-span">false</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>SelectedRowsChanged</td>
+                    <td>EventCallback&lt;List&lt;TData&gt;&gt;</td>
+                    <td>Raised whenever the selected rows change.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+
+        <h3 id="nav-section-component-parameters" class="code-table__heading">NavSection component parameters</h3>
+
+        <table aria-labelledby="nav-section-component-parameters">
+
+            <thead>
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ChildContent</td>
+                    <td>RenderFragment?</td>
+                    <td>
+                        Gets or sets the child content rendered inside the section's collapsible <span class="code-span">ul</span> element,
+                        expected to contain one or more <b>NavGroupLink, NavSeparator or NavSection</b> components.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Title</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the visible label rendered in the section trigger button. An exception is raised if not provided.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Expanded</td>
+                    <td>bool</td>
+                    <td>
+                        Gets or sets a value indicating whether the section is expanded on initial render. Defaults to false.
+                    </td>
+                </tr>
+                <tr>
+                    <td>NoIndent</td>
+                    <td>bool</td>
+                    <td>
+                        Gets or sets a value indicating whether each section is adding to the indent. When false there is no
+                        indenting on the sections direct children.Defaults to false.
+                    </td>
+                </tr>
+                <tr>
+                    <td>SvgIcon</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the name of a CSS custom property that resolves to an SVG data URI, used as a mask-image icon
+                        next to the item text. Must begin with a double dash -- for example: --svg-my-icon.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+    <section class="code-table">
+        <h3 id="nav-group-link-component-parameters" class="code-table__heading">NavGroupLink component parameters</h3>
+
+        <table aria-labelledby="nav-group-link-component-parameters">
+
+            <thead>
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>LinkText</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the visible label rendered inside the link. This parameter is required and cannot be null, empty, or whitespace.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Href</td>
+                    <td>string</td>
+                    <td>
+                        Gets or sets the URL the link navigates to. This parameter is required but will be set to "missing-href" if not entered.
+                    </td>
+                </tr>
+                <tr>
+                    <td>VisuallyHiddenPrefix</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets an optional prefix rendered as visually hidden text before the main link label, providing additional context for screen reader users.
+                    </td>
+                </tr>
+                <tr>
+                    <td>SvgIcon</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the name of a CSS custom property that resolves to an SVG data URI, used as a mask-image icon
+                        next to the item text. Must begin with a double dash -- for example: --svg-my-icon.
+                    </td>
+                </tr>
+                <tr>
+                    <td>TargetType</td>
+                    <td>TargetType (enum)</td>
+                    <td>
+                        Gets or sets the browsing context in which the link is opened, mapped to the HTML <span class="code-span">target</span> attribute.
+                        Defaults to <span class="code-span">TargetType.Self</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>AdditionalAttributes</td>
+                    <td>Dictionary&lt;string, object&gt;?</td>
+                    <td>Sets additional attributes applied to the anchor element.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Accessibility}")">
         <span aria-hidden="true"></span>
