@@ -72,13 +72,13 @@ public enum RowSelectionMode : int
     /// </summary>
     None = 0,
 
-    /// <summary
-    /// >Only one row may be selected at a time; selecting a new row clears any previous selection.
+    /// <summary>
+    /// Only one row may be selected at a time; selecting a new row clears any previous selection.
     /// </summary>
     Single = 1,
 
     /// <summary>
-    /// Any number of rows may be selected at once.
+    /// Any number of rows may be selected.
     /// </summary>
     Multiple = 2
 }
@@ -89,7 +89,7 @@ public enum RowSelectionMode : int
 public enum FilterAlignment : int
 {
     /// <summary>
-    /// No filter area is rendered.
+    /// No filter area positioning is set.
     /// </summary>
     None = 0,
 

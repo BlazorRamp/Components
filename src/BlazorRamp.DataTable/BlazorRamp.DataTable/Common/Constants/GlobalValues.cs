@@ -56,8 +56,9 @@ internal class GlobalValues
 
     public const string DataTable_Row_No_Data_Class = $"{DataTable_Data_Row_Class}--no-data";
 
-    public const int DataTable_VirtualizePX  = 32;
-    public const int DataTable_OverscanCount = 50;
+    public const int DataTable_Default_Items_Per_Page = 10;
+    public const int DataTable_VirtualizePX           = 32;
+    public const int DataTable_OverscanCount          = 50;
 
     public const string DataTable_Max_Table_Height = "500px;";
     

@@ -2,9 +2,29 @@
 
 <PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Overview</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Overview . . .  In Progres . . .</h1>
+<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Overview</h1>
 
+<p>
+    The Data Table is an accessible, sortable, filterable table for an in-memory list of items. It handles sorting, filtering, paging or virtualization, row selection, 
+    and templating &ndash; while treating screen reader and keyboard-only users as first-class citizens throughout, not as an afterthought bolted on at the end.
+</p>
+<p>
+    It is deliberately <em>not</em> a kitchen-sink enterprise grid. There is no built-in remote data fetching, no server-side paging or filtering, and no <span class="code-span">IQueryable</span> pushdown to a database.
+    <span class="code-span">DataSource</span> is a plain in-memory <span class="code-span">List&lt;TData&gt;</span> - you bring the data, the Data Table handles displaying, sorting, filtering, and paging it. 
+    If you genuinely need server-side evaluation of millions of rows, this isn't that component; 
+    see the <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Usage}/{GlobalValues.Common_Page_Path_About}")">About These Examples</a>
+    page for my thoughts on why that's a smaller slice of real-world use cases than table demos tend to suggest.
+</p>
 
+<h2>At a glance</h2>
+<ul>
+    <li><strong>Sorting</strong> &ndash; set <span class="code-span">IsSortable</span> on any <span class="code-span">DataColumn</span>. Cycles unsorted &rarr; ascending &rarr; descending &rarr; back to the original order, one column at a time, with a screen reader announcement on every change.</li>
+    <li><strong>Filtering</strong> &ndash; bring your own filter UI via the <span class="code-span">Filter</span> render fragment (a built-in <span class="code-span">DebounceFilter</span> component is included) and supply a <span class="code-span">FilterRule</span> predicate.</li>
+    <li><strong>Paging or virtualization</strong> &ndash; supply a <span class="code-span">PagerBinding</span> for a traditional paged table, or leave it out and set <span class="code-span">VirtualizeItemSizePX</span> for a virtualized, scrollable one. The two are mutually exclusive by design.</li>
+    <li><strong>Row selection</strong> &ndash; single or multiple, with a dedicated accessible selection column.</li>
+    <li><strong>Templating</strong> &ndash; override any column's cell content via <span class="code-span">CellTemplate</span>, or add entirely new columns (row actions, say) that don't exist in your data source via <span class="code-span">TemplateColumn</span>.</li>
+    <li><strong>Like all components, accessibility by default</strong> &ndash; live region announcements for sorting, filtering, and empty results (all fully customisable, with sensible defaults if you change nothing), proper table semantics, and documented, tested focus-management guidance for anything that changes the row count while the table has focus.</li>
+</ul>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Usage}")">

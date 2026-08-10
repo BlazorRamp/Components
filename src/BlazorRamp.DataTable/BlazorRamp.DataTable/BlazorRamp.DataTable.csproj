@@ -9,7 +9,7 @@
     <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
     <Title>BlazorRamp.DataTable</Title>
     <Authors>Paul Kent</Authors>
-    <Description>A generic data table</Description>
+    <Description>DataTable -  an accessible, sortable, filterable table component for an in-memory list of items. </Description>
     <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
     <PackageTags>Blazor; Accessible Components; Accessibility; Data Table; ARIA; </PackageTags>
     <PackageReleaseNotes>Initial release of the Blazor Ramp Data Table</PackageReleaseNotes>
@@ -18,6 +18,8 @@
     <Version>1.0.0</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
   </PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

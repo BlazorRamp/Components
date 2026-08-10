@@ -185,7 +185,7 @@ public class DataTable_Parameter_Tests
     {
         await using var context = new BunitContext();
 
-        var pagerBinding = new PagerBinding(currentPage: 10, currentItemCount: 1000, totalItemCount: 2000, itemsPerPage: 50);
+        var pagerBinding = new PagerBinding(itemsPerPage: 50);
 
         var table = CreateDataTable(context, p => p.Add(x => x.PagerBinding, pagerBinding));
 
@@ -330,5 +330,23 @@ public class DataTable_Parameter_Tests
         }
 
         table.Find("span[hidden]").TextContent.Should().Be(pressToSortText);
+    }
+    [Fact]
+    public async Task Should_capture_unmatched_attributed_and_apply_to_the_component()
+    {
+        await using var context = new BunitContext();
+
+        var table = CreateDataTable(context, p => p.AddUnmatched("style", "color:red;"));
+
+        using (new AssertionScope())
+        {
+            table.Instance.AdditionalAttributes.Should().ContainKey("style").WhoseValue.Should().Be("color:red;");
+
+            var styleAttrib = table.Find("table").GetAttribute("style");
+
+            styleAttrib.Should().Be("color:red;");
+
+        }
+
     }
 }

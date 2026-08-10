@@ -78,7 +78,7 @@
 @code{
 
     private Func<Contact, bool>? _filterRule   = null;
-    private PagerBinding         _pagerBinding = new(currentPage: 0,currentItemCount: 0, totalItemCount: 0,itemsPerPage: 10);
+    private PagerBinding         _pagerBinding = new(itemsPerPage: 10);
     private List<Contact>        _dataSource   = [];
 
 

@@ -63,7 +63,7 @@
 
 @code{
 
-    private PagerBinding   _pagerBinding = new(currentPage: 0,currentItemCount: 0, totalItemCount: 0,itemsPerPage: 25);
+    private PagerBinding _pagerBinding = new(itemsPerPage: 25);
     private List<Contact>  _dataSource   = [];
 
     protected override void OnInitialized()

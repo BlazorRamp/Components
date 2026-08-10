@@ -156,15 +156,15 @@
 </div>
 @code {
 
-    @implements IAsyncDisposable
+@implements IAsyncDisposable
 
-    [Inject] IJSRuntime        JSRuntime    { get; set; }
-    private DataTable<Contact> DataTableRef { get; set; }
+    [Inject] IJSRuntime         JSRuntime         { get; set; } = default!;
+    private DataTable<Contact>  DataTableRef      { get; set; } = default!;
 
-    private IJSObjectReference?  _jsModule      = null;
-    private Func<Contact, bool>? _filterRule    = null;
-    private PagerBinding         _pagerBinding  = new(currentPage: 0, currentItemCount: 0, totalItemCount: 0, itemsPerPage: 10);
-    private List<Contact>        _dataSource    = [];
+    private IJSObjectReference?  _jsModule       = null;
+    private Func<Contact, bool>? _filterRule     = null;
+    private PagerBinding         _pagerBinding   = new(itemsPerPage: 10);
+    private List<Contact>        _dataSource     = [];
     private string?              _dataRowDetails = String.Empty;
 
     private string CreateIdentifier(Contact contact)

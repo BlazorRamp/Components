@@ -37,7 +37,11 @@
         ItemsPerPage="@_pagerBinding.ItemsPerPage" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" AddApplicationRole="true" />
     </BottomPager>
 </DataTable>
-
+<p>
+    <b>Note: </b> The <span class="code-span">FilterAlignment</span> parameter if set to <span class="code-span">FilterAlignment.None</span> can access the full width of the available area.
+    The other settings create a 3 column grid within the area in order to position the filter. A container and media query are both used used so when the container or page starts to get too 
+    small, 400px and 576px respectively, the container query will switch to to a one column grid so the filter has all available space..
+</p>
 <p>
     The code from the example above.
 </p>
@@ -61,8 +65,8 @@
 @code {
 
     private Func<Contact, bool>? _filterRule = null;
-    private PagerBinding _pagerBinding = new(currentPage: 0, currentItemCount: 0, totalItemCount: 0, itemsPerPage: 10);
-    private List<Contact> _dataSource = [];
+    private PagerBinding _pagerBinding = new(itemsPerPage: 10);
+    private List<Contact> _dataSource  = [];
 
     protected override void OnInitialized()
 

@@ -26,6 +26,12 @@
     --br-comp-data-table-area-header-border-radius: var(--br-comp-all-area-header-border-radius);
     //
 
+    --br-comp-data-table-area-header-sort-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-data-table-area-header-sort-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-data-table-area-header-sort-outline-offset: var(--br-comp-all-outline-offset);
+    --br-comp-data-table-area-header-sort-outline-colour: var(--br-comp-all-outline-colour);
+    //
+
     --br-comp-data-table-area-content-background: var(--br-comp-all-area-content-background);
     --br-comp-data-table-area-content-text: var(--br-comp-all-area-content-text);
     --br-comp-data-table-area-content-font-family: var(--br-comp-all-area-content-font-family);
@@ -36,12 +42,6 @@
     --br-comp-data-table-area-content-border-colour: var(--br-comp-all-divider-colour);
     --br-comp-data-table-area-content-border-width: var(--br-unit-border-1);
     --br-comp-data-table-area-content-border-radius: var(--br-unit-radius-0);
-    //
-
-    --br-comp-data-table-area-header-sort-outline-width: var(--br-comp-data-table-outline-width);
-    --br-comp-data-table-area-header-sort-outline-style: var(--br-comp-data-table-outline-style);
-    --br-comp-data-table-area-header-sort-outline-offset: var(--br-comp-data-table-outline-offset);
-    --br-comp-data-table-area-header-sort-outline-colour: var(--br-comp-data-table-outline-colour);
     //
 
     --br-comp-data-table-title-info-font-size: var(--br-unit-font-size-1);

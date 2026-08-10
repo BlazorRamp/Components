@@ -29,7 +29,7 @@
         
         <div @ref="ContentElementRef" class="@GlobalValues.DataTable_Content_Class" style="@_tableHeightStyle">
 
-            <table aria-labelledby="@_tableTitleID" aria-rowcount="@_dataSource.Count" tabindex="@(AddTableTabIndex ? "0" : "-1")" @ref="@TableElementRef">
+            <table @attributes="@AdditionalAttributes" aria-labelledby="@_tableTitleID" aria-rowcount="@_dataSource.Count" tabindex="@(AddTableTabIndex ? "0" : "-1")" @ref="@TableElementRef">
             <thead>
                 <tr>
                     @foreach (var column in _tableColumns)

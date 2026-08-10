@@ -173,6 +173,11 @@ public partial class DataTable<TData> : ComponentBase,  IAsyncDisposable
     /// users the ability move any scrollbars. Defaults to <c>false</c>
     /// </summary>
     [Parameter] public bool AddTableTabIndex { get; set; } = false;
+
+    /// <summary>
+    /// Gets or sets additional attributes that are applied to the underlying table element.
+    /// </summary>
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
     /// <summary>
     /// Raised whenever the selected rows change.
     /// </summary>
@@ -385,27 +390,6 @@ public partial class DataTable<TData> : ComponentBase,  IAsyncDisposable
     }
 
     /// <summary>
-    /// Forces the table to re-filter, re-sort, and re-page from <see cref="DataSource"/>. Call this
-    /// after mutating the existing DataSource list in place (e.g. Add/Remove/Clear) rather than
-    /// assigning a new List instance, since in-place mutation is not detected automatically.
-    /// </summary>
-    public async Task Refresh()
-    {
-        _filteredRows = GetFilteredRows();
-        _dataSource = ApplyLastSort(_filteredRows);
-
-        if (_usePaging) CheckSetPagingInfo(_dataSource, false);
-
-        _dataPage = _usePaging ? GetDataPage(PagerBinding!.CurrentPage, PagerBinding.ItemsPerPage, _dataSource) : _dataSource;
-
-        _displayCountMessage = _dataSource.Count == 0 ? String.Empty : GetDisplayCountMessage(_dataSource.Count, DataSource.Count);
-
-        await InvokeAsync(StateHasChanged);
-    }
-
-
-
-    /// <summary>
     /// Shows or hides the busy indicator. Uses <see cref="Task.Delay(int)"/> rather than <see cref="Task.Yield"/>
     /// to guarantee the render batch has flushed to the DOM before returning — see inline comment for details.
     /// </summary>
@@ -443,7 +427,9 @@ public partial class DataTable<TData> : ComponentBase,  IAsyncDisposable
     {
         if (PagerBinding is null) return;
 
-        var totalPages = dataSource.Count == 0 ? 0 : (int)Math.Ceiling(dataSource.Count / (double)PagerBinding.ItemsPerPage);
+       // var totalPages = dataSource.Count == 0 ? 0 : (int)Math.Ceiling(dataSource.Count / (double)PagerBinding.ItemsPerPage);
+
+        var totalPages = dataSource.Count == 0 || PagerBinding.ItemsPerPage <= 0 ? 0 : (int)Math.Ceiling(dataSource.Count / (double)PagerBinding.ItemsPerPage);
 
         switch (PagerBinding.CurrentPage)
         {
@@ -575,6 +561,32 @@ public partial class DataTable<TData> : ComponentBase,  IAsyncDisposable
         }
     }
 
+    /// <summary>
+    /// Forces the table to re-filter, re-sort, and re-page from <see cref="DataSource"/>. Call this
+    /// after mutating the existing DataSource list in place (e.g. Add/Remove/Clear) rather than
+    /// assigning a new List instance, since in-place mutation is not detected automatically.
+    /// </summary>
+    public async Task Refresh()
+    {
+        _filteredRows = GetFilteredRows();
+        _dataSource = ApplyLastSort(_filteredRows);
+
+        if (_usePaging) CheckSetPagingInfo(_dataSource, false);
+
+        _dataPage = _usePaging ? GetDataPage(PagerBinding!.CurrentPage, PagerBinding.ItemsPerPage, _dataSource) : _dataSource;
+
+        _displayCountMessage = _dataSource.Count == 0 ? String.Empty : GetDisplayCountMessage(_dataSource.Count, DataSource.Count);
+
+        await InvokeAsync(StateHasChanged);
+    }
+
+
+    /// <summary>
+    /// Programmatically using JavaScript sets focus on the table element.
+    /// and applies a temporary modifier class to ensure that a focus indicator 
+    /// is visible around the table whilst it has this focus.
+    /// </summary>
+    /// <returns></returns>
     public async Task SetTableFocus()
     {
 
@@ -600,14 +612,6 @@ public partial class DataTable<TData> : ComponentBase,  IAsyncDisposable
 
         return default;
     }
-
-    /// <summary>
-    /// Returns the first currently displayed row, or default if there are none.
-    /// </summary>
-    public TData? GetFirstDisplayedRow()
-
-        => _dataSource.Count > 0 ? _dataSource[0] : default;
-
 
     /// <summary>
     /// Performs asynchronous disposal of resources, including the JS module reference

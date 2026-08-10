@@ -3,7 +3,7 @@
 
 <PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Api</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Api . . . In Progress . . .</h1>
+<h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Api</h1>
 <p>
     Everything you need to work with the Data Table component: parameters, methods, models, enums, and CSS variables for styling.
 </p>
@@ -242,6 +242,11 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>AdditionalAttributes</td>
+                    <td>Dictionary&lt;string, object&gt;?</td>
+                    <td>Gets or sets additional attributes applied to the underlying table element.</td>
+                </tr>
+                <tr>
                     <td>SelectedRowsChanged</td>
                     <td>EventCallback&lt;List&lt;TData&gt;&gt;</td>
                     <td>Raised whenever the selected rows change.</td>
@@ -252,9 +257,9 @@
     </section>
     <section class="code-table">
 
-        <h3 id="nav-section-component-parameters" class="code-table__heading">NavSection component parameters</h3>
+        <h3 id="data-column-component-parameters" class="code-table__heading">DataColumn component parameters</h3>
 
-        <table aria-labelledby="nav-section-component-parameters">
+        <table aria-labelledby="data-column-component-parameters">
 
             <thead>
                 <tr>
@@ -265,41 +270,69 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>ChildContent</td>
-                    <td>RenderFragment?</td>
+                    <td>DataProperty</td>
+                    <td>Expression&lt;Func&lt;TData, object&gt;&gt;?</td>
                     <td>
-                        Gets or sets the child content rendered inside the section's collapsible <span class="code-span">ul</span> element,
-                        expected to contain one or more <b>NavGroupLink, NavSeparator or NavSection</b> components.
+                        The property on TData this column reads its value from. Required. 
+                        Default value: <span class="code-span">default</span>.
                     </td>
                 </tr>
                 <tr>
-                    <td>Title</td>
-                    <td>string</td>
+                    <td>CellStyleFunc</td>
+                    <td>Func&lt;TData, string?&gt;?</td>
                     <td>
-                        Gets or sets the visible label rendered in the section trigger button. An exception is raised if not provided.
+                        Gets or sets the optional function returning inline CSS for a specific row's cell in this column. 
+                        Default value: <span class="code-span">null</span>.
                     </td>
                 </tr>
                 <tr>
-                    <td>Expanded</td>
+                    <td>IsSortable</td>
                     <td>bool</td>
+                    <td>Gets or sets the whether column sorting is available for this column. Default value: <span class="code-span">false</span>.</td>
+                </tr>
+                <tr>
+                    <td>CellTemplate</td>
+                    <td>RenderFragment&lt;TData&gt;?</td>
                     <td>
-                        Gets or sets a value indicating whether the section is expanded on initial render. Defaults to false.
+                        Gets or sets the optional template used to render each cell's content instead of just the raw value. 
+                        Default value: <span class="code-span">default</span>.
                     </td>
                 </tr>
                 <tr>
-                    <td>NoIndent</td>
-                    <td>bool</td>
-                    <td>
-                        Gets or sets a value indicating whether each section is adding to the indent. When false there is no
-                        indenting on the sections direct children.Defaults to false.
-                    </td>
-                </tr>
-                <tr>
-                    <td>SvgIcon</td>
+                    <td>HeaderStyle</td>
                     <td>string?</td>
                     <td>
-                        Gets or sets the name of a CSS custom property that resolves to an SVG data URI, used as a mask-image icon
-                        next to the item text. Must begin with a double dash -- for example: --svg-my-icon.
+                        Gets or sets the optional inline CSS values applied to a style attribute on the column's header cell. 
+                        Default value: <span class="code-span">null</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>CellStyle</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the optional inline CSS values applied to a style attribute added to every cell in the column. 
+                        Default value: <span class="code-span">null</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>DisplayName</td>
+                    <td>string</td>
+                    <td>Gets or sets the text shown in the column header. Default to the field name if not entered.</td>
+                </tr>
+                <tr>
+                    <td>CellFormat</td>
+                    <td>string?</td>
+                    <td>
+                        Gets or sets the optional .NET format string applied to the cell's value, e.g. for dates or numbers. 
+                        Default value: <span class="code-span">null</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>ColumnAlignment</td>
+                    <td>ColumnAlignment (enum)</td>
+                    <td>
+                        Horizontal alignment applied to the column's header and cells. 
+                        Default value: <span class="code-span">ColumnAlignment.Start</span>.
                     </td>
                 </tr>
             </tbody>
@@ -307,9 +340,9 @@
 
     </section>
     <section class="code-table">
-        <h3 id="nav-group-link-component-parameters" class="code-table__heading">NavGroupLink component parameters</h3>
+        <h3 id="template-column-component-parameters" class="code-table__heading">TemplateColumn component parameters</h3>
 
-        <table aria-labelledby="nav-group-link-component-parameters">
+        <table aria-labelledby="template-column-component-parameters">
 
             <thead>
                 <tr>
@@ -320,51 +353,790 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>LinkText</td>
-                    <td>string</td>
+                    <td>HeaderTemplate</td>
+                    <td>RenderFragment&lt;string&gt;?</td>
                     <td>
-                        Gets or sets the visible label rendered inside the link. This parameter is required and cannot be null, empty, or whitespace.
+                        Gets or sets the optional template used to render the column header. Receives the column's display name.
                     </td>
                 </tr>
                 <tr>
-                    <td>Href</td>
-                    <td>string</td>
+                    <td>CellTemplate</td>
+                    <td>RenderFragment&lt;TData&gt;?</td>
                     <td>
-                        Gets or sets the URL the link navigates to. This parameter is required but will be set to "missing-href" if not entered.
+                        Gets or sets the optional template used to render each cell's content instead of just the raw value.
+                        Default value: <span class="code-span">default</span>.
                     </td>
                 </tr>
                 <tr>
-                    <td>VisuallyHiddenPrefix</td>
+                    <td>HeaderStyle</td>
                     <td>string?</td>
                     <td>
-                        Gets or sets an optional prefix rendered as visually hidden text before the main link label, providing additional context for screen reader users.
+                        Gets or sets the optional inline CSS values applied to a style attribute on the column's header cell.
+                        Default value: <span class="code-span">null</span>.
                     </td>
                 </tr>
                 <tr>
-                    <td>SvgIcon</td>
+                    <td>CellStyle</td>
                     <td>string?</td>
                     <td>
-                        Gets or sets the name of a CSS custom property that resolves to an SVG data URI, used as a mask-image icon
-                        next to the item text. Must begin with a double dash -- for example: --svg-my-icon.
+                        Gets or sets the optional inline CSS values applied to a style attribute added to every cell in the column.
+                        Default value: <span class="code-span">null</span>.
                     </td>
                 </tr>
                 <tr>
-                    <td>TargetType</td>
-                    <td>TargetType (enum)</td>
+                    <td>DisplayName</td>
+                    <td>string</td>
+                    <td>Gets or sets the text shown in the column header. Default to the field name if not entered.</td>
+                </tr>
+                <tr>
+                    <td>CellFormat</td>
+                    <td>string?</td>
                     <td>
-                        Gets or sets the browsing context in which the link is opened, mapped to the HTML <span class="code-span">target</span> attribute.
-                        Defaults to <span class="code-span">TargetType.Self</span>.
+                        Gets or sets the optional .NET format string applied to the cell's value, e.g. for dates or numbers.
+                        Default value: <span class="code-span">null</span>.
                     </td>
                 </tr>
                 <tr>
-                    <td>AdditionalAttributes</td>
-                    <td>Dictionary&lt;string, object&gt;?</td>
-                    <td>Sets additional attributes applied to the anchor element.</td>
+                    <td>ColumnAlignment</td>
+                    <td>ColumnAlignment (enum)</td>
+                    <td>
+                        Horizontal alignment applied to the column's header and cells.
+                        Default value: <span class="code-span">ColumnAlignment.Start</span>.
+                    </td>
                 </tr>
             </tbody>
         </table>
     </section>
+
+    <section class="code-table">
+        <h3 id="data-table-methods" class="code-table__heading">DataTable component methods</h3>
+
+        <table aria-labelledby="data-table-methods">
+
+            <thead>
+                <tr>
+                    <th scope="col">Return</th>
+                    <th scope="col">Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Task</td>
+                    <td>SetTableFocus()</td>
+                    <td>
+                        Programmatically using JavaScript sets focus on the table element.
+                        and applies a temporary modifier class to ensure that a focus indicator
+                        is visible around the table whilst it has this focus.
+                    </td>
+                </tr>
+                <tr>
+                    <td>TData?</td>
+                    <td>GetAdjacentDisplayedRow(TData rowItem)</td>
+                    <td>
+                        Returns the row adjacent to <span class="code-span">rowItem</span> in the currently displayed order — the
+                        next row if one exists, otherwise the previous row, otherwise default if rowItem was the only
+                        displayed row.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Task</td>
+                     <td>Refresh()</td>
+                    <td>
+                        Forces the table to re-filter, re-sort, and re-page from <span class="code-spane">DataSource</span> 
+                        Call this after mutating the existing DataSource list in place (e.g. Add/Remove/Clear) rather than
+                        assigning a new List instance, since in-place mutation is not detected automatically.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="pager-binding-class" class="code-table__heading">PagerBinding class</h3>
+        <p>
+            This class just holds and binds the information used by both the pager and the data table.
+        </p>
+        <table aria-labelledby="pager-binding-class">
+
+            <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Property</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>int</td>
+                    <td>ItemsPerPage</td>
+                    <td>
+                        The number of rows to display per page.
+                        Defaults to <span class="code-span">10</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>int</td>
+                    <td>CurrentPage</td>
+                    <td>
+                        The page currently being displayed.
+                        Defaults to <span class="code-span">0</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>int</td>
+                    <td>CurrentItemCount</td>
+                    <td>
+                        he number of rows in the current filtered/unfiltered data set.
+                        Defaults to <span class="code-span">0</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>int</td>
+                    <td>TotalItemCount</td>
+                    <td>
+                        The total number of rows available before filtering.
+                        Defaults to <span class="code-span">0</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <b>Constructor:</b><br />
+                        PagerBinding(int itemsPerPage = 10)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
 </section>
+<section>
+    <h2 class="page-heading">Supporting enums</h2>
+
+    <section class="code-table">
+
+        <h3 id="title-alignment-enum" class="code-table__heading">TitleAlignment enum</h3>
+
+        <table aria-labelledby="title-alignment-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Start</td>
+                    <td>
+                        Align the title to the start (left in LTR layouts).
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Centre</td>
+                    <td>
+                        Centre the content.
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>End</td>
+                    <td>
+                        Align the title to the end (right in LTR layouts).
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="column-alignment-enum" class="code-table__heading">ColumnAlignment enum</h3>
+
+        <table aria-labelledby="column-alignment-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Start</td>
+                    <td>
+                        Align content to the start (left in LTR layouts).
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Centre</td>
+                    <td>
+                        Centre the content
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>End</td>
+                    <td>
+                        Align content to the end (right in LTR layouts).
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="filter-alignment-enum" class="code-table__heading">FilterAlignment enum</h3>
+
+        <table aria-labelledby="filter-alignment-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                     <td>None</td>
+                    <td>
+                        The filter aligns in its default orientation.
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Start</td>
+                    <td>
+                        Align the filter area to the start (left in LTR layouts).
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Centre</td>
+                    <td>
+                        Centre the filter area.
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>End</td>
+                    <td>
+                        Align the filter area to the end (right in LTR layouts).
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="column-sort-direction-enum" class="code-table__heading">ColumnSortDirection enum</h3>
+
+        <table aria-labelledby="column-sort-direction-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>NotSorted</td>
+                    <td>The column is not currently used to sort the data..</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Ascending</td>
+                    <td>The data is sorted by this column in ascending order.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Descending</td>
+                    <td>The data is sorted by this column in descending order.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="row-selection-mode-enum" class="code-table__heading">RowSelectionMode enum</h3>
+
+        <table aria-labelledby="row-selection-mode-enum">
+
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>None</td>
+                    <td>Rows cannot be selected; no selection column is rendered..</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Single</td>
+                    <td>Only one row may be selected at a time; selecting a new row clears any previous selection.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Multiple</td>
+                    <td>Any number of rows may be selected.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+</section>
+
+<section>
+    <h2 class="page-heading">CSS variables defined for the pager component.</h2>
+
+    <p>
+        The following sections outline all of the css variables that can be set to alter the styling of the pager component.
+        You can of course also override its style classes directly.
+    </p>
+
+    <section class="code-table">
+
+        <h3 id="table-outline-variables" class="code-table__heading">Table outline variables</h3>
+        <p>
+            For a focus indicator around the table is circumstances when the table has to receive focus.
+        </p>
+        <table aria-labelledby="table-outline-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-data-table-outline-style</td>
+                    <td>var(--br-comp-all-outline-style)</td>
+                    <td>The style of the outline - uses the shared variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-outline-width</td>
+                    <td>var(--br-comp-all-outline-width)</td>
+                    <td>The width of the outline - uses the shared variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-outline-offset</td>
+                    <td>var(--br-comp-all-outline-offset)</td>
+                    <td>The outline offset - uses the shared variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-outline-colour</td>
+                    <td>var(--br-comp-all-outline-colour)</td>
+                    <td>The colour of the outline - uses the shared variable.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+    <section class="code-table">
+
+        <h3 id="column-header-variables" class="code-table__heading">Column header area and title variables</h3>
+        <p>
+            When sorting is used, buttons are placed inside the th element. These have outlines for
+            keyboard users.
+        </p>
+        <table aria-labelledby="column-header-variables">
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-data-table-area-header-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>
+                        The size of the font used - uses a direct unit value.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-font-weight</td>
+                    <td>var(--br-unit-font-weight-500, bold)</td>
+                    <td>
+                        The font weight - uses a direct unit value.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-text</td>
+                    <td>var(--br-comp-all-area-header-text)</td>
+                    <td>
+                        The colour of the text - uses the shared component variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-background</td>
+                    <td>var(--br-unit-colour-neutral-10)</td>
+                    <td>
+                        The background colour - uses a direct unit value.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-font-family</td>
+                    <td>var(--br-comp-all-area-header-font-family)</td>
+                    <td>
+                        The font family used - uses the shared component variable
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-line-height</td>
+                    <td>var(--br-comp-all-area-header-line-height)</td>
+                    <td>
+                       The line height - uses the shared component variable
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-border-style</td>
+                    <td>var(--br-comp-all-area-header-border-style)</td>
+                    <td>
+                        The border style - uses the shared component variable
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-border-colour</td>
+                    <td>var(--br-comp-all-divider-colour)</td>
+                    <td>
+                        The border colour - <b>does not >use the shared component variable.</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>
+                         The border width - uses a direct untt value.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-border-radius</td>
+                    <td>var(--br-comp-all-area-header-border-radius)</td>
+                    <td>
+                        The border radius for each corner - uses the shared component variable
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-sort-outline-width</td>
+                    <td>var(--br-comp-all-outline-width)</td>
+                    <td>
+                        The outline width - <b>no defined common sort outline variable so uses the shared outline variable</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-sort-outline-style</td>
+                    <td>var(--br-comp-all-outline-style)</td>
+                    <td>
+                        The outline style - <b>no defined common sort outline variable so uses the shared outline variable</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-sort-outline-offset</td>
+                    <td>var(--br-comp-all-outline-offset)</td>
+                    <td>
+                        The outline offset - <b>no defined common sort outline variable so uses the shared outline variable</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-sort-outline-colour</td>
+                    <td>var(--br-comp-all-outline-colour)</td>
+                    <td>
+                     The outline colour - <b>no defined common sort outline variable so uses the shared outline variable</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-title-info-font-size</td>
+                    <td>var(--br-unit-font-size-1)</td>
+                    <td>The font size - uses a direct unit value.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-title-info-font-weight</td>
+                    <td>var(--br-unit-font-weight-500)</td>
+                    <td>The font weight - uses a direct unit value.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-title-info-text</td>
+                    <td>var(--br-comp-all-area-header-text)</td>
+                    <td>The colour of the text - uses the same colour as the heading text.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-title-info-font-family</td>
+                    <td>var(--br-comp-all-area-header-font-family)</td>
+                    <td>The font family used - uses the same font family as the headings.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-title-info-line-height</td>
+                    <td>var(--br-comp-all-area-header-line-height)</td>
+                    <td>The line height - uses the same line-height as the headings.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="content-area-variables" class="code-table__heading">Content area variables</h3>
+        <p>
+            These variables are used for the main body of the table.
+        </p>
+        <table aria-labelledby="content-area-variables">
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-data-table-area-content-background</td>
+                    <td>var(--br-comp-all-area-content-background)</td>
+                    <td>The background colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-content-text</td>
+                    <td>var(--br-comp-all-area-content-text)</td>
+                    <td>The text colour - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-content-font-family</td>
+                    <td>var(--br-comp-all-area-content-font-family)</td>
+                    <td>The font family - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-content-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The font size - uses a direct unit value.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-content-font-weight</td>
+                    <td>var(--br-comp-all-area-content-font-weight)</td>
+                    <td>The font weight - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-content-line-height</td>
+                    <td>var(--br-comp-all-area-content-line-height)</td>
+                    <td>The line height - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-content-border-style</td>
+                    <td>var(--br-comp-all-area-content-border-style)</td>
+                    <td>The border style - uses the shared component variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-content-border-colour</td>
+                    <td>var(--br-comp-all-divider-colour)</td>
+                    <td>
+                        The border colour - <b>does not >use the shared component variable.</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-content-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The border width - uses a direct unit value.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-content-border-radius</td>
+                    <td>var(--br-unit-radius-0)</td>
+                    <td>The border radius - uses a direct unit value.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-selected-row</td>
+                    <td>var(--br-comp-all-selection-colour)</td>
+                    <td>The background colour of a selected row  - no defined variable uses a shared common variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-selectable-row</td>
+                    <td>var(--br-comp-all-link-hover-background-colour)</td>
+                    <td>
+                        The hover colour for a selectable row - no defined variable uses a shared common variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-alternate-row</td>
+                    <td>var(--br-unit-colour-neutral-10)</td>
+                    <td>A second background colour used to creates the striping - uses a direct unit value.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="code-table">
+
+        <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
+        <p>
+            The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
+            by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
+        </p>
+
+        <table aria-labelledby="unmapped-variables">
+
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-comp-data-table-area-header-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>
+                        The size of the font used - uses a direct unit value.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-font-weight</td>
+                    <td>var(--br-unit-font-weight-500, bold)</td>
+                    <td>
+                        The font weight - uses a direct unit value.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-background</td>
+                    <td>var(--br-unit-colour-neutral-10)</td>
+                    <td>
+                        The background colour - uses a direct unit value.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-border-colour</td>
+                    <td>var(--br-comp-all-divider-colour)</td>
+                    <td>
+                        The border colour - <b>does not >use the shared component variable.</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>
+                        The border width - uses a direct unit value.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>--br-comp-data-table-area-header-sort-outline-width</td>
+                    <td>var(--br-comp-all-outline-width)</td>
+                    <td>
+                        The outline width - <b>no defined common sort outline variable so uses the shared outline variable</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-sort-outline-style</td>
+                    <td>var(--br-comp-all-outline-style)</td>
+                    <td>
+                        The outline style - <b>no defined common sort outline variable so uses the shared outline variable</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-sort-outline-offset</td>
+                    <td>var(--br-comp-all-outline-offset)</td>
+                    <td>
+                        The outline offset - <b>no defined common sort outline variable so uses the shared outline variable</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-header-sort-outline-colour</td>
+                    <td>var(--br-comp-all-outline-colour)</td>
+                    <td>
+                        The outline colour - <b>no defined common sort outline variable so uses the shared outline variable</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-content-font-size</td>
+                    <td>var(--br-unit-font-size-label)</td>
+                    <td>The font size - uses a direct unit value.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-content-border-colour</td>
+                    <td>var(--br-comp-all-divider-colour)</td>
+                    <td>
+                        The border colour - <b>does not >use the shared component variable.</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-content-border-width</td>
+                    <td>var(--br-unit-border-1)</td>
+                    <td>The border width - uses a direct unit value.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-area-content-border-radius</td>
+                    <td>var(--br-unit-radius-0)</td>
+                    <td>The border radius - uses a direct unit value.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-selected-row</td>
+                    <td>var(--br-comp-all-selection-colour)</td>
+                    <td>The background colour of a selected row  - no defined variable uses a shared common variable.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-selectable-row</td>
+                    <td>var(--br-comp-all-link-hover-background-colour)</td>
+                    <td>
+                        The hover colour for a selectable row - no defined variable uses a shared common variable.
+                    </td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-alternate-row</td>
+                    <td>var(--br-unit-colour-neutral-10)</td>
+                    <td>A second background colour used to creates the striping - uses a direct unit value.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-title-info-font-size</td>
+                    <td>var(--br-unit-font-size-1)</td>
+                    <td>The font size - uses a direct unit value.</td>
+                </tr>
+                <tr>
+                    <td>--br-comp-data-table-title-info-font-weight</td>
+                    <td>var(--br-unit-font-weight-500)</td>
+                    <td>The font weight - uses a direct unit value.</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </section>
+
+</section>
+
+
+
+
+
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Accessibility}")">
         <span aria-hidden="true"></span>

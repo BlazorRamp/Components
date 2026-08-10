@@ -5,26 +5,23 @@ namespace BlazorRamp.DataTable.Common.Models;
 /// <summary>
 /// Holds the paging state shared between a <see cref="DataTable{TData}"/> and its pager UI.
 /// </summary>
-/// <param name="currentPage">The page currently being displayed, 1-based.</param>
-/// <param name="currentItemCount">The number of rows in the current filtered/unfiltered data set.</param>
-/// <param name="totalItemCount">The total number of rows available before filtering.</param>
-/// <param name="itemsPerPage">The number of rows to display per page.</param>
-public class PagerBinding(int currentPage, int currentItemCount, int totalItemCount, int itemsPerPage)
+/// <param name="itemsPerPage">The number of rows to display per page. Defaults to 10</param>
+public class PagerBinding(int itemsPerPage = 10)
 {
     /// <summary>
     /// The page currently being displayed, 1-based.
     /// </summary>
-    public int CurrentPage { get; set; } = currentPage;
+    public int CurrentPage { get; set; } = 0;
 
     /// <summary>
     /// The number of rows in the current filtered/unfiltered data set.
     /// </summary>
-    public int CurrentItemCount { get; set; } = currentItemCount;
+    public int CurrentItemCount { get; set; } = 0;
 
     /// <summary>
     /// The total number of rows available before filtering.
     /// </summary>
-    public int TotalItemCount { get; set; } = totalItemCount;
+    public int TotalItemCount { get; set; } = 0;
 
     /// <summary>
     /// The number of rows to display per page.
