@@ -1,4 +1,4 @@
-﻿# Blazor Ramp - Actions Popover
+﻿# Blazor Ramp - Data Table
 
 The Blazor Ramp project aims to provide a suite of modular, accessibility-first Blazor components. 
 
