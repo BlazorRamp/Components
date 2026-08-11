@@ -1,0 +1,110 @@
+﻿@using BlazorRamp.DataTable.Common.Constants
+@using BlazorRamp.DataTable.Components
+
+@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
+
+<PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Overview_Tests</h1>
+    <p>
+        The Data Table component simply allows binding a collection of things that are then displayed in a table with configured options.
+        These options can include, sorting, filtering, paging, styling, row selections and custom columns. Some of these features are internal to the Data Table and some provided by
+        other Blazor Ramp components. Sorting and row selection are inherent and are the subject of these tests, but there are examples on the documentation site
+        should you wish to test full integration with the other components.
+    </p>
+    <p>
+        <b>Released: </b>Current version <b>v1.0.0</b> See the documentation site for more information: <a target="_blank" class="@GlobalValues.Link_Class" href="@GlobalValues.Site_Link_Docs_DataTable">Data Table documentation (opens in new window)</a>
+    </p>
+   
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
+    <p>
+        Navigate to the table, and activate a sort on one of the headers and select one or more rows by checking the checkbox in the last column, Pick 
+    </p>
+    <p>
+        The table has been provided with 20 rows (21 including the header row), and as it is without a pager, and uses a fixed height, it will just scroll. <b>Note: </b>the table can be provided with a <span class="code-span">tabindex</span> for scenarios
+        where there are no focusable elements inside the table allowing keyboard only users the ability to scroll the table.
+    </p>
+    <p>
+        The table provides a function that allows a unique <span class="code-span">aria-label</span> be attached to each checkbox and has been configured using the format
+        "For "First name Surname, ID number".
+    </p>
+    <p>
+        <b>Note: </b> I have not added a skip to component to jump over the table.
+    </p>
+
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+    <ul>
+        <li>
+            On entering the table screen reader users should be advised the name of the table, "Contact Results" and the number of rows
+        </li>
+        <li>
+            Screen reader users should also be advised that the column headers are buttons which you press to sort, and on activation will be advised of the direction of the sorting action.
+            <b>Noted: </b> given issues with some screen readers not making <span class="code-span">aria-sort</span> announcements the table makes the following live region announcements
+            "Sort up completed", "Sort down completed" and "Sort removed" for the various sort directions.
+        </li>
+        <li>
+            Row selection - mouse users can click anywhere in a row to make a selection or deselection, keyboard users check or uncheck the checkbox as usual.
+        </li>
+        <li>
+            Screen reader users should be advised of who, each row checkbox is for, which is the format of "For "First name Surname, ID number". 
+        </li>
+        <li>
+            Keyboard only users should be able to scroll the table.
+        </li>
+        <li>
+            Voice control users should be able to navigate the table by using the appropriate commands.
+        </li>
+    </ul>
+
+</section>
+
+<section class="@GlobalValues.Info_Box_Class" style="min-height:750px;">
+
+    <h3>Data table test</h3>
+
+    <DataTable TData="AnotherContact" DataSource="@_dataSource" Title="Contact Results" RowSelectionMode="RowSelectionMode.Multiple" RowSelectHeading="Pick" RowIdentifierFunc="@_checkboxLabel">
+        <TableColumns>
+            <DataColumn DataProperty="c => c.ContactID"   DisplayName="ID"            IsSortable="true" />
+            <DataColumn DataProperty="c => c.GivenName"   DisplayName="First Name"    IsSortable="true" />
+            <DataColumn DataProperty="c => c.FamilyName"  DisplayName="Surname"       IsSortable="true" />
+            <DataColumn DataProperty="c => c.Country"     DisplayName="Country"       IsSortable="true" />
+            <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Date of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true"  />
+            <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
+        </TableColumns>
+    </DataTable>
+
+
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Quirks_Issues}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Busy - @GlobalValues.Common_Page_Title_Quirks_Issues</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Quirks_Issues}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Data_Table - @GlobalValues.Common_Page_Title_Quirks_Issues</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+    
+    private Func<AnotherContact, string> _checkboxLabel = c => $"For {c.GivenName} {c.FamilyName}, ID {c.ContactID}";
+    private List<AnotherContact> _dataSource = [];
+
+    protected override void OnInitialized()
+
+        => _dataSource = StaticData.GetContacts(20);
+}

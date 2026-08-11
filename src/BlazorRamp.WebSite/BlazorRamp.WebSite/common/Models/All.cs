@@ -10,3 +10,5 @@ public class Contact(string surname, string email)
     public string Surname { get; set; } = surname;
     public string Email { get; set; }  = email;
 }
+
+public record class AnotherContact(int ContactID, string Title, string GivenName, string FamilyName, DateOnly DateOfBirth, string Country, decimal Rate, string Availability);

@@ -18,14 +18,35 @@
 
 <h2>At a glance</h2>
 <ul>
-    <li><strong>Sorting</strong> &ndash; set <span class="code-span">IsSortable</span> on any <span class="code-span">DataColumn</span>. Cycles unsorted &rarr; ascending &rarr; descending &rarr; back to the original order, one column at a time, with a screen reader announcement on every change.</li>
-    <li><strong>Filtering</strong> &ndash; bring your own filter UI via the <span class="code-span">Filter</span> render fragment (a built-in <span class="code-span">DebounceFilter</span> component is included) and supply a <span class="code-span">FilterRule</span> predicate.</li>
-    <li><strong>Paging or virtualization</strong> &ndash; supply a <span class="code-span">PagerBinding</span> for a traditional paged table, or leave it out and set <span class="code-span">VirtualizeItemSizePX</span> for a virtualized, scrollable one. The two are mutually exclusive by design.</li>
-    <li><strong>Row selection</strong> &ndash; single or multiple, with a dedicated accessible selection column.</li>
-    <li><strong>Templating</strong> &ndash; override any column's cell content via <span class="code-span">CellTemplate</span>, or add entirely new columns (row actions, say) that don't exist in your data source via <span class="code-span">TemplateColumn</span>.</li>
-    <li><strong>Like all components, accessibility by default</strong> &ndash; live region announcements for sorting, filtering, and empty results (all fully customisable, with sensible defaults if you change nothing), proper table semantics, and documented, tested focus-management guidance for anything that changes the row count while the table has focus.</li>
+    <li><strong>Sorting</strong> &ndash; set <span class="code-span">IsSortable</span> on any <span class="code-span">DataColumn</span>. Cycles unsorted &rarr; ascending &rarr; descending &rarr; 
+        back to the original order, one column at a time, with a screen reader announcement on every change.
+    </li>
+    <li><strong>Filtering</strong> &ndash; bring your own filter UI via the <span class="code-span">Filter</span> render fragment (or use the Blazor Ramp <span class="code-span">Debounce Filter</span> component)
+        and supply a <span class="code-span">FilterRule</span> predicate.
+    </li>
+    <li>
+        <strong>Paging or virtualization</strong> - supply a <span class="code-span">PagerBinding</span> and Pager component, for a traditional paged table, or leave 
+        it out for a virtualized, scrollable one. The two are mutually exclusive by design.
+    </li>
+    <li>
+        <strong>Row selection</strong> - single or multiple, with a dedicated selection column, and function that allows you to create a unique accessible label for the checkboxes used in selections.
+    </li>
+    <li>
+        <strong>Styling</strong> – both row and cell style functions that let you style rows and cells based on the underlying data.
+    </li>
+    <li><strong>Templating</strong> - override any column's cell content via <span class="code-span">CellTemplate</span>, or add entirely new columns (row actions, say) that don't 
+        exist in your data source via <span class="code-span">TemplateColumn</span>.
+        </li>
+    <li>
+        <strong>Accessibility</strong> - like all of the components, the Data Table was built accessibility-first and given some of the gaps in screen reader support for 
+        <span class="code-span">aria-sort</span>, the table plugs these with its own announcements, and works in harmony with both the Debounce Filter and Pager 
+        when used together. All texts used for announcements are fully customisable, with sensible defaults if you change nothing).
+    </li>
 </ul>
 
+<p>
+    I have added quite a few examples of the Data Table in action, these can be found in the Data Table Usage section. 
+</p>
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Busy}/{GlobalValues.Common_Page_Path_Usage}")">
         <span aria-hidden="true"></span>

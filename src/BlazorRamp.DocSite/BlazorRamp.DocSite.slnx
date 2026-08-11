@@ -1,4 +1,3 @@
 <Solution>
-  <Project Path="../BlazorRamp.DataTable/BlazorRamp.DataTable/BlazorRamp.DataTable.csproj" />
   <Project Path="BlazorRamp.DocSite/BlazorRamp.DocSite.csproj" />
 </Solution>

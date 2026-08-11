@@ -36,7 +36,7 @@ public class DataTableSnippets
         @code{
 
             private Func<Contact, bool>? _filterRule   = null;
-            private PagerBinding         _pagerBinding = new(currentPage: 0,currentItemCount: 0, totalItemCount: 0,itemsPerPage: 10);
+            private PagerBinding         _pagerBinding = new(itemsPerPage: 10);
             private List<Contact>        _dataSource   = [];
 
             protected override void OnInitialized()
@@ -133,7 +133,7 @@ public class DataTableSnippets
 
         @code{
 
-            private PagerBinding   _pagerBinding = new(currentPage: 0,currentItemCount: 0, totalItemCount: 0,itemsPerPage: 25);
+            private PagerBinding   _pagerBinding = new(itemsPerPage: 25);
             private List<Contact>  _dataSource   = [];
 
             protected override void OnInitialized()
@@ -169,7 +169,7 @@ public class DataTableSnippets
          @code {
 
             private Func<Contact, bool>? _filterRule = null;
-            private PagerBinding _pagerBinding = new(currentPage: 0, currentItemCount: 0, totalItemCount: 0, itemsPerPage: 10);
+            private PagerBinding _pagerBinding = new(itemsPerPage: 10);
             private List<Contact> _dataSource = [];
 
             protected override void OnInitialized()
@@ -237,7 +237,7 @@ public class DataTableSnippets
 
             private Func<Contact, string> _checkboxLabel = c => $"For {c.GivenName} {c.FamilyName}, ID {c.ContactID}";
             private Func<Contact, bool>? _filterRule     = null;
-            private PagerBinding         _pagerBinding   = new(currentPage: 0, currentItemCount: 0, totalItemCount: 0, itemsPerPage: 10);
+            private PagerBinding         _pagerBinding   = new(itemsPerPage: 10);
             private List<Contact>        _dataSource     = [];
             private List<Contact>        _selectedRows   = [];
 
@@ -325,8 +325,6 @@ public class DataTableSnippets
                 <DataColumn DataProperty="c => c.GivenName"   DisplayName="First Name"    IsSortable="true" />
                 <DataColumn DataProperty="c => c.FamilyName"  DisplayName="Surname"       IsSortable="true" />
                 <DataColumn DataProperty="c => c.Country"     DisplayName="Country"       IsSortable="true" CellStyle="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" HeaderStyle="min-width:16ch;" /> 
-
-
                 <DataColumn DataProperty="c => c.DateOfBirth" DisplayName="Date of Birth" ColumnAlignment="ColumnAlignment.Centre" IsSortable="true" CellFormat="yyyy-MM-dd" HeaderStyle="min-width:16ch;" />
                 <DataColumn DataProperty="c => c.Rate"        DisplayName="Hourly Rate"   IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
                 <DataColumn DataProperty="c => c.Availability" IsSortable="true" ColumnAlignment="ColumnAlignment.Centre" 
@@ -341,7 +339,7 @@ public class DataTableSnippets
         @code {
 
             private Func<Contact, bool>? _filterRule = null;
-            private PagerBinding _pagerBinding = new(currentPage: 0, currentItemCount: 0, totalItemCount: 0, itemsPerPage: 10);
+            private PagerBinding _pagerBinding = new(itemsPerPage: 10);
             private List<Contact> _dataSource = [];
 
             private Func<Contact, string?>? UKAvailability = c => c.Availability == "Available" && c.Country == "United Kingdom" ? "background-color:var(--br-unit-colour-success); color:white;" : null;
@@ -475,7 +473,7 @@ public class DataTableSnippets
 
             private IJSObjectReference?  _jsModule      = null;
             private Func<Contact, bool>? _filterRule    = null;
-            private PagerBinding         _pagerBinding  = new(currentPage: 0, currentItemCount: 0, totalItemCount: 0, itemsPerPage: 10);
+            private PagerBinding         _pagerBinding  = new(itemsPerPage: 10);
             private List<Contact>        _dataSource    = [];
             private string?              _dataRowDetails = String.Empty;
 
@@ -554,10 +552,5 @@ public class DataTableSnippets
 
         }
         """;
-
-    public const string Typical_Usage_Example = """
-
-        """;
-
 
 }

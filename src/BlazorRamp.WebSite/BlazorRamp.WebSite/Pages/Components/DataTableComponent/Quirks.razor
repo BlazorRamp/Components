@@ -1,0 +1,48 @@
+﻿@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Quirks_Issues}")]
+
+<PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Quirks_Issues</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Quirks_Issues</h1>
+
+    <p>
+        Below are all the quirks and/or issues that I experienced whilst testing the Data Table component.
+    </p>
+</section>
+
+<section class="section-box">
+    <h2 id="screen-reader-quirks" class="@GlobalValues.Info_Box_Heading_Class">Screen reader quirks</h2>
+    <ul aria-labelledby="screen-reader-quirks">
+        <li>
+            <b>VoiceOver</b> on macOS/iOS still not announce the <span class="code-span">aria-sort</span> operation/change, so the Data Table makes
+            a live region announcement to compensate.
+        </li>
+    </ul>
+
+    <p>
+        During the development of both the Data Table and Pager I encountered issues with JAWS in that it loses its internal buffer/index synchronisation with the DOM. 
+        This can translate into the following sequence of events. A user (when the Virtual Cursor is active) is focused on a button, presses to activate it, but JAWS 
+        will move the focus to some other element or send both the focus and click event to a different button on the page. 
+    </p>
+    <p>
+        This only seems to occur when the application uses the Blazor Auto (Server and WASM) per page template, and only when interactive components are on a page that has pre-rendering disabled.
+    </p>
+    <p>
+        I have logged this bug with both the JAWS and Blazor teams, you can view those using the following links:  <a class="@GlobalValues.Link_Class" target="_blank" href="@GlobalValues.JAWS_Issues_Link_FS">Issue logged against JAWS #959</a>.
+        and <a class="@GlobalValues.Link_Class" target="_blank" href="@GlobalValues.JAWS_Issues_Link_Blazor">Issue logged against Blazor #68157 (opens in new window)</a>
+    </p>
+</section>
+
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Data_Table - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_DebounceFilter}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Debounce_Filter - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>

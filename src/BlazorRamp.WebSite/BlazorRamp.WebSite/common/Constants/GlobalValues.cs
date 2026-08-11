@@ -80,6 +80,7 @@ public static class GlobalValues
     public const string Component_Name_Announcement    = "Announcement History";
     public const string Component_Name_Busy            = "Busy Indicator";
     public const string Component_Name_Debounce_Filter = "Debounce Filter";
+    public const string Component_Name_Data_Table      = "Data Table";
 
     public const string Component_Name_Inputs            = "Inputs";
     public const string Component_Name_Text_Input        = "Text Input";
@@ -106,6 +107,7 @@ public static class GlobalValues
     public const string Component_Path_Part_Announcement    = "announcement-history";
     public const string Component_Path_Part_Busy            = "busy-indicator";
     public const string Component_Path_Part_DebounceFilter  = "debounce-filter";
+    public const string Component_Path_Part_DataTable       = "data-table";
     public const string Component_Path_Part_Inputs          = "inputs";
     public const string Component_Path_Part_TextInput       = "text-input";
     public const string Component_Path_Part_TextAreaInput   = "textarea-input";
@@ -156,8 +158,9 @@ public static class GlobalValues
 
     public const int Start_Width_For_Collapsed_Menu = 576;
 
-    public const string Site_Link_Docs_Busy            = "https://docs.blazorramp.uk/components/debounce-filter/overview";
-    public const string Site_Link_Docs_DebounceFilter  = "https://docs.blazorramp.uk/components/busy-indicator/overview";
+    public const string Site_Link_Docs_Busy            = "https://docs.blazorramp.uk/components/busy-indicator/overview";
+    public const string Site_Link_Docs_DataTable       = "https://docs.blazorramp.uk/components/data-table/overview";
+    public const string Site_Link_Docs_DebounceFilter  = "https://docs.blazorramp.uk/components/debounce-filter/overview";
     public const string Site_Link_Docs_Switch          = "https://docs.blazorramp.uk/components/switch/overview";
     public const string Site_Link_Docs_SkipTo          = "https://docs.blazorramp.uk/components/skip-to/overview";
     public const string Site_Link_Docs_Pager           = "https://docs.blazorramp.uk/components/pager/overview";
@@ -169,4 +172,7 @@ public static class GlobalValues
     public const string Site_Link_Docs_Nav_Group       = "https://docs.blazorramp.uk/components/nav-group/overview";
 
     public const string Site_Link_Docs_Inputs = "https://docs.blazorramp.uk/components/inputs/overview";
+
+    public const string JAWS_Issues_Link_FS = "https://github.com/FreedomScientific/standards-support/issues/959";
+    public const string JAWS_Issues_Link_Blazor = "https://github.com/dotnet/aspnetcore/issues/68157";
 }
