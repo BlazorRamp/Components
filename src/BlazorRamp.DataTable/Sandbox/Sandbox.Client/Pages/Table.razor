@@ -42,6 +42,7 @@
     Maecenas efficitur ultricies accumsan.
 </p>
 <button @onclick="SetFocus">Set Focus</button>
+<button @onclick="NewData">Set New Data</button>
 @code {
 
     private DataTable<Contact> DataTableRef { get; set; }
@@ -63,7 +64,10 @@
 
         await DataTableRef.SetTableFocus();
     }
-
+    private async Task NewData()
+    {
+        _contacts = StaticData.GetContacts(1000);
+    }
     protected override void OnInitialized()
     {
 

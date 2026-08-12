@@ -48,6 +48,8 @@
 </p>
 
 <button @onclick="SetFocus">Set Focus</button>
+
+<button @onclick="NewData">Set New Data</button>
 @code{
 
     private DataTable<Contact> DataTableRef { get; set; }
@@ -69,6 +71,11 @@
 
         base.OnInitialized();
 
+    }
+
+    private async Task NewData()
+    {
+        _contacts = StaticData.GetContacts(1000);
     }
 
     private async Task SetFocus()
