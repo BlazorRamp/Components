@@ -367,6 +367,7 @@
   --svg-lock-account-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M6 8c0-2.21 1.79-4 4-4s4 1.79 4 4s-1.79 4-4 4s-4-1.79-4-4m6 10.2c0-.96.5-1.86 1.2-2.46v-.24c0-.39.07-.76.18-1.12c-1.03-.24-2.17-.38-3.38-.38c-4.42 0-8 1.79-8 4v2h10zm10 .1v3.5c0 .6-.6 1.2-1.3 1.2h-5.5c-.6 0-1.2-.6-1.2-1.3v-3.5c0-.6.6-1.2 1.2-1.2v-1.5c0-1.4 1.4-2.5 2.8-2.5s2.8 1.1 2.8 2.5V17c.6 0 1.2.6 1.2 1.3m-2.5-2.8c0-.8-.7-1.3-1.5-1.3s-1.5.5-1.5 1.3V17h3z'/%3E%3C/svg%3E");
   --svg-pencil-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='m19.71 8.04l-2.34 2.33l-3.75-3.75l2.34-2.33c.39-.39 1.04-.39 1.41 0l2.34 2.34c.39.37.39 1.02 0 1.41M3 17.25L13.06 7.18l3.75 3.75L6.75 21H3zM16.62 5.04l-1.54 1.54l2.34 2.34l1.54-1.54zM15.36 11L13 8.64l-9 9.02V20h2.34z'/%3E%3C/svg%3E");
   --svg-trash-can-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M7.616 20q-.672 0-1.144-.472T6 18.385V6H5V5h4v-.77h6V5h4v1h-1v12.385q0 .69-.462 1.153T16.384 20zM17 6H7v12.385q0 .269.173.442t.443.173h8.769q.23 0 .423-.192t.192-.424zM9.808 17h1V8h-1zm3.384 0h1V8h-1zM7 6v13z'/%3E%3C/svg%3E");
+  --svg-sandbox-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='black' d='m0 357.723l247 140v-120l-247-110zm512-89.982L265 377.723v120l247-139.485zm-56.836 10.165l38.761-17.14l-85.089-32.248l-7.875 21.283c15.527 6.87 34.05 16.686 54.203 28.105M357.346 14.277l-16.093 45.184c-3.573 12.497 2.835 31.654 23.408 35.674l-26.813 74.81c-21.792-9.103-41.243-2.83-52.934 9.831l-29.391-11.287l-237.463 92.24l38.686 16.895c63.562-37.882 138.756-64.027 210.764-59.892l-10.436 28.036c-27.346.81-50.73 7.678-71.233 18.952c71.534-11.513 146.05 7.61 201.156 35.938c-1.33-6.491-4.985-12.38-11.079-18.21l19.494-55.249c5.88-15.783 1.238-45.648-35.281-51.064l26.925-74.585c25.23 6.35 40.246-10.084 43.793-20.961l14.698-41.863zM407.6 74.891c-.728 3.033-6.074 5.518-10.314 3.64l-26.33-7.401c-5.125-2.017-7.111-5.153-5.46-9.586l6.189-17.472l42.952 12.012z'/%3E%3C/svg%3E");
   --br-unit-colour-primary: #008C8C;
   --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-darker);
   --br-kbd-background-colour: var(--br-unit-colour-info-lighter);
@@ -910,7 +911,8 @@ h2:focus-visible {
 .code-table th {
   text-align: left;
   border-left: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
-  background-color: var(--br-comp-history-area-header-background);
+  color: var(--br-comp-all-area-header-text);
+  background-color: var(--br-comp-data-table-area-header-background);
   padding: var(--br-unit-space-3);
   font-size: var(--br-unit-font-label);
   font-weight: var(--br-unit-font-weight-500);

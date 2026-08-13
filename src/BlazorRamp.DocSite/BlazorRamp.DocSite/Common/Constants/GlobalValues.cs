@@ -51,6 +51,7 @@ public class GlobalValues
     public const string Common_Page_Path_Usage          = "usage";
     public const string Common_Page_Path_CSS_Variables  = "css-variables";
     public const string Common_Page_Path_Questions      = "questions";
+    public const string Common_Page_Path_Sandbox        = "sandbox";
 
     public const string Common_Page_Path_About          = "about";
     public const string Common_Page_Path_Basic_Usage    = "basic-usage";
@@ -70,6 +71,8 @@ public class GlobalValues
     public const string Common_Page_Title_Installation   = "Installation";
     public const string Common_Page_Title_Accessibility  = "Accessibility";
     public const string Common_Page_Title_Usage          = "Usage";
+
+    public const string Common_Page_Title_Sandbox        = "Sandbox";
     public const string Common_Page_Title_Core_Variables = "Core CSS Variables";
     public const string Common_Page_Title_Shared_CSS     = "Shared CSS Variables";
     public const string Common_Page_Title_FAQ_Questions  = "Frequently Asked Questions";
