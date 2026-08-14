@@ -203,7 +203,7 @@
 
         if (adjacentRow != null && _jsModule != null)
         {
-            await _jsModule.InvokeVoidAsync(GlobalValues.JS_Set_Focus, CreateIdentifier(adjacentRow));
+            await _jsModule.InvokeVoidAsync(GlobalValues.JS_Doc_Site_Set_Focus, CreateIdentifier(adjacentRow));
             return;
         }
 
@@ -228,7 +228,7 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (true == firstRender) _jsModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Module_File_Path);
+        if (true == firstRender) _jsModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Doc_Site_Module_File_Path);
     }
 
     public async ValueTask DisposeAsync()

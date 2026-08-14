@@ -1,14 +1,16 @@
 ﻿@attribute [Route($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Sandbox}")]
 
+@* @implements IAsyncDisposable; *@
+
 <PageTitle>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Sandbox</PageTitle>
 
 <h1>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Sandbox . . . In Progress . . .</h1>
 
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Accessibility}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Colours}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Theming_Name - @GlobalValues.Common_Page_Title_Accessibility</span>
+        <span>@GlobalValues.Theming_Name - @GlobalValues.Common_Page_Title_Colours</span>
         <span aria-hidden="true"></span>
     </a>
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_FAQS}/{GlobalValues.Common_Page_Path_Questions}")">
@@ -17,6 +19,7 @@
         <span aria-hidden="true"></span>
     </a>
 </div>
+
 @code {
 
 }

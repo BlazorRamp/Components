@@ -5,12 +5,15 @@ namespace BlazorRamp.DocSite.Common.Constants;
 
 public class GlobalValues
 {
-    public const string JS_Module_File_Path = "./assets/js/doc-site.js";
-    public const string JS_Initialise_Func  = "initialise";
-    public const string JS_Check_Close_Nav  = "checkCloseSideNavigation";
-    public const string JS_Set_Focus        = "setFocus";
+    public const string JS_Doc_Site_Module_File_Path = "./assets/js/doc-site.js";
+    public const string JS_Doc_Theme_Module_File_Path = "./assets/js/doc-themes.js";
+    public const string JS_Doc_Site_Initialise_Func  = "initialise";
+    public const string JS_Doc_Site_Check_Close_Nav  = "checkCloseSideNavigation";
+    public const string JS_Doc_Site_Set_Focus        = "setFocus";
 
+    public const string JS_Theme_Set_Root_Variable_Func = "setRootVariable";// name, value
 
+    public const string JS_Theme_Set_Element_Variable_Func = "setElementVariable";// id, name, value, remove
     public const string Info_Box_Class = "info-box";
     public const string Info_Box_Heading_Class = $"{Info_Box_Class}__heading";
     public const string Info_Box_Coloured_Modifier = $"{Info_Box_Class}--coloured";
@@ -52,6 +55,7 @@ public class GlobalValues
     public const string Common_Page_Path_CSS_Variables  = "css-variables";
     public const string Common_Page_Path_Questions      = "questions";
     public const string Common_Page_Path_Sandbox        = "sandbox";
+    public const string Common_Page_Path_Colours        = "colours";
 
     public const string Common_Page_Path_About          = "about";
     public const string Common_Page_Path_Basic_Usage    = "basic-usage";
@@ -71,7 +75,7 @@ public class GlobalValues
     public const string Common_Page_Title_Installation   = "Installation";
     public const string Common_Page_Title_Accessibility  = "Accessibility";
     public const string Common_Page_Title_Usage          = "Usage";
-
+    public const string Common_Page_Title_Colours       = "Colours";
     public const string Common_Page_Title_Sandbox        = "Sandbox";
     public const string Common_Page_Title_Core_Variables = "Core CSS Variables";
     public const string Common_Page_Title_Shared_CSS     = "Shared CSS Variables";

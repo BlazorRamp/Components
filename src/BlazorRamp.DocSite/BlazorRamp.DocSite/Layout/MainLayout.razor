@@ -53,9 +53,9 @@
         try
         {
             _jsLiveRegionModule    = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", CoreGlobalValues.JS_Utils_File_Path);
-            _jsDocSiteModule = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Module_File_Path);
+            _jsDocSiteModule = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Doc_Site_Module_File_Path);
 
-             await _jsDocSiteModule.InvokeVoidAsync(GlobalValues.JS_Initialise_Func, MenuButtonRef, SideNavigationRef, MainContentRef, GlobalValues.Start_Width_For_Collapsed_Menu);
+             await _jsDocSiteModule.InvokeVoidAsync(GlobalValues.JS_Doc_Site_Initialise_Func, MenuButtonRef, SideNavigationRef, MainContentRef, GlobalValues.Start_Width_For_Collapsed_Menu);
 
         }
         catch (Exception ex)
@@ -65,7 +65,7 @@
     }
     private async void Navigation_LocationChanged(object? sender, LocationChangedEventArgs args)
     {
-        if (_jsLiveRegionModule is not null) await _jsDocSiteModule!.InvokeVoidAsync(GlobalValues.JS_Check_Close_Nav, MenuButtonRef);
+        if (_jsLiveRegionModule is not null) await _jsDocSiteModule!.InvokeVoidAsync(GlobalValues.JS_Doc_Site_Check_Close_Nav, MenuButtonRef);
     }
 
     private async Task ToggleTheme()
