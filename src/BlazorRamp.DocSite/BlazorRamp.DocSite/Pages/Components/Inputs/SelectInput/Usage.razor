@@ -66,7 +66,10 @@
 
 </section>
 
-
+<p style="padding-block:1rem;">
+    Below is the code that was used for the example. Please note that in general when using the Validated library the validators would be in a shared library so they could be used in any part of your application.
+</p>
+<CodeBox CodeBlock="@InputSnippets.Select_Input_Code_Example" AriaLabel="Select input code example" />
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_SelectInput}/{GlobalValues.Common_Page_Path_Api}")">
@@ -85,14 +88,13 @@
 @code {
 
     
-    private ProfileDto _profileData = new();
-    private Dictionary<int,string> _foodListItems =new(){[1]="Fish & Chips", [2]="Burger & Fries", [3]="Pizza"};
+    private ProfileDto _profileData               = new();
+    private Dictionary<int,string> _foodListItems = new(){[1]="Fish & Chips", [2]="Burger & Fries", [3]="Pizza"};
 
     private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
 
     protected override void OnInitialized()
     {
-
         var foodValidator = MemberValidators.CreatePredicateValidator<int>(c => c == 1, "FavouriteFoodID", "Favourite Food", "Wrong answer, it has to be Fish & Chips");
 
         _boxedValidators = BlazorValidationBuilder<ProfileDto>.Create()
@@ -106,8 +108,6 @@
     {
         public int FavouriteFoodID { get; set; }
     }
-
-    
 
 }
 

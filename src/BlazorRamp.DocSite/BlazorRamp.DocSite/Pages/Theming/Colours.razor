@@ -1,8 +1,236 @@
-﻿@attribute [Route($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Colours}")]
+﻿@using BlazorRamp.DocSite.Pages.Services.LiveRegion
+@attribute [Route($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Colours}")]
+@implements IAsyncDisposable
 
-<PageTitle>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Accessibility</PageTitle>
+<PageTitle>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Colours</PageTitle>
 
-<h1>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Colours . . . In Progress . . .</h1>
+<h1>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Colours</h1>
+
+<p>
+    The primary, neutral, secondary and accent colours are all derived from a root variable <span class="code-span">@CoreCssVariables.Colour_Primary</span>.
+    This single root variable is then used to create the roots for neutral, secondary and accent colours which are then used to create the respective palettes.
+    The primary and neutral variables that end "-50" are the exact root colours that were used to create the lighter and darker shades.
+</p>
+<p>
+    <b>For most applications you will most likely only need to change the single <span class="code-span">@CoreCssVariables.Colour_Primary</span> variable value.</b> But if the others are
+    not to your liking then you just change them at the hierarchy level that best suits your application (see theming overview). And then use the colours that your root variables have
+    generated.
+</p>
+<p>
+    The success, warning, info and danger palettes are all created from their respective root variable which are fixed values (unless you change them) and thus not affected by
+    the primary colour.
+</p>
+
+<p>
+    <strong>Note:</strong> The focus indicator in this library is a ring around the item and the colour used for the indicator variable
+    <span class="code-span">--br-comp-all-focus-indicator-colour</span> is the primary derived value: <span class="code-span">@CoreCssVariables.Colour_Primary_70</span>
+</p>
+<p>
+    <strong>Important: </strong> Although difficult given you are on this site, you must remember, things such as the left hand side background colour, the band at the top,
+    all the heading colours (that are not from a component) are just things I picked for the site, these are not driven by the components so they would be your colours etc. 
+    The components themselves, use a minimal set of colours, so once you assign your primary colour, you should have a good base, from which to add other splashes of colour 
+    for your branding etc.
+</p>
+<p>
+    The components do not come with any predefined dark theme variables, when you click the theme switcher the site just uses values I choose; you can see these values
+    on the theming overview page and I will be adding an export/copy to clipboard function on the sandbox page (once completed). These cover every component released.
+</p>
+<p>
+    All of the colour changes are driven by pure css colour functions so there are no css pre-processors or calls to some AP - everything is in the Core project style sheet.
+    For more advanced colour control over the generated neutrals, there is also a <span class="code-span">@CoreCssVariables.Colour_Neutral_Saturation</span> variable. I set this
+    with a value of 10. If you want less of the primary tinge in the neutrals, just lower this value or raise it for a more.
+</p>
+<p>
+    The browsers default colour picker below is bound to the primary colour, so just change it to change the entire site so you can go look at any component and use the
+    dark theme switch at the top of the screen to see what everything looks like. Please note, there is no function that automatically picks the dark theme values, I just selected
+    them, so again you would just choose whatever you liked, but I think the defaults would be satisfy a lot of applications.
+</p>
+<p>
+    The neutral tinge slider below only goes from 0 to 15 (the library default is 10), but as the underlying CSS colour function uses a percentage you could go higher but you really then would not have neutrals.
+    Choose your primary and then navigate the site to see the components using your colour.
+</p>
+<section class="input-section">
+    <div class="input-section__controls">
+        <label for="colour-picker">Choose your primary:</label>
+        <input id="colour-picker" type="color" value="@_primaryColourValue" @oninput="HandleColourChange" />
+    </div>
+
+    <div class="input-section__controls">
+        <label for="neutral-slider">Adjust neutral tinge:</label>
+        <input id="neutral-slider" type="range" min="0" max="15" value="@_neutralSaturationValue" @oninput="HandleSaturation" />
+    </div>
+    <div class="input-section__controls">
+        <label>Neutral tinge value:</label>
+        <span class="input-section__output">@_neutralSaturationValue</span>
+    </div>
+    <div class="input-section__controls">
+        <button class="test-button" @onclick="ResetColourValues">
+            Reset
+        </button>
+    </div>
+</section>
+
+<section>
+
+    <h2 style="margin-block:var(--br-unit-space-9);">Colours derived from the root primary colour</h2>
+
+    <div style="display:flex;flex-wrap:wrap; gap:var(--br-unit-space-5);">
+
+        <ColourPalette Title="Primary colour variables" Information="(No. 50 is the exact colour - this text is on white)">
+            <Swatches>
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Primary_5" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Primary_10" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Primary_20" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Primary_30" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Primary_40" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Primary_50" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Primary_60" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Primary_70" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Primary_80" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Primary_90" />
+            </Swatches>
+        </ColourPalette>
+        <ColourPalette Title="Neutral colour variables" Information="(No. 50 is the exact colour - this text is on white)">
+            <Swatches>
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Neutral_5" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Neutral_10" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Neutral_20" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Neutral_30" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Neutral_40" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Neutral_50" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Neutral_60" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Neutral_70" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Neutral_80" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Neutral_90" />
+            </Swatches>
+        </ColourPalette>
+
+        <ColourPalette Title="Secondary colour variables" Information="(--br-unit-colour-secondary is the exact colour - this text is on white)">
+            <Swatches>
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Secondary_Lighter" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Secondary_Light" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Secondary" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Secondary_Dark" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Secondary_Darker" />
+            </Swatches>
+        </ColourPalette>
+        <ColourPalette Title="Accent colour variables" Information="(--br-unit-colour-accent is the exact colour - this text is on white)">
+            <Swatches>
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Accent_Lighter" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Accent_Light" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Accent" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Accent_Dark" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Accent_Darker" />
+            </Swatches>
+        </ColourPalette>
+    </div>
+</section>
+
+<section>
+
+    <h2 style="margin-block:var(--br-unit-space-9);">Fixed colours</h2>
+
+    <div style="display:flex;flex-wrap:wrap; gap:var(--br-unit-space-5);margin-block:var(--br-unit-space-5);">
+
+
+    <ColourPalette Title="Success colour variables" Information="(--br-unit-colour-success is the exact colour - this text is on white)">
+        <Swatches>
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Success_Lighter" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Success_Light" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Success" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Success_Dark" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Success_Darker" />
+        </Swatches>
+    </ColourPalette>
+
+    <ColourPalette Title="Warning colour variables" Information="(--br-unit-colour-warning is the exact colour - this text is on white)">
+        <Swatches>
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Warning_Lighter" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Warning_Light" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Warning" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Warning_Dark" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Warning_Darker" />
+        </Swatches>
+    </ColourPalette>
+    <ColourPalette Title="Info colour variables" Information="(--br-unit-colour-info is the exact colour - this text is on white)">
+        <Swatches>
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Info_Lighter" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Info_Light" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Info" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Info_Dark" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Info_Darker" />
+        </Swatches>
+    </ColourPalette>
+    <ColourPalette Title="Danger colour variables" Information="(--br-unit-colour-danger is the exact colour - this text is on white)">
+        <Swatches>
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Danger_Lighter" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Danger_Light" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Danger" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Danger_Dark" />
+                <ColourSwatch VariableName="@CoreCssVariables.Colour_Danger_Darker" />
+        </Swatches>
+    </ColourPalette>
+</div>
+
+</section>
+
+<section>
+    <h2 style="margin-block:var(--br-unit-space-9);">Regular text and page background colours</h2>
+    <p>
+        Regular text (on a light canvas) uses the variable <span class="code-span">@CoreCssVariables.Colour_Canvas_Text</span> which just gets is value from
+        the neutral variable <span class="code-span">@CoreCssVariables.Colour_Neutral_90</span>; this neutral value is the value for the dark theme canvas. 
+        For regular text (on a dark canvas) the aforementioned variable uses the value from the neutral variable <span class="code-span">@CoreCssVariables.Colour_Neutral_5</span>
+    </p>
+    <p>
+        All of the colours have a light and dark text variable.
+    </p>
+    <p>
+        The canvas colour used is off-white as its the neutral colour created from the primary colour. You can off course just set the underlying variable <span class="code=span">@CoreCssVariables.Colour_Canvas</span> to white
+        if you prefer. And then black for a dark theme.
+    </p>
+    <div style="display:flex;flex-wrap:wrap; border-radius: var(--br-unit-radius-3); border: 1px solid var(--br-comp-all-divider-colour); padding:var(--br-unit-space-2);">
+        
+        <div style="flex: 1 1 400px; font-size:var(--br-unit-font-size-1); display:flex;flex-direction:column;gap:var(--br-unit-space-7); 
+            background-color:var(--br-unit-colour-neutral-5); padding:var(--br-unit-space-4);border-radius: var(--br-unit-radius-3);">
+        
+            <span style="color:var(@CoreCssVariables.Colour_Primary_Text_Dark);">Primary dark text @CoreCssVariables.Colour_Primary_Text_Dark<br />(which uses the value from --br-unit-colour-primary-70)</span>
+
+            <span style="color:var(@CoreCssVariables.Colour_Secondary_Text_Dark);">Secondary dark text @CoreCssVariables.Colour_Secondary_Text_Dark <br />(which uses the value from --br-unit-colour-secondary-darker)</span>
+
+            <span style="color:var(@CoreCssVariables.Colour_Accent_Text_Dark);">Accent dark text @CoreCssVariables.Colour_Accent_Text_Dark <br />(which uses the value from --br-unit-colour-accent-darker)</span>
+            
+            <span style="color:var(--br-unit-colour-neutral-90);">Neutral (regular) dark text @CoreCssVariables.Colour_Canvas_Text<br />(which uses the value from --br-unit-colour-neutral-90)</span>
+
+            <span style="color:var(@CoreCssVariables.Colour_Success_Text_Dark);">Success dark text @CoreCssVariables.Colour_Success_Text_Dark <br />(which uses the value from --br-unit-colour-success-darker)</span>
+
+            <span style="color:var(@CoreCssVariables.Colour_Info_Text_Dark);">Info dark text @CoreCssVariables.Colour_Info_Text_Dark <br />(which uses the value from --br-unit-colour-info-darker)</span>
+
+            <span style="color:var(@CoreCssVariables.Colour_Warning_Text_Dark);">Warning dark text @CoreCssVariables.Colour_Warning_Text_Dark <br />(which uses the value from --br-unit-colour-warning-darker)</span>
+
+            <span style="color:var(@CoreCssVariables.Colour_Danger_Text_Dark);">Danger dark text @CoreCssVariables.Colour_Danger_Text_Dark <br />(which uses the value from --br-unit-colour-danger-darker)</span>
+        </div>
+        <div style="flex: 1 1 400px;font-size:var(--br-unit-font-size-1); display:flex;flex-direction:column;gap:var(--br-unit-space-7); 
+            background-color:var(--br-unit-colour-neutral-90);padding:var(--br-unit-space-4);border-radius:var(--br-unit-radius-3)">
+
+            <span style="color:var(@CoreCssVariables.Colour_Primary_Text_Light);">Primary light text @CoreCssVariables.Colour_Primary_Text_Light <br />(which uses the value from --br-unit-colour-primary-30)</span>
+
+            <span style="color:var(@CoreCssVariables.Colour_Secondary_Text_Light);">Secondary light text @CoreCssVariables.Colour_Secondary_Text_Light <br />(which uses the value from --br-unit-colour-secondary-lighter)</span>
+
+            <span style="color:var(@CoreCssVariables.Colour_Accent_Text_Light);">Accent light text @CoreCssVariables.Colour_Accent_Text_Light <br />(which uses the value from --br-unit-colour-accent-lighter)</span>
+
+            <span style="color:var(--br-unit-colour-neutral-5);">Neutral (regular) light text --br-unit-colour-canvas-text<br />(which uses the value from --br-unit-colour-neutral-5)</span>
+
+            <span style="color:var(@CoreCssVariables.Colour_Success_Text_Light);">Success light text @CoreCssVariables.Colour_Success_Text_Light <br />(which uses the value from --br-unit-colour-success-lighter)</span>
+
+            <span style="color:var(@CoreCssVariables.Colour_Info_Text_Light);">Info light text @CoreCssVariables.Colour_Info_Text_Light <br />(which uses the value from --br-unit-colour-info-lighter)</span>
+
+            <span style="color:var(@CoreCssVariables.Colour_Warning_Text_Light);">Warning light text @CoreCssVariables.Colour_Warning_Text_Light <br />(which uses the value from --br-unit-colour-warning-lighter)</span>
+
+            <span style="color:var(@CoreCssVariables.Colour_Danger_Text_Light);">Danger light text @CoreCssVariables.Colour_Danger_Text_Light <br />(which uses the value from --br-unit-colour-danger-lighter)</span>
+
+        </div>
+    </div>
+</section>
 
 
 <div class="flex-content justify-content-between">
@@ -19,4 +247,65 @@
 </div>
 @code {
 
+    [Inject] ILiveRegionService LiveRegionService { get; set; } = default!;
+    [Inject] IJSRuntime         JSRuntime         { get; set; } = default!;
+
+    private IJSObjectReference? _jsModule = null;
+
+    private string _primaryColourValue     = "#008C8C";
+    private string _rootPrimaryVar         = "--br-unit-colour-primary";
+    private string _neutralSaturationVar   = "--br-unit-colour-neutral-saturation";
+    private string _neutralSaturationValue = "10";
+
+    private async Task HandleSaturation(ChangeEventArgs args)
+    {
+        _neutralSaturationValue = args.Value.ToString();
+        if (_jsModule is not null) await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Style_Property_Func, _neutralSaturationVar, _neutralSaturationValue);
+    }
+
+    private async Task HandleColourChange(ChangeEventArgs args)
+    {
+        _primaryColourValue = args.Value.ToString();
+
+        if (_jsModule is not null) await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Style_Property_Func, _rootPrimaryVar, _primaryColourValue);
+    }
+
+    private async Task ResetColourValues()
+    {
+        if (_jsModule is not null)
+        {
+            _primaryColourValue    = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, CoreCssVariables.Original_Primary_Value_Store_Name);
+            _neutralSaturationValue = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, CoreCssVariables.Original_Saturation_Value_Store_Name);
+
+            // await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Root_Variable_Func, _neutralSaturationVar, _neutralSaturationValue);
+            // await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Root_Variable_Func, _rootPrimaryVar, _primaryColourValue);
+
+            await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Remove_Style_Property_Func, _rootPrimaryVar);
+            await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Remove_Style_Property_Func, _neutralSaturationVar);
+
+            await LiveRegionService.MakeAnnouncement(new("Site colours have been reset to the default values",AnnouncementTrigger:"Colour reset button"), true);
+
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _jsModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Doc_Theme_Module_File_Path);
+
+        if (_jsModule is null) return; 
+
+        _primaryColourValue     = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, _rootPrimaryVar);
+        _neutralSaturationValue = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, _neutralSaturationVar);
+
+
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        try
+        {
+            if (_jsModule is not null) await _jsModule.DisposeAsync();
+        }
+        catch { }
+    }
 }

@@ -149,7 +149,7 @@
   --br-unit-colour-secondary-dark: hsl(from var(--br-unit-colour-secondary) h s calc(l * 0.80));
   --br-unit-colour-secondary-darker: hsl(from var(--br-unit-colour-secondary) h s calc(l * 0.40));
   --br-unit-colour-secondary-text-light: var(--br-unit-colour-secondary-lighter);
-  --br-unit-colour-secondary-text-dark: var(--br-unit-colour-secondary-lighter);
+  --br-unit-colour-secondary-text-dark: var(--br-unit-colour-secondary-darker);
   /* 
       * Accent paette
   */
@@ -356,7 +356,7 @@
   --br-comp-all-button-font-weight: var(--br-unit-font-weight-400,inherit);
   --br-comp-all-button-line-height: inherit;
   --br-comp-all-button-border-style: solid;
-  --br-comp-all-button-border-colour: var(--br-unit-colour-primary-40);
+  --br-comp-all-button-border-colour: var(--br-unit-colour-primary-50);
   --br-comp-all-button-border-width: var(--br-unit-border-1);
   --br-comp-all-button-border-radius: var(--br-unit-radius-full);
   --br-comp-all-button-state-hover: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10));

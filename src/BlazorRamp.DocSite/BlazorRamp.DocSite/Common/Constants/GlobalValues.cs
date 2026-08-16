@@ -1,5 +1,6 @@
 ﻿using BlazorRamp.DocSite.Pages;
 using System.Data.Common;
+using System.Drawing;
 
 namespace BlazorRamp.DocSite.Common.Constants;
 
@@ -11,9 +12,13 @@ public class GlobalValues
     public const string JS_Doc_Site_Check_Close_Nav  = "checkCloseSideNavigation";
     public const string JS_Doc_Site_Set_Focus        = "setFocus";
 
-    public const string JS_Theme_Set_Root_Variable_Func = "setRootVariable";// name, value
+    public const string JS_Theme_Get_Comp_Style_Property_Func = "getComputedStyleProperty";//variable name
+    public const string JS_Theme_Get_Resolved_Colour_Func     = "getResolvedHexColourValue";//variable name
+    public const string JS_Theme_Set_Style_Property_Func      = "setStyleProperty";// name, value
+    public const string JS_Theme_Set_Element_Variable_Func    = "setElementVariable";// id, name, value, remove
+    public const string JS_Theme_Remove_Style_Property_Func   = "removeStyleProperty";
 
-    public const string JS_Theme_Set_Element_Variable_Func = "setElementVariable";// id, name, value, remove
+
     public const string Info_Box_Class = "info-box";
     public const string Info_Box_Heading_Class = $"{Info_Box_Class}__heading";
     public const string Info_Box_Coloured_Modifier = $"{Info_Box_Class}--coloured";
@@ -177,5 +182,24 @@ public class GlobalValues
 
     public const string JAWS_Issues_Link_FS     = "https://github.com/FreedomScientific/standards-support/issues/959";
     public const string JAWS_Issues_Link_Blazor = "https://github.com/dotnet/aspnetcore/issues/68157";
+
+
+
+    public const string Colour_Palette_Class              = $"br-colour-palette";
+    public const string Colour_Palette_Heading_Class      = $"{Colour_Palette_Class}__heading";
+    public const string Colour_Palette_Information_Class  = $"{Colour_Palette_Class}__information";
+    public const string Colour_Palette_Swatch_Class       = $"{Colour_Palette_Class}__swatch";
+    public const string Colour_Palette_Swatch_Name_Class  = $"{Colour_Palette_Class}__swatch-name";
+    public const string Colour_Palette_Black_Swatch_Modifier = $"{Colour_Palette_Swatch_Class}--black";
+
+    public const string Colour_Swatch_Text_Colour_Var_Name = "--_br-swatch-text-colour";
+    public const string Colour_Swatch_Background_Var_Name  = "--_br-swatch-background";
+
+
+
+    public const string Regex_Hex_Colour_Pattern = "^#?[a-fA-F0-9]{6}$";
+    public const string Regex_Colour_Key_Pattern = "^[#a-fA-F0-9]$";
+    public const string Regex_Hex_Replace_Pattern = "[^a-fA-F0-9]";
+    public const string Incorrect_Hex_Value_Exception_Message = "Invalid hex value. The value should only contain a-f, A-F and 0-9 characters, optionally starting with the pound # symbol";
 
 }

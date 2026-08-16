@@ -1,0 +1,52 @@
+﻿<div class="@GlobalValues.Colour_Palette_Class">
+    @{ GetHeading(PaletteHeadingLevel, _paletteTitle);}
+    @if(false == String.IsNullOrWhiteSpace(_information))
+    {
+        <span class="@GlobalValues.Colour_Palette_Information_Class">@_information</span>
+    }
+    @Swatches
+    @if (AddBlackSwatch)
+    {
+        <div class="@GlobalValues.Colour_Palette_Swatch_Class @GlobalValues.Colour_Palette_Black_Swatch_Modifier">
+           <span class="@GlobalValues.Colour_Palette_Swatch_Name_Class">
+               White text on black
+           </span>
+        </div>
+    }
+</div>
+
+@{
+    void GetHeading(PaletteHeadingLevel headingLevel, string title)
+    {
+        @switch (headingLevel)
+        {
+            case PaletteHeadingLevel.H2: <h2 class="@GlobalValues.Colour_Palette_Heading_Class">@title</h2>; break;
+            case PaletteHeadingLevel.H3: <h3 class="@GlobalValues.Colour_Palette_Heading_Class">@title</h3>; break;
+            case PaletteHeadingLevel.H4: <h4 class="@GlobalValues.Colour_Palette_Heading_Class">@title</h4>; break;
+            case PaletteHeadingLevel.H5: <h5 class="@GlobalValues.Colour_Palette_Heading_Class">@title</h5>; break;
+            case PaletteHeadingLevel.H6: <h6 class="@GlobalValues.Colour_Palette_Heading_Class">@title</h6>; break;
+            default:
+                    <h3 class="@GlobalValues.Colour_Palette_Heading_Class">@title</h3>
+                break;
+        }
+
+    }
+}
+
+@code {
+
+    [Parameter] public RenderFragment?     Swatches            { get; set; }
+    [Parameter] public string              Title               { get; set; } = default!;
+    [Parameter] public string              Information         { get; set; } = String.Empty;
+    [Parameter] public bool                AddBlackSwatch      { get; set; } = true;
+    [Parameter] public PaletteHeadingLevel PaletteHeadingLevel { get; set; } = PaletteHeadingLevel.H3;
+
+    private string _paletteTitle = "Missing title";
+    private string _information  = String.Empty;
+
+    protected override void OnParametersSet()
+    {
+        _paletteTitle = String.IsNullOrWhiteSpace(Title) ? "Missing title" : Title.Trim();
+        _information = String.IsNullOrWhiteSpace(Information) ? String.Empty : Information.Trim();
+    }
+}

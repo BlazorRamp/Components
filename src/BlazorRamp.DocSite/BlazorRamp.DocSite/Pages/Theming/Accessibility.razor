@@ -1,10 +1,76 @@
 ﻿@attribute [Route($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Accessibility}")]
+@implements IAsyncDisposable
 
 <PageTitle>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Accessibility</PageTitle>
 
 <h1>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Accessibility . . . In Progress . . .</h1>
 
 
+<p>
+    Regarding contrast ratio requirements specifically borders and focus indicators against adjacent colours the following are
+    the ones you should check after changing the colours. The darkest background colours that the components use in light mode is 
+    <span class="code-span">@CoreCssVariables.Colour_Neutral_20</span>.
+    Conversely, this site in dark mode has the lightest background colours set for the components as <span class="code-span">@CoreCssVariables.Colour_Neutral_70</span>.
+</p>
+    
+<p>
+    For WCAG 1.4.11 your borders and indicators should have a ratio of 3:1 or more to meet 2.2 AA requirements.
+</p>
+<p>
+    The following gets the current computed CSS property values and then checks the contrast.
+</p>
+<div style="color:var(@CoreCssVariables.Colour_Neutral_90); padding: var(--br-unit-space-3);width: 500px;height:200px; border-radius:var(--br-unit-radius-2);
+            display:flex;flex-direction:column;gap:2rem; justify-content:center; align-items:center; background-color:var(@CoreCssVariables.Colour_Neutral_20)">
+    <span>Background colour: @CoreCssVariables.Colour_Neutral_20</span>
+    <span style="padding: var(--br-unit-space-3);border-radius:var(--br-unit-radius-2); border:2px solid var(@CoreCssVariables.Colour_Primary_70);">
+        Focus indicator colour: @CoreCssVariables.All_Focus_Indicator <br />
+        (@CoreCssVariables.All_Focus_Indicator_Value_On_Light)
+    </span>
+    <span>
+        Contrast ratio: @_focusOnNeutral20Contrast:1
+    </span>
+</div>
+
+<p></p>
+
+<div style="color:var(@CoreCssVariables.Colour_Neutral_5); padding: var(--br-unit-space-3);width: 500px;height:200px; border-radius:var(--br-unit-radius-2);
+    display:flex;flex-direction:column;gap:2rem; justify-content:center; align-items:center; background-color:var(@CoreCssVariables.Colour_Neutral_70)">
+    <span>Background colour: @CoreCssVariables.Colour_Neutral_70</span>
+    <span style="padding: var(--br-unit-space-3);border-radius:var(--br-unit-radius-2); border:2px solid var(@CoreCssVariables.Colour_Primary_30);">
+        Focus indicator colour: @CoreCssVariables.All_Focus_Indicator <br />
+        (@CoreCssVariables.All_Focus_Indicator_Value_On_Dark)
+    </span>
+    <span>
+        Contrast ratio: @_focusOnNeutral70Contrast:1
+    </span>
+</div>
+
+<p></p>
+
+<div style="color:var(@CoreCssVariables.Colour_Neutral_90); padding: var(--br-unit-space-3);width: 500px;height:200px; border-radius:var(--br-unit-radius-2);
+    display:flex;flex-direction:column;gap:2rem; justify-content:center; align-items:center; background-color:var(@CoreCssVariables.Colour_Neutral_20)">
+    <span>Background colour: @CoreCssVariables.Colour_Neutral_20</span>
+    <span style="padding: var(--br-unit-space-3);border-radius:var(--br-unit-radius-2); border:2px solid var(@CoreCssVariables.Colour_Primary_50);">
+        Focus indicator colour: @CoreCssVariables.All_Button_Border_Colour <br />
+        (@CoreCssVariables.Colour_Primary_50)
+    </span>
+    <span>
+        Contrast ratio: @_borderOnNeutral20Contrast:1
+    </span>
+</div>
+<p></p>
+
+<div style="color:var(@CoreCssVariables.Colour_Neutral_5); padding: var(--br-unit-space-3);width: 500px;height:200px; border-radius:var(--br-unit-radius-2);
+    display:flex;flex-direction:column;gap:2rem; justify-content:center; align-items:center; background-color:var(@CoreCssVariables.Colour_Neutral_70)">
+    <span>Background colour: @CoreCssVariables.Colour_Neutral_70</span>
+    <span style="padding: var(--br-unit-space-3);border-radius:var(--br-unit-radius-2); border:2px solid var(@CoreCssVariables.Colour_Primary_20);">
+        Focus indicator colour: @CoreCssVariables.All_Button_Border_Colour <br />
+        (@CoreCssVariables.Colour_Primary_20)
+    </span>
+    <span>
+        Contrast ratio: @_borderOnNeutral70Contrast:1
+    </span>
+</div>
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Overview}")">
         <span aria-hidden="true"></span>
@@ -17,6 +83,63 @@
         <span aria-hidden="true"></span>
     </a>
 </div>
-@code {
 
+@code {
+    [Inject] ILiveRegionService LiveRegionService { get; set; } = default!;
+    [Inject] IJSRuntime         JSRuntime         { get; set; } = default!;
+
+    private IJSObjectReference? _jsModule = null;
+
+
+    private double _focusOnNeutral20Contrast = 0;
+    private double _focusOnNeutral70Contrast = 0;
+    private double _borderOnNeutral20Contrast = 0;
+    private double _borderOnNeutral70Contrast = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _jsModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Doc_Theme_Module_File_Path);
+
+        await GetSetContrastInformation();
+    }
+
+    private async Task GetSetContrastInformation()
+    {
+        if (_jsModule is null) return;
+
+        var neutral20Value    = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Neutral_20);
+        var neutral70Value    = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Neutral_70);
+        var primary70Value    = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Primary_70);
+        var primary20Value    = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Primary_20);
+        var primary50Value    = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Primary_50);
+        var focusOnDarkValue  = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Primary_30);
+
+        var focusOnLightValue = primary70Value;
+
+        var neutral20RGB     = ColourUtils.HexToRgbColour(neutral20Value);
+        var neutral70RGB     = ColourUtils.HexToRgbColour(neutral70Value);
+        var primary70RGB     = ColourUtils.HexToRgbColour(primary70Value);
+        
+        var borderOnLightRGB = ColourUtils.HexToRgbColour(primary50Value);
+        var borderOnDarkRGB  = ColourUtils.HexToRgbColour(primary20Value);
+
+        var focusOnLightRGB  = ColourUtils.HexToRgbColour(primary70Value);
+        var focusOnDarkRGB   = ColourUtils.HexToRgbColour(focusOnDarkValue);
+
+
+        _focusOnNeutral20Contrast = ColourUtils.CalculateContrast(focusOnLightRGB, neutral20RGB);
+        _focusOnNeutral70Contrast = ColourUtils.CalculateContrast(focusOnDarkRGB, neutral70RGB);
+
+        _borderOnNeutral20Contrast = ColourUtils.CalculateContrast(borderOnLightRGB, neutral20RGB);
+        _borderOnNeutral70Contrast = ColourUtils.CalculateContrast(borderOnDarkRGB, neutral70RGB);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        try
+        {
+            if (_jsModule is not null) await _jsModule.DisposeAsync();
+        }
+        catch { }
+    }
 }

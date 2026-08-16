@@ -701,4 +701,77 @@ public class InputSnippets
 
         }
         """;
+
+    public const string Select_Input_Code_Example = """
+
+            <EditForm Model="@_profileData" OnSubmit="HandleSubmit">
+            <BlazorValidated TEntity="ProfileDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />
+            <div class="br-input-row">
+                <SelectInput  class=" br-col-xs-12 br-col-sm-6" LabelText="Favourite Food" HintText="What food do you like the most?" Required="true" 
+                    @bind-Value="@_profileData.FavouriteFoodID" SvgIcon="--svg-food-icon">
+                     <OptionValues>
+                         <option value="0">Please select your favourite food</option>
+                        @foreach(var item in _foodListItems)
+                        {
+                            <option value="@item.Key" >@item.Value</option>
+                        }
+                    </OptionValues>
+                </SelectInput>
+            </div>
+            <div class="br-input-row">
+                <SelectInput class=" br-col-xs-12 br-col-sm-6" LabelText="Favourite Food" HintText="What food do you like the most?" Required="true" ReadOnly="true"
+                             @bind-Value="@_profileData.FavouriteFoodID" SvgIcon="--svg-food-icon">
+                    <OptionValues>
+                        <option value="0">Please select your favourite food</option>
+                        @foreach (var item in _foodListItems)
+                        {
+                            <option value="@item.Key">@item.Value</option>
+                        }
+                    </OptionValues>
+                </SelectInput>
+            </div>
+            <div class="br-input-row">
+                <SelectInput class=" br-col-xs-12 br-col-sm-6" LabelText="Favourite Food" HintText="What food do you like the most?" Required="true" AriaDisabled="true"
+                             @bind-Value="@_profileData.FavouriteFoodID" SvgIcon="--svg-food-icon">
+                    <OptionValues>
+                        <option value="0">Please select your favourite food</option>
+                        @foreach (var item in _foodListItems)
+                        {
+                            <option value="@item.Key">@item.Value</option>
+                        }
+                    </OptionValues>
+                </SelectInput>
+            </div>
+        </EditForm>
+            
+        @code {
+
+
+            private ProfileDto _profileData               = new();
+            private Dictionary<int,string> _foodListItems = new(){[1]="Fish & Chips", [2]="Burger & Fries", [3]="Pizza"};
+
+            private ImmutableDictionary<string, BoxedValidator> _boxedValidators = default!;
+
+            protected override void OnInitialized()
+            {
+                var foodValidator = MemberValidators.CreatePredicateValidator<int>(c => c == 1, "FavouriteFoodID", "Favourite Food", "Wrong answer, it has to be Fish & Chips");
+
+                _boxedValidators = BlazorValidationBuilder<ProfileDto>.Create()
+                                        .ForMember(c => c.FavouriteFoodID, foodValidator)
+                                        .GetBoxedValidators();
+            }
+
+            private void HandleSubmit() { }
+
+            public class ProfileDto
+            {
+                public int FavouriteFoodID { get; set; }
+            }
+
+        }
+        
+
+        """;
+        
+        
 }

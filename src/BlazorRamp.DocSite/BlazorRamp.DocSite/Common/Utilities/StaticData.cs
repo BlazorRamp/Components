@@ -1,6 +1,6 @@
 ﻿using BlazorRamp.DocSite.Common.Models;
 
-namespace BlazorRamp.DocSite.Common.Utility;
+namespace BlazorRamp.DocSite.Common.Utilities;
 
 public class StaticData
 {

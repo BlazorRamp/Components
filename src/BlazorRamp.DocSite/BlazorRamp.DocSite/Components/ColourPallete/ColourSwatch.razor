@@ -1,0 +1,25 @@
+﻿
+<div class="@GlobalValues.Colour_Palette_Swatch_Class" style="@($"{_backgroundColour}{(_textColourStyle == null ? "" : _textColourStyle)}")">
+    <span class="@GlobalValues.Colour_Palette_Swatch_Name_Class">@VariableName</span>
+</div>
+
+@code {
+    [Parameter] public string  VariableName    { get; set; } = "--br-unit-colour-primary";
+    [Parameter] public string? TextColourValue { get; set; } = null;
+
+    private string  _variableName     = "--br-unit-colour-primary";
+    private string? _colourValue      = "black";
+    private string? _textColourStyle  = String.Empty;
+    private string  _backgroundColour = "white";
+
+    protected override void OnParametersSet()
+    {
+        _colourValue  = String.IsNullOrWhiteSpace(TextColourValue) ? null : TextColourValue.Trim();
+        _variableName = String.IsNullOrWhiteSpace(VariableName) ? "--br-unit-colour-primary" : VariableName.Trim();
+
+        _textColourStyle  = GeneralHelper.CheckSetColourVariable(_colourValue, GlobalValues.Colour_Swatch_Text_Colour_Var_Name);
+        _backgroundColour = GeneralHelper.CheckSetColourVariable($"var({_variableName})", GlobalValues.Colour_Swatch_Background_Var_Name) ?? $"{GlobalValues.Colour_Swatch_Background_Var_Name} : white;";
+    }
+
+
+}
