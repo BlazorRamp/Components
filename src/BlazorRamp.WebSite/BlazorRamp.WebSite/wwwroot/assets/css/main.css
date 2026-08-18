@@ -397,8 +397,7 @@
   --br-kbd-background-colour: var(--br-unit-colour-info-darker);
   --br-unit-colour-canvas-inverted: var(--br-unit-colour-neutral-5);
   --br-unit-colour-canvas-text-inverted: var(--br-unit-colour-neutral-90);
-  --br-comp-all-button-background: var(--br-unit-colour-primary-70);
-  --br-comp-all-button-border-colour: var(--br-unit-colour-primary-30);
+  --br-comp-all-button-border-colour: var(--br-unit-colour-primary-20);
   --br-comp-all-area-header-background: var(--br-unit-colour-neutral-70);
   --br-comp-input-error-colour: var(--br-unit-colour-danger-light);
   --br-comp-input-success-colour: var(--br-unit-colour-success-light);
@@ -673,6 +672,7 @@ body #app__main {
   border-radius: var(--br-comp-all-button-border-radius);
   border-style: var(--br-comp-all-button-border-style);
   border-width: var(--br-comp-all-button-border-width);
+  border-color: var(--br-comp-all-button-border-colour);
   font: var(--br-comp-all-button-font);
   font-weight: var(--br-comp-all-button-font-weigh);
   font-size: var(--br-comp-all-button-font-size);
@@ -708,6 +708,7 @@ body #app__main {
   border-radius: var(--br-comp-all-button-border-radius);
   border-style: var(--br-comp-all-button-border-style);
   border-width: var(--br-comp-all-button-border-width);
+  border-color: var(--br-comp-all-button-border-colour);
   font: var(--br-comp-all-button-font);
   font-weight: var(--br-comp-all-button-font-weigh);
   font-size: var(--br-comp-all-button-font-size);
@@ -745,6 +746,7 @@ body #app__main {
   border-radius: var(--br-comp-all-button-border-radius);
   border-style: var(--br-comp-all-button-border-style);
   border-width: var(--br-comp-all-button-border-width);
+  border-color: var(--br-comp-all-button-border-colour);
   font: var(--br-comp-all-button-font);
   font-weight: var(--br-comp-all-button-font-weigh);
   font-size: var(--br-comp-all-button-font-size);

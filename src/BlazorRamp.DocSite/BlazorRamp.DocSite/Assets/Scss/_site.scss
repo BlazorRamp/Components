@@ -36,8 +36,7 @@
     --br-code-block-text: var(--br-unit-colour-info-darker);
     --br-code-table-heading-text: var(--br-info-box-alternate-heading-text);
     --br-unit-colour-secondary-text-dark: var(--br-unit-colour-secondary-darker);
-    //
-    --br-comp-all-button-border-colour: var(--br-unit-colour-primary-50);
+   
 }
 
     :root:has(#theme-toggler[aria-checked="true"]) {
@@ -66,10 +65,10 @@
         --br-kbd-background-colour: var(--br-unit-colour-info-darker);
         --br-unit-colour-canvas-inverted: var(--br-unit-colour-neutral-5);
         --br-unit-colour-canvas-text-inverted: var(--br-unit-colour-neutral-90);
-        --br-comp-all-button-background: var(--br-unit-colour-primary-70);
         --br-comp-all-button-text: var(--br-unit-colour-primary-text-light);
         --br-code-block-background-colour: var(--br-unit-colour-secondary-darker);
         --br-code-block-text: var(--br-unit-colour-info-lighter);
+        --br-comp-input-es-error-colour: var(--br-unit-colour-danger-light);
         --br-comp-input-error-colour: var(--br-unit-colour-danger-light);
         --br-comp-input-success-colour: var(--br-unit-colour-success-light);
         --br-comp-debounce-filter-error-colour: var(--br-unit-colour-danger-light);
@@ -77,6 +76,7 @@
         --br-comp-data-table-area-header-background: var(--br-unit-colour-neutral-70);
         --br-comp-data-table-alternate-row: var(--br-unit-colour-neutral-70);
         --br-comp-all-button-border-colour: var(--br-unit-colour-primary-20);
+        --br-comp-all-border-interactive-colour: var(--br-unit-colour-primary-20);
     }
 *,
 *::before,
@@ -219,3 +219,28 @@ h2:focus-visible {
     outline-color: var(--br-comp-all-outline-colour);
 }
 
+
+.valid-contrast-icon {
+    height:1.5em;
+    aspect-ratio:1/1;
+    display: inline-block;
+    background-color: currentColor;
+    mask-image: var(--br-svg-valid-state-icon); //icon from inputs
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    mask-position: center;
+    forced-color-adjust:none;
+
+}
+
+.invalid-contrast-icon {
+    height: 1.5em;
+    aspect-ratio: 1/1;
+    display: inline-block;
+    background-color: currentColor;
+    mask-image: var(--br-svg-invalid-state-icon); //icon from inputs
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    mask-position: center;
+    forced-color-adjust: none;
+}

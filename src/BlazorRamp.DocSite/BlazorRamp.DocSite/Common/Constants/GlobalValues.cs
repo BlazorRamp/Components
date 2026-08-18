@@ -18,6 +18,7 @@ public class GlobalValues
     public const string JS_Theme_Set_Element_Variable_Func    = "setElementVariable";// id, name, value, remove
     public const string JS_Theme_Remove_Style_Property_Func   = "removeStyleProperty";
 
+    public const string JS_Theme_Apply_Opacity_To_Hex_Value = "applyOpacityToHex";//(foregroundHex: string, opacityValue: number = 1, backgroundHex: string = '#ffffff'):
 
     public const string Info_Box_Class = "info-box";
     public const string Info_Box_Heading_Class = $"{Info_Box_Class}__heading";
@@ -195,6 +196,14 @@ public class GlobalValues
     public const string Colour_Swatch_Text_Colour_Var_Name = "--_br-swatch-text-colour";
     public const string Colour_Swatch_Background_Var_Name  = "--_br-swatch-background";
 
+
+
+    public const string Theme_Tool_Class          = "theme-tool";
+    public const string Theme_Tool_Title_Class    = $"{Theme_Tool_Class}__title";
+    public const string Theme_Tool_Content_Class  = $"{Theme_Tool_Class}__content";
+    public const string Theme_Tool_Controls_Class = $"{Theme_Tool_Class}__controls";
+    public const string Theme_Tool_Swatch_Class   = $"{Theme_Tool_Class}__swatch";
+    public const string Theme_Tool_Output_Class   = $"{Theme_Tool_Class}__output";
 
 
     public const string Regex_Hex_Colour_Pattern = "^#?[a-fA-F0-9]{6}$";

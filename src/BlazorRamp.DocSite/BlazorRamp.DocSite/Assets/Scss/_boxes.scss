@@ -110,22 +110,30 @@
         outline-color: var(--br-comp-all-outline-colour);
     }
 }
-.input-section {
+.theme-tool {
     position: relative;
     padding: var(--br-unit-space-5);
     margin-bottom: var(--br-unit-space-5);
     border-radius: var(--br-unit-radius-5);
     border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
-    overflow: clip;
-    display: flex;
-    align-items: end;
-    gap: var(--br-unit-space-5);
+
+    &__title{
+
+    }
+
+    &__content{
+        overflow: clip;
+        display: flex;
+        align-items: start;
+        flex-wrap: wrap;
+        gap: var(--br-unit-space-5);
+    }
 
     &__controls {
         width: fit-content;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        height: 70px;
     }
 
     & label {
@@ -135,11 +143,24 @@
         color: inherit;
         background: inherit;
         margin-bottom: var(--br-unit-space-3);
-        align-self: start;
     }
 
+    &__swatch {
+        height: 45px;
+        background-color: Hsl(220,44%,48%);
+        color: white;
+        forced-color-adjust: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--br-unit-font-size-1);
+        padding: var(--br-unit-space-3);
+        border-radius: var(--br-unit-radius-2);
+    }
+
+
     & input {
-        border-radius: var(--br-unit-radius-1);
+        border-radius: var(--br-unit-radius-2);
         border: none;
         height: 50px;
 
@@ -167,13 +188,14 @@
         align-items: center;
         justify-content: center;
         font-size: var(--br-unit-font-size-1);
-
     }
 
     & button {
         border-radius: var(--br-unit-radius-1);
+        align-self: end;
+        margin: 0;
+        margin-top: auto;
         height: 42px;
-        margin-bottom: 6px;
     }
 
     & h2 {

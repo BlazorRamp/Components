@@ -33,6 +33,25 @@ const getResolvedHexColourValue = (variableName) => {
     return "";
 };
 const toHex = (r, g, b) => '#' + [r, g, b].map(x => Math.round(Math.max(0, Math.min(255, x))).toString(16).padStart(2, '0')).join('');
+const applyOpacityToHex = (foregroundHex, opacityValue = 1, backgroundHex = '#ffffff') => {
+    const parseHex = (hexValue) => {
+        if (!/^#[0-9a-fA-F]{6}$/.test(hexValue.trim()))
+            return null;
+        return [parseInt(hexValue.slice(1, 3), 16), parseInt(hexValue.slice(3, 5), 16), parseInt(hexValue.slice(5, 7), 16),];
+    };
+    const foregroundRgb = parseHex(foregroundHex);
+    if (!foregroundRgb)
+        return "";
+    const clampedOpacity = Math.max(0, Math.min(1, opacityValue));
+    if (clampedOpacity === 1)
+        return foregroundHex; // fully opaque, nothing to blend
+    const backgroundRgb = parseHex(backgroundHex);
+    if (!backgroundRgb)
+        return "";
+    // opacityValue === 0 naturally resolves to pure background below, no need for a special case
+    const blendChannel = (foregroundChannel, backgroundChannel) => Math.round(backgroundChannel + (foregroundChannel - backgroundChannel) * clampedOpacity);
+    return toHex(blendChannel(foregroundRgb[0], backgroundRgb[0]), blendChannel(foregroundRgb[1], backgroundRgb[1]), blendChannel(foregroundRgb[2], backgroundRgb[2]));
+};
 const setStyleProperty = (variableName, variableValue) => {
     document.documentElement.style.setProperty(variableName, variableValue);
 };
@@ -42,5 +61,5 @@ const getComputedStyleProperty = (variableName) => {
 const removeStyleProperty = (variableName) => {
     document.documentElement.style.removeProperty(variableName);
 };
-export { setStyleProperty, setElementVariable, getComputedStyleProperty, removeStyleProperty, getResolvedHexColourValue };
+export { setStyleProperty, setElementVariable, getComputedStyleProperty, removeStyleProperty, getResolvedHexColourValue, applyOpacityToHex };
 //# sourceMappingURL=doc-themes.js.map

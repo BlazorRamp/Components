@@ -29,9 +29,7 @@ public class ThemingSnippets
         --br-kbd-background-colour: var(--br-unit-colour-info-darker);
         --br-unit-colour-canvas-inverted: var(--br-unit-colour-neutral-5);
         --br-unit-colour-canvas-text-inverted: var(--br-unit-colour-neutral-90);
-        --br-comp-all-button-background: var(--br-unit-colour-primary-70);
         --br-comp-all-button-text: var(--br-unit-colour-primary-text-light);
-        --br-comp-all-button-border-colour: var(--br-unit-colour-primary-30);
         --br-code-block-background-colour: var(--br-unit-colour-secondary-darker);
         --br-code-block-text: var(--br-unit-colour-info-lighter);
         --br-comp-input-error-colour: var(--br-unit-colour-danger-light);
@@ -40,6 +38,7 @@ public class ThemingSnippets
         --br-comp-all-pane-panel-background: var(--br-unit-colour-neutral-90);
         --br-comp-data-table-area-header-background: var(--br-unit-colour-neutral-70);
         --br-comp-data-table-alternate-row: var(--br-unit-colour-neutral-70);
+        --br-comp-all-button-border-colour: var(--br-unit-colour-primary-20);
         }
         """;
 

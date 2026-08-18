@@ -267,7 +267,7 @@
   --br-comp-all-link-active-background-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.3);
   --br-comp-all-link-focused-background-colour: var(--br-unit-colour-secondary-lighter);
   --br-comp-all-overlay-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.15);
-  --br-comp-all-border-interactive-colour: var(--br-unit-colour-primary-40);
+  --br-comp-all-border-interactive-colour: var(--br-unit-colour-primary-50);
   --br-comp-all-hint-text-brightness: 85%;
   --br-comp-all-divider-colour: var(--br-unit-colour-neutral-30);
   --br-comp-all-selection-colour: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10));

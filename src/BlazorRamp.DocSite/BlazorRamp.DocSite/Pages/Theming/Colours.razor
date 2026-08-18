@@ -1,6 +1,6 @@
-﻿@using BlazorRamp.DocSite.Pages.Services.LiveRegion
+﻿
+@using BlazorRamp.DocSite.Pages.Services.LiveRegion
 @attribute [Route($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Colours}")]
-@implements IAsyncDisposable
 
 <PageTitle>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Colours</PageTitle>
 
@@ -36,7 +36,7 @@
     on the theming overview page and I will be adding an export/copy to clipboard function on the sandbox page (once completed). These cover every component released.
 </p>
 <p>
-    All of the colour changes are driven by pure css colour functions so there are no css pre-processors or calls to some AP - everything is in the Core project style sheet.
+    All of the colour changes are driven by pure css colour functions so there are no css pre-processors or calls to some API - everything is in the Core project style sheet.
     For more advanced colour control over the generated neutrals, there is also a <span class="code-span">@CoreCssVariables.Colour_Neutral_Saturation</span> variable. I set this
     with a value of 10. If you want less of the primary tinge in the neutrals, just lower this value or raise it for a more.
 </p>
@@ -47,28 +47,10 @@
 </p>
 <p>
     The neutral tinge slider below only goes from 0 to 15 (the library default is 10), but as the underlying CSS colour function uses a percentage you could go higher but you really then would not have neutrals.
-    Choose your primary and then navigate the site to see the components using your colour.
+    Choose your primary and then navigate the site to see the components using your colour (<b>you can check contrast on the Theming Accessibility page</b>).
 </p>
-<section class="input-section">
-    <div class="input-section__controls">
-        <label for="colour-picker">Choose your primary:</label>
-        <input id="colour-picker" type="color" value="@_primaryColourValue" @oninput="HandleColourChange" />
-    </div>
 
-    <div class="input-section__controls">
-        <label for="neutral-slider">Adjust neutral tinge:</label>
-        <input id="neutral-slider" type="range" min="0" max="15" value="@_neutralSaturationValue" @oninput="HandleSaturation" />
-    </div>
-    <div class="input-section__controls">
-        <label>Neutral tinge value:</label>
-        <span class="input-section__output">@_neutralSaturationValue</span>
-    </div>
-    <div class="input-section__controls">
-        <button class="test-button" @onclick="ResetColourValues">
-            Reset
-        </button>
-    </div>
-</section>
+<ThemeTool />
 
 <section>
 
@@ -188,7 +170,8 @@
         The canvas colour used is off-white as its the neutral colour created from the primary colour. You can off course just set the underlying variable <span class="code=span">@CoreCssVariables.Colour_Canvas</span> to white
         if you prefer. And then black for a dark theme.
     </p>
-    <div style="display:flex;flex-wrap:wrap; border-radius: var(--br-unit-radius-3); border: 1px solid var(--br-comp-all-divider-colour); padding:var(--br-unit-space-2);">
+    <div style="display:flex;flex-wrap:wrap; border-radius: var(--br-unit-radius-3); border: 1px solid var(--br-comp-all-divider-colour); 
+        padding:var(--br-unit-space-2); margin-bottom:2rem;">
         
         <div style="flex: 1 1 400px; font-size:var(--br-unit-font-size-1); display:flex;flex-direction:column;gap:var(--br-unit-space-7); 
             background-color:var(--br-unit-colour-neutral-5); padding:var(--br-unit-space-4);border-radius: var(--br-unit-radius-3);">
@@ -212,7 +195,7 @@
         <div style="flex: 1 1 400px;font-size:var(--br-unit-font-size-1); display:flex;flex-direction:column;gap:var(--br-unit-space-7); 
             background-color:var(--br-unit-colour-neutral-90);padding:var(--br-unit-space-4);border-radius:var(--br-unit-radius-3)">
 
-            <span style="color:var(@CoreCssVariables.Colour_Primary_Text_Light);">Primary light text @CoreCssVariables.Colour_Primary_Text_Light <br />(which uses the value from --br-unit-colour-primary-30)</span>
+            <span style="color:var(@CoreCssVariables.Colour_Primary_Text_Light);">Primary light text @CoreCssVariables.Colour_Primary_Text_Light <br />(which uses the value from --br-unit-colour-primary-10)</span>
 
             <span style="color:var(@CoreCssVariables.Colour_Secondary_Text_Light);">Secondary light text @CoreCssVariables.Colour_Secondary_Text_Light <br />(which uses the value from --br-unit-colour-secondary-lighter)</span>
 
@@ -232,7 +215,6 @@
     </div>
 </section>
 
-
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_CSS_Variables}")">
         <span aria-hidden="true"></span>
@@ -246,66 +228,4 @@
     </a>
 </div>
 @code {
-
-    [Inject] ILiveRegionService LiveRegionService { get; set; } = default!;
-    [Inject] IJSRuntime         JSRuntime         { get; set; } = default!;
-
-    private IJSObjectReference? _jsModule = null;
-
-    private string _primaryColourValue     = "#008C8C";
-    private string _rootPrimaryVar         = "--br-unit-colour-primary";
-    private string _neutralSaturationVar   = "--br-unit-colour-neutral-saturation";
-    private string _neutralSaturationValue = "10";
-
-    private async Task HandleSaturation(ChangeEventArgs args)
-    {
-        _neutralSaturationValue = args.Value.ToString();
-        if (_jsModule is not null) await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Style_Property_Func, _neutralSaturationVar, _neutralSaturationValue);
-    }
-
-    private async Task HandleColourChange(ChangeEventArgs args)
-    {
-        _primaryColourValue = args.Value.ToString();
-
-        if (_jsModule is not null) await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Style_Property_Func, _rootPrimaryVar, _primaryColourValue);
-    }
-
-    private async Task ResetColourValues()
-    {
-        if (_jsModule is not null)
-        {
-            _primaryColourValue    = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, CoreCssVariables.Original_Primary_Value_Store_Name);
-            _neutralSaturationValue = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, CoreCssVariables.Original_Saturation_Value_Store_Name);
-
-            // await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Root_Variable_Func, _neutralSaturationVar, _neutralSaturationValue);
-            // await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Root_Variable_Func, _rootPrimaryVar, _primaryColourValue);
-
-            await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Remove_Style_Property_Func, _rootPrimaryVar);
-            await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Remove_Style_Property_Func, _neutralSaturationVar);
-
-            await LiveRegionService.MakeAnnouncement(new("Site colours have been reset to the default values",AnnouncementTrigger:"Colour reset button"), true);
-
-        }
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
-        _jsModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Doc_Theme_Module_File_Path);
-
-        if (_jsModule is null) return; 
-
-        _primaryColourValue     = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, _rootPrimaryVar);
-        _neutralSaturationValue = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, _neutralSaturationVar);
-
-
-    }
-
-    public async ValueTask DisposeAsync()
-    {
-        try
-        {
-            if (_jsModule is not null) await _jsModule.DisposeAsync();
-        }
-        catch { }
-    }
 }
