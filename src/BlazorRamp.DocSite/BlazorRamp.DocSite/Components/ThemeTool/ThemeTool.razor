@@ -7,15 +7,15 @@
     <div class="@GlobalValues.Theme_Tool_Content_Class">
         <div class="@GlobalValues.Theme_Tool_Controls_Class">
             <label for="colour-picker">Choose your primary:</label>
-            <input id="colour-picker" type="color" value="@_primaryColourValue" @oninput="HandleColourChange" />
+            <input id="colour-picker" type="color" value="@_primaryColourValue" @oninput="HandleOnInput" @onchange="HandleOnChange" />
         </div>
 
         <div class="@GlobalValues.Theme_Tool_Controls_Class">
             <label for="neutral-slider">Adjust neutral tinge:</label>
-            <input id="neutral-slider" type="range" min="0" max="15" value="@_neutralSaturationValue" @oninput="HandleSaturation" />
+            <input id="neutral-slider" type="range" min="0" max="15" value="@_neutralSaturationValue" @oninput="HandleSaturation" @onchange="HandleOnChange" />
         </div>
         <div class="@GlobalValues.Theme_Tool_Controls_Class">
-            <label>Neutral tinge value:</label>
+            <span class="@GlobalValues.Theme_Tool_Label_Class">Neutral tinge value:</span>
             <span class="@GlobalValues.Theme_Tool_Output_Class">@_neutralSaturationValue</span>
         </div>
         <div class="@GlobalValues.Theme_Tool_Controls_Class">
@@ -24,7 +24,7 @@
             </button>
         </div>
         <div class="@GlobalValues.Theme_Tool_Controls_Class">
-            <label>To see the default library colours use:</label>
+            <span class="@GlobalValues.Theme_Tool_Label_Class">To see the default library colours use:</span>
             <div class="@GlobalValues.Theme_Tool_Swatch_Class">
                 <span>H: 220 S:44% L: 48% - with the neutral tinge set to 10</span>
             </div>
@@ -54,6 +54,8 @@
     [Parameter] public string Title { get; set; } = "Theme controls";
     [Parameter] public ThemeToolHeadingLevel ThemeToolHeadingLevel { get; set; } = ThemeToolHeadingLevel.H2;
 
+    [Parameter] public EventCallback OnColourChanged { get; set; }
+
     [Inject] ILiveRegionService LiveRegionService { get; set; } = default!;
     [Inject] IJSRuntime JSRuntime { get; set; } = default!;
 
@@ -70,11 +72,18 @@
         if (_jsModule is not null) await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Style_Property_Func, _neutralSaturationVar, _neutralSaturationValue);
     }
 
-    private async Task HandleColourChange(ChangeEventArgs args)
+    private async Task HandleOnInput(ChangeEventArgs args)
     {
         _primaryColourValue = args.Value.ToString();
 
         if (_jsModule is not null) await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Style_Property_Func, _rootPrimaryVar, _primaryColourValue);
+
+
+    }
+
+    private async Task HandleOnChange()
+    {
+        if (OnColourChanged.HasDelegate) await OnColourChanged.InvokeAsync();
     }
 
     private async Task ResetColourValues()
@@ -93,6 +102,8 @@
             await LiveRegionService.MakeAnnouncement(new("Site colours have been reset to the default values", AnnouncementTrigger: "Colour reset button"), true);
 
         }
+
+        await HandleOnChange();
     }
 
     protected override async Task OnInitializedAsync()

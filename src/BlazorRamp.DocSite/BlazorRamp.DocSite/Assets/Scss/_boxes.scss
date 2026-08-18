@@ -117,12 +117,10 @@
     border-radius: var(--br-unit-radius-5);
     border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
 
-    &__title{
-
+    &__title {
     }
 
-    &__content{
-        overflow: clip;
+    &__content {
         display: flex;
         align-items: start;
         flex-wrap: wrap;
@@ -137,6 +135,15 @@
     }
 
     & label {
+        font-size: var(--br-unit-font-size-label);
+        font-size: var(--br-unit-font-size-label);
+        font-weight: var(--br-unit-font-weight-500);
+        color: inherit;
+        background: inherit;
+        margin-bottom: var(--br-unit-space-3);
+    }
+
+    &__label {
         font-size: var(--br-unit-font-size-label);
         font-size: var(--br-unit-font-size-label);
         font-weight: var(--br-unit-font-weight-500);

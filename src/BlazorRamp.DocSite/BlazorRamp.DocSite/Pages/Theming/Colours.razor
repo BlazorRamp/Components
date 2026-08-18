@@ -9,7 +9,7 @@
 <p>
     The primary, neutral, secondary and accent colours are all derived from a root variable <span class="code-span">@CoreCssVariables.Colour_Primary</span>.
     This single root variable is then used to create the roots for neutral, secondary and accent colours which are then used to create the respective palettes.
-    The primary and neutral variables that end "-50" are the exact root colours that were used to create the lighter and darker shades.
+    The primary and neutral variables that end "-50" are the same as the root colour that were used to create the lighter and darker shades.
 </p>
 <p>
     <b>For most applications you will most likely only need to change the single <span class="code-span">@CoreCssVariables.Colour_Primary</span> variable value.</b> But if the others are
@@ -32,10 +32,6 @@
     for your branding etc.
 </p>
 <p>
-    The components do not come with any predefined dark theme variables, when you click the theme switcher the site just uses values I choose; you can see these values
-    on the theming overview page and I will be adding an export/copy to clipboard function on the sandbox page (once completed). These cover every component released.
-</p>
-<p>
     All of the colour changes are driven by pure css colour functions so there are no css pre-processors or calls to some API - everything is in the Core project style sheet.
     For more advanced colour control over the generated neutrals, there is also a <span class="code-span">@CoreCssVariables.Colour_Neutral_Saturation</span> variable. I set this
     with a value of 10. If you want less of the primary tinge in the neutrals, just lower this value or raise it for a more.
@@ -43,11 +39,17 @@
 <p>
     The browsers default colour picker below is bound to the primary colour, so just change it to change the entire site so you can go look at any component and use the
     dark theme switch at the top of the screen to see what everything looks like. Please note, there is no function that automatically picks the dark theme values, I just selected
-    them, so again you would just choose whatever you liked, but I think the defaults would be satisfy a lot of applications.
+    them but I think these would be satisfy a lot of applications. You can see what I used on the Theming overview page and I will be adding an export/copy to clipboard function on
+    the sandbox page (once completed) for you to get all the variables for your sites style sheet.
 </p>
 <p>
     The neutral tinge slider below only goes from 0 to 15 (the library default is 10), but as the underlying CSS colour function uses a percentage you could go higher but you really then would not have neutrals.
-    Choose your primary and then navigate the site to see the components using your colour (<b>you can check contrast on the Theming Accessibility page</b>).
+    Don't forget to visit the Theming Accessibility page to check contrast ratios after changing the primary colour.
+</p>
+<p>
+    <b>Note: </b> I often change the primary colour of this site and the test site from the default. Also note given that I have to get the computed
+    css values (given the css colour functions), apply them to a canvas, convert them to hex/RGB for my colour contrast utility
+    there may be slight rounding differences to other checkers by about 0.01 on some colours.
 </p>
 
 <ThemeTool />
@@ -110,7 +112,7 @@
 
 <section>
 
-    <h2 style="margin-block:var(--br-unit-space-9);">Fixed colours</h2>
+    <h2 style="margin-block:var(--br-unit-space-5);">Fixed colours</h2>
 
     <div style="display:flex;flex-wrap:wrap; gap:var(--br-unit-space-5);margin-block:var(--br-unit-space-5);">
 
@@ -155,9 +157,30 @@
 </div>
 
 </section>
-
 <section>
-    <h2 style="margin-block:var(--br-unit-space-9);">Regular text and page background colours</h2>
+    <h2 style="margin-block:var(--br-unit-space-5);">Root colour CSS property/variables</h2>
+    <dl style="display:grid; grid-template-columns: auto 1fr; gap: 0.25rem 0.5rem;">
+        <dt>Primary:</dt>
+        <dd>@CoreCssVariables.Colour_Primary</dd>
+        <dt>Neutral:</dt>
+        <dd>@CoreCssVariables.Colour_Neutral</dd>
+        <dt>Secondary:</dt>
+        <dd>@CoreCssVariables.Colour_Secondary</dd>
+        <dt>Accent:</dt>
+        <dd>@CoreCssVariables.Colour_Accent</dd>
+        <dt>Success:</dt>
+        <dd>@CoreCssVariables.Colour_Success</dd>
+        <dt>Danger:</dt>
+        <dd>@CoreCssVariables.Colour_Danger</dd>
+        <dt>Warning:</dt>
+        <dd>@CoreCssVariables.Colour_Warning</dd>
+        <dt>Info:</dt>
+        <dd>@CoreCssVariables.Colour_Info</dd>
+    </dl>
+
+</section>
+<section>
+    <h2 style="margin-block:var(--br-unit-space-5);">Regular text and page background colours</h2>
     <p>
         Regular text (on a light canvas) uses the variable <span class="code-span">@CoreCssVariables.Colour_Canvas_Text</span> which just gets is value from
         the neutral variable <span class="code-span">@CoreCssVariables.Colour_Neutral_90</span>; this neutral value is the value for the dark theme canvas. 
@@ -171,7 +194,7 @@
         if you prefer. And then black for a dark theme.
     </p>
     <div style="display:flex;flex-wrap:wrap; border-radius: var(--br-unit-radius-3); border: 1px solid var(--br-comp-all-divider-colour); 
-        padding:var(--br-unit-space-2); margin-bottom:2rem;">
+        padding:var(--br-unit-space-2); margin-bottom:2rem;forced-color-adjust:none;">
         
         <div style="flex: 1 1 400px; font-size:var(--br-unit-font-size-1); display:flex;flex-direction:column;gap:var(--br-unit-space-7); 
             background-color:var(--br-unit-colour-neutral-5); padding:var(--br-unit-space-4);border-radius: var(--br-unit-radius-3);">
@@ -214,6 +237,7 @@
         </div>
     </div>
 </section>
+
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_CSS_Variables}")">

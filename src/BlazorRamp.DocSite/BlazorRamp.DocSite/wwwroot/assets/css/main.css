@@ -742,7 +742,6 @@ h2:focus-visible {
   border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
 }
 .theme-tool__content {
-  overflow: clip;
   display: flex;
   align-items: start;
   flex-wrap: wrap;
@@ -755,6 +754,14 @@ h2:focus-visible {
   height: 70px;
 }
 .theme-tool label {
+  font-size: var(--br-unit-font-size-label);
+  font-size: var(--br-unit-font-size-label);
+  font-weight: var(--br-unit-font-weight-500);
+  color: inherit;
+  background: inherit;
+  margin-bottom: var(--br-unit-space-3);
+}
+.theme-tool__label {
   font-size: var(--br-unit-font-size-label);
   font-size: var(--br-unit-font-size-label);
   font-weight: var(--br-unit-font-weight-500);

@@ -3,7 +3,7 @@
 
 <PageTitle>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Accessibility</PageTitle>
 
-<h1>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Accessibility . . . In Progress . . .</h1>
+<h1>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Accessibility</h1>
 
 <p>
     The border and focus indicator colours in the library (css variable values/tokens) were calculated to meet <b>WCAG 1.4.11 Non-text Contrast (AA)</b>, 
@@ -15,7 +15,7 @@
 </p>
 
 <p>
-    This pages lists the darkest and lightest backgrounds used in the component library so if the primary colour is changed you can see the which
+    This pages lists the darkest and lightest backgrounds used in the component library so if the primary colour is changed you can see which
     values may need adjusting for the components.
 </p>
 <p>
@@ -29,22 +29,30 @@
 </p>
 
 <p>
-    On page initialisation, the current computed CSS custom property values are read directly from the page and checked for contrast. 
-    If any of the flagged variables fail, you don't need to touch the library itself — just override that variable in your own <span class="code-span">:root</span> block, declared 
+    On page initialisation (and after colour change), the current computed CSS custom property values are read directly from the page and checked for contrast. 
+    If any of the shown variables fail, you don't need to touch the library itself — just override that variable in your own <span class="code-span">:root</span> block, declared 
     after the Blazor Ramp stylesheet so it takes precedence in the cascade, and point it to a different step on the existing scale rather than a new hard-coded colour. 
     Stepping to the next darker/lighter value on the scale is usually enough to clear the threshold.
+</p>
+<p>
+    The browsers default colour picker below is bound to the primary colour, so just change it to change the entire site so you can go look at any component and use the
+    dark theme switch at the top of the screen to see what everything looks like. Please note, there is no function that automatically picks the dark theme values, I just selected
+    them but I think these would be satisfy a lot of applications. You can see what I used on the Theming overview page and I will be adding an export/copy to clipboard function on
+    the sandbox page (once completed) for you to get all the variables for your sites style sheet.
+</p>
+<p>
+    The neutral tinge slider below only goes from 0 to 15 (the library default is 10), but as the underlying CSS colour function uses a percentage you could go higher but you really then would not have neutrals.
 </p>
 <p>
     <b>Note: </b> I often change the primary colour of this site and the test site from the default. Also note given that I have to get the computed
     css values (given the css colour functions), apply them to a canvas, convert them to hex/RGB for my colour contrast utility
     there may be slight rounding differences to other checkers by about 0.01 on some colours.
 </p>
+
+<ThemeTool OnColourChanged="HandleColourChanged" />
 <p>
-    <strong>Important: </strong>The components do not come with any predefined dark theme variables, when you click the theme switcher the site just uses values 
-    I choose; you can see these values on the theming overview page and I will be adding an export/copy to clipboard function on the sandbox page (once completed). 
-    These cover every component released
+    <strong>Note: </strong> Contrast ratios unlike the colours will only update on final selection.
 </p>
-<ThemeTool />
 <section class="info-box" >
 <h2>Components border, focus indicator and state icon check - 3:1 minimum to pass AA</h2>
 <div style="display:flex;flex-wrap:wrap;gap:1rem;forced-color-adjust:none;">
@@ -393,7 +401,6 @@
                 <span class="br-visually-hidden">@GetContrastStateText(_errorOn90Contrast, _textAAPassValue)</span>
             </div>
         </div>
-        @*         d *@
 
         <div style="flex: 1 1 49%;color:var(@CoreCssVariables.Colour_Neutral_90); padding: var(--br-unit-space-3); border-radius:var(--br-unit-radius-2);
             display:flex;flex-direction:column;gap:var(--br-unit-space-5); justify-content:center; align-items:center; background-color:var(@CoreCssVariables.Colour_Neutral_5);">
@@ -502,6 +509,11 @@
     {
         _jsModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Doc_Theme_Module_File_Path);
 
+        await GetSetContrastInformation();
+    }
+
+    private async Task HandleColourChanged()
+    {
         await GetSetContrastInformation();
     }
 
