@@ -311,6 +311,7 @@
             </div>
         </div>
 
+
         <div style="flex: 1 1 49%;color:var(@CoreCssVariables.Colour_Neutral_90); padding: var(--br-unit-space-3); border-radius:var(--br-unit-radius-2);
             display:flex;flex-direction:column;gap:var(--br-unit-space-5); justify-content:center; align-items:center; background-color:var(@CoreCssVariables.Colour_Neutral_20);">
             <span>Background colour: @CoreCssVariables.Colour_Neutral_20</span>
@@ -340,6 +341,43 @@
                 <span> Contrast ratio: @_buttonTextOnNeutral70Contrast:1</span>
                 <span class="@GetContrastStateIconClass(_buttonTextOnNeutral70Contrast, _textAAPassValue)" aria-hidden="true" style="height:1.5em;aspect-ratio:1/1;"></span>
                 <span class="br-visually-hidden">@GetContrastStateText(_buttonTextOnNeutral70Contrast, _textAAPassValue)</span>
+            </div>
+        </div>
+
+        <div style="flex: 1 1 49%;color:var(@CoreCssVariables.Colour_Neutral_90); padding: var(--br-unit-space-3); border-radius:var(--br-unit-radius-2);
+            display:flex;flex-direction:column;gap:var(--br-unit-space-5); justify-content:center; align-items:center; 
+            background-color:var(@CoreCssVariables.Colour_Neutral_20);">
+            <span>Background colour: @CoreCssVariables.Colour_Neutral_20</span>
+            <span>Hover colour: @CoreCssVariables.All_Button_Hover_Value</span>
+            <div style="width: 100%; display:flex;flex-wrap:wrap;justify-content:center; gap:0.25rem; padding: var(--br-unit-space-3); 
+                color:var(@CoreCssVariables.All_Button_Text_Colour_Value); background-color:var(@CoreCssVariables.All_Button_Hover_Value);">
+                <span>Component button text colour:</span>
+                <span>@CoreCssVariables.All_Button_Text</span>
+                <span>(@CoreCssVariables.Colour_Primary_Text_Dark)</span>
+                <span> = (@CoreCssVariables.Colour_Primary_70)</span>
+            </div>
+            <div style="display:flex;justify-content:center;align-items:center; gap:0.25rem;">
+                <span> Contrast ratio: @_buttonTextOnHoverContrast:1</span>
+                <span class="@GetContrastStateIconClass(_buttonTextOnHoverContrast, _textAAPassValue)" aria-hidden="true" style="height:1.5em;aspect-ratio:1/1;"></span>
+                <span class="br-visually-hidden">@GetContrastStateText(_buttonTextOnHoverContrast, _textAAPassValue)</span>
+            </div>
+        </div>
+
+        <div style="flex: 1 1 49%;color:var(@CoreCssVariables.Colour_Neutral_5); padding: var(--br-unit-space-3); border-radius:var(--br-unit-radius-2);
+            display:flex;flex-direction:column;gap:var(--br-unit-space-5); justify-content:center; align-items:center; background-color:var(@CoreCssVariables.Colour_Neutral_70);">
+            <span>Background colour: @CoreCssVariables.Colour_Neutral_70</span>
+            <span>Hover colour: @CoreCssVariables.All_Button_Hover_Value</span>
+            <div style="width: 100%; display:flex;flex-wrap:wrap;justify-content:center; gap:0.25rem; padding: var(--br-unit-space-3); 
+                color:var(@CoreCssVariables.Colour_Primary_Text_Light);background-color:var(@CoreCssVariables.All_Button_Hover_Value);">
+                <span>Component button text colour:</span>
+                <span>@CoreCssVariables.All_Button_Text</span>
+                <span>(@CoreCssVariables.Colour_Primary_Text_Light)</span>
+                <span> = (@CoreCssVariables.Colour_Primary_10)</span>
+            </div>
+            <div style="display:flex;justify-content:center;align-items:center; gap:0.25rem;">
+                <span> Contrast ratio: @_buttonTextOnDarkHoverContrast:1</span>
+                <span class="@GetContrastStateIconClass(_buttonTextOnDarkHoverContrast, _textAAPassValue)" aria-hidden="true" style="height:1.5em;aspect-ratio:1/1;"></span>
+                <span class="br-visually-hidden">@GetContrastStateText(_buttonTextOnDarkHoverContrast, _textAAPassValue)</span>
             </div>
         </div>
 
@@ -431,8 +469,6 @@
             </div>
         </div>
 
-        @*         d *@
-
         <div style="flex: 1 1 49%;color:var(@CoreCssVariables.Colour_Neutral_90); padding: var(--br-unit-space-3); border-radius:var(--br-unit-radius-2);
             display:flex;flex-direction:column;gap:var(--br-unit-space-5); justify-content:center; align-items:center; background-color:var(@CoreCssVariables.Colour_Neutral_5);">
             <span>Background colour: @CoreCssVariables.Colour_Neutral_5</span>
@@ -463,6 +499,12 @@
                 <span class="br-visually-hidden">@GetContrastStateText(_hintOn90Contrast, _textAAPassValue)</span>
             </div>
         </div>
+
+
+
+
+
+
 
     </div>
 
@@ -505,6 +547,9 @@
     private double _successOn5Contrast             = 0;
     private double _successOn90Contrast            = 0;
 
+    private double _buttonTextOnHoverContrast = 0;
+    private double _buttonTextOnDarkHoverContrast = 0;
+
     protected override async Task OnInitializedAsync()
     {
         _jsModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Doc_Theme_Module_File_Path);
@@ -520,57 +565,59 @@
     private async Task GetSetContrastInformation()
     {
         if (_jsModule is null) return;
-
-        var hntOpacityValue      = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, "--br-comp-input-hint-opacity");
-        var neutral5Value        = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Neutral_5);
-        var neutral20Value       = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Neutral_20);
-        var neutral70Value       = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Neutral_70);
-        var neutral90Value       = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Neutral_90);
-        var primary70Value       = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Primary_70);
-        var primary20Value       = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Primary_20);
-        var primary50Value       = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Primary_50);
-        var focusOnDarkValue     = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Primary_30);
-        var headingTextValue     = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.All_Area_Header_Text_Colour_Value);
-        var headingOnDarkValue   = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Primary_Text_Light);
-        var buttonTextValue      = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.All_Button_Text_Colour_Value);
-        var buttonOnDarkValue    = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Primary_Text_Light);
-        var dangerValue          = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Danger);
-        var dangerLightValue     = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Danger_Light);
-        var neutral90WithOPValue = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Apply_Opacity_To_Hex_Value, neutral90Value, hntOpacityValue, neutral5Value);
-        var neutral5WithOPValue  = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Apply_Opacity_To_Hex_Value, neutral5Value, hntOpacityValue, neutral90Value);
-
+        /*
+        * Button hover background - but check, is primary with 0.10 opacity, easier than trying to get this and then apply to 
+         * buttons which have transparent backgrounds but sit on neutral 20.
+         */
+                                var hintOpacityValue        = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, "--br-comp-input-hint-opacity");
+        var neutral5Value           = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Neutral_5);
+        var neutral20Value          = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Neutral_20);
+        var neutral70Value          = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Neutral_70);
+        var neutral90Value          = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Neutral_90);
+        var primary70Value          = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Primary_70);
+        var primary20Value          = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Primary_20);
+        var primary50Value          = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Primary_50);
+        var focusOnDarkValue        = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Primary_30);
+        var headingTextValue        = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.All_Area_Header_Text_Colour_Value);
+        var headingOnDarkValue      = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Primary_Text_Light);
+        var buttonTextValue         = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.All_Button_Text_Colour_Value);
+        var buttonOnDarkValue       = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Primary_Text_Light);
+        var dangerValue             = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Danger);
+        var dangerLightValue        = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Danger_Light);
+        var neutral90WithOPValue    = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Apply_Opacity_To_Hex_Value, neutral90Value, hintOpacityValue, neutral5Value);
+        var neutral5WithOPValue     = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Apply_Opacity_To_Hex_Value, neutral5Value, hintOpacityValue, neutral90Value);
         var successColourValue      = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Success);
         var successColourLightValue = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Success_Light);
 
+        //var secondaryColourValue = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Resolved_Colour_Func, CoreCssVariables.Colour_Secondary);
+
+        var buttonHoverValue       = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Apply_Opacity_To_Hex_Value, primary50Value, 0.1, neutral20Value);
+        var buttonHoverOnDarkValue = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Apply_Opacity_To_Hex_Value, primary50Value, 0.1, neutral70Value);
+
         var focusOnLightValue = primary70Value;
 
-        var neutral5RGB      = ColourUtils.HexToRgbColour(neutral5Value);
-        var neutral20RGB     = ColourUtils.HexToRgbColour(neutral20Value);
-        var neutral90RGB     = ColourUtils.HexToRgbColour(neutral90Value);
-        var neutral70RGB     = ColourUtils.HexToRgbColour(neutral70Value);
-        var primary70RGB     = ColourUtils.HexToRgbColour(primary70Value);
-
-        var borderOnLightRGB = ColourUtils.HexToRgbColour(primary50Value);
-        var borderOnDarkRGB  = ColourUtils.HexToRgbColour(primary20Value);
-
-        var focusOnLightRGB  = ColourUtils.HexToRgbColour(primary70Value);
-        var focusOnDarkRGB   = ColourUtils.HexToRgbColour(focusOnDarkValue);
-
-        var headingTextRGB       = ColourUtils.HexToRgbColour(headingTextValue);
-        var headingTextOnDarkRGB = ColourUtils.HexToRgbColour(headingOnDarkValue);
-
-        var buttonTextRGB = ColourUtils.HexToRgbColour(buttonTextValue);
-        var buttonTextOnDarkRGB = ColourUtils.HexToRgbColour(buttonOnDarkValue);
-
-        var dangerValueRGB      = ColourUtils.HexToRgbColour(dangerValue);
-        var dangerLightValueRGB = ColourUtils.HexToRgbColour(dangerLightValue);
-
+        var neutral5RGB             = ColourUtils.HexToRgbColour(neutral5Value);
+        var neutral20RGB            = ColourUtils.HexToRgbColour(neutral20Value);
+        var neutral90RGB            = ColourUtils.HexToRgbColour(neutral90Value);
+        var neutral70RGB            = ColourUtils.HexToRgbColour(neutral70Value);
+        var primary70RGB            = ColourUtils.HexToRgbColour(primary70Value);
+        var borderOnLightRGB        = ColourUtils.HexToRgbColour(primary50Value);
+        var borderOnDarkRGB         = ColourUtils.HexToRgbColour(primary20Value);
+        var focusOnLightRGB         = ColourUtils.HexToRgbColour(primary70Value);
+        var focusOnDarkRGB          = ColourUtils.HexToRgbColour(focusOnDarkValue);
+        var headingTextRGB          = ColourUtils.HexToRgbColour(headingTextValue);
+        var headingTextOnDarkRGB    = ColourUtils.HexToRgbColour(headingOnDarkValue);
+        var buttonTextRGB           = ColourUtils.HexToRgbColour(buttonTextValue);
+        var buttonTextOnDarkRGB     = ColourUtils.HexToRgbColour(buttonOnDarkValue);
+        var dangerValueRGB          = ColourUtils.HexToRgbColour(dangerValue);
+        var dangerLightValueRGB     = ColourUtils.HexToRgbColour(dangerLightValue);
         var neutral90WithOPValueRGB = ColourUtils.HexToRgbColour(neutral90WithOPValue);
-        var neutral5WithOPValueRGB = ColourUtils.HexToRgbColour(neutral5WithOPValue);
+        var neutral5WithOPValueRGB  = ColourUtils.HexToRgbColour(neutral5WithOPValue);
+        var successRGB              = ColourUtils.HexToRgbColour(successColourValue);
+        var successLightRGB         = ColourUtils.HexToRgbColour(successColourValue);
 
-        var successRGB      = ColourUtils.HexToRgbColour(successColourValue);
-        var successLightRGB = ColourUtils.HexToRgbColour(successColourValue);
-
+        var buttonHoverRGB      = ColourUtils.HexToRgbColour(buttonHoverValue);
+        var buttonHoverOnDarkRGB = ColourUtils.HexToRgbColour(buttonHoverOnDarkValue);
 
         _focusOnNeutral20Contrast = ColourUtils.CalculateContrast(focusOnLightRGB, neutral20RGB);
         _focusOnNeutral70Contrast = ColourUtils.CalculateContrast(focusOnDarkRGB, neutral70RGB);
@@ -591,6 +638,11 @@
 
         _successOn5Contrast  = ColourUtils.CalculateContrast(successRGB, neutral5RGB);
         _successOn90Contrast = ColourUtils.CalculateContrast(successLightRGB, neutral90RGB);
+
+
+        _buttonTextOnHoverContrast = ColourUtils.CalculateContrast(buttonHoverRGB, buttonTextRGB);
+
+        _buttonTextOnDarkHoverContrast = ColourUtils.CalculateContrast(buttonHoverOnDarkRGB, buttonTextOnDarkRGB);
     }
 
     private string GetContrastStateIconClass(double contrastRatio, double passValue)

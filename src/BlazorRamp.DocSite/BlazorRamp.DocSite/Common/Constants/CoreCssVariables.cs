@@ -113,6 +113,8 @@ namespace BlazorRamp.DocSite.Common.Constants
         public const string All_Button_Text                      = "--br-comp-all-button-text";
         public const string All_Button_Text_Colour_Value         = "--br-unit-colour-primary-text-dark";
 
+        public const string All_Button_Hover_Value               = "--br-comp-all-button-state-hover";
+
         public const string All_Area_Header_Text              = "--br-comp-all-area-header-text";
         public const string All_Area_Header_Text_Colour_Value = "--br-unit-colour-primary-text-dark";
 
