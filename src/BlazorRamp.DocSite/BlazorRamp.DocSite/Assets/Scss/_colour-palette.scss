@@ -1,20 +1,17 @@
 ﻿
 .br-colour-palette {
-   
     --_br-palette-max-width: 400px;
     display: flex;
     flex-direction: column;
-    border-radius: var(--br-unit-radius-3);
+    border-radius: var(--br-comp-all-pane-base-border-radius);
     background-color: white;
     color: black;
-    border-radius: var(--br-unit-radius-3);
     width: var(--_br-palette-max-width);
     text-align: center;
     border: 1px solid var(--br-comp-all-divider-colour);
     min-width: var(--br-unit-wcag-reflow-2a);
-    height:fit-content;
-
-    forced-color-adjust:none;
+    height: fit-content;
+    forced-color-adjust: none;
 
     &__heading {
         margin: 0;
@@ -41,15 +38,14 @@
         color: var(--_br-swatch-text-colour);
 
         &:last-of-type {
-            border-bottom-left-radius: var(--br-unit-radius-3);
-            border-bottom-right-radius: var(--br-unit-radius-3);
+            border-bottom-left-radius: var(--br-comp-all-pane-base-border-radius);
+            border-bottom-right-radius: var(--br-comp-all-pane-base-border-radius);
         }
 
         &--black {
             background-color: black;
             color: white;
         }
-
     }
 
 

@@ -1,31 +1,31 @@
 ﻿@implements IAsyncDisposable
 
-<section class="@GlobalValues.Theme_Tool_Class">
+<section class="@GlobalValues.Theme_Colour_Tool_Class">
     @{
         GetHeading(ThemeToolHeadingLevel,Title);
     }
-    <div class="@GlobalValues.Theme_Tool_Content_Class">
-        <div class="@GlobalValues.Theme_Tool_Controls_Class">
+    <div class="@GlobalValues.Theme_Colour_Tool_Content_Class">
+        <div class="@GlobalValues.Theme_Colour_Tool_Controls_Class">
             <label for="colour-picker">Choose your primary:</label>
             <input id="colour-picker" type="color" value="@_primaryColourValue" @oninput="HandleOnInput" @onchange="HandleOnChange" />
         </div>
 
-        <div class="@GlobalValues.Theme_Tool_Controls_Class">
+        <div class="@GlobalValues.Theme_Colour_Tool_Controls_Class">
             <label for="neutral-slider">Adjust neutral tinge:</label>
             <input id="neutral-slider" type="range" min="0" max="15" value="@_neutralSaturationValue" @oninput="HandleSaturation" @onchange="HandleOnChange" />
         </div>
-        <div class="@GlobalValues.Theme_Tool_Controls_Class">
-            <span class="@GlobalValues.Theme_Tool_Label_Class">Neutral tinge value:</span>
-            <span class="@GlobalValues.Theme_Tool_Output_Class">@_neutralSaturationValue</span>
+        <div class="@GlobalValues.Theme_Colour_Tool_Controls_Class">
+            <span class="@GlobalValues.Theme_Colour_Tool_Label_Class">Neutral tinge value:</span>
+            <span class="@GlobalValues.Theme_Colour_Tool_Output_Class">@_neutralSaturationValue</span>
         </div>
-        <div class="@GlobalValues.Theme_Tool_Controls_Class">
+        <div class="@GlobalValues.Theme_Colour_Tool_Controls_Class">
             <button class="test-button" @onclick="ResetColourValues">
                 Reset
             </button>
         </div>
-        <div class="@GlobalValues.Theme_Tool_Controls_Class">
-            <span class="@GlobalValues.Theme_Tool_Label_Class">To see the default library colours use:</span>
-            <div class="@GlobalValues.Theme_Tool_Swatch_Class">
+        <div class="@GlobalValues.Theme_Colour_Tool_Controls_Class">
+            <span class="@GlobalValues.Theme_Colour_Tool_Label_Class">To see the default library colours use:</span>
+            <div class="@GlobalValues.Theme_Colour_Tool_Swatch_Class">
                 <span>H: 220 S:44% L: 48% - with the neutral tinge set to 10</span>
             </div>
         </div>
@@ -37,13 +37,13 @@
     {
         @switch (headingLevel)
         {
-            case ThemeToolHeadingLevel.H2: <h2 class="@GlobalValues.Theme_Tool_Title_Class">@title</h2>; break;
-            case ThemeToolHeadingLevel.H3: <h3 class="@GlobalValues.Theme_Tool_Title_Class">@title</h3>; break;
-            case ThemeToolHeadingLevel.H4: <h4 class="@GlobalValues.Theme_Tool_Title_Class">@title</h4>; break;
-            case ThemeToolHeadingLevel.H5: <h5 class="@GlobalValues.Theme_Tool_Title_Class">@title</h5>; break;
-            case ThemeToolHeadingLevel.H6: <h6 class="@GlobalValues.Theme_Tool_Title_Class">@title</h6>; break;
+            case ThemeToolHeadingLevel.H2: <h2 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h2>; break;
+            case ThemeToolHeadingLevel.H3: <h3 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h3>; break;
+            case ThemeToolHeadingLevel.H4: <h4 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h4>; break;
+            case ThemeToolHeadingLevel.H5: <h5 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h5>; break;
+            case ThemeToolHeadingLevel.H6: <h6 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h6>; break;
             default:
-                <h3 class="@GlobalValues.Theme_Tool_Title_Class">@title</h3>
+                <h3 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h3>
                 break;
         }
 

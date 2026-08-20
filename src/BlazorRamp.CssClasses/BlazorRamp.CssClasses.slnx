@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="BlazorRamp.CssClasses/BlazorRamp.CssClasses.csproj" />
+  <Project Path="Sandbox/Sandbox.Client/Sandbox.Client.csproj" />
+  <Project Path="Sandbox/Sandbox/Sandbox.csproj" />
+</Solution>

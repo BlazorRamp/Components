@@ -734,101 +734,6 @@ h2:focus-visible {
   outline-color: var(--br-comp-all-outline-colour);
 }
 
-.theme-tool {
-  position: relative;
-  padding: var(--br-unit-space-5);
-  margin-bottom: var(--br-unit-space-5);
-  border-radius: var(--br-unit-radius-5);
-  border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
-}
-.theme-tool__content {
-  display: flex;
-  align-items: start;
-  flex-wrap: wrap;
-  gap: var(--br-unit-space-5);
-}
-.theme-tool__controls {
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
-  height: 70px;
-}
-.theme-tool label {
-  font-size: var(--br-unit-font-size-label);
-  font-size: var(--br-unit-font-size-label);
-  font-weight: var(--br-unit-font-weight-500);
-  color: inherit;
-  background: inherit;
-  margin-bottom: var(--br-unit-space-3);
-}
-.theme-tool__label {
-  font-size: var(--br-unit-font-size-label);
-  font-size: var(--br-unit-font-size-label);
-  font-weight: var(--br-unit-font-weight-500);
-  color: inherit;
-  background: inherit;
-  margin-bottom: var(--br-unit-space-3);
-}
-.theme-tool__swatch {
-  height: 45px;
-  background-color: Hsl(220, 44%, 48%);
-  color: white;
-  forced-color-adjust: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--br-unit-font-size-1);
-  padding: var(--br-unit-space-3);
-  border-radius: var(--br-unit-radius-2);
-}
-.theme-tool input {
-  border-radius: var(--br-unit-radius-2);
-  border: none;
-  height: 50px;
-}
-.theme-tool input:focus {
-  outline-style: var(--br-comp-all-outline-style);
-  outline-width: var(--br-comp-all-outline-width);
-  outline-offset: var(--br-comp-all-outline-offset);
-  outline-color: var(--br-comp-all-outline-colour);
-}
-.theme-tool input[type=color] {
-  width: 100%;
-  height: 50px;
-  cursor: pointer;
-}
-.theme-tool input[type=range] {
-  border: none;
-}
-.theme-tool__output {
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--br-unit-font-size-1);
-}
-.theme-tool button {
-  border-radius: var(--br-unit-radius-1);
-  align-self: end;
-  margin: 0;
-  margin-top: auto;
-  height: 42px;
-}
-@media (max-width: 576px) {
-  .theme-tool h2 {
-    text-align: center;
-  }
-}
-.theme-tool h3 {
-  color: var(--br-info-box-alternate-heading-text);
-}
-.theme-tool:focus {
-  outline-style: var(--br-comp-all-outline-style);
-  outline-width: var(--br-comp-all-outline-width);
-  outline-offset: var(--br-comp-all-outline-offset);
-  outline-color: var(--br-comp-all-outline-colour);
-}
-
 .normal-button {
   box-sizing: border-box;
   appearance: none;
@@ -1215,10 +1120,9 @@ h2:focus-visible {
   --_br-palette-max-width: 400px;
   display: flex;
   flex-direction: column;
-  border-radius: var(--br-unit-radius-3);
+  border-radius: var(--br-comp-all-pane-base-border-radius);
   background-color: white;
   color: black;
-  border-radius: var(--br-unit-radius-3);
   width: var(--_br-palette-max-width);
   text-align: center;
   border: 1px solid var(--br-comp-all-divider-colour);
@@ -1249,8 +1153,8 @@ h2:focus-visible {
   color: var(--_br-swatch-text-colour);
 }
 .br-colour-palette__swatch:last-of-type {
-  border-bottom-left-radius: var(--br-unit-radius-3);
-  border-bottom-right-radius: var(--br-unit-radius-3);
+  border-bottom-left-radius: var(--br-comp-all-pane-base-border-radius);
+  border-bottom-right-radius: var(--br-comp-all-pane-base-border-radius);
 }
 .br-colour-palette__swatch--black {
   background-color: black;
@@ -1258,4 +1162,100 @@ h2:focus-visible {
 }
 .br-colour-palette__swatch-name {
   font-size: var(--br-unit-font-size-label);
+}
+
+.theme-colour-tool {
+  position: relative;
+  padding: var(--br-unit-space-5);
+  margin-bottom: var(--br-unit-space-5);
+  border-radius: var(--br-unit-radius-3);
+  border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
+}
+.theme-colour-tool__content {
+  display: flex;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: var(--br-unit-space-5);
+}
+.theme-colour-tool__controls {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  height: 70px;
+}
+.theme-colour-tool label {
+  font-size: var(--br-unit-font-size-label);
+  font-size: var(--br-unit-font-size-label);
+  font-weight: var(--br-unit-font-weight-500);
+  color: inherit;
+  background: inherit;
+  margin-bottom: var(--br-unit-space-3);
+}
+.theme-colour-tool__label {
+  font-size: var(--br-unit-font-size-label);
+  font-size: var(--br-unit-font-size-label);
+  font-weight: var(--br-unit-font-weight-500);
+  color: inherit;
+  background: inherit;
+  margin-bottom: var(--br-unit-space-3);
+}
+.theme-colour-tool__swatch {
+  height: 45px;
+  background-color: Hsl(220, 44%, 48%);
+  color: white;
+  forced-color-adjust: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--br-unit-font-size-1);
+  padding: var(--br-unit-space-3);
+  border-radius: var(--br-unit-radius-2);
+}
+.theme-colour-tool input {
+  border-radius: var(--br-unit-radius-2);
+  border: none;
+  height: 50px;
+}
+.theme-colour-tool input:focus {
+  outline-style: var(--br-comp-all-outline-style);
+  outline-width: var(--br-comp-all-outline-width);
+  outline-offset: var(--br-comp-all-outline-offset);
+  outline-color: var(--br-comp-all-outline-colour);
+}
+.theme-colour-tool input[type=color] {
+  width: 100%;
+  height: 50px;
+  cursor: pointer;
+}
+.theme-colour-tool input[type=range] {
+  border: none;
+  accent-color: var(--br-unit-colour-primary);
+}
+.theme-colour-tool__output {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--br-unit-font-size-1);
+}
+.theme-colour-tool button {
+  border-radius: var(--br-unit-radius-1);
+  align-self: end;
+  margin: 0;
+  margin-top: auto;
+  height: 42px;
+}
+@media (max-width: 576px) {
+  .theme-colour-tool h2 {
+    text-align: center;
+  }
+}
+.theme-colour-tool h3 {
+  color: var(--br-info-box-alternate-heading-text);
+}
+.theme-colour-tool:focus {
+  outline-style: var(--br-comp-all-outline-style);
+  outline-width: var(--br-comp-all-outline-width);
+  outline-offset: var(--br-comp-all-outline-offset);
+  outline-color: var(--br-comp-all-outline-colour);
 }

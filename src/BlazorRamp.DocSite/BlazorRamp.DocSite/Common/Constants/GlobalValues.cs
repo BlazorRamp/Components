@@ -198,14 +198,17 @@ public class GlobalValues
 
 
 
-    public const string Theme_Tool_Class          = "theme-tool";
-    public const string Theme_Tool_Title_Class    = $"{Theme_Tool_Class}__title";
+    public const string Theme_Colour_Tool_Class          = "theme-colour-tool";
+    public const string Theme_Colour_Tool_Title_Class    = $"{Theme_Colour_Tool_Class}__title";
+    public const string Theme_Colour_Tool_Label_Class    = $"{Theme_Colour_Tool_Class}__label";
+    public const string Theme_Colour_Tool_Content_Class  = $"{Theme_Colour_Tool_Class}__content";
+    public const string Theme_Colour_Tool_Controls_Class = $"{Theme_Colour_Tool_Class}__controls";
+    public const string Theme_Colour_Tool_Swatch_Class   = $"{Theme_Colour_Tool_Class}__swatch";
+    public const string Theme_Colour_Tool_Output_Class   = $"{Theme_Colour_Tool_Class}__output";
 
-    public const string Theme_Tool_Label_Class    = $"{Theme_Tool_Class}__label";
-    public const string Theme_Tool_Content_Class  = $"{Theme_Tool_Class}__content";
-    public const string Theme_Tool_Controls_Class = $"{Theme_Tool_Class}__controls";
-    public const string Theme_Tool_Swatch_Class   = $"{Theme_Tool_Class}__swatch";
-    public const string Theme_Tool_Output_Class   = $"{Theme_Tool_Class}__output";
+
+    public const string Theme_Border_Tool_Class = "theme-border-tool";
+
 
 
     public const string Regex_Hex_Colour_Pattern = "^#?[a-fA-F0-9]{6}$";
