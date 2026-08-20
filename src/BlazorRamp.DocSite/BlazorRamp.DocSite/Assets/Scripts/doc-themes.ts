@@ -6,8 +6,6 @@ const setElementVariable = (elementId: string, variableName: string, variableVal
 
     if (!element) return;
 
-    console.log(element);
-
     if (reset == true) {
         element.style.removeProperty(variableName);
         return;
@@ -75,8 +73,6 @@ const applyOpacityToHex = (foregroundHex: string, opacityValue: number = 1, back
     const backgroundRgb = parseHex(backgroundHex);
 
     if (!backgroundRgb) return "";
-
-    // opacityValue === 0 naturally resolves to pure background below, no need for a special case
 
     const blendChannel = (foregroundChannel: number, backgroundChannel: number) => Math.round(backgroundChannel + (foregroundChannel - backgroundChannel) * clampedOpacity);
 

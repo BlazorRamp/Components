@@ -640,7 +640,7 @@ dialog.br-announcement-history__popover:focus-visible {
   color: var(--br-comp-history-button-text);
   font-family: var(--br-comp-history-button-font-family);
   font-size: var(--br-comp-history-button-font-size);
-  font-weight: var(--br-comp-history-button-font-weigh);
+  font-weight: var(--br-comp-history-button-font-weight);
   line-height: var(--br-comp-history-button-line-height);
   padding-block: var(--br-unit-space-2);
   padding-inline: var(--br-unit-space-4);

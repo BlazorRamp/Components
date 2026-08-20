@@ -2,7 +2,6 @@ const setElementVariable = (elementId, variableName, variableValue, reset) => {
     const element = document.getElementById(elementId);
     if (!element)
         return;
-    console.log(element);
     if (reset == true) {
         element.style.removeProperty(variableName);
         return;
@@ -48,7 +47,6 @@ const applyOpacityToHex = (foregroundHex, opacityValue = 1, backgroundHex = '#ff
     const backgroundRgb = parseHex(backgroundHex);
     if (!backgroundRgb)
         return "";
-    // opacityValue === 0 naturally resolves to pure background below, no need for a special case
     const blendChannel = (foregroundChannel, backgroundChannel) => Math.round(backgroundChannel + (foregroundChannel - backgroundChannel) * clampedOpacity);
     return toHex(blendChannel(foregroundRgb[0], backgroundRgb[0]), blendChannel(foregroundRgb[1], backgroundRgb[1]), blendChannel(foregroundRgb[2], backgroundRgb[2]));
 };

@@ -112,14 +112,19 @@ namespace BlazorRamp.DocSite.Common.Constants
         public const string All_Button_Border_Colour_Value       = "--br-unit-colour-primary-40";
         public const string All_Button_Text                      = "--br-comp-all-button-text";
         public const string All_Button_Text_Colour_Value         = "--br-unit-colour-primary-text-dark";
-
         public const string All_Button_Hover_Value               = "--br-comp-all-button-state-hover";
+
+        public const string All_Button_Radius                    = "--br-comp-all-button-border-radius";//: var(--br-unit-radius-full);
 
         public const string All_Area_Header_Text              = "--br-comp-all-area-header-text";
         public const string All_Area_Header_Text_Colour_Value = "--br-unit-colour-primary-text-dark";
 
 
         public const string Opacity_Value_80 = "--br-unit-opacity-val-80";
+
+
+
+        
 
     }
 }
