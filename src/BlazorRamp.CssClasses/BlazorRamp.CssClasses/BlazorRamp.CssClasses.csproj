@@ -33,6 +33,10 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<DebugType>embedded</DebugType>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Remove="compilerconfig.json" />
+	</ItemGroup>
 	
   <ItemGroup>
     <SupportedPlatform Include="browser" />
@@ -48,7 +52,10 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Assests\Scss\" />
+    <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\assets\css\" />
   </ItemGroup>
 
