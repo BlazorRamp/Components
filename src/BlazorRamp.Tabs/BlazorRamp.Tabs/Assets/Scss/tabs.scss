@@ -70,7 +70,7 @@
         cursor: pointer;
 
         &:focus-visible {
-            border-radius: var(--br-unit-radius-3);
+            border-radius: var(--br-comp-tabs-area-header-border-radius);
             outline-offset: var(--br-comp-tabs-outline-offset);
             outline-style: var(--br-comp-tabs-outline-style);
             outline-width: var(--br-comp-tabs-outline-width);
@@ -84,8 +84,8 @@
             left: 0;
             right: 0;
             border-top: var(--br-unit-border-5) solid var(--br-comp-tabs-area-header-text);
-            border-top-left-radius: var(--br-unit-radius-3);
-            border-top-right-radius: var(--br-unit-radius-3);
+            border-top-left-radius: var(--br-comp-tabs-area-header-border-radius);
+            border-top-right-radius: var(--br-comp-tabs-area-header-border-radius);
             transform-origin: center;
             animation: br-tabs-indicator-grow 200ms ease forwards;
         }
@@ -187,7 +187,7 @@
                 right: 0;
                 left: 0;
                 width: 100%;
-                border-radius: var(--br-unit-radius-2);
+                border-radius: var(--br-comp-tabs-area-content-border-radius);
                 outline-offset: 2px;
                 outline-style: var(--br-comp-tabs-outline-style);
                 outline-width: var(--br-comp-tabs-outline-width);
