@@ -16,7 +16,7 @@
     --br-comp-tabs-area-header-border-style: var(--br-comp-all-area-header-border-style);
     --br-comp-tabs-area-header-border-colour: var(--br-comp-all-divider-colour);
     --br-comp-tabs-area-header-border-width: var(--br-unit-border-1);
-    --br-comp-tabs-area-header-border-radius: var(--br-comp-all-area-header-border-radius);
+    --br-comp-tabs-area-header-border-radius: var(--br-group-container-area-header-border-radius);
     //
     --br-comp-tabs-area-content-background: transparent;
     --br-comp-tabs-area-content-text: var(--br-comp-all-area-content-text);
@@ -24,5 +24,5 @@
     --br-comp-tabs-area-content-font-size: var(--br-comp-all-area-content-font-size);
     --br-comp-tabs-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
     --br-comp-tabs-area-content-line-height: var(--br-comp-all-area-content-line-height);
-    --br-comp-tabs-area-content-border-radius:var(--br-comp-all-area-content-border-radius);
+    --br-comp-tabs-area-content-border-radius: var(--br-group-container-area-content-border-radius);
 }
