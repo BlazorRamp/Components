@@ -13,10 +13,10 @@
     --br-comp-skip-to-pane-surface-border-style: var(--br-comp-all-pane-surface-border-style);
     --br-comp-skip-to-pane-surface-border-width: var(--br-comp-all-outline-offset);
     --br-comp-skip-to-pane-surface-border-colour: var(--br-unit-colour-canvas);
-    --br-comp-skip-to-pane-surface-border-radius-top-right: var(--br-unit-radius-5);
-    --br-comp-skip-to-pane-surface-border-radius-top-left: var(--br-unit-radius-5);
-    --br-comp-skip-to-pane-surface-border-radius-bottom-right: var(--br-unit-radius-5);
-    --br-comp-skip-to-pane-surface-border-radius-bottom-left: var(--br-unit-radius-5);
+    --br-comp-skip-to-pane-surface-border-radius-top-right: var(--br-group-revealed-border-radius);
+    --br-comp-skip-to-pane-surface-border-radius-top-left: var(--br-group-revealed-border-radius);
+    --br-comp-skip-to-pane-surface-border-radius-bottom-right: var(--br-group-revealed-border-radius);
+    --br-comp-skip-to-pane-surface-border-radius-bottom-left: var(--br-group-revealed-border-radius);
     //
     --br-comp-skip-to-z-index: 999;
     --br-comp-skip-to-margin: var(--br-unit-space-5);
