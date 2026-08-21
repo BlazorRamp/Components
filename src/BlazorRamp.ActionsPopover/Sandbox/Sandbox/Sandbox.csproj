@@ -10,8 +10,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\BlazorRamp.ActionsPopover\BlazorRamp.ActionsPopover.csproj" />
     <ProjectReference Include="..\Sandbox.Client\Sandbox.Client.csproj" />
-    <PackageReference Include="BlazorRamp.Core" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.10" />
+    <PackageReference Include="BlazorRamp.Core" Version="1.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.11" />
   </ItemGroup>
 	<ItemGroup>
 		<AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute" />
