@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <PackageReference Include="BlazorRamp.Accordion" Version="1.0.2" />
-    <PackageReference Include="BlazorRamp.ActionsPopover" Version="2.1.3" />
+    <PackageReference Include="BlazorRamp.ActionsPopover" Version="2.1.4" />
     <PackageReference Include="BlazorRamp.BusyIndicator" Version="1.3.0" />
     <PackageReference Include="BlazorRamp.Core" Version="1.1.4" />
     <PackageReference Include="BlazorRamp.DataTable" Version="1.0.1" />
