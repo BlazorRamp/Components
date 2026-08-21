@@ -12,10 +12,10 @@
     <Description>DataTable -  an accessible, sortable, filterable table component for an in-memory list of items. </Description>
     <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
     <PackageTags>Blazor; Accessible Components; Accessibility; Data Table; ARIA; </PackageTags>
-    <PackageReleaseNotes>Fix: Sort button border-radius, changed from fixed value to mapped --br-comp-data-table-area-header-border-radius</PackageReleaseNotes>
-    <FileVersion>1.0.1</FileVersion>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <Version>1.0.1</Version>
+    <PackageReleaseNotes>Amended CSS border radius variables so the component border radius could be changed with others in the same grouping.</PackageReleaseNotes>
+    <FileVersion>1.0.2</FileVersion>
+    <AssemblyVersion>1.0.2</AssemblyVersion>
+    <Version>1.0.2</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	 <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
@@ -42,8 +42,8 @@
 
   <ItemGroup>
 	  <PackageReference Include="BlazorRamp.BusyIndicator" Version="1.3.0" />
-	  <PackageReference Include="BlazorRamp.Core" Version="1.1.3" />
-	  <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.28" />
+	  <PackageReference Include="BlazorRamp.Core" Version="1.1.4" />
+	  <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.29" />
 	  <PackageReference Include="BuildWebCompiler2022" Version="1.14.15">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
