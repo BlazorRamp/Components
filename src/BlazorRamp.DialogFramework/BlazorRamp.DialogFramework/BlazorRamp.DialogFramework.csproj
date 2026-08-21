@@ -13,11 +13,11 @@
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Modal dialog; Modal; Dialog;</PackageTags>
-    <PackageReleaseNotes>Amended the dialog script so if any popover is open it will get to handle the escape key first.</PackageReleaseNotes>
+    <PackageReleaseNotes>Amended CSS border radius variables so the component border radius could be changed with others in the same grouping.</PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <AssemblyVersion>1.0.2</AssemblyVersion>
-    <FileVersion>1.0.2</FileVersion>
-	<Version>1.0.2</Version>
+    <AssemblyVersion>1.0.3</AssemblyVersion>
+    <FileVersion>1.0.3</FileVersion>
+	<Version>1.0.3</Version>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
 	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -43,13 +43,13 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="BlazorRamp.Core" Version="1.0.8" />
+		<PackageReference Include="BlazorRamp.Core" Version="1.1.4" />
 		<PackageReference Include="BuildWebCompiler2022" Version="1.14.15">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.25" />
-		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="6.0.3">
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.29" />
+		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="7.0.1">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
