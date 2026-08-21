@@ -10,8 +10,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\BlazorRamp.ToggleTip\BlazorRamp.ToggleTip.csproj" />
     <ProjectReference Include="..\Sandbox.Client\Sandbox.Client.csproj" />
-    <PackageReference Include="BlazorRamp.Core" Version="1.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.10" />
+    <PackageReference Include="BlazorRamp.Core" Version="1.1.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.11" />
   </ItemGroup>
 
 </Project>

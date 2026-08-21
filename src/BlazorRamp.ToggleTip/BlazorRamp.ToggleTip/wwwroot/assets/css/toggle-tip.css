@@ -18,7 +18,7 @@
   --br-comp-toggle-tip-pane-surface-border-style: var(--br-comp-all-pane-surface-border-style);
   --br-comp-toggle-tip-pane-surface-border-colour: var(--br-comp-all-pane-surface-border-colour);
   --br-comp-toggle-tip-pane-surface-border-width: var(--br-unit-border-1);
-  --br-comp-toggle-tip-pane-surface-border-radius: var(--br-unit-radius-7);
+  --br-comp-toggle-tip-pane-surface-border-radius: var(--br-group-dialog-pane-surface-border-radius);
   /*
       * area content styles
   */
@@ -35,7 +35,7 @@
   --br-comp-toggle-tip-area-content-border-style: var(--br-comp-all-area-content-border-style);
   --br-comp-toggle-tip-area-content-border-colour: var(--br-comp-all-area-content-border-colour);
   --br-comp-toggle-tip-area-content-border-width: var(--br-unit-border-1);
-  --br-comp-toggle-tip-area-content-border-radius: var(--br-comp-all-area-content-border-radius);
+  --br-comp-toggle-tip-area-content-border-radius: var(--br-group-dialog-area-content-border-radius);
   --br-comp-toggle-tip-button-background: var(--br-comp-all-button-background);
   --br-comp-toggle-tip-button-text: var(--br-comp-all-button-text);
   --br-comp-toggle-tip-button-font-family: var(--br-comp-all-button-font-family);
@@ -45,7 +45,7 @@
   --br-comp-toggle-tip-button-border-style: var(--br-comp-all-button-border-style);
   --br-comp-toggle-tip-button-border-colour: var(--br-comp-all-button-border-colour);
   --br-comp-toggle-tip-button-border-width: var(--br-comp-all-button-border-width);
-  --br-comp-toggle-tip-button-border-radius: var(--br-comp-all-button-border-radius);
+  --br-comp-toggle-tip-button-border-radius: var(--br-group-button-border-radius);
   --br-comp-toggle-tip-button-outline-style: var(--br-comp-all-outline-style);
   --br-comp-toggle-tip-button-outline-width: var(--br-comp-all-outline-width);
   --br-comp-toggle-tip-button-outline-offset: var(--br-comp-all-outline-offset);

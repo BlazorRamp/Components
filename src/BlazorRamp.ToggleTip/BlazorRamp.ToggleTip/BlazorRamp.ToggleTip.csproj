@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
 	<TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
@@ -12,14 +12,13 @@
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; ToggleTip; Information; Dialog</PackageTags>
-    <PackageReleaseNotes>Fixed the label colour CSS property that was set to inherit instead pointing to its own variable which is set to 
-inherit. </PackageReleaseNotes>
+    <PackageReleaseNotes>Amended CSS border radius variables so the component border radius could be changed with others in the same grouping.</PackageReleaseNotes>
     <Description>A ToggleTip component for the Blazor Ramp ecosystem. Technically, this is a non-modal dialog
 for displaying supplimental information, activated by click, keyobard, touch or voice.
 </Description>
-    <AssemblyVersion>1.0.2</AssemblyVersion>
-    <FileVersion>1.0.2</FileVersion>
-	  <Version>1.0.2</Version>
+    <AssemblyVersion>1.0.3</AssemblyVersion>
+    <FileVersion>1.0.3</FileVersion>
+	  <Version>1.0.3</Version>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
 	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
@@ -50,8 +49,8 @@ for displaying supplimental information, activated by click, keyobard, touch or 
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
-    <PackageReference Include="BlazorRamp.Core" Version="1.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.25" />
+    <PackageReference Include="BlazorRamp.Core" Version="1.1.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.29" />
   </ItemGroup>
 
   <ItemGroup>
