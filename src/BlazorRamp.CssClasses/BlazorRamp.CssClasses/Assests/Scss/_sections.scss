@@ -1,2 +1,8 @@
-﻿body {
+﻿
+.content-section {
+    padding: var(--br-unit-space-5);
+    border-style: var(--br-comp-all-area-content-border-style);
+    border-radius:var(--br-comp-all-area-content-border-radius);
+    border-width: var(--br-comp-all-area-content-border-width);
+    border-color: var(--br-comp-all-area-content-border-colour);
 }

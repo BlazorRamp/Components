@@ -274,7 +274,7 @@
     --br-comp-all-link-active-background-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.3);
     --br-comp-all-link-focused-background-colour: var(--br-unit-colour-secondary-lighter);
     --br-comp-all-overlay-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.15);
-    --br-comp-all-border-interactive-colour: var(--br-unit-colour-primary-50); 
+    --br-comp-all-border-interactive-colour: var(--br-unit-colour-primary-50);
     --br-comp-all-hint-text-brightness: 85%;
     --br-comp-all-divider-colour: var(--br-unit-colour-neutral-30);
     --br-comp-all-selection-colour: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10));
@@ -369,6 +369,27 @@
     --br-comp-all-button-state-hover: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10));
     --br-comp-all-button-state-active-brightness: var(--br-unit-state-active-brightness);
     --br-comp-all-button-state-active-scale: var(--br-unit-state-active-scale);
+    /*
+        * Theme grouping variables
+    */
+
+    --br-group-button-border-radius: var(--br-unit-radius-full);
+    --br-group-input-pane-base-border-radius: var(--br-unit-radius-3);
+    //
+    --br-group-menu-pane-panel-border-radius: var(--br-unit-radius-3);
+    --br-group-menu-item-border-radius: var(--br-unit-radius-3);
+    //
+    --br-group-container-area-header-border-radius: var(--br-unit-radius-3);
+    --br-group-container-area-content-border-radius: var(--br-unit-radius-3);
+    //
+    --br-group-dialog-pane-panel-border-radius: var(--br-unit-radius-3);
+    --br-group-dialog-area-footer-border-radius: var(--br-unit-radius-3);
+    --br-group-dialog-area-content-border-radius: var(--br-unit-radius-3);
+    --br-group-dialog-area-header-border-radius: var(--br-unit-radius-3);
+    --br-group-dialog-pane-base-border-radius: var(--br-unit-radius-7);
+    --br-group-dialog-pane-surface-border-radius: var(--br-unit-radius-7);
+    //
+    --br-group-revealed-border-radius: var(--br-unit-radius-5);
     /*
         * SVG icons
     */

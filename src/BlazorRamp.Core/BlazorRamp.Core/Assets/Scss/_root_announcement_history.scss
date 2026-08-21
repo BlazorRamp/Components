@@ -14,7 +14,7 @@
     --br-comp-history-pane-base-border-style: var(--br-comp-all-pane-base-border-style);
     --br-comp-history-pane-base-border-colour: var(--br-comp-all-pane-base-border-colour);
     --br-comp-history-pane-base-border-width: var(--br-unit-border-1);
-    --br-comp-history-pane-base-border-radius: var(--br-unit-radius-7);
+    --br-comp-history-pane-base-border-radius: var(--br-group-dialog-pane-base-border-radius);
     /*
         * pane panel styles
     */
@@ -22,7 +22,7 @@
     --br-comp-history-pane-panel-border-style: var(--br-comp-all-pane-panel-border-style);
     --br-comp-history-pane-panel-border-colour: var(--br-comp-all-pane-panel-border-colour);
     --br-comp-history-pane-panel-border-width: var(--br-comp-all-pane-panel-border-width);
-    --br-comp-history-pane-panel-border-radius: var(--br-unit-radius-7);
+    --br-comp-history-pane-panel-border-radius: var(--br-group-dialog-pane-panel-border-radius);
     /*
         * pane surface styles
     */
@@ -35,7 +35,7 @@
     --br-comp-history-pane-surface-border-style: var(--br-comp-all-pane-surface-border-style);
     --br-comp-history-pane-surface-border-colour: var(--br-comp-all-pane-surface-border-colour);
     --br-comp-history-pane-surface-border-width: var(--br-comp-all-pane-surface-border-width);
-    --br-comp-history-pane-surface-border-radius: var(--br-comp-all-pane-surface-border-radius);
+    --br-comp-history-pane-surface-border-radius: var(--br-group-dialog-pane-surface-border-radius);
     /*
         * area header styles
     */
@@ -48,7 +48,7 @@
     --br-comp-history-area-header-border-style: var(--br-comp-all-area-header-border-style);
     --br-comp-history-area-header-border-colour: var(--br-comp-all-area-header-border-colour);
     --br-comp-history-area-header-border-width: var(--br-comp-all-area-header-border-width);
-    --br-comp-history-area-header-border-radius: var(--br-comp-all-area-header-border-radius);
+    --br-comp-history-area-header-border-radius: var(--br-group-dialog-area-header-border-radius);
     /*
         * area content styles
     */
@@ -61,7 +61,7 @@
     --br-comp-history-area-content-border-style: var(--br-comp-all-area-content-border-style);
     --br-comp-history-area-content-border-colour: var(--br-comp-all-area-content-border-colour);
     --br-comp-history-area-content-border-width: var(--br-unit-border-2);
-    --br-comp-history-area-content-border-radius: var(--br-comp-all-area-content-border-radius);
+    --br-comp-history-area-content-border-radius: var(--br-group-dialog-area-content-border-radius);
     /*
         * area footer styles
     */
@@ -74,7 +74,7 @@
     --br-comp-history-area-footer-border-style: var(--br-comp-all-area-footer-border-style);
     --br-comp-history-area-footer-border-colour: var(--br-comp-all-area-footer-border-colour);
     --br-comp-history-area-footer-border-width: var(--br-comp-all-area-footer-border-width);
-    --br-comp-history-area-footer-border-radius: var(--br-comp-all-area-footer-border-radius);
+    --br-comp-history-area-footer-border-radius: var(--br-group-dialog-area-footer-border-radius);
     /*
         * button styles
     */
@@ -87,7 +87,7 @@
     --br-comp-history-button-border-style: var(--br-comp-all-button-border-style);
     --br-comp-history-button-border-colour: var(--br-comp-all-button-border-colour);
     --br-comp-history-button-border-width: var(--br-comp-all-button-border-width);
-    --br-comp-history-button-border-radius: var(--br-comp-all-button-border-radius);
+    --br-comp-history-button-border-radius: var(--br-group-button-border-radius);
     --br-comp-history-button-outline-style: var(--br-comp-all-outline-style);
     --br-comp-history-button-outline-width: var(--br-comp-all-outline-width);
     --br-comp-history-button-outline-offset: var(--br-comp-all-outline-offset);
@@ -107,7 +107,7 @@
     --br-comp-history-trigger-pane-surface-border-style: var(--br-comp-all-pane-surface-border-style);
     --br-comp-history-trigger-pane-surface-border-colour: var(--br-comp-all-pane-surface-border-colour);
     --br-comp-history-trigger-pane-surface-border-width: var(--br-unit-border-1);
-    --br-comp-history-trigger-pane-surface-border-radius: var(--br-unit-radius-7);
+    --br-comp-history-trigger-pane-surface-border-radius: var(--br-group-revealed-border-radius);
     --br-comp-history-trigger-outline-style: var(--br-comp-all-outline-style);
     --br-comp-history-trigger-outline-width: var(--br-comp-all-outline-width);
     --br-comp-history-trigger-outline-offset: var(--br-comp-all-outline-offset);
