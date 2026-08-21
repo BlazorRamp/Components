@@ -26,7 +26,7 @@
 		<PackageReference Include="BlazorRamp.SkipTo" Version="1.0.4" />
 		<PackageReference Include="BlazorRamp.Switch" Version="1.0.0" />
 		<PackageReference Include="BlazorRamp.Tabs" Version="1.0.2" />
-		<PackageReference Include="BlazorRamp.ToggleTip" Version="1.0.2" />
+		<PackageReference Include="BlazorRamp.ToggleTip" Version="1.0.3" />
 		<PackageReference Include="BuildWebCompiler2022" Version="1.14.15" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.11" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.11" PrivateAssets="all" />
