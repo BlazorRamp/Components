@@ -369,6 +369,8 @@
   --br-group-input-pane-base-border-radius: var(--br-unit-radius-3);
   --br-group-menu-pane-panel-border-radius: var(--br-unit-radius-3);
   --br-group-menu-item-border-radius: var(--br-unit-radius-3);
+  --br-group-menu-area-header-border-radius: var(--br-unit-radius-3);
+  --br-group-menu-area-content-border-radius: var(--br-unit-radius-3);
   --br-group-container-area-header-border-radius: var(--br-unit-radius-3);
   --br-group-container-area-content-border-radius: var(--br-unit-radius-3);
   --br-group-dialog-pane-panel-border-radius: var(--br-unit-radius-3);
