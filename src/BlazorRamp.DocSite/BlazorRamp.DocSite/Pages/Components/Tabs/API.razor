@@ -43,8 +43,8 @@
                     <td>string?</td>
                     <td>
                         You can give the Tabs component an accessible name by either providing an ID of an element such
-                        as a heading to use, or by setting the <span class="code-span">AriaLabel</span> parameter.
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        as a heading to use, or by setting the <span class="@CodeSpan.Base">AriaLabel</span> parameter.
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -52,9 +52,9 @@
                     <td>AriaLabel</td>
                     <td>string?</td>
                     <td>
-                        Used for the accessible name if the <span class="code-span">AriaLabelledBy</span> parameter was not provided.
-                        <strong>Note:</strong> if neither value is provided a default of "Tabs" will be used for the <span class="code-span">aria-label</span> attribute.
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        Used for the accessible name if the <span class="@CodeSpan.Base">AriaLabelledBy</span> parameter was not provided.
+                        <strong>Note:</strong> if neither value is provided a default of "Tabs" will be used for the <span class="@CodeSpan.Base">aria-label</span> attribute.
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -73,13 +73,13 @@
                     <td>bool</td>
                     <td>
                         Determines if the tab panels are shown automatically when its associated tab receives the focus, or has to be
-                        activated manually using the space or enter key after receiving the focus. Defaults to <span class="code-span">false</span>, manual activation.
+                        activated manually using the space or enter key after receiving the focus. Defaults to <span class="@CodeSpan.Base">false</span>, manual activation.
                     </td>
                 </tr>
                 <tr>
                     <td>TabIconPosition</td>
                     <td>TabIconPosition (enum)</td>
-                    <td>Determines the location of any optional icon used on Tabs. Defaults to <span class="code-span">TabIconPosition.Left</span></td>
+                    <td>Determines the location of any optional icon used on Tabs. Defaults to <span class="@CodeSpan.Base">TabIconPosition.Left</span></td>
                 </tr>
                 <tr>
                     <td>AdditionalAttributes</td>
@@ -165,7 +165,7 @@
                     <td>HasPanelTabIndex</td>
                     <td>bool</td>
                     <td>
-                        Determines whether a <span class="code-span">tabindex=0</span> is added to the tab panel. If the
+                        Determines whether a <span class="@CodeSpan.Base">tabindex=0</span> is added to the tab panel. If the
                         tab panel does not contain focusable elements then this should be set to true, otherwise it
                         can be set to false. The default value is true.<br . />
                         For more details see: <a class="@GlobalValues.Link_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tabs}/{GlobalValues.Common_Page_Path_Accessibility}")">
@@ -235,8 +235,8 @@
 
         <h3 id="outline-misc-variables" class="code-table__heading">Tab/tab panel outline/miscellaneous variables</h3>
         <p>
-            There are focus indicators (outlines) applied using <span class="code-span">:focus-visible</span> for the Tab
-            and for the actual Tab Panel if it uses <span class="code-span">tabindex=0</span>
+            There are focus indicators (outlines) applied using <span class="@CodeSpan.Base">:focus-visible</span> for the Tab
+            and for the actual Tab Panel if it uses <span class="@CodeSpan.Base">tabindex=0</span>
         </p>
         <table aria-labelledby="outline-misc-variables">
 
@@ -417,7 +417,7 @@
         <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
         <p>
             The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
-            by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
+            by standard mappings to the <span class="@CodeSpan.Base">--br-comp-all</span> variables.
         </p>
 
         <table aria-labelledby="unmapped-variables">

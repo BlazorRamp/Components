@@ -34,16 +34,16 @@
                     <td>RenderFragment?</td>
                     <td>
                         Gets or sets the action items rendered inside the popover panel, typically
-                        a combination of <span class="code-span">ActionPopoverButton&lt;TData&gt;</span>,
-                        <span class="code-span">ActionPopoverLink&lt;TData&gt;</span>,
-                        and <span class="code-span">ActionPopoverSeparator</span> components.
+                        a combination of <span class="@CodeSpan.Base">ActionPopoverButton&lt;TData&gt;</span>,
+                        <span class="@CodeSpan.Base">ActionPopoverLink&lt;TData&gt;</span>,
+                        and <span class="@CodeSpan.Base">ActionPopoverSeparator</span> components.
                     </td>
                 </tr>
                 <tr>
                     <td>TriggerText</td>
                     <td>string?</td>
                     <td>
-                        Gets or sets the text displayed on the trigger button. Defaults to <span class="code-span">Actions</span>
+                        Gets or sets the text displayed on the trigger button. Defaults to <span class="@CodeSpan.Base">Actions</span>
                     </td>
                 </tr>
                 <tr>
@@ -51,7 +51,7 @@
                     <td>bool</td>
                     <td>
                         Gets or sets whether the trigger should stretch to fill the width of its container,
-                        rather than shrinking to fit its own content. Defaults to <span class="code-span">false</span>, so the trigger sizes to its content.
+                        rather than shrinking to fit its own content. Defaults to <span class="@CodeSpan.Base">false</span>, so the trigger sizes to its content.
                     </td>
                 </tr>
                 <tr>
@@ -59,7 +59,7 @@
                     <td>ActionsPopoverPosition (enum)</td>
                     <td>
                         Gets or sets the position of the popover relative to the trigger.
-                        Defaults to <span class="code-span">ActionsPopoverPosition.BottomLeft</span>
+                        Defaults to <span class="@CodeSpan.Base">ActionsPopoverPosition.BottomLeft</span>
                         Automatically moves if there is not enough space to accommodate it.
                     </td>
                 </tr>
@@ -68,8 +68,8 @@
                     <td>string?</td>
                     <td>
                         Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
-                        used as a mask-image icon alongside the tab title. Must begin with <span class="code-span">--</span>.
-                        For example: <span class="code-span">--svg-my-icon</span>.
+                        used as a mask-image icon alongside the tab title. Must begin with <span class="@CodeSpan.Base">--</span>.
+                        For example: <span class="@CodeSpan.Base">--svg-my-icon</span>.
                     </td>
                 </tr>
                 <tr>
@@ -103,7 +103,7 @@
                     <td>string</td>
                     <td>
                         Gets or sets the text displayed for this action button.
-                        Throws an <span class="code-span">ArgumentNullException</span> exception if the value is null, empty or whitespace.
+                        Throws an <span class="@CodeSpan.Base">ArgumentNullException</span> exception if the value is null, empty or whitespace.
                     </td>
                 </tr>
                 <tr>
@@ -111,7 +111,7 @@
                     <td>TData?</td>
                     <td>
                         Gets or sets an optional payload associated with this action, made available via
-                        <span class="code-span">ButtonActionData&lt;TData&gt;.GetValueOr(TData)</span> via the <span class="code-span">OnClick</span> Func callback.
+                        <span class="@CodeSpan.Base">ButtonActionData&lt;TData&gt;.GetValueOr(TData)</span> via the <span class="@CodeSpan.Base">OnClick</span> Func callback.
                     </td>
                 </tr>
                 <tr>
@@ -119,8 +119,8 @@
                     <td>string?</td>
                     <td>
                         Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
-                        used as a mask-image icon alongside the tab title. Must begin with <span class="code-span">--</span>.
-                        For example: <span class="code-span">--svg-my-icon</span>.
+                        used as a mask-image icon alongside the tab title. Must begin with <span class="@CodeSpan.Base">--</span>.
+                        For example: <span class="@CodeSpan.Base">--svg-my-icon</span>.
                     </td>
                 </tr>
                 <tr>
@@ -136,9 +136,9 @@
                     <td>OnClick</td>
                     <td>Func&lt;ButtonActionData&lt;TData&gt;, Task&gt;?</td>
                     <td>
-                        Invoked when the action button is clicked. Unlike <span class="code-span">EventCallback</span>, this does
+                        Invoked when the action button is clicked. Unlike <span class="@CodeSpan.Base">EventCallback</span>, this does
                         <b>not</b> automatically trigger a re-render of the consuming component - call
-                        <span class="code-span">StateHasChanged()</span> yourself if the action needs to update the UI.
+                        <span class="@CodeSpan.Base">StateHasChanged()</span> yourself if the action needs to update the UI.
                     </td>
                 </tr>
                 <tr>
@@ -170,7 +170,7 @@
                     <td>string</td>
                     <td>
                         Gets or sets the text displayed for this action link.
-                        Throws an <span class="code-span">ArgumentNullException</span> exception if the value is null, empty or whitespace.
+                        Throws an <span class="@CodeSpan.Base">ArgumentNullException</span> exception if the value is null, empty or whitespace.
                     </td>
                 </tr>
                 <tr>
@@ -178,21 +178,21 @@
                     <td>TData?</td>
                     <td>
                         Gets or sets an optional payload associated with this action, made available via
-                        <span class="code-span">LinkActionData&lt;TData&gt;.GetValueOr(TData)</span> via the <span class="code-span">OnClick</span> Func callback.
+                        <span class="@CodeSpan.Base">LinkActionData&lt;TData&gt;.GetValueOr(TData)</span> via the <span class="@CodeSpan.Base">OnClick</span> Func callback.
                     </td>
                 </tr>
                 <tr>
                     <td>TargetType</td>
                     <td>PopoverLinkTargetType (enum)</td>
                     <td>
-                        Gets or sets the browsing context the link opens in. Defaults to <span class="code-span">PopoverLinkTargetType.Self</span>.
+                        Gets or sets the browsing context the link opens in. Defaults to <span class="@CodeSpan.Base">PopoverLinkTargetType.Self</span>.
                     </td>
                 </tr>
                 <tr>
                     <td>Path</td>
                     <td>string</td>
                     <td>
-                        Gets or sets the <span class="code-span">href</span> attribute ,for this link. Defaults to  <span class="code-span">"/"</span>.
+                        Gets or sets the <span class="@CodeSpan.Base">href</span> attribute ,for this link. Defaults to  <span class="@CodeSpan.Base">"/"</span>.
                     </td>
                 </tr>
                 <tr>
@@ -200,9 +200,9 @@
                     <td>bool</td>
                     <td>
                         Gets or sets whether the default navigation behaviour of the link is suppressed,
-                        allowing the consumer to handle navigation manually via <span class="code-span">OnClick</span>.
+                        allowing the consumer to handle navigation manually via <span class="@CodeSpan.Base">OnClick</span>.
                         <br />
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -211,8 +211,8 @@
                     <td>string?</td>
                     <td>
                         Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
-                        used as a mask-image icon alongside the tab title. Must begin with <span class="code-span">--</span>.
-                        For example: <span class="code-span">--svg-my-icon</span>.
+                        used as a mask-image icon alongside the tab title. Must begin with <span class="@CodeSpan.Base">--</span>.
+                        For example: <span class="@CodeSpan.Base">--svg-my-icon</span>.
                     </td>
                 </tr>
                 <tr>
@@ -228,9 +228,9 @@
                     <td>OnClick</td>
                     <td>Func&lt;LinkActionData&lt;TData&gt;, Task&gt;?</td>
                     <td>
-                        Invoked when the action link is clicked. Unlike <span class="code-span">EventCallback</span>, this does
+                        Invoked when the action link is clicked. Unlike <span class="@CodeSpan.Base">EventCallback</span>, this does
                         <b>not</b> automatically trigger a re-render of the consuming component - call
-                        <span class="code-span">StateHasChanged()</span> yourself if the action needs to update the UI.
+                        <span class="@CodeSpan.Base">StateHasChanged()</span> yourself if the action needs to update the UI.
                     </td>
                 </tr>
                 <tr>
@@ -246,7 +246,7 @@
     <section class="code-table">
         <h3 id="action-popover-separator-component-parameters" class="code-table__heading">ActionPopoverSeparator component parameters</h3>
         <p>
-            This component has no parameters an merely outputs a styled <span class="code-span">hr</span> to act as separator between groups of
+            This component has no parameters an merely outputs a styled <span class="@CodeSpan.Base">hr</span> to act as separator between groups of
             related actions.
         </p>
     </section>
@@ -276,12 +276,12 @@
                     <td>GetValueOr(TData? fallback)</td>
                     <td>
                         Gets the item data associated with the clicked button, or a fallback value if no data was supplied.
-                        For non-nullable value-typed <span class="code-span">TData</span> (e.g. int, bool),
+                        For non-nullable value-typed <span class="@CodeSpan.Base">TData</span> (e.g. int, bool),
                         a default value (e.g. 0) is indistinguishable from "no value was supplied" and is
-                        always treated as a real value — <span class="code-span">fallback</span> will never be returned in that
-                        case. Use a nullable value type (e.g. int?) as <span class="code-span">TData</span> if this
+                        always treated as a real value — <span class="@CodeSpan.Base">fallback</span> will never be returned in that
+                        case. Use a nullable value type (e.g. int?) as <span class="@CodeSpan.Base">TData</span> if this
                         distinction matters to you.
-                        <span class="code-span">fallback</span>The value to return if no data was supplied.
+                        <span class="@CodeSpan.Base">fallback</span>The value to return if no data was supplied.
                     </td>
                 </tr>
                 <tr>
@@ -319,8 +319,8 @@
                     <td>string</td>
                     <td>Path</td>
                     <td>
-                        Gets the trimmed <span class="code-span">href</span> path for the clicked link.
-                        Defaults to <span class="code-span">"/"</span>
+                        Gets the trimmed <span class="@CodeSpan.Base">href</span> path for the clicked link.
+                        Defaults to <span class="@CodeSpan.Base">"/"</span>
                     </td>
                 </tr>
                 <tr>
@@ -335,12 +335,12 @@
                     <td>GetValueOr(TData? fallback)</td>
                     <td>
                         Gets the item data associated with the clicked link, or a fallback value if no data was supplied.
-                        For non-nullable value-typed <span class="code-span">TData</span> (e.g. int, bool),
+                        For non-nullable value-typed <span class="@CodeSpan.Base">TData</span> (e.g. int, bool),
                         a default value (e.g. 0) is indistinguishable from "no value was supplied" and is
-                        always treated as a real value — <span class="code-span">fallback</span> will never be returned in that
-                        case. Use a nullable value type (e.g. int?) as <span class="code-span">TData</span> if this
+                        always treated as a real value — <span class="@CodeSpan.Base">fallback</span> will never be returned in that
+                        case. Use a nullable value type (e.g. int?) as <span class="@CodeSpan.Base">TData</span> if this
                         distinction matters to you.
-                        <span class="code-span">fallback</span>The value to return if no data was supplied.
+                        <span class="@CodeSpan.Base">fallback</span>The value to return if no data was supplied.
                     </td>
                 </tr>
                 <tr>
@@ -434,24 +434,24 @@
                     <td>0</td>
                     <td>Self</td>
                     <td>
-                        Opens the link in the same browsing context. Equivalent to <span class="code-span">target="_self"</span>
+                        Opens the link in the same browsing context. Equivalent to <span class="@CodeSpan.Base">target="_self"</span>
                         This is the default value.
                     </td>
                 </tr>
                 <tr>
                     <td>1</td>
                     <td>Blank</td>
-                    <td>Opens the link in a new tab or window. Equivalent to <span class="code-span">target="_blank"</span></td>
+                    <td>Opens the link in a new tab or window. Equivalent to <span class="@CodeSpan.Base">target="_blank"</span></td>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Parent</td>
-                    <td>Opens the link in the parent browsing context. Equivalent to <span class="code-span">target="_parent"</span></td>
+                    <td>Opens the link in the parent browsing context. Equivalent to <span class="@CodeSpan.Base">target="_parent"</span></td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td>Top</td>
-                    <td>Opens the link in the topmost browsing context.Equivalent to <span class="code-span">target="_top"</span></td>
+                    <td>Opens the link in the topmost browsing context.Equivalent to <span class="@CodeSpan.Base">target="_top"</span></td>
                 </tr>
             </tbody>
         </table>
@@ -847,7 +847,7 @@
         <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
         <p>
             The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
-            by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
+            by standard mappings to the <span class="@CodeSpan.Base">--br-comp-all</span> variables.
         </p>
 
         <table aria-labelledby="unmapped-variables">

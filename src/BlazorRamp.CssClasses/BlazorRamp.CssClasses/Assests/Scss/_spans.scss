@@ -1,0 +1,18 @@
+﻿
+.br-code-span {
+
+    --_br-code-span-font-size: var(--br-unit-font-size-1);
+
+    border: 1px solid transparent;
+    padding: var(--br-unit-space-2);
+    border-radius: var(--br-unit-radius-3);
+    font-family: var(--br-code-font-family);
+    font-size: var(--_code-span-font-size);
+    color: var(--br-shared-accent-text);
+    background-color: var(--br-shared-accent-lighter);
+
+    &--font-size-label{font-size:var(--br-font-size-label);}
+    &--font-size-one{font-size:var(--br-font-size-1);}
+    &--font-size-two{font-size:var(--br-font-size-2);}
+    &--font-size-three{font-size:var(--br-font-size-3);}
+}

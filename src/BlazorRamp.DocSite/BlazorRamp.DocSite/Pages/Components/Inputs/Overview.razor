@@ -11,17 +11,17 @@
 <h1>@GlobalValues.Component_Name_Inputs @GlobalValues.Common_Page_Title_Overview</h1>
 
 <p>
-    The <b>BlazorRamp.Inputs</b> package contains a set of basic input components that are to be used with the Blazor <span class="code-span">EditForm</span> component and its <span class="code-span">EditContext</span> which
+    The <b>BlazorRamp.Inputs</b> package contains a set of basic input components that are to be used with the Blazor <span class="@CodeSpan.Base">EditForm</span> component and its <span class="@CodeSpan.Base">EditContext</span> which
     coordinates state and validation between the form and input components such as these and/or Blazors own input components.
 </p>
 <p>
-    As these components work with Blazors <span class="code-span">EditContext</span> they will work with the validation framework you have chosen to use with the  <span class="code-span">EditContext</span> such as Data Annotations, 
+    As these components work with Blazors <span class="@CodeSpan.Base">EditContext</span> they will work with the validation framework you have chosen to use with the  <span class="@CodeSpan.Base">EditContext</span> such as Data Annotations, 
     Fluid Validation Blazor integration packages or my own Validation framework <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Repo_Site" target="_blank" >Validated.Core (opens in new window)</a> and its Blazor NuGet package 
     <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
 </p>
 <p>
-    This package also includes an <span class="code-span">&lt;InputErrorsSummary /&gt;</span> component that you can use instead of Blazors <span class="code-span">&lt;ValidationSummary /&gt;</span> component. Although both will display all of the errors the 
-    <span class="code-span">&lt;InputErrorsSummary /&gt;</span> component also provides the user with links that will take them to, and set focus on the errant inputs.
+    This package also includes an <span class="@CodeSpan.Base">&lt;InputErrorsSummary /&gt;</span> component that you can use instead of Blazors <span class="@CodeSpan.Base">&lt;ValidationSummary /&gt;</span> component. Although both will display all of the errors the 
+    <span class="@CodeSpan.Base">&lt;InputErrorsSummary /&gt;</span> component also provides the user with links that will take them to, and set focus on the errant inputs.
 </p>
 <p>
     As explained on the Accessibility page, all of the inputs follow the same format, they are all self-contained units comprising a label, an optional hint text area, the input field itself, and a validation message area.
@@ -29,13 +29,13 @@
 
 <p>
     Below is an example of the <b>TextInput</b> component, that uses a data annotations on each field. Both fields have been set to use "oninput" for immediate validation, with the First name field using the tabbable errors region 
-    instead of adding the error element id to the <span class="code-span">aria-describedby</span> attribute, and with the Surname field having the element id added to the  <span class="code-span">aria-describedby</span> attribute. 
+    instead of adding the error element id to the <span class="@CodeSpan.Base">aria-describedby</span> attribute, and with the Surname field having the element id added to the  <span class="@CodeSpan.Base">aria-describedby</span> attribute. 
     You would need to try this with a screen reader to understand the difference if its unclear, but if you use you tab key the First name errors region has a tab stop when the error is present. The element has also been promoted to
-    a landmark with the accessible name of "First name errors", the combination of the <span class="code-span">LabelText</span> and the <span class="code-span">ErrorsLabel</span> parameters.
+    a landmark with the accessible name of "First name errors", the combination of the <span class="@CodeSpan.Base">LabelText</span> and the <span class="@CodeSpan.Base">ErrorsLabel</span> parameters.
 </p>
 
-<section class="section-box">
-    <h2>Inputs example</h2>
+<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.PrimaryDark)">Inputs example</h2>
 
     <EditForm Model="@_contactData" OnValidSubmit="HandleSubmit">
         
@@ -58,8 +58,8 @@
 
 </section>
 <p>
-    <b>Please note: </b>In the example above the <span class="code-span">Required</span> parameter was set to true for both fields, which added a red asterisk to the label. This is hidden from screen reader users as
-    otherwise they would hear First name (asterisk or star) and Surname (asterisk or star) when entering the input. Setting this parameter also adds <span class="code-span">aria-required="true"</span> to the input so screen reader users will be
+    <b>Please note: </b>In the example above the <span class="@CodeSpan.Base">Required</span> parameter was set to true for both fields, which added a red asterisk to the label. This is hidden from screen reader users as
+    otherwise they would hear First name (asterisk or star) and Surname (asterisk or star) when entering the input. Setting this parameter also adds <span class="@CodeSpan.Base">aria-required="true"</span> to the input so screen reader users will be
     advised that its a required field.
 </p>
 <p>
@@ -74,15 +74,15 @@
 
 <p>
     <b>Note:</b> As each Input component is a single unit comprised of rows, the <b>BlazorRamp.Inputs</b> stylesheet also contains a 12 column grid layout container with
-    familiar row and col classes to help with alignments. The Input component detects if its inside a Blazor Ramp <span class="code-span">.br-input-row</span> and switches to using a css sub-grid to keep inputs aligned that are in adjacent
+    familiar row and col classes to help with alignments. The Input component detects if its inside a Blazor Ramp <span class="@CodeSpan.Base">.br-input-row</span> and switches to using a css sub-grid to keep inputs aligned that are in adjacent
     columns. Without this, if one input was showing an error message and an input in an adjacent column was not, the heights would be different.
 </p>
 <p>
-    The grid system employed uses a container query with common breakpoints of <span class="code-span">"xs": 0px, "sm": 576px, "md": 768px, "lg": 992px, "xl": 1280px, "xxl": 1536px</span>
+    The grid system employed uses a container query with common breakpoints of <span class="@CodeSpan.Base">"xs": 0px, "sm": 576px, "md": 768px, "lg": 992px, "xl": 1280px, "xxl": 1536px</span>
 </p>
 <p>
-    As seen in the code above, a <span class="code-span">&lt;div class=".br-input-row"&gt;</span> was added for a row and then the appropriate classes were added on the
-    input directly, in this instance they were <span class="code-span">&lt;NumericInput class="br-col-xs-12 br-col-sm-6"&gt;</span>. 
+    As seen in the code above, a <span class="@CodeSpan.Base">&lt;div class=".br-input-row"&gt;</span> was added for a row and then the appropriate classes were added on the
+    input directly, in this instance they were <span class="@CodeSpan.Base">&lt;NumericInput class="br-col-xs-12 br-col-sm-6"&gt;</span>. 
 </p>
 
 <div class="flex-content justify-content-between">

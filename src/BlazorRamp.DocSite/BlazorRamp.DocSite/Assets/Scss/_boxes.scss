@@ -5,9 +5,9 @@
     position: relative;
     padding: var(--br-unit-space-5);
     margin-bottom: var(--br-unit-space-5);
-    border-radius: var(--br-unit-radius-5);
+    border-radius: var(--br-group-content-border-radius);
     border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
-/*    min-width: fit-content;*/
+    /*    min-width: fit-content;*/
 
     &__heading {
         color: var(--br-info-box-alternate-heading-text);
@@ -40,73 +40,6 @@
 
     &:focus-visible {
         outline-width: var(--br-comp-all-outline-width);
-        outline-color: var(--br-comp-all-outline-colour);
-    }
-}
-
-.code-box {
-    position: relative;
-    padding: var(--br-unit-space-5);
-    margin-block: var(--br-unit-space-5);
-  
-    border-radius: var(--br-unit-radius-5);
-    border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
-    width: auto;
-    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
-    font-size:var(--br-unit-font-size-label);
-    background-color: var(--br-code-block-background-colour);
-    overflow-x: auto;
-    color: var(--br-code-block-text);
-
-    &:focus{
-       
-        outline-style: var(--br-comp-all-outline-style); 
-        outline-width: var(--br-comp-all-outline-width); 
-        outline-offset: var(--br-comp-all-outline-offset);
-        outline-color: var(--br-comp-all-outline-colour);
-    }
-}
-
-.code-span {
-    padding: var(--br-unit-space-2);
-    border-radius: var(--br-unit-radius-3);
-    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
-    background-color: var(--br-code-block-background-colour);
-    overflow-x: auto;
-    color: var(--br-code-block-text);
-    border: 1px solid transparent;
-
-    &--h3-sizing {
-        font-size: var(--br-unit-font-size-1);
-    }
-
-    &--h2-sizing {
-        font-size: var(--br-unit-font-size-2);
-    }
-}
-
-.section-box {
-    position: relative;
-    padding: var(--br-unit-space-5);
-    margin-bottom: var(--br-unit-space-5);
-    border-radius: var(--br-unit-radius-5);
-    border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
-   
-    overflow:clip;
-    & h2 {
-        @include media-device-sm(max-width) {
-            text-align: center;
-        }
-    }
-
-    & h3 {
-        color: var(--br-info-box-alternate-heading-text);
-    }
-
-    &:focus {
-        outline-style: var(--br-comp-all-outline-style);
-        outline-width: var(--br-comp-all-outline-width);
-        outline-offset: var(--br-comp-all-outline-offset);
         outline-color: var(--br-comp-all-outline-colour);
     }
 }

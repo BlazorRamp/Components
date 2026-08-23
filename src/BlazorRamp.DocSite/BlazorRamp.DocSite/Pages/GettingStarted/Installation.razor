@@ -24,8 +24,8 @@
     </li>
     <li>
         <p>
-            Add the following Core stylesheet reference to the <span class="code-span">&lt;head&gt;</span> section of your applications
-            <span class="code-span">index.html</span> or <span class="code-span">App.razor</span> file dependent on the project type:
+            Add the following Core stylesheet reference to the <span class="@CodeSpan.Base">&lt;head&gt;</span> section of your applications
+            <span class="@CodeSpan.Base">index.html</span> or <span class="@CodeSpan.Base">App.razor</span> file dependent on the project type:
         </p>
         <CodeBox CodeBlock="@CoreSnippets.Add_Core_Style_Sheet" AriaLabel="Add Core stylesheet code block" />
         <p>
@@ -41,21 +41,21 @@
     </li>
     <li>
         <p>
-            Register BlazorRamp services in the <span class="code-span">Program.cs</span> file (Both server and client if using Server and WebAssembly interactive rendermode)
+            Register BlazorRamp services in the <span class="@CodeSpan.Base">Program.cs</span> file (Both server and client if using Server and WebAssembly interactive rendermode)
         </p>
         <p>
-            Add the following line to the service registration section if you are using the <span class="code-span">Microsoft.Extensions.DependencyInjection</span> package:
+            Add the following line to the service registration section if you are using the <span class="@CodeSpan.Base">Microsoft.Extensions.DependencyInjection</span> package:
         </p>
         <CodeBox CodeBlock="@CoreSnippets.Add_Live_Region_Service" AriaLabel="Register live region service code block" />
         <p>
-            For other Dependency Injection providers, register the interface <span class="code-span">ILiveRegionService</span> and its implementation <span class="code-span">LiveRegionService</span>
+            For other Dependency Injection providers, register the interface <span class="@CodeSpan.Base">ILiveRegionService</span> and its implementation <span class="@CodeSpan.Base">LiveRegionService</span>
             as you normally would.
         </p>
     </li>
     <li>
         <p>
-            Add the <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component with your parameter values above the Router component contained in either the
-            <span class="code-span">Routes.razor</span> file or <span class="code-span">App.razor</span> file depending on your project type:
+            Add the <span class="@CodeSpan.Base">&lt;AnnouncementHistory /&gt;</span> component with your parameter values above the Router component contained in either the
+            <span class="@CodeSpan.Base">Routes.razor</span> file or <span class="@CodeSpan.Base">App.razor</span> file depending on your project type:
         </p>
         <CodeBox CodeBlock="@AnnouncementHistorySnippets.Add_Announcement_History_Component" AriaLabel="Add announcement history component code block" />
     </li>

@@ -8,33 +8,33 @@
     Practical examples showing the Input Errors Summary component configured with various parameters.
 </p>
 <p>
-    You can choose to have the error summary displayed immediately on any validation error (<span class="code-span">SummaryDisplay.Always</span>) or only after a full model validation has occurred (<span class="code-span">SummaryDisplay.OnModelValidated</span>)
+    You can choose to have the error summary displayed immediately on any validation error (<span class="@CodeSpan.Base">SummaryDisplay.Always</span>) or only after a full model validation has occurred (<span class="@CodeSpan.Base">SummaryDisplay.OnModelValidated</span>)
     which generally occurs when the user is trying to submit the form. 
 </p>
 <p>
-    To use the component all you need to do is place the component inside of the <span class="code-span">EditForm</span> wrapping the inputs that you want including in the summary; these will then
+    To use the component all you need to do is place the component inside of the <span class="@CodeSpan.Base">EditForm</span> wrapping the inputs that you want including in the summary; these will then
     appear in the summary with inks pointing to them.
 </p>
 <p>
     When a full model validation event occurs and there are validation errors, the summary is displayed and the focus moved to it. 
-    This focus event causes screen readers to announce the heading as the section element containing this summary information has an <span class="code-span">aria-labelledby</span> attribute that point to the heading element.
-    The section has also been given a <span class="code-span">role="region"</span> attribute promoting it to a landmark in order to make it easier for screen reader users to navigate to, given the lists of short cuts they have access to.
+    This focus event causes screen readers to announce the heading as the section element containing this summary information has an <span class="@CodeSpan.Base">aria-labelledby</span> attribute that point to the heading element.
+    The section has also been given a <span class="@CodeSpan.Base">role="region"</span> attribute promoting it to a landmark in order to make it easier for screen reader users to navigate to, given the lists of short cuts they have access to.
 </p>
 <p>
     The input errors summary example below has been configured to only show after a full model validation event has occurred. It uses an input suffix of "Field" which is appended to the label names. In this instance the 
-    title that gets displayed for the section was configured to use an <span class="code-span">h3</span> element, which on this page was the next logical heading.
+    title that gets displayed for the section was configured to use an <span class="@CodeSpan.Base">h3</span> element, which on this page was the next logical heading.
 </p>
 <p>
     The three fields with the asterisk next to the label are required, with the Hourly Rate field being a nullable (optional) decimal value. 
-    Each field has validation rules and uses the setting <span class="code-span">UpdateOnInput="true"</span> for immediate validation opting to use the tabbable regions for the validation error messages. Clicking the fake submit button will
+    Each field has validation rules and uses the setting <span class="@CodeSpan.Base">UpdateOnInput="true"</span> for immediate validation opting to use the tabbable regions for the validation error messages. Clicking the fake submit button will
     validate the entire model showing any validation error messages on the respective input as well as to display the input error summary.
 </p>
 <p>
     <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
-    but you can use any validators that work with Blazors <span class="code-span">EditContext</span>.
+    but you can use any validators that work with Blazors <span class="@CodeSpan.Base">EditContext</span>.
 </p>
-<section class="section-box">
-    <h2>Input error summary example one</h2>
+<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.PrimaryDark)">Input error summary example one</h2>
 
     <EditForm Model="@_contactData" OnValidSubmit="HandleSubmit">
         
@@ -78,8 +78,8 @@
     The next example is a repeat of the above, however, as we are using the Validated.Blazor package, we can use option to defer field validation until a full model validation is requested which is generally on submit
     unless requested manually. The following example uses this option so no validation will take place until the submit button is clicked, afterwich field level validaion as of the first example.  
 </p>
-<section class="section-box">
-    <h2>Input error summary example two (no validation until submit)</h2>
+<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.PrimaryDark)">Input error summary example two (no validation until submit)</h2>
 
     <EditForm EditContext="@_editContext" OnValidSubmit="HandleSubmit">
 

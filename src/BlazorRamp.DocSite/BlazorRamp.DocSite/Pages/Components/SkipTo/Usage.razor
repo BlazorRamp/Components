@@ -13,24 +13,24 @@
 <CodeBox CodeBlock="@SkipToSnippets.Skip_To_Params_Example" AriaLabel="Skip to example code block" />
 
 <p>
-    For something that is site wide <span class="code-span">SkipToType.Site</span>, I just place the component inside the
-    <span class="code-span">Routes.razor</span> file or <span class="code-span">App.razor</span> file above the router with the
-    <span class="code-span">AnnouncementHistory</span> component.
+    For something that is site wide <span class="@CodeSpan.Base">SkipToType.Site</span>, I just place the component inside the
+    <span class="@CodeSpan.Base">Routes.razor</span> file or <span class="@CodeSpan.Base">App.razor</span> file above the router with the
+    <span class="@CodeSpan.Base">AnnouncementHistory</span> component.
 </p>
 
-<p>The following example is the skip to on this page using the <span class="code-span">SkipToType.Section</span></p>
+<p>The following example is the skip to on this page using the <span class="@CodeSpan.Base">SkipToType.Section</span></p>
 
 <CodeBox CodeBlock="@SkipToSnippets.Skip_To_Section_Example" AriaLabel="Skip to section example code block" />
 
 <div class="info-box">
     <SkipTo IconVisible="true" SkipToText="Skip to section content" SkipToType="SkipToType.Section" TargetID="section-one" />
-    <div class="section-box">
-        The skip to is hiding here in this container that has a CSS <spoan class="code-span">position:relative;</spoan> set on it.
+    <div class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+        The skip to is hiding here in this container that has a CSS <spoan class="@CodeSpan.Base">position:relative;</spoan> set on it.
     </div>
-    <div class="section-box">
+    <div class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
         Some block you want to skip.
     </div>
-    <div style="width:320px;" class="section-box" tabindex="-1" id="section-one">
+    <div style="width:320px;" class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)" tabindex="-1" id="section-one">
         The content you want to get to.
     </div>
 </div>

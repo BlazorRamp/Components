@@ -9,15 +9,14 @@
 </p>
 <p>
     <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
-    but you can use any validators that work with Blazors <span class="code-span">EditContext</span>.
+    but you can use any validators that work with Blazors <span class="@CodeSpan.Base">EditContext</span>.
 </p>
-<section class="section-box">
-
-    <h2>Select input example</h2>
+<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.PrimaryDark)">Select input example</h2>
     <p>
         The following three select components are all bound to the same variable so you see the different styles and behaviours. The
-        first select is enabled and is required. The next select has its <span class="code-span">ReadOnly</span> parameter set to true with the last
-        select using <span class="code-span">AriaDisabled="true"</span>.
+        first select is enabled and is required. The next select has its <span class="@CodeSpan.Base">ReadOnly</span> parameter set to true with the last
+        select using <span class="@CodeSpan.Base">AriaDisabled="true"</span>.
     </p>
     <p>
         <strong>Note: </strong> readonly is not native to the select element, I implemented this behaviour via JavaScript just in case. Screen readers will not

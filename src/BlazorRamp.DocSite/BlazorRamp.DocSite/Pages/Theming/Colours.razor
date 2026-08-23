@@ -7,12 +7,12 @@
 <h1>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Colours</h1>
 
 <p>
-    The primary, neutral, secondary and accent colours are all derived from a root variable <span class="code-span">@CoreCssVariables.Colour_Primary</span>.
+    The primary, neutral, secondary and accent colours are all derived from a root variable <span class="@CodeSpan.Base">@CoreCssVariables.Colour_Primary</span>.
     This single root variable is then used to create the roots for neutral, secondary and accent colours which are then used to create the respective palettes.
     The primary and neutral variables that end "-50" are the same as the root colour that were used to create the lighter and darker shades.
 </p>
 <p>
-    <b>For most applications you will most likely only need to change the single <span class="code-span">@CoreCssVariables.Colour_Primary</span> variable value.</b> But if the others are
+    <b>For most applications you will most likely only need to change the single <span class="@CodeSpan.Base">@CoreCssVariables.Colour_Primary</span> variable value.</b> But if the others are
     not to your liking then you just change them at the hierarchy level that best suits your application (see theming overview). And then use the colours that your root variables have
     generated.
 </p>
@@ -23,7 +23,7 @@
 
 <p>
     <strong>Note:</strong> The focus indicator in this library is a ring around the item and the colour used for the indicator variable
-    <span class="code-span">--br-comp-all-focus-indicator-colour</span> is the primary derived value: <span class="code-span">@CoreCssVariables.Colour_Primary_70</span>
+    <span class="@CodeSpan.Base">--br-comp-all-focus-indicator-colour</span> is the primary derived value: <span class="@CodeSpan.Base">@CoreCssVariables.Colour_Primary_70</span>
 </p>
 <p>
     <strong>Important: </strong> Although difficult given you are on this site, you must remember, things such as the left hand side background colour, the band at the top,
@@ -33,7 +33,7 @@
 </p>
 <p>
     All of the colour changes are driven by pure css colour functions so there are no css pre-processors or calls to some API - everything is in the Core project style sheet.
-    For more advanced colour control over the generated neutrals, there is also a <span class="code-span">@CoreCssVariables.Colour_Neutral_Saturation</span> variable. I set this
+    For more advanced colour control over the generated neutrals, there is also a <span class="@CodeSpan.Base">@CoreCssVariables.Colour_Neutral_Saturation</span> variable. I set this
     with a value of 10. If you want less of the primary tinge in the neutrals, just lower this value or raise it for a more.
 </p>
 <p>
@@ -182,9 +182,9 @@
 <section>
     <h2 style="margin-block:var(--br-unit-space-5);">Regular text and page background colours</h2>
     <p>
-        Regular text (on a light canvas) uses the variable <span class="code-span">@CoreCssVariables.Colour_Canvas_Text</span> which just gets is value from
-        the neutral variable <span class="code-span">@CoreCssVariables.Colour_Neutral_90</span>; this neutral value is the value for the dark theme canvas. 
-        For regular text (on a dark canvas) the aforementioned variable uses the value from the neutral variable <span class="code-span">@CoreCssVariables.Colour_Neutral_5</span>
+        Regular text (on a light canvas) uses the variable <span class="@CodeSpan.Base">@CoreCssVariables.Colour_Canvas_Text</span> which just gets is value from
+        the neutral variable <span class="@CodeSpan.Base">@CoreCssVariables.Colour_Neutral_90</span>; this neutral value is the value for the dark theme canvas. 
+        For regular text (on a dark canvas) the aforementioned variable uses the value from the neutral variable <span class="@CodeSpan.Base">@CoreCssVariables.Colour_Neutral_5</span>
     </p>
     <p>
         All of the colours have a light and dark text variable.

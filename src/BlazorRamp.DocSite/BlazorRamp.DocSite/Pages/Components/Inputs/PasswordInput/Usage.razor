@@ -5,24 +5,23 @@
 <h1>@GlobalValues.Component_Name_Password_Input @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
-    The example below has the <span class="code-span">UpdateOnInput</span> parameter on both fields set to false, so validation occurs when focus is lost. The ValidationDisplayMode
-    for both fields was set to <span class="code-span">ValidationDisplayMode.DescribedByHintSuppressed</span> as I felt the validation message was sufficient to reduce verbosity
+    The example below has the <span class="@CodeSpan.Base">UpdateOnInput</span> parameter on both fields set to false, so validation occurs when focus is lost. The ValidationDisplayMode
+    for both fields was set to <span class="@CodeSpan.Base">ValidationDisplayMode.DescribedByHintSuppressed</span> as I felt the validation message was sufficient to reduce verbosity
     for screen reader users.
 </p>
 <p>
     Optional icons were also added. All the input icons are hidden from screen reader users as they are just decorative. In the case of the state icons, green tick and red cross, screen reader
-    users are informed via the <span class="code-span">aria-invalid</span> attribute..
+    users are informed via the <span class="@CodeSpan.Base">aria-invalid</span> attribute..
 </p>
 <p>
     The "Show Password" element is a button so its accessible to all users, the normal "Eye" icon added by the browser, is not accessible to keyboard users.
 </p>
 <p>
     <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
-    but you can use any validators that work with Blazors <span class="code-span">EditContext</span>.
+    but you can use any validators that work with Blazors <span class="@CodeSpan.Base">EditContext</span>.
 </p>
-<section class="section-box">
-    
-    <h2>Password input example</h2>
+<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.PrimaryDark)">Password input example</h2>
 
     <EditForm Model="@_registrationData" OnValidSubmit="HandleSubmit">
 

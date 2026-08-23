@@ -5,29 +5,29 @@
 <h1>@GlobalValues.Component_Name_Date_Input @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
-    The example below shows the Date Input component being bound to both non-nullable and nullable <span class="code-span">DateOnly</span> fields. The "End Date" and "Start Date" are non-nullable, required, with  
+    The example below shows the Date Input component being bound to both non-nullable and nullable <span class="@CodeSpan.Base">DateOnly</span> fields. The "End Date" and "Start Date" are non-nullable, required, with  
     validation rules that says the "End Date" must be greater than the "Star Date" and with a "Start Date" that must be between 2022-02-02 and 2026-06-06.
 </p>
 <p>
-    Rather than set the component parameter <span class="code-span">Required</span> to true, which only adds a red asterisk to the label and the <span class="code-span">aria-required</span> attribute to the inputs, I have opted to
+    Rather than set the component parameter <span class="@CodeSpan.Base">Required</span> to true, which only adds a red asterisk to the label and the <span class="@CodeSpan.Base">aria-required</span> attribute to the inputs, I have opted to
     just use the text "Required" in the hint text for the required field, and the text "Optional" in the optional nullable fields. By default the required parameter is set to true so I set this to false for the Date Started and Completed fields. 
 </p>
 <p>
-    For both the "Start Date" and "Date Started" fields I have set the <span class="code-span">UpdateOnInput</span> parameter to true, and false for the "End Date" and "Date Completed" fields just so you can see the different approaches.
+    For both the "Start Date" and "Date Started" fields I have set the <span class="@CodeSpan.Base">UpdateOnInput</span> parameter to true, and false for the "End Date" and "Date Completed" fields just so you can see the different approaches.
     For validation on the Date Started and Completed fields, I added validation rules that says if entered "Date Started" must be before 2022-02-02 and if entered "Date Completed" must be after 2022-03-02. As these are nullable fields and validation will run on every keystroke for "Start Work", the <span>ParseErrorMessage</span> parameter will be utilised until a valid time can
     be parsed from the inputs.
 </p>
 
 <p>
-    I have used <span class="code-span">ValidationDisplayMode="TabbableWithHint"</span> on all fields.
+    I have used <span class="@CodeSpan.Base">ValidationDisplayMode="TabbableWithHint"</span> on all fields.
 </p>
 <p>
     <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
-    but you can use any validators that work with Blazors <span class="code-span">EditContext</span>. 
+    but you can use any validators that work with Blazors <span class="@CodeSpan.Base">EditContext</span>. 
 </p>
 
-<section class="section-box">
-    <h2>Date input example</h2>
+<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.PrimaryDark)">Date input example</h2>
 
     <EditForm EditContext="@_editContext" OnValidSubmit="HandleSubmit">
         
@@ -62,7 +62,7 @@
 
 <p>
     <strong>Important: </strong>As a reminder, if the date is being used to capture a persons date of birth then in order to be WCAG compliant the correct autocomplete value token for each segment should be added.
-    Setting the <span class="code-span">AutoCompleteOff</span> parameter to <b>false</b> will add the correct tokens to each input segment.
+    Setting the <span class="@CodeSpan.Base">AutoCompleteOff</span> parameter to <b>false</b> will add the correct tokens to each input segment.
 </p>
 
 <p style="padding-block:1rem;">

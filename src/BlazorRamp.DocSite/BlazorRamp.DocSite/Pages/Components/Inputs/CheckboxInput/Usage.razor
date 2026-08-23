@@ -5,7 +5,7 @@
 <h1>@GlobalValues.Component_Name_Checkbox_Input @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
-    The example below just shows two CheckboxInput components one that is enabled the other has its <span class="code-span">AriaDisabled</span> set to true. I have not added any validation as there can be only a true or false value 
+    The example below just shows two CheckboxInput components one that is enabled the other has its <span class="@CodeSpan.Base">AriaDisabled</span> set to true. I have not added any validation as there can be only a true or false value 
     but you can of course add a validator should the need arise.
 </p>
 <p>
@@ -14,12 +14,11 @@
 </p>
 <p>
     Icons are hidden from screen reader users as they are just decorative. In the case of the state icons, green tick and red cross, screen reader
-    users are informed via the <span class="code-span">aria-invalid</span> attribute..
+    users are informed via the <span class="@CodeSpan.Base">aria-invalid</span> attribute..
 </p>
 
-<section class="section-box">
-    
-    <h2>Checkbox input example</h2>
+<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.PrimaryDark)">Checkbox input example</h2>
 
     <EditForm Model="@_userAccountData">
 

@@ -30,11 +30,11 @@
     <BusyIndicator ShowIndicator="@_showTestIndicator" BusyText=". . . Saving, please wait . . ." IndicatorTrigger="Test Busy Indicator Button"
                    AriaEndText="@_ariaEndText" ContentPosition="ContentPosition.Centre" OverlayPosition=" OverlayPosition.Container">
         <p>
-            <b>Try it:</b> This text is inside a container (<span class="code-span">position:relative</span>).I have set the indicator to be top of the container, with the
-            optional <span class="code-span">aria-hidden</span> text of "Saving, please wait", using a dummy async Task set for <b>2 seconds</b> (the actual time taken is slightly longer given additional timings for clearing announcements).
+            <b>Try it:</b> This text is inside a container (<span class="@CodeSpan.Base">position:relative</span>).I have set the indicator to be top of the container, with the
+            optional <span class="@CodeSpan.Base">aria-hidden</span> text of "Saving, please wait", using a dummy async Task set for <b>2 seconds</b> (the actual time taken is slightly longer given additional timings for clearing announcements).
         </p>
         <p>
-            I have set the required <span class="code-span">AriaEndText</span> to "Saved, successfully" which is sent via the <span class="code-span">LiveRegionService</span> for screen readers to announce. 
+            I have set the required <span class="@CodeSpan.Base">AriaEndText</span> to "Saved, successfully" which is sent via the <span class="@CodeSpan.Base">LiveRegionService</span> for screen readers to announce. 
             Click the Alerts button, bottom right of the page after trying the busy indicator.This text has been wrapped by the busy indicator as sometimes it makes it clearer to do this so you can see which blocks of code 
             the busy indicator is protecting when wading through your html.
         </p>

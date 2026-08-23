@@ -20,15 +20,14 @@
 </p>
 </section>
 
-<section class="section-box">
-
-    <h2>How theming works in Blazor Ramp</h2>
+<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.PrimaryDark)">How theming works in Blazor Ramp</h2>
     <p>
         Blazor Ramp has three categories of CSS variables, the first two of which are shared by everything.
     </p>
     
     <section>
-        <h3>Units (<span class="code-span code-span--h3-sizing">--br-unit</span>)</h3>
+        <h3>Units (<span class="@CodeSpan.Base @CodeSpan.FontSize(CodeSpanFontSize.Three)">--br-unit</span>)</h3>
         <p>
             These define all of the base unitary values such as widths, spaces, fonts and colours, and are the underlying values which every variable ultimately uses unless overridden 
             by an individual component.
@@ -36,7 +35,7 @@
     </section>
 
     <section>
-        <h3>All components (<span class="code-span code-span--h3-sizing">--br-comp-all</span>)</h3>
+        <h3>All components (<span class="@CodeSpan.Base @CodeSpan.FontSize(CodeSpanFontSize.Three)">--br-comp-all</span>)</h3>
         <p>
             These form the base set of variables that all components use unless overridden by the individual component.
         </p>
@@ -46,23 +45,23 @@
         <h3>Component specific</h3>
         <p>
             These are defined on each individual component. 
-            For example, those defined for the Announcement History component are prefixed <span class="code-span">--br-comp-history</span>.
+            For example, those defined for the Announcement History component are prefixed <span class="@CodeSpan.Base">--br-comp-history</span>.
         </p>
         <p>
-            Unless it was necessary to do so for the component, each component-specific variable will map to a shared <span class="code-span">--br-comp-all</span> variable. 
-            For example, the Announcement History outline that appears around the dialogue on focus has the variable <span class="code-span">--br-comp-history-outline-style</span>,
-            which maps to (has the value) <span class="code-span">var(--br-comp-all-outline-style)</span>.
+            Unless it was necessary to do so for the component, each component-specific variable will map to a shared <span class="@CodeSpan.Base">--br-comp-all</span> variable. 
+            For example, the Announcement History outline that appears around the dialogue on focus has the variable <span class="@CodeSpan.Base">--br-comp-history-outline-style</span>,
+            which maps to (has the value) <span class="@CodeSpan.Base">var(--br-comp-all-outline-style)</span>.
         </p>
     </section>
 
     <section>
         <h3>Component Classes</h3>
         <p>
-            Each component uses the Block Element Modifier (BEM) syntax and as such each component has its own block class, such as <span class="code-span">.br-announcement-history</span>.
+            Each component uses the Block Element Modifier (BEM) syntax and as such each component has its own block class, such as <span class="@CodeSpan.Base">.br-announcement-history</span>.
         </p>
         <p>
             The styles set in the classes map to the component-specific variables unless overridden in the class. For example, the dialog's background property 
-            maps to <span class="code-span">var(--br-comp-history-pane-base-background)</span>.
+            maps to <span class="@CodeSpan.Base">var(--br-comp-history-pane-base-background)</span>.
         </p>
     </section>
 
@@ -71,16 +70,16 @@
         <p>The hierarchy of granularity is as follows:</p>
         <ol style="margin-left:var(--br-unit-space-1);margin-bottom:var(--br-unit-space-5);">
             <li>
-                <span class="code-span">--br-unit</span> - changes everything everywhere.
+                <span class="@CodeSpan.Base">--br-unit</span> - changes everything everywhere.
             </li>
             <li>
-                <span class="code-span">--br-comp-all</span> - changes the parts of all components that map to this variable.
+                <span class="@CodeSpan.Base">--br-comp-all</span> - changes the parts of all components that map to this variable.
             </li>
             <li>
-                <span class="code-span">--br-comp-[component-identifier]</span> - changes the value that is used for the style property it's mapped to.
+                <span class="@CodeSpan.Base">--br-comp-[component-identifier]</span> - changes the value that is used for the style property it's mapped to.
             </li>
             <li>
-                <span class="code-span">.br-[class-identifier]</span> - modifies the style properties of the component directly.
+                <span class="@CodeSpan.Base">.br-[class-identifier]</span> - modifies the style properties of the component directly.
             </li>
         </ol>
 
@@ -99,7 +98,7 @@
         <h3>Example</h3>
         <p>
             The difference between this documentation site and the <a target="_blank" class="@GlobalValues.Link_Class" href="@GlobalValues.Web_Site_Path_Component_Test">component test site (opens in new window)</a> was achieved 
-            by changing the <span class="code-span">--br-unit-colour-primary</span> from the named colour <span class="code-span">darkslateblue</span> (the week before I used sienna) to the colour (Marrs Green) <span class="code-span">#008C8C</span>. I implemented a
+            by changing the <span class="@CodeSpan.Base">--br-unit-colour-primary</span> from the named colour <span class="@CodeSpan.Base">darkslateblue</span> (the week before I used sienna) to the colour (Marrs Green) <span class="@CodeSpan.Base">#008C8C</span>. I implemented a
             very rudimentary colour theming system where the secondary, accent and neutral colours were all derived from the primary colour using just CSS colour functions, without SASS (which I normally use).
         </p>
     </section>
@@ -114,19 +113,18 @@
 
 </section>
 
-<section class="section-box">
-
-    <h2>Changing variable values and/or creating a dark mode - important!</h2>
+<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.PrimaryDark)">Changing variable values and/or creating a dark mode - important!</h2>
     
     <p>
         CSS custom properties (variables) are scoped to the element they're defined on and inherited by descendants. To ensure the variables / dark mode variables are available throughout your entire application—including all Blazor Ramp 
-        components, they must be defined on the <span class="code-span">:root</span> pseudo-class, which targets the <span>&lt;html&gt;</span> element.
+        components, they must be defined on the <span class="@CodeSpan.Base">:root</span> pseudo-class, which targets the <span>&lt;html&gt;</span> element.
     </p>
     <p>
-        Defining variables on <span class="code-span">:root</span> ensures they have global scope and can be accessed by any component anywhere in your application, regardless of where it's rendered in the DOM.
+        Defining variables on <span class="@CodeSpan.Base">:root</span> ensures they have global scope and can be accessed by any component anywhere in your application, regardless of where it's rendered in the DOM.
     </p>
      <p>
-        <strong>Note: </strong>Most of the variables can be changed outside of the <span class="code-span">:root</span> but as some of the components dynamically move around the DOM, setting everything in the <span class="code-span">:root</span>
+        <strong>Note: </strong>Most of the variables can be changed outside of the <span class="@CodeSpan.Base">:root</span> but as some of the components dynamically move around the DOM, setting everything in the <span class="@CodeSpan.Base">:root</span>
         ensures that everything will be applied correctly.
      </p>   
 
@@ -134,9 +132,9 @@
         <h3>How dark mode is set on this site</h3>
         
         <p>
-            The theme button at the top of the page has the ID of <span class="code-span">theme-toggler</span> and the ARIA role of switch with the the associated <span class="code-span">aria-checked</span> attribute.
-            On the pseudo class <span class="code-span">:root</span> we can then use the Relational Pseudo-class <span class="code-span">:has()</span>, more commonly known as the Parent Selector, to select our theme toggler
-            and use its <span class="code-span">aria-checked</span> state to turn on or off the dark theme as follows.
+            The theme button at the top of the page has the ID of <span class="@CodeSpan.Base">theme-toggler</span> and the ARIA role of switch with the the associated <span class="@CodeSpan.Base">aria-checked</span> attribute.
+            On the pseudo class <span class="@CodeSpan.Base">:root</span> we can then use the Relational Pseudo-class <span class="@CodeSpan.Base">:has()</span>, more commonly known as the Parent Selector, to select our theme toggler
+            and use its <span class="@CodeSpan.Base">aria-checked</span> state to turn on or off the dark theme as follows.
         </p>
         <p>
            Below are all of the variables that need to change for all of the components on this site, as well as the sites general layout/design is not part of some component.

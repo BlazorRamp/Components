@@ -10,7 +10,7 @@
 
 
 <p>
-    The following example uses <span class="code-span">ExpandMode.Multiple</span> so all panels can be expanded. The example does not bind to any of the accordion item <span class="code-span">Expanded</span> parameters
+    The following example uses <span class="@CodeSpan.Base">ExpandMode.Multiple</span> so all panels can be expanded. The example does not bind to any of the accordion item <span class="@CodeSpan.Base">Expanded</span> parameters
     as unlike the Tabs component that requires a single index to be bound, the accordion can be used without any bindings.
 </p>
 
@@ -18,8 +18,8 @@
 
 <p>Result of the above parameter settings</p>
 
-<section class="section-box">
-    <h2 style="margin-bottom:var(--br-unit-space-9);">Lifestyle Accordion</h2>
+<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.PrimaryDark)" style="margin-bottom:var(--br-unit-space-9);">Lifestyle Accordion</h2>
 
 <Accordion HeadingLevel="HeadingLevel.H3" ExpandMode="ExpandMode.Multiple" style="margin-bottom:var(--br-unit-space-7)">
     <AccordionItem HeadingText="Food" PanelHasTabIndex="true" PanelIsRegion="false" SvgIcon="--svg-food-icon" PersistContent="true">

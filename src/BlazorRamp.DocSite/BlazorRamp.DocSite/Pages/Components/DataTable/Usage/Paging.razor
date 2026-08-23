@@ -8,15 +8,15 @@
     The Data Table has two slots (RenderFragments) for pagers, TopPager and BottomPager, with the top pager slot appearing below the filter slot. In the following example, I have added two instances of the Blazor Ramp Pager component to be used for both the top and bottom pager slots, without the filter.
 </p>
 <p>
-    <strong>Note: </strong> when using two pagers, it is important to remember that the pagers take care of their own announcements for the number of pages and rows displayed, so, to avoid the screen reader user hearing the same message twice, you should set one of the pagers not to make announcements by using the value <span class="code-span">PagerAnnouncementType.WithoutAnnouncement</span> for the <span class="code-span">PagerAnnouncementType</span> parameter.
+    <strong>Note: </strong> when using two pagers, it is important to remember that the pagers take care of their own announcements for the number of pages and rows displayed, so, to avoid the screen reader user hearing the same message twice, you should set one of the pagers not to make announcements by using the value <span class="@CodeSpan.Base">PagerAnnouncementType.WithoutAnnouncement</span> for the <span class="@CodeSpan.Base">PagerAnnouncementType</span> parameter.
 </p>
 <p>
     I have used a data source with only <b>100 rows</b> and an <b>items-per-page value of 25.</b> Given the reduced number of pages, I opted to exclude the First and Last selectors from the pagers.
 </p>
 <p>
-    As I did not change the <span class="code-span">TableHeight</span> parameter from its default value of <b>500px</b>, the table's vertical scrollbar is displayed, as the content exceeds that height.
-    With pagination, the style property is set to use <span class="code-span">max-height</span>, so the table can grow, unlike virtualisation, which requires the fixed <span class="code-span">height</span> property.
-    I could have set <span class="code-span">TableHeight</span> to a much larger value, knowing it would not occupy that space unless necessary; however, I deliberately left it as is so you could see the scrollbar in action alongside pagination, which would not normally be the case.
+    As I did not change the <span class="@CodeSpan.Base">TableHeight</span> parameter from its default value of <b>500px</b>, the table's vertical scrollbar is displayed, as the content exceeds that height.
+    With pagination, the style property is set to use <span class="@CodeSpan.Base">max-height</span>, so the table can grow, unlike virtualisation, which requires the fixed <span class="@CodeSpan.Base">height</span> property.
+    I could have set <span class="@CodeSpan.Base">TableHeight</span> to a much larger value, knowing it would not occupy that space unless necessary; however, I deliberately left it as is so you could see the scrollbar in action alongside pagination, which would not normally be the case.
 </p>
 
 <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding">

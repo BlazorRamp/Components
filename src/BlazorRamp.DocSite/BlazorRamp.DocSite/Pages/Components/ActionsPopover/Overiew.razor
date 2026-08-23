@@ -27,10 +27,10 @@
 </p>
 
 <p>
-    Both the <span class="code-span">ActionPopoverButton</span> and <span class="code-span">ActionPopoverLink</span> components have an OnClick event defined using a Func to 
-    prevent the automatic rendering in the parent component that occurs with <span class="code-span">EventCallbak</span>.
-    With regards to the <span class="code-span">ActionPopoverLink</span> component it has a <span class="code-span">PreventDefault</span> parameter that can be used to prevent 
-    the default <span class="code-span">href</span> navigation if you would like to handle this yourself.
+    Both the <span class="@CodeSpan.Base">ActionPopoverButton</span> and <span class="@CodeSpan.Base">ActionPopoverLink</span> components have an OnClick event defined using a Func to 
+    prevent the automatic rendering in the parent component that occurs with <span class="@CodeSpan.Base">EventCallbak</span>.
+    With regards to the <span class="@CodeSpan.Base">ActionPopoverLink</span> component it has a <span class="@CodeSpan.Base">PreventDefault</span> parameter that can be used to prevent 
+    the default <span class="@CodeSpan.Base">href</span> navigation if you would like to handle this yourself.
 </p>
 <p>
     For the example below, I have used the Live Region Service to announce the information that is show below the "My Actions" trigger when an item is activated. I set
@@ -38,11 +38,11 @@
     or activate the alerts button, button right of the screen.
 </p>
 <p>
-    I also added the <span class="code-span">&lt;ActionPopoverSeparator /&gt;</span> component beween each button or link. 
+    I also added the <span class="@CodeSpan.Base">&lt;ActionPopoverSeparator /&gt;</span> component beween each button or link. 
     The example on the usages page does not use the separator. 
 </p>
-<section class="section-box">
-    <h2 style="margin-bottom:var(--br-unit-space-5);">Actions popover standalone example</h2>
+<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.PrimaryDark)" style="margin-bottom:var(--br-unit-space-5);">Actions popover standalone example</h2>
     <ActionsPopover ActionsPopoverPosition="ActionsPopoverPosition.BottomCentre" TriggerText="My Actions">
         <PopoverItems>
             <ActionPopoverButton TData="int" ItemData="42" ButtonText="Edit" SvgIcon="--svg-pencil-icon" OnClick="HandleOnEdit" />

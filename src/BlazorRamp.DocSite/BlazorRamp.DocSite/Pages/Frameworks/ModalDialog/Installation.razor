@@ -6,8 +6,8 @@
 
 
 <p>
-    <strong>Note: </strong> It is a requirement that the Blazor Ramp Core <span class="code-span">core-live-region.js</span> script, <span class="code-span">LiveRegionService</span>, and
-    associated <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component are added alongside this component’s specific
+    <strong>Note: </strong> It is a requirement that the Blazor Ramp Core <span class="@CodeSpan.Base">core-live-region.js</span> script, <span class="@CodeSpan.Base">LiveRegionService</span>, and
+    associated <span class="@CodeSpan.Base">&lt;AnnouncementHistory /&gt;</span> component are added alongside this component’s specific
     requirements (a stylesheet reference in this instance).
         
 </p>
@@ -17,37 +17,37 @@
 </p>
 <p>
     Please follow the instructions in the <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Installation}")">@GlobalValues.Getting_Started_Name - @GlobalValues.Common_Page_Title_Installation</a>
-    ensuring that in the <span class="code-span">&lt;head&gt;</span> section you also add the Dialog Framework stylesheet as follows:
+    ensuring that in the <span class="@CodeSpan.Base">&lt;head&gt;</span> section you also add the Dialog Framework stylesheet as follows:
 </p>
 <CodeBox CodeBlock="@ModalSnippets.Add_Dialog_Framework_Style_Sheet" AriaLabel="Add dialog frame stylesheet code block" />
 
 
 <p>
-    <b>Next register</b> the dialog framework service in the <span class="code-span">Program.cs</span> file (Both server and client if using Server and WebAssembly interactive rendermode) and
-    add the following line to the service registration section if you are using the <span class="code-span">Microsoft.Extensions.DependencyInjection</span> package:
+    <b>Next register</b> the dialog framework service in the <span class="@CodeSpan.Base">Program.cs</span> file (Both server and client if using Server and WebAssembly interactive rendermode) and
+    add the following line to the service registration section if you are using the <span class="@CodeSpan.Base">Microsoft.Extensions.DependencyInjection</span> package:
 </p>
 <CodeBox CodeBlock="@ModalSnippets.Add_Dialog_Framework_Service" AriaLabel="Register live region service code block" />
 <p>
-    For other Dependency Injection providers, register the type <span class="code-span">ModalDialogService</span> as you normally would.
+    For other Dependency Injection providers, register the type <span class="@CodeSpan.Base">ModalDialogService</span> as you normally would.
 </p>
 
 <p>
-    <strong>Important</strong> Please read carefully so you understand the best place for the <span class="code-span">&lt;ModalDialogContainer /&gt;</span> which acts as the
+    <strong>Important</strong> Please read carefully so you understand the best place for the <span class="@CodeSpan.Base">&lt;ModalDialogContainer /&gt;</span> which acts as the
     root for unlimited nested dialogs for the specific process.
 </p>
 <p>
-    <b>Adding</b> the <span class="code-span">&lt;ModalDialogContainer /&gt;</span>
+    <b>Adding</b> the <span class="@CodeSpan.Base">&lt;ModalDialogContainer /&gt;</span>
 </p>
 <p>
     The best location really depends on your project type and the following is the recommendation.
     <ul>
         <li>
-            <b>Interactive Server (Global or Per Page)</b> - You can simply place a single instance of the <span class="code-span">&lt;ModalDialogContainer @@rendermode="InteractiveServer" /&gt;</span> in the
-            <span class="Routes.razor"></span> file next to the <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component.
+            <b>Interactive Server (Global or Per Page)</b> - You can simply place a single instance of the <span class="@CodeSpan.Base">&lt;ModalDialogContainer @@rendermode="InteractiveServer" /&gt;</span> in the
+            <span class="Routes.razor"></span> file next to the <span class="@CodeSpan.Base">&lt;AnnouncementHistory /&gt;</span> component.
         </li>
         <li>
-            <b>Interactive WebAssembly (Global or Per Page)</b> - You can simply place a single instance of the <span class="code-span">&lt;ModalDialogContainer @@rendermode="InteractiveWebAssembly" /&gt;</span> in the
-            <span class="Routes.razor"></span> file next to the <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component.
+            <b>Interactive WebAssembly (Global or Per Page)</b> - You can simply place a single instance of the <span class="@CodeSpan.Base">&lt;ModalDialogContainer @@rendermode="InteractiveWebAssembly" /&gt;</span> in the
+            <span class="Routes.razor"></span> file next to the <span class="@CodeSpan.Base">&lt;AnnouncementHistory /&gt;</span> component.
         </li>
         <li>
             <p>
@@ -58,22 +58,22 @@
             </p>
             <p>
                 For example you can simply place two instances of the <span>ModalDialogContainer</span> in the <span class="Routes.razor"></span> file next to the
-                <span class="code-span">&lt;AnnouncementHistory /&gt;</span> component. One using <span class="code-span">@@rendermode="InteractiveServer"</span> the other using
-                <span class="code-span">@@rendermode="InteractiveWebAssembly"</span> and these would handle all Server and WebAssembly page usages.<br />
-                <strong>Note: You cannot add another</strong> for <span class="code-span">@@rendermode="InteractiveAuto""</span>. For your Auto pages you would place an instance of the
-                <span class="code-span">&lt;ModalDialogContainer @@rendermode="InteractiveAuto" /&gt;</span> on each page that wants to have a dialog / nested dialogs.
+                <span class="@CodeSpan.Base">&lt;AnnouncementHistory /&gt;</span> component. One using <span class="@CodeSpan.Base">@@rendermode="InteractiveServer"</span> the other using
+                <span class="@CodeSpan.Base">@@rendermode="InteractiveWebAssembly"</span> and these would handle all Server and WebAssembly page usages.<br />
+                <strong>Note: You cannot add another</strong> for <span class="@CodeSpan.Base">@@rendermode="InteractiveAuto""</span>. For your Auto pages you would place an instance of the
+                <span class="@CodeSpan.Base">&lt;ModalDialogContainer @@rendermode="InteractiveAuto" /&gt;</span> on each page that wants to have a dialog / nested dialogs.
             </p>
             <p>
-                Placing an  <span class="code-span">@@rendermode="InteractiveWebAssembly"</span> in this project type will cause the WASM files to download immediately as
-                the <span class="code-span">&lt;Router &gt;</span> is run every request.
+                Placing an  <span class="@CodeSpan.Base">@@rendermode="InteractiveWebAssembly"</span> in this project type will cause the WASM files to download immediately as
+                the <span class="@CodeSpan.Base">&lt;Router &gt;</span> is run every request.
             </p>
 
             <p>
                 If this is a little confusing then you can also just simply place an instance of the <span>ModalDialogContainer</span> on each page where you want to have a dialog / nested dialogs
-                and by default it will use the parent components <span class="code-span">@@rendermode</span>.
+                and by default it will use the parent components <span class="@CodeSpan.Base">@@rendermode</span>.
             </p>
             <p>
-                <strong>Note:</strong> Unlike the <span class="code-span">&lt;AnnouncementHistory /&gt;</span> that works without an interactive mode, the <span class="code-span">ModalDialogContainer</span>
+                <strong>Note:</strong> Unlike the <span class="@CodeSpan.Base">&lt;AnnouncementHistory /&gt;</span> that works without an interactive mode, the <span class="@CodeSpan.Base">ModalDialogContainer</span>
                 needs one to work correctly.
             </p>
         </li>
@@ -81,7 +81,7 @@
 </p>
 <p>
     See the next page, <b>Modal Dialog (Using)</b> for examples of how you use the dialog service to open and close dialogs, pass data in, get data out and handle the register a handler for the
-    <span class="code-span">Escape</span> key. The dialog framework overrides the default HTML Dialog API so you can choose what you want to do when the <span class="code-span">Escape</span> key
+    <span class="@CodeSpan.Base">Escape</span> key. The dialog framework overrides the default HTML Dialog API so you can choose what you want to do when the <span class="@CodeSpan.Base">Escape</span> key
     is pressed.
 </p>
 
@@ -117,7 +117,7 @@
             Version 1.0.0 — <time datetime="2026-02-15">February 15, 2026</time>
         </h3>
         <ul>
-            <li>Initial release part of the <span class="code-span">BlazorRamp.DialogFramework v1.0.0</span> NuGet package, multi-targeting <span class="code-span">.NET 8.0, NET 9.0 & .NET 10.0</span></li>
+            <li>Initial release part of the <span class="@CodeSpan.Base">BlazorRamp.DialogFramework v1.0.0</span> NuGet package, multi-targeting <span class="@CodeSpan.Base">.NET 8.0, NET 9.0 & .NET 10.0</span></li>
         </ul>
     </li>
 </ol>

@@ -43,7 +43,7 @@
                     <td>ExpandMode (enum)?</td>
                     <td>
                         Gets or sets the expand mode controlling whether one or multiple panels can be
-                        open simultaneously. Defaults to <span class="code-span">ExpandMode.Multiple</span>.
+                        open simultaneously. Defaults to <span class="@CodeSpan.Base">ExpandMode.Multiple</span>.
                     </td>
                 </tr>
                 <tr>
@@ -51,7 +51,7 @@
                     <td>HeadingLevel (enum)</td>
                     <td>
                         Gets or sets the semantic heading level rendered for each accordion item trigger.
-                        Defaults to <span class="code-span">HeadingLevel.H3</span>.
+                        Defaults to <span class="@CodeSpan.Base">HeadingLevel.H3</span>.
                     </td>
                 </tr>
 
@@ -60,7 +60,7 @@
                     <td>EventCallback&lt;ItemHeadingData&gt;</td>
                     <td>
                         Gets or sets the callback invoked when an accordion item heading is clicked,
-                        providing an <span class="code-span">ItemHeadingData</span> payload containing the item index,
+                        providing an <span class="@CodeSpan.Base">ItemHeadingData</span> payload containing the item index,
                         heading text, and expanded state.
                     </td>
                 </tr>
@@ -90,7 +90,7 @@
                     <td>Task</td>
                     <td>ExpandAllPanels()</td>
                     <td>
-                        Expands all accordion panels irrespective of the <span class="code-span">ExpandMode</span>.
+                        Expands all accordion panels irrespective of the <span class="@CodeSpan.Base">ExpandMode</span>.
                     </td>
                 </tr>
                 <tr>
@@ -105,11 +105,11 @@
                     <td>ExpandPanel(int index, bool codeFocused = false)</td>
                     <td>
                         Expands the accordion panel at the specified zero-based index.
-                        <br />In <span class="code-span">ExpandMode.Single</span>, all other panels are collapsed first.
+                        <br />In <span class="@CodeSpan.Base">ExpandMode.Single</span>, all other panels are collapsed first.
                         <br />Does nothing if the index is out of range.
-                        Setting the <span class="code-span">codeFocused</span> argument to <span class="code-span">true</span>
+                        Setting the <span class="@CodeSpan.Base">codeFocused</span> argument to <span class="@CodeSpan.Base">true</span>
                         programmatically moves focus to the trigger button (accordion heading) and applies a style that mimics
-                        <span class="code-span">:focus-visible</span>. The default of <span class="code-span">false</span> only
+                        <span class="@CodeSpan.Base">:focus-visible</span>. The default of <span class="@CodeSpan.Base">false</span> only
                         expands the panel without moving focus.
                     </td>
                 </tr>
@@ -149,11 +149,11 @@
                     <td>PanelIsRegion</td>
                     <td>bool</td>
                     <td>
-                        Gets or sets a value indicating whether the panel element is given a <span class="code-span">role="region"</span>, making it
+                        Gets or sets a value indicating whether the panel element is given a <span class="@CodeSpan.Base">role="region"</span>, making it
                         a landmark navigable by screen readers. <strong>
                         Only set to true when the panel contains sufficiently important content to
                         warrant landmark navigation.
-                    </strong> Defaults to <span class="code-span">false"</span>.
+                    </strong> Defaults to <span class="@CodeSpan.Base">false"</span>.
                 </td>
             </tr>
             <tr>
@@ -161,7 +161,7 @@
                 <td>bool</td>
                 <td>
                     Gets or sets a value indicating whether the panel is expanded or collapsed.
-                    Supports two-way binding via <span class="code-span">ExpandedChanged</span>. Defaults to <span class="code-span">false</span>.
+                    Supports two-way binding via <span class="@CodeSpan.Base">ExpandedChanged</span>. Defaults to <span class="@CodeSpan.Base">false</span>.
                 </td>
             </tr>
             <tr>
@@ -169,7 +169,7 @@
                 <td>EventCallback&lt;bool&gt;</td>
                 <td>
                     Gets or sets the callback invoked when the expanded state changes, supporting
-                    two-way binding with <span class="code-span">@@bind-Expanded</span>.
+                    two-way binding with <span class="@CodeSpan.Base">@@bind-Expanded</span>.
                 </td>
             </tr>
 
@@ -177,8 +177,8 @@
                 <td>PanelHasTabIndex</td>
                 <td>bool</td>
                 <td>
-                    Gets or sets a value indicating whether <span class="code-span">tabindex="0"</span> is applied to the
-                    accordion panel, enabling keyboard focus and arrow key scrolling if the panel has a constrained height. Defaults to <span class="code-span">true</span>.
+                    Gets or sets a value indicating whether <span class="@CodeSpan.Base">tabindex="0"</span> is applied to the
+                    accordion panel, enabling keyboard focus and arrow key scrolling if the panel has a constrained height. Defaults to <span class="@CodeSpan.Base">true</span>.
                     For more details see: <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Accessibility}")">
                     @GlobalValues.Component_Name_Accordion - @GlobalValues.Common_Page_Title_Accessibility
                 </a>
@@ -189,7 +189,7 @@
             <td>bool</td>
             <td>
                 Determine whether the accordion item panel content is retained in the DOM when the accordion item is collapsed. Defaults to
-                <span class="code-span">false</span>.
+                <span class="@CodeSpan.Base">false</span>.
             </td>
         </tr>
         <tr>
@@ -228,27 +228,27 @@
             <tr>
                 <td>2</td>
                 <td>H2</td>
-                <td>Renders the trigger inside <span class="code-span">&lt;h2&gt;</span> element.</td>
+                <td>Renders the trigger inside <span class="@CodeSpan.Base">&lt;h2&gt;</span> element.</td>
             </tr>
             <tr>
                 <td>3</td>
                 <td>H3</td>
-                <td>Renders the trigger inside <span class="code-span">&lt;h3&gt;</span> element.</td>
+                <td>Renders the trigger inside <span class="@CodeSpan.Base">&lt;h3&gt;</span> element.</td>
             </tr>
             <tr>
                 <td>4</td>
                 <td>H4</td>
-                <td>Renders the trigger inside <span class="code-span">&lt;h4&gt;</span> element.</td>
+                <td>Renders the trigger inside <span class="@CodeSpan.Base">&lt;h4&gt;</span> element.</td>
             </tr>
             <tr>
                 <td>5</td>
                 <td>H5</td>
-                <td>Renders the trigger inside <span class="code-span">&lt;h5&gt;</span> element.</td>
+                <td>Renders the trigger inside <span class="@CodeSpan.Base">&lt;h5&gt;</span> element.</td>
             </tr>
             <tr>
                 <td>6</td>
                 <td>H6</td>
-                <td>Renders the trigger inside <span class="code-span">&lt;h6&gt;</span> element.</td>
+                <td>Renders the trigger inside <span class="@CodeSpan.Base">&lt;h6&gt;</span> element.</td>
             </tr>
         </tbody>
     </table>
@@ -337,8 +337,8 @@
 
         <h3 id="outline-misc-variables" class="code-table__heading">Accordion heading/accordion item panel outline/miscellaneous variables</h3>
         <p>
-            There are focus indicators (outlines) applied using <span class="code-span">:focus-visible</span> for the Accordion heading
-            and for the actual accordion item panels if it uses <span class="code-span">tabindex=0</span>
+            There are focus indicators (outlines) applied using <span class="@CodeSpan.Base">:focus-visible</span> for the Accordion heading
+            and for the actual accordion item panels if it uses <span class="@CodeSpan.Base">tabindex=0</span>
         </p>
         <table aria-labelledby="outline-misc-variables">
 
@@ -531,7 +531,7 @@
         <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
         <p>
             The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
-            by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
+            by standard mappings to the <span class="@CodeSpan.Base">--br-comp-all</span> variables.
         </p>
 
         <table aria-labelledby="unmapped-variables">

@@ -4,8 +4,8 @@
 
 <h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Virtualizing</h1>
 <p>
-    When using the Data Table, if you do not set the <span class="code-span">PagerBinding</span> parameter, it will render the table rows using the Blazor Virtualize component.
-    <strong>Note: </strong> you can disable this and have the rows rendered normally by setting the <span class="code-span">VirtualizeItemSizePX</span> parameter to 0.
+    When using the Data Table, if you do not set the <span class="@CodeSpan.Base">PagerBinding</span> parameter, it will render the table rows using the Blazor Virtualize component.
+    <strong>Note: </strong> you can disable this and have the rows rendered normally by setting the <span class="@CodeSpan.Base">VirtualizeItemSizePX</span> parameter to 0.
 </p>
 <p>
     The following uses the same 100K rows as of the basic usage example.
@@ -30,12 +30,12 @@
     Note that the DataTable is inside a container with a height specified. You adjust to suit you needs and the tables contents
 *@
 <p>
-    The Data Table has the following two parameters that are passed on to the Virtualize component: <span class="code-span">VirtualizeItemSizePX</span> and <span class="code-span">OverscanCount</span>. <span class="code-span">VirtualizeItemSizePX</span> is used for the <b>ItemSize</b> parameter on the Virtualize component, which is the expected pixel height of each item. It uses this to estimate how many items fit in the viewport and to calculate scroll position and spacer sizing, before actually measuring the real rendered items. I have given this a default of 32, which in my own apps I have not needed to change.
-    The <span class="code-span">OverscanCount</span> parameter is passed on to the <b>OverscanCount</b> parameter on the Virtualize component, and sets how many extra items are rendered above and below the visible viewport, so that content is already in the DOM before it scrolls into view, rather than appearing as blank space. I have given this a default of 50 and have not had a need to change it.
+    The Data Table has the following two parameters that are passed on to the Virtualize component: <span class="@CodeSpan.Base">VirtualizeItemSizePX</span> and <span class="@CodeSpan.Base">OverscanCount</span>. <span class="@CodeSpan.Base">VirtualizeItemSizePX</span> is used for the <b>ItemSize</b> parameter on the Virtualize component, which is the expected pixel height of each item. It uses this to estimate how many items fit in the viewport and to calculate scroll position and spacer sizing, before actually measuring the real rendered items. I have given this a default of 32, which in my own apps I have not needed to change.
+    The <span class="@CodeSpan.Base">OverscanCount</span> parameter is passed on to the <b>OverscanCount</b> parameter on the Virtualize component, and sets how many extra items are rendered above and below the visible viewport, so that content is already in the DOM before it scrolls into view, rather than appearing as blank space. I have given this a default of 50 and have not had a need to change it.
 </p>
 <p>
     It is important that the table have a fixed height set for the Virtualize component to measure against, a default of 500px is used. This value is changeable using the
-    <span class="code-span">TableHeight</span> parameter. As this is a string value you could use any applicable CSS height unit, for example 50vh.
+    <span class="@CodeSpan.Base">TableHeight</span> parameter. As this is a string value you could use any applicable CSS height unit, for example 50vh.
 </p>
 <p>
     The code from the example above.

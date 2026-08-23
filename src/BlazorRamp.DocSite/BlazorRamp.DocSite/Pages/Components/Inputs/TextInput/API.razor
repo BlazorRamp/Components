@@ -9,15 +9,15 @@
 </p>
 <p>
     As each Input component is a single unit that contains both the input, its label and regions for both hint and error text the <b>BlazorRamp.Inputs</b> stylesheet also contains a 12 column grid layout container with
-    familiar row and col classes to help with alignments. The Input component detects if its inside a Blazor Ramp <span class="code-span">.br-input-row</span> and switches to using a css sub-grid to keep inputs aligned that are in adjacent
+    familiar row and col classes to help with alignments. The Input component detects if its inside a Blazor Ramp <span class="@CodeSpan.Base">.br-input-row</span> and switches to using a css sub-grid to keep inputs aligned that are in adjacent
     columns. Without this, if one input was showing an error message and an input in an adjacent column was not, the heights would be different.
 </p>
 <p>
-    The grid system employed uses a container query with common breakpoints of <span class="code-span">"xs": 0px, "sm": 576px, "md": 768px, "lg": 992px, "xl": 1280px, "xxl": 1536px</span>
+    The grid system employed uses a container query with common breakpoints of <span class="@CodeSpan.Base">"xs": 0px, "sm": 576px, "md": 768px, "lg": 992px, "xl": 1280px, "xxl": 1536px</span>
 </p>
 <p>
-    The usage page shows these in action but simply add a row class on your container such as <span class="code-span">&lt;div class=".br-input-row"&gt;</span> and then add the appropriate classes on the
-    input directly such as <span class="code-span">&lt;TextInput class="br-col-xs-12 br-col-sm-6"&gt;</span>. For each column class/breakpoint size just add the number 1 through 12 for the
+    The usage page shows these in action but simply add a row class on your container such as <span class="@CodeSpan.Base">&lt;div class=".br-input-row"&gt;</span> and then add the appropriate classes on the
+    input directly such as <span class="@CodeSpan.Base">&lt;TextInput class="br-col-xs-12 br-col-sm-6"&gt;</span>. For each column class/breakpoint size just add the number 1 through 12 for the
     number of columns that are spanned from the 12 fractional units to form the width.
 </p>
 <p>
@@ -53,7 +53,7 @@
                     <td>
                         Gets or sets the name used for the input control label.
                         If the value is null, empty, or whitespace then the field name is used.
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -61,9 +61,9 @@
                     <td>ControlID</td>
                     <td>string</td>
                     <td>
-                        Gets or sets the <span class="code-span">id</span> attribute applied to the underlying <span class="code-span">&lt;input&gt;</span>
-                        element. When null, empty, or whitespace a <span class="code-span">Guid</span> string is generated automatically. Leading and trailing whitespace is trimmed before use.
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        Gets or sets the <span class="@CodeSpan.Base">id</span> attribute applied to the underlying <span class="@CodeSpan.Base">&lt;input&gt;</span>
+                        element. When null, empty, or whitespace a <span class="@CodeSpan.Base">Guid</span> string is generated automatically. Leading and trailing whitespace is trimmed before use.
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -72,15 +72,15 @@
                     <td>string</td>
                     <td>
                         Gets or sets the hint text rendered below the label and above the input field. When set, the text is normalised so it always ends with a full stop, and is
-                        associated to the input via <span class="code-span">aria-describedby</span>. When null, empty, or whitespace no hint element is rendered.
+                        associated to the input via <span class="@CodeSpan.Base">aria-describedby</span>. When null, empty, or whitespace no hint element is rendered.
                     </td>
                 </tr>
                 <tr>
                     <td>ReadOnly</td>
                     <td>bool</td>
                     <td>
-                        Gets or sets whether the input is read-only. When <span class="code-span">true</span>, the HTML <span class="code-span">readonly</span> attribute is applied
-                        to the underlying <span class="code-span">&lt;input&gt;</span> element. Takes precedence over the <span class="code-span">AriaDisabled</span> parameter when
+                        Gets or sets whether the input is read-only. When <span class="@CodeSpan.Base">true</span>, the HTML <span class="@CodeSpan.Base">readonly</span> attribute is applied
+                        to the underlying <span class="@CodeSpan.Base">&lt;input&gt;</span> element. Takes precedence over the <span class="@CodeSpan.Base">AriaDisabled</span> parameter when
                         both are set.
                     </td>
                 </tr>
@@ -88,24 +88,24 @@
                     <td>AriaDisabled</td>
                     <td>bool</td>
                     <td>
-                        Gets or sets whether the input is aria-disabled. When <span class="code-span">true</span>, the input is visually and functionally disabled via <span class="code-span">aria-disabled="true"</span> without
-                        using the native <span class="code-span">disabled</span> attribute, keeping the field focusable and readable by screen readers. JavaScript handlers block keyboard input and paste.
-                        Has no effect when <span class="code-span">ReadOnly</span> is also <span class="code-span">true</span>.
+                        Gets or sets whether the input is aria-disabled. When <span class="@CodeSpan.Base">true</span>, the input is visually and functionally disabled via <span class="@CodeSpan.Base">aria-disabled="true"</span> without
+                        using the native <span class="@CodeSpan.Base">disabled</span> attribute, keeping the field focusable and readable by screen readers. JavaScript handlers block keyboard input and paste.
+                        Has no effect when <span class="@CodeSpan.Base">ReadOnly</span> is also <span class="@CodeSpan.Base">true</span>.
                     </td>
                 </tr>
                 <tr>
                     <td>Required</td>
                     <td>bool</td>
                     <td>
-                        Gets or sets whether the field is required. When <span class="code-span">true</span>, <span class="code-span">aria-required="true"</span>
-                        is applied to the input and a visually hidden asterisk is appended to the label. Defaults to <span class="code-span">true</span>.
+                        Gets or sets whether the field is required. When <span class="@CodeSpan.Base">true</span>, <span class="@CodeSpan.Base">aria-required="true"</span>
+                        is applied to the input and a visually hidden asterisk is appended to the label. Defaults to <span class="@CodeSpan.Base">true</span>.
                     </td>
                 </tr>
                 <tr>
                     <td>TrimOnBlur</td>
                     <td>bool</td>
                     <td>
-                        Gets or sets whether the value is trimmed when the focus is lost. Defaults to <span class="code-span">false</span>.
+                        Gets or sets whether the value is trimmed when the focus is lost. Defaults to <span class="@CodeSpan.Base">false</span>.
                     </td>
                 </tr>
                 <tr>
@@ -113,7 +113,7 @@
                     <td>DataPosition (enum)</td>
                     <td>
                         Gets or sets the text/data alignment in the input.
-                        Defaults to <span class="code-span">DataPosition.Start</span>
+                        Defaults to <span class="@CodeSpan.Base">DataPosition.Start</span>
                     </td>
                 </tr>
                 <tr>
@@ -121,9 +121,9 @@
                     <td>string</td>
                     <td>
                         Gets or sets the accessible label for the tabbable error region, used when
-                        <span class="code-span">ValidationDisplayMode</span> is set to <span class="code-span">ValidationDisplayMode.TabbableWithHint</span>.
-                        Defaults to <span class="code-span">Errors</span>.
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        <span class="@CodeSpan.Base">ValidationDisplayMode</span> is set to <span class="@CodeSpan.Base">ValidationDisplayMode.TabbableWithHint</span>.
+                        Defaults to <span class="@CodeSpan.Base">Errors</span>.
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -131,8 +131,8 @@
                     <td>ValidationDisplayMode</td>
                     <td>ValidationDisplayMode (enum)</td>
                     <td>
-                        Gets or sets the validation display mode which controls how <span class="code-span">aria-describedby</span>
-                        is set and whether the error region is tabbable. Defaults to <span class="code-span">ValidationDisplayMode.DescribedByWithHint</span>
+                        Gets or sets the validation display mode which controls how <span class="@CodeSpan.Base">aria-describedby</span>
+                        is set and whether the error region is tabbable. Defaults to <span class="@CodeSpan.Base">ValidationDisplayMode.DescribedByWithHint</span>
                     </td>
                 </tr>
                 <tr>
@@ -140,8 +140,8 @@
                     <td>string</td>
                     <td>
                         Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
-                        used as a mask-image icon alongside the tab title. Must begin with <span class="code-span">--</span>.
-                        For example: <span class="code-span">--svg-my-icon</span>.
+                        used as a mask-image icon alongside the tab title. Must begin with <span class="@CodeSpan.Base">--</span>.
+                        For example: <span class="@CodeSpan.Base">--svg-my-icon</span>.
                     </td>
                 </tr>
                 <tr>
@@ -149,18 +149,18 @@
                     <td>bool</td>
                     <td>
                         Gets or sets whether the input value is updated on every keystroke via the
-                        <span class="code-span">oninput</span> event. When <span class="code-span">false</span> the value updates on <span class="code-span">onchange</span>
-                        (i.e. when the field loses focus). Defaults to <span class="code-span">false</span>.
+                        <span class="@CodeSpan.Base">oninput</span> event. When <span class="@CodeSpan.Base">false</span> the value updates on <span class="@CodeSpan.Base">onchange</span>
+                        (i.e. when the field loses focus). Defaults to <span class="@CodeSpan.Base">false</span>.
                     </td>
                 </tr>
                 <tr>
                     <td>TextInputType</td>
                     <td>TextInputType (enum)</td>
                     <td>
-                        Gets or sets the HTML input type. Supports <span class="code-span">TextInputType.Text</span>,
-                        <span class="code-span">TextInputType.Email</span>, <span class="code-span">TextInputType.Url</span>, and
-                        <span class="code-span">TextInputType.Tel</span>. Defaults to <span class="code-span">TextInputType.Text</span>.
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        Gets or sets the HTML input type. Supports <span class="@CodeSpan.Base">TextInputType.Text</span>,
+                        <span class="@CodeSpan.Base">TextInputType.Email</span>, <span class="@CodeSpan.Base">TextInputType.Url</span>, and
+                        <span class="@CodeSpan.Base">TextInputType.Tel</span>. Defaults to <span class="@CodeSpan.Base">TextInputType.Text</span>.
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -177,7 +177,7 @@
                     <td>
 
                         Gets or sets the value of the input field, bound to a property on your model. Typically provided automatically when using
-                        <span class="code-span">@@bind-Value="Model.PropertyName</span> syntax.
+                        <span class="@CodeSpan.Base">@@bind-Value="Model.PropertyName</span> syntax.
                     </td>
                 </tr>
                 <tr>
@@ -185,7 +185,7 @@
                     <td>EventCallback&lt;string&gt;></td>
                     <td>
                         Gets or sets a callback invoked when the bound value changes. Used for both one-way binding, where you handle the new value directly in the event callback, and two-way binding via
-                        <span class="code-span">@@bind-Value="Model.PropertyName</span> where it is provided and managed automatically by the framework.
+                        <span class="@CodeSpan.Base">@@bind-Value="Model.PropertyName</span> where it is provided and managed automatically by the framework.
                     </td>
                 </tr>
                 <tr>
@@ -199,7 +199,7 @@
                     <td>DisplayName</td>
                     <td>string</td>
                     <td>
-                        Inherited from <span class="code-span">InputBase&lt;TValue&gt;</span> but is <strong>not used by the Blazor Ramp inputs</strong>.
+                        Inherited from <span class="@CodeSpan.Base">InputBase&lt;TValue&gt;</span> but is <strong>not used by the Blazor Ramp inputs</strong>.
                     </td>
                 </tr>
             </tbody>
@@ -223,7 +223,7 @@
                     <td>ElementReference</td>
                     <td>ControlReference</td>
                     <td>
-                        Property that returns the underlying <span class="code-span">ElementReference</span> for the input control.
+                        Property that returns the underlying <span class="@CodeSpan.Base">ElementReference</span> for the input control.
                     </td>
                 </tr>
             </tbody>
@@ -298,7 +298,7 @@
                     <td>0</td>
                     <td>DescribedByWithHint</td>
                     <td>
-                        Error message ID and hint text ID are both included in <span class="code-span">aria-describedby</span>.
+                        Error message ID and hint text ID are both included in <span class="@CodeSpan.Base">aria-describedby</span>.
                         Error region is not tabbable. This is the default mode.
                     </td>
                 </tr>
@@ -306,7 +306,7 @@
                     <td>1</td>
                     <td>DescribedByHintSuppressed</td>
                     <td>
-                        Only the error message ID is included in <span class="code-span">aria-describedby</span> when errors
+                        Only the error message ID is included in <span class="@CodeSpan.Base">aria-describedby</span> when errors
                         are present, suppressing the hint text association. Error region is not tabbable.
                     </td>
                 </tr>
@@ -314,9 +314,9 @@
                     <td>2</td>
                     <td>TabbableWithHint</td>
                     <td>
-                        The error region is rendered as a tabbable <span class="code-span">role="region"</span> element with a
-                        <span class="code-span">tabindex="0"</span>, allowing keyboard users to navigate directly to the errors.
-                        Only the hint text ID is included in <span class="code-span">aria-describedby</span>.
+                        The error region is rendered as a tabbable <span class="@CodeSpan.Base">role="region"</span> element with a
+                        <span class="@CodeSpan.Base">tabindex="0"</span>, allowing keyboard users to navigate directly to the errors.
+                        Only the hint text ID is included in <span class="@CodeSpan.Base">aria-describedby</span>.
                     </td>
                 </tr>
             </tbody>

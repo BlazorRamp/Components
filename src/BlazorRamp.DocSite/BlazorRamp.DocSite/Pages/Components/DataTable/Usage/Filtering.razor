@@ -6,7 +6,7 @@
 
 <p>
     All of the examples that have filtering are using the Debounce Filter component. When there is a pause in typing the entered value is provided which can then be used for your filtering function. 
-    This external filter function is then provided to the Data Table's <span class="code-span">FilterRule</span> parameter.
+    This external filter function is then provided to the Data Table's <span class="@CodeSpan.Base">FilterRule</span> parameter.
 </P>
 <p>
     I designed the Data Table this way so you could create your own filtering GUI if need be and just drop it in the slot provided (the Filter RenderFragment); however, I will most likely at some stage create an 
@@ -15,7 +15,7 @@
 </P>
 <p>
     For this example I have used 10K rows and set the filtering logic to check every displayed column to see if it contains the string entered, probably the slowest filter you could possibly use.
-    I have also, set the <span class="code-span">FilterAlignment</span> and <span class="code-span">TitleAlignment</span> to show the elements Start and Centre respectively.
+    I have also, set the <span class="@CodeSpan.Base">FilterAlignment</span> and <span class="@CodeSpan.Base">TitleAlignment</span> to show the elements Start and Centre respectively.
 </p>
 
 <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule"
@@ -38,7 +38,7 @@
     </BottomPager>
 </DataTable>
 <p>
-    <b>Note: </b> The <span class="code-span">FilterAlignment</span> parameter if set to <span class="code-span">FilterAlignment.None</span> can access the full width of the available area.
+    <b>Note: </b> The <span class="@CodeSpan.Base">FilterAlignment</span> parameter if set to <span class="@CodeSpan.Base">FilterAlignment.None</span> can access the full width of the available area.
     The other settings create a 3 column grid within the area in order to position the filter. A container and media query are both used used so when the container or page starts to get too 
     small, 400px and 576px respectively, the container query will switch to to a one column grid so the filter has all available space..
 </p>

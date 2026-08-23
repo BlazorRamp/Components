@@ -45,7 +45,7 @@
                             This issue is JAWS\Blazor specific, noticeably
                             worse on Server than WASM. Repeated button presses can cause the virtual cursor to shift focus
                             away from the focused pager selector. Turning off the virtual cursor or using role=application whilst
-                            on the pager selectors resolves the issue. Defaults to <span class="code-span">false</span>.
+                            on the pager selectors resolves the issue. Defaults to <span class="@CodeSpan.Base">false</span>.
                         </p>
                         <p>
                             Please see the accessibility page for more details.
@@ -57,9 +57,9 @@
                     <td>string</td>
                     <td>
                         Gets or sets the accessible label describing the purpose of the pager, exposed to assistive technology
-                        via the pager's <span class="code-span">nav</span> landmark. Defaults to <span class="code-span">Results Pager</span>.
+                        via the pager's <span class="@CodeSpan.Base">nav</span> landmark. Defaults to <span class="@CodeSpan.Base">Results Pager</span>.
                         <br />
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -69,10 +69,10 @@
                     <td>
                         Gets or sets whether the pager renders its navigation controls as button elements or as
                         anchor elements. For anchors the current page number is added to the address bar, but the
-                        default <span class="code-span">href</span> has been supressed, but it can be used for favourites or
-                        open in new page etc. Defaults to <span class="code-span">PagerSelectorType.Button</span>.
+                        default <span class="@CodeSpan.Base">href</span> has been supressed, but it can be used for favourites or
+                        open in new page etc. Defaults to <span class="@CodeSpan.Base">PagerSelectorType.Button</span>.
                         <br />
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -81,8 +81,8 @@
                     <td>PagerAnnouncementType (enum)</td>
                     <td>
                         Gets or sets whether page changes are announced to assistive technology via the live region. Defaults to
-                        <span class="code-span">PagerAnnouncementType.WithAnnouncement</span>. You would only want to use
-                        <span class="code-span">PagerAnnouncementType.WithoutAnnouncement</span> to suppress announcements for situations
+                        <span class="@CodeSpan.Base">PagerAnnouncementType.WithAnnouncement</span>. You would only want to use
+                        <span class="@CodeSpan.Base">PagerAnnouncementType.WithoutAnnouncement</span> to suppress announcements for situations
                         where you had two pagers bound to the same variables, for example when having a pager both above and below the results being paged.
                     </td>
                 </tr>
@@ -90,7 +90,7 @@
                     <td>PageAlignment</td>
                     <td>PageAlignment (enum)</td>
                     <td>
-                        Gets or sets the horizontal alignment of the pager within its container. Defaults to <span class="code-span">PageAlignment.Centred</span>.
+                        Gets or sets the horizontal alignment of the pager within its container. Defaults to <span class="@CodeSpan.Base">PageAlignment.Centred</span>.
                     </td>
                 </tr>
                 <tr>
@@ -98,9 +98,9 @@
                     <td>string</td>
                     <td>
                         Gets or sets the visible and accessible name for the "first page" control. Only rendered when
-                        <span class="code-span">ShowFirstLast</span> is true. Defaults to <span class="code-span">First</span>.
+                        <span class="@CodeSpan.Base">ShowFirstLast</span> is true. Defaults to <span class="@CodeSpan.Base">First</span>.
                         <br />
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -108,9 +108,9 @@
                     <td>PreviousText</td>
                     <td>string</td>
                     <td>
-                        Gets or sets the visible and accessible name for the "previous page" control. Defaults to <span class="code-span">Previous</span>.
+                        Gets or sets the visible and accessible name for the "previous page" control. Defaults to <span class="@CodeSpan.Base">Previous</span>.
                         <br />
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -118,9 +118,9 @@
                     <td>NextText</td>
                     <td>string</td>
                     <td>
-                        Gets or sets the visible and accessible name for the "next page" control. Defaults to <span class="code-span">Next</span>.
+                        Gets or sets the visible and accessible name for the "next page" control. Defaults to <span class="@CodeSpan.Base">Next</span>.
                         <br />
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -129,9 +129,9 @@
                     <td>string</td>
                     <td>
                         Gets or sets the visible and accessible name for the "last page" control. Only rendered when
-                        <span class="code-span">ShowFirstLast</span> is true. Defaults to <span class="code-span">First</span>.
+                        <span class="@CodeSpan.Base">ShowFirstLast</span> is true. Defaults to <span class="@CodeSpan.Base">First</span>.
                         <br />
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -140,7 +140,7 @@
                     <td>bool</td>
                     <td>
                         Gets or sets whether the "first page" and "last page" controls are rendered in addition to previous and next.
-                        Defaults to <span class="code-span">true</span>.
+                        Defaults to <span class="@CodeSpan.Base">true</span>.
                     </td>
                 </tr>
                 <tr>
@@ -155,11 +155,11 @@
                     <td>string</td>
                     <td>
                         Gets or sets the template used to build the pager's information text. Supports the placeholders
-                        <span class="code-span">{currentpage}</span>, <span class="code-span">{lastpage}</span>, <span class="code-span">{startrow}</span>, <span class="code-span">{endrow}</span>,
-                        <span class="code-span">{currentrows}</span> (the rowcount after filtering, if any), and <span class="code-span">{totalrows}</span> (the true, unfiltered row count), which are
+                        <span class="@CodeSpan.Base">{currentpage}</span>, <span class="@CodeSpan.Base">{lastpage}</span>, <span class="@CodeSpan.Base">{startrow}</span>, <span class="@CodeSpan.Base">{endrow}</span>,
+                        <span class="@CodeSpan.Base">{currentrows}</span> (the rowcount after filtering, if any), and <span class="@CodeSpan.Base">{totalrows}</span> (the true, unfiltered row count), which are
                         replaced with the current values at render time.
                         <br />
-                        Defaults to <span class="code-span">Current page {currentpage} of {lastpage}, items {startrow} to {endrow}</span>
+                        Defaults to <span class="@CodeSpan.Base">Current page {currentpage} of {lastpage}, items {startrow} to {endrow}</span>
                     </td>
                 </tr>
                 <tr>
@@ -167,12 +167,12 @@
                     <td>string</td>
                     <td>
                         Gets or sets the template appended directly after the main information text when
-                        <span class="code-span">CurrentItemCount</span> differs from <span class="code-span">TotalItemCount</span>,
-                        indicating that the current row count reflects an active filter. Supports the placeholders <span class="code-span">{filteredrows}</span>
-                        and <span class="code-span">{totalrows}</span>. No separator is inserted between the two templates, so a custom value should include its own leading
+                        <span class="@CodeSpan.Base">CurrentItemCount</span> differs from <span class="@CodeSpan.Base">TotalItemCount</span>,
+                        indicating that the current row count reflects an active filter. Supports the placeholders <span class="@CodeSpan.Base">{filteredrows}</span>
+                        and <span class="@CodeSpan.Base">{totalrows}</span>. No separator is inserted between the two templates, so a custom value should include its own leading
                         punctuation or spacing (the default begins with ", ").
                         <br />
-                        Defaults to <span class="code-span">, {filteredrows} items filtered from {totalrows}.</span>.
+                        Defaults to <span class="@CodeSpan.Base">, {filteredrows} items filtered from {totalrows}.</span>.
                     </td>
                 </tr>
                 <tr>
@@ -180,7 +180,7 @@
                     <td>string</td>
                     <td>
                         Gets or sets the text displayed and announced in place of the information text when there are no
-                        records to page through. Defaults to <span class="code-span">No entries found.</span>
+                        records to page through. Defaults to <span class="@CodeSpan.Base">No entries found.</span>
                     </td>
                 </tr>
                 <tr>
@@ -188,8 +188,8 @@
                     <td>int</td>
                     <td>
                         Gets or sets the total number of records available, before any filtering is applied. Used together with
-                        <span class="code-span">CurrentItemCount</span> to determine whether the information text should indicate that the
-                        results are filtered. Defaults to <span class="code-span">0</span>.
+                        <span class="@CodeSpan.Base">CurrentItemCount</span> to determine whether the information text should indicate that the
+                        results are filtered. Defaults to <span class="@CodeSpan.Base">0</span>.
                     </td>
                 </tr>
                 <tr>
@@ -198,16 +198,16 @@
                     <td>
                         Gets or sets the number of records available after any filtering is applied. Used to calculate the
                         total number of pages and the row range shown in the information text. Values greater than
-                        <span class="code-span">TotalItemCount</span> are clamped to <span class="code-span">TotalItemCount</span>.
-                        Defaults to <span class="code-span">0</span>.
+                        <span class="@CodeSpan.Base">TotalItemCount</span> are clamped to <span class="@CodeSpan.Base">TotalItemCount</span>.
+                        Defaults to <span class="@CodeSpan.Base">0</span>.
                     </td>
                 </tr>
                 <tr>
                     <td>ItemsPerPage</td>
                     <td>int</td>
                     <td>
-                        Gets or sets the number of records shown per page. Values less than <span class="code-span">1</span> fall back to the default
-                        of <span class="code-span">10</span>.
+                        Gets or sets the number of records shown per page. Values less than <span class="@CodeSpan.Base">1</span> fall back to the default
+                        of <span class="@CodeSpan.Base">10</span>.
                     </td>
                 </tr>
                 <tr>
@@ -215,7 +215,7 @@
                     <td>int</td>
                     <td>
                         Gets or sets the currently displayed page number, using a 1-based index. Values outside the valid range
-                        are clamped between <span class="code-span">1</span> and the last available page.
+                        are clamped between <span class="@CodeSpan.Base">1</span> and the last available page.
                     </td>
                 </tr>
                 <tr>
@@ -228,8 +228,8 @@
                     <td>EventCallback&lt;int&gt;</td>
                     <td>
                         Gets or sets the callback invoked when the user requests a page change, receiving the newly requested
-                        1-based page number. The pager does not update <span class="code-span">CurrentPage</span> itself; consumers are expected
-                        to handle this callback and pass the new value back in via the <span class="code-span">CurrentPage</span> parameter.
+                        1-based page number. The pager does not update <span class="@CodeSpan.Base">CurrentPage</span> itself; consumers are expected
+                        to handle this callback and pass the new value back in via the <span class="@CodeSpan.Base">CurrentPage</span> parameter.
                     </td>
                 </tr>
             </tbody>
@@ -645,7 +645,7 @@
         <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
         <p>
             The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
-            by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
+            by standard mappings to the <span class="@CodeSpan.Base">--br-comp-all</span> variables.
         </p>
 
         <table aria-labelledby="unmapped-variables">

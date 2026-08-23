@@ -6,7 +6,7 @@
 
 
 <p>
-    The Nav Group component is designed to be used within an HTML<span class="code-span">nav</span> element and uses what is known as a "disclosure" pattern to show or hide content, which is
+    The Nav Group component is designed to be used within an HTML<span class="@CodeSpan.Base">nav</span> element and uses what is known as a "disclosure" pattern to show or hide content, which is
     also a common pattern used in accessible component/widgets. In this instance the shown content just pushes the other content on the page out of the way as.opposed to a dropdown where a panel 
     why may obscure content. Given this behaviour its suitable for side navigation systems, such as the one on this site and was why it was built and then subsequently released.
 </p>
@@ -17,20 +17,20 @@
 </p>
 
 <p>
-    Each <b>NavGroup</b> can be labelled by an external element and outputs an HTML <span class="code-span">ul</span> element, ready to accept its child components, which are all rendered as <span class="code-span">li</span> elements.
-    The <b>NavSection</b> component contains a <span class="code-span">button</span> element and a <span class="code-span">ul</span> element, and it is the nesting of <b>NavSection</b> components that creates a series of disclosures.
+    Each <b>NavGroup</b> can be labelled by an external element and outputs an HTML <span class="@CodeSpan.Base">ul</span> element, ready to accept its child components, which are all rendered as <span class="@CodeSpan.Base">li</span> elements.
+    The <b>NavSection</b> component contains a <span class="@CodeSpan.Base">button</span> element and a <span class="@CodeSpan.Base">ul</span> element, and it is the nesting of <b>NavSection</b> components that creates a series of disclosures.
 </p>
 <p>
     <strong>Note: </strong>The NavGroup component is designed to be used on an interactive page.
 </p>
 <p>
-    The code below shows the "Frameworks" section of the left side navigation on this site, which is comprised of a <span class="code-span">h2</span> element connect to a <b>NavGroup</b>  component that contains a <b>NavSeparator</b> followed by a <b>NavSection</b> containing <b>NavGroupLink</b> components.
+    The code below shows the "Frameworks" section of the left side navigation on this site, which is comprised of a <span class="@CodeSpan.Base">h2</span> element connect to a <b>NavGroup</b>  component that contains a <b>NavSeparator</b> followed by a <b>NavSection</b> containing <b>NavGroupLink</b> components.
 </p>
 
 <CodeBox CodeBlock="@NavGroupSnippets.Framework_Section" AriaLabel="Nav group code example" />
 
 <p>
-    <strong>Note: </strong>You may be wondering what the <span class="code-span">VisuallyHiddenPrefix</span> Parameter is for. To give more context to screen reader users, when the link title is read out to them, 
+    <strong>Note: </strong>You may be wondering what the <span class="@CodeSpan.Base">VisuallyHiddenPrefix</span> Parameter is for. To give more context to screen reader users, when the link title is read out to them, 
     they will hear announcements such as "Modal Dialog Overview" in stead of just overview as each section has the same page names. Another reason for why I do this is that screen reader users also have
     access to lists (of shortcuts) to items on a page such as links, and without this prefix in that list would be several links all just called overview, which is not helpful. 
 </p>

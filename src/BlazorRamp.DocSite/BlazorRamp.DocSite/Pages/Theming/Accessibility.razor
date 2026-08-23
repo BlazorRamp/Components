@@ -9,7 +9,7 @@
     The border and focus indicator colours in the library (css variable values/tokens) were calculated to meet <b>WCAG 1.4.11 Non-text Contrast (AA)</b>, 
     which requires a 3:1 contrast ratio between a component's boundary and adjacent colours, and <b>WCAG 1.4.3 Contrast (Minimum) (AA)</b> for text, 
     which requires 4.5:1 (3:1 for large text). Because the palette is generated from HSL lightness offsets relative to 
-    <span class="code-span">--br-unit-colour-primary</span> (css colour functions), rather than fixed hex values, these ratios have some built-in latitude.
+    <span class="@CodeSpan.Base">--br-unit-colour-primary</span> (css colour functions), rather than fixed hex values, these ratios have some built-in latitude.
     When you change the primary colour, the derived shades scale proportionally so in a lot of cases the WCAG requirements may still be met. 
     This isn't guaranteed but it means a lot of colours will "just work" without needing to change the underlying css variable values.
 </p>
@@ -30,7 +30,7 @@
 
 <p>
     On page initialisation (and after colour change), the current computed CSS custom property values are read directly from the page and checked for contrast. 
-    If any of the shown variables fail, you don't need to touch the library itself — just override that variable in your own <span class="code-span">:root</span> block, declared 
+    If any of the shown variables fail, you don't need to touch the library itself — just override that variable in your own <span class="@CodeSpan.Base">:root</span> block, declared 
     after the Blazor Ramp stylesheet so it takes precedence in the cascade, and point it to a different step on the existing scale rather than a new hard-coded colour. 
     Stepping to the next darker/lighter value on the scale is usually enough to clear the threshold.
 </p>

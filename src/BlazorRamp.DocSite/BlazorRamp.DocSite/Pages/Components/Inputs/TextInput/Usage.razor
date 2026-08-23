@@ -6,26 +6,26 @@
 <h1>@GlobalValues.Component_Name_Text_Input @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
-    In the following example, both input values are required as denoted by the asterisk in each field label, screen reader users will be advised that these fields are required via the <span class="code-span">aria-required</span> attribute
+    In the following example, both input values are required as denoted by the asterisk in each field label, screen reader users will be advised that these fields are required via the <span class="@CodeSpan.Base">aria-required</span> attribute
     that gets added as mentioned on the Inputs Accessibility page.
 </p>
 <p>
-    Both inputs have the <span class="code-span">UpdateOnInput</span> parameter set to true so validation runs on input, after the field is dirty combined with <span class="code-span">ValidationDisplayMode.TabbableWithHint</span> option, but 
+    Both inputs have the <span class="@CodeSpan.Base">UpdateOnInput</span> parameter set to true so validation runs on input, after the field is dirty combined with <span class="@CodeSpan.Base">ValidationDisplayMode.TabbableWithHint</span> option, but 
     you should use the options that best suit your application and intended audience.
-    Neither input has a <span class="code-span">maxlength</span> attribute as these can be problematic for some screen readers as it silently stops the user typing with no feedback, so it's better to catch issues with validation.
+    Neither input has a <span class="@CodeSpan.Base">maxlength</span> attribute as these can be problematic for some screen readers as it silently stops the user typing with no feedback, so it's better to catch issues with validation.
 </p>
 <p>
     <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
-    but you can use any validators that work with Blazors <span class="code-span">EditContext</span>. One of the options on my Blazor validation component is to remove leading and trailing whitespace from your string fields on a full model 
+    but you can use any validators that work with Blazors <span class="@CodeSpan.Base">EditContext</span>. One of the options on my Blazor validation component is to remove leading and trailing whitespace from your string fields on a full model 
     validation. The validation for the First Name field below does not allow trailing spaces so causes it to be invalid if you enter any. The Surname field just as demonstration has a rule that allows a single space after its valid, 
     and I have used the option to remove spaces from this field on full model validation.
 </p>
 <p>
-    <strong>Note: </strong>As you may not want to use this valdiation framework, and/or have differing options, there is also a <span class="code-span">TrimOnBlur</span> parameter option on the text input, that when set to true
+    <strong>Note: </strong>As you may not want to use this valdiation framework, and/or have differing options, there is also a <span class="@CodeSpan.Base">TrimOnBlur</span> parameter option on the text input, that when set to true
     trims the string value on lost focus.
 </p>
-<section class="section-box">
-    <h2>Text inputs example</h2>
+<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.PrimaryDark)">Text inputs example</h2>
 
     <EditForm Model="@_contactData" OnValidSubmit="HandleSubmit">
         

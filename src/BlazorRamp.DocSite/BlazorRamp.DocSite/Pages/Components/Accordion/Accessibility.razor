@@ -9,14 +9,14 @@
     behaves predictably across different browsers and assistive technologies.
 </p>
 <p>
-    Each AccordionItem has a <span class="code-span">PanelHasTabIndex</span> parameter, which by default is true. When true a <span class="code-span">tabindex="0"</span> is added to the associated panel.
+    Each AccordionItem has a <span class="@CodeSpan.Base">PanelHasTabIndex</span> parameter, which by default is true. When true a <span class="@CodeSpan.Base">tabindex="0"</span> is added to the associated panel.
     If you know there will be no focusable elements in the panel or the panel is scrollable then you should leave this set to true.
     Without this, when the user is on a AccordionItem header (and the content is shown) pressing the Tab key they would go past the panel and onto the next AccordionItem or next focusable element on the page 
     and/or may not be able to scroll the panel content.
 </p>
 <p>
     If you know there will be a focusable element at the start of the panel content or there is a heading at the start of the panel and it's not scrollable,
-    then you can set the <span class="code-span">PanelHasTabIndex</span> parameter to false to omit the tabindex on the Panel.
+    then you can set the <span class="@CodeSpan.Base">PanelHasTabIndex</span> parameter to false to omit the tabindex on the Panel.
 </p>
 <p>
     If the first focusable element is in the middle of the panel, past important content, then I would retain the tabindex on the panel, so a screen reader user can read from the start of the panel content.

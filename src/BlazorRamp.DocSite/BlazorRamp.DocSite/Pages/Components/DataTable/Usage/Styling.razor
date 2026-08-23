@@ -8,16 +8,16 @@
 </p>
 <ul>
     <li>
-        RowStyleFunc: a function that accepts a row of data and returns a string containing css property value pairs which get placed inside a <span class="code-span">style</span> attribute added to the row (tr element).
+        RowStyleFunc: a function that accepts a row of data and returns a string containing css property value pairs which get placed inside a <span class="@CodeSpan.Base">style</span> attribute added to the row (tr element).
     </li>
     <li>
-        CellStyleFunc:  a function that accepts a row of data and returns a string containing css property value pairs which get placed inside a <span class="code-span">style</span> attribute added to the cell (td element).
+        CellStyleFunc:  a function that accepts a row of data and returns a string containing css property value pairs which get placed inside a <span class="@CodeSpan.Base">style</span> attribute added to the cell (td element).
     </li>
     <li>
-        HeaderStyle: a string containing css property value pairs which get placed inside a <span class="code-span">style</span> attribute added to the column header (th element).
+        HeaderStyle: a string containing css property value pairs which get placed inside a <span class="@CodeSpan.Base">style</span> attribute added to the column header (th element).
     </li>
     <li>
-        CellStyle: a string containing css property value pairs which get placed inside a <span class="code-span">style</span> attribute added to the cell header (td element).
+        CellStyle: a string containing css property value pairs which get placed inside a <span class="@CodeSpan.Base">style</span> attribute added to the cell header (td element).
     </li>
     <li>
         CellFormat: although not strictly styling I have included it here for convenience. This takes and applies standard .NET format strings to formattable data types.
@@ -55,8 +55,8 @@
 </p>
 
 <p>
-    For the country column I added a min-width of 16ch using the <span class="code-span">HeaderStyle</span> parameter, but the more interesting thing, and you may need to
-    minimize the width of the browser window to see it, is I also used the Countries <span class="code-span">CellStyle</span> parameter to set a text-overflow:ellipsis. As a side note
+    For the country column I added a min-width of 16ch using the <span class="@CodeSpan.Base">HeaderStyle</span> parameter, but the more interesting thing, and you may need to
+    minimize the width of the browser window to see it, is I also used the Countries <span class="@CodeSpan.Base">CellStyle</span> parameter to set a text-overflow:ellipsis. As a side note
     this is only a visual thing, screen reader users get the full text. Its a useful technique for saving space.
 </p>
 <p>

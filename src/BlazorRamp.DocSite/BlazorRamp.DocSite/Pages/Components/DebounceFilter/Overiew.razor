@@ -12,8 +12,8 @@
 
 <p>
     Rather than binding to a property and triggering Blazor's render cycle on every character, keystroke handling and debounce timing is handled entirely in JavaScript. Control is only
-    handed back to Blazor once the user has paused typing for a configurable delay, and results are returned via a <span class="code-span">Func&lt;DebouncedFilterResult, Task&gt;</span>
-    rather than a typical <span class="code-span">EventCallback</span>, so you decide exactly when <span class="code-span">StateHasChanged</span> is called instead of paying for a
+    handed back to Blazor once the user has paused typing for a configurable delay, and results are returned via a <span class="@CodeSpan.Base">Func&lt;DebouncedFilterResult, Task&gt;</span>
+    rather than a typical <span class="@CodeSpan.Base">EventCallback</span>, so you decide exactly when <span class="@CodeSpan.Base">StateHasChanged</span> is called instead of paying for a
     render on every keystroke.
 </p>
 
@@ -25,7 +25,7 @@
 <section class="info-box info-box--container-test" style="margin-top:2rem;">
     <p>
         An example of the debounce filter with an optional icon, but without any regex validation is shown below. The default debounce delay of 500 milliseconds has been used and content of the
-        <span class="code-span">DebouncedFilterResult</span> object is shown below the debounce filter.
+        <span class="@CodeSpan.Base">DebouncedFilterResult</span> object is shown below the debounce filter.
     </p>
     <DebounceFilter FilterLabelText="Filter Results" HintText="Results filtered on pause of typing" DebounceDelayMs="500" SvgIcon="--svg-filter-icon" OnDebounceFilterResult="HandleDebounce" />
     <p>

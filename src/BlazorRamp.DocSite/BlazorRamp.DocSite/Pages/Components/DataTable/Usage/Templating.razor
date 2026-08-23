@@ -10,22 +10,22 @@
 </p>
 <ul>
     <li>
-        <b>DataColumns</b> have a <span class="code-span">CellTemplate</span> parameter that is provided with the current data row.
+        <b>DataColumns</b> have a <span class="@CodeSpan.Base">CellTemplate</span> parameter that is provided with the current data row.
     </li>
     <li>
-        <b>TemplateColumns</b> have both a <span class="code-span">HeaderTemplate</span> and a <span class="code-span">CellTemplate</span> parameter. 
-        The <span class="code-span">HeaderTemplate</span> is provided with the <span class="code-span">DisplayName</span> set on the <b>TemplateColumn</b>, 
-        if used. It may seem odd to set a <span class="code-span">DisplayName</span> on a <span class="code-span">TemplateColumn</span>, but remember that the template is placed 
-        inside the column's <span class="code-span">th</span> element &ndash; you may only want a plain text heading and just need to supply
-        a <span class="code-span">CellTemplate</span>, without needing a custom <span class="code-span">HeaderTemplate</span> too. 
-        The <span class="code-span">CellTemplate</span> is provided with the current data row, the same as on a <b>DataColumn</b>.
+        <b>TemplateColumns</b> have both a <span class="@CodeSpan.Base">HeaderTemplate</span> and a <span class="@CodeSpan.Base">CellTemplate</span> parameter. 
+        The <span class="@CodeSpan.Base">HeaderTemplate</span> is provided with the <span class="@CodeSpan.Base">DisplayName</span> set on the <b>TemplateColumn</b>, 
+        if used. It may seem odd to set a <span class="@CodeSpan.Base">DisplayName</span> on a <span class="@CodeSpan.Base">TemplateColumn</span>, but remember that the template is placed 
+        inside the column's <span class="@CodeSpan.Base">th</span> element &ndash; you may only want a plain text heading and just need to supply
+        a <span class="@CodeSpan.Base">CellTemplate</span>, without needing a custom <span class="@CodeSpan.Base">HeaderTemplate</span> too. 
+        The <span class="@CodeSpan.Base">CellTemplate</span> is provided with the current data row, the same as on a <b>DataColumn</b>.
     </li>
 </ul>
 <p>
-    In the following example I have used the <span class="code-span">CellTemplate</span> on the Country <b>DataColumn</b> to add custom markup when the Country is the <b>United Kingdom.</b>
+    In the following example I have used the <span class="@CodeSpan.Base">CellTemplate</span> on the Country <b>DataColumn</b> to add custom markup when the Country is the <b>United Kingdom.</b>
     I have also added a custom Row Actions column that will either output some data or delete the row dependant on selection. Please note, normally
-    you would pop up a modal to get confirmation. I have not done so for the example.Although shown in the code, I did not need the <span class="code-span">HeaderTemplate</span> for the row actions, as the plain <span class="code-span">th</span> element with
-    the <span class="code-span">DisplayName</span> parameter value would have sufficed;
+    you would pop up a modal to get confirmation. I have not done so for the example.Although shown in the code, I did not need the <span class="@CodeSpan.Base">HeaderTemplate</span> for the row actions, as the plain <span class="@CodeSpan.Base">th</span> element with
+    the <span class="@CodeSpan.Base">DisplayName</span> parameter value would have sufficed;
 </p>
 
 <p>

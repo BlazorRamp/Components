@@ -46,6 +46,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\BlazorRamp.CssClasses\BlazorRamp.CssClasses\BlazorRamp.CssClasses.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Update="tsconfig.json">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 			<CopyToPublishDirectory>Never</CopyToPublishDirectory>

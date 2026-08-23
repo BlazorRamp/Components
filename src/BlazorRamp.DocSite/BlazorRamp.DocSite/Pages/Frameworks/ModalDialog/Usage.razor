@@ -25,7 +25,7 @@
         </li>
         <li>
             At any level for nested dialogs the user should be able to use the announcement history dialog either via the alerts button (which I keep visible, but it can be hidden
-            <span class="code-span">:focus-visible</span> ) or via the shortcut key.
+            <span class="@CodeSpan.Base">:focus-visible</span> ) or via the shortcut key.
         </li>
         <li>
             Pressing the escape key whilst the announcement history dialog is open should only close that, otherwise the top nested dialog should be closed or confirmation requested
@@ -42,11 +42,11 @@
 </p>
 
 <p>
-    As this site just uses Blazor WASM it only needs a single instance of the <span class="code-span">&lt;ModalDialogContainer /&gt; </span> which I placed next to the
-    <span class="code-span">&lt;Router /&gt;</span> component.
+    As this site just uses Blazor WASM it only needs a single instance of the <span class="@CodeSpan.Base">&lt;ModalDialogContainer /&gt; </span> which I placed next to the
+    <span class="@CodeSpan.Base">&lt;Router /&gt;</span> component.
 </p>
 <p>
-    <b>Don't forget: </b> The framework handles the infrastructure, you provide your styled component as the window is just a blank canvas (with <span class="code-span">:focus-visible </span> indicator).
+    <b>Don't forget: </b> The framework handles the infrastructure, you provide your styled component as the window is just a blank canvas (with <span class="@CodeSpan.Base">:focus-visible </span> indicator).
     These dialog styling are just
     for the demo. The initial popup form has had its options set so it has a maximum width of 70vh, positioned top center. The confirmation dialog has had it options set to have
     a maximum width of 50vh positioned centre centre (see the code below).
@@ -66,7 +66,7 @@
     The code below shows all the code used and it should be fairly explanatory, but I am always lurking on Reddit if you need help.
 </p>
 <p>
-    The code that launches our form component <span class="code-span">&lt;SomeForm /&gt;</span>. The form component only has one parameter for the data but it can have as many as you need, it's just a regular component.
+    The code that launches our form component <span class="@CodeSpan.Base">&lt;SomeForm /&gt;</span>. The form component only has one parameter for the data but it can have as many as you need, it's just a regular component.
 </p>
 <p>
     All the code does is set the dialog options to have our dialog window placed top centre, pass the data to it for its parameter and await the results. Once the result is returned
@@ -77,14 +77,14 @@
 <CodeBox CodeBlock="@ModalSnippets.Modal_Dialog_Starting" AriaLabel="Showing the popup dialog form" />
 
 <p>
-    The code for the form component, <span class="code-span">&lt;SomeForm /&gt;</span>, shown next, just registers to be notified when the escape key has been pressed for its dialog and can then decide what to do. If you do not provide a handler the
+    The code for the form component, <span class="@CodeSpan.Base">&lt;SomeForm /&gt;</span>, shown next, just registers to be notified when the escape key has been pressed for its dialog and can then decide what to do. If you do not provide a handler the
     default escape key action will occur and the form will close with a cancelled result.
 </p>
 
 <CodeBox CodeBlock="@ModalSnippets.Modal_Dialog_Some_Form" AriaLabel="Code for the some form component" />
 
 <p style="margin-top:var(--br-unit-space-7);">
-    The code for the confirmation dialog component, <span class="code-span">&lt;ConfirmationDialog /&gt;</span> below, again registers a handler for the escape key, and returns either a Cancelled or an Ok
+    The code for the confirmation dialog component, <span class="@CodeSpan.Base">&lt;ConfirmationDialog /&gt;</span> below, again registers a handler for the escape key, and returns either a Cancelled or an Ok
     result to the caller.
 </p>
 

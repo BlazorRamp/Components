@@ -8,12 +8,12 @@
 <h1>@GlobalValues.Component_Name_Numeric_Input @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
-    In the following example, both input values are required, but in the first input requiring an integer value the <span class="code-span">Required</span> parameter has been set to
-    to false as the text "Required" has been placed in the <span class="code-span">HintText</span>. As mentioned on the Inputs Accessibility page, setting the <span class="code-span">Required</span> parameter
-    to false does not add the <span class="code-span">aria-required</span> attribute in order for a screen reader user not to have "Required" repeatedly.
+    In the following example, both input values are required, but in the first input requiring an integer value the <span class="@CodeSpan.Base">Required</span> parameter has been set to
+    to false as the text "Required" has been placed in the <span class="@CodeSpan.Base">HintText</span>. As mentioned on the Inputs Accessibility page, setting the <span class="@CodeSpan.Base">Required</span> parameter
+    to false does not add the <span class="@CodeSpan.Base">aria-required</span> attribute in order for a screen reader user not to have "Required" repeatedly.
 </p>
 <p>
-    Both inputs have the <span class="code-span">UpdateOnInput</span> parameter set to true so validation runs on input, after the field is dirty. Neither input has a <span class="code-span">maxlength</span> attribute as these
+    Both inputs have the <span class="@CodeSpan.Base">UpdateOnInput</span> parameter set to true so validation runs on input, after the field is dirty. Neither input has a <span class="@CodeSpan.Base">maxlength</span> attribute as these
     can be problematic for some screen readers as it silently stops the user typing with no feedback, so it's better to catch issues with validation. For example, if the UnitsInStock field only allowed 3 digits and the user entered 1000,
     only 100 would be recorded and without validation the user would be unaware that their intended value was not recorded.
 
@@ -21,7 +21,7 @@
 <p>
     Personally, I prefer immediate validation, however for numeric inputs it requires a little more consideration. Because a number must be fully formed before it can be parsed, there are moments mid-entry where the field
     will be in a temporarily invalid state — for example, when typing a negative number the leading minus sign alone is not a valid number, and the field will show as invalid until the digits are entered. In most cases
-    this is a minor cosmetic issue that resolves itself as the user continues typing. This is where providing a clear <span class="code-span">ParseErrorMessage</span> helps — rather than leaving the user confused by a
+    this is a minor cosmetic issue that resolves itself as the user continues typing. This is where providing a clear <span class="@CodeSpan.Base">ParseErrorMessage</span> helps — rather than leaving the user confused by a
     generic error, a descriptive message such as "Please enter a valid number" reassures them that they simply need to complete their entry.
 </p>
 <p>
@@ -29,10 +29,10 @@
 </p>
 <p>
     <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
-    but you can use any validators that work with Blazors <span class="code-span">EditContext</span>.
+    but you can use any validators that work with Blazors <span class="@CodeSpan.Base">EditContext</span>.
 </p>
-<section class="section-box">
-    <h2>Numeric input example</h2>
+<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.PrimaryDark)">Numeric input example</h2>
 
 <EditForm Model="@_inventoryData" OnValidSubmit="HandleSubmit">
     <BlazorValidated TEntity="InventoryDto" BoxedValidators="_boxedValidators" AddDisplayName="true" />

@@ -9,13 +9,13 @@
 </p>
 <p>
     A typical use case for the actions popover would be to provide a compact list of row actions for a data table. The row data type can be
-    assigned as the type param so this data can then be provided as the payload in the <span class="code-span">OnClick</span> events.
-   <strong>Note: </strong>This mechanism uses a Func instead of the Blazor <span class="code-span">EventCallback</span> to prevent automatic renders, so you call the 
-   <span class="code-span">StateHasChanged</span> method if necessary.
+    assigned as the type param so this data can then be provided as the payload in the <span class="@CodeSpan.Base">OnClick</span> events.
+   <strong>Note: </strong>This mechanism uses a Func instead of the Blazor <span class="@CodeSpan.Base">EventCallback</span> to prevent automatic renders, so you call the 
+   <span class="@CodeSpan.Base">StateHasChanged</span> method if necessary.
 </p>
 <p>
-    The example uses the <span class="code-span">Stretch</span> parameter so the trigger buttons fill the available column space so they are the same size,
-    in this instance they all size to the widest button. The <span class="code-span">ActionsPopoverPosition</span> parameter was set so the popover displays
+    The example uses the <span class="@CodeSpan.Base">Stretch</span> parameter so the trigger buttons fill the available column space so they are the same size,
+    in this instance they all size to the widest button. The <span class="@CodeSpan.Base">ActionsPopoverPosition</span> parameter was set so the popover displays
     to the bottom right of the trigger. It uses anchor positioning with fallback so if you resize the page so the list would go off page and then open it, it
     will shift to dispay above the trigger.
 </p>

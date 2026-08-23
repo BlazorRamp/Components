@@ -13,12 +13,12 @@
     to only allow only one panel be open at a time.
 </p>
 <p>
-    Below is an example of the accordion component in a section with a heading of "Lifestyle Accordion". I have included heading icons (which are optional), and set the <span class="code-span">ExpandMode</span>
-    to multiple which allows multiple panels to be open at the same time. I have also set the <span class="code-span">PersistContent</span> parameter
+    Below is an example of the accordion component in a section with a heading of "Lifestyle Accordion". I have included heading icons (which are optional), and set the <span class="@CodeSpan.Base">ExpandMode</span>
+    to multiple which allows multiple panels to be open at the same time. I have also set the <span class="@CodeSpan.Base">PersistContent</span> parameter
     to true so the content remains (hidden) in the DOM when the panels are collapsed.
 </p>
-<section class="section-box">
-    <h2 style="margin-bottom:var(--br-unit-space-9);">Lifestyle Accordion</h2>
+<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.PrimaryDark)" style="margin-bottom:var(--br-unit-space-9);">Lifestyle Accordion</h2>
 
     <Accordion HeadingLevel="HeadingLevel.H3" ExpandMode="ExpandMode.Multiple" style="margin-bottom:var(--br-unit-space-7)">
         <AccordionItem HeadingText="Food" PanelHasTabIndex="true" PanelIsRegion="false" SvgIcon="--svg-food-icon" PersistContent="true">

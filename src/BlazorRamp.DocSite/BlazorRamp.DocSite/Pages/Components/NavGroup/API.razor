@@ -42,7 +42,7 @@
                     <td>string?</td>
                     <td>
                         Gets or sets the id of an external element that labels this navigation group. When set, an
-                        <span class="code-span">aria-labelledby</span> attribute referencing that element is applied to the root &lt;ul&gt;
+                        <span class="@CodeSpan.Base">aria-labelledby</span> attribute referencing that element is applied to the root &lt;ul&gt;
                         providing an accessible name for screen. Leading and trailing whitespace is trimmed before use.
                     </td>
                 </tr>
@@ -73,7 +73,7 @@
                     <td>ChildContent</td>
                     <td>RenderFragment?</td>
                     <td>
-                        Gets or sets the child content rendered inside the section's collapsible <span class="code-span">ul</span> element,
+                        Gets or sets the child content rendered inside the section's collapsible <span class="@CodeSpan.Base">ul</span> element,
                         expected to contain one or more <b>NavGroupLink, NavSeparator or NavSection</b> components.
                     </td>
                 </tr>
@@ -157,8 +157,8 @@
                     <td>TargetType</td>
                     <td>TargetType (enum)</td>
                     <td>
-                        Gets or sets the browsing context in which the link is opened, mapped to the HTML <span class="code-span">target</span> attribute.
-                        Defaults to <span class="code-span">TargetType.Self</span>.
+                        Gets or sets the browsing context in which the link is opened, mapped to the HTML <span class="@CodeSpan.Base">target</span> attribute.
+                        Defaults to <span class="@CodeSpan.Base">TargetType.Self</span>.
                     </td>
                 </tr>
                 <tr>
@@ -192,24 +192,24 @@
                     <td>0</td>
                     <td>Self</td>
                     <td>
-                        Opens the link in the same browsing context. Equivalent to <span class="code-span">target="_self"</span>
+                        Opens the link in the same browsing context. Equivalent to <span class="@CodeSpan.Base">target="_self"</span>
                         This is the default value.
                     </td>
                 </tr>
                 <tr>
                     <td>1</td>
                     <td>Blank</td>
-                    <td>Opens the link in a new tab or window. Equivalent to <span class="code-span">target="_blank"</span></td>
+                    <td>Opens the link in a new tab or window. Equivalent to <span class="@CodeSpan.Base">target="_blank"</span></td>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Parent</td>
-                    <td>Opens the link in the parent browsing context. Equivalent to <span class="code-span">target="_parent"</span></td>
+                    <td>Opens the link in the parent browsing context. Equivalent to <span class="@CodeSpan.Base">target="_parent"</span></td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td>Top</td>
-                    <td>Opens the link in the topmost browsing context.Equivalent to <span class="code-span">target="_top"</span></td>
+                    <td>Opens the link in the topmost browsing context.Equivalent to <span class="@CodeSpan.Base">target="_top"</span></td>
                 </tr>
             </tbody>
         </table>
@@ -259,7 +259,7 @@
 
         <h3 id="outline-variables" class="code-table__heading">Outline variables</h3>
         <p>
-            There are the focus indicators (outlines) applied using <span class="code-span">:focus-visible</span> for the NavSection and NavGroupLinks.
+            There are the focus indicators (outlines) applied using <span class="@CodeSpan.Base">:focus-visible</span> for the NavSection and NavGroupLinks.
         </p>
         <table aria-labelledby="outline-variables">
 
@@ -502,7 +502,7 @@
         <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
         <p>
             The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
-            by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
+            by standard mappings to the <span class="@CodeSpan.Base">--br-comp-all</span> variables.
         </p>
 
         <table aria-labelledby="unmapped-variables">

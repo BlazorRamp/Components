@@ -4,10 +4,10 @@
 
 <h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Sorting</h1>
 <p>
-    Sorting can be added to any <span class="code-span">DataColumn</span> just by setting its <span class="code-span">IsSortable</span> parameter to <span class="code-span">true</span>.
+    Sorting can be added to any <span class="@CodeSpan.Base">DataColumn</span> just by setting its <span class="@CodeSpan.Base">IsSortable</span> parameter to <span class="@CodeSpan.Base">true</span>.
 </p>
 <p>
-    Sorting is not available for <span class="code-span">TemplateColumns</span>, or for the row-selection column when selection is enabled.
+    Sorting is not available for <span class="@CodeSpan.Base">TemplateColumns</span>, or for the row-selection column when selection is enabled.
 </p>
 <p>
     Clicking a sortable column's heading cycles through three states: unsorted to ascending, ascending to descending, and descending back to unsorted, which restores the original data source order. Only one column can be sorted at a time; sorting a new column clears the sort state of any previously sorted column.
@@ -16,7 +16,7 @@
     Sort order is preserved across filtering and data source changes, so if the last-sorted column is still present, its sort is automatically re-applied to the new or filtered data.
 </p>
 <p>
-    Each sort change updates the <span class="code-span">aria-sort</span> attribute on the column heading and triggers a screen reader announcement, the wording of which can be customised via the <span class="code-span">SortUpStatusText</span>, <span class="code-span">SortDownStatusText</span>, and <span class="code-span">SortRemovedStatusText</span> parameters.
+    Each sort change updates the <span class="@CodeSpan.Base">aria-sort</span> attribute on the column heading and triggers a screen reader announcement, the wording of which can be customised via the <span class="@CodeSpan.Base">SortUpStatusText</span>, <span class="@CodeSpan.Base">SortDownStatusText</span>, and <span class="@CodeSpan.Base">SortRemovedStatusText</span> parameters.
 </p>
 <p>
     The following uses 10K rows.
@@ -38,11 +38,11 @@
 </DataTable>
 
 <p>
-    <strong>Note: </strong> sorting relies on the bound property implementing <span class="code-span">IComparable</span> (string properties are compared ordinally).
+    <strong>Note: </strong> sorting relies on the bound property implementing <span class="@CodeSpan.Base">IComparable</span> (string properties are compared ordinally).
     This covers virtually every everyday column type &ndash; numbers, text, dates, times, booleans, GUIDs, and enums are all comparable out of the box.
     The exceptions are properties that would not usually be sortable anyway, such as entity relationships (navigation properties or collections),
-    binary data (e.g. <span class="code-span">rowversion</span>/<span class="code-span">byte[]</span> columns), and complex or spatial types.
-    An exception is thrown in the initialized method of the DataColumn if you have set <span class="code-span">IsSortable</span> to true on 
+    binary data (e.g. <span class="@CodeSpan.Base">rowversion</span>/<span class="@CodeSpan.Base">byte[]</span> columns), and complex or spatial types.
+    An exception is thrown in the initialized method of the DataColumn if you have set <span class="@CodeSpan.Base">IsSortable</span> to true on 
     a column that is not IComparable.
 </p>
 

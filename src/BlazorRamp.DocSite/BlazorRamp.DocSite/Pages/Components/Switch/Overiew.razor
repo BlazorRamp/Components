@@ -6,23 +6,23 @@
 
 
 <p>
-    The Switch component is a simple toggle component that is either on or off communicated to assistive technologies via the use or the <span class="code-span">role="switch""</span> and the
-    <span class="code-span">aria-checked</span> attributed "true" or "false" for the on/off states.
+    The Switch component is a simple toggle component that is either on or off communicated to assistive technologies via the use or the <span class="@CodeSpan.Base">role="switch""</span> and the
+    <span class="@CodeSpan.Base">aria-checked</span> attributed "true" or "false" for the on/off states.
 </p>
 <p>
-    You can use either use the <span>@@bind:SwitchState</span> for two-way binding or the event, <span class="code-span">EventCallbac&lt;bool&gt;</span> with one-way binding.
+    You can use either use the <span>@@bind:SwitchState</span> for two-way binding or the event, <span class="@CodeSpan.Base">EventCallbac&lt;bool&gt;</span> with one-way binding.
     By default the switch and label will be together and aligned to the right of the parent container as below. Clicking on either the label or the switch with toggle it its state.
 </p>
 <p>
-    The Switch components has an <span class="code-span">AriaDisabled</span> parameter which when applied will style the control to look visually disabled but still allowing focus with the normal focus indicator.
+    The Switch components has an <span class="@CodeSpan.Base">AriaDisabled</span> parameter which when applied will style the control to look visually disabled but still allowing focus with the normal focus indicator.
     I have added code to prevent the switch from working when its in a aria disabled state.
 </p>
 <p>
-    You can also add the html <span class="code-span">disabled</span> attribute to the Switch tag which will make it appear disabled as well as remove it from the Accessibility Tree
+    You can also add the html <span class="@CodeSpan.Base">disabled</span> attribute to the Switch tag which will make it appear disabled as well as remove it from the Accessibility Tree
     so it will not be accessible to screen readers.
 </p>
 <p>
-    There is always constant debate around whether controls should ever be disabled with either the html <span class="code-span">disabled</span> attribute or even the <span class="code-span">aria-disabled</span>
+    There is always constant debate around whether controls should ever be disabled with either the html <span class="@CodeSpan.Base">disabled</span> attribute or even the <span class="@CodeSpan.Base">aria-disabled</span>
     attribute. You will need to decide what's best for your use case.
 </p>
 <p>
@@ -31,11 +31,11 @@
 </p>
 <p>
     The following three switches show the different states and alignments. The first switch is the default alignment and is enabled. The next two switches are in a disabled state, the first of
-    these using the <span class="code-span">aria-disabled</span> attribute set by the  <span class="code-span">AriaDisabled</span> parameter, as such it can still receive focus. The last
-    switch has the html <span class="code-span">disabled</span> attribute so it is removed from the Accessibility Tree and will not receive focus.
+    these using the <span class="@CodeSpan.Base">aria-disabled</span> attribute set by the  <span class="@CodeSpan.Base">AriaDisabled</span> parameter, as such it can still receive focus. The last
+    switch has the html <span class="@CodeSpan.Base">disabled</span> attribute so it is removed from the Accessibility Tree and will not receive focus.
 </p>
 
-<section class="section-box" style="max-width:320px">
+<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)" style="max-width:320px">
 
     <Switch @bind-SwitchState="@_airplaneSwitchState" Label="Airplane mode:" AriaDisabled="false" SpaceBetween="false" style="margin-block:1rem;" />
     <Switch @bind-SwitchState="@_bluetoothSwitchState" Label="Bluetooth:" AriaDisabled="true" SpaceBetween="true" style="margin-block:1rem;" />

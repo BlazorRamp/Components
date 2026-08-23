@@ -9,8 +9,8 @@
     and templating &ndash; while treating screen reader and keyboard-only users as first-class citizens throughout, not as an afterthought bolted on at the end.
 </p>
 <p>
-    It is deliberately <em>not</em> a kitchen-sink enterprise grid. There is no built-in remote data fetching, no server-side paging or filtering, and no <span class="code-span">IQueryable</span> pushdown to a database.
-    <span class="code-span">DataSource</span> is a plain in-memory <span class="code-span">List&lt;TData&gt;</span> - you bring the data, the Data Table handles displaying, sorting, filtering, and paging it. 
+    It is deliberately <em>not</em> a kitchen-sink enterprise grid. There is no built-in remote data fetching, no server-side paging or filtering, and no <span class="@CodeSpan.Base">IQueryable</span> pushdown to a database.
+    <span class="@CodeSpan.Base">DataSource</span> is a plain in-memory <span class="@CodeSpan.Base">List&lt;TData&gt;</span> - you bring the data, the Data Table handles displaying, sorting, filtering, and paging it. 
     If you genuinely need server-side evaluation of millions of rows, this isn't that component; 
     see the <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Usage}/{GlobalValues.Common_Page_Path_About}")">About These Examples</a>
     page for my thoughts on why that's a smaller slice of real-world use cases than table demos tend to suggest.
@@ -18,14 +18,14 @@
 
 <h2>At a glance</h2>
 <ul>
-    <li><strong>Sorting</strong> &ndash; set <span class="code-span">IsSortable</span> on any <span class="code-span">DataColumn</span>. Cycles unsorted &rarr; ascending &rarr; descending &rarr; 
+    <li><strong>Sorting</strong> &ndash; set <span class="@CodeSpan.Base">IsSortable</span> on any <span class="@CodeSpan.Base">DataColumn</span>. Cycles unsorted &rarr; ascending &rarr; descending &rarr; 
         back to the original order, one column at a time, with a screen reader announcement on every change.
     </li>
-    <li><strong>Filtering</strong> &ndash; bring your own filter UI via the <span class="code-span">Filter</span> render fragment (or use the Blazor Ramp <span class="code-span">Debounce Filter</span> component)
-        and supply a <span class="code-span">FilterRule</span> predicate.
+    <li><strong>Filtering</strong> &ndash; bring your own filter UI via the <span class="@CodeSpan.Base">Filter</span> render fragment (or use the Blazor Ramp <span class="@CodeSpan.Base">Debounce Filter</span> component)
+        and supply a <span class="@CodeSpan.Base">FilterRule</span> predicate.
     </li>
     <li>
-        <strong>Paging or virtualization</strong> - supply a <span class="code-span">PagerBinding</span> and Pager component, for a traditional paged table, or leave 
+        <strong>Paging or virtualization</strong> - supply a <span class="@CodeSpan.Base">PagerBinding</span> and Pager component, for a traditional paged table, or leave 
         it out for a virtualized, scrollable one. The two are mutually exclusive by design.
     </li>
     <li>
@@ -34,12 +34,12 @@
     <li>
         <strong>Styling</strong> – both row and cell style functions that let you style rows and cells based on the underlying data.
     </li>
-    <li><strong>Templating</strong> - override any column's cell content via <span class="code-span">CellTemplate</span>, or add entirely new columns (row actions, say) that don't 
-        exist in your data source via <span class="code-span">TemplateColumn</span>.
+    <li><strong>Templating</strong> - override any column's cell content via <span class="@CodeSpan.Base">CellTemplate</span>, or add entirely new columns (row actions, say) that don't 
+        exist in your data source via <span class="@CodeSpan.Base">TemplateColumn</span>.
         </li>
     <li>
         <strong>Accessibility</strong> - like all of the components, the Data Table was built accessibility-first and given some of the gaps in screen reader support for 
-        <span class="code-span">aria-sort</span>, the table plugs these with its own announcements, and works in harmony with both the Debounce Filter and Pager 
+        <span class="@CodeSpan.Base">aria-sort</span>, the table plugs these with its own announcements, and works in harmony with both the Debounce Filter and Pager 
         when used together. All texts used for announcements are fully customisable, with sensible defaults if you change nothing).
     </li>
 </ul>

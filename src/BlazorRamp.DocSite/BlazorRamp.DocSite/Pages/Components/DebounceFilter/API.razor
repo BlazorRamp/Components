@@ -37,7 +37,7 @@
                     <td>
                         Gets or sets the name used for the filter input control label.
                         If the value is null, empty, or whitespace then the default of "Filter" is used. 
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -45,10 +45,10 @@
                     <td>ControlID</td>
                     <td>string</td>
                     <td>
-                        Gets or sets the <span class="code-span">id</span> attribute applied to the underlying <c>&lt;input&gt;</c>
+                        Gets or sets the <span class="@CodeSpan.Base">id</span> attribute applied to the underlying <c>&lt;input&gt;</c>
                         element. When null, empty, or whitespace a <see cref="Guid"/> string is generated automatically. 
                         Leading and trailing whitespace is trimmed before use.     
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                     </tr>
@@ -58,7 +58,7 @@
                     <td>
                         Gets or sets the hint text rendered below the label and above the input field.
                         When set, the text is normalised so it always ends with a full stop, and is
-                        associated to the input via <span class="code-span">aria-describedby</span>. 
+                        associated to the input via <span class="@CodeSpan.Base">aria-describedby</span>. 
                         When null, empty, or whitespace no hint element is rendered.
                     </td>
                 </tr>
@@ -67,8 +67,8 @@
                     <td>string?</td>
                     <td>
                         Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
-                        used as a mask-image icon alongside the tab title. Must begin with <span class="code-span">--</span>.
-                        For example: <span class="code-span">--svg-my-icon</span>.
+                        used as a mask-image icon alongside the tab title. Must begin with <span class="@CodeSpan.Base">--</span>.
+                        For example: <span class="@CodeSpan.Base">--svg-my-icon</span>.
                     </td>
                 </tr>
                 <tr>
@@ -76,7 +76,7 @@
                     <td>FilterDataPosition (enum)</td>
                     <td>
                         Gets or sets the text/data alignment in the input.
-                        Defaults to <span class="code-span">FilterDataPosition.Start</span>
+                        Defaults to <span class="@CodeSpan.Base">FilterDataPosition.Start</span>
                     </td>
                 </tr>
                 <tr>
@@ -85,7 +85,7 @@
                     <td>
                         Gets or sets the debounce delay in milliseconds used.
                         Defaults to 500ms.
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -95,7 +95,7 @@
                     <td>
                         Gets or sets the regular expression pattern used to validate the filter input.
                         When null or empty no validation is applied.
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -104,7 +104,7 @@
                     <td>string?</td>
                     <td>
                         Gets or sets the validation message displayed when the regex pattern is not matched.
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -114,7 +114,7 @@
                     <td>
                         Gets or sets the error message displayed when the regex pattern fails to compile.
                         Defaults to "System error, filtering is unavailable at this time."
-                        <strong>Note: </strong>This value is captured during the <span class="code-span">OnInitialized</span> method
+                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
                         and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -123,14 +123,14 @@
                     <td>bool</td>
                     <td>
                         Gets or sets whether non-system-error validation messages are added to the replayable
-                        announcement history. Defaults to <span class="code-span">true</span>. Genuine system errors (e.g. an invalid
+                        announcement history. Defaults to <span class="@CodeSpan.Base">true</span>. Genuine system errors (e.g. an invalid
                         regex pattern) are always added to history regardless of this setting.
                     </td>
                 </tr>
                 <tr>
                     <td>OnDebounceFilterResult</td>
                     <td>Func&lt;DebouncedFilterResult, Task&gt;?</td>
-                    <td>Func used like an event to pass the <span class="code-span">DebouncedFilterResult</span>
+                    <td>Func used like an event to pass the <span class="@CodeSpan.Base">DebouncedFilterResult</span>
                         back to the parent component after each debounced input event.
                     </td>
                 </tr>
@@ -197,7 +197,7 @@
                     <td>bool</td>
                     <td>IsValid</td>
                     <td>
-                        Indicates whether the input passed regex validation, or <span class="code-spane">true</span> 
+                        Indicates whether the input passed regex validation, or <span class="@CodeSpan.Base">true</span> 
                         if no regex pattern is configured.
                     </td>
                 </tr>
@@ -212,7 +212,7 @@
                     <td>string?</td>
                     <td>ExceptionMessage</td>
                     <td>
-                        The exception message if the regex pattern failed to compile, otherwise <span class="code-span">null</span>.
+                        The exception message if the regex pattern failed to compile, otherwise <span class="@CodeSpan.Base">null</span>.
                     </td>
                 </tr>
             </tbody>

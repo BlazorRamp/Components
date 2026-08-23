@@ -34,24 +34,24 @@
                     <td>TableColumns</td>
                     <td>RenderFragment</td>
                     <td>
-                        Placeholder for all of the <span class="code-span">DataColumn</span> and <span class="code-span">TemplateColumn</span>
+                        Placeholder for all of the <span class="@CodeSpan.Base">DataColumn</span> and <span class="@CodeSpan.Base">TemplateColumn</span>
                         components, which get added to the tables column collection.
                     </td>
                 </tr>
                 <tr>
                     <td>Title</td>
                     <td>string</td>
-                    <td>Gets or sets the table's title, shown above the content and used as the accessible name for the table. Default value: <span class="code-span">Results</span>.</td>
+                    <td>Gets or sets the table's title, shown above the content and used as the accessible name for the table. Default value: <span class="@CodeSpan.Base">Results</span>.</td>
                 </tr>
                 <tr>
                     <td>TitleAlignment</td>
                     <td>TitleAlignment (enum)</td>
-                    <td>Gets or sets the horizontal alignment of the title. Default value: <span class="code-span">TitleAlignment.Start</span>.</td>
+                    <td>Gets or sets the horizontal alignment of the title. Default value: <span class="@CodeSpan.Base">TitleAlignment.Start</span>.</td>
                 </tr>
                 <tr>
                     <td>TitleHidden</td>
                     <td>bool</td>
-                    <td>Gets or sets whether the title is visually hidden while remaining available to assistive technology. Default value: <span class="code-span">false</span>.</td>
+                    <td>Gets or sets whether the title is visually hidden while remaining available to assistive technology. Default value: <span class="@CodeSpan.Base">false</span>.</td>
                 </tr>
                 <tr>
                     <td>Filter</td>
@@ -61,7 +61,7 @@
                 <tr>
                     <td>FilterAlignment</td>
                     <td>FilterAlignment</td>
-                    <td>Gets or sets the horizontal alignment of the filter area. Default value: <span class="code-span">FilterAlignment.End</span>.</td>
+                    <td>Gets or sets the horizontal alignment of the filter area. Default value: <span class="@CodeSpan.Base">FilterAlignment.End</span>.</td>
                 </tr>
                 <tr>
                     <td>TopPager</td>
@@ -78,7 +78,7 @@
                     <td>int</td>
                     <td>
                         Gets or sets the estimated pixel height of each row, used by the virtualized rendering path. 
-                        Set below 1 to disable virtualization. Default value: <span class="code-span">32</span>.
+                        Set below 1 to disable virtualization. Default value: <span class="@CodeSpan.Base">32</span>.
                     </td>
                 </tr>
                 <tr>
@@ -87,24 +87,24 @@
                     <td>
                         Gets or sets the number of extra rows rendered above and below the visible viewport when virtualization 
                         is active, to reduce blank space during fast scrolling. 
-                        Default value: <span class="code-span">50</span>.
+                        Default value: <span class="@CodeSpan.Base">50</span>.
                     </td>
                 </tr>
                 <tr>
                     <td>TableHeight</td>
                     <td>string?</td>
                     <td>
-                        Gets or sets the table's height, in any valid CSS unit. Applied as a fixed <span class="code-span">height</span> when 
+                        Gets or sets the table's height, in any valid CSS unit. Applied as a fixed <span class="@CodeSpan.Base">height</span> when 
                         using virtualized rendering (required, since the Virtualize component needs a definite height to measure against), 
-                        or as a <span class="code-span">max-height</span> when paging is enabled, allowing the table to shrink for fewer rows. 
-                        Defaults if null, empty, or whitespace. Default value: <span class="code-span">500px</span>.</td>
+                        or as a <span class="@CodeSpan.Base">max-height</span> when paging is enabled, allowing the table to shrink for fewer rows. 
+                        Defaults if null, empty, or whitespace. Default value: <span class="@CodeSpan.Base">500px</span>.</td>
                 </tr>
                 <tr>
                     <td>PagerBinding</td>
                     <td>PagerBinding?</td>
                     <td>
                         When supplied, enables paging and binds the table to the given paging state.
-                        Default value: <span class="code-span">null</span>.
+                        Default value: <span class="@CodeSpan.Base">null</span>.
                     </td>
                 </tr>
                 <tr>
@@ -112,7 +112,7 @@
                     <td>string?</td>
                     <td>
                         Gets or sets the header text for the row-selection column. Defaults if null, empty, or whitespace.
-                        Default value: <span class="code-span">Select</span>.
+                        Default value: <span class="@CodeSpan.Base">Select</span>.
                         <br /><b>Note:</b> This value is captured during the OnInitialized method and changes thereafter are ignored.
                     </td>
                 </tr>
@@ -128,7 +128,7 @@
                     <td>string?</td>
                     <td>
                         Gets or sets the text shown when there are no rows to display. Defaults if null, empty, or whitespace.
-                        Default value: <span class="code-span">No entries found.</span>.
+                        Default value: <span class="@CodeSpan.Base">No entries found.</span>.
                     </td>
                 </tr>
                 <tr>
@@ -136,7 +136,7 @@
                     <td>string?</td>
                     <td>
                         Gets or sets a template for the row-count message shown when a filter is active. Supports {filteredrows} and {totalrows} tokens.
-                        Default value: <span class="code-span">Showing {filteredrows} filtered items from a total of {totalrows}.</span>.
+                        Default value: <span class="@CodeSpan.Base">Showing {filteredrows} filtered items from a total of {totalrows}.</span>.
                     </td>
                 </tr>
                 <tr>
@@ -144,7 +144,7 @@
                     <td>string?</td>
                     <td>
                         Gets or sets a template for the row-count message shown when no filter is active.
-                        Supports the {totalrows} token. Default value: <span class="code-span">Showing {totalrows} items.</span>.
+                        Supports the {totalrows} token. Default value: <span class="@CodeSpan.Base">Showing {totalrows} items.</span>.
                     </td>
                 </tr>
                 <tr>
@@ -154,30 +154,30 @@
                         The full list of rows to display. Required. Treated as immutable: to add, remove, or otherwise change rows, 
                         assign a new List instance rather than mutating this one in place — only a new reference is detected as a data change.
                         If you mutate DataSource in place instead, call Refresh() afterwards via an ElementReference set on the DataTable i.e 
-                        <span class="code-span">private DataTable DataTableRef {get;set;}</span> with <span class="code-span">@@ref="DataTableRef"</span>
-                        Default value: <span class="code-span">[]</span>.</td>
+                        <span class="@CodeSpan.Base">private DataTable DataTableRef {get;set;}</span> with <span class="@CodeSpan.Base">@@ref="DataTableRef"</span>
+                        Default value: <span class="@CodeSpan.Base">[]</span>.</td>
                 </tr>
                 <tr>
                     <td>RowSelectionMode</td>
                     <td>RowSelectionMode (enum)</td>
                     <td>
                         Determines whether rows can be selected, and if so, whether selection is single or multiple. 
-                        Default value: <span class="code-span">RowSelectionMode.None</span>.
+                        Default value: <span class="@CodeSpan.Base">RowSelectionMode.None</span>.
                     </td>
                 </tr>
                 <tr>
                     <td>SelectedRows</td>
                     <td>List&lt;TData&gt;</td>
                     <td>
-                        The currently selected rows. Default value: <span class="code-span">[]</span>.
+                        The currently selected rows. Default value: <span class="@CodeSpan.Base">[]</span>.
                     </td>
                 </tr>
                 <tr>
                     <td>RowStyleFunc</td>
                     <td>Func&lt;TData, string?&gt;?</td>
                     <td>
-                        Gets or sets an optional function returning inline CSS for a row's <span class="code-span">&lt;tr&gt;</span> element.
-                        Default value: <span class="code-span">null</span>.
+                        Gets or sets an optional function returning inline CSS for a row's <span class="@CodeSpan.Base">&lt;tr&gt;</span> element.
+                        Default value: <span class="@CodeSpan.Base">null</span>.
                     </td>
                 </tr>
                 <tr>
@@ -192,7 +192,7 @@
                     <td>string</td>
                     <td>
                         Gets or sets screen reader announcement text used when a filter has been applied.
-                        Default value: <span class="code-span">Filtering completed.</span>.
+                        Default value: <span class="@CodeSpan.Base">Filtering completed.</span>.
                     </td>
                 </tr>
                 <tr>
@@ -200,7 +200,7 @@
                     <td>string</td>
                     <td>
                         Gets or sets screen reader announcement text used when a column is sorted ascending.
-                        Default value: <span class="code-span">Sort up completed.</span>. 
+                        Default value: <span class="@CodeSpan.Base">Sort up completed.</span>. 
                         <b>Note:</b> I find it audibly hard to distinguish, ascending / descending when using a screen reader
                         up / down I never mis hear. 
                     </td>
@@ -210,7 +210,7 @@
                     <td>string</td>
                     <td>
                         Gets or sets screen reader announcement text used when a column is sorted descending.
-                        Default value: <span class="code-span">Sort down completed.</span>.
+                        Default value: <span class="@CodeSpan.Base">Sort down completed.</span>.
                         <b>Note:</b> I find it audibly hard to distinguish, ascending / descending when using a screen reader
                         up / down I never mis hear.
                     </td>
@@ -220,7 +220,7 @@
                     <td>string</td>
                     <td>
                         Gets or sets screen reader announcement text used when a column's sort is cleared.
-                        Default value: <span class="code-span">Sort removed.</span>.
+                        Default value: <span class="@CodeSpan.Base">Sort removed.</span>.
                     </td>
                 </tr>
                 <tr>
@@ -228,8 +228,8 @@
                     <td>string</td>
                     <td>
                         Gets or sets the hidden hint text describing sort buttons to assistive technology, referenced via
-                        <span class="code-span">aria-describedby</span>.
-                        Default value: <span class="code-span">Press to sort.</span>.
+                        <span class="@CodeSpan.Base">aria-describedby</span>.
+                        Default value: <span class="@CodeSpan.Base">Press to sort.</span>.
                     </td>
                 </tr>
                 <tr>
@@ -238,7 +238,7 @@
                     <td>
                         Changes the tabindex of -1 to 0 on the table element. You would only need to do this if 
                         the table was scrollable without any interactive focusable elements such as sortable headers, selection checkboxes or custom row actions. 
-                        A focusable item on the table allows keyboard only users the ability move any scrollbars. Default value: <span class="code-span">false</span>.
+                        A focusable item on the table allows keyboard only users the ability move any scrollbars. Default value: <span class="@CodeSpan.Base">false</span>.
                     </td>
                 </tr>
                 <tr>
@@ -274,7 +274,7 @@
                     <td>Expression&lt;Func&lt;TData, object&gt;&gt;?</td>
                     <td>
                         The property on TData this column reads its value from. Required. 
-                        Default value: <span class="code-span">default</span>.
+                        Default value: <span class="@CodeSpan.Base">default</span>.
                     </td>
                 </tr>
                 <tr>
@@ -282,20 +282,20 @@
                     <td>Func&lt;TData, string?&gt;?</td>
                     <td>
                         Gets or sets the optional function returning inline CSS for a specific row's cell in this column. 
-                        Default value: <span class="code-span">null</span>.
+                        Default value: <span class="@CodeSpan.Base">null</span>.
                     </td>
                 </tr>
                 <tr>
                     <td>IsSortable</td>
                     <td>bool</td>
-                    <td>Gets or sets the whether column sorting is available for this column. Default value: <span class="code-span">false</span>.</td>
+                    <td>Gets or sets the whether column sorting is available for this column. Default value: <span class="@CodeSpan.Base">false</span>.</td>
                 </tr>
                 <tr>
                     <td>CellTemplate</td>
                     <td>RenderFragment&lt;TData&gt;?</td>
                     <td>
                         Gets or sets the optional template used to render each cell's content instead of just the raw value. 
-                        Default value: <span class="code-span">default</span>.
+                        Default value: <span class="@CodeSpan.Base">default</span>.
                     </td>
                 </tr>
                 <tr>
@@ -303,7 +303,7 @@
                     <td>string?</td>
                     <td>
                         Gets or sets the optional inline CSS values applied to a style attribute on the column's header cell. 
-                        Default value: <span class="code-span">null</span>.
+                        Default value: <span class="@CodeSpan.Base">null</span>.
                     </td>
                 </tr>
                 <tr>
@@ -311,7 +311,7 @@
                     <td>string?</td>
                     <td>
                         Gets or sets the optional inline CSS values applied to a style attribute added to every cell in the column. 
-                        Default value: <span class="code-span">null</span>.
+                        Default value: <span class="@CodeSpan.Base">null</span>.
                     </td>
                 </tr>
                 <tr>
@@ -324,7 +324,7 @@
                     <td>string?</td>
                     <td>
                         Gets or sets the optional .NET format string applied to the cell's value, e.g. for dates or numbers. 
-                        Default value: <span class="code-span">null</span>.
+                        Default value: <span class="@CodeSpan.Base">null</span>.
                     </td>
                 </tr>
                 <tr>
@@ -332,7 +332,7 @@
                     <td>ColumnAlignment (enum)</td>
                     <td>
                         Horizontal alignment applied to the column's header and cells. 
-                        Default value: <span class="code-span">ColumnAlignment.Start</span>.
+                        Default value: <span class="@CodeSpan.Base">ColumnAlignment.Start</span>.
                     </td>
                 </tr>
             </tbody>
@@ -364,7 +364,7 @@
                     <td>RenderFragment&lt;TData&gt;?</td>
                     <td>
                         Gets or sets the optional template used to render each cell's content instead of just the raw value.
-                        Default value: <span class="code-span">default</span>.
+                        Default value: <span class="@CodeSpan.Base">default</span>.
                     </td>
                 </tr>
                 <tr>
@@ -372,7 +372,7 @@
                     <td>string?</td>
                     <td>
                         Gets or sets the optional inline CSS values applied to a style attribute on the column's header cell.
-                        Default value: <span class="code-span">null</span>.
+                        Default value: <span class="@CodeSpan.Base">null</span>.
                     </td>
                 </tr>
                 <tr>
@@ -380,7 +380,7 @@
                     <td>string?</td>
                     <td>
                         Gets or sets the optional inline CSS values applied to a style attribute added to every cell in the column.
-                        Default value: <span class="code-span">null</span>.
+                        Default value: <span class="@CodeSpan.Base">null</span>.
                     </td>
                 </tr>
                 <tr>
@@ -393,7 +393,7 @@
                     <td>string?</td>
                     <td>
                         Gets or sets the optional .NET format string applied to the cell's value, e.g. for dates or numbers.
-                        Default value: <span class="code-span">null</span>.
+                        Default value: <span class="@CodeSpan.Base">null</span>.
                     </td>
                 </tr>
                 <tr>
@@ -401,7 +401,7 @@
                     <td>ColumnAlignment (enum)</td>
                     <td>
                         Horizontal alignment applied to the column's header and cells.
-                        Default value: <span class="code-span">ColumnAlignment.Start</span>.
+                        Default value: <span class="@CodeSpan.Base">ColumnAlignment.Start</span>.
                     </td>
                 </tr>
             </tbody>
@@ -434,7 +434,7 @@
                     <td>TData?</td>
                     <td>GetAdjacentDisplayedRow(TData rowItem)</td>
                     <td>
-                        Returns the row adjacent to <span class="code-span">rowItem</span> in the currently displayed order — the
+                        Returns the row adjacent to <span class="@CodeSpan.Base">rowItem</span> in the currently displayed order — the
                         next row if one exists, otherwise the previous row, otherwise default if rowItem was the only
                         displayed row.
                     </td>
@@ -443,7 +443,7 @@
                     <td>Task</td>
                      <td>Refresh()</td>
                     <td>
-                        Forces the table to re-filter, re-sort, and re-page from <span class="code-spane">DataSource</span> 
+                        Forces the table to re-filter, re-sort, and re-page from <span class="@CodeSpan.Base">DataSource</span> 
                         Call this after mutating the existing DataSource list in place (e.g. Add/Remove/Clear) rather than
                         assigning a new List instance, since in-place mutation is not detected automatically.
                     </td>
@@ -473,7 +473,7 @@
                     <td>ItemsPerPage</td>
                     <td>
                         The number of rows to display per page.
-                        Defaults to <span class="code-span">10</span>
+                        Defaults to <span class="@CodeSpan.Base">10</span>
                     </td>
                 </tr>
                 <tr>
@@ -481,7 +481,7 @@
                     <td>CurrentPage</td>
                     <td>
                         The page currently being displayed.
-                        Defaults to <span class="code-span">0</span>
+                        Defaults to <span class="@CodeSpan.Base">0</span>
                     </td>
                 </tr>
                 <tr>
@@ -489,7 +489,7 @@
                     <td>CurrentItemCount</td>
                     <td>
                         he number of rows in the current filtered/unfiltered data set.
-                        Defaults to <span class="code-span">0</span>
+                        Defaults to <span class="@CodeSpan.Base">0</span>
                     </td>
                 </tr>
                 <tr>
@@ -497,7 +497,7 @@
                     <td>TotalItemCount</td>
                     <td>
                         The total number of rows available before filtering.
-                        Defaults to <span class="code-span">0</span>
+                        Defaults to <span class="@CodeSpan.Base">0</span>
                     </td>
                 </tr>
                 <tr>
@@ -996,7 +996,7 @@
         <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
         <p>
             The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
-            by standard mappings to the <span class="code-span">--br-comp-all</span> variables.
+            by standard mappings to the <span class="@CodeSpan.Base">--br-comp-all</span> variables.
         </p>
 
         <table aria-labelledby="unmapped-variables">
