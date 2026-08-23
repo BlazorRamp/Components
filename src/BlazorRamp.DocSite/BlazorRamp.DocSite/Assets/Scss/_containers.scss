@@ -1,0 +1,62 @@
+﻿@use "_functions" as *;
+
+.content-container {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    background-color: inherit;
+    color: inherit;
+    overflow: hidden;
+
+}
+
+.justify-content-end {justify-content: end;}
+.justify-content-center {justify-content: center;}
+.justify-content-start {justify-content: start;}
+.justify-content-between {justify-content: space-between;}
+.justify-content-around {justify-content: space-around;}
+.justify-content-evenly {justify-content: space-evenly;}
+
+.justify-items-start {justify-items: start;}
+.justify-items-end {justify-items: end;}
+.justify-items-center {justify-items: center;}
+
+.align-content-center {align-content: center;}
+.align-content-start {align-content: start;}
+.align-content-end {align-content: end;}
+.align-content-between {align-content: space-between;}
+.align-content-around {align-content: space-around;}
+.align-content-evenly {align-content: space-evenly;}
+
+.align-items-start {align-items: start;}
+.align-items-end {align-items: end;}
+.align-items-center {align-items: center;}
+
+
+.flex-content {
+    display: flex;
+    gap: var(--br-unit-space-5);
+    margin-bottom: var(--br-unit-space-5);
+
+    &:not(:has(button.test-button)) {
+        margin-bottom: calc(var(--br-unit-space-5) * 6);
+    }
+
+    &--add-margin-back {
+        margin-bottom: calc(var(--br-unit-space-5) * 6);
+    }
+
+    &--columns {
+        flex-direction: column;
+    }
+
+    &--wrap {
+        flex-wrap: wrap;
+    }
+
+    @include media-device-sm(max-width) {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
