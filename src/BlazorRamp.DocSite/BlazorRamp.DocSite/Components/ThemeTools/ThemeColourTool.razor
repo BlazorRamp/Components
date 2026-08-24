@@ -51,7 +51,7 @@
 }
 @code {
 
-    [Parameter] public string Title { get; set; } = "Theme controls";
+    [Parameter] public string Title { get; set; } = "Theme colour controls";
     [Parameter] public ThemeToolHeadingLevel ThemeToolHeadingLevel { get; set; } = ThemeToolHeadingLevel.H2;
 
     [Parameter] public EventCallback OnColourChanged { get; set; }
@@ -61,10 +61,10 @@
 
     private IJSObjectReference? _jsModule = null;
 
-    private string _primaryColourValue = "#008C8C";
-    private string _rootPrimaryVar = "--br-unit-colour-primary";
-    private string _neutralSaturationVar = "--br-unit-colour-neutral-saturation";
-    private string _neutralSaturationValue = "10";
+    private string _primaryColourValue      = CoreCssVariables.Colour_Primary_Original_Value;
+    private string _rootPrimaryVar          = CoreCssVariables.Colour_Primary;
+    private string _neutralSaturationVar    = CoreCssVariables.Colour_Neutral_Saturation;
+    private string _neutralSaturationValue  = CoreCssVariables.Colour_Neutral_Saturation_Original_Value;
 
     private async Task HandleSaturation(ChangeEventArgs args)
     {
@@ -90,11 +90,8 @@
     {
         if (_jsModule is not null)
         {
-            _primaryColourValue = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, CoreCssVariables.Original_Primary_Value_Store_Name);
-            _neutralSaturationValue = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, CoreCssVariables.Original_Saturation_Value_Store_Name);
-
-            // await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Root_Variable_Func, _neutralSaturationVar, _neutralSaturationValue);
-            // await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Root_Variable_Func, _rootPrimaryVar, _primaryColourValue);
+            _primaryColourValue     = CoreCssVariables.Colour_Primary_Original_Value;
+            _neutralSaturationValue = CoreCssVariables.Colour_Neutral_Saturation_Original_Value;
 
             await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Remove_Style_Property_Func, _rootPrimaryVar);
             await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Remove_Style_Property_Func, _neutralSaturationVar);

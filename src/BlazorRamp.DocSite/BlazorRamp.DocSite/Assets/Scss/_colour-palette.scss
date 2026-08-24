@@ -3,7 +3,7 @@
     --_br-palette-max-width: 400px;
     display: flex;
     flex-direction: column;
-    border-radius: var(--br-comp-all-pane-base-border-radius);
+    border-radius: var(--br-group-container-area-content-border-radius);
     background-color: white;
     color: black;
     width: var(--_br-palette-max-width);
@@ -13,11 +13,14 @@
     height: fit-content;
     forced-color-adjust: none;
 
+
     &__heading {
         margin: 0;
         padding: 0;
         font-size: var(--br-unit-font-size-1);
+        color: var(--br-unit-colour-neutral-90)
     }
+
 
     &__information {
         background-color: transparent;
@@ -38,8 +41,8 @@
         color: var(--_br-swatch-text-colour);
 
         &:last-of-type {
-            border-bottom-left-radius: var(--br-comp-all-pane-base-border-radius);
-            border-bottom-right-radius: var(--br-comp-all-pane-base-border-radius);
+            border-bottom-left-radius: var(--br-group-container-area-content-border-radius);
+            border-bottom-right-radius: var(--br-group-container-area-content-border-radius);
         }
 
         &--black {

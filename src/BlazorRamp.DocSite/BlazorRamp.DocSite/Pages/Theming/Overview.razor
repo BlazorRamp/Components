@@ -3,7 +3,7 @@
 <PageTitle>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Overview</PageTitle>
 
 
-<section class="info-box info-box--coloured">
+<section class="@Section.Base @Section.Radius(SectionRadius.Content) @Section.Background(SectionBackground.Neutral20) @Section.NoMarginBlock">
 
     <h1>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Overview</h1>
 
@@ -20,8 +20,8 @@
 </p>
 </section>
 
-<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
-    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.PrimaryDark)">How theming works in Blazor Ramp</h2>
+<section style="margin-block:var(--br-unit-space-5);">
+    <h2>How theming works in Blazor Ramp</h2>
     <p>
         Blazor Ramp has three categories of CSS variables, the first two of which are shared by everything.
     </p>
@@ -113,8 +113,8 @@
 
 </section>
 
-<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
-    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.PrimaryDark)">Changing variable values and/or creating a dark mode - important!</h2>
+<section>
+    <h2>Changing variable values and/or creating a dark mode - important!</h2>
     
     <p>
         CSS custom properties (variables) are scoped to the element they're defined on and inherited by descendants. To ensure the variables / dark mode variables are available throughout your entire application—including all Blazor Ramp 

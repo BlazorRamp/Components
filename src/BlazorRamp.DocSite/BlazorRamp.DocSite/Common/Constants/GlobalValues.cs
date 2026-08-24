@@ -208,6 +208,7 @@ public class GlobalValues
 
 
     public const string Theme_Border_Tool_Class = "theme-border-tool";
+    public const string Theme_Border_Tool_Title_Class = $"{Theme_Border_Tool_Class}__title";
 
 
 

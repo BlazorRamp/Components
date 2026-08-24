@@ -6,8 +6,8 @@
     position: relative;
     padding: var(--br-unit-space-5);
     margin-bottom: var(--br-unit-space-5);
-    border-radius: var(--br-unit-radius-3);
-    border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
+    border-radius: var(--br-group-container-area-content-border-radius);
+    border: var(--br-unit-border-1) solid var(--br-comp-all-divider-colour);
 
     &__title {
     }
@@ -91,14 +91,14 @@
     }
 
     & button {
-        border-radius: var(--br-unit-radius-1);
+        border-radius: var(--br-group-button-border-radius); //var(--br-unit-radius-1);
         align-self: end;
         margin: 0;
         margin-top: auto;
         height: 42px;
     }
 
-    & h2 {
+    &__title {
         @include media-device-sm(max-width) {
             text-align: center;
         }
@@ -118,4 +118,22 @@
 
 
 .theme-border-tool {
+    position: relative;
+    padding: var(--br-unit-space-5);
+    margin-bottom: var(--br-unit-space-5);
+    border-radius: var(--br-group-container-area-content-border-radius);
+    border: var(--br-unit-border-1) solid var(--br-comp-all-divider-colour);
+
+    &__title {
+        @include media-device-sm(max-width) {
+            text-align: center;
+        }
+    }
+
+    &:focus {
+        outline-style: var(--br-comp-all-outline-style);
+        outline-width: var(--br-comp-all-outline-width);
+        outline-offset: var(--br-comp-all-outline-offset);
+        outline-color: var(--br-comp-all-outline-colour);
+    }
 }

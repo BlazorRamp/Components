@@ -7,12 +7,12 @@
 <h1>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Sandbox . . . In Progress . . .</h1>
 
 
+<label for="button-radius">Button border radius:</label>
+<input id="button-radius" type="range" min="0" max="10" step="1" @bind-value:get="RadiusIndex" @bind-value:set="OnRadiusIndexChanged" />
 
+<div style="border-radius:var(--br-group-button-border-radius);width:100px; height:30px;border:1px solid black;"></div>
 
-@* <button @onclick="LessRounded">Less Rounded</button>
-
-<button @onclick="LessRounded">Less Rounded</button> *@
-
+<p>@_remValue</p>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Colours}")">
@@ -36,15 +36,42 @@
     private IJSObjectReference? _jsModule = null;
 
 
+    private int _radiusIndex = 3; // whatever the current group's step maps to
 
-    private async Task LessRounded()
+    private int RadiusIndex => _radiusIndex;
+
+    private string _remValue = String.Empty;
+
+    private async Task OnRadiusIndexChanged(int newIndex)
     {
-        if(_jsModule is not null)
-        {
+        _radiusIndex = newIndex;
+        _remValue = IndexToRadius(newIndex);
+        var buttonVarName = "--br-group-button-border-radius";
+        var sectionVarName = "--br-group-content-border-radius";
 
-             
-        }
+
+        //await SetCssVariableAsync("--br-group-button-border-radius", remValue);
+
+        if (_jsModule is not null) await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Style_Property_Func, buttonVarName, _remValue);
+        if (_jsModule is not null) await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Style_Property_Func, sectionVarName, _remValue);
     }
+
+    private static string IndexToRadius(int index) => index switch
+    {
+       0 => "var(--br-unit-radius-0)",
+       1 => "var(--br-unit-radius-1)",
+       2 => "var(--br-unit-radius-2)",
+       3 => "var(--br-unit-radius-3)",
+       4 => "var(--br-unit-radius-4)",
+       5 => "var(--br-unit-radius-5)",
+       6 => "var(--br-unit-radius-6)",
+       7 => "var(--br-unit-radius-7)",
+       8 => "var(--br-unit-radius-8)",
+       9 => "var(--br-unit-radius-9)",
+       _ => "var(--br-unit-radius-full)"
+    };
+
+      
 
     protected override async Task OnInitializedAsync()
     {

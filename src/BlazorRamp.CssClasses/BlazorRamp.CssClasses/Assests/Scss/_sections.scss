@@ -6,7 +6,8 @@
     --_br-section-text: var(--br-unit-colour-canvas-text);
     --_br-section-font-size: var(--br-unit-font-size-1);
 
-    margin: 0;
+    position:relative;
+    margin-block: var(--br-unit-space-5);
     padding: var(--br-unit-space-5);
     color: var(--_br-section-text);
     background-color: var(--_br-section-background);
@@ -22,8 +23,8 @@
     &--code-font {font-family: var(--br-code-font-family);}
 
     &--font-size-label{font-size:var(--br-unit-font-size-label);}
-    &--font-size-One {font-size:var(--br-unit-font-size-1);}
-    &--font-size-Two {font-size:var(--br-unit-font-size-2);}
+    &--font-size-one {font-size:var(--br-unit-font-size-1);}
+    &--font-size-two {font-size:var(--br-unit-font-size-2);}
 
     &--bordered {
         border-color: var(--br-comp-all-divider-colour);
@@ -31,6 +32,7 @@
         border-style: solid;
     }
 
+    &--no-margin-block{margin-block:0;}
     &--no-padding {padding: 0;}
 
     &--neutral-10        { --_br-section-background: var(--br-shared-neutral-10); }
@@ -40,21 +42,34 @@
     &--secondary-text    { --_br-section-text: var(--br-shared-secondary-text); }
     &--accent-text       { --_br-section-text: var(--br-shared-accent-text); }
 
+    &--column-centred{
+        display:flex;
+        flex-direction:column;
+        justify-content:start;
+        align-items:center;
+        gap:1rem;
+    }
 
     &__heading{
-        
         --_br-section-heading-text:var(---_br-section-text);
 
         color:var(--_br-section-heading-text);
+        font-size:var(--br-unit-font-size-2);
 
         &--mobile-centred{
             @include media-device-sm(max-width) {
                 text-align: center;
             }
         }
-        &--primary-text{--_br-section-heading-text:var(--br-shared-primary-text);}
-        &--accent-text{--_br-section-heading-text:var(--br-shared-accent-text);}
-        &--secondary-text{--_br-section-heading-text:var(--br-shared-secondary-text);}
+        &--primary-text{--_br-section-heading-text:var(--br-shared-primary-heading-text);}
+        &--accent-text{--_br-section-heading-text:var(--br-shared-accent-heading-text);}
+        &--secondary-text{--_br-section-heading-text:var(--br-shared-secondary-heading-text);}
+
+        &--font-size-two {font-size:var(--br-unit-font-size-2);}
+        &--font-size-three {font-size:var(--br-unit-font-size-3);}
+        &--font-size-four {font-size:var(--br-unit-font-size-4);}
+        &--font-size-five {font-size:var(--br-unit-font-size-5);}
+        &--font-size-six {font-size:var(--br-unit-font-size-6);}
     }
 
 

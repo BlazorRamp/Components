@@ -51,12 +51,12 @@
     for the demo. The initial popup form has had its options set so it has a maximum width of 70vh, positioned top center. The confirmation dialog has had it options set to have
     a maximum width of 50vh positioned centre centre (see the code below).
 </p>
-<section class="info-box info-box--container-test">
+<section class="@Section.Base @Section.Radius(SectionRadius.Content) @Section.Bordered @Section.ColumnCentred">
     <button @ref="ButtonRef" class="test-button" @onclick="ShowDialog">Show the Popup Form</button>
 
     @if (_outputVisible)
     {
-        <p style="margin-top:2rem;">
+        <p>
             <b>The result: </b> @_outputMessage
         </p>
     }

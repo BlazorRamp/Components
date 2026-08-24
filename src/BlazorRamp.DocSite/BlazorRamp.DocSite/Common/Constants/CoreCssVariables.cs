@@ -5,11 +5,6 @@ namespace BlazorRamp.DocSite.Common.Constants
 {
     public class CoreCssVariables
     {
-        public const string Original_Primary_Value_Store_Name = "--br-original-primary-value";
-        public const string Original_Saturation_Value_Store_Name = "--br-original-Neutral-Saturation-value";
-        public const string Colour_Neutral_Saturation = "--br-unit-colour-neutral-saturation";
-
-
         public const string Colour_Canvas               = "--br-unit-colour-canvas";
         public const string Colour_Canvas_Text          = "--br-unit-colour-canvas-text";
         public const string Colour_Canvas_Inverted      = "--br-unit-colour-canvas-inverted";
@@ -30,7 +25,10 @@ namespace BlazorRamp.DocSite.Common.Constants
         public const string Colour_Primary_Text_Light = "--br-unit-colour-primary-text-light";
         public const string Colour_Primary_Text_Dark  = "--br-unit-colour-primary-text-dark";
 
+        public const string Colour_Primary_Original_Value =  "#008C8C";
 
+        public const string Colour_Neutral_Saturation_Original_Value = "10";
+        public const string Colour_Neutral_Saturation = "--br-unit-colour-neutral-saturation";
         public const string Colour_Neutral    = "--br-unit-colour-neutral";
         public const string Colour_Neutral_5  = "--br-unit-colour-neutral-5";
         public const string Colour_Neutral_10 = "--br-unit-colour-neutral-10";

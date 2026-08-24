@@ -33,17 +33,17 @@
     There is a skip to inside the section below that will jump to its target, the container of: "The content you want to get to.". Use your tab key to find it and your enter key 
     to activate it.
 </p>
-<div class="info-box">
+<div class="@Section.Base @Section.Radius(SectionRadius.Content) @Section.Bordered @Section.ColumnCentred" style="align-items:start;margin-block:var(--br-unit-space-5);">
     <SkipTo IconVisible="true" SkipToText="Skip to section content" SkipToType="SkipToType.Section" TargetID="section-one" />
-    <div class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+    <p class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
         The skip to is hiding here in this container that has a CSS <spoan class="@CodeSpan.Base">position:relative;</spoan> set on it.
-    </div>
-    <div class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+    </p>
+    <p class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
         Some block you want to skip.
-    </div>
-    <div style="width:320px;" class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)" tabindex="-1" id="section-one">
+    </p>
+    <p style="width:320px;" class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)" tabindex="-1" id="section-one">
         The content you want to get to.
-    </div>
+    </p>
 </div>
 
 <div class="flex-content justify-content-between">

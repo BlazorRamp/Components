@@ -1,0 +1,29 @@
+﻿@{
+    void GetHeading(ThemeToolHeadingLevel headingLevel, string title)
+    {
+        @switch (headingLevel)
+        {
+            case ThemeToolHeadingLevel.H2: <h2 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h2>; break;
+            case ThemeToolHeadingLevel.H3: <h3 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h3>; break;
+            case ThemeToolHeadingLevel.H4: <h4 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h4>; break;
+            case ThemeToolHeadingLevel.H5: <h5 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h5>; break;
+            case ThemeToolHeadingLevel.H6: <h6 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h6>; break;
+            default:
+                <h3 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h3>
+                break;
+        }
+
+    }
+}
+
+@code {
+    [Parameter] public string Title { get; set; } = "Theme border controls";
+    [Parameter] public ThemeToolHeadingLevel ThemeToolHeadingLevel { get; set; } = ThemeToolHeadingLevel.H2;
+
+    [Parameter] public EventCallback OnColourChanged { get; set; }
+
+    [Inject] ILiveRegionService LiveRegionService { get; set; } = default!;
+    [Inject] IJSRuntime JSRuntime { get; set; } = default!;
+
+    private IJSObjectReference? _jsModule = null;
+}

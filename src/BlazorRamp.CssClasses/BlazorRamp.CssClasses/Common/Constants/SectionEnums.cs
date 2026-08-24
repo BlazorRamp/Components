@@ -37,3 +37,12 @@ public enum SectionHeadingText : int
     AccentDark = 1,
     PrimaryDark = 2
 }
+public enum SectionHeadingFontSize : int
+{
+    Two = 0,
+    Three = 1,
+    Four = 2,
+    Five = 3,
+    Six = 4
+
+}

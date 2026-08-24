@@ -5,7 +5,8 @@
     overflow-x: auto;
 
     &__heading {
-        color: var(--br-code-table-heading-text);
+        
+        margin-block:var(--br-unit-space-5);
 
         @include media-device-sm(max-width) {
             text-align: center;
@@ -109,7 +110,6 @@
     }
 
     & caption {
-        color: var(--br-code-table-heading-text);
         text-align: start;
         font-size: var(--br-unit-font-size-2);
         margin-bottom: var(--br-unit-space-3);
