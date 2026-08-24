@@ -121,8 +121,52 @@ namespace BlazorRamp.DocSite.Common.Constants
         public const string Opacity_Value_80 = "--br-unit-opacity-val-80";
 
 
+        public const string Group_Button_Radius       = "--br-group-button-border-radius";
+        public const string Group_Button_Radius_Value = "--br-unit-radius-full";
 
-        
+        public const string Group_Input_Radius_Base        = "--br-group-input-pane-base-border-radius";
+        public const string Group_Input_Radius_Base_Value = "--br-unit-radius-3";
+
+        public const string Group_Menu_Radius_Panel = "--br-group-menu-pane-panel-border-radius";
+        public const string Group_Menu_Radius_Panel_Value = "--br-unit-radius-3)";
+
+        public const string Group_Menu_Radius_item = "--br-group-menu-item-border-radius";
+        public const string Group_Menu_Radius_Item_Value = "--br-unit-radius-3";
+
+        public const string Group_Menu_Radius_Header = "--br-group-menu-area-header-border-radius";
+        public const string Group_Menu_Radius_Header_Value = "--br-unit-radius-3)";
+
+        public const string Group_Menu_Radius_Content = "--br-group-menu-area-content-border-radius";
+        public const string Group_Menu_Radius_Content_Value = "--br-unit-radius-3";
+        public const string Group_Container_Radius_Header = "--br-group-container-area-header-border-radius";
+        public const string Group_Container_Radius_Header_Value = "--br-unit-radius-3";
+
+        public const string Group_Container_Radius_Content = "--br-group-container-area-content-border-radius";
+        public const string Group_Container_Radius_Content_Value = "--br-unit-radius-3";
+
+
+        public const string Group_Dialog_Radius_Panel = "--br-group-dialog-pane-panel-border-radius";
+        public const string Group_Dialog_Radius_Panel_Value = "--br-unit-radius-3";
+        public const string Group_Dialog_Radius_Footer = "--br-group-dialog-area-footer-border-radius";
+        public const string Group_Dialog_Radius_Footer_Value = "--br-unit-radius-3";
+
+        public const string Group_Dialog_Radius_Content = "--br-group-dialog-area-content-border-radius";
+        public const string Group_Dialog_Radius_Content_Value = "--br-unit-radius-3";
+
+        public const string Group_Dialog_Radius_Header = "--br-group-dialog-area-header-border-radius";
+        public const string Group_Dialog_Radius_Header_Value = "--br-unit-radius-3";
+
+        public const string Group_Dialog_Radius_Base = "--br-group-dialog-pane-base-border-radius";
+        public const string Group_Dialog_Radius_Base_Value = "--br-unit-radius-7";
+
+        public const string Group_Dialog_Radius_Surface = "--br-group-dialog-pane-surface-border-radius";
+        public const string Group_Dialog_Radius_Surface_Value = "--br-unit-radius-7";
+
+        public const string Group_Revealed_Radius_Surface = "--br-group-revealed-border-radius";
+        public const string Group_Revealed_Radius_Surface_Value = "--br-unit-radius-5";
+
+        public const string Group_Content_Radius = "--br-group-content-border-radius";
+        public const string Group_Content_Radius_Value = "--br-unit-radius-5";
 
     }
 }

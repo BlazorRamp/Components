@@ -1,15 +1,31 @@
-﻿@{
+﻿@implements IAsyncDisposable
+
+<div>
+    <label for="button-radius">Button border radius:</label>
+    <input id="button-radius" type="range" min="0" max="10" step="1" @bind-value:get="_buttonRadiusIndex" @bind-value:set="OnButtonRadiusChanged" />
+</div>
+<div>
+    <label for="content-radius">Content border radius:</label>
+    <input id="content-radius" type="range" min="0" max="9" step="1" @bind-value:get="_contentRadiusIndex" @bind-value:set="OnContentRadiusChanged" />
+</div>
+
+<div>
+    <label for="revealed-radius">Revealed border radius:</label>
+    <input id="revealed-radius" type="range" min="0" max="9" step="1" @bind-value:get="_revealedRadiusIndex" @bind-value:set="OnRevealedRadiusChanged" />
+</div>
+
+@{
     void GetHeading(ThemeToolHeadingLevel headingLevel, string title)
     {
         @switch (headingLevel)
         {
-            case ThemeToolHeadingLevel.H2: <h2 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h2>; break;
-            case ThemeToolHeadingLevel.H3: <h3 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h3>; break;
-            case ThemeToolHeadingLevel.H4: <h4 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h4>; break;
-            case ThemeToolHeadingLevel.H5: <h5 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h5>; break;
-            case ThemeToolHeadingLevel.H6: <h6 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h6>; break;
+            case ThemeToolHeadingLevel.H2: <h2 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h2>; break;
+            case ThemeToolHeadingLevel.H3: <h3 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h3>; break;
+            case ThemeToolHeadingLevel.H4: <h4 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h4>; break;
+            case ThemeToolHeadingLevel.H5: <h5 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h5>; break;
+            case ThemeToolHeadingLevel.H6: <h6 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h6>; break;
             default:
-                <h3 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h3>
+                <h3 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h3>
                 break;
         }
 
@@ -20,10 +36,128 @@
     [Parameter] public string Title { get; set; } = "Theme border controls";
     [Parameter] public ThemeToolHeadingLevel ThemeToolHeadingLevel { get; set; } = ThemeToolHeadingLevel.H2;
 
-    [Parameter] public EventCallback OnColourChanged { get; set; }
+    [Parameter] public EventCallback OnBorderChanged { get; set; }
 
     [Inject] ILiveRegionService LiveRegionService { get; set; } = default!;
     [Inject] IJSRuntime JSRuntime { get; set; } = default!;
 
     private IJSObjectReference? _jsModule = null;
+
+
+    private string _buttonRadiusValue = String.Empty;
+    private int    _buttonRadiusIndex = 10;
+
+    private string _contentRadiusValue = String.Empty;
+    private int    _contentRadiusIndex = 5;
+
+    private string _containerContentRadiusValue = String.Empty;
+    private int    _containerContentRadiusIndex = 3;
+
+    private string _inputRadiusValue = String.Empty;
+    private int    _inputRadiusIndex = 3;
+
+    private string _revealedRadiusValue = String.Empty;
+    private int    _revealedRadiusIndex = 8;
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        _jsModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Doc_Theme_Module_File_Path);
+
+        if (_jsModule is null) return;
+
+
+        var buttonVal           = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, CoreCssVariables.Group_Button_Radius);
+        var contentVal          = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, CoreCssVariables.Group_Content_Radius);
+        var containerContentVal = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, CoreCssVariables.Group_Container_Radius_Content);
+        var inputVal            = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, CoreCssVariables.Group_Input_Radius_Base);
+        var revealedVal         = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, CoreCssVariables.Group_Revealed_Radius_Surface);
+
+        _buttonRadiusIndex           = RadiusToIndex(buttonVal);
+        _contentRadiusIndex          = RadiusToIndex(contentVal);
+        _containerContentRadiusIndex = RadiusToIndex(containerContentVal);
+        _inputRadiusIndex            = RadiusToIndex(inputVal);
+        _revealedRadiusIndex         = RadiusToIndex(revealedVal);
+    }
+
+    private async Task OnButtonRadiusChanged(int indexValue)
+    {
+        _buttonRadiusIndex = indexValue;
+
+        _buttonRadiusValue = IndexToRadius(indexValue);
+
+        await SetVariableValue(CoreCssVariables.Group_Button_Radius, _buttonRadiusValue);
+
+        if (OnBorderChanged.HasDelegate) await OnBorderChanged.InvokeAsync();
+
+    }
+    private async Task OnContentRadiusChanged(int indexValue)
+    {
+        _contentRadiusIndex = indexValue;
+        _contentRadiusValue = IndexToRadius(indexValue);
+
+        await SetVariableValue(CoreCssVariables.Group_Content_Radius, _contentRadiusValue);
+
+        if (OnBorderChanged.HasDelegate) await OnBorderChanged.InvokeAsync();
+
+    }
+    private async Task OnRevealedRadiusChanged(int indexValue)
+    {
+        _revealedRadiusIndex = indexValue;
+        _revealedRadiusValue = IndexToRadius(indexValue);
+
+        await SetVariableValue(CoreCssVariables.Group_Revealed_Radius_Surface, _revealedRadiusValue);
+
+        if (OnBorderChanged.HasDelegate) await OnBorderChanged.InvokeAsync();
+
+    }
+
+    private async Task SetVariableValue(string variableName, string variableValue)
+    {
+        if (_jsModule is not null) await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Style_Property_Func, variableName, variableValue);
+    }
+
+
+    private static int RadiusToIndex(string radiusValue)
+
+        => radiusValue switch
+        {
+            ".125rem" => 1,
+            ".25rem"  => 2,
+            ".5rem"   => 3,
+            ".75rem"  => 4,
+            "1rem"    => 5,
+            "1.25rem" => 6,
+            "1.5rem"  => 7,
+            "1.75rem" => 8,
+            "2rem"    => 9,
+            "9999px"  => 10,
+            _ => 3
+        };
+
+    private static string IndexToRadius(int index) => index switch
+    {
+        0 => "var(--br-unit-radius-0)",
+        1 => "var(--br-unit-radius-1)",
+        2 => "var(--br-unit-radius-2)",
+        3 => "var(--br-unit-radius-3)",
+        4 => "var(--br-unit-radius-4)",
+        5 => "var(--br-unit-radius-5)",
+        6 => "var(--br-unit-radius-6)",
+        7 => "var(--br-unit-radius-7)",
+        8 => "var(--br-unit-radius-8)",
+        9 => "var(--br-unit-radius-9)",
+        _ => "var(--br-unit-radius-full)"
+    };
+
+
+    public async ValueTask DisposeAsync()
+    {
+        try
+        {
+            if (_jsModule is not null) await _jsModule.DisposeAsync();
+        }
+        catch { }
+    }
 }

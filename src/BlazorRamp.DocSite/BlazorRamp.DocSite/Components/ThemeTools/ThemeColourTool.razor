@@ -111,8 +111,6 @@
 
         _primaryColourValue = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, _rootPrimaryVar);
         _neutralSaturationValue = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, _neutralSaturationVar);
-
-
     }
 
     public async ValueTask DisposeAsync()
