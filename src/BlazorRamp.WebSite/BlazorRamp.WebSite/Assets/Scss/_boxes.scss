@@ -25,7 +25,7 @@
     }
 */
     &__heading {
-        //color: var(--br-info-box-alternate-heading-text);
+        color: var(--br-info-box-alternate-heading-text);
 
         @include media-device-sm(max-width) {
             text-align: center;

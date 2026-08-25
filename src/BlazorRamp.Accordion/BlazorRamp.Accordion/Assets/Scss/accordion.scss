@@ -36,6 +36,7 @@
         border-bottom-width: var(--br-comp-accordion-area-header-border-width);
         border-bottom-color: var(--br-comp-accordion-area-header-border-colour);
         border-bottom-style: var(--br-comp-accordion-area-header-border-style);
+        color: var(--br-unit-colour-canvas-text);
 
         &:first-of-type {
             border-top-width: var(--br-comp-accordion-area-header-border-width);
