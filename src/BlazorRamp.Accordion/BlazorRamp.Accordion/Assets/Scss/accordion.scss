@@ -72,7 +72,7 @@
         width: 100%;
         outline: none;
         font: inherit;
-        color: inherit;
+        color: var(--br-unit-colour-canvas-text);
         cursor: pointer;
 
         &:focus-visible {

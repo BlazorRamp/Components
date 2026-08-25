@@ -8,16 +8,16 @@
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
     <Title>BlazorRamp.Accordion</Title>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <Authors>Paul Kent</Authors>
     <Description>An Accordion Component for the Blazor Ramp ecosystem </Description>
     <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Accordion; </PackageTags>
-    <PackageReleaseNotes>Fix: Added canvas text colour for unselected accordion header. </PackageReleaseNotes>
-    <AssemblyVersion>1.0.3</AssemblyVersion>
-    <FileVersion>1.0.3</FileVersion>
+    <PackageReleaseNotes>Fix: Added canvas text colour for unselected accordion header button. </PackageReleaseNotes>
+    <AssemblyVersion>1.0.4</AssemblyVersion>
+    <FileVersion>1.0.4</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
