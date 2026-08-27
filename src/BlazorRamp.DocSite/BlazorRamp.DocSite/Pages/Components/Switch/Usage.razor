@@ -23,6 +23,13 @@
     <Switch Label="Airplane mode:" SpaceBetween="false" style="margin-block:1rem;" />
     <Switch Label="Bluetooth:" SpaceBetween="true" style="margin-block:1rem;" />
 </section>
+<ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2" style="margin-top:var(--br-unit-space-9);">
+    <BorderGroups>
+        <BorderGroup Title="Button borders">
+            <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Switch}/{GlobalValues.Common_Page_Path_Api}")">

@@ -849,7 +849,7 @@ h2:focus-visible {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  border-radius: var(--br-unit-radius-3);
+  border-radius: var(--br-comp-data-table-area-header-border-radius);
   border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
   background-color: var(--br-comp-all-area-content-background);
   margin-bottom: var(--br-unit-space-9);
@@ -864,11 +864,11 @@ h2:focus-visible {
   font-weight: var(--br-unit-font-weight-500);
 }
 .code-table th:first-child {
-  border-top-left-radius: var(--br-unit-radius-3);
+  border-top-left-radius: var(--br-comp-data-table-area-header-border-radius);
   border-left: 0;
 }
 .code-table th:last-child {
-  border-top-right-radius: var(--br-unit-radius-3);
+  border-top-right-radius: var(--br-comp-data-table-area-header-border-radius);
 }
 .code-table td {
   font-size: var(--br-unit-font-size-label);
@@ -916,7 +916,7 @@ h2:focus-visible {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  border-radius: var(--br-unit-radius-3);
+  border-radius: var(--br-comp-data-table-area-header-border-radius);
   border: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
   background-color: var(--br-comp-all-area-content-background);
   margin-bottom: var(--br-unit-space-9);
@@ -935,11 +935,11 @@ h2:focus-visible {
   font-weight: var(--br-unit-font-weight-500);
 }
 .data-table th:first-child {
-  border-top-left-radius: var(--br-unit-radius-3);
+  border-top-left-radius: var(--br-comp-data-table-area-header-border-radius);
   border-left: 0;
 }
 .data-table th:last-child {
-  border-top-right-radius: var(--br-unit-radius-3);
+  border-top-right-radius: var(--br-comp-data-table-area-header-border-radius);
 }
 .data-table td {
   font-size: var(--br-unit-font-size-label);
