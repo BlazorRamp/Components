@@ -128,6 +128,27 @@
     <b>Last viewed row: </b>@_dataRowDetails
 </p>
 
+
+<ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
+    <BorderGroups>
+        <BorderGroup Title="Container borders">
+            <BorderRadius LabelText="Content radius" ResetText="Reset content radius" MaxRangeValue="@GlobalValues.Radius_Container_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Content)])" />
+            <BorderRadius LabelText="Header radius" ResetText="Reset header radius" MaxRangeValue="@GlobalValues.Radius_Container_Header_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Header)])" />
+        </BorderGroup>
+        <BorderGroup Title="Menu borders">
+            <BorderRadius LabelText="Trigger, panel radius" ResetText="Reset trigger, panel radius" MaxRangeValue="@GlobalValues.Radius_Menu_Trigger_Panel_Max_Range_Value"
+                          CssProperties="@([new(CoreCssVariables.Group_Menu_Radius_Panel), new(CoreCssVariables.Group_Menu_Radius_Header), new(CoreCssVariables.Group_Menu_Radius_Content)])" />
+            <BorderRadius LabelText="Menu item radius" ResetText="Reset menu item radius" MaxRangeValue="@GlobalValues.Radius_Menu_Item_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Menu_Radius_item)])" />
+        </BorderGroup>
+        <BorderGroup Title="Input borders">
+            <BorderRadius LabelText="Input radius" ResetText="Reset input radius" MaxRangeValue="@GlobalValues.Radius_Input_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Input_Radius_Base)])" />
+        </BorderGroup>
+        <BorderGroup Title="Button borders">
+            <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
+<h2>About the example</h2>
 <p>
     For accessibility, if you are doing inline actions such as deleting a row its important to remember that after a delete you need to put the focus some where meaningful.
     The code shows one way how you can get and set focus to the next logical row action button or if there are no more logical rows just fallback to setting focus on the table itself.

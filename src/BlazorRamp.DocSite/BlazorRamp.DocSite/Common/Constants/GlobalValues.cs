@@ -205,16 +205,38 @@ public class GlobalValues
     public const string Theme_Colour_Tool_Controls_Class = $"{Theme_Colour_Tool_Class}__controls";
     public const string Theme_Colour_Tool_Swatch_Class   = $"{Theme_Colour_Tool_Class}__swatch";
     public const string Theme_Colour_Tool_Output_Class   = $"{Theme_Colour_Tool_Class}__output";
-
-
-    public const string Theme_Border_Tool_Class = "theme-border-tool";
-    public const string Theme_Border_Tool_Title_Class = $"{Theme_Border_Tool_Class}__title";
-
-
+    public const string Theme_Colour_Tool_Button_Class = $"{Theme_Colour_Tool_Class}__button";
 
     public const string Regex_Hex_Colour_Pattern = "^#?[a-fA-F0-9]{6}$";
     public const string Regex_Colour_Key_Pattern = "^[#a-fA-F0-9]$";
     public const string Regex_Hex_Replace_Pattern = "[^a-fA-F0-9]";
     public const string Incorrect_Hex_Value_Exception_Message = "Invalid hex value. The value should only contain a-f, A-F and 0-9 characters, optionally starting with the pound # symbol";
+
+
+
+
+    public const string Theme_Border_Tool_Class = $"theme-border-tool";
+
+    public const string Theme_Border_Tool_Title_Class           = $"{Theme_Border_Tool_Class}__title";
+    public const string Theme_Border_Tool_Border_Group_Class    = $"{Theme_Border_Tool_Class}__border-group";
+    public const string Theme_Border_Tool_Control_Group_Class   = $"{Theme_Border_Tool_Class}__control-group";
+    public const string Theme_Border_Tool_Label_Class           =  $"{Theme_Border_Tool_Class}__label";
+    public const string Theme_Border_Tool_Content_Class         = $"{Theme_Border_Tool_Class}__content";
+
+    public const string Theme_Border_Tool_Buttons_Class         = $"{Theme_Border_Tool_Class}__tool-buttons";
+
+
+
+    public const int Radius_Button_Max_Range_Value             = 10;
+    public const int Radius_Content_Max_Range_Value            = 9;
+    public const int Radius_Input_Max_Range_Value              = 7;
+    public const int Radius_Reveal_Max_Range_Value             = 9;
+    public const int Radius_Container_Max_Range_Value          = 7;
+    public const int Radius_Container_Header_Max_Range_Value   = 7;
+    public const int Radius_Dialog_Surface_Max_Range_Value     = 9;
+    public const int Radius_Dialog_Content_Max_Range_Value     = 9;
+    public const int Radius_Menu_Trigger_Panel_Max_Range_Value = 7;
+    public const int Radius_Menu_Item_Max_Range_Value          = 7;
+
 
 }

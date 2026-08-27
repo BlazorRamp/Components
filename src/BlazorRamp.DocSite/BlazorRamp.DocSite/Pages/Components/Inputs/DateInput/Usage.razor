@@ -53,13 +53,27 @@
                        ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
         </div>
         <div class="br-input-row">
-            <button class="br-col-xs-12 normal-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
+            <button class="@Button.Base" type="submit">Fake Submit to trigger validation on unmodified fields</button>
         </div>
     </EditForm>
 
 
 </section>
 
+
+<ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
+    <BorderGroups>
+        <BorderGroup Title="Input borders">
+            <BorderRadius LabelText="Input radius" ResetText="Reset input radius" MaxRangeValue="@GlobalValues.Radius_Input_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Input_Radius_Base)])" />
+        </BorderGroup>
+        <BorderGroup Title="Button borders">
+            <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
+<h2>
+    About the example
+</h2>
 <p>
     <strong>Important: </strong>As a reminder, if the date is being used to capture a persons date of birth then in order to be WCAG compliant the correct autocomplete value token for each segment should be added.
     Setting the <span class="@CodeSpan.Base">AutoCompleteOff</span> parameter to <b>false</b> will add the correct tokens to each input segment.

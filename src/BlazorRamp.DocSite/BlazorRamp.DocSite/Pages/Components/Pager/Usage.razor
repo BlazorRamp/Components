@@ -50,12 +50,25 @@
 </div>
 <Pager CurrentPage="@_currentPage" CurrentPageChanged="HandleCurrentPageChanged" AriaLabel="Weather pager" TotalItemCount="@_totalItemCount" CurrentItemCount="@_currentItemCount" ItemsPerPage="10"
         PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" />
-
 </section>
 
-<p>
-    Below is the code used in the examples.
-</p>
+<ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2" style="margin-top:var(--br-unit-space-9);">
+    <BorderGroups>
+        <BorderGroup Title="Container borders">
+            <BorderRadius LabelText="Content radius" ResetText="Reset content radius" MaxRangeValue="@GlobalValues.Radius_Container_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Content)])" />
+            <BorderRadius LabelText="Header radius" ResetText="Reset header radius" MaxRangeValue="@GlobalValues.Radius_Container_Header_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Header)])" />
+        </BorderGroup>
+        <BorderGroup Title="Input borders">
+            <BorderRadius LabelText="Input radius" ResetText="Reset input radius" MaxRangeValue="@GlobalValues.Radius_Input_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Input_Radius_Base)])" />
+        </BorderGroup>
+        <BorderGroup Title="Button borders">
+            <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
+<h2>
+    Code from the example
+</h2>
 <CodeBox CodeBlock="@PagerSnippets.Usage_Code_Example" AriaLabel="Pager usage code" />
 
 <div class="flex-content justify-content-between">

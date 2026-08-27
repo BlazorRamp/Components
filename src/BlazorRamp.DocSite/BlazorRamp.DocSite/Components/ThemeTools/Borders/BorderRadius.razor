@@ -1,0 +1,153 @@
+﻿
+<div class="@GlobalValues.Theme_Border_Tool_Control_Group_Class">
+    <label for="@_inputID" class="@GlobalValues.Theme_Border_Tool_Label_Class">@_labelText</label>
+    <input id="@_inputID" type="range" min="0" max="@_maxRangeValue" step="1" @bind-value:get="_radiusIndex" @bind-value:set="HandleRadiusSet" @bind-value:event="oninput" />
+
+    <button type="button" class="@Button.Base @Button.Small @Button.FullWidth" @onclick="HandleReset">
+        <span>@_resetText</span>
+    </button>
+
+</div>
+
+
+@code {
+
+
+    [CascadingParameter]        public BorderGroup        Parent        { get; set; } = default!;
+
+    [Parameter, EditorRequired] public string             LabelText     { get; set; } = "Radius";
+    [Parameter]                 public string             ResetText     { get; set; } = "Reset";
+    [Parameter]                 public int                MaxRangeValue { get; set; } = 5;
+    [Parameter]                 public  List<CssProperty> CssProperties { get; set; } = [];
+    [Inject]                    private ThemeService      ThemeService  { get; set; } = default!;
+
+
+    private List<CssProperty> _cssProperties = [];
+    private string            _resetText     = "Reset";
+    private string            _labelText     = "Radius";
+    private string            _inputID       = Guid.NewGuid().ToString();
+    private int               _maxRangeValue = 5;
+    private int               _radiusIndex   = 5;
+
+    protected override void OnParametersSet()
+    {
+        _resetText = String.IsNullOrWhiteSpace(ResetText) ? "Reset" : ResetText.Trim();
+        _labelText = String.IsNullOrWhiteSpace(LabelText) ? "Radius" : LabelText.Trim();
+
+        _maxRangeValue = MaxRangeValue < 1 || MaxRangeValue > 10 ? 5 : MaxRangeValue;
+    }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        _cssProperties = [.. CssProperties];
+
+        Parent.AddBorderRadius(this);
+
+        await GetSetPropertyValues(_cssProperties);
+
+        _radiusIndex = _cssProperties.Count == 0 ? 0 : RadiusToIndex(_cssProperties.First().Value);
+    }
+
+
+    private async Task HandleRadiusSet(int indexValue)
+    {
+        _radiusIndex     = indexValue;
+        var radiusValue = IndexToRadius(indexValue);
+
+        foreach(var property in _cssProperties)
+        {
+            property.Value = radiusValue;
+            await ThemeService.SetPropertyValue(property.PropertyName, radiusValue);
+        }
+    }
+
+    internal async Task GetSetPropertyValues(List<CssProperty> cssProperties)
+    {
+        foreach (var property in cssProperties) property.Value = await GetPropertyValue(property.PropertyName);
+    }
+
+    internal async Task<List<CssProperty>> GetCurrentPropertyValues()
+    {
+        List<CssProperty> cssProperties = [.. _cssProperties];
+
+        foreach (var property in cssProperties) property.Value = RadiusToVariable(await GetPropertyValue(property.PropertyName));
+
+        return cssProperties;
+    }
+
+    private async Task HandleReset()
+
+        => await Reset();
+
+    internal async Task Reset()
+    {
+        foreach (var property in _cssProperties)
+        {
+            await ThemeService.RemovePropertyValue(property.PropertyName);
+        }
+        var propertyName = _cssProperties.First().PropertyName;
+        var radiusValue = await ThemeService.GetPropertyValue(_cssProperties.First().PropertyName);
+
+        _radiusIndex = RadiusToIndex(radiusValue); 
+    }
+
+    private async Task<string> GetPropertyValue(string propertyName)
+
+        => await ThemeService.GetPropertyValue(propertyName);
+
+    
+    private static int RadiusToIndex(string radiusValue)
+
+        => radiusValue switch
+        {
+            "0rem"    => 0,
+            ".125rem" => 1,
+            ".25rem"  => 2,
+            ".5rem"   => 3,
+            ".75rem"  => 4,
+            "1rem"    => 5,
+            "1.25rem" => 6,
+            "1.5rem"  => 7,
+            "1.75rem" => 8,
+            "2rem"    => 9,
+            "9999px"  => 10,
+            _ => 3
+        };
+
+    private static string IndexToRadius(int index) 
+    
+        => index switch
+            {
+                0 => "var(--br-unit-radius-0)",
+                1 => "var(--br-unit-radius-1)",
+                2 => "var(--br-unit-radius-2)",
+                3 => "var(--br-unit-radius-3)",
+                4 => "var(--br-unit-radius-4)",
+                5 => "var(--br-unit-radius-5)",
+                6 => "var(--br-unit-radius-6)",
+                7 => "var(--br-unit-radius-7)",
+                8 => "var(--br-unit-radius-8)",
+                9 => "var(--br-unit-radius-9)",
+                _ => "var(--br-unit-radius-full)"
+            };
+
+
+    private static string RadiusToVariable(string radiusValue)
+
+        => radiusValue switch
+        {
+            "0rem"    => "var(--br-unit-radius-0)",
+            ".125rem" => "var(--br-unit-radius-1)",
+            ".25rem"  => "var(--br-unit-radius-2)",
+            ".5rem"   => "var(--br-unit-radius-3)",
+            ".75rem"  => "var(--br-unit-radius-4)",
+            "1rem"    => "var(--br-unit-radius-5)",
+            "1.25rem" => "var(--br-unit-radius-6)",
+            "1.5rem"  => "var(--br-unit-radius-7)",
+            "1.75rem" => "var(--br-unit-radius-8)",
+            "2rem"    => "var(--br-unit-radius-9)",
+            "9999px"  => "var(--br-unit-radius-full)",
+            _ => "var(--br-unit-radius-5)"
+        };
+}

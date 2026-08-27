@@ -6,24 +6,41 @@
 
 <h1>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Sandbox . . . In Progress . . .</h1>
 
+<ThemeColourTool />
 
+<ThemeBorderTool Title="Theme border tool" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
+    <BorderGroups>
 
-<ThemeBorderTool ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2" Title="Theme border tool"  />
+        <BorderGroup Title="Dialog borders">
+            <BorderRadius LabelText="Outer radius" ResetText="Reset outer radius" MaxRangeValue="@GlobalValues.Radius_Dialog_Surface_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Dialog_Radius_Surface), new(CoreCssVariables.Group_Dialog_Radius_Base)])" />
+            <BorderRadius LabelText="Inner radius" ResetText="Reset inner radius" MaxRangeValue="@GlobalValues.Radius_Dialog_Content_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Dialog_Radius_Content)])" />
+        </BorderGroup>
+        <BorderGroup Title="Container borders">
+            <BorderRadius LabelText="Content radius" ResetText="Reset content radius" MaxRangeValue="@GlobalValues.Radius_Container_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Content)])" />
+            <BorderRadius LabelText="Header radius" ResetText="Reset header radius" MaxRangeValue="@GlobalValues.Radius_Container_Header_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Header)])" />
+        </BorderGroup>
 
-<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)" style="height:500px;">
+        <BorderGroup Title="Menu borders">
+            <BorderRadius LabelText="Trigger, panel radius" ResetText="Reset trigger, panel radius" MaxRangeValue="@GlobalValues.Radius_Menu_Trigger_Panel_Max_Range_Value" 
+                CssProperties="@([new(CoreCssVariables.Group_Menu_Radius_Panel), new(CoreCssVariables.Group_Menu_Radius_Header), new(CoreCssVariables.Group_Menu_Radius_Content)])" />
+            <BorderRadius LabelText="Menu item radius" ResetText="Reset menu item radius" MaxRangeValue="@GlobalValues.Radius_Menu_Item_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Menu_Radius_item)])" />
+        </BorderGroup>
+        <BorderGroup Title="Content borders">
+            <BorderRadius LabelText="Content radius" ResetText="Reset content radius" MaxRangeValue="@GlobalValues.Radius_Content_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Content_Radius)])" />
+        </BorderGroup>
+        <BorderGroup Title="Input borders">
+            <BorderRadius LabelText="Input radius" ResetText="Reset input radius" MaxRangeValue="@GlobalValues.Radius_Input_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Input_Radius_Base)])" />
+        </BorderGroup>
 
-    <h2>Content group radius</h2>
-    <p>All of the sections on this site are tied to the content radius, the border you see around this section.</p>
+        <BorderGroup Title="Button borders">
+            <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
+        </BorderGroup>
+        <BorderGroup Title="Revealed borders">
+            <BorderRadius LabelText="Revealed radius" ResetText="Reset revealed radius" MaxRangeValue="@GlobalValues.Radius_Reveal_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Revealed_Radius_Surface)])"  />
+        </BorderGroup>
 
-    <button style="border-radius:var(--br-group-button-border-radius); height:3rem; width:8rem;);">Button radius</button>
-    <button style="border-radius:var(--br-group-button-border-radius); height:6rem; width:16rem;);">Button radius</button>
-
-
-</section>
-
-
-
-<div style="border-radius:var(--br-group-button-border-radius);width:100px; height:30px;border:1px solid black;"></div>
+    </BorderGroups>
+</ThemeBorderTool>
 
 
 

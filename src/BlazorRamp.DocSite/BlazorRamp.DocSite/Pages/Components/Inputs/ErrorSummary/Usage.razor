@@ -63,14 +63,27 @@
         </InputErrorsSummary>
 
         <div class="br-input-row">
-            <button class="br-col-xs-12 normal-button" type="submit">Fake submit trigger validation on the model</button>
+            <button class="@Button.Base" type="submit">Fake submit trigger validation on the model</button>
         </div>
     </EditForm>
 
 </section>
 
-<p style="padding-block:1rem;">
-    Below is the code that was used for the example. Please note that in general when using the Validated library the validators would be in a shared library so they could be used in any part of your application.
+<ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
+    <BorderGroups>
+        <BorderGroup Title="Input borders">
+            <BorderRadius LabelText="Input radius" ResetText="Reset input radius" MaxRangeValue="@GlobalValues.Radius_Input_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Input_Radius_Base)])" />
+        </BorderGroup>
+        <BorderGroup Title="Button borders">
+            <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
+<h2>
+    About the example
+</h2>
+<p>
+    Please note that in general when using the Validated library the validators would be in a shared library so they could be used in any part of your application.
 </p>
 <CodeBox CodeBlock="@InputSnippets.Error_Summary_Example" AriaLabel="Input error summary code example" />
 

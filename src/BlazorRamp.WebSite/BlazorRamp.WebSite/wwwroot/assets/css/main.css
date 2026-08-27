@@ -591,6 +591,9 @@ body #app__main {
       }
   */
 }
+.info-box__heading {
+  color: var(--br-info-box-alternate-heading-text);
+}
 @media (max-width: 576px) {
   .info-box__heading {
     text-align: center;

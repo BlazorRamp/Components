@@ -21,9 +21,18 @@
         </NavSection>
     </NavGroup>
 </nav>
-<p>
-    The source code for the example above.
-</p>
+<ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
+    <BorderGroups>
+        <BorderGroup Title="Menu borders">
+            <BorderRadius LabelText="Trigger, panel radius" ResetText="Reset trigger, panel radius" MaxRangeValue="@GlobalValues.Radius_Menu_Trigger_Panel_Max_Range_Value"
+                          CssProperties="@([new(CoreCssVariables.Group_Menu_Radius_Panel), new(CoreCssVariables.Group_Menu_Radius_Header), new(CoreCssVariables.Group_Menu_Radius_Content)])" />
+            <BorderRadius LabelText="Menu item radius" ResetText="Reset menu item radius" MaxRangeValue="@GlobalValues.Radius_Menu_Item_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Menu_Radius_item)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
+<h2>
+    Code from the example
+</h2>
 <CodeBox CodeBlock="@NavGroupSnippets.Usage_example" AriaLabel="Nav group code example" />
 <p>
     As the <span class="@CodeSpan.Base">Href</span> parameter has be set to the an empty string the default of <b>"missing-href"</b> will be used, leading to a page not found if activated.

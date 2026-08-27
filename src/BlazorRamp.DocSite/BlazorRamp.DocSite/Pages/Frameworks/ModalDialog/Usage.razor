@@ -52,7 +52,7 @@
     a maximum width of 50vh positioned centre centre (see the code below).
 </p>
 <section class="@Section.Base @Section.Radius(SectionRadius.Content) @Section.Bordered @Section.ColumnCentred">
-    <button @ref="ButtonRef" class="test-button" @onclick="ShowDialog">Show the Popup Form</button>
+    <button @ref="ButtonRef" class="@Button.Base" @onclick="ShowDialog">Show the Popup Form</button>
 
     @if (_outputVisible)
     {
@@ -61,7 +61,18 @@
         </p>
     }
 </section>
-
+<ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2" style="margin-top:var(--br-unit-space-9);">
+    <BorderGroups>
+        <BorderGroup Title="Dialog borders">
+            <BorderRadius LabelText="Outer radius" ResetText="Reset outer radius" MaxRangeValue="@GlobalValues.Radius_Dialog_Surface_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Dialog_Radius_Surface), new(CoreCssVariables.Group_Dialog_Radius_Base)])" />
+            <BorderRadius LabelText="Inner radius" ResetText="Reset inner radius" MaxRangeValue="@GlobalValues.Radius_Dialog_Content_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Dialog_Radius_Content)])" />
+        </BorderGroup>
+        <BorderGroup Title="Button borders">
+            <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
+<h2>About the example</h2>
 <p>
     The code below shows all the code used and it should be fairly explanatory, but I am always lurking on Reddit if you need help.
 </p>

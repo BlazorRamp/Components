@@ -19,7 +19,7 @@
 <p>Result of the above parameter settings</p>
 
 <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
-    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.SecondaryDark)" style="margin-bottom:var(--br-unit-space-9);">Lifestyle Accordion</h2>
+    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.SecondaryDark)">Lifestyle Accordion</h2>
 
 <Accordion HeadingLevel="HeadingLevel.H3" ExpandMode="ExpandMode.Multiple" style="margin-bottom:var(--br-unit-space-7)">
     <AccordionItem HeadingText="Food" PanelHasTabIndex="true" PanelIsRegion="false" SvgIcon="--svg-food-icon" PersistContent="true">
@@ -54,6 +54,21 @@
 </Accordion>
 
 </section>
+
+<ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
+    <BorderGroups>
+        <BorderGroup Title="Menu borders">
+            <BorderRadius LabelText="Trigger, panel radius" ResetText="Reset trigger, panel radius" MaxRangeValue="@GlobalValues.Radius_Menu_Trigger_Panel_Max_Range_Value"
+                          CssProperties="@([new(CoreCssVariables.Group_Menu_Radius_Panel), new(CoreCssVariables.Group_Menu_Radius_Header), new(CoreCssVariables.Group_Menu_Radius_Content)])" />
+            <BorderRadius LabelText="Menu item radius" ResetText="Reset menu item radius" MaxRangeValue="@GlobalValues.Radius_Menu_Item_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Menu_Radius_item)])" />
+        </BorderGroup>
+        <BorderGroup Title="Container borders">
+            <BorderRadius LabelText="Content radius" ResetText="Reset content radius" MaxRangeValue="@GlobalValues.Radius_Container_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Content)])" />
+            <BorderRadius LabelText="Header radius" ResetText="Reset header radius" MaxRangeValue="@GlobalValues.Radius_Container_Header_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Header)])" />
+        </BorderGroup>
+
+    </BorderGroups>
+</ThemeBorderTool>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Api}")">

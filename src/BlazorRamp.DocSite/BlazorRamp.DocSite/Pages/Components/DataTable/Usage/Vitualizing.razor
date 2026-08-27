@@ -29,6 +29,19 @@
 @*
     Note that the DataTable is inside a container with a height specified. You adjust to suit you needs and the tables contents
 *@
+<ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2" style="margin-top:var(--br-unit-space-9);">
+    <BorderGroups>
+        <BorderGroup Title="Container borders">
+            <BorderRadius LabelText="Content radius" ResetText="Reset content radius" MaxRangeValue="@GlobalValues.Radius_Container_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Content)])" />
+            <BorderRadius LabelText="Header radius" ResetText="Reset header radius" MaxRangeValue="@GlobalValues.Radius_Container_Header_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Header)])" />
+        </BorderGroup>
+        <BorderGroup Title="Input borders">
+            <BorderRadius LabelText="Input radius" ResetText="Reset input radius" MaxRangeValue="@GlobalValues.Radius_Input_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Input_Radius_Base)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
+
+<h2>About the example</h2>
 <p>
     The Data Table has the following two parameters that are passed on to the Virtualize component: <span class="@CodeSpan.Base">VirtualizeItemSizePX</span> and <span class="@CodeSpan.Base">OverscanCount</span>. <span class="@CodeSpan.Base">VirtualizeItemSizePX</span> is used for the <b>ItemSize</b> parameter on the Virtualize component, which is the expected pixel height of each item. It uses this to estimate how many items fit in the viewport and to calculate scroll position and spacer sizing, before actually measuring the real rendered items. I have given this a default of 32, which in my own apps I have not needed to change.
     The <span class="@CodeSpan.Base">OverscanCount</span> parameter is passed on to the <b>OverscanCount</b> parameter on the Virtualize component, and sets how many extra items are rendered above and below the visible viewport, so that content is already in the DOM before it scrolls into view, rather than appearing as blank space. I have given this a default of 50 and have not had a need to change it.

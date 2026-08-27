@@ -1,1 +1,70 @@
 ﻿
+@mixin ButtonBase {
+    appearance: none;
+    box-sizing:border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    min-width: minmax(var(--br-unit-wcag-target-2a), fit-content);
+    min-height: calc(var(--br-unit-wcag-target-2a) * 1.5);
+    font-family: var(--br-comp-history-button-font-family);
+    font-size: var(--br-comp-all-button-font-size);
+    font-weight: var(--br-comp-all-button-font-weight);
+    line-height: var(--br-comp-all-button-line-height);
+    padding-block: var(--br-unit-space-3);
+    padding-inline: var(--br-unit-space-4);
+    background: var(--br-comp-all-button-background);
+    color: var(--br-comp-all-button-text);
+    border-radius: var(--br-group-button-border-radius);
+    border-style: var(--br-comp-all-button-border-style);
+    border-width: var(--br-comp-all-button-border-width);
+    border-color: var(--br-comp-all-button-border-colour);
+
+    cursor:pointer;
+
+    &:active {
+        transform: scale(var(--br-comp-all-button-state-active-scale));
+        filter: brightness(var(--br-comp-all-button-state-active-brightness));
+        outline: none;
+    }
+
+    &:focus-visible {
+        outline-offset: var(--br-comp-all-outline-offset);
+        outline-width: var(--br-comp-history-button-outline-width);
+        outline-style: var(--br-comp-all-outline-style);
+        outline-color: var(--br-comp-all-outline-colour);
+    }
+
+    &:hover {
+        background-color: var(--br-comp-all-button-state-hover);
+    }
+}
+
+.br-button {
+
+    @include ButtonBase;
+
+    &--full-width{
+        width:100%;
+    }
+
+    &--small {
+        min-height: var(--br-unit-wcag-target-2a);
+        padding-block: var(--br-unit-space-2);
+    }
+
+    &--large {
+        min-height: calc(var(--br-unit-wcag-target-2a) * 2);
+    }
+
+    &--extra-large {
+        min-height: calc(var(--br-unit-wcag-target-2a) * 2.25);
+    }
+}
+
+
+
+

@@ -36,10 +36,16 @@
 
 </section>
 
-<p style="padding-block:1rem;">
-    Below is the code that was used for the example. 
-</p>
-
+<ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
+    <BorderGroups>
+        <BorderGroup Title="Input borders">
+            <BorderRadius LabelText="Input radius" ResetText="Reset input radius" MaxRangeValue="@GlobalValues.Radius_Input_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Input_Radius_Base)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
+<h2>
+    Code from the example
+</h2>
 <CodeBox CodeBlock="@InputSnippets.Checkbox_Input_Example" AriaLabel="Checkbox input code example" />
 
 

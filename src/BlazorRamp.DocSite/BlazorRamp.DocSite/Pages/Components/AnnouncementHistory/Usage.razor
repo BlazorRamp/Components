@@ -32,6 +32,17 @@
     provide the name of the triggering element such as "Save Customer Button".
 </p>
 
+<ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
+    <BorderGroups>
+        <BorderGroup Title="Dialog borders">
+            <BorderRadius LabelText="Outer radius" ResetText="Reset outer radius" MaxRangeValue="@GlobalValues.Radius_Dialog_Surface_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Dialog_Radius_Surface), new(CoreCssVariables.Group_Dialog_Radius_Base)])" />
+            <BorderRadius LabelText="Inner radius" ResetText="Reset inner radius" MaxRangeValue="@GlobalValues.Radius_Dialog_Content_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Dialog_Radius_Content)])" />
+        </BorderGroup>
+        <BorderGroup Title="Button borders">
+            <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Announcement}/{GlobalValues.Common_Page_Path_Api}")">

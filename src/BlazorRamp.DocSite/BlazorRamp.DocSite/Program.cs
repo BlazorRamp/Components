@@ -1,5 +1,6 @@
 using BlazorRamp.Core.Common.Extensions;
 using BlazorRamp.DialogFramework.Common.Extensions;
+using BlazorRamp.DocSite.Common.Services;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -16,7 +17,7 @@ namespace BlazorRamp.DocSite
             builder.Services.AddBlazorRampCore();
             builder.Services.AddBlazorRampDialogService();
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
+            builder.Services.AddSingleton<ThemeService>();
             await builder.Build().RunAsync();
         }
     }

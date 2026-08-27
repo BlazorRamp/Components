@@ -1,4 +1,4 @@
-﻿namespace BlazorRamp.DocSite.Components.ColourPallete;
+﻿namespace BlazorRamp.DocSite.Common.Constants;
 
 public enum PaletteHeadingLevel : int
 {

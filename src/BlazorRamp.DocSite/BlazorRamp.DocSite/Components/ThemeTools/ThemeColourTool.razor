@@ -6,12 +6,12 @@
     }
     <div class="@GlobalValues.Theme_Colour_Tool_Content_Class">
         <div class="@GlobalValues.Theme_Colour_Tool_Controls_Class">
-            <label for="colour-picker">Choose your primary:</label>
+            <label for="colour-picker" class="@GlobalValues.Theme_Colour_Tool_Label_Class">Choose your primary:</label>
             <input id="colour-picker" type="color" value="@_primaryColourValue" @oninput="HandleOnInput" @onchange="HandleOnChange" />
         </div>
 
         <div class="@GlobalValues.Theme_Colour_Tool_Controls_Class">
-            <label for="neutral-slider">Adjust neutral tinge:</label>
+            <label for="neutral-slider" class="@GlobalValues.Theme_Colour_Tool_Label_Class">Adjust neutral tinge:</label>
             <input id="neutral-slider" type="range" min="0" max="15" value="@_neutralSaturationValue" @oninput="HandleSaturation" @onchange="HandleOnChange" />
         </div>
         <div class="@GlobalValues.Theme_Colour_Tool_Controls_Class">
@@ -19,8 +19,8 @@
             <span class="@GlobalValues.Theme_Colour_Tool_Output_Class">@_neutralSaturationValue</span>
         </div>
         <div class="@GlobalValues.Theme_Colour_Tool_Controls_Class">
-            <button class="test-button" @onclick="ResetColourValues">
-                Reset
+            <button type="button" class="test-button @GlobalValues.Theme_Colour_Tool_Button_Class" @onclick="ResetColourValues">
+                Reset colours
             </button>
         </div>
         <div class="@GlobalValues.Theme_Colour_Tool_Controls_Class">

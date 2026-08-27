@@ -54,14 +54,30 @@
             </tbody>
         </table>
     </div>
-    <div style="display:flex;justify-content:space-between">
+    <div style="display:flex;justify-content:space-between; align-items: center;">
         <span> @_filterRowMessage</span>
-        <button class="normal-button" @onclick="ClearFilter">Clear Filter</button>
+        <button class="@Button.Base" @onclick="ClearFilter">Clear Filter</button>
     </div>
 </section>
-<p>
-    The source code for the example above.
-</p>
+
+
+<ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
+    <BorderGroups>
+        <BorderGroup Title="Container borders">
+            <BorderRadius LabelText="Content radius" ResetText="Reset content radius" MaxRangeValue="@GlobalValues.Radius_Container_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Content)])" />
+            <BorderRadius LabelText="Header radius" ResetText="Reset header radius" MaxRangeValue="@GlobalValues.Radius_Container_Header_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Header)])" />
+        </BorderGroup>
+        <BorderGroup Title="Input borders">
+            <BorderRadius LabelText="Input radius" ResetText="Reset input radius" MaxRangeValue="@GlobalValues.Radius_Input_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Input_Radius_Base)])" />
+        </BorderGroup>
+        <BorderGroup Title="Button borders">
+            <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
+<h2>
+    Code from the example
+</h2>
 <CodeBox CodeBlock="@DebounceSnippets.Usage_Example" AriaLabel="Debounce filter code example" />
 
 <div class="flex-content justify-content-between">

@@ -128,13 +128,13 @@ namespace BlazorRamp.DocSite.Common.Constants
         public const string Group_Input_Radius_Base_Value = "--br-unit-radius-3";
 
         public const string Group_Menu_Radius_Panel = "--br-group-menu-pane-panel-border-radius";
-        public const string Group_Menu_Radius_Panel_Value = "--br-unit-radius-3)";
+        public const string Group_Menu_Radius_Panel_Value = "--br-unit-radius-3";
 
         public const string Group_Menu_Radius_item = "--br-group-menu-item-border-radius";
         public const string Group_Menu_Radius_Item_Value = "--br-unit-radius-3";
 
         public const string Group_Menu_Radius_Header = "--br-group-menu-area-header-border-radius";
-        public const string Group_Menu_Radius_Header_Value = "--br-unit-radius-3)";
+        public const string Group_Menu_Radius_Header_Value = "--br-unit-radius-3";
 
         public const string Group_Menu_Radius_Content = "--br-group-menu-area-content-border-radius";
         public const string Group_Menu_Radius_Content_Value = "--br-unit-radius-3";

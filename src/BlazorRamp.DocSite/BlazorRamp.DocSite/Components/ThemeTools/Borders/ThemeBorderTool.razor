@@ -1,0 +1,92 @@
+﻿
+<CascadingValue TValue="ThemeBorderTool" IsFixed="true" Value="this">
+    <section class="@GlobalValues.Theme_Border_Tool_Class" @attributes="AdditionalAttributes">
+        @{
+            GetHeading(ThemeToolHeadingLevel, _titleText);
+        }
+        @if (BorderGroups is not null)
+        {
+            @BorderGroups
+        }
+        <div class="@GlobalValues.Theme_Border_Tool_Buttons_Class">
+            <button type="button" class="@Button.Base" @onclick="HandleReset">@_resetText</button>
+            <button type="button" class="@Button.Base" @onclick="HandleGetProperties">Test</button>
+        </div>
+
+    </section>
+    @{
+    void GetHeading(ThemeToolHeadingLevel headingLevel, string title)
+    {
+        @switch (headingLevel)
+        {
+            case ThemeToolHeadingLevel.H2: <h2 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h2>; break;
+            case ThemeToolHeadingLevel.H3: <h3 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h3>; break;
+            case ThemeToolHeadingLevel.H4: <h4 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h4>; break;
+            case ThemeToolHeadingLevel.H5: <h5 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h5>; break;
+            case ThemeToolHeadingLevel.H6: <h6 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h6>; break;
+            default:
+                <h3 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h3>
+                break;
+        }
+
+    }
+}
+    
+</CascadingValue>
+
+@code {
+
+    [Parameter] public RenderFragment?       BorderGroups          { get; set; }
+    [Parameter] public string                Title                 { get; set; }
+    [Parameter] public string                ResetText             { get; set; } = "Reset all border groups";
+    [Parameter] public ThemeToolHeadingLevel ThemeToolHeadingLevel { get; set; } = ThemeToolHeadingLevel.H2;
+
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    
+    private List<BorderGroup> _borderGroups = [];
+
+    private string _titleText = "Theme border controls";
+    private string _resetText = "Reset all border groups";
+
+    protected override void OnParametersSet()
+    {
+        _titleText = String.IsNullOrWhiteSpace(Title) ? "Theme border controls" : Title.Trim();
+        _resetText = String.IsNullOrWhiteSpace(ResetText) ? "Reset all" : ResetText.Trim();
+    }
+
+    internal void AddBorderGroup(BorderGroup borderGroup)
+    {
+        if (false == _borderGroups.Contains(borderGroup)) _borderGroups.Add(borderGroup);
+    }
+
+    internal void RemoveBorderGroup(BorderGroup borderGroup)
+
+        => _borderGroups.Remove(borderGroup);
+
+    private async Task HandleReset()
+
+        => await Reset();    
+
+    internal async Task Reset()
+    {
+        foreach (var borderGroup in _borderGroups) await borderGroup.Reset();
+    }
+
+    internal int CurrentHeadingLevelIndex()
+
+        => (int)ThemeToolHeadingLevel;
+
+    internal async Task<List<CssProperty>> GetCurrentBorderProperties()
+    {
+        List<CssProperty> cssProperties = [];
+
+        foreach (var group in _borderGroups) cssProperties.AddRange(await group.GetCssProperties());
+
+        return cssProperties;
+    }
+
+    private async Task HandleGetProperties()
+    {
+        var cssProperties = await GetCurrentBorderProperties();
+    }
+}

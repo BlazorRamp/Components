@@ -1,0 +1,89 @@
+﻿
+
+<CascadingValue TValue="BorderGroup" IsFixed="true" Value="this">
+    <div class="@GlobalValues.Theme_Border_Tool_Border_Group_Class">
+        @{
+            GetHeading(GetHeadingLevel(), _titleText);
+        }
+        <div class="@GlobalValues.Theme_Border_Tool_Content_Class">
+            @ChildContent
+        </div>
+
+    </div>
+@{
+    void GetHeading(ThemeToolHeadingLevel headingLevel, string title)
+    {
+        @switch (headingLevel)
+        {
+            case ThemeToolHeadingLevel.H2: <h2 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h2>; break;
+            case ThemeToolHeadingLevel.H3: <h3 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h3>; break;
+            case ThemeToolHeadingLevel.H4: <h4 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h4>; break;
+            case ThemeToolHeadingLevel.H5: <h5 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h5>; break;
+            case ThemeToolHeadingLevel.H6: <h6 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h6>; break;
+            default:
+                <h3 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h3>
+                break;
+        }
+
+    }
+}
+</CascadingValue>
+
+
+
+
+@code {
+
+    [CascadingParameter] public ThemeBorderTool Parent { get; set; } = default!;
+    [Parameter] public RenderFragment ChildContent     { get; set; }
+    [Parameter] public string         Title            { get; set; }
+
+
+    private List<BorderRadius> _borderRadii = [];
+
+    private string _titleText = "Radius Group";
+
+
+
+    protected override void OnInitialized()
+    {
+        Parent.AddBorderGroup(this);
+    }
+
+    protected override void OnParametersSet()
+    {
+        _titleText = String.IsNullOrWhiteSpace(Title) ? "Radius Group" : Title.Trim();
+    }
+
+    internal void AddBorderRadius(BorderRadius borderRadius)
+    {
+        if (false == _borderRadii.Contains(borderRadius)) _borderRadii.Add(borderRadius);
+    }
+
+    internal void RemoveBorderRadius(BorderRadius borderRadius)
+
+      => _borderRadii.Remove(borderRadius);
+
+    internal async Task Reset()
+    {
+        foreach (var borderRadius in _borderRadii) await borderRadius.Reset();
+    }
+
+    private ThemeToolHeadingLevel GetHeadingLevel()
+    {
+        int parentLevel = Parent.CurrentHeadingLevelIndex();
+
+        return parentLevel < 6 ? (ThemeToolHeadingLevel)parentLevel + 1 : (ThemeToolHeadingLevel)6;
+
+    }
+
+    internal async Task<List<CssProperty>> GetCssProperties()
+    {
+        List<CssProperty> cssProperties = [];
+
+        foreach (var borderRadius in _borderRadii) cssProperties.AddRange(await borderRadius.GetCurrentPropertyValues());
+
+        return cssProperties;
+    }
+
+}
