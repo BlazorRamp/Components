@@ -11,11 +11,11 @@
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Switch</PackageTags>
-    <PackageReleaseNotes>Initial release of the Blazor Ramp Switch component</PackageReleaseNotes>
+    <PackageReleaseNotes>Amended CSS border radius variables so the component border radius could be changed with others in the same grouping.</PackageReleaseNotes>
     <Description>A Blazor toggle siwtch component.</Description>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
-    <FileVersion>1.0.0</FileVersion>
-	  <Version>1.0.0</Version>  
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>
+	  <Version>1.0.1</Version>  
     <PackageReadmeFile>README.md</PackageReadmeFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
@@ -46,8 +46,8 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
-    <PackageReference Include="BlazorRamp.Core" Version="1.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.25" />
+    <PackageReference Include="BlazorRamp.Core" Version="1.1.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.29" />
   </ItemGroup>
 
 	<ItemGroup>

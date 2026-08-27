@@ -5,6 +5,7 @@
   --br-comp-switch-outline-width: var(--br-comp-all-outline-width);
   --br-comp-switch-outline-offset: var(--br-comp-all-outline-offset);
   --br-comp-switch-outline-colour: var(--br-comp-all-outline-colour);
+  --br-comp-switch-track-border-radius: var(--br-group-button-border-radius);
   --br-comp-switch-track-border-style: solid;
   --br-comp-switch-track-border-width: var(--br-unit-border-1);
   --br-comp-switch-track-border-colour: var(--br-comp-all-border-interactive-colour);
@@ -75,7 +76,7 @@
   border-width: var(--br-comp-switch-track-border-width);
   border-style: var(--br-comp-switch-track-border-style);
   border-color: var(--br-comp-switch-track-border-colour);
-  border-radius: var(--br-unit-radius-0);
+  border-radius: var(--br-comp-switch-track-border-radius);
   background-color: var(--br-comp-switch-track-colour);
 }
 .br-switch__thumb {
