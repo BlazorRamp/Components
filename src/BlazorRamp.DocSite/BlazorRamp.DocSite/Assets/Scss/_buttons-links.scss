@@ -4,11 +4,10 @@
 @mixin buttonBase {
     box-sizing: border-box;
     appearance: none;
-    border-radius: var(--br-comp-all-button-border-radius);
+    border-radius: var(--br-group-button-border-radius);
     border-style: var(--br-comp-all-button-border-style);
     border-width: var(--br-comp-all-button-border-width);
-    border-color:var(--br-comp-all-button-border-colour);
-
+    border-color: var(--br-comp-all-button-border-colour);
     font: var(--br-comp-all-button-font);
     font-weight: var(--br-comp-all-button-font-weight);
     font-size: var(--br-comp-all-button-font-size);
@@ -41,17 +40,8 @@
     }
 }
 
-.normal-button {
-    @include buttonBase;
-    border-radius: var(--br-comp-all-pane-base-border-radius);
-    width: fit-content;
-}
 
-.test-button {
 
-    @include buttonBase;
-    width:fit-content;
-}
 
 .link-button {
     @include buttonBase;

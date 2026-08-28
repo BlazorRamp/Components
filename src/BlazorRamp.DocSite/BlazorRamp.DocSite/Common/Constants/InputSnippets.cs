@@ -280,7 +280,7 @@ public class InputSnippets
             </InputErrorsSummary>
 
             <div class="br-input-row">
-                <button class="br-col-xs-12 normal-button" type="submit">Fake submit to trigger validation on the model</button>
+                <button class="@Button.Base" type="submit">Fake submit to trigger validation on the model</button>
             </div>
         </EditForm>
 
@@ -359,7 +359,7 @@ public class InputSnippets
 
             <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
                 <button class="normal-button" type="submit">Fake submit to trigger validation on the model</button>
-                <button @ref="ResetButton" class="normal-button" type="button" @onclick="ResetExampleTwo">Reset example</button>
+                <button @ref="ResetButton" class="@Button.Base" type="button" @onclick="ResetExampleTwo">Reset example</button>
             </div>
         </EditForm>
 
@@ -527,7 +527,7 @@ public class InputSnippets
                                ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
                 </div>
                 <div class="br-input-row">
-                    <button class="br-col-xs-12 normal-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
+                    <button class="@Button.Base" type="submit">Fake Submit to trigger validation on unmodified fields</button>
                 </div>
             </EditForm>
 
@@ -599,7 +599,7 @@ public class InputSnippets
                            ValidationDisplayMode="ValidationDisplayMode.TabbableWithHint" />
             </div>
             <div class="br-input-row">
-                <button class="br-col-xs-12 normal-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
+                <button class="@Button.Base" type="submit">Fake Submit to trigger validation on unmodified fields</button>
             </div>
         </EditForm>
 
@@ -657,8 +657,8 @@ public class InputSnippets
 
             </div>
             <div style="display:flex; justify-content:space-between;">
-                <button class="br-col-xs-12 normal-button" type="submit">Fake Submit to trigger validation on unmodified fields</button>
-                <button class="br-col-xs-12 normal-button" type="button" @ref="ResetButtonRef" @onclick="ResetExample">Reset example</button>
+                <button class="@Button.Base" type="submit">Fake Submit to trigger validation on unmodified fields</button>
+                <button class="@Button.Base" type="button" @ref="ResetButtonRef" @onclick="ResetExample">Reset example</button>
             </div>
         </EditForm>
 

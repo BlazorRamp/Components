@@ -48,7 +48,7 @@ public class DebounceSnippets
         </div>
         <div style="display:flex;justify-content:space-between">
             <span> @_filterRowMessage</span>
-            <button class="normal-button" @onclick="ClearFilter">Clear Filter</button>
+            <button class="@Button.Base" @onclick="ClearFilter">Clear Filter</button>
         </div>
                        
         

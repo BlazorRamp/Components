@@ -38,7 +38,7 @@
 
     [Parameter] public RenderFragment?       BorderGroups          { get; set; }
     [Parameter] public string                Title                 { get; set; }
-    [Parameter] public string                ResetText             { get; set; } = "Reset all border groups";
+    [Parameter] public string                ResetText             { get; set; } = "Reset border groups";
     [Parameter] public ThemeToolHeadingLevel ThemeToolHeadingLevel { get; set; } = ThemeToolHeadingLevel.H2;
 
     [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
@@ -46,12 +46,12 @@
     private List<BorderGroup> _borderGroups = [];
 
     private string _titleText = "Theme border controls";
-    private string _resetText = "Reset all border groups";
+    private string _resetText = "Reset border groups";
 
     protected override void OnParametersSet()
     {
         _titleText = String.IsNullOrWhiteSpace(Title) ? "Theme border controls" : Title.Trim();
-        _resetText = String.IsNullOrWhiteSpace(ResetText) ? "Reset all" : ResetText.Trim();
+        _resetText = String.IsNullOrWhiteSpace(ResetText) ? "Reset border groups" : ResetText.Trim();
     }
 
     internal void AddBorderGroup(BorderGroup borderGroup)
