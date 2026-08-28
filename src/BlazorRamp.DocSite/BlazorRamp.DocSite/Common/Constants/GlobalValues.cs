@@ -218,6 +218,7 @@ public class GlobalValues
     public const string Theme_Border_Tool_Class = $"theme-border-tool";
 
     public const string Theme_Border_Tool_Title_Class           = $"{Theme_Border_Tool_Class}__title";
+    public const string Theme_Border_Tool_Group_Info_Class      = $"{Theme_Border_Tool_Class}__group-info";
     public const string Theme_Border_Tool_Border_Group_Class    = $"{Theme_Border_Tool_Class}__border-group";
     public const string Theme_Border_Tool_Control_Group_Class   = $"{Theme_Border_Tool_Class}__control-group";
     public const string Theme_Border_Tool_Label_Class           =  $"{Theme_Border_Tool_Class}__label";
@@ -237,6 +238,9 @@ public class GlobalValues
     public const int Radius_Dialog_Content_Max_Range_Value     = 9;
     public const int Radius_Menu_Trigger_Panel_Max_Range_Value = 7;
     public const int Radius_Menu_Item_Max_Range_Value          = 7;
+
+
+
 
 
 }

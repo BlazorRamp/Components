@@ -10,6 +10,7 @@
     font-size: var(--_code-span-font-size);
     color: var(--br-shared-accent-text);
     background-color: var(--br-shared-accent-lighter);
+    white-space: nowrap;
 
     &--font-size-label{font-size:var(--br-font-size-label);}
     &--font-size-one{font-size:var(--br-font-size-1);}

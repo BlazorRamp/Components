@@ -1,48 +1,67 @@
 ﻿
 
 <CascadingValue TValue="BorderGroup" IsFixed="true" Value="this">
+
     <div class="@GlobalValues.Theme_Border_Tool_Border_Group_Class">
-        @{
-            GetHeading(GetHeadingLevel(), _titleText);
-        }
+
+        @GetHeadingFragment(GetHeadingLevel(), _titleText, GlobalValues.Theme_Border_Tool_Title_Class)
+
+        <div class="@GlobalValues.Theme_Border_Tool_Group_Info_Class">
+            <ToggleTip Label="border information" ShowClose="true" CloseText="Close border information" ToggleTipPosition="ToggleTipPosition.TopCentre"
+                       ToggleTipSize="ToggleTipSize.Medium" ToggleTipLabelOrder="ToggleTipLabelOrder.IconFirst">
+
+                @GetHeadingFragment(GetToggleTipHeading(), _titleText)
+                @GetBorderInformation(GetGroupingName())
+                @if (_storedPropertyValues.Count > 0)
+                {
+                    <p>Currently the assigned values are:</p>
+                    <ul>
+                        @foreach (var property in _storedPropertyValues)
+                        {
+                            <li style="white-space:nowrap">@property.PropertyName: <b>@property.Value</b></li>
+                        }
+                    </ul>
+                }
+
+            </ToggleTip>
+        </div>
         <div class="@GlobalValues.Theme_Border_Tool_Content_Class">
             @ChildContent
         </div>
 
     </div>
-@{
-    void GetHeading(ThemeToolHeadingLevel headingLevel, string title)
-    {
-        @switch (headingLevel)
-        {
-            case ThemeToolHeadingLevel.H2: <h2 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h2>; break;
-            case ThemeToolHeadingLevel.H3: <h3 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h3>; break;
-            case ThemeToolHeadingLevel.H4: <h4 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h4>; break;
-            case ThemeToolHeadingLevel.H5: <h5 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h5>; break;
-            case ThemeToolHeadingLevel.H6: <h6 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h6>; break;
-            default:
-                <h3 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h3>
-                break;
-        }
-
-    }
-}
 </CascadingValue>
-
-
 
 
 @code {
 
     [CascadingParameter] public ThemeBorderTool Parent { get; set; } = default!;
-    [Parameter] public RenderFragment ChildContent     { get; set; }
-    [Parameter] public string         Title            { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public string Title { get; set; }
 
 
     private List<BorderRadius> _borderRadii = [];
 
     private string _titleText = "Radius Group";
 
+    private bool _initialised = false;
+
+    private List<CssProperty> _storedPropertyValues = [];
+
+
+    private RenderFragment GetBorderInformation(string groupName)
+
+=> groupName switch
+{
+    "content" => GetContentInformation(),
+    "container" => GetContainerInformation(),
+    "input" => GetInputInformation(),
+    "button" => GetButtonInformation(),
+    "dialog" => GetDialogInformation(),
+    "revealed" => GetRevealedInformation(),
+    "menu" => GetMenuInformation(),
+    _ => @<text></text>
+        };
 
 
     protected override void OnInitialized()
@@ -57,7 +76,12 @@
 
     internal void AddBorderRadius(BorderRadius borderRadius)
     {
-        if (false == _borderRadii.Contains(borderRadius)) _borderRadii.Add(borderRadius);
+        if (false == _borderRadii.Contains(borderRadius))
+        {
+            _borderRadii.Add(borderRadius);
+            _storedPropertyValues.AddRange(borderRadius.GetStoredPropertyValues());
+            StateHasChanged();
+        }
     }
 
     internal void RemoveBorderRadius(BorderRadius borderRadius)
@@ -69,6 +93,16 @@
         foreach (var borderRadius in _borderRadii) await borderRadius.Reset();
     }
 
+    internal void NotifyPropertyChanges()
+    {
+        _storedPropertyValues.Clear();
+
+        foreach (var borderRadius in _borderRadii) _storedPropertyValues.AddRange(borderRadius.GetStoredPropertyValues());
+
+        StateHasChanged();
+    }
+
+
     private ThemeToolHeadingLevel GetHeadingLevel()
     {
         int parentLevel = Parent.CurrentHeadingLevelIndex();
@@ -77,13 +111,139 @@
 
     }
 
-    internal async Task<List<CssProperty>> GetCssProperties()
+    private ThemeToolHeadingLevel GetToggleTipHeading()
+    {
+        int parentLevel = Parent.CurrentHeadingLevelIndex();
+
+        return parentLevel < 5 ? (ThemeToolHeadingLevel)parentLevel + 2 : (ThemeToolHeadingLevel)6;
+    }
+
+    internal async Task<List<CssProperty>> GetLiveCssProperties()
     {
         List<CssProperty> cssProperties = [];
 
-        foreach (var borderRadius in _borderRadii) cssProperties.AddRange(await borderRadius.GetCurrentPropertyValues());
+        foreach (var borderRadius in _borderRadii) cssProperties.AddRange(await borderRadius.GetLivePropertyValues());
 
         return cssProperties;
     }
+
+
+    private string GetGroupingName()
+    {
+        if (_borderRadii.Count == 0) return String.Empty;
+
+        var firstPropertyName = _borderRadii.First().CssProperties.First().PropertyName;
+        var indexStart = "--br-group-".Length;
+        var indexEnd = firstPropertyName.IndexOf('-', indexStart);
+
+        return firstPropertyName.Substring(indexStart, indexEnd - indexStart);
+    }
+
+    private static RenderFragment GetHeadingFragment(ThemeToolHeadingLevel level, string title, string? className = null)
+
+        => level switch
+        {
+        ThemeToolHeadingLevel.H2 => @<h2 class="@className">@title</h2>,
+            ThemeToolHeadingLevel.H3 => @<h3 class="@className">@title</h3>,
+            ThemeToolHeadingLevel.H4 => @<h4 class="@className">@title</h4>,
+            ThemeToolHeadingLevel.H5 => @<h5 class="@className">@title</h5>,
+            ThemeToolHeadingLevel.H6 => @<h6 class="@className">@title</h6>,
+            _ => @<h3 class="@className">@title</h3>
+            };
+
+
+    private RenderFragment GetContentInformation()
+        => @<text>
+            <p>
+                Content borders are those borders that surround sections of content, not components.
+                The <span class="@CodeSpan.Base">--br-group-content-border-radius</span> variable is used for this grouping.
+            </p>
+        </text>;
+
+            
+    private RenderFragment GetContainerInformation()
+
+            => @<text>
+                <p>
+                    Container borders are those used on components such as this Theme border tool, tables, tabs and accordions. Typically things
+                    that contain data or other components. Currently two variables are exposed within this grouping: <span class="@CodeSpan.Base">--br-group-container-area-header-border-radius</span>.
+                    and <span class="@CodeSpan.Base">--br-group-container-area-content-border-radius</span>
+                </p>
+                <p>
+                    The <span class="@CodeSpan.Base">--br-group-container-area-header-border-radius</span> is used for the header sections of components. If there are no visible borders, items within the header
+                    that receive focus will have there focus indicator affected by this value. <b>Note: </b> The Data Table is slightly different in that this variable shapes both the header and the bottom border of the
+                    the table. The <b>header radius slider</b> is used to set this value.
+                </p>
+                <p>
+                    The <span class="@CodeSpan.Base">--br-group-container-area-content-border-radius</span> variable is used for the main content area such as the panels on tabs and accordions. If the item does not
+                    have a visible border then this value will affect the focus indicator shown on focus. The <b>Content radius slider</b> is used to set this value.
+                </p>
+
+            </text>;
+
+    private RenderFragment GetDialogInformation()
+
+        => @<text>
+            <p>
+                Dialog borders are those shown around the entire modal/non-modal dialog and the content area within the modal. There are many parts to dialog components, currently three variables
+                make up this grouping: <span class="@CodeSpan.Base">-br-group-dialog-pane-surface-border-radius</span>, <span class="@CodeSpan.Base">--br-group-dialog-pane-base-border-radius</span>
+                and <span class="@CodeSpan.Base">--br-group-dialog-area-content-border-radius</span> discussed next.
+            </p>
+            <p>
+                The <span class="@CodeSpan.Base">-br-group-dialog-pane-surface-border-radius</span> and <span class="@CodeSpan.Base">--br-group-dialog-pane-base-border-radius</span> are in sync and get be
+                set just using the <b>Outer radius slider</b>.
+            </p>
+            <p>
+                The <span class="@CodeSpan.Base">--br-group-dialog-area-content-border-radius</span> is the inner border around the content of the dialog.
+                This value is set using the <b>Inner radius slider</b>.
+            </p>
+        </text>;
+
+    private RenderFragment GetInputInformation()
+
+        => @<text>
+            <p>
+                Input borders are predominately the focus indicators shown the entire input area and parts of individual inputs.
+                The <span class="@CodeSpan.Base">-br-group-input-pane-base-border-radius</span> variable is used for this grouping.
+            </p>
+        </text>;
+
+    private RenderFragment GetButtonInformation()
+
+        => @<text>
+            <p>
+                Button borders are those shown around buttons, the Switch component is included in this grouping.
+                The <span class="@CodeSpan.Base">-br-group-button-border-radius</span> variable is used for this grouping.
+            </p>
+        </text>;
+
+    private RenderFragment GetRevealedInformation()
+
+        => @<text>
+            <p>
+                These borders are on components that are typically not seen until they receive keyboard focus. On this site two components are apart of this grouping
+                the Skip to component and the Alerts button, the trigger for the Announcement History Dialog. On this site I configured the latter to always be visible.
+                The <span class="@CodeSpan.Base">--br-group-revealed-border-radius</span> variable is used for this grouping.
+            </p>
+        </text>;
+
+
+    private RenderFragment GetMenuInformation()
+        => @<text>
+            <p>
+                 Currently there are four variables used for this grouping which are controlled by two sliders, these variable are
+                <span class="@CodeSpan.Base">-br-group-menu-item-border-radius</span>, <span class="@CodeSpan.Base">--br-group-menu-pane-panel-border</span>, 
+                <span class="@CodeSpan.Base">--br-group-menu-area-header-border-radius</span> and <span class="@CodeSpan.Base">--br-group-menu-area-content-border-radius</span>,
+            </p>
+            <p>
+                Both the Nav Group and Actions Popover are classified as menus and as such are affected by the sliders.
+                The borders around the Nav Group and the Action Popovers triggering button are set using the <b>Trigger, panel radius slider</b>.
+                Only this slider is need for the Nav Group as it does not have a visible panel like the Actions Popover.
+            </p>
+            <p>
+                The <b>Menu item radius slider</b> controls the border around each menu item on a panel.
+            </p>
+        </text>;
+
 
 }

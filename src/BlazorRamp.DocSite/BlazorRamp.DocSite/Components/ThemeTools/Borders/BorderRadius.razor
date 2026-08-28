@@ -29,6 +29,8 @@
     private int               _maxRangeValue = 5;
     private int               _radiusIndex   = 5;
 
+
+
     protected override void OnParametersSet()
     {
         _resetText = String.IsNullOrWhiteSpace(ResetText) ? "Reset" : ResetText.Trim();
@@ -42,11 +44,11 @@
     {
         _cssProperties = [.. CssProperties];
 
-        Parent.AddBorderRadius(this);
-
         await GetSetPropertyValues(_cssProperties);
 
-        _radiusIndex = _cssProperties.Count == 0 ? 0 : RadiusToIndex(_cssProperties.First().Value);
+        Parent.AddBorderRadius(this);
+
+        _radiusIndex = _cssProperties.Count == 0 ? 0 : VariableToIndex(_cssProperties.First().Value);
     }
 
 
@@ -60,14 +62,16 @@
             property.Value = radiusValue;
             await ThemeService.SetPropertyValue(property.PropertyName, radiusValue);
         }
+
+        Parent.NotifyPropertyChanges();
     }
 
     internal async Task GetSetPropertyValues(List<CssProperty> cssProperties)
     {
-        foreach (var property in cssProperties) property.Value = await GetPropertyValue(property.PropertyName);
+        foreach (var property in cssProperties) property.Value = RadiusToVariable(await GetPropertyValue(property.PropertyName));
     }
 
-    internal async Task<List<CssProperty>> GetCurrentPropertyValues()
+    internal async Task<List<CssProperty>> GetLivePropertyValues()
     {
         List<CssProperty> cssProperties = [.. _cssProperties];
 
@@ -76,25 +80,30 @@
         return cssProperties;
     }
 
+    internal List<CssProperty> GetStoredPropertyValues()
+
+         => [.. _cssProperties];
+
+
     private async Task HandleReset()
 
         => await Reset();
 
     internal async Task Reset()
     {
-        foreach (var property in _cssProperties)
-        {
-            await ThemeService.RemovePropertyValue(property.PropertyName);
-        }
-        var propertyName = _cssProperties.First().PropertyName;
-        var radiusValue = await ThemeService.GetPropertyValue(_cssProperties.First().PropertyName);
+        foreach (var property in _cssProperties) await ThemeService.RemovePropertyValue(property.PropertyName);
 
-        _radiusIndex = RadiusToIndex(radiusValue); 
+        await GetSetPropertyValues(_cssProperties);
+
+        _radiusIndex = _cssProperties.Count == 0 ? 0 : VariableToIndex(_cssProperties.First().Value);
+
+        Parent.NotifyPropertyChanges();
     }
 
     private async Task<string> GetPropertyValue(string propertyName)
 
         => await ThemeService.GetPropertyValue(propertyName);
+   
 
     
     private static int RadiusToIndex(string radiusValue)
@@ -114,6 +123,7 @@
             "9999px"  => 10,
             _ => 3
         };
+
 
     private static string IndexToRadius(int index) 
     
@@ -150,4 +160,23 @@
             "9999px"  => "var(--br-unit-radius-full)",
             _ => "var(--br-unit-radius-5)"
         };
+
+    private static int VariableToIndex(string variableValue)
+
+        => variableValue switch
+        {
+           "var(--br-unit-radius-0)"  => 0,
+            "var(--br-unit-radius-1)" => 1,
+            "var(--br-unit-radius-2)" => 2,
+            "var(--br-unit-radius-3)" => 3,
+            "var(--br-unit-radius-4)" => 4,
+            "var(--br-unit-radius-5)" => 5,
+            "var(--br-unit-radius-6)" => 6,
+            "var(--br-unit-radius-7)" => 7,
+            "var(--br-unit-radius-8)" => 8,
+            "var(--br-unit-radius-9)" => 9,
+            "var(--br-unit-radius-full)" => 10,
+            _ => 5
+        };
+
 }

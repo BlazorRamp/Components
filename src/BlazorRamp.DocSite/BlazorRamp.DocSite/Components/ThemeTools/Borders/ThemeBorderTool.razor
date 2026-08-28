@@ -1,9 +1,9 @@
 ﻿
 <CascadingValue TValue="ThemeBorderTool" IsFixed="true" Value="this">
     <section class="@GlobalValues.Theme_Border_Tool_Class" @attributes="AdditionalAttributes">
-        @{
-            GetHeading(ThemeToolHeadingLevel, _titleText);
-        }
+        
+        @GetHeadingFragment(ThemeToolHeadingLevel, _titleText, GlobalValues.Theme_Border_Tool_Title_Class)
+
         @if (BorderGroups is not null)
         {
             @BorderGroups
@@ -14,24 +14,7 @@
         </div>
 
     </section>
-    @{
-    void GetHeading(ThemeToolHeadingLevel headingLevel, string title)
-    {
-        @switch (headingLevel)
-        {
-            case ThemeToolHeadingLevel.H2: <h2 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h2>; break;
-            case ThemeToolHeadingLevel.H3: <h3 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h3>; break;
-            case ThemeToolHeadingLevel.H4: <h4 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h4>; break;
-            case ThemeToolHeadingLevel.H5: <h5 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h5>; break;
-            case ThemeToolHeadingLevel.H6: <h6 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h6>; break;
-            default:
-                <h3 class="@GlobalValues.Theme_Border_Tool_Title_Class">@title</h3>
-                break;
-        }
 
-    }
-}
-    
 </CascadingValue>
 
 @code {
@@ -76,17 +59,29 @@
 
         => (int)ThemeToolHeadingLevel;
 
-    internal async Task<List<CssProperty>> GetCurrentBorderProperties()
+    internal async Task<List<CssProperty>> GetLiveBorderProperties()
     {
         List<CssProperty> cssProperties = [];
 
-        foreach (var group in _borderGroups) cssProperties.AddRange(await group.GetCssProperties());
+        foreach (var group in _borderGroups) cssProperties.AddRange(await group.GetLiveCssProperties());
 
         return cssProperties;
     }
 
     private async Task HandleGetProperties()
     {
-        var cssProperties = await GetCurrentBorderProperties();
+        var cssProperties = await GetLiveBorderProperties();
     }
+
+    private RenderFragment GetHeadingFragment(ThemeToolHeadingLevel level, string title, string? className = null)
+
+        => level switch
+        {
+        ThemeToolHeadingLevel.H2 => @<h2 class="@className">@title</h2>,
+                    ThemeToolHeadingLevel.H3 => @<h3 class="@className">@title</h3>,
+                    ThemeToolHeadingLevel.H4 => @<h4 class="@className">@title</h4>,
+                    ThemeToolHeadingLevel.H5 => @<h5 class="@className">@title</h5>,
+                    ThemeToolHeadingLevel.H6 => @<h6 class="@className">@title</h6>,
+                    _ => @<h3 class="@className">@title</h3>
+                };
 }
