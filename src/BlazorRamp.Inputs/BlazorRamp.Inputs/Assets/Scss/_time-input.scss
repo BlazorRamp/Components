@@ -157,7 +157,6 @@
 
     &__field {
         appearance: none;
-        border-radius: 2px;
         border: var(--br-unit-border-1) solid var(--br-comp-all-divider-colour);
         background-color: var(--br-comp-input-area-content-background);
         color: var(--br-comp-input-area-content-colour);
@@ -166,8 +165,8 @@
         font-weight: var(--br-comp-input-area-content-font-weight);
         text-align: center;
         min-height: var(--br-unit-wcag-target-2a);
-        line-height:normal;
-
+        line-height: normal;
+        border-radius: var(--br-comp-input-field-border-radius); //Change this to group max 5 default 2
 
         &:is(:autofill, :-webkit-autofill) {
             -webkit-background-clip: text; // prevents autofill colours reappearing on viewport resize/reflow

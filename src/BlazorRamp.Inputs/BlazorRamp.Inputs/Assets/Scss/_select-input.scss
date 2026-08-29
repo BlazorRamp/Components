@@ -118,17 +118,17 @@
         font-family: var(--br-comp-input-area-content-font-family);
         font-size: var(--br-comp-input-area-content-font-size);
         font-weight: var(--br-comp-input-area-content-font-weight);
-        background-color: inherit; //red;//var(--br-comp-input-area-content-background);
+        background-color: inherit;
         border: none;
         outline: none;
         cursor: pointer;
         margin-block-end: var(--br-unit-space-1);
         min-height: var(--br-unit-wcag-target-2a);
+        border-radius: var(--br-comp-input-field-border-radius); //Change this to group max 5 default 2
 
         &:focus {
             border-style: var(--br-comp-input-outline-style);
             border-color: var(--br-comp-input-outline-colour);
-            border-radius: var(--br-comp-input-pane-base-border-radius);
             border-width: 1px;
             border-bottom: none;
         }

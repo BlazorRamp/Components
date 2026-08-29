@@ -17,6 +17,7 @@
         color: var(--br-comp-input-label-color);
         background-color: var(--br-comp-input-label-background);
         cursor: pointer;
+        padding-inline-end: 4px;
 
         &::before {
             content: "";
@@ -43,8 +44,8 @@
     }
 
     &:has(input:focus) {
-        border-radius: 2px;
-        outline-offset: 2px; //var(--br-comp-input-outline-offset);
+        border-radius: var(--br-comp-input-field-border-radius);
+        outline-offset: 2px; 
         outline-width: var(--br-comp-input-outline-width);
         outline-style: var(--br-comp-input-outline-style);
         outline-color: var(--br-comp-input-outline-colour);

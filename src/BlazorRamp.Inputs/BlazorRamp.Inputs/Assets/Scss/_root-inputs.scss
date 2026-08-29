@@ -8,6 +8,7 @@
     //
     --br-comp-input-disabled-opacity: var(--br-unit-state-disabled-opacity);
     --br-comp-input-divider-colour: var(--br-comp-all-divider-colour);
+    --br-comp-input-field-border-radius: var(--br-group-input-field-border-radius);
     //
     --br-comp-input-button-background: var(--br-comp-all-button-background);
     --br-comp-input-button-text: var(--br-comp-all-button-text);
@@ -52,4 +53,5 @@
     --br-comp-input-hint-color: inherit;
     --br-comp-input-hint-background: inherit;
     --br-comp-input-hint-opacity: var(--br-unit-opacity-val-80);
+    //
 }
