@@ -8,16 +8,16 @@
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
     <Title>BlazorRamp.Inputs</Title>
-    <Version>1.8.3</Version>
+    <Version>1.8.4</Version>
     <Authors>Paul Kent</Authors>
     <Description>Base set of the simple inputs for the Blazor Ramp ecosystem</Description>
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; TextIInput; PasswordInput; NumericInput; CheckboxInput; SelectInput; RadioInputGroup; TimeInput; DateInput; TextAreaInput; Input;</PackageTags>
-    <PackageReleaseNotes>Amended CSS border radius variables so the component border radius could be changed with others in the same grouping.</PackageReleaseNotes>
-    <AssemblyVersion>1.8.3</AssemblyVersion>
-    <FileVersion>1.8.3</FileVersion>
+    <PackageReleaseNotes>Added a new variable to have finer control over the border radii on the input fields.</PackageReleaseNotes>
+    <AssemblyVersion>1.8.4</AssemblyVersion>
+    <FileVersion>1.8.4</FileVersion>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -42,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BlazorRamp.Core" Version="1.1.4" />
+    <PackageReference Include="BlazorRamp.Core" Version="1.1.6" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.29" />
 	  <PackageReference Include="BuildWebCompiler2022" Version="1.14.15">
 		  <PrivateAssets>all</PrivateAssets>
