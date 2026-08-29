@@ -1,0 +1,53 @@
+﻿<div class="@GlobalValues.Theme_Dialog_Class">
+
+    <h2 class="@GlobalValues.Theme_Dialog_Title_Class" id="@_dialogTitleID">@_titleText</h2>
+    
+    <div class="@GlobalValues.Theme_Dialog_Content_Class">
+    
+<pre>
+:root {
+    @foreach(var property in _cssProperties)
+    {
+        <text>@("\t")@property.PropertyName: @property.Value;@Environment.NewLine</text>
+    }
+}
+</pre>
+   
+    </div>
+
+    <div class="@GlobalValues.Theme_Dialog_Footer_Class">
+        <button type="button" class="@Button.Base @Button.Small" @onclick="CloseDialog">Close dialog</button>
+    </div>
+</div>
+
+
+
+
+
+
+@code {
+
+    [Inject] ModalDialogService DialogService { get; set; } = default!;
+
+    [Parameter] public string DialogTitle { get; set; } = "Currently assigned CSS Variables";
+
+    [Parameter] public List<CssProperty> CssProperties { get; set; } = [];
+
+    private string            _dialogTitleID = Guid.Empty.ToString();
+    private string            _titleText     = "Currently assigned CSS Variables";
+    private List<CssProperty> _cssProperties = [];
+
+    protected override void OnInitialized()
+    {
+        _dialogTitleID = DialogService is null ? _dialogTitleID : DialogService.GetAriaLabelledByID();
+        _titleText = String.IsNullOrWhiteSpace(DialogTitle) ? "Currently assigned CSS Variables" : DialogTitle.Trim();
+
+        _cssProperties = CssProperties is null ? [] : [.. CssProperties];
+    }
+
+    private async Task CloseDialog()
+    {
+        await DialogService.CloseDialog(ModalDialogResult.OK());
+    }
+
+}

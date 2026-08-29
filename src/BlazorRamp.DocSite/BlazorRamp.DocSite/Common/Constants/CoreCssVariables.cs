@@ -25,7 +25,7 @@ namespace BlazorRamp.DocSite.Common.Constants
         public const string Colour_Primary_Text_Light = "--br-unit-colour-primary-text-light";
         public const string Colour_Primary_Text_Dark  = "--br-unit-colour-primary-text-dark";
 
-        public const string Colour_Primary_Original_Value =  "#008C8C";
+        public const string Colour_Primary_Current_Site_Value = "#298a00";
 
         public const string Colour_Neutral_Saturation_Original_Value = "10";
         public const string Colour_Neutral_Saturation = "--br-unit-colour-neutral-saturation";
@@ -126,6 +126,9 @@ namespace BlazorRamp.DocSite.Common.Constants
 
         public const string Group_Input_Radius_Base        = "--br-group-input-pane-base-border-radius";
         public const string Group_Input_Radius_Base_Value = "--br-unit-radius-3";
+
+        public const string Group_Input_Field_Radius = "--br-group-input-field-border-radius";
+        public const string Group_Input_Field_Radius_Value = "--br-unit-radius-2";
 
         public const string Group_Menu_Radius_Panel = "--br-group-menu-pane-panel-border-radius";
         public const string Group_Menu_Radius_Panel_Value = "--br-unit-radius-3";

@@ -1,8 +1,6 @@
-﻿@implements IAsyncDisposable
-
-<section class="@GlobalValues.Theme_Colour_Tool_Class">
+﻿<section class="@GlobalValues.Theme_Colour_Tool_Class">
     @{
-        GetHeading(ThemeToolHeadingLevel,Title);
+        GetHeadingFragment(ThemeToolHeadingLevel, _titleText, @GlobalValues.Theme_Colour_Tool_Title_Class);
     }
     <div class="@GlobalValues.Theme_Colour_Tool_Content_Class">
         <div class="@GlobalValues.Theme_Colour_Tool_Controls_Class">
@@ -32,52 +30,44 @@
     </div>
 </section>
 
-@{
-    void GetHeading(ThemeToolHeadingLevel headingLevel, string title)
-    {
-        @switch (headingLevel)
-        {
-            case ThemeToolHeadingLevel.H2: <h2 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h2>; break;
-            case ThemeToolHeadingLevel.H3: <h3 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h3>; break;
-            case ThemeToolHeadingLevel.H4: <h4 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h4>; break;
-            case ThemeToolHeadingLevel.H5: <h5 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h5>; break;
-            case ThemeToolHeadingLevel.H6: <h6 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h6>; break;
-            default:
-                <h3 class="@GlobalValues.Theme_Colour_Tool_Title_Class">@title</h3>
-                break;
-        }
 
-    }
-}
 @code {
 
-    [Parameter] public string Title { get; set; } = "Theme colour controls";
+    [Parameter] public string                Title                 { get; set; } = "Theme colour tool";
     [Parameter] public ThemeToolHeadingLevel ThemeToolHeadingLevel { get; set; } = ThemeToolHeadingLevel.H2;
 
     [Parameter] public EventCallback OnColourChanged { get; set; }
 
-    [Inject] ILiveRegionService LiveRegionService { get; set; } = default!;
-    [Inject] IJSRuntime JSRuntime { get; set; } = default!;
+    [Inject] private ThemeService       ThemeService      { get; set; } = default!;
+    [Inject] private ILiveRegionService LiveRegionService { get; set; } = default!;
 
-    private IJSObjectReference? _jsModule = null;
+    private List<CssProperty> _cssProperties = [];
 
-    private string _primaryColourValue      = CoreCssVariables.Colour_Primary_Original_Value;
+    private string _primaryColourValue      = CoreCssVariables.Colour_Primary_Current_Site_Value;
     private string _rootPrimaryVar          = CoreCssVariables.Colour_Primary;
     private string _neutralSaturationVar    = CoreCssVariables.Colour_Neutral_Saturation;
     private string _neutralSaturationValue  = CoreCssVariables.Colour_Neutral_Saturation_Original_Value;
 
+    private string _titleText = "Theme colour tool";
+
+    protected override void OnParametersSet()
+    {
+        _titleText = String.IsNullOrWhiteSpace(Title) ? "Theme colour tool" : Title.Trim();
+    }
+
     private async Task HandleSaturation(ChangeEventArgs args)
     {
+
         _neutralSaturationValue = args.Value.ToString();
-        if (_jsModule is not null) await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Style_Property_Func, _neutralSaturationVar, _neutralSaturationValue);
+
+        await ThemeService.SetPropertyValue(_neutralSaturationVar, _neutralSaturationValue!);
     }
 
     private async Task HandleOnInput(ChangeEventArgs args)
     {
         _primaryColourValue = args.Value.ToString();
 
-        if (_jsModule is not null) await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Style_Property_Func, _rootPrimaryVar, _primaryColourValue);
-
+        await ThemeService.SetPropertyValue(_rootPrimaryVar, _primaryColourValue!);
 
     }
 
@@ -88,37 +78,41 @@
 
     private async Task ResetColourValues()
     {
-        if (_jsModule is not null)
-        {
-            _primaryColourValue     = CoreCssVariables.Colour_Primary_Original_Value;
-            _neutralSaturationValue = CoreCssVariables.Colour_Neutral_Saturation_Original_Value;
+        _neutralSaturationValue = CoreCssVariables.Colour_Neutral_Saturation_Original_Value;
 
-            await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Remove_Style_Property_Func, _rootPrimaryVar);
-            await _jsModule.InvokeVoidAsync(GlobalValues.JS_Theme_Remove_Style_Property_Func, _neutralSaturationVar);
+        await ThemeService.RemovePropertyValue(_rootPrimaryVar);
+        await ThemeService.RemovePropertyValue(_neutralSaturationVar);
 
-            await LiveRegionService.MakeAnnouncement(new("Site colours have been reset to the default values", AnnouncementTrigger: "Colour reset button"), true);
+        _neutralSaturationValue = await ThemeService.GetPropertyValue(_neutralSaturationVar);
+        _primaryColourValue     = await ThemeService.GetPropertyValue(_rootPrimaryVar);
 
-        }
+        await LiveRegionService.MakeAnnouncement(new("Site colours have been reset to the default values", AnnouncementTrigger: "Colour reset button"), true);
 
         await HandleOnChange();
     }
 
+    internal List<CssProperty> GetStoredProperties()
+
+        => [new(_rootPrimaryVar, _primaryColourValue), new(_neutralSaturationVar, _neutralSaturationValue)];    
+
+
     protected override async Task OnInitializedAsync()
     {
-        _jsModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Doc_Theme_Module_File_Path);
-
-        if (_jsModule is null) return;
-
-        _primaryColourValue = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, _rootPrimaryVar);
-        _neutralSaturationValue = await _jsModule.InvokeAsync<string>(GlobalValues.JS_Theme_Get_Comp_Style_Property_Func, _neutralSaturationVar);
+        _primaryColourValue = await ThemeService.GetPropertyValue(_rootPrimaryVar);
+        _neutralSaturationValue = await ThemeService.GetPropertyValue(_neutralSaturationVar);
     }
 
-    public async ValueTask DisposeAsync()
-    {
-        try
+    private static RenderFragment GetHeadingFragment(ThemeToolHeadingLevel level, string title, string? className = null)
+
+        => level switch
         {
-            if (_jsModule is not null) await _jsModule.DisposeAsync();
-        }
-        catch { }
-    }
+            ThemeToolHeadingLevel.H2 => @<h2 class="@className">@title</h2>,
+            ThemeToolHeadingLevel.H3 => @<h3 class="@className">@title</h3>,
+            ThemeToolHeadingLevel.H4 => @<h4 class="@className">@title</h4>,
+            ThemeToolHeadingLevel.H5 => @<h5 class="@className">@title</h5>,
+            ThemeToolHeadingLevel.H6 => @<h6 class="@className">@title</h6>,
+            _ => @<h3 class="@className">@title</h3>
+        };
+
+
 }

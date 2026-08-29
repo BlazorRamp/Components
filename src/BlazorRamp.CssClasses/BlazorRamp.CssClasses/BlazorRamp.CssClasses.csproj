@@ -43,7 +43,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="BlazorRamp.Core" Version="1.1.5" />
+		<PackageReference Include="BlazorRamp.Core" Version="1.1.6" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.29" />
 		<PackageReference Include="BuildWebCompiler2022" Version="1.14.15">
 			<PrivateAssets>all</PrivateAssets>

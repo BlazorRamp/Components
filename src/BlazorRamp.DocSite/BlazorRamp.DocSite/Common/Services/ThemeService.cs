@@ -1,4 +1,5 @@
 ﻿using BlazorRamp.DocSite.Common.Constants;
+using BlazorRamp.DocSite.Common.Models;
 using Microsoft.JSInterop;
 
 namespace BlazorRamp.DocSite.Common.Services;
@@ -26,6 +27,15 @@ public class ThemeService(IJSRuntime jsRuntime) : IAsyncDisposable
 
         await module.InvokeVoidAsync(GlobalValues.JS_Theme_Set_Style_Property_Func, propertyName, value);
     }
+
+
+    public async Task<List<CssProperty>> GetPropertyValues(List<CssProperty> cssProperties)
+    {
+        var module = await _moduleTask.Value;
+
+        return await module.InvokeAsync<List<CssProperty>>(GlobalValues.JS_Theme_Get_Comp_Style_Properties_Func, cssProperties);
+    }
+
     public async ValueTask DisposeAsync()
     {
         if (_moduleTask.IsValueCreated) await (await _moduleTask.Value).DisposeAsync();

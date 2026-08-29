@@ -127,6 +127,9 @@
         return cssProperties;
     }
 
+    internal List<CssProperty> GetStoredProperties()
+
+        => [.. _storedPropertyValues];
 
     private string GetGroupingName()
     {
@@ -203,8 +206,12 @@
 
         => @<text>
             <p>
-                Input borders are predominately the focus indicators shown the entire input area and parts of individual inputs.
+                Input borders affect the focus indicators shown around the entire input area and error messaged below the input fields.
                 The <span class="@CodeSpan.Base">-br-group-input-pane-base-border-radius</span> variable is used for this grouping.
+            </p>
+            <p>
+                Field borders affect the borders and/or focus indicators shown around the input fields that have borders (excluding the checkbox).
+                The <span class="@CodeSpan.Base">-br-group-input-field-border-radius</span> variable is used for this grouping.
             </p>
         </text>;
 

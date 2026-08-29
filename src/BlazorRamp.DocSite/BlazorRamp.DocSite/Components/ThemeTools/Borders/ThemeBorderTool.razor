@@ -10,7 +10,6 @@
         }
         <div class="@GlobalValues.Theme_Border_Tool_Buttons_Class">
             <button type="button" class="@Button.Base" @onclick="HandleReset">@_resetText</button>
-            <button type="button" class="@Button.Base" @onclick="HandleGetProperties">Test</button>
         </div>
 
     </section>
@@ -25,7 +24,7 @@
     [Parameter] public ThemeToolHeadingLevel ThemeToolHeadingLevel { get; set; } = ThemeToolHeadingLevel.H2;
 
     [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
-    
+
     private List<BorderGroup> _borderGroups = [];
 
     private string _titleText = "Theme border controls";
@@ -64,6 +63,15 @@
         List<CssProperty> cssProperties = [];
 
         foreach (var group in _borderGroups) cssProperties.AddRange(await group.GetLiveCssProperties());
+
+        return cssProperties;
+    }
+
+    internal List<CssProperty> GetStoredProperties()
+    {
+        List<CssProperty> cssProperties = [];
+
+        foreach (var borderGroup in _borderGroups) cssProperties.AddRange(borderGroup.GetStoredProperties());
 
         return cssProperties;
     }

@@ -1,4 +1,4 @@
-﻿
+﻿interface CssProperty {propertyName: string; value: string; }
 
 const setElementVariable = (elementId: string, variableName: string, variableValue: string, reset: boolean): void => {
 
@@ -79,9 +79,6 @@ const applyOpacityToHex = (foregroundHex: string, opacityValue: number = 1, back
     return toHex(blendChannel(foregroundRgb[0], backgroundRgb[0]),blendChannel(foregroundRgb[1], backgroundRgb[1]),blendChannel(foregroundRgb[2], backgroundRgb[2]));
 }
 
-
-
-
 const setStyleProperty = (variableName: string, variableValue: string): void => {
 
     document.documentElement.style.setProperty(variableName, variableValue);
@@ -92,9 +89,22 @@ const getComputedStyleProperty = (variableName: string): string => {
     return getComputedStyle(document.documentElement).getPropertyValue(variableName)?.trim();
 };
 
+const getComputedStyleProperties = (cssProperties: CssProperty[]): CssProperty[] => {
+
+    const cssPropertyValues: CssProperty[] = [];
+
+    cssProperties.forEach((property: CssProperty) => {
+
+        const cssValue: string = getComputedStyle(document.documentElement).getPropertyValue(property.propertyName)?.trim();
+        cssPropertyValues.push({ propertyName: property.propertyName, value: cssValue });
+    });
+
+    return cssPropertyValues;
+};
+
 const removeStyleProperty = (variableName: string): void => {
 
     document.documentElement.style.removeProperty(variableName);
 };
 
-export { setStyleProperty, setElementVariable, getComputedStyleProperty, removeStyleProperty, getResolvedHexColourValue, applyOpacityToHex };
+export { setStyleProperty, setElementVariable, getComputedStyleProperty, removeStyleProperty, getResolvedHexColourValue, applyOpacityToHex, getComputedStyleProperties };

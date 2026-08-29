@@ -56,8 +56,16 @@ const setStyleProperty = (variableName, variableValue) => {
 const getComputedStyleProperty = (variableName) => {
     return getComputedStyle(document.documentElement).getPropertyValue(variableName)?.trim();
 };
+const getComputedStyleProperties = (cssProperties) => {
+    const cssPropertyValues = [];
+    cssProperties.forEach((property) => {
+        const cssValue = getComputedStyle(document.documentElement).getPropertyValue(property.propertyName)?.trim();
+        cssPropertyValues.push({ propertyName: property.propertyName, value: cssValue });
+    });
+    return cssPropertyValues;
+};
 const removeStyleProperty = (variableName) => {
     document.documentElement.style.removeProperty(variableName);
 };
-export { setStyleProperty, setElementVariable, getComputedStyleProperty, removeStyleProperty, getResolvedHexColourValue, applyOpacityToHex };
+export { setStyleProperty, setElementVariable, getComputedStyleProperty, removeStyleProperty, getResolvedHexColourValue, applyOpacityToHex, getComputedStyleProperties };
 //# sourceMappingURL=doc-themes.js.map

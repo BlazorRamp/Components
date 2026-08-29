@@ -18,6 +18,8 @@ public class GlobalValues
     public const string JS_Theme_Set_Element_Variable_Func    = "setElementVariable";// id, name, value, remove
     public const string JS_Theme_Remove_Style_Property_Func   = "removeStyleProperty";
 
+    public const string JS_Theme_Get_Comp_Style_Properties_Func = "getComputedStyleProperties"; //takes and returns List<CssProperty>
+
     public const string JS_Theme_Apply_Opacity_To_Hex_Value = "applyOpacityToHex";//(foregroundHex: string, opacityValue: number = 1, backgroundHex: string = '#ffffff'):
 
     public const string Info_Box_Class = "info-box";
@@ -231,6 +233,7 @@ public class GlobalValues
     public const int Radius_Button_Max_Range_Value             = 10;
     public const int Radius_Content_Max_Range_Value            = 9;
     public const int Radius_Input_Max_Range_Value              = 7;
+    public const int Radius_Input_Field_Max_Range_Value        = 5;
     public const int Radius_Reveal_Max_Range_Value             = 9;
     public const int Radius_Container_Max_Range_Value          = 7;
     public const int Radius_Container_Header_Max_Range_Value   = 7;
@@ -239,6 +242,12 @@ public class GlobalValues
     public const int Radius_Menu_Trigger_Panel_Max_Range_Value = 7;
     public const int Radius_Menu_Item_Max_Range_Value          = 7;
 
+
+
+    public const string Theme_Dialog_Class        = "theme-dialog";
+    public const string Theme_Dialog_Title_Class  = $"{Theme_Dialog_Class}__title";
+    public const string Theme_Dialog_Content_Class = $"{Theme_Dialog_Class}__content";
+    public const string Theme_Dialog_Footer_Class = $"{Theme_Dialog_Class}__footer";
 
 
 

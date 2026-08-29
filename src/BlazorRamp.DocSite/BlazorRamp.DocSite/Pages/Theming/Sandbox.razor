@@ -6,9 +6,9 @@
 
 <h1>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Sandbox . . . In Progress . . .</h1>
 
-<ThemeColourTool />
+<ThemeColourTool @ref="ThemeColourToolRef" />
 
-<ThemeBorderTool Title="Theme border tool" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
+<ThemeBorderTool @ref="ThemeBorderToolRef" Title="Theme border tool" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
     <BorderGroups>
 
         <BorderGroup Title="Dialog borders">
@@ -30,6 +30,8 @@
         </BorderGroup>
         <BorderGroup Title="Input borders">
             <BorderRadius LabelText="Input radius" ResetText="Reset input radius" MaxRangeValue="@GlobalValues.Radius_Input_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Input_Radius_Base)])" />
+            <BorderRadius LabelText="Field radius" ResetText="Reset field radius" MaxRangeValue="@GlobalValues.Radius_Input_Field_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Input_Field_Radius)])" />
+
         </BorderGroup>
 
         <BorderGroup Title="Button borders">
@@ -42,7 +44,8 @@
     </BorderGroups>
 </ThemeBorderTool>
 
-
+<button class="@Button.Base" @onclick="OpenDialog">Open Dialog</button>
+<button class="@Button.Base" @onclick="Test">Test JS</button>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Colours}")">
@@ -61,4 +64,38 @@
 
 
 @code {
+
+    private ThemeBorderTool ThemeBorderToolRef { get; set; }
+    private ThemeColourTool ThemeColourToolRef { get; set; }
+
+    [Inject] ModalDialogService DialogService { get; set; } = default!;
+
+    [Inject] private ThemeService ThemeService { get; set; } = default!;
+
+    private async Task Test()
+    {
+
+        var currentProperties = await ThemeBorderToolRef.GetLiveBorderProperties();
+        var cssProperties = await ThemeService.GetPropertyValues(currentProperties);
+    }
+
+
+    private async Task OpenDialog()
+    {
+        List<CssProperty> cssProperties = [];
+
+        cssProperties.AddRange(ThemeColourToolRef.GetStoredProperties());
+        cssProperties.AddRange(ThemeBorderToolRef.GetStoredProperties());
+
+
+        var dialogParameters = new ModalDialogParameters<ThemeDialog>();
+
+        dialogParameters.Add<string>(v => v.DialogTitle, "Variables and their current values");
+        dialogParameters.Add<List<CssProperty>>(v => v.CssProperties, cssProperties);
+
+        var dialogOptions = new ModalDialogOptions(HorizontalAlignment.Centre, VerticalAlignment.Centre, maxWidthPercent: 50);
+
+        _ = await DialogService.ShowDialog<ThemeDialog>(dialogParameters, dialogOptions);
+    }
+
 }
