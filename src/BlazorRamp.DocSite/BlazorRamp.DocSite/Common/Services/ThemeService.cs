@@ -6,6 +6,7 @@ namespace BlazorRamp.DocSite.Common.Services;
 
 public class ThemeService(IJSRuntime jsRuntime) : IAsyncDisposable
 {
+    private readonly IJSRuntime _jsRuntime = jsRuntime;
     private readonly Lazy<Task<IJSObjectReference>> _moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Doc_Theme_Module_File_Path).AsTask());
 
 
@@ -34,6 +35,13 @@ public class ThemeService(IJSRuntime jsRuntime) : IAsyncDisposable
         var module = await _moduleTask.Value;
 
         return await module.InvokeAsync<List<CssProperty>>(GlobalValues.JS_Theme_Get_Comp_Style_Properties_Func, cssProperties);
+    }
+
+    public async Task<List<CssProperty>> GetRawPropertiesFromStyleSheet(string styleSheetName = GlobalValues.Stylesheet_Name, string selectorText = GlobalValues.Stylesheet_Dark_Theme_Selector)
+    {
+        var module = await _moduleTask.Value;
+
+        return await module.InvokeAsync<List<CssProperty>>(GlobalValues.JS_Theme_Get_Raw_Properties_From_Stylesheet, styleSheetName,selectorText);
     }
 
     public async ValueTask DisposeAsync()

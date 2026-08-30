@@ -7,9 +7,9 @@
     padding: var(--br-unit-space-2);
     border-radius: var(--br-unit-radius-3);
     font-family: var(--br-code-font-family);
-    font-size: var(--_code-span-font-size);
-    color: var(--br-shared-accent-text);
-    background-color: var(--br-shared-accent-lighter);
+    font-size: var(--_br-code-span-font-size);
+    color: var(--br-cls-accent-text);
+    background-color: var(--br-cls-accent-lighter);
     white-space: nowrap;
 
     &--font-size-label{font-size:var(--br-font-size-label);}

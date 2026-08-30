@@ -4,7 +4,27 @@
 
 <PageTitle>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Sandbox</PageTitle>
 
-<h1>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Sandbox . . . In Progress . . .</h1>
+<h1>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Sandbox</h1>
+
+<p>
+    You can use the following colour and border tools to alter everything on this site. On most component usage pages you will find
+    the Theme border tool showing the applicable groups for that component so you can adjust the sliders and view the affected parts of the component live.  
+</p>
+<p>
+    There is a lot much more I can add regarding the colours (as well as other facets), and over time I will most likely make the Theme colour tool more like the borders tool and place
+    that too on each usage page.
+</p>
+<p>
+    You can use button below to view and copy the live colour and border variables, as well as copy the dark theme variables/values used on this site. 
+</p>
+<p>
+    Regarding the dark theme, I simply use a selector based on the id of the theme button (switch) appearing at the top of the page, and its <span class="@CodeSpan.Base">aria-checked</span> attribute. The
+    copied text includes this, just to give you ideas if you want to go the non JavasScript theme switch root.
+</p>
+<div style="display:flex;gap:var(--br-unit-space-5); justify-content:center;margin-block:var(--br-unit-space-5)">
+        <button type="button" class="@Button.Base @Button.ExtraLarge" @onclick="OpenDialog">View & get theme variables</button>
+</div>
+
 
 <ThemeColourTool @ref="ThemeColourToolRef" />
 
@@ -44,8 +64,7 @@
     </BorderGroups>
 </ThemeBorderTool>
 
-<button class="@Button.Base" @onclick="OpenDialog">Open Dialog</button>
-<button class="@Button.Base" @onclick="Test">Test JS</button>
+
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Colours}")">
@@ -82,18 +101,21 @@
 
     private async Task OpenDialog()
     {
-        List<CssProperty> cssProperties = [];
+        List<CssProperty> themeProperties     = [];
+        List<CssProperty> darkThemeProperties = [];
 
-        cssProperties.AddRange(ThemeColourToolRef.GetStoredProperties());
-        cssProperties.AddRange(ThemeBorderToolRef.GetStoredProperties());
+        darkThemeProperties.AddRange(await ThemeService.GetRawPropertiesFromStyleSheet());
 
+        themeProperties.AddRange(ThemeColourToolRef.GetStoredProperties());
+        themeProperties.AddRange(ThemeBorderToolRef.GetStoredBorderProperties());
 
         var dialogParameters = new ModalDialogParameters<ThemeDialog>();
 
         dialogParameters.Add<string>(v => v.DialogTitle, "Variables and their current values");
-        dialogParameters.Add<List<CssProperty>>(v => v.CssProperties, cssProperties);
+        dialogParameters.Add<List<CssProperty>>(v => v.ThemeProperties, themeProperties);
+        dialogParameters.Add<List<CssProperty>>(v => v.DarkThemeProperties, darkThemeProperties);
 
-        var dialogOptions = new ModalDialogOptions(HorizontalAlignment.Centre, VerticalAlignment.Centre, maxWidthPercent: 50);
+        var dialogOptions = new ModalDialogOptions(HorizontalAlignment.Centre, VerticalAlignment.Centre, maxWidthPercent: 75);
 
         _ = await DialogService.ShowDialog<ThemeDialog>(dialogParameters, dialogOptions);
     }

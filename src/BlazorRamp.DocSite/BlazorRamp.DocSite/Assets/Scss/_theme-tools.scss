@@ -11,7 +11,7 @@
 
     &__title {
         //color: var(--br-comp-all-area-header-text);
-        color: var(--br-shared-secondary-heading-text);
+        color: var(--br-cls-secondary-heading-text);
 
         @include media-device-sm(max-width) {
             text-align: center;
@@ -122,7 +122,7 @@
     grid-template-columns: repeat(auto-fit, minmax(calc(200px + (var(--br-unit-space-4) * 2) + (var(--br-unit-border-1) * 2)), 1fr));
 
     &__title {
-        color: var(--br-shared-secondary-heading-text);
+        color: var(--br-cls-secondary-heading-text);
         grid-column: 1/-1;
         margin: 0;
 

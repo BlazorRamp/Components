@@ -1,22 +1,64 @@
-﻿<div class="@GlobalValues.Theme_Dialog_Class">
+﻿@using System.Text
+<div class="@GlobalValues.Theme_Dialog_Class">
 
     <h2 class="@GlobalValues.Theme_Dialog_Title_Class" id="@_dialogTitleID">@_titleText</h2>
     
+    <div class="@GlobalValues.Theme_Dialog_Title_Tools_Class">
+        <button type="button" class="@Button.Base @Button.Small" @onclick="HandleCopyAll">
+            <span class="@GlobalValues.Theme_Dialog_Icon_Class" aria-hidden="true"></span>
+            Copy all
+            <span class="@GlobalValues.Theme_Dialog_Icon_Class" aria-hidden="true">
+                @if(_allCopied){<span class="@GlobalValues.Theme_Dialog_Copied_Icon_Class"></span>}
+            </span>
+        </button>
+   </div>
+
     <div class="@GlobalValues.Theme_Dialog_Content_Class">
-    
-<pre>
-:root {
-    @foreach(var property in _cssProperties)
-    {
-        <text>@("\t")@property.PropertyName: @property.Value;@Environment.NewLine</text>
-    }
-}
-</pre>
-   
+        <h3 class="@GlobalValues.Theme_Dialog_Content_Heading_Class" >
+            <span id="@_themeHeadingID" >
+                Theme variables
+            </span>
+            <button type="button" class="@Button.Base @Button.Small" @onclick="HandleCopyTheme">
+                <span class="@GlobalValues.Theme_Dialog_Icon_Class" aria-hidden="true"></span>
+                Copy theme
+                <span class="@GlobalValues.Theme_Dialog_Icon_Class" aria-hidden="true">
+                    @if (_themeCopied)
+                    {
+                        <span class="@GlobalValues.Theme_Dialog_Copied_Icon_Class"></span>
+                    }
+                </span>
+            </button>
+        </h3>
+        <pre class="@GlobalValues.Theme_Dialog_Scroll_Region_Class" tabindex="0" role="group" aria-labelledby="@_themeHeadingID">
+            @_themePropertiesText
+        </pre>
+    </div>
+    <div class="@GlobalValues.Theme_Dialog_Content_Class">
+        <h3 class="@GlobalValues.Theme_Dialog_Content_Heading_Class" >
+            <span id="@_darkThemeHeadingID">
+                Dark theme variables
+            </span>
+           
+            <button type="button" class="@Button.Base @Button.Small" @onclick="HandleCopyDarkTheme">
+                <span class="@GlobalValues.Theme_Dialog_Icon_Class" aria-hidden="true"></span>
+                Copy dark theme
+                <span class="@GlobalValues.Theme_Dialog_Icon_Class" aria-hidden="true">
+                    @if (_darkThemeCopied)
+                    {
+                        <span class="@GlobalValues.Theme_Dialog_Copied_Icon_Class"></span>
+                    }
+                </span>
+            </button>
+        </h3>
+        <pre class="@GlobalValues.Theme_Dialog_Scroll_Region_Class" tabindex="0" role="group" aria-labelledby="@_darkThemeHeadingID">
+            @_darkThemePropertiesText
+        </pre>
     </div>
 
     <div class="@GlobalValues.Theme_Dialog_Footer_Class">
-        <button type="button" class="@Button.Base @Button.Small" @onclick="CloseDialog">Close dialog</button>
+        <button type="button" class="@Button.Base @Button.Small" @onclick="CloseDialog">
+            Close dialog
+        </button>
     </div>
 </div>
 
@@ -27,23 +69,130 @@
 
 @code {
 
-    [Inject] ModalDialogService DialogService { get; set; } = default!;
+    [Inject] ModalDialogService DialogService     { get; set; } = default!;
+    [Inject] ILiveRegionService LiveRegionService { get; set; } = default!;
+    [Inject] IJSRuntime         JSRuntime         { get; set; } = default!;
 
     [Parameter] public string DialogTitle { get; set; } = "Currently assigned CSS Variables";
 
-    [Parameter] public List<CssProperty> CssProperties { get; set; } = [];
+    [Parameter] public List<CssProperty> ThemeProperties     { get; set; } = [];
+    [Parameter] public List<CssProperty> DarkThemeProperties { get; set; } = [];
 
     private string            _dialogTitleID = Guid.Empty.ToString();
     private string            _titleText     = "Currently assigned CSS Variables";
-    private List<CssProperty> _cssProperties = [];
+
+    private List<CssProperty> _themeProperties    = [];
+    private List<CssProperty> _darkThemeProperties = [];
+
+    private CancellationTokenSource _copyThemeResetCts     = new();
+    private CancellationTokenSource _copyDarkThemeResetCts = new();
+    private CancellationTokenSource _copyAllResetCts       = new();
+
+    private bool _themeCopied     = false;
+    private bool _darkThemeCopied = false;
+    private bool _allCopied       = false;
+
+    private string _themePropertiesText     = String.Empty;
+    private string _darkThemePropertiesText = String.Empty;
+
+    private string _themeHeadingID     = Guid.NewGuid().ToString();
+    private string _darkThemeHeadingID = Guid.NewGuid().ToString();
 
     protected override void OnInitialized()
     {
         _dialogTitleID = DialogService is null ? _dialogTitleID : DialogService.GetAriaLabelledByID();
         _titleText = String.IsNullOrWhiteSpace(DialogTitle) ? "Currently assigned CSS Variables" : DialogTitle.Trim();
 
-        _cssProperties = CssProperties is null ? [] : [.. CssProperties];
+        _themeProperties     = ThemeProperties is null ? [] : [.. ThemeProperties];
+        _darkThemeProperties = DarkThemeProperties is null ? [] : [.. DarkThemeProperties];
+
+        _themePropertiesText     = BuildPropertyString(_themeProperties, ":root{", "}");
+        _darkThemePropertiesText = BuildPropertyString(_darkThemeProperties, ":root:has(#theme-toggler[aria-checked=\"true\"])", "}");
     }
+
+    private string BuildPropertyString(List<CssProperty> cssProperties, string openText, string closeText)
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.AppendLine(openText);
+        foreach(var property in cssProperties)
+        {
+            var value = $"{property.PropertyName}: {property.Value};";
+            stringBuilder.AppendLine("\t" + value);
+        }
+        stringBuilder.AppendLine(closeText);
+
+        return stringBuilder.ToString();
+    }
+
+
+    private async Task HandleCopyAll()
+    {
+        _copyAllResetCts.Cancel();
+        _copyAllResetCts.Dispose();
+        _copyAllResetCts = new CancellationTokenSource();
+
+        await CopyToClipboard(_themePropertiesText + "\r\n" + _darkThemePropertiesText);
+        await MakeAnnouncement("All theme properties copied", "Copy all button");
+        _allCopied = true;
+        StateHasChanged();
+
+        try
+        {
+            await Task.Delay(2000, _copyAllResetCts.Token);
+            _allCopied = false;
+            StateHasChanged();
+        }
+        catch (TaskCanceledException) { }
+
+    }
+
+    private async Task HandleCopyTheme()
+    {
+        _copyThemeResetCts.Cancel();
+        _copyThemeResetCts.Dispose();
+        _copyThemeResetCts = new CancellationTokenSource();
+
+        await CopyToClipboard(_themePropertiesText);
+        await MakeAnnouncement("Theme properties copied", "Copy theme button");
+        _themeCopied = true;
+        StateHasChanged();
+        try
+        {
+            await Task.Delay(2000, _copyThemeResetCts.Token);
+            _themeCopied = false;
+            StateHasChanged();
+        }
+        catch (TaskCanceledException) { }
+
+    }
+    private async Task HandleCopyDarkTheme()
+    {
+        _copyDarkThemeResetCts.Cancel();
+        _copyDarkThemeResetCts.Dispose();
+        _copyDarkThemeResetCts = new CancellationTokenSource();
+
+        await CopyToClipboard(_darkThemePropertiesText);
+        await MakeAnnouncement("Dark theme properties copied", "Copy dark theme button");
+        
+        _darkThemeCopied = true;
+        StateHasChanged();
+        try
+        {
+            await Task.Delay(2000, _copyDarkThemeResetCts.Token);
+            _darkThemeCopied = false;
+            StateHasChanged();
+        }
+        catch (TaskCanceledException) { }
+    }
+
+    private async Task MakeAnnouncement(string announcementText, string trigger)
+
+        => await LiveRegionService.MakeAnnouncement(new(announcementText, AnnouncementType.Info, trigger), true);
+
+    private async Task CopyToClipboard(string textToCopy)
+
+        => await JSRuntime.InvokeVoidAsync("navigator.clipboard.writeText", textToCopy);
 
     private async Task CloseDialog()
     {

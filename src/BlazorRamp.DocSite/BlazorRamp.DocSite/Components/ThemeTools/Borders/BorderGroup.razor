@@ -79,7 +79,7 @@
         if (false == _borderRadii.Contains(borderRadius))
         {
             _borderRadii.Add(borderRadius);
-            _storedPropertyValues.AddRange(borderRadius.GetStoredPropertyValues());
+            _storedPropertyValues.AddRange(borderRadius.GetStoredBorderProperties());
             StateHasChanged();
         }
     }
@@ -97,7 +97,7 @@
     {
         _storedPropertyValues.Clear();
 
-        foreach (var borderRadius in _borderRadii) _storedPropertyValues.AddRange(borderRadius.GetStoredPropertyValues());
+        foreach (var borderRadius in _borderRadii) _storedPropertyValues.AddRange(borderRadius.GetStoredBorderProperties());
 
         StateHasChanged();
     }
@@ -127,7 +127,7 @@
         return cssProperties;
     }
 
-    internal List<CssProperty> GetStoredProperties()
+    internal List<CssProperty> GetStoredBorderProperties()
 
         => [.. _storedPropertyValues];
 

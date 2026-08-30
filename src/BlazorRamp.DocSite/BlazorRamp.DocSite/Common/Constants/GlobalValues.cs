@@ -20,7 +20,12 @@ public class GlobalValues
 
     public const string JS_Theme_Get_Comp_Style_Properties_Func = "getComputedStyleProperties"; //takes and returns List<CssProperty>
 
+    public const string JS_Theme_Get_Raw_Properties_From_Stylesheet = "getRawPropertiesFromStylesheet";
+
     public const string JS_Theme_Apply_Opacity_To_Hex_Value = "applyOpacityToHex";//(foregroundHex: string, opacityValue: number = 1, backgroundHex: string = '#ffffff'):
+
+    public const string Stylesheet_Name = "main.min.css";
+    public const string Stylesheet_Dark_Theme_Selector = ":root:has(#theme-toggler[aria-checked=\"true\"])";
 
     public const string Info_Box_Class = "info-box";
     public const string Info_Box_Heading_Class = $"{Info_Box_Class}__heading";
@@ -244,12 +249,15 @@ public class GlobalValues
 
 
 
-    public const string Theme_Dialog_Class        = "theme-dialog";
-    public const string Theme_Dialog_Title_Class  = $"{Theme_Dialog_Class}__title";
-    public const string Theme_Dialog_Content_Class = $"{Theme_Dialog_Class}__content";
-    public const string Theme_Dialog_Footer_Class = $"{Theme_Dialog_Class}__footer";
-
-
+    public const string Theme_Dialog_Class                 = "theme-dialog";
+    public const string Theme_Dialog_Title_Class           = $"{Theme_Dialog_Class}__title";
+    public const string Theme_Dialog_Title_Tools_Class     = $"{Theme_Dialog_Class}__tools";
+    public const string Theme_Dialog_Content_Heading_Class = $"{Theme_Dialog_Class}__content-heading";
+    public const string Theme_Dialog_Content_Class         = $"{Theme_Dialog_Class}__content";
+    public const string Theme_Dialog_Scroll_Region_Class   = $"{Theme_Dialog_Class}__scroll-region";
+    public const string Theme_Dialog_Footer_Class          = $"{Theme_Dialog_Class}__footer";
+    public const string Theme_Dialog_Icon_Class            = $"{Theme_Dialog_Class}__icon";
+    public const string Theme_Dialog_Copied_Icon_Class     = $"{Theme_Dialog_Class}__copied-icon";
 
 
 }

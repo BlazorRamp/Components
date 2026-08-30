@@ -107,4 +107,37 @@ const removeStyleProperty = (variableName: string): void => {
     document.documentElement.style.removeProperty(variableName);
 };
 
-export { setStyleProperty, setElementVariable, getComputedStyleProperty, removeStyleProperty, getResolvedHexColourValue, applyOpacityToHex, getComputedStyleProperties };
+
+const getRawPropertiesFromStylesheet = (styleSheetName: string, selector: string): CssProperty[] => {
+
+    const cssProperties: CssProperty[] = [];
+
+    const styleSheet = Array.from(document.styleSheets).find(styleSheet => styleSheet.href?.includes(styleSheetName));
+
+    if (!styleSheet) return cssProperties;
+    
+
+    let rules: CSSRuleList;
+    try {
+        rules = styleSheet.cssRules;
+    }
+    catch { return cssProperties; }
+      
+    for (const rule of Array.from(rules)) {
+        if (rule instanceof CSSStyleRule && rule.selectorText === selector) {
+            for (const propName of Array.from(rule.style)) {
+                cssProperties.push({
+                    propertyName: propName,
+                    value: rule.style.getPropertyValue(propName).trim()
+                });
+            }
+        }
+    }
+
+    return cssProperties;
+};
+
+export {
+    setStyleProperty, setElementVariable, getComputedStyleProperty, removeStyleProperty,
+    getResolvedHexColourValue, applyOpacityToHex, getComputedStyleProperties, getRawPropertiesFromStylesheet
+};

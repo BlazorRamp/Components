@@ -1,10 +1,18 @@
-﻿.theme-dialog {
-    background-color: var(--br-comp-all-pane-surface-background);
+﻿
+@use "_svg-icons" as *;
 
+.theme-dialog {
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+    min-height: 0;
+    background-color: var(--br-comp-all-pane-surface-background);
+    padding-inline: var(--br-unit-space-7);
+    overflow: hidden;
 
     &__title {
-        padding-inline: var(--br-unit-space-9);
-        padding-block: var(--br-unit-space-5);
+        flex: 0 0 auto;
+        padding-top: var(--br-unit-space-5);
         text-align: center;
         margin: 0;
         color: var(--br-comp-all-area-header-text);
@@ -12,21 +20,74 @@
         font-weight: var(--br-comp--all-area-header-font-weight);
     }
 
-    &__content {
-        border-block: 1px solid var(--br-comp-all-divider-colour);
+    &__tools {
+        flex: 0 0 auto;
+        background-color: var(--br-comp-all-pane-surface-background);
         padding-block: var(--br-unit-space-5);
-        padding-inline: var(--br-unit-space-9);
+        align-self: end;
+    }
+
+    &__icon {
+        min-width: var(--br-unit-space-7);
+    }
+
+    &__copied-icon {
+        font-weight: bold;
+        font-size: 1.25rem;
+        @include tick-icon;
+        vertical-align: bottom;
+    }
+
+    &__content-heading {
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    &__content {
+        flex: 1 1 auto;
+        min-height: 0;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        padding: var(--br-unit-space-5);
         color: var(--br-comp-all-area-content-text);
+        background-color: var(--br-comp-all-area-content-background);
         font-family: var(--br-comp-all-area-content-font-family);
         font-size: var(--br-comp-all-area-content-font-size);
+        border-radius: var(--br-group-dialog-area-content-border-radius);
+
+        &:not(:last-of-type) {
+            margin-bottom: var(--br-unit-space-9);
+        }
+    }
+
+    &__scroll-region {
         overflow-y: auto;
-        max-height: 60vh;
+        overflow-x: auto;
+        max-height: 30vh;
+        min-height: 0;
+        flex: 1 1 auto;
+        border-radius: var(--br-group-dialog-area-content-border-radius);
+
+        &:focus-visible {
+            outline-offset: var(--br-comp-all-outline-offset);
+            outline-color: var(--br-comp-all-outline-colour);
+            outline-style: var(--br-comp-all-outline-style);
+            outline-width: var(--br-comp-all-outline-width);
+        }
     }
 
     &__footer {
+        flex: 0 0 auto;
         display: flex;
         justify-content: end;
-        padding-inline: var(--br-unit-space-9);
         padding-block: var(--br-unit-space-5);
+
+        > button {
+            padding-inline: var(--br-unit-space-9);
+        }
     }
 }

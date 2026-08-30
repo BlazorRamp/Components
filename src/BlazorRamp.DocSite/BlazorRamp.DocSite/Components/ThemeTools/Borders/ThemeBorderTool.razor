@@ -67,11 +67,11 @@
         return cssProperties;
     }
 
-    internal List<CssProperty> GetStoredProperties()
+    internal List<CssProperty> GetStoredBorderProperties()
     {
         List<CssProperty> cssProperties = [];
 
-        foreach (var borderGroup in _borderGroups) cssProperties.AddRange(borderGroup.GetStoredProperties());
+        foreach (var borderGroup in _borderGroups) cssProperties.AddRange(borderGroup.GetStoredBorderProperties());
 
         return cssProperties;
     }
