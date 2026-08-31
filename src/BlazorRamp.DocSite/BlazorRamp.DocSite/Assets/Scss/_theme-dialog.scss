@@ -58,11 +58,16 @@
         font-family: var(--br-comp-all-area-content-font-family);
         font-size: var(--br-comp-all-area-content-font-size);
         border-radius: var(--br-group-dialog-area-content-border-radius);
-
-        &:not(:last-of-type) {
+        /*        &:not(:last-of-type) {
             margin-bottom: var(--br-unit-space-9);
-        }
+        }*/
+    
+        &:nth-child(1 of .theme-dialog__content){
+            margin-bottom: var(--br-unit-space-9);
+        }    
     }
+
+
 
     &__scroll-region {
         overflow-y: auto;

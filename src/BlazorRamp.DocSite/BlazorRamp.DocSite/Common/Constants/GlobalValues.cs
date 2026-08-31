@@ -1,4 +1,5 @@
 ﻿using BlazorRamp.DocSite.Pages;
+using Microsoft.AspNetCore.Components;
 using System.Data.Common;
 using System.Drawing;
 
@@ -49,10 +50,13 @@ public class GlobalValues
     public const string Main_Nav_Heading_Frameworks = "Frameworks";
     public const string Main_Nav_Heading_Services   = "Services";
     public const string Main_Nav_Heading_Components = "Components";
+
+    public const string Main_Nav_Heading_CSS_Classes = "CSS Classes";
     public const string Main_Nav_Heading_FAQs       = "FAQs";
 
     public const string Root_path_Getting_Started = "/";
     public const string Root_path_Components = "/components";
+    public const string Root_path_CSS_Classes = "/css-classes";
     public const string Root_path_Theming = "/theming";
     public const string Root_path_Services = "/services";
     public const string Root_path_Frameworks = "/frameworks";
@@ -65,7 +69,7 @@ public class GlobalValues
     public const string Common_Page_Path_Installation   = "installation";
     public const string Common_Page_Path_Accessibility  = "accessibility";
     public const string Common_Page_Path_Usage          = "usage";
-    public const string Common_Page_Path_CSS_Variables  = "css-variables";
+    public const string Common_Page_Path_CSS_Variables = "css-variables";
     public const string Common_Page_Path_Questions      = "questions";
     public const string Common_Page_Path_Sandbox        = "sandbox";
     public const string Common_Page_Path_Colours        = "colours";
@@ -158,6 +162,8 @@ public class GlobalValues
     public const string Component_Path_Part_NavGroup        = "nav-group";
     public const string Component_Path_Part_Usage           = "usage";
 
+
+    public const string CSS_Classes_Name = "CSS Classes";
 
     public const string Service_Name_Live_Region        = "Live Region";
     public const string Service_Path_Part_Live_Region   = "live-region";

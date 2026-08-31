@@ -5,10 +5,6 @@ public class ThemingSnippets
     public const string Dark_Theme_Setting = """
         :root:has(#theme-toggler[aria-checked="true"]) {
             --br-kbd-background-colour: var(--br-unit-colour-info-darker);
-            --br-info-box-alternate-heading-text: var(--br-unit-colour-accent-light);
-            --br-code-block-background-colour: var(--br-unit-colour-secondary-darker);
-            --br-code-block-text: var(--br-unit-colour-info-lighter);
-            //Below are the component variables I changed for the dark theme.
             --br-comp-switch-thumb-Hover-colour: var(--br-unit-colour-primary-20);
             --br-comp-switch-thumb-text: var(--br-unit-colour-primary-30);
             --br-comp-all-thumb-colour: var(--br-unit-colour-neutral-80);

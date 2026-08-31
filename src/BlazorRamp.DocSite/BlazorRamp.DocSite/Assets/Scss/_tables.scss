@@ -46,7 +46,7 @@
     & td {
         font-size: var(--br-unit-font-size-label);
         font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
-        color: var(--br-code-block-text);
+        color: var(--br-cls-accent-text);
         border-top: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
         width: 33%;
         border-left: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
@@ -57,7 +57,7 @@
 
         &:nth-child(2) {
             font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
-            color: var(--br-code-block-text);
+            color: var(--br-cls-accent-text);
         }
 
         &:last-child {
@@ -136,7 +136,7 @@
 
     & td {
         font-size: var(--br-unit-font-size-label);
-        color: var(--br-code-block-text);
+        color: var(--br-cls-accent-text);
         border-top: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);
         padding: var(--br-unit-space-3);
         border-left: var(--br-unit-border-1) solid var(--br-unit-colour-neutral-30);

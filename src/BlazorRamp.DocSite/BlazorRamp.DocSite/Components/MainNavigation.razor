@@ -190,6 +190,11 @@
         <NavGroupLink Href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Sandbox}")" VisuallyHiddenPrefix="@GlobalValues.Theming_Name" LinkText="@GlobalValues.Common_Page_Title_Sandbox" SvgIcon="--svg-sandbox-icon" />
 
     </NavGroup>
+    <h2 id="css-classes-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_CSS_Classes</h2>
+    <NavGroup AriaLabelledBy="css-classes-section">
+        <NavSeparator />
+        <NavGroupLink Href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.CSS_Classes_Name" LinkText="@GlobalValues.Common_Page_Title_Overview" SvgIcon="--svg-overview-icon" />
+    </NavGroup>
 
     <h2 id="faq-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_FAQs</h2>
     <NavGroup AriaLabelledBy="faq-section">
