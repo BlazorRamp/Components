@@ -25,6 +25,8 @@
 
     [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
 
+    [Inject] private ILiveRegionService LiveRegionService { get; set; } = default!;
+
     private List<BorderGroup> _borderGroups = [];
 
     private string _titleText = "Theme border controls";
@@ -52,6 +54,8 @@
     internal async Task Reset()
     {
         foreach (var borderGroup in _borderGroups) await borderGroup.Reset();
+
+        await MakeAnnouncement("All borders reset to default values", _resetText);
     }
 
     internal int CurrentHeadingLevelIndex()
@@ -80,6 +84,10 @@
     {
         var cssProperties = await GetLiveBorderProperties();
     }
+
+    private async Task MakeAnnouncement(string announcementText, string trigger)
+
+        => await LiveRegionService.MakeAnnouncement(new(announcementText, AnnouncementType.Info, trigger), true);
 
     private RenderFragment GetHeadingFragment(ThemeToolHeadingLevel level, string title, string? className = null)
 

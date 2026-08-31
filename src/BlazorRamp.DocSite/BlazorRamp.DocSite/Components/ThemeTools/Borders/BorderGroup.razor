@@ -48,6 +48,8 @@
 
     private List<CssProperty> _storedPropertyValues = [];
 
+    internal string TitleText { get; private set; } = default!;
+
 
     private RenderFragment GetBorderInformation(string groupName)
 
@@ -72,6 +74,7 @@
     protected override void OnParametersSet()
     {
         _titleText = String.IsNullOrWhiteSpace(Title) ? "Radius Group" : Title.Trim();
+        TitleText = _titleText;
     }
 
     internal void AddBorderRadius(BorderRadius borderRadius)
@@ -88,9 +91,9 @@
 
       => _borderRadii.Remove(borderRadius);
 
-    internal async Task Reset()
+    internal async Task Reset(bool parentRequest = true)
     {
-        foreach (var borderRadius in _borderRadii) await borderRadius.Reset();
+        foreach (var borderRadius in _borderRadii) await borderRadius.Reset(parentRequest);
     }
 
     internal void NotifyPropertyChanges()

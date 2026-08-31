@@ -15,12 +15,12 @@
 
     [CascadingParameter]        public BorderGroup        Parent        { get; set; } = default!;
 
-    [Parameter, EditorRequired] public string             LabelText     { get; set; } = "Radius";
-    [Parameter]                 public string             ResetText     { get; set; } = "Reset";
-    [Parameter]                 public int                MaxRangeValue { get; set; } = 5;
-    [Parameter]                 public  List<CssProperty> CssProperties { get; set; } = [];
-    [Inject]                    private ThemeService      ThemeService  { get; set; } = default!;
-
+    [Parameter, EditorRequired] public string              LabelText     { get; set; } = "Radius";
+    [Parameter]                 public string              ResetText     { get; set; } = "Reset";
+    [Parameter]                 public int                 MaxRangeValue { get; set; } = 5;
+    [Parameter]                 public  List<CssProperty>  CssProperties { get; set; } = [];
+    [Inject]                    private ThemeService       ThemeService  { get; set; } = default!;
+    [Inject]                    private ILiveRegionService LiveRegionService { get; set; } = default!;
 
     private List<CssProperty> _cssProperties = [];
     private string            _resetText     = "Reset";
@@ -89,13 +89,15 @@
 
         => await Reset();
 
-    internal async Task Reset()
+    internal async Task Reset(bool parentRequest = false)
     {
         foreach (var property in _cssProperties) await ThemeService.RemovePropertyValue(property.PropertyName);
 
         await GetSetPropertyValues(_cssProperties);
 
         _radiusIndex = _cssProperties.Count == 0 ? 0 : VariableToIndex(_cssProperties.First().Value);
+
+        if (parentRequest == false) await MakeAnnouncement($"{Parent.TitleText}, {_labelText} has been reset", $"{_resetText} button");
 
         Parent.NotifyPropertyChanges();
     }
@@ -104,8 +106,11 @@
 
         => await ThemeService.GetPropertyValue(propertyName);
    
+    private async Task MakeAnnouncement(string announcementText, string trigger)
 
-    
+        => await LiveRegionService.MakeAnnouncement(new(announcementText, AnnouncementType.Info, trigger), true);
+
+
     private static int RadiusToIndex(string radiusValue)
 
         => radiusValue switch
