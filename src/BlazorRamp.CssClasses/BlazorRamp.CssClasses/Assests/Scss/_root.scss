@@ -1,14 +1,21 @@
 ﻿:root {
-    
-    --br-code-font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    --br-cls-code-font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    --br-cls-kbd-font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
     --br-cls-neutral-10: var(--br-unit-colour-neutral-10);
     --br-cls-neutral-20: var(--br-unit-colour-neutral-20);
+    //
     --br-cls-secondary-lighter: var(--br-unit-colour-secondary-lighter);
     --br-cls-accent-lighter: var(--br-unit-colour-accent-lighter);
+    --br-cls-neutral-lighter: var(--br-unit-colour-neutral-10);
+    --br-cls-primary-lighter: var(--br-unit-colour-primary-10);
+    //
     --br-cls-secondary-text: var(--br-unit-colour-secondary-text-dark);
     --br-cls-accent-text: var(--br-unit-colour-accent-text-dark);
     --br-cls-primary-text: var(--br-unit-colour-primary-text-dark);
+    --br-cls-neutral-text: var(--br-unit-colour-neutral-70);
+    //
     --br-cls-primary-heading-text: var(--br-unit-colour-primary-text-dark);
     --br-cls-secondary-heading-text: var(--br-unit-colour-secondary-text-dark);
-    --br-cls-accent-heading-text: var(--br-unit-colour-accent-text-light);
+    --br-cls-accent-heading-text: var(--br-unit-colour-accent-text-dark);
+    --br-cls-neutral-heading-text: var(--br-unit-colour-neutral-70);
 }

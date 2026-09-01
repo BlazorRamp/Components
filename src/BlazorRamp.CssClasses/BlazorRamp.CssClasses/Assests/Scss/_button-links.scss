@@ -8,7 +8,8 @@
     white-space: nowrap;
     margin: 0;
     padding: 0;
-    min-width: minmax(var(--br-unit-wcag-target-2a), fit-content);
+    min-width: var(--br-unit-wcag-target-2a);
+    width: fit-content;
     min-height: calc(var(--br-unit-wcag-target-2a) * 1.5);
     font-family: var(--br-comp-history-button-font-family);
     font-size: var(--br-comp-all-button-font-size);
@@ -47,21 +48,24 @@
 
     @include ButtonBase;
 
-    &--full-width{
-        width:100%;
+    &--full-width {
+        width: 100%;
     }
 
     &--small {
-        min-height: var(--br-unit-wcag-target-2a);
         padding-block: var(--br-unit-space-2);
+        padding-inline: var(--br-unit-space-3);
+        min-height: var(--br-unit-wcag-target-2a);
     }
 
     &--large {
-        min-height: calc(var(--br-unit-wcag-target-2a) * 2);
+        padding-block: var(--br-unit-space-4);
+        padding-inline: var(--br-unit-space-5)
     }
 
     &--extra-large {
-        min-height: calc(var(--br-unit-wcag-target-2a) * 2.25);
+        padding-block: var(--br-unit-space-5);
+        padding-inline: var(--br-unit-space-6);
     }
 }
 

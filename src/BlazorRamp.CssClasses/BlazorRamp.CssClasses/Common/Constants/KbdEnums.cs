@@ -1,14 +1,15 @@
 ﻿namespace BlazorRamp.CssClasses.Common.Constants;
 
-public enum CodeSpanFontSize : int
+public enum KbdFontSize : int
 {
     Label = 0,
     Normal = 1,
     Two = 2,
-    Three = 3
+    Three = 3,
 
 }
-public enum CodeSpanScheme : int
+
+public enum KbdScheme : int
 {
     Inverted = 0,
     Neutral = 1,

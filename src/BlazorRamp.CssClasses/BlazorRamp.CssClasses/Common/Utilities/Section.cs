@@ -53,7 +53,7 @@ public static class Section
 
     public static class Heading
     {
-        public const string Base = "br-section__heading";
+        public const string Base = $"{Section.Base}__heading";
         public const string MobileCentred = $"{Base}--mobile-centred";
 
         public static string Text(SectionHeadingText sectionHeadingText)

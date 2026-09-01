@@ -1,6 +1,7 @@
 ﻿@use "_configuration" as *;
 @use "_functions" as *;
 :root {
+    --svg-css-class-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='black' d='M5 1a3 3 0 0 0-3 3v1.146A2 2 0 0 1 .894 6.935l-.341.17v1.79l.341.17A2 2 0 0 1 2 10.855V12a3 3 0 0 0 3 3h2v-2H5a1 1 0 0 1-1-1v-1.146A4 4 0 0 0 2.803 8A4 4 0 0 0 4 5.146V4a1 1 0 0 1 1-1h2V1zm6 14a3 3 0 0 0 3-3v-1.146a2 2 0 0 1 1.106-1.789l.341-.17v-1.79l-.341-.17A2 2 0 0 1 14 5.145V4a3 3 0 0 0-3-3H9v2h2a1 1 0 0 1 1 1v1.146A4 4 0 0 0 13.197 8A4 4 0 0 0 12 10.854V12a1 1 0 0 1-1 1H9v2z'/%3E%3C/svg%3E");
     --svg-filter-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M10 20v-7L2.95 4h18.1L14 13v7z'/%3E%3C/svg%3E");
     --svg-food-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M3.743 2.816A.88.88 0 0 1 5.5 2.88v4.494a.625.625 0 1 0 1.25 0V2.75a.75.75 0 0 1 1.5 0v4.624a.625.625 0 1 0 1.25 0V2.88a.88.88 0 0 1 1.757-.064C11.3 3.428 11.5 6.37 11.5 8c0 1.35-.67 2.544-1.692 3.267c-.216.153-.268.315-.263.397c.123 1.878.455 7.018.455 7.833a2.5 2.5 0 0 1-5 0c0-.816.332-5.955.455-7.833c.005-.082-.047-.244-.263-.397A4 4 0 0 1 3.5 8c0-1.63.2-4.572.243-5.184M13 7.75A5.75 5.75 0 0 1 18.75 2a.75.75 0 0 1 .75.75v8.5c0 .318.106 1.895.225 3.642l.005.083c.13 1.908.27 3.983.27 4.522a2.5 2.5 0 0 1-5 0c0-.514.128-2.611.252-4.534c.062-.971.125-1.912.172-2.61l.023-.353h-.697A1.75 1.75 0 0 1 13 10.25z'/%3E%3C/svg%3E");
     --svg-airplane-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='m9.983 20.048l-2.09-3.946l-3.966-2.11l1.083-1.077l3.452.587l3.05-3.05L4.01 7.25l1.388-1.38l9.125 1.565l3.12-3.139q.42-.421 1.03-.421t1.03.421q.422.421.422 1.028t-.421 1.028l-3.145 3.125l1.566 9.12l-1.394 1.394l-3.189-7.502l-3.05 3.05l.573 3.427z'/%3E%3C/svg%3E");
@@ -30,9 +31,8 @@
     --br-unit-colour-primary: #298a00;
     --br-kbd-background-colour: var(--br-unit-colour-info-lighter);
     //--br-code-block-text: var(--br-unit-colour-accent-text-dark);
-
     //For BlazorRamp.CssClass
-    --br-code-font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    --br-cls-code-font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
 }
 
     :root:has(#theme-toggler[aria-checked="true"]) {
@@ -73,14 +73,20 @@
         //For BlazorRamp.CssClass
         --br-cls-neutral-10: var(--br-unit-colour-neutral-80);
         --br-cls-neutral-20: var(--br-unit-colour-neutral-70);
-        --br-cls-secondary-lighter: var(--br-unit-colour-secondary-darker);
         --br-cls-accent-lighter: var(--br-unit-colour-accent-darker);
+        --br-cls-secondary-lighter: var(--br-unit-colour-secondary-darker);
+        --br-cls-neutral-lighter: var(--br-unit-colour-neutral-70);
+        --br-cls-primary-lighter: var(--br-unit-colour-primary-70);
+        //
         --br-cls-secondary-text: var(--br-unit-colour-secondary-text-light);
         --br-cls-accent-text: var(--br-unit-colour-accent-text-light);
         --br-cls-primary-text: var(--br-unit-colour-primary-text-light);
-        --br-cls-primary-heading-text: var(--br-unit-colour-primary-5);
+        --br-cls-neutral-text: var(--br-unit-colour-neutral-10);
+        //
+        --br-cls-primary-heading-text: var(--br-unit-colour-primary-text-light);
         --br-cls-secondary-heading-text: var(--br-unit-colour-secondary-light);
         --br-cls-accent-heading-text: var(--br-unit-colour-accent-light);
+        --br-cls-neutral-heading-text: var(--br-unit-colour-neutral-10);
     }
 *,
 *::before,

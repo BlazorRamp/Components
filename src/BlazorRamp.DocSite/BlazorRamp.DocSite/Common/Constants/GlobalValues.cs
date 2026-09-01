@@ -95,6 +95,8 @@ public class GlobalValues
     public const string Common_Page_Title_Colours       = "Colours";
     public const string Common_Page_Title_Sandbox        = "Sandbox";
     public const string Common_Page_Title_Core_Variables = "Core CSS Variables";
+
+    public const string Common_Page_Title_Class_Variables = "Variables";
     public const string Common_Page_Title_Shared_CSS     = "Shared CSS Variables";
     public const string Common_Page_Title_FAQ_Questions  = "Frequently Asked Questions";
 
@@ -163,7 +165,18 @@ public class GlobalValues
     public const string Component_Path_Part_Usage           = "usage";
 
 
-    public const string CSS_Classes_Name = "CSS Classes";
+    public const string CSS_Path_Part_Buttons = "buttons";
+    public const string CSS_Path_Part_CodeSpan = "codespan";  
+    public const string CSS_Path_Part_Kbd = "kbd";   
+    public const string CSS_Path_Part_Section = "section";
+
+
+    public const string CSS_Name_Buttons  = "Buttons";
+    public const string CSS_Name_CodeSpan = "CodeSpan";
+    public const string CSS_Name_Kbd     = "Kbd";    
+    public const string CSS_Name_Section  = "Section";
+
+    public const string CSS_Name_Classes = "CSS Classes";
 
     public const string Service_Name_Live_Region        = "Live Region";
     public const string Service_Path_Part_Live_Region   = "live-region";

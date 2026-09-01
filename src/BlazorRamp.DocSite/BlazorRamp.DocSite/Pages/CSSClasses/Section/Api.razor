@@ -1,0 +1,23 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Section}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.CSS_Name_Section @GlobalValues.Common_Page_Title_Api</PageTitle>
+
+<h1>@GlobalValues.CSS_Name_Section @GlobalValues.Common_Page_Title_Api . . . In Progress . . .</h1>
+
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Kbd}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_Kbd - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_FAQS}/{GlobalValues.Common_Page_Path_Questions}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Faqs_Name - @GlobalValues.Common_Page_Title_FAQ_Questions</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}
+

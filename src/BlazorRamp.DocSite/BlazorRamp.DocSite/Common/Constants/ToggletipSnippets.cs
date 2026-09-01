@@ -15,9 +15,9 @@ public class ToggletipSnippets
         ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" ToggleTipSize="ToggleTipSize.Small">
         <h3 id="toggletip-demo" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h3>
         <ul aria-labelledby="toggletip-demo">
-            <li><kbd>Space</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
-            <li><kbd>Enter</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
-            <li><kbd>Escape</kbd> - closes the toggletip</li>
+            <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Space</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
+            <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Enter</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
+            <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Escape</kbd> - closes the toggletip</li>
         </ul>
 
         <p>

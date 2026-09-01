@@ -193,7 +193,22 @@
     <h2 id="css-classes-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_CSS_Classes</h2>
     <NavGroup AriaLabelledBy="css-classes-section">
         <NavSeparator />
-        <NavGroupLink Href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.CSS_Classes_Name" LinkText="@GlobalValues.Common_Page_Title_Overview" SvgIcon="--svg-overview-icon" />
+        <NavGroupLink Href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.CSS_Name_Classes" LinkText="@GlobalValues.Common_Page_Title_Overview" SvgIcon="--svg-overview-icon" />
+        <NavGroupLink Href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.Common_Page_Path_CSS_Variables}")" VisuallyHiddenPrefix="@GlobalValues.CSS_Name_Classes" LinkText="@GlobalValues.Common_Page_Title_Class_Variables" SvgIcon="--svg-api-icon" />
+        <NavSection Title="@GlobalValues.CSS_Name_Classes" SvgIcon="--svg-css-class-icon" NoIndent="true">
+            <NavSection Title="@GlobalValues.CSS_Name_Buttons">
+                <NavGroupLink Href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Buttons}/{GlobalValues.Common_Page_Path_Api}")" VisuallyHiddenPrefix="@GlobalValues.CSS_Name_Buttons" LinkText="@GlobalValues.Common_Page_Title_Api" SvgIcon="--svg-api-icon" />
+            </NavSection>
+            <NavSection Title="@GlobalValues.CSS_Name_CodeSpan">
+                <NavGroupLink Href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_CodeSpan}/{GlobalValues.Common_Page_Path_Api}")" VisuallyHiddenPrefix="@GlobalValues.CSS_Name_CodeSpan" LinkText="@GlobalValues.Common_Page_Title_Api" SvgIcon="--svg-api-icon" />
+            </NavSection>
+            <NavSection Title="@GlobalValues.CSS_Name_Kbd">
+                <NavGroupLink Href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Kbd}/{GlobalValues.Common_Page_Path_Api}")" VisuallyHiddenPrefix="@GlobalValues.CSS_Name_Kbd" LinkText="@GlobalValues.Common_Page_Title_Api" SvgIcon="--svg-api-icon" />
+            </NavSection>
+            <NavSection Title="@GlobalValues.CSS_Name_Section">
+                <NavGroupLink Href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Section}/{GlobalValues.Common_Page_Path_Api}")" VisuallyHiddenPrefix="@GlobalValues.CSS_Name_Section" LinkText="@GlobalValues.Common_Page_Title_Api" SvgIcon="--svg-api-icon" />
+            </NavSection>
+        </NavSection>
     </NavGroup>
 
     <h2 id="faq-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_FAQs</h2>
