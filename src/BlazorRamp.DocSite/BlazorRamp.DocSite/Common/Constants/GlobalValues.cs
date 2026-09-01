@@ -28,11 +28,6 @@ public class GlobalValues
     public const string Stylesheet_Name = "main.min.css";
     public const string Stylesheet_Dark_Theme_Selector = ":root:has(#theme-toggler[aria-checked=\"true\"])";
 
-    public const string Info_Box_Class = "info-box";
-    public const string Info_Box_Heading_Class = $"{Info_Box_Class}__heading";
-    public const string Info_Box_Coloured_Modifier = $"{Info_Box_Class}--coloured";
-    public const string Info_Box_Heading_Primary_Modifier = $"{Info_Box_Heading_Class}--primary";
-
     public const string Main_Navigation_Aria_Title = "Main Menu";
     public const string Main_Navigation_ID = "main-navigation";
     public const string Main_Navigation_Class = "main-navigation";
@@ -96,7 +91,7 @@ public class GlobalValues
     public const string Common_Page_Title_Sandbox        = "Sandbox";
     public const string Common_Page_Title_Core_Variables = "Core CSS Variables";
 
-    public const string Common_Page_Title_Class_Variables = "Variables";
+    public const string Common_Page_Title_Variables = "Variables";
     public const string Common_Page_Title_Shared_CSS     = "Shared CSS Variables";
     public const string Common_Page_Title_FAQ_Questions  = "Frequently Asked Questions";
 
@@ -175,6 +170,8 @@ public class GlobalValues
     public const string CSS_Name_CodeSpan = "CodeSpan";
     public const string CSS_Name_Kbd     = "Kbd";    
     public const string CSS_Name_Section  = "Section";
+
+    public const string CSS_Name_CSS_Classes = "CSS Classes";
 
     public const string CSS_Name_Classes = "Classes";
 

@@ -1,9 +1,110 @@
 ﻿@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.Common_Page_Path_Overview}")]
 
-<PageTitle>@GlobalValues.CSS_Name_Classes @GlobalValues.Common_Page_Title_Overview</PageTitle>
+<PageTitle>@GlobalValues.CSS_Name_CSS_Classes @GlobalValues.Common_Page_Title_Overview</PageTitle>
 
-<h1>@GlobalValues.CSS_Name_Classes @GlobalValues.Common_Page_Title_Overview . . . In Progress . . .</h1>
+<h1>@GlobalValues.CSS_Name_CSS_Classes @GlobalValues.Common_Page_Title_Overview</h1>
 
+<p>
+    <span class="@CodeSpan.Base">BlazorRamp.CssClasses</span> is a NuGet package of plain, framework-free CSS classes for building page content, layout, and general-purpose UI that 
+    sits alongside your Blazor Ramp components, without needing to be a component itself.
+</p>
+<p>
+    Unlike the rest of Blazor Ramp, this package contains no Blazor components. There are no .razor files, no parameters, no render fragments. It is pure CSS, distributed with a small, optional C# API 
+    that gives you strongly-typed access to the class names, so you don't have to type or remember Block Element Modifier <b>(BEM)</b> strings by hand.
+</p>
+<h2>Why does it exist?</h2>
+<p>
+    Blazor Ramp components are styled entirely through CSS custom properties defined in BlazorRamp.Core - there are no component class parameters, and every visual aspect of every component can be re-themed 
+    by changing a variable.
+</p>
+<p>
+    This documentation site needed the same thing for its own content: sections, headings, and general page layout that responded live to the same theming tools (colour sliders, the border radius tool, and so on) 
+    used to preview component theming. Rather than keep a set of one-off, undocumented site-only CSS classes that nobody outside the project could use, those classes were extracted into their own package, built on the 
+    same token layers as the components, and published for anyone to use.
+</p>
+
+<h2>Design principles</h2>
+
+<p>
+    <strong>No third-party CSS frameworks, no build step requirements.</strong> Blazor Ramp doesn't use any third party libraries and <span class="@CodeSpan.Base">BlazorRamp.CssClasses</span> follows the same philosophy. You don't need SASS or
+    a CSS pre-processor to consume the package - the compiled CSS just works.
+</p>
+<p>
+    <strong>Same tokens, same theme, one source of truth.</strong> Every class in this package is built from the same  <span class="@CodeSpan.Base">--br-unit-*</span> primitive tokens and reacts to the same theming layers as the components in 
+     <span class="@CodeSpan.Base">BlazorRamp.Core</span>. Change a colour or radius variable once, and both your components and your CSS-Classes-styled content update together. There is nothing to keep in sync manually.
+</p>
+<p>
+    <strong>BEM naming, consistently applied.</strong> Every class follows BEM (Block, Element, Modifier) conventions: a block <span class="@CodeSpan.Base">(br-section)</span> optional elements <span class="@CodeSpan.Base">(br-section__heading)</span>,
+    and modifiers for variants (br-section--bordered). This keeps class names predictable and makes the relationship between related classes explicit, whether you're reading the CSS or the generated HTML.
+</p>
+<p>
+    <strong>A strongly-typed C# API, not just class strings.</strong> Every BEM class has a matching static class in C#. Rather than writing:
+</p>
+<CodeBox CodeBlock="@CssClassesSnippets.Without_The_Helper_Class" AriaLabel="Without the helper classes example" />
+<p>
+    Your write:
+</p>
+<CodeBox CodeBlock="@CssClassesSnippets.With_The_Helper_Classes" AriaLabel="With the helper classes example" />
+<p>
+    This gives you intellisense, compile-time checking of your options, and protection against typos in class names — the same experience you'd expect from any other part of a strongly-typed .NET library.
+</p>
+<p>
+    <strong>Accessibility is not optional.</strong> As with the rest of Blazor Ramp, every class in this package is designed with accessibility in mind by default: focus indicators use the shared outline tokens, 
+    interactive sizing respects WCAG 2.5.8 minimum target sizes, and colour pairings are generated from formulas checked for contrast on the Theming Accessibility page. You don't have to opt in to accessible 
+    defaults - you have to deliberately opt out.
+</p>
+
+<h2>
+    What's in the package
+</h2>
+<p>
+    The package is organised around common content and layout building blocks rather than one class per HTML element. Each block typically offers:
+</p>
+<ul>
+    <li>Classes with a Base property for the default (B) appearance.</li>
+    <li>Where relevant <b>element (E)</b> classes for structural sub-parts (for example a sections heading)</li>
+    <li>Modifier (M) classes for common variants (size, colour, border-radius grouping, and so on.</li>
+</ul>
+
+<p>
+    New classes are added incrementally and released to NuGet as they're finished, rather than held back for a single large release.
+</p>
+
+
+<section class="code-table">
+
+    <h2 id="relationship-to">Relationship to theming</h2>
+
+    <p>
+        <span class="@CodeSpan.Base">BlazorRamp.CssClasses</span>doesn't define its own colours, spacing, or radii - it consumes the same token layers used everywhere else in Blazor Ramp:
+    </p>
+    <table aria-labelledby="relationship-to">
+        <thead>
+            <tr>
+                <th>Layer</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-unit-*</td>
+                <td>Raw primitive values (colour, spacing, radius, font scale). Rarely change once set.</td>
+            </tr>
+            <tr>
+                <td>--br-comp-*</td>
+                <td>Tokens consumed by Blazor Ramp components and this package.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-*</td>
+                <td>Tokens consumed by this package, generated from the <span class="@CodeSpan.Base">--br-unit-*</span> primitives.</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        If you're already using Blazor Ramp components and have themed them via the CSS variables (tokens( generated from the Theming Sandbox page, 
+        applying <span class="@CodeSpan.Base">BlazorRamp.CssClasses</span> classes to your own content will automatically match - no separate theming step required.
+    </p>
+</section>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Title_Sandbox}")">
@@ -11,9 +112,9 @@
         <span>@GlobalValues.Theming_Name - @GlobalValues.Common_Page_Title_Sandbox</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_FAQS}/{GlobalValues.Common_Page_Path_Questions}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.Common_Page_Path_Installation}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.Faqs_Name - @GlobalValues.Common_Page_Title_FAQ_Questions</span>
+        <span>@GlobalValues.CSS_Name_CSS_Classes - @GlobalValues.Common_Page_Title_Installation</span>
         <span aria-hidden="true"></span>
     </a>
 </div>
