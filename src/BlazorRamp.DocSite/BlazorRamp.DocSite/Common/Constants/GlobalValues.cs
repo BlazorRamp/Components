@@ -176,7 +176,7 @@ public class GlobalValues
     public const string CSS_Name_Kbd     = "Kbd";    
     public const string CSS_Name_Section  = "Section";
 
-    public const string CSS_Name_Classes = "CSS Classes";
+    public const string CSS_Name_Classes = "Classes";
 
     public const string Service_Name_Live_Region        = "Live Region";
     public const string Service_Path_Part_Live_Region   = "live-region";

@@ -13,7 +13,7 @@ public class ToggletipSnippets
     public const string Usage_Example = """
         <ToggleTip CloseText="Close Keyboard Info." Label="Keyboard info:" ShowClose="true" ShowLabel="true" 
         ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" ToggleTipSize="ToggleTipSize.Small">
-        <h3 id="toggletip-demo" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h3>
+        <h3 id="toggletip-demo">Keyboard interaction</h3>
         <ul aria-labelledby="toggletip-demo">
             <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Space</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
             <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Enter</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>

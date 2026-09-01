@@ -41,20 +41,22 @@
     and assigns it to the current page param.
 </p>
 
-<section class="@GlobalValues.Info_Box_Class">
-    <h2 class="@GlobalValues.Info_Box_Heading_Class">Pager examples using buttons normally used above or below data tables</h2>
+<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
+    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.FontSize(SectionHeadingFontSize.Two)">Pager examples using buttons normally used above or below data tables</h2>
 
-    <section class="@GlobalValues.Info_Box_Class">
+    <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
 
-        <h3 class="@GlobalValues.Info_Box_Heading_Class @GlobalValues.Tab_Stop_Indicator_Class" tabindex="0">Tab stop before a filtered data table pager (without table), first, previous, next and last buttons</h3>
+        <h3 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.SecondaryDark) @Section.Heading.FontSize(SectionHeadingFontSize.Two)
+            @GlobalValues.Tab_Stop_Indicator_Class" tabindex="0">Tab stop before a filtered data table pager (without table), first, previous, next and last buttons</h3>
 
         <Pager @bind-CurrentPage="@_fullButtonCurrentPage" AriaLabel="Four button pager" TotalItemCount="100" CurrentItemCount="80" ItemsPerPage="10"
                PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" />
 
     </section>
-    <section class="@GlobalValues.Info_Box_Class">
+    <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
 
-        <h3 class="@GlobalValues.Info_Box_Heading_Class @GlobalValues.Tab_Stop_Indicator_Class" tabindex="0">Tab stop before a data table pager (without table), only previous and next buttons</h3>
+        <h3 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.SecondaryDark) @Section.Heading.FontSize(SectionHeadingFontSize.Two)
+            @GlobalValues.Tab_Stop_Indicator_Class" tabindex="0">Tab stop before a data table pager (without table), only previous and next buttons</h3>
 
         <Pager @bind-CurrentPage="_minButtonCurrentPage" AriaLabel="Two button pager" TotalItemCount="50" CurrentItemCount="50" ItemsPerPage="10"
                PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="false" />
@@ -62,22 +64,24 @@
     </section>
 </section>
 
-<section class="@GlobalValues.Info_Box_Class">
+<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
 
-    <h2 class="@GlobalValues.Info_Box_Heading_Class">Pager examples using links, the type typically seen at the top or bottom of product listings</h2>
+    <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.FontSize(SectionHeadingFontSize.Two)">Pager examples using links, the type typically seen at the top or bottom of product listings</h2>
 
 
-    <section class="@GlobalValues.Info_Box_Class">
+    <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
 
-        <h3 class="@GlobalValues.Info_Box_Heading_Class @GlobalValues.Tab_Stop_Indicator_Class" tabindex="0">Tab stop before a page results pager (without results), first, previous, next and last links</h3>
+        <h3 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.SecondaryDark) @Section.Heading.FontSize(SectionHeadingFontSize.Two)
+            @GlobalValues.Tab_Stop_Indicator_Class" tabindex="0">Tab stop before a page results pager (without results), first, previous, next and last links</h3>
 
         <Pager @bind-CurrentPage="_fullLinkCurrentPage" AriaLabel="Four links pager" TotalItemCount="100" CurrentItemCount="100" ItemsPerPage="10"
                PagerSelectorType="PagerSelectorType.Link" ShowFirstLast="true" />
 
     </section>
-    <section class="@GlobalValues.Info_Box_Class">
+    <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
 
-        <h3 class="@GlobalValues.Info_Box_Heading_Class @GlobalValues.Tab_Stop_Indicator_Class" tabindex="0">Tab stop before a page results pager (without results), only the previous and next links</h3>
+        <h3 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.SecondaryDark) @Section.Heading.FontSize(SectionHeadingFontSize.Two)
+            @GlobalValues.Tab_Stop_Indicator_Class" tabindex="0">Tab stop before a page results pager (without results), only the previous and next links</h3>
 
         <Pager @bind-CurrentPage="_minLinkCurrentPage" QueryParamName="another-page" AriaLabel="Two links pager" TotalItemCount="50" CurrentItemCount="50"
                ItemsPerPage="10" PageCountText="Current page {currentpage} of {lastpage}" PagerSelectorType="PagerSelectorType.Link" ShowFirstLast="false" />
