@@ -9,18 +9,18 @@ public enum SectionRadius : int
 
 public enum SectionBackground : int
 {
-    Neutral10 = 0,
-    Neutral20 = 1,
-    SecondaryLighter = 2,
-    AccentLighter = 3
+    NeutralLighter = 0,
+    SecondaryLighter = 1,
+    AccentLighter = 2,
+    PrimaryLighter = 3
 }
 
 public enum SectionText : int
 {
-    SecondaryDark = 0,
-    AccentDark    = 1,
-
-    PrimaryDark  = 2
+    Neutral = 0,
+    Secondary = 1,
+    Accent    = 2,
+    Primary  = 3
 }
 
 public enum SectionFontSize : int

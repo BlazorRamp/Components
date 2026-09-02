@@ -1,9 +1,190 @@
-﻿@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.Common_Page_Path_CSS_Variables}")]
+﻿@using BlazorRamp.DocSite.Pages.Components.DebounceFilter
+@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.Common_Page_Path_CSS_Variables}")]
 
 <PageTitle>@GlobalValues.CSS_Name_CSS_Classes @GlobalValues.Common_Page_Title_Variables</PageTitle>
 
 <h1>@GlobalValues.CSS_Name_CSS_Classes @GlobalValues.Common_Page_Title_Variables . . . In Progress . . .</h1>
 
+<p>
+    As discussed on the overview page, <span class="@CodeSpan.Base">BlazorRamp.CssClasses</span> utilises the same core CSS variables from the <span class="@CodeSpan.Base">BlazorRamp.Core</span> 
+    package consumed by the components, as well as creating others specific to its needs, without straying form the core -<span class="@CodeSpan.Base">-br-unit-*</span> values.
+</p>
+<p>
+    The following CSS variables are only consumed by the classes outlined later in the <span class="@CodeSpan.Base">BlazorRamp.CssClasses</span> documentation.
+</p>
+
+<section class="code-table">
+    <h2 id="text-background-variables" >Variables used for fonts, text and background colours</h2>
+    <table aria-labelledby="text-background-variables">
+        <thead>
+            <tr>
+                <th scope="col">Variable Name</th>
+                <th scope="col">Default Value</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>--br-cls-code-font-family</td>
+                <td>ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace</td>
+                <td>
+                    Applies the available font family to content marked as being a section of <span class="@CodeSpan.Base">code</span>
+                </td>
+            </tr>
+            <tr>
+                <td>--br-cls-kbd-font-family</td>
+                <td>ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace</td>
+                <td>
+                    Applies the available font family to content used in the <span class="@CodeSpan.Base">kbd</span> element.
+                </td>
+            </tr>
+            <tr>
+                <td>--br-cls-primary-lighter</td>
+                <td>var(--br-unit-colour-primary-10)</td>
+                <td>A shade of the primary colour that maps to the underlying fixed unit value which can be remapped for dark mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-primary-light</td>
+                <td>var(--br-unit-colour-primary-30)</td>
+                <td>A shade of the primary colour that maps to the underlying fixed unit value which can be remapped for dark mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-primary</td>
+                <td>var(--br-unit-colour-primary-50)</td>
+                <td>The actual primary colour value that does not change with light/dark modes.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-primary-dark</td>
+                <td>var(--br-unit-colour-primary-60)</td>
+                <td>A shade of the primary colour that maps to the underlying fixed unit value which can be remapped for light mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-primary-darker</td>
+                <td>var(--br-unit-colour-primary-70)</td>
+                <td>A shade of the primary colour that maps to the underlying fixed unit value which can be remapped for light mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-neutral-lighter</td>
+                <td>var(--br-unit-colour-neutral-20)</td>
+                <td>A shade of the neutral colour that maps to the underlying fixed unit value which can be remapped for dark mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-neutral-light</td>
+                <td>var(--br-unit-colour-neutral-30)</td>
+                <td>A shade of the neutral colour that maps to the underlying fixed unit value which can be remapped for dark mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-neutral</td>
+                <td>var(--br-unit-colour-neutral)</td>
+                <td>The actual neutral colour value that does not change with light/dark modes.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-neutral-dark</td>
+                <td>var(--br-unit-colour-neutral-60)</td>
+                <td>A shade of the neutral colour that maps to the underlying fixed unit value which can be remapped for light mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-neutral-darker</td>
+                <td>var(--br-unit-colour-neutral-70)</td>
+                <td>A shade of the neutral colour that maps to the underlying fixed unit value which can be remapped for light mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-secondary-lighter</td>
+                <td>var(--br-unit-colour-secondary-lighter)</td>
+                <td>A shade of the secondary colour that maps to the underlying fixed unit value which can be remapped for dark mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-secondary-light</td>
+                <td>var(--br-unit-colour-secondary-light)</td>
+                <td>A shade of the secondary colour that maps to the underlying fixed unit value which can be remapped for dark mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-secondary</td>
+                <td>var(--br-unit-colour-secondary)</td>
+                <td>The actual secondary colour value that does not change with light/dark modes.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-secondary-dark</td>
+                <td>var(--br-unit-colour-secondary-dark)</td>
+                <td>A shade of the secondary colour that maps to the underlying fixed unit value which can be remapped for light mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-secondary-darker</td>
+                <td>var(--br-unit-colour-secondary-darker)</td>
+                <td>A shade of the secondary colour that maps to the underlying fixed unit value which can be remapped for light mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-accent-lighter</td>
+                <td>var(--br-unit-colour-accent-lighter)</td>
+                <td>A shade of the accent colour that maps to the underlying fixed unit value which can be remapped for dark mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-accent-light</td>
+                <td>var(--br-unit-colour-accent-light)</td>
+                <td>A shade of the accent colour that maps to the underlying fixed unit value which can be remapped for dark mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-accent</td>
+                <td>var(--br-unit-colour-accent)</td>
+                <td>The actual accent colour value that does not change with light/dark modes.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-accent-dark</td>
+                <td>var(--br-unit-colour-accent-dark)</td>
+                <td>A shade of the accent colour that maps to the underlying fixed unit value which can be remapped for light mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-accent-darker</td>
+                <td>var(--br-unit-colour-accent-darker)</td>
+                <td>A shade of the accent colour that maps to the underlying fixed unit value which can be remapped for light mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-secondary-text</td>
+                <td>var(--br-unit-colour-secondary-text-dark)</td>
+                <td>The darkest shade of the secondary colour used for text, can be remapped for dark mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-accent-text</td>
+                <td>var(--br-unit-colour-accent-text-dark)</td>
+                <td>The darkest shade of the accent colour used for text, can be remapped for dark mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-primary-text</td>
+                <td>var(--br-unit-colour-primary-text-dark)</td>
+                <td>Uses dark text from the primary colours which maps to number 70, ca be remapped for dark mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-neutral-text</td>
+                <td>var(--br-unit-colour-neutral-70)</td>
+                <td>Uses the neutral 70 shade for neutral text. Its neutral 90 and 8 values are used for canvas text light/dark modes.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-primary-heading-text</td>
+                <td>var(--br-unit-colour-primary-text-dark)</td>
+                <td>
+                    Uses dark text from the primary colours which maps to number 70, ca be remapped for dark mode.
+                    This is the same colour/shade used in component headings.
+                </td>
+            </tr>
+            <tr>
+                <td>--br-cls-secondary-heading-text</td>
+                <td>var(--br-unit-colour-secondary-text-dark)</td>
+                <td>The darkest shade of the secondary colour used for text, can be remapped for dark mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-accent-heading-text</td>
+                <td>var(--br-unit-colour-accent-text-dark)</td>
+                <td>The darkest shade of the accent colour used for text, can be remapped for dark mode.</td>
+            </tr>
+            <tr>
+                <td>--br-cls-neutral-heading-text</td>
+                <td>var(--br-unit-colour-neutral-70)</td>
+                <td>Uses the neutral 70 shade for neutral text. Its neutral 90 and 8 values are used for canvas text light/dark modes.</td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.Common_Page_Title_Installation}")">

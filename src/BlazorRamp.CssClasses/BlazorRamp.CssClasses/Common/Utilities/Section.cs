@@ -26,10 +26,11 @@ public static class Section
 
         => sectionBackground switch
         {
-            SectionBackground.Neutral20 => $"{Base}--neutral-20",
-            SectionBackground.SecondaryLighter => $"{Base}--secondary-lighter",
-            SectionBackground.AccentLighter => $"{Base}--accent-lighter",
-            _ => $"{Base}--neutral-10",
+            SectionBackground.PrimaryLighter    => $"{Base}--primary-lighter",
+            SectionBackground.NeutralLighter    => $"{Base}--neutral-lighter",
+            SectionBackground.SecondaryLighter  => $"{Base}--secondary-lighter",
+            SectionBackground.AccentLighter     => $"{Base}--accent-lighter",
+            _ => $"{Base}--neutral-lighter",
 
         };
 
@@ -37,7 +38,10 @@ public static class Section
 
         => sectionText switch
         {
-            SectionText.SecondaryDark => $"{Base}--secondary-text",
+            SectionText.Neutral   => $"{Base}--neutral-text",
+            SectionText.Secondary => $"{Base}--secondary-text",
+            SectionText.Accent    => $"{Base}--accent-text",
+            SectionText.Primary   => $"{Base}--primary-text",
             _ => $"{Base}--accent-text"
         };
 

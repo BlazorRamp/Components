@@ -1,13 +1,31 @@
 ﻿:root {
+    //#6d55c3
     --br-cls-code-font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
     --br-cls-kbd-font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
-    --br-cls-neutral-10: var(--br-unit-colour-neutral-10);
-    --br-cls-neutral-20: var(--br-unit-colour-neutral-20);
+    //
+    --br-cls-primary-lighter: var(--br-unit-colour-primary-10);
+    --br-cls-primary-light: var(--br-unit-colour-primary-30);
+    --br-cls-primary: var(--br-unit-colour-primary-50);
+    --br-cls-primary-dark: var(--br-unit-colour-primary-60);
+    --br-cls-primary-darker: var(--br-unit-colour-primary-70);
+    //
+    --br-cls-neutral-lighter: var(--br-unit-colour-neutral-20);
+    --br-cls-neutral-light: var(--br-unit-colour-neutral-30);
+    --br-cls-neutral: var(--br-unit-colour-neutral);
+    --br-cls-neutral-dark: var(--br-unit-colour-neutral-60);
+    --br-cls-neutral-darker: var(--br-unit-colour-neutral-70);
     //
     --br-cls-secondary-lighter: var(--br-unit-colour-secondary-lighter);
+    --br-cls-secondary-light: var(--br-unit-colour-secondary-light);
+    --br-cls-secondary: var(--br-unit-colour-secondary);
+    --br-cls-secondary-dark: var(--br-unit-colour-secondary-dark);
+    --br-cls-secondary-darker: var(--br-unit-colour-secondary-darker);
+    //
     --br-cls-accent-lighter: var(--br-unit-colour-accent-lighter);
-    --br-cls-neutral-lighter: var(--br-unit-colour-neutral-10);
-    --br-cls-primary-lighter: var(--br-unit-colour-primary-10);
+    --br-cls-accent-light: var(--br-unit-colour-accent-light);
+    --br-cls-accent: var(--br-unit-colour-accent);
+    --br-cls-accent-dark: var(--br-unit-colour-accent-dark);
+    --br-cls-accent-darker: var(--br-unit-colour-accent-darker);
     //
     --br-cls-secondary-text: var(--br-unit-colour-secondary-text-dark);
     --br-cls-accent-text: var(--br-unit-colour-accent-text-dark);
