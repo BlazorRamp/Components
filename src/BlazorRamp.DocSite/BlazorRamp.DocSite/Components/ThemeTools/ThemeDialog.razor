@@ -4,7 +4,7 @@
     <h2 class="@GlobalValues.Theme_Dialog_Title_Class" id="@_dialogTitleID">@_titleText</h2>
     
     <div class="@GlobalValues.Theme_Dialog_Title_Tools_Class">
-        <button type="button" class="@Button.Base @Button.Small" @onclick="HandleCopyAll">
+        <button type="button" class="@Button.Base @Button.Size(ButtonSize.Small)" @onclick="HandleCopyAll">
             <span class="@GlobalValues.Theme_Dialog_Icon_Class" aria-hidden="true"></span>
             Copy all
             <span class="@GlobalValues.Theme_Dialog_Icon_Class" aria-hidden="true">
@@ -18,7 +18,7 @@
             <span id="@_themeHeadingID" >
                 Theme variables
             </span>
-            <button type="button" class="@Button.Base @Button.Small" @onclick="HandleCopyTheme">
+            <button type="button" class="@Button.Base @Button.Size(ButtonSize.Small)" @onclick="HandleCopyTheme">
                 <span class="@GlobalValues.Theme_Dialog_Icon_Class" aria-hidden="true"></span>
                 Copy theme
                 <span class="@GlobalValues.Theme_Dialog_Icon_Class" aria-hidden="true">
@@ -39,7 +39,7 @@
                 Dark theme variables
             </span>
            
-            <button type="button" class="@Button.Base @Button.Small" @onclick="HandleCopyDarkTheme">
+            <button type="button" class="@Button.Base @Button.Size(ButtonSize.Small)" @onclick="HandleCopyDarkTheme">
                 <span class="@GlobalValues.Theme_Dialog_Icon_Class" aria-hidden="true"></span>
                 Copy dark theme
                 <span class="@GlobalValues.Theme_Dialog_Icon_Class" aria-hidden="true">
@@ -56,7 +56,7 @@
     </div>
 
     <div class="@GlobalValues.Theme_Dialog_Footer_Class">
-        <button type="button" class="@Button.Base @Button.Small" @onclick="CloseDialog">
+        <button type="button" class="@Button.Base @Button.Size(ButtonSize.Small)" @onclick="CloseDialog">
             Close dialog
         </button>
     </div>

@@ -3,7 +3,7 @@
 public enum CodeSpanFontSize : int
 {
     Label = 0,
-    Normal = 1,
+    Regular = 1,
     Two = 2,
     Three = 3
 

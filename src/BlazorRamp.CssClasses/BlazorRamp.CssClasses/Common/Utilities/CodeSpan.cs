@@ -10,10 +10,10 @@ public static class CodeSpan
 
         => codeSpanFontSize switch
         {
-            CodeSpanFontSize.Label => $"{Base}--font-size-label",
-            CodeSpanFontSize.Normal=> $"{Base}--font-size-one",
-            CodeSpanFontSize.Two   => $"{Base}--font-size-two",
-            CodeSpanFontSize.Three => $"{Base}--font-size-three",
+            CodeSpanFontSize.Label   => $"{Base}--font-size-label",
+            CodeSpanFontSize.Regular => $"{Base}--font-size-one",
+            CodeSpanFontSize.Two     => $"{Base}--font-size-two",
+            CodeSpanFontSize.Three   => $"{Base}--font-size-three",
             _ => $"{Base}--font-size-one"
         };
 

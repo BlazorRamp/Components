@@ -9,15 +9,15 @@
     padding: var(--br-unit-space-2);
     border-radius: var(--br-unit-radius-3);
     font-family: var(--br-cls-code-font-family);
-    font-size: var(--_br-code-span-font-size);
+    font-size: var(--_code-span-font-size);
     color: var(--br-cls-accent-text);
     background-color: var(--br-cls-accent-lighter);
     white-space: nowrap;
 
-    &--font-size-label{font-size:var(--br-font-size-label);}
-    &--font-size-one{font-size:var(--br-font-size-1);}
-    &--font-size-two{font-size:var(--br-font-size-2);}
-    &--font-size-three{font-size:var(--br-font-size-3);}
+    &--font-size-label  {--_code-span-font-size:var(--br-unit-font-size-label);}
+    &--font-size-one    {--_code-span-font-size:var(--br-unit-font-size-1);}
+    &--font-size-two    {--_code-span-font-size:var(--br-unit-font-size-2);}
+    &--font-size-three  {--_code-span-font-size:var(--br-unit-font-size-3);}
 
     &--inverted-scheme  {--_code-span-text:var(--br-unit-colour-canvas-text-inverted); --_code-span-background:var(--br-unit-colour-canvas-inverted);}
     &--primary-scheme   {--_code-span-text:var(--br-cls-primary-text);                 --_code-span-background:var(--br-cls-primary-lighter);}
@@ -39,13 +39,14 @@
     padding: var(--br-unit-space-2);
     border: 1px solid transparent;
     white-space: nowrap;
+    font-size: var(--_kbd-font-size);
 
     box-shadow:var(--br-unit-box-shadow-1);
 
-    &--font-size-label{--_kbd-font-size:var(--br-font-size-label);}
-    &--font-size-one{--_kbd-font-size:var(--br-font-size-1);}
-    &--font-size-two{--_kbd-font-size:var(--br-font-size-2);}
-    &--font-size-three{--_kbd-font-size:var(--br-font-size-3);}
+    &--font-size-label{--_kbd-font-size:var(--br-unit-font-size-label);}
+    &--font-size-one{--_kbd-font-size:var(--br-unit-font-size-1);}
+    &--font-size-two{--_kbd-font-size:var(--br-unit-font-size-2);}
+    &--font-size-three{--_kbd-font-size:var(--br-unit-font-size-3);}
 
     &--inverted-scheme {--_kbd-text:var(--br-unit-colour-canvas-text-inverted); --_kbd-background:var(--br-unit-colour-canvas-inverted);}
     &--primary-scheme  {--_kbd-text:var(--br-cls-primary-text);                 --_kbd-background:var(--br-cls-primary-lighter);}

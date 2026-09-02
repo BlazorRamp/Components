@@ -1,10 +1,649 @@
-﻿@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Section}/{GlobalValues.Common_Page_Path_Api}")]
+﻿@using BlazorRamp.DocSite.Pages.GettingStarted
+@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Section}/{GlobalValues.Common_Page_Path_Api}")]
 
 <PageTitle>@GlobalValues.CSS_Name_Section @GlobalValues.Common_Page_Title_Api</PageTitle>
 
 <h1>@GlobalValues.CSS_Name_Section @GlobalValues.Common_Page_Title_Api . . . In Progress . . .</h1>
 
+<p>
+    Everything you need to work with the <span class="@CodeSpan.Base">br-section</span> CSS class: the BEM classes it provides, the strongly-typed <span class="@CodeSpan.Base">Section</span> C# object
+    used to apply them, supporting enums, and the CSS variables used for styling.
+</p>
 
+<h2 class="page-heading">Overview</h2>
+
+<p>
+    <span class="@CodeSpan.Base">br-section</span> is a general-purpose content block used for page sections, cards, and other bordered or coloured content areas.
+    It's the same block used throughout the Blazor Ramp documentation site itself.
+</p>
+<p>
+    Colours and backgrounds are theme-reactive: they're built from the <span class="@CodeSpan.Base">--br-cls-*</span> variables described below, which in turn derive from the same
+    <span class="@CodeSpan.Base">--br-unit-*</span> primitives  used across every Blazor Ramp component. Changing your theme updates <span class="@CodeSpan.Base">br-section</span> automatically
+    - no separate configuration needed.
+</p>
+
+<section class="code-table">
+    <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
+
+    <table aria-labelledby="css-classes">
+        <thead>
+            <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>br-section</td>
+                <td>Block</td>
+                <td>The root section block. Sets default padding, margin, background, and text colour.</td>
+            </tr>
+            <tr>
+                <td>br-section--bordered</td>
+                <td>Modifier</td>
+                <td>Adds a visible border using the shared divider colour.</td>
+            </tr>
+            <tr>
+                <td>br-section--no-padding</td>
+                <td>Modifier</td>
+                <td>Removes the default base padding.</td>
+            </tr>
+            <tr>
+                <td>br-section--no-margin-block</td>
+                <td>Modifier</td>
+                <td>Removes the default base block-direction (top/bottom) margin.</td>
+            </tr>
+            <tr>
+                <td>br-section--code-font</td>
+                <td>Modifier</td>
+                <td>Switches the font family to the shared code font.</td>
+            </tr>
+            <tr>
+                <td>br-section--column-centred</td>
+                <td>Modifier</td>
+                <td>
+                    Lays out content as a centred flex column.
+                    <b>Note: </b>This modifier removes margins from child elements and uses <span class="@CodeSpan.Base">gap:var(--br-unit-space-5)</span> <b>1rem</b> 
+                </td>
+            </tr>
+            <tr>
+                <td>br-section--content</td>
+                <td>Modifier</td>
+                <td>Sets border radius to the content grouping.</td>
+            </tr>
+            <tr>
+                <td>br-section--container</td>
+                <td>Modifier</td>
+                <td>Sets border radius to the container grouping.</td>
+            </tr>
+            <tr>
+                <td>br-section--dialog</td>
+                <td>Modifier</td>
+                <td>Sets border radius to the dialog grouping.</td>
+            </tr>
+            <tr>
+                <td>br-section--neutral-lighter</td>
+                <td>Modifier</td>
+                <td>Sets background to the neutral-lighter colour.</td>
+            </tr>
+            <tr>
+                <td>br-section--secondary-lighter</td>
+                <td>Modifier</td>
+                <td>Sets background to the secondary-lighter colour.</td>
+            </tr>
+            <tr>
+                <td>br-section--accent-lighter</td>
+                <td>Modifier</td>
+                <td>Sets background to the accent-lighter colour.</td>
+            </tr>
+            <tr>
+                <td>br-section--primary-lighter</td>
+                <td>Modifier</td>
+                <td>Sets background to the primary-lighter colour.</td>
+            </tr>
+            <tr>
+                <td>br-section--neutral-text</td>
+                <td>Modifier</td>
+                <td>Sets text colour to the neutral text colour.</td>
+            </tr>
+            <tr>
+                <td>br-section--secondary-text</td>
+                <td>Modifier</td>
+                <td>Sets text colour to the secondary text colour.</td>
+            </tr>
+            <tr>
+                <td>br-section--accent-text</td>
+                <td>Modifier</td>
+                <td>Sets text colour to the accent text colour.</td>
+            </tr>
+            <tr>
+                <td>br-section--primary-text</td>
+                <td>Modifier</td>
+                <td>Sets text colour to the primary text colour.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-section--font-size-label<br />
+                    br-section--font-size-one<br />
+                    br-section--font-size-two<br />
+                    br-section--font-size-three
+                </td>
+                <td>Modifier(s)</td>
+                <td>Sets the section's base font size.</td>
+            </tr>
+            <tr>
+                <td>br-section__heading</td>
+                <td>Element</td>
+                <td>
+                    Optional heading sub-part of a section.<br />
+                    <b>Note: </b>This class sets <span class="@CodeSpan.Base">margin:0</span> on the element its attached to.
+                </td>
+            </tr>
+            <tr>
+                <td>br-section__heading--mobile-centred</td>
+                <td>Modifier</td>
+                <td>Centre-aligns heading text below the small breakpoint.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-section__heading--neutral-text<br />
+                    br-section__heading--secondary-text<br />
+                    br-section__heading--accent-text<br />
+                    br-section__heading--primary-text
+                </td>
+                <td>Modifier(s)</td>
+                <td>Sets the heading's text colour.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-section__heading--font-size-one<br />
+                    br-section__heading--font-size-two<br />
+                    br-section__heading--font-size-three<br />
+                    br-section__heading--font-size-four<br />
+                    br-section__heading--font-size-five<br />
+                    br-section__heading--font-size-six
+                </td>
+                <td>Modifier(s)</td>
+                <td>Sets the heading's font size.</td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2 id="c#-classes" class="page-heading">C# API</h2>
+    <p>
+        <span class="@CodeSpan.Base">Section</span> provides the BEM CSS classes for the br-section block: a general-purpose,
+        theme-reactive content section used for page content, cards, and other bordered or coloured content areas.
+    </p>
+    <section class="code-table">
+        <h3 id="section-class" class="code-table__heading">Section class</h3>
+        <table aria-labelledby="section-class">
+            <thead>
+                <tr>
+                    <th scope="col">Return</th>
+                    <th scope="col">Const/Static Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Section.Base</td>
+                    <td>string</td>
+                    <td>The base class, <span class="@CodeSpan.Base">br-section</span>. Always required.</td>
+                </tr>
+                <tr>
+                    <td>Section.Bordered</td>
+                    <td>string</td>
+                    <td>Adds a visible border using the shared divider colour.</td>
+                </tr>
+                <tr>
+                    <td>Section.NoPadding</td>
+                    <td>string</td>
+                    <td>Removes the default section's base padding.</td>
+                </tr>
+                <tr>
+                    <td>Section.CodeFont</td>
+                    <td>string</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Section.NoMarginBlock</td>
+                    <td>string</td>
+                    <td>Switches the section's font family to the shared code font.</td>
+                </tr>
+                <tr>
+                    <td>Section.NoMarginBlock</td>
+                    <td>string</td>
+                    <td>Lays out the section's content as a centred flex column.</td>
+                </tr>
+                <tr>
+                    <td>Section.Radius(SectionRadius sectionRadius)</td>
+                    <td>string</td>
+                    <td>Gets the class that sets the section's border radius.</td>
+                </tr>
+                <tr>
+                    <td>Section.Background(SectionBackground sectionBackground)</td>
+                    <td>string</td>
+                    <td>Gets the class that sets the section's background colour.</td>
+                </tr>
+                <tr>
+                    <td>Section.Text(SectionText sectionText)</td>
+                    <td>string</td>
+                    <td>Gets the class that sets the section's text colour.</td>
+                </tr>
+                <tr>
+                    <td>Section.FontSize(SectionFontSize sectionFontSize)</td>
+                    <td>string</td>
+                    <td>Gets the class that sets the section's base font size.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+        <h3 id="section-heading-class" class="code-table__heading">Section.Heading class</h3>
+        <p>
+            <span class="@CodeSpan.Base">Section.Heading</span>. Provides the BEM CSS classes for the <span class="@CodeSpan.Base">br-section__heading</span>
+            element, the heading sub-part of a <span class="@CodeSpan.Base">br-section</span>.
+        </p>
+        <table aria-labelledby="section-heading-class">
+            <thead>
+                <tr>
+                    <th scope="col">Return</th>
+                    <th scope="col">Const/Static Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Section.Heading.Base</td>
+                    <td>string</td>
+                    <td>The base class, <span class="@CodeSpan.Base">br-section__heading</span>. Always required.</td>
+                </tr>
+                <tr>
+                    <td>Section.Heading.MobileCentred</td>
+                    <td>string</td>
+                    <td>Centre-aligns the heading text below the small breakpoint.</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>string</td>
+                    <td>Gets the class that sets the heading's text colour. See SectionHeadingText below</td>
+                </tr>
+                <tr>
+                    <td>Section.Heading.Text(SectionHeadingText sectionHeadingText)</td>
+                    <td>string</td>
+                    <td>Gets the class that sets the heading's text colour.</td>
+                </tr>
+                <tr>
+                    <td>Section.Heading.FontSize(SectionHeadingFontSize sectionHeadingFontSize)</td>
+                    <td>string</td>
+                    <td>Gets the class that sets the heading's font size</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting enums</h2>
+    <section class="code-table">
+        <h3 id="section-radius-enum" class="code-table__heading">SectionRadius enum</h3>
+        <p>
+            Sets the border radius grouping applied to a <span class="@CodeSpan.Base">br-section</span> element.
+        </p>
+        <table aria-labelledby="section-radius-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Content</td>
+                    <td>Border radius from the content border radius grouping.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Container</td>
+                    <td>	Border radius from the container border radius grouping.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Dialog</td>
+                    <td>Border radius from the dialog border radius grouping.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+        <h3 id="section-background-enum" class="code-table__heading">SectionBackground enum</h3>
+        <p>
+            Sets the background colour of a <span class="@CodeSpan.Base">br-section</span> element.
+        </p>
+        <table aria-labelledby="section-background-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>NeutralLighter</td>
+                    <td>A light neutral background colour.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>SecondaryLighter</td>
+                    <td>A light secondary-hue background colour.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>AccentLighter</td>
+                    <td>A light accent-hue background colour.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>PrimaryLighter</td>
+                    <td>A light primary-hue background colour.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+        <h3 id="section-text-enum" class="code-table__heading">SectionText enum</h3>
+        <p>
+            Sets the colour of a <span class="@CodeSpan.Base">br-section</span> element.
+        </p>
+        <table aria-labelledby="section-text-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Neutral</td>
+                    <td>Neutral text colour.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Secondary</td>
+                    <td>Secondary-hue text colour.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Accent</td>
+                    <td>Accent-hue text colour.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Primary</td>
+                    <td>Primary-hue text colour.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+        <h3 id="section-font-size-enum" class="code-table__heading">SectionFontSize enum</h3>
+        <p>
+            Sets the base font size of a <span class="@CodeSpan.Base">br-section</span> element.
+        </p>
+        <table aria-labelledby="section-font-size-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Label</td>
+                    <td>Label-sized text, matching the size used for input/form labels.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Regular</td>
+                    <td>The regular body text size.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Two</td>
+                    <td>A larger text size, one step above regular.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Three</td>
+                    <td>The largest text size available for the seciotn text.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+        <h3 id="section-heading-text-enum" class="code-table__heading">SectionHeadingText enum</h3>
+        <p>
+            Sets the text colour of a <span class="@CodeSpan.Base">br-section__heading</span> element.
+        </p>
+        <table aria-labelledby="section-heading-text-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Neutral</td>
+                    <td>Neutral heading text colour.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Secondary</td>
+                    <td>Secondary-hue heading text colour.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Accent</td>
+                    <td>Accent-hue heading text colour.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Primary</td>
+                    <td>Primary-hue heading text colour.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+        <h3 id="section-heading-font-size-enum" class="code-table__heading">SectionHeadingFontSize enum</h3>
+        <p>
+            Sets the font size of a <span class="@CodeSpan.Base">br-section__heading</span> element.
+        </p>
+
+        <table aria-labelledby="section-heading-font-size-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Regular</td>
+                    <td>The regular font-size used in the body content.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Two</td>
+                    <td>A larger heading size, one step above regular and the default for section headings.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Three</td>
+                    <td>A larger heading size, two steps above regular.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Four</td>
+                    <td>A larger heading size, three steps above regular.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Five</td>
+                    <td>A larger heading size, four steps above regular.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Six</td>
+                    <td>The largest heading size available on this scale.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">CSS variables</h2>
+    <p>
+        The following variables can be overridden to alter the appearance of br-section. They're consumed from the shared
+        <span class="@CodeSpan.Base">--br-cls-*</span> layer, so a theme change updates every section on the page automatically -
+        you don't need to override anything to stay in sync with your chosen theme.
+    </p>
+
+    <section class="code-table">
+        <h3 id="section-heading-variables" class="code-table__heading">Section heading variables</h3>
+        <p>
+            <span class="@CodeSpan.Base">br-section's </span>colour modifiers read from these shared
+            <span class="@CodeSpan.Base">--br-cls-*</span> tokens.
+        </p>
+        <table aria-labelledby="section-heading-variables">
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        --br-cls-neutral-lighter<br />
+                        --br-cls-secondary-lighter<br />
+                        --br-cls-accent-lighter<br />
+                        --br-cls-primary-lighter
+                    </td>
+                    <td>
+                        Background colours used by the <span class="@CodeSpan.Base">
+                        --neutral-lighter
+                        <br />--secondary-lighter<br />--accent-lighter<br />
+                        --primary-lighter
+                    </span> modifiers.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    --br-cls-neutral-text<br />
+                    --br-cls-secondary-text<br />
+                    --br-cls-accent-text<br />
+                    --br-cls-primary-text
+                </td>
+                <td>
+                    Text colours used by the 
+                    <span class="@CodeSpan.Base">--neutral-text<br />--secondary-text<br />--accent-text<br />--primary-text</span> modifiers.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    --br-cls-primary-heading-text<br />
+                    --br-cls-secondary-heading-text<br />
+                    --br-cls-accent-heading-text<br />
+                    --br-cls-neutral-heading-text
+                </td>
+                <td>
+                    Heading text colours used by <span class="@CodeSpan.Base">Section.Heading.Text()</span>.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+</section>
+
+<h2 class="page-heading">Usage</h2>
+
+<p>
+    Below each code section is the result of the code in the section.
+</p>
+<p>
+    A basic section.
+</p>
+<CodeBox CodeBlock="@CssClassesSnippets.Section_Basic_Example" AriaLabel="Basic section example" />
+
+<div class="@Section.Base">
+    <p>Basic section content.</p>
+</div>
+<p>
+    A bordered section using the container grouping border radius with a heading:
+</p>
+<CodeBox CodeBlock="@CssClassesSnippets.Section_Container_With_Header_Example" AriaLabel="Section with heading example" />
+
+<div class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Container)">
+    <h3 class="@Section.Heading.Base">Section title</h3>
+    <p>Content goes here.</p>
+</div>
+
+<p>
+    A themed, centred borderless section with a coloured heading that uses the content border radius:
+</p>
+
+<CodeBox CodeBlock="@CssClassesSnippets.Section_Coloured_Example" AriaLabel="Section with theme coloured heading example" />
+
+<div class="@Section.Base
+    @Section.Background(SectionBackground.PrimaryLighter)
+    @Section.Text(SectionText.Primary)
+    @Section.ColumnCentred
+    @Section.Radius(SectionRadius.Content)">
+    <h3 class="@Section.Heading.Base @Section.Heading.Text(SectionHeadingText.Primary)">
+        Accent callout
+    </h3>
+    <p>This section uses the primary colour family throughout.</p>
+</div>
+
+<ThemeBorderTool  Title="Theme border tool" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
+    <BorderGroups>
+
+
+        <BorderGroup Title="Container borders">
+            <BorderRadius LabelText="Content radius" ResetText="Reset content radius" MaxRangeValue="@GlobalValues.Radius_Container_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Content)])" />
+            <BorderRadius LabelText="Header radius" ResetText="Reset header radius" MaxRangeValue="@GlobalValues.Radius_Container_Header_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Header)])" />
+        </BorderGroup>
+
+        <BorderGroup Title="Content borders">
+            <BorderRadius LabelText="Content radius" ResetText="Reset content radius" MaxRangeValue="@GlobalValues.Radius_Content_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Content_Radius)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Kbd}/{GlobalValues.Common_Page_Path_Api}")">
         <span aria-hidden="true"></span>

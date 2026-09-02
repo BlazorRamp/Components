@@ -58,6 +58,11 @@
         min-height: var(--br-unit-wcag-target-2a);
     }
 
+    &--regular {
+        padding-block: var(--br-unit-space-3);
+        padding-inline: var(--br-unit-space-4)
+    }
+
     &--large {
         padding-block: var(--br-unit-space-4);
         padding-inline: var(--br-unit-space-5)

@@ -3,7 +3,7 @@
     <label for="@_inputID" class="@GlobalValues.Theme_Border_Tool_Label_Class">@_labelText</label>
     <input id="@_inputID" type="range" min="0" max="@_maxRangeValue" step="1" @bind-value:get="_radiusIndex" @bind-value:set="HandleRadiusSet" @bind-value:event="oninput" />
 
-    <button type="button" class="@Button.Base @Button.Small @Button.FullWidth" @onclick="HandleReset">
+    <button type="button" class="@Button.Base @Button.Size(ButtonSize.Small) @Button.FullWidth" @onclick="HandleReset">
         <span>@_resetText</span>
     </button>
 

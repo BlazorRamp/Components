@@ -21,11 +21,11 @@ public static class Kbd
     {
         return fontSize switch
         {
-            KbdFontSize.Label => $"{Base}--font-size-label",
-            KbdFontSize.Normal=> $"{Base}--font-size-one",
-            KbdFontSize.Two   => $"{Base}--font-size-two",
-            KbdFontSize.Three => $"{Base}--font-size-three",
-            _                 => $"{Base}--font-size-one",
+            KbdFontSize.Label   => $"{Base}--font-size-label",
+            KbdFontSize.Regular => $"{Base}--font-size-one",
+            KbdFontSize.Two     => $"{Base}--font-size-two",
+            KbdFontSize.Three   => $"{Base}--font-size-three",
+            _                   => $"{Base}--font-size-one",
         };
     }
 }

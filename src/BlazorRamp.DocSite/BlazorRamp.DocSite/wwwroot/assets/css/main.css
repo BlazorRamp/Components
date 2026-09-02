@@ -556,6 +556,7 @@ body #app__main {
 
 .history-list {
   margin-bottom: var(--br-unit-space-9);
+  margin-inline-start: 0.75rem;
 }
 
 .quirks-list {
