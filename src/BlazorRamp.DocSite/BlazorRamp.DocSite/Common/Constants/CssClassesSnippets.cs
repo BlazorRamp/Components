@@ -35,10 +35,10 @@ public class CssClassesSnippets
     public const string Section_Coloured_Example = """
         <section class="@Section.Base
             @Section.Background(SectionBackground.PrimaryLighter)
-            @Section.Text(SectionText.Primary)
+            @Section.Text(SectionText.PrimaryDark)
             @Section.ColumnCentred
             @Section.Radius(SectionRadius.Content)">
-            <h3 class="@Section.Heading.Base @Section.Heading.Text(SectionHeadingText.Primary)">
+            <h3 class="@Section.Heading.Base @Section.Heading.Text(SectionHeadingText.PrimaryDark)">
                 Accent callout
             </h3>
             <p>This section uses the primary colour family throughout.</p>

@@ -1,0 +1,18 @@
+﻿
+@use "_functions" as *;
+
+@include generate-space-classes("br-padding","padding", "--br-unit-space",9);
+@include generate-space-classes("br-padding-inline","padding-inline", "--br-unit-space",9);
+@include generate-space-classes("br-padding-inline-start","padding-inline-start", "--br-unit-space",9);
+@include generate-space-classes("br-padding-inline-end","padding-inline-end", "--br-unit-space",9);
+@include generate-space-classes("br-padding-block","padding-block", "--br-unit-space",9);
+@include generate-space-classes("br-padding-block-end","padding-block-end", "--br-unit-space",9);
+@include generate-space-classes("br-padding-block-start","padding-block-start", "--br-unit-space",9);
+
+@include generate-space-classes("br-margin","margin", "--br-unit-space",9);
+@include generate-space-classes("br-margin-inline","margin-inline", "--br-unit-space",9);
+@include generate-space-classes("br-margin-inline-start","margin-inline-start", "--br-unit-space",9);
+@include generate-space-classes("br-margin-inline-end","margin-inline-end", "--br-unit-space",9);
+@include generate-space-classes("br-margin-block","margin-block", "--br-unit-space",9);
+@include generate-space-classes("br-margin-block-end","margin-block-end", "--br-unit-space",9);
+@include generate-space-classes("br-margin-block-start","margin-block-start", "--br-unit-space",9);

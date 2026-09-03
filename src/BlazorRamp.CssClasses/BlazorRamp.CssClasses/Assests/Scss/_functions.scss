@@ -23,3 +23,10 @@
         @content;
     }
 }
+
+
+@mixin generate-space-classes($className, $property, $unitName, $max) {
+    @for $counter from 0 through $max {
+        .#{$className}-#{$counter} {#{$property}: var(#{$unitName}-#{$counter});}
+    }
+}

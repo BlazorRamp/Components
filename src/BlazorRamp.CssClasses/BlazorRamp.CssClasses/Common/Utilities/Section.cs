@@ -79,11 +79,11 @@ public static class Section
 
         => sectionText switch
         {
-            SectionText.Neutral   => $"{Base}--neutral-text",
-            SectionText.Secondary => $"{Base}--secondary-text",
-            SectionText.Accent    => $"{Base}--accent-text",
-            SectionText.Primary   => $"{Base}--primary-text",
-            _ => $"{Base}--accent-text"
+            SectionText.NeutralDark   => $"{Base}--neutral-text-dark",
+            SectionText.SecondaryDark => $"{Base}--secondary-text-dark",
+            SectionText.AccentDark    => $"{Base}--accent-text-dark",
+            SectionText.PrimaryDark   => $"{Base}--primary-text-dark",
+            _ => $"{Base}--accent-text-dark"
         };
 
 
@@ -128,11 +128,11 @@ public static class Section
 
              => sectionHeadingText switch
              {
-                 SectionHeadingText.Primary   => $"{Base}--primary-text",
-                 SectionHeadingText.Secondary => $"{Base}--secondary-text",
-                 SectionHeadingText.Accent    => $"{Base}--accent-text",
-                 SectionHeadingText.Neutral   => $"{Base}--neutral-text",
-                 _ => $"{Base}--accent-text"
+                 SectionHeadingText.PrimaryDark   => $"{Base}--primary-text-dark",
+                 SectionHeadingText.SecondaryDark => $"{Base}--secondary-text-dark",
+                 SectionHeadingText.AccentDark    => $"{Base}--accent-text-dark",
+                 SectionHeadingText.NeutralDark   => $"{Base}--neutral-text-dark",
+                 _ => $"{Base}--accent-text-dark"
              };
 
 

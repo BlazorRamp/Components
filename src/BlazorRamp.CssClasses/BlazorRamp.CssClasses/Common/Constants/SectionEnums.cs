@@ -58,22 +58,22 @@ public enum SectionText : int
     /// <summary>
     /// Neutral text colour.
     /// </summary>
-    Neutral = 0,
+    NeutralDark = 0,
 
     /// <summary>
     /// Secondary-hue text colour.
     /// </summary>
-    Secondary = 1,
+    SecondaryDark = 1,
 
     /// <summary>
     /// Accent-hue text colour.
     /// </summary>
-    Accent = 2,
+    AccentDark = 2,
 
     /// <summary>
     /// Primary-hue text colour.
     /// </summary>
-    Primary = 3
+    PrimaryDark = 3
 }
 
 /// <summary>
@@ -110,22 +110,22 @@ public enum SectionHeadingText : int
     /// <summary>
     /// Neutral heading text colour.
     /// </summary>
-    Neutral = 0,
+    NeutralDark = 0,
 
     /// <summary>
     /// Secondary-hue heading text colour.
     /// </summary>
-    Secondary = 1,
+    SecondaryDark = 1,
 
     /// <summary>
     /// Accent-hue heading text colour.
     /// </summary>
-    Accent = 2,
+    AccentDark = 2,
 
     /// <summary>
     /// Primary-hue heading text colour.
     /// </summary>
-    Primary = 3
+    PrimaryDark = 3
 }
 
 /// <summary>

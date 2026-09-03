@@ -1,7 +1,17 @@
 ﻿
 @mixin ButtonBase {
+    --_button-border-colour: var(--br-comp-all-button-border-colour);
+    --_button-background: var(--br-comp-all-button-background);
+    --_button-text: var(--br-comp-all-button-text);
+    --_button-padding-block: var(--br-unit-space-3);
+    --_button-padding-inline: var(--br-unit-space-4);
+    --_button-hover: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10));
+    --_button-hover-brightness: 115%;
+    //
     appearance: none;
-    box-sizing:border-box;
+    box-sizing: border-box;
+    flex: none;
+    align-self: center;;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -15,20 +25,27 @@
     font-size: var(--br-comp-all-button-font-size);
     font-weight: var(--br-comp-all-button-font-weight);
     line-height: var(--br-comp-all-button-line-height);
-    padding-block: var(--br-unit-space-3);
-    padding-inline: var(--br-unit-space-4);
-    background: var(--br-comp-all-button-background);
-    color: var(--br-comp-all-button-text);
+    padding-block: var(--_button-padding-block);
+    padding-inline: var(--_button-padding-inline);
+    background: var(--_button-background);
+    color: var(--_button-text);
     border-radius: var(--br-group-button-border-radius);
     border-style: var(--br-comp-all-button-border-style);
     border-width: var(--br-comp-all-button-border-width);
-    border-color: var(--br-comp-all-button-border-colour);
+    border-color: var(--_button-border-colour);
+    cursor: pointer;
 
-    cursor:pointer;
+    &:not([class*="--solid-"]):hover {
+        background-color: var(--_button-hover);
+    }
+
+    &[class*="--solid-"]:hover {
+        filter: brightness(var(--_button-hover-brightness));
+    }
 
     &:active {
         transform: scale(var(--br-comp-all-button-state-active-scale));
-        filter: brightness(var(--br-comp-all-button-state-active-brightness));
+        filter: brightness(98%);
         outline: none;
     }
 
@@ -38,40 +55,183 @@
         outline-style: var(--br-comp-all-outline-style);
         outline-color: var(--br-comp-all-outline-colour);
     }
-
-    &:hover {
-        background-color: var(--br-comp-all-button-state-hover);
-    }
 }
 
 .br-button {
-
     @include ButtonBase;
 
-    &--full-width {
-        width: 100%;
-    }
-
     &--small {
-        padding-block: var(--br-unit-space-2);
-        padding-inline: var(--br-unit-space-3);
+        --_button-padding-block: var(--br-unit-space-2);
+        --_button-padding-inline: var(--br-unit-space-3);
         min-height: var(--br-unit-wcag-target-2a);
     }
 
     &--regular {
-        padding-block: var(--br-unit-space-3);
-        padding-inline: var(--br-unit-space-4)
+        --_button-padding-block: var(--br-unit-space-3);
+        --_button-padding-inline: var(--br-unit-space-4);
     }
 
     &--large {
-        padding-block: var(--br-unit-space-4);
-        padding-inline: var(--br-unit-space-5)
+        --_button-padding-block: var(--br-unit-space-4);
+        --_button-padding-inline: var(--br-unit-space-5);
     }
 
     &--extra-large {
-        padding-block: var(--br-unit-space-5);
-        padding-inline: var(--br-unit-space-6);
+        --_button-padding-block: var(--br-unit-space-5);
+        --_button-padding-inline: var(--br-unit-space-6);
     }
+
+    &--solid-primary {
+        --_button-background: var(--br-cls-primary);
+        --_button-text: contrast-color(var(--br-cls-primary));
+        --_button-border-colour: var(--br-cls-primary);
+    }
+
+    &--solid-neutral {
+        --_button-background: var(--br-cls-neutral);
+        --_button-text: contrast-color(var(--br-cls-neutral));
+        --_button-border-colour: var(--br-cls-neutral);
+    }
+
+    &--solid-secondary {
+        --_button-background: var(--br-cls-secondary);
+        --_button-text: contrast-color(var(--br-cls-secondary));
+        --_button-border-colour: var(--br-cls-secondary);
+    }
+
+    &--solid-accent {
+        --_button-background: var(--br-cls-accent);
+        --_button-text: contrast-color(var(--br-cls-accent));
+        --_button-border-colour: var(--br-cls-accent);
+    }
+
+    &--solid-danger {
+        --_button-background: var(--br-cls-danger);
+        --_button-text: contrast-color(var(--br-cls-danger));
+        --_button-border-colour: var(--br-cls-danger);
+    }
+
+    &--solid-warning {
+        --_button-background: var(--br-cls-warning);
+        --_button-text: contrast-color(var(--br-cls-warning));
+        --_button-border-colour: var(--br-cls-warning);
+    }
+
+    &--solid-success {
+        --_button-background: var(--br-cls-success);
+        --_button-text: contrast-color(var(--br-cls-success));
+        --_button-border-colour: var(--br-cls-success);
+    }
+
+    &--solid-info {
+        --_button-background: var(--br-cls-info);
+        --_button-text: contrast-color(var(--br-cls-info));
+        --_button-border-colour: var(--br-cls-info);
+    }
+
+    &--solid-inverted {
+        --_button-background: var(--br-unit-colour-canvas-inverted);
+        --_button-text: var(--br-unit-colour-canvas-text-inverted);
+        --_button-border-colour: var(--br-unit-colour-canvas-inverted);
+    }
+
+    &--solid-neutral-lighter {
+        --_button-background: var(--br-cls-neutral-lighter);
+        --_button-text: var(--br-cls-neutral-text-dark);
+        --_button-border-colour: var(--br-cls-neutral-text-dark);
+    }
+
+    &--solid-secondary-lighter {
+        --_button-background: var(--br-cls-secondary-lighter);
+        --_button-text: var(--br-cls-secondary-text-dark);
+        --_button-border-colour: var(--br-cls-secondary-text-dark);
+    }
+
+    &--solid-accent-lighter {
+        --_button-background: var(--br-cls-accent-lighter);
+        --_button-text: var(--br-cls-accent-text-dark);
+        --_button-border-colour: var(--br-cls-secondary-text-dark);
+    }
+
+    &--solid-primary-lighter {
+        --_button-background: var(--br-cls-primary-lighter);
+        --_button-text: var(--br-cls-primary-text-dark);
+        --_button-border-colour: var(--br-cls-primary-text-dark);
+    }
+
+    &--solid-danger-lighter {
+        --_button-background: var(--br-cls-danger-lighter);
+        --_button-text: var(--br-cls-danger-text-dark);
+        --_button-border-colour: var(--br-cls-danger-text-dark);
+    }
+
+    &--solid-warning-lighter {
+        --_button-background: var(--br-cls-warning-lighter);
+        --_button-text: var(--br-cls-warning-text-dark);
+        --_button-border-colour: var(--br-cls-warning-text-dark);
+    }
+
+    &--solid-success-lighter {
+        --_button-background: var(--br-cls-success-lighter);
+        --_button-text: var(--br-cls-success-text-dark);
+        --_button-border-colour: var(--br-cls-success-text-dark);
+    }
+
+    &--solid-info-lighter {
+        --_button-background: var(--br-cls-info-lighter);
+        --_button-text: var(--br-cls-info-text-dark);
+        --_button-border-colour: var(--br-cls-info-text-dark);
+    }
+
+    &--solid-neutral-darker {
+        --_button-background: var(--br-cls-neutral-darker);
+        --_button-text: var(--br-cls-neutral-text-light);
+        --_button-border-colour: var(--br-cls-neutral-darker);
+    }
+
+    &--solid-secondary-darker {
+        --_button-background: var(--br-cls-secondary-darker);
+        --_button-text: var(--br-cls-secondary-text-light);
+        --_button-border-colour: var(--br-cls-secondary-darker);
+    }
+
+    &--solid-accent-darker {
+        --_button-background: var(--br-cls-accent-darker);
+        --_button-text: var(--br-cls-accent-text-light);
+        --_button-border-colour: var(--br-cls-accent-darker);
+    }
+
+    &--solid-primary-darker {
+        --_button-background: var(--br-cls-primary-darker);
+        --_button-text: var(--br-cls-primary-text-light);
+        --_button-border-colour: var(--br-cls-primary-darker);
+    }
+
+    &--solid-danger-darker {
+        --_button-background: var(--br-cls-danger-darker);
+        --_button-text: var(--br-cls-danger-text-light);
+        --_button-border-colour: var(--br-cls-danger-darker);
+    }
+
+    &--solid-warning-darker {
+        --_button-background: var(--br-cls-warning-darker);
+        --_button-text: var(--br-cls-warning-text-light);
+        --_button-border-colour: var(--br-cls-warning-darker);
+    }
+
+    &--solid-success-darker {
+        --_button-background: var(--br-cls-success-darker);
+        --_button-text: var(--br-cls-success-text-light);
+        --_button-border-colour: var(--br-cls-success-darker);
+    }
+
+    &--solid-info-darker {
+        --_button-background: var(--br-cls-info-darker);
+        --_button-text: var(--br-cls-info-text-light);
+        --_button-border-colour: var(--br-cls-info-darker);
+    }
+
+    &--full-width {width:100%;}
 }
 
 
