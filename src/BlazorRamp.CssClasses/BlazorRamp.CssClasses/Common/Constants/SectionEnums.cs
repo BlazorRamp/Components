@@ -6,17 +6,20 @@
 public enum SectionRadius : int
 {
     /// <summary>
-    /// Border radius from the content border radius grouping.
+    /// Border radius for general content areas. 
+    /// Uses the content border radius grouping.
     /// </summary>
     Content = 0,
 
     /// <summary>
-    /// Border radius from the container border radius grouping.
+    /// Border radius matching cards, tables, and similar boxed UI. 
+    /// Uses the container border radius grouping.
     /// </summary>
     Container = 1,
 
     /// <summary>
-    /// Border radius from the dialog border radius grouping.
+    /// Border radius matching a dialog surface, for custom dialog-like content built outside the Modal Dialog framework.
+    /// Uses the dialog border radius grouping.
     /// </summary>
     Dialog = 2,
 }

@@ -1,19 +1,383 @@
 ﻿@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Kbd}/{GlobalValues.Common_Page_Path_Api}")]
 
-<PageTitle>@GlobalValues.CSS_Name_Kbd @GlobalValues.Common_Page_Title_Api</PageTitle>
+<PageTitle>@GlobalValues.CSS_Name_Kbd @GlobalValues.Common_Page_Title_Api_Usage</PageTitle>
 
-<h1>@GlobalValues.CSS_Name_Kbd @GlobalValues.Common_Page_Title_Api . . . In Progress . . .</h1>
+<h1>@GlobalValues.CSS_Name_Kbd @GlobalValues.Common_Page_Title_Api_Usage</h1>
+<p>
+    Everything you need to work with the <span class="@CodeSpan.Base">br-kbd</span> CSS class: the BEM classes it provides, the strongly-typed <span class="@CodeSpan.Base">Kbd</span> C# object
+    used to apply them, supporting enums, and the CSS variables used for styling.
+</p>
+
+<h2 class="page-heading">Overview</h2>
+
+<p>
+    <span class="@CodeSpan.Base">br-kbd</span> is an inline element used to present a keyboard key or key combination within a line of text, such as an instruction to press a shortcut.
+</p>
+<p>
+    Colours are theme-reactive: they're built from the <span class="@CodeSpan.Base">--br-cls-*</span> variables described below, which in turn derive from the same
+    <span class="@CodeSpan.Base">--br-unit-*</span> primitives used across every Blazor Ramp component. Changing your theme updates <span class="@CodeSpan.Base">br-kbd</span> automatically
+    - no separate configuration needed.
+</p>
+<p>
+    Unlike <span class="@CodeSpan.Base">br-section</span>, <span class="@CodeSpan.Base">br-kbd</span> has a fixed border radius and does not expose a radius modifier.
+</p>
+
+
+
+<section>
+    <h2 id="c#-classes" class="page-heading">C# API</h2>
+    <p>
+        <span class="@CodeSpan.Base">Kbd</span> provides the BEM CSS classes for the br-kbd block: an inline element
+        used to present a keyboard key or key combination within a line of text.
+    </p>
+    <section class="code-table">
+        <h3 id="kbd-class" class="code-table__heading">Kbd class</h3>
+        <table aria-labelledby="kbd-class">
+            <thead>
+                <tr>
+                    <th scope="col">Return</th>
+                    <th scope="col">Const/Static Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>string</td>
+                    <td>Kbd.Base</td>
+                    <td>The base class, <span class="@CodeSpan.Base">br-kbd</span>. Always required.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Kbd.Scheme(KbdScheme scheme)</td>
+                    <td>Gets the class that sets the key's colour scheme.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Kbd.FontSize(KbdFontSize fontSize)</td>
+                    <td>Gets the class that sets the key's font size.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting enums</h2>
+    <section class="code-table">
+        <h3 id="kbd-font-size-enum" class="code-table__heading">KbdFontSize enum</h3>
+        <p>
+            Sets the font size of a <span class="@CodeSpan.Base">br-kbd</span> element.
+        </p>
+        <table aria-labelledby="kbd-font-size-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Label</td>
+                    <td>Label-sized text, matching the size used for input/form labels.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Regular</td>
+                    <td>The regular body text size.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Two</td>
+                    <td>A larger text size, one step above regular.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Three</td>
+                    <td>A larger text size, two steps above regular.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Four</td>
+                    <td>A larger text size, three steps above regular.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Five</td>
+                    <td>A larger text size, four steps above regular.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Six</td>
+                    <td>The largest text size available on this scale.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+        <h3 id="kbd-scheme-enum" class="code-table__heading">KbdScheme enum</h3>
+        <p>
+            Sets the colour scheme (text and background colour pairing) of a <span class="@CodeSpan.Base">br-kbd</span> element.
+        </p>
+        <table aria-labelledby="kbd-scheme-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Inverted</td>
+                    <td>An inverted colour scheme, using the canvas colour and its inverted counterpart. The default scheme.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Neutral</td>
+                    <td>A neutral colour scheme.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Primary</td>
+                    <td>A primary-hue colour scheme.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Secondary</td>
+                    <td>A secondary-hue colour scheme.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Accent</td>
+                    <td>An accent-hue colour scheme. The scheme applied when no modifier is present.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Usage</h2>
+
+    <p>
+        Below each code section is the result of the code in the section.
+    </p>
+    <p>
+        A basic key, inline with text:
+    </p>
+
+    <CodeBox CodeBlock="@CssClassesSnippets.Kbd_Basic_Example" AriaLabel="Basic Kbd code example" />
+    <p>Press <span class="@Kbd.Base">Esc</span> to close the dialog.</p>
+    <p>
+        A key combination using the accent colour scheme and a larger font size:
+    </p>
+
+    <CodeBox CodeBlock="@CssClassesSnippets.Kbd_Modifier_Example" AriaLabel="Themed kbd example code example" />
+
+    <p>
+        Press <span class="@Kbd.Base @Kbd.Scheme(KbdScheme.Accent) @Kbd.FontSize(KbdFontSize.Two)">Ctrl</span>
+        + 
+        <span class="@Kbd.Base @Kbd.Scheme(KbdScheme.Accent) @Kbd.FontSize(KbdFontSize.Two)">K</span> to open the command palette.
+    </p>
+
+</section>
+
+<section class="code-table">
+    <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
+
+    <table aria-labelledby="css-classes">
+        <thead>
+            <tr>
+                <th scope="col">Class</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>br-kbd</td>
+                <td>Block</td>
+                <td>The root key element. Sets default padding, border radius, box shadow, font, colour and background.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-kbd--font-size-label<br>
+                    br-kbd--font-size-one<br>
+                    br-kbd--font-size-two<br>
+                    br-kbd--font-size-three<br>
+                    br-kbd--font-size-four<br>
+                    br-kbd--font-size-five<br>
+                    br-kbd--font-size-six
+                </td>
+                <td>Modifier(s)</td>
+                <td>Sets the key's font size.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-kbd--inverted-scheme<br>
+                    br-kbd--neutral-scheme<br>
+                    br-kbd--primary-scheme<br>
+                    br-kbd--secondary-scheme<br>
+                    br-kbd--accent-scheme
+                </td>
+                <td>Modifier(s)</td>
+                <td>Sets the key's text and background colour pairing.</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2 class="page-heading">CSS variables</h2>
+    <p>
+        The following variables can be overridden to alter the appearance of br-kbd. Colour and font size variables are consumed from the shared
+        <span class="@CodeSpan.Base">--br-cls-*</span> layer, so a theme change updates every key on the page automatically -
+        you don't need to override anything to stay in sync with your chosen theme.
+    </p>
+
+    <section class="code-table">
+        <h3 id="kbd-base-variables" class="code-table__heading">Kbd base variables</h3>
+        <p>Private variables set on the element itself before any modifier is applied.</p>
+        <table aria-labelledby="kbd-base-variables">
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--_kbd-font-size</td>
+                    <td>var(--br-unit-font-size-1)</td>
+                    <td>The key's font size before any size modifier is applied.</td>
+                </tr>
+                <tr>
+                    <td>--_kbd-text</td>
+                    <td>var(--br-unit-colour-canvas-text-inverted)</td>
+                    <td>The key's text colour before any scheme modifier is applied.</td>
+                </tr>
+                <tr>
+                    <td>--_kbd-background</td>
+                    <td>var(--br-unit-colour-canvas-inverted)</td>
+                    <td>The key's background colour before any scheme modifier is applied.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+        <h3 id="kbd-shared-variables" class="code-table__heading">Shared variables consumed</h3>
+        <p>
+            <span class="@CodeSpan.Base">br-kbd's</span> colour scheme modifiers and font family read from these shared
+            <span class="@CodeSpan.Base">--br-cls-*</span> tokens.
+        </p>
+        <table aria-labelledby="kbd-shared-variables">
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--br-cls-kbd-font-family</td>
+                    <td>The font family used by the key.</td>
+                </tr>
+                <tr>
+                    <td>
+                        --br-cls-neutral-lighter<br>
+                        --br-cls-secondary-lighter<br>
+                        --br-cls-accent-lighter<br>
+                        --br-cls-primary-lighter
+                    </td>
+                    <td>
+                        Background colours used by the <span class="@CodeSpan.Base">
+                        --neutral-scheme<br>--secondary-scheme<br>--accent-scheme<br>
+                        --primary-scheme
+                    </span> modifiers.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    --br-cls-neutral-text<br>
+                    --br-cls-secondary-text<br>
+                    --br-cls-accent-text<br>
+                    --br-cls-primary-text
+                </td>
+                <td>
+                    Text colours used by the
+                    <span class="@CodeSpan.Base">--neutral-scheme<br>--secondary-scheme<br>--accent-scheme<br>--primary-scheme</span> modifiers.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_CodeSpan}/{GlobalValues.Common_Page_Path_Api}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.CSS_Name_CodeSpan - @GlobalValues.Common_Page_Title_Api</span>
+        <span>@GlobalValues.CSS_Name_CodeSpan - @GlobalValues.Common_Page_Title_Api_Usage</span>
         <span aria-hidden="true"></span>
     </a>
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Section}/{GlobalValues.Common_Page_Path_Api}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.CSS_Name_Section - @GlobalValues.Common_Page_Title_Api</span>
+        <span>@GlobalValues.CSS_Name_Section - @GlobalValues.Common_Page_Title_Api_Usage</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

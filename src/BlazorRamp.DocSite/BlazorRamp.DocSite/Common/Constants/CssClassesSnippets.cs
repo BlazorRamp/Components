@@ -25,15 +25,15 @@ public class CssClassesSnippets
 
 
     public const string Section_Container_With_Header_Example = """
-        <div class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Container)">
+        <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Container)">
             <h3 class="@Section.Heading.Base">Section title</h3>
             <p>Content goes here.</p>
-        </div>
+        </section>
         """;
 
 
     public const string Section_Coloured_Example = """
-        <div class="@Section.Base
+        <section class="@Section.Base
             @Section.Background(SectionBackground.PrimaryLighter)
             @Section.Text(SectionText.Primary)
             @Section.ColumnCentred
@@ -42,6 +42,34 @@ public class CssClassesSnippets
                 Accent callout
             </h3>
             <p>This section uses the primary colour family throughout.</p>
-        </div>
+        </section>
+        """;
+
+
+    public const string Kbd_Basic_Example = """
+        <p>
+            Press <span class="@Kbd.Base">Esc</span> to close the dialog.
+        </p>
+        """;
+
+    public const string Kbd_Modifier_Example = """
+        <p>
+            Press <span class="@Kbd.Base @Kbd.Scheme(KbdScheme.Accent) @Kbd.FontSize(KbdFontSize.Two)">Ctrl</span>
+            + 
+            <span class="@Kbd.Base @Kbd.Scheme(KbdScheme.Accent) @Kbd.FontSize(KbdFontSize.Two)">K</span> to open the command palette.
+        </p>
+        """;
+
+
+    public const string CodeSpan_Basic_Example = """
+        <p>
+            Set the <span class="@CodeSpan.Base">ControlID</span> parameter to override the generated id.
+        </p>
+        """;
+
+    public const string CodeSpan_Scheme_Font_Example = """
+        <p>
+            Call <span class="@CodeSpan.Base @CodeSpan.Scheme(CodeSpanScheme.Primary) @CodeSpan.FontSize(CodeSpanFontSize.Two)">ClearFilter() </span>to reset the input.
+        </p>
         """;
 }

@@ -2,22 +2,25 @@
 .br-code-span {
 
     --_code-span-font-size: var(--br-unit-font-size-1);
-    --_code-span-text:var(--br-unit-colour-canvas-text-inverted);
-    --_code-span-background: var(--br-unit-colour-canvas-inverted);
+    --_code-span-text:var(--br-cls-accent-text);
+    --_code-span-background: var(--br-cls-accent-lighter);
 
     border: 1px solid transparent;
     padding: var(--br-unit-space-2);
     border-radius: var(--br-unit-radius-3);
     font-family: var(--br-cls-code-font-family);
     font-size: var(--_code-span-font-size);
-    color: var(--br-cls-accent-text);
-    background-color: var(--br-cls-accent-lighter);
+    color: var(--_code-span-text);
+    background-color: var(--_code-span-background);
     white-space: nowrap;
 
     &--font-size-label  {--_code-span-font-size:var(--br-unit-font-size-label);}
     &--font-size-one    {--_code-span-font-size:var(--br-unit-font-size-1);}
     &--font-size-two    {--_code-span-font-size:var(--br-unit-font-size-2);}
     &--font-size-three  {--_code-span-font-size:var(--br-unit-font-size-3);}
+    &--font-size-four   {--_code-span-font-size:var(--br-unit-font-size-4);}
+    &--font-size-five   {--_code-span-font-size:var(--br-unit-font-size-5);}
+    &--font-size-six    {--_code-span-font-size:var(--br-unit-font-size-6);}
 
     &--inverted-scheme  {--_code-span-text:var(--br-unit-colour-canvas-text-inverted); --_code-span-background:var(--br-unit-colour-canvas-inverted);}
     &--primary-scheme   {--_code-span-text:var(--br-cls-primary-text);                 --_code-span-background:var(--br-cls-primary-lighter);}
@@ -47,6 +50,9 @@
     &--font-size-one{--_kbd-font-size:var(--br-unit-font-size-1);}
     &--font-size-two{--_kbd-font-size:var(--br-unit-font-size-2);}
     &--font-size-three{--_kbd-font-size:var(--br-unit-font-size-3);}
+    &--font-size-four{--_kbd-font-size:var(--br-unit-font-size-4);}
+    &--font-size-five{--_kbd-font-size:var(--br-unit-font-size-5);}
+    &--font-size-six{--_kbd-font-size:var(--br-unit-font-size-6);}
 
     &--inverted-scheme {--_kbd-text:var(--br-unit-colour-canvas-text-inverted); --_kbd-background:var(--br-unit-colour-canvas-inverted);}
     &--primary-scheme  {--_kbd-text:var(--br-cls-primary-text);                 --_kbd-background:var(--br-cls-primary-lighter);}

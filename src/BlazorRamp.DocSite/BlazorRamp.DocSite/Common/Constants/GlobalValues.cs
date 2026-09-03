@@ -84,6 +84,7 @@ public class GlobalValues
     public const string Common_Page_Title_Roadmap        = "Roadmap";
     public const string Common_Page_Title_Overview       = "Overview";
     public const string Common_Page_Title_Api            = "API Reference";
+    public const string Common_Page_Title_Api_Usage     = "API Reference & Usage";
     public const string Common_Page_Title_Installation   = "Installation";
     public const string Common_Page_Title_Accessibility  = "Accessibility";
     public const string Common_Page_Title_Usage          = "Usage";
