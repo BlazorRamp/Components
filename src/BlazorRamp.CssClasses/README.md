@@ -1,12 +1,16 @@
-﻿# Blazor Ramp Core
+﻿# Blazor Ramp - CSS Classes
 
-The Blazor Ramp project aims to provide a suite of modular, accessibility-first Blazor components. This Core package includes the `LiveRegionService`, which enables you to make announcements 
-using the aria-live API via elements with the `aria-live` attribute, utilising the values `polite` and `assertive` to indicate the urgency of each announcement.
+The Blazor Ramp project aims to provide a suite of modular, accessibility-first Blazor components. 
 
-The Core package also includes the `<AnnouncementHistory />` component, which allows users to view and/or clear a rolling log of the last twenty announcements stored in browser memory.
+## Requirements
+It is a requirement that the Blazor Ramp Core script, Live Region Service, and associated Announcement History component are added alongside this packages specific 
+requirements (a stylesheet reference), as outlined below.
 
-In addition to the service and component mentioned above, the Core project provides a common set of CSS custom properties that all future components will utilise for their styling. 
-Overriding these CSS properties will therefore update the appearance of all components that rely on them. Each component also exposes non-scoped CSS classes, enabling you to apply custom style overrides where necessary.
+**Note**: Every package includes a reference to the Blazor Ramp Core project (where the aforementioned items reside) so there is no need to install 
+this package separately (but it can be if you only require the Live Regions Service and Announcement History component).
+
+As this package only contains CSS classes and associated C# helper classes, no usage information is contained in this readmo other than installation notes.
+Please refer to the online documentation for all information regarding this package.
 
 **Full documentation available at:** https://docs.blazorramp.uk 
 
@@ -24,6 +28,7 @@ dotnet add package BlazorRamp.Core
 ```html
 <head>
 	<link rel="stylesheet" href="_content/BlazorRamp.Core/assets/css/core.min.css" />
+		<link rel="stylesheet" href="_content/BlazorRamp.CssClasses/assets/css/css-classes.min.css" />
 </head>
 ```
  

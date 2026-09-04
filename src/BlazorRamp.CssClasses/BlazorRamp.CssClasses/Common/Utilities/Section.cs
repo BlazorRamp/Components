@@ -90,17 +90,44 @@ public static class Section
     /// <summary>
     /// Gets the class that sets the section's base font size.
     /// </summary>
-    /// <param name="sectionFontSize">The font size to apply. See <see cref="SectionFontSize"/>.</param>
-    /// <returns>The <c>br-section</c> modifier class for the given <paramref name="sectionFontSize"/>.</returns>
-    public static string FontSize(SectionFontSize sectionFontSize)
+    /// <param name="unitFontSize">The font size to apply. See <see cref="UnitFontSize"/>.</param>
+    /// <returns>The <c>br-section</c> modifier class for the given <paramref name="unitFontSize"/>.</returns>
+    public static string FontSize(UnitFontSize unitFontSize)
 
-        => sectionFontSize switch
+        => unitFontSize switch
         {
-            SectionFontSize.Label => $"{Base}--font-size-label",
-            SectionFontSize.Regular => $"{Base}--font-size-one",
-            SectionFontSize.Two => $"{Base}--font-size-two",
-            SectionFontSize.Three => $"{Base}--font-size-three",
-            _ => $"{Base}--font-size-one"
+            UnitFontSize.Label   => $"{Base}--font-size-label",
+            UnitFontSize.Regular => $"{Base}--font-size-one",
+            UnitFontSize.Two     => $"{Base}--font-size-two",
+            UnitFontSize.Three   => $"{Base}--font-size-three",
+            UnitFontSize.Four    => $"{Base}--font-size-four",
+            UnitFontSize.Five    => $"{Base}--font-size-five",
+            UnitFontSize.Six     => $"{Base}--font-size-six",
+            _                    => $"{Base}--font-size-one"
+        };
+
+    /// <summary>
+    /// Gets the class that sets the section's border radius to a fixed <c>--br-unit-radius-*</c>
+    /// value, bypassing the themeable content/container/dialog groupings.
+    /// </summary>
+    /// <param name="unitRadius">The fixed radius to apply. See <see cref="UnitRadius"/>.</param>
+    /// <returns>The <c>br-section</c> modifier class for the given <paramref name="unitRadius"/>.</returns>
+    public static string FixedRadius(UnitRadius unitRadius)
+
+        => unitRadius switch
+        {
+            UnitRadius.None  => $"{Base}--radius-none",
+            UnitRadius.One   => $"{Base}--radius-one",
+            UnitRadius.Two   => $"{Base}--radius-two",
+            UnitRadius.Three => $"{Base}--radius-three",
+            UnitRadius.Four  => $"{Base}--radius-four",
+            UnitRadius.Five  => $"{Base}--radius-five",
+            UnitRadius.Six   => $"{Base}--radius-six",
+            UnitRadius.Seven => $"{Base}--radius-seven",
+            UnitRadius.Eight => $"{Base}--radius-eight",
+            UnitRadius.Nine  => $"{Base}--radius-nine",
+            UnitRadius.Full  => $"{Base}--radius-full",
+            _ => $"{Base}--radius-none",
         };
 
     /// <summary>
@@ -139,18 +166,19 @@ public static class Section
         /// <summary>
         /// Gets the class that sets the heading's font size.
         /// </summary>
-        /// <param name="sectionHeadingFontSize">The font size to apply. See <see cref="SectionHeadingFontSize"/>.</param>
-        /// <returns>The <c>br-section__heading</c> modifier class for the given <paramref name="sectionHeadingFontSize"/>.</returns>
-        public static string FontSize(SectionHeadingFontSize sectionHeadingFontSize)
+        /// <param name="unitFontSize">The font size to apply. See <see cref="UnitFontSize"/>.</param>
+        /// <returns>The <c>br-section__heading</c> modifier class for the given <paramref name="unitFontSize"/>.</returns>
+        public static string FontSize(UnitFontSize unitFontSize)
 
-            => sectionHeadingFontSize switch
+            => unitFontSize switch
             {
-                SectionHeadingFontSize.Regular => $"{Base}--font-size-one",
-                SectionHeadingFontSize.Two     => $"{Base}--font-size-two",
-                SectionHeadingFontSize.Three   => $"{Base}--font-size-three",
-                SectionHeadingFontSize.Four    => $"{Base}--font-size-four",
-                SectionHeadingFontSize.Five    => $"{Base}--font-size-five",
-                SectionHeadingFontSize.Six     => $"{Base}--font-size-six",
+                UnitFontSize.Label   => $"{Base}--font-size-label",
+                UnitFontSize.Regular => $"{Base}--font-size-one",
+                UnitFontSize.Two     => $"{Base}--font-size-two",
+                UnitFontSize.Three   => $"{Base}--font-size-three",
+                UnitFontSize.Four    => $"{Base}--font-size-four",
+                UnitFontSize.Five    => $"{Base}--font-size-five",
+                UnitFontSize.Six     => $"{Base}--font-size-six",
                 _ => $"{Base}--font-size-two",
             };
     }

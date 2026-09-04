@@ -54,9 +54,9 @@ public class CssClassesSnippets
 
     public const string Kbd_Modifier_Example = """
         <p>
-            Press <span class="@Kbd.Base @Kbd.Scheme(KbdScheme.Accent) @Kbd.FontSize(KbdFontSize.Two)">Ctrl</span>
+            Press <span class="@Kbd.Base @Kbd.Scheme(KbdScheme.Accent) @Kbd.FontSize(UnitFontSize.Two) @Kbd.FixedRadius(UnitRadius.Two)">Ctrl</span>
             + 
-            <span class="@Kbd.Base @Kbd.Scheme(KbdScheme.Accent) @Kbd.FontSize(KbdFontSize.Two)">K</span> to open the command palette.
+            <span class="@Kbd.Base @Kbd.Scheme(KbdScheme.Accent) @Kbd.FontSize(UnitFontSize.Two) @Kbd.FixedRadius(UnitRadius.Two)">K</span> to open the command palette.
         </p>
         """;
 
@@ -69,7 +69,24 @@ public class CssClassesSnippets
 
     public const string CodeSpan_Scheme_Font_Example = """
         <p>
-            Call <span class="@CodeSpan.Base @CodeSpan.Scheme(CodeSpanScheme.Primary) @CodeSpan.FontSize(CodeSpanFontSize.Two)">ClearFilter() </span>to reset the input.
+            Call <span class="@CodeSpan.Base @CodeSpan.Scheme(CodeSpanScheme.Primary) @CodeSpan.FontSize(UnitFontSize.Two) @CodeSpan.FixedRadius(UnitRadius.Full)">ClearFilter()</span>to reset the input.
         </p>
+        """;
+
+
+    public const string Button_Regular_Default_Example = """
+        <button class="@Button.Base @Button.Size(ButtonSize.Regular)">Settings</button>
+        """;
+
+    public const string Margin_Code_Example = """
+        <div class="@Section.Base @Section.Bordered @Section.FixedRadius(UnitRadius.One) @Section.NoPadding">
+            <button class="@Button.Base @Button.FixedRadius(UnitRadius.One) @Margin.InlineStart(UnitSpace.Three) @Margin.BlockStart(UnitSpace.Five)">A button inside a section</button>
+        </div>
+        """;
+
+    public const string Padding_Code_Example = """
+        <div class="@Section.Base @Section.Bordered @Section.FixedRadius(UnitRadius.One) @Section.NoPadding @Padding.InlineStart(UnitSpace.Three) @Padding.BlockStart(UnitSpace.Five)">
+            <button class="@Button.Base @Button.FixedRadius(UnitRadius.One)">A button inside a section</button>
+        </div>
         """;
 }

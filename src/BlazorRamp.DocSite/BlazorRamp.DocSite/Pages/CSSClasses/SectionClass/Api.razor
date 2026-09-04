@@ -87,8 +87,16 @@
                 </tr>
                 <tr>
                     <td>string</td>
-                    <td>Section.FontSize(SectionFontSize sectionFontSize)</td>
+                    <td>Section.FontSize(UnitFontSize unitFontSize)</td>
                     <td>Gets the class that sets the section's base font size.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Section.FixedRadius(UnitRadius unitRadius)</td>
+                    <td>
+                        Gets the modifier class that sets the section's border radius to a 
+                        fixed unit value, bypassing the themeable content/container/dialog groupings.
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -131,7 +139,7 @@
                 </tr>
                 <tr>
                     <td>string</td>
-                    <td>Section.Heading.FontSize(SectionHeadingFontSize sectionHeadingFontSize)</td>
+                    <td>Section.Heading.FontSize(UnitFontSize unitFontSize)</td>
                     <td>Gets the class that sets the heading's font size</td>
                 </tr>
             </tbody>
@@ -260,9 +268,9 @@
     </section>
 
     <section class="code-table">
-        <h3 id="section-font-size-enum" class="code-table__heading">SectionFontSize enum</h3>
+        <h3 id="section-font-size-enum" class="code-table__heading">UnitFontSize enum</h3>
         <p>
-            Sets the base font size of a <span class="@CodeSpan.Base">br-section</span> element.
+            Sets the base font size of the <span class="@CodeSpan.Base">br-section</span> and the <span class="@CodeSpan.Base">br-section__heading</span> elements respectively.
         </p>
         <table aria-labelledby="section-font-size-enum">
             <thead>
@@ -291,7 +299,22 @@
                 <tr>
                     <td>3</td>
                     <td>Three</td>
-                    <td>The largest text size available for the seciotn text.</td>
+                    <td>A larger text size, two steps above regular.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Four</td>
+                    <td>A larger text size, three steps above regular.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Five</td>
+                    <td>A larger text size, four steps above regular.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Six</td>
+                    <td>The largest text size available on this scale.</td>
                 </tr>
             </tbody>
         </table>
@@ -335,13 +358,14 @@
         </table>
     </section>
 
-    <section class="code-table">
-        <h3 id="section-heading-font-size-enum" class="code-table__heading">SectionHeadingFontSize enum</h3>
-        <p>
-            Sets the font size of a <span class="@CodeSpan.Base">br-section__heading</span> element.
-        </p>
 
-        <table aria-labelledby="section-heading-font-size-enum">
+
+    <section class="code-table">
+        <h3 id="unit-radius-enum" class="code-table__heading">UnitRadius enum</h3>
+        <p>
+            Sets a fixed border radius from the <span class="@CodeSpan.Base">--br-unit-radius-*</span> primitive scale, bypassing any themeable border radius grouping.
+        </p>
+        <table aria-labelledby="unit-radius-enum">
             <thead>
                 <tr>
                     <th scope="col">Value</th>
@@ -352,33 +376,58 @@
             <tbody>
                 <tr>
                     <td>0</td>
-                    <td>Regular</td>
-                    <td>The regular font-size used in the body content.</td>
+                    <td>None</td>
+                    <td>No border radius. Maps to <span class="@CodeSpan.Base">--br-unit-radius-0</span>.</td>
                 </tr>
                 <tr>
                     <td>1</td>
-                    <td>Two</td>
-                    <td>A larger heading size, one step above regular and the default for section headings.</td>
+                    <td>One</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-1</span>.</td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>Three</td>
-                    <td>A larger heading size, two steps above regular.</td>
+                    <td>Two</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-2</span>.</td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>Four</td>
-                    <td>A larger heading size, three steps above regular.</td>
+                    <td>Three</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-3</span>.</td>
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td>Five</td>
-                    <td>A larger heading size, four steps above regular.</td>
+                    <td>Four</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-4</span>.</td>
                 </tr>
                 <tr>
                     <td>5</td>
+                    <td>Five</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-5</span>.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
                     <td>Six</td>
-                    <td>The largest heading size available on this scale.</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-6</span>.</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Seven</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-7</span>.</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Eight</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-8</span>.</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Nine</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-9</span>.</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Full</td>
+                    <td>Fully rounded. Maps to <span class="@CodeSpan.Base">--br-unit-radius-full</span>.</td>
                 </tr>
             </tbody>
         </table>
@@ -411,7 +460,8 @@
 </section>
 
 <p>
-    A themed, centred borderless section with a coloured heading that uses the content border radius:
+    A themed, centred borderless section with a coloured heading that uses the content border radius 
+    (explicitly defined for the example, as its the default without any modifier).:
 </p>
 
 <CodeBox CodeBlock="@CssClassesSnippets.Section_Coloured_Example" AriaLabel="Section with theme coloured heading example" />
@@ -586,7 +636,36 @@
         <span class="@CodeSpan.Base">--br-cls-*</span> layer, so a theme change updates every section on the page automatically -
         you don't need to override anything to stay in sync with your chosen theme.
     </p>
-
+    <section class="code-table">
+        <h3 id="section-base-variables" class="code-table__heading">Section base variables</h3>
+        <p>Private variables set on the element itself before any modifier is applied.</p>
+        <table aria-labelledby="section-base-variables">
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--_section-background</td>
+                    <td>var(--br-unit-colour-canvas)</td>
+                    <td>The section's background colour before any colour modifier is applied.</td>
+                </tr>
+                <tr>
+                    <td>--_section-text</td>
+                    <td>var(--br-unit-colour-canvas-text)</td>
+                    <td>The section's text colour before any colour modifier is applied.</td>
+                </tr>
+                <tr>
+                    <td>--_section-font-size</td>
+                    <td>var(--br-unit-font-size-1)</td>
+                    <td>The section's base font size before any size modifier is applied.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
     <section class="code-table">
         <h3 id="section-heading-variables" class="code-table__heading">Section heading variables</h3>
         <p>
@@ -645,9 +724,9 @@
 </section>
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Kbd}/{GlobalValues.Common_Page_Path_Api}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Padding}/{GlobalValues.Common_Page_Path_Api}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.CSS_Name_Kbd - @GlobalValues.Common_Page_Title_Api</span>
+        <span>@GlobalValues.CSS_Name_Padding - @GlobalValues.Common_Page_Title_Api</span>
         <span aria-hidden="true"></span>
     </a>
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_FAQS}/{GlobalValues.Common_Page_Path_Questions}")">

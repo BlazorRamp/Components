@@ -1,18 +1,49 @@
 ﻿
+@mixin KbdSpanBase{
+    
+    &--font-size-label  {--_code-span-font-size:var(--br-unit-font-size-label);}
+    &--font-size-one    {--_code-span-font-size:var(--br-unit-font-size-1);}
+    &--font-size-two    {--_code-span-font-size:var(--br-unit-font-size-2);}
+    &--font-size-three  {--_code-span-font-size:var(--br-unit-font-size-3);}
+    &--font-size-four   {--_code-span-font-size:var(--br-unit-font-size-4);}
+    &--font-size-five   {--_code-span-font-size:var(--br-unit-font-size-5);}
+    &--font-size-six    {--_code-span-font-size:var(--br-unit-font-size-6);}
+
+
+}
+
 .br-code-span {
 
     --_code-span-font-size: var(--br-unit-font-size-1);
     --_code-span-text:var(--br-cls-accent-text-dark);
     --_code-span-background: var(--br-cls-accent-lighter);
-
+    --_code-span-border-radius:var(--br-unit-radius-3);
     border: 1px solid transparent;
     padding: var(--br-unit-space-2);
-    border-radius: var(--br-unit-radius-3);
+    border-radius: var(--_code-span-border-radius);
     font-family: var(--br-cls-code-font-family);
     font-size: var(--_code-span-font-size);
     color: var(--_code-span-text);
     background-color: var(--_code-span-background);
     white-space: nowrap;
+
+    &--inverted-scheme  {--_code-span-text:var(--br-unit-colour-canvas-text-inverted); --_code-span-background:var(--br-unit-colour-canvas-inverted);}
+    &--primary-scheme   {--_code-span-text:var(--br-cls-primary-text-dark);            --_code-span-background:var(--br-cls-primary-lighter);}
+    &--secondary-scheme {--_code-span-text:var(--br-cls-secondary-text-dark);          --_code-span-background:var(--br-cls-secondary-lighter);}
+    &--accent-scheme    {--_code-span-text:var(--br-cls-accent-text-dark);             --_code-span-background:var(--br-cls-accent-lighter);}
+    &--neutral-scheme   {--_code-span-text:var(--br-cls-neutral-text-dark);            --_code-span-background:var(--br-cls-neutral-lighter);}
+
+    &--radius-none  {--_code-span-border-radius: var(--br-unit-radius-0);}
+    &--radius-one   {--_code-span-border-radius: var(--br-unit-radius-1);}
+    &--radius-two   {--_code-span-border-radius: var(--br-unit-radius-2);}
+    &--radius-three {--_code-span-border-radius: var(--br-unit-radius-3);}
+    &--radius-four  {--_code-span-border-radius: var(--br-unit-radius-4);}
+    &--radius-five  {--_code-span-border-radius: var(--br-unit-radius-5);}
+    &--radius-six   {--_code-span-border-radius: var(--br-unit-radius-6);}
+    &--radius-seven {--_code-span-border-radius: var(--br-unit-radius-7);}
+    &--radius-eight {--_code-span-border-radius: var(--br-unit-radius-8);}
+    &--radius-nine  {--_code-span-border-radius: var(--br-unit-radius-9);}
+    &--radius-full  {--_code-span-border-radius: var(--br-unit-radius-full);}
 
     &--font-size-label  {--_code-span-font-size:var(--br-unit-font-size-label);}
     &--font-size-one    {--_code-span-font-size:var(--br-unit-font-size-1);}
@@ -22,11 +53,7 @@
     &--font-size-five   {--_code-span-font-size:var(--br-unit-font-size-5);}
     &--font-size-six    {--_code-span-font-size:var(--br-unit-font-size-6);}
 
-    &--inverted-scheme  {--_code-span-text:var(--br-unit-colour-canvas-text-inverted); --_code-span-background:var(--br-unit-colour-canvas-inverted);}
-    &--primary-scheme   {--_code-span-text:var(--br-cls-primary-text-dark);            --_code-span-background:var(--br-cls-primary-lighter);}
-    &--secondary-scheme {--_code-span-text:var(--br-cls-secondary-text-dark);          --_code-span-background:var(--br-cls-secondary-lighter);}
-    &--accent-scheme    {--_code-span-text:var(--br-cls-accent-text-dark);             --_code-span-background:var(--br-cls-accent-lighter);}
-    &--neutral-scheme   {--_code-span-text:var(--br-cls-neutral-text-dark);            --_code-span-background:var(--br-cls-neutral-lighter);}
+
 }
 
 
@@ -34,9 +61,10 @@
     --_kbd-font-size: var(--br-unit-font-size-1);
     --_kbd-text:var(--br-unit-colour-canvas-text-inverted);
     --_kbd-background: var(--br-unit-colour-canvas-inverted);
+    --_kbd-border-radius: var(--br-unit-radius-3);
 
     font-family: var(--br-cls-kbd-font-family);
-    border-radius: var(--br-unit-radius-3);
+    border-radius: var(--_kbd-border-radius);
     background-color: var(--_kbd-background);
     color: var(--_kbd-text);
     padding: var(--br-unit-space-2);
@@ -46,17 +74,30 @@
 
     box-shadow:var(--br-unit-box-shadow-1);
 
-    &--font-size-label{--_kbd-font-size:var(--br-unit-font-size-label);}
-    &--font-size-one{--_kbd-font-size:var(--br-unit-font-size-1);}
-    &--font-size-two{--_kbd-font-size:var(--br-unit-font-size-2);}
-    &--font-size-three{--_kbd-font-size:var(--br-unit-font-size-3);}
-    &--font-size-four{--_kbd-font-size:var(--br-unit-font-size-4);}
-    &--font-size-five{--_kbd-font-size:var(--br-unit-font-size-5);}
-    &--font-size-six{--_kbd-font-size:var(--br-unit-font-size-6);}
-
     &--inverted-scheme {--_kbd-text:var(--br-unit-colour-canvas-text-inverted); --_kbd-background:var(--br-unit-colour-canvas-inverted);}
     &--primary-scheme  {--_kbd-text:var(--br-cls-primary-text-dark);            --_kbd-background:var(--br-cls-primary-lighter);}
     &--secondary-scheme{--_kbd-text:var(--br-cls-secondary-text-dark);          --_kbd-background:var(--br-cls-secondary-lighter);}
     &--accent-scheme   {--_kbd-text:var(--br-cls-accent-text-dark);             --_kbd-background:var(--br-cls-accent-lighter);}
     &--neutral-scheme  {--_kbd-text:var(--br-cls-neutral-text-dark);            --_kbd-background:var(--br-cls-neutral-lighter);}
+
+    &--radius-none  {--_kbd-border-radius: var(--br-unit-radius-0);}
+    &--radius-one   {--_kbd-border-radius: var(--br-unit-radius-1);}
+    &--radius-two   {--_kbd-border-radius: var(--br-unit-radius-2);}
+    &--radius-three {--_kbd-border-radius: var(--br-unit-radius-3);}
+    &--radius-four  {--_kbd-border-radius: var(--br-unit-radius-4);}
+    &--radius-five  {--_kbd-border-radius: var(--br-unit-radius-5);}
+    &--radius-six   {--_kbd-border-radius: var(--br-unit-radius-6);}
+    &--radius-seven {--_kbd-border-radius: var(--br-unit-radius-7);}
+    &--radius-eight {--_kbd-border-radius: var(--br-unit-radius-8);}
+    &--radius-nine  {--_kbd-border-radius: var(--br-unit-radius-9);}
+    &--radius-full  {--_kbd-border-radius: var(--br-unit-radius-full);}
+
+    &--font-size-label {--_kbd-font-size:var(--br-unit-font-size-label);}
+    &--font-size-one   {--_kbd-font-size:var(--br-unit-font-size-1);}
+    &--font-size-two   {--_kbd-font-size:var(--br-unit-font-size-2);}
+    &--font-size-three {--_kbd-font-size:var(--br-unit-font-size-3);}
+    &--font-size-four  {--_kbd-font-size:var(--br-unit-font-size-4);}
+    &--font-size-five  {--_kbd-font-size:var(--br-unit-font-size-5);}
+    &--font-size-six   {--_kbd-font-size:var(--br-unit-font-size-6);}
+
 }

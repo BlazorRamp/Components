@@ -163,13 +163,17 @@ public class GlobalValues
 
     public const string CSS_Path_Part_Buttons = "buttons";
     public const string CSS_Path_Part_CodeSpan = "codespan";  
-    public const string CSS_Path_Part_Kbd = "kbd";   
+    public const string CSS_Path_Part_Kbd = "kbd";
+    public const string CSS_Path_Part_Margin = "padding";
+    public const string CSS_Path_Part_Padding = "margin";
     public const string CSS_Path_Part_Section = "section";
 
 
     public const string CSS_Name_Buttons  = "Buttons";
     public const string CSS_Name_CodeSpan = "CodeSpan";
-    public const string CSS_Name_Kbd     = "Kbd";    
+    public const string CSS_Name_Kbd     = "Kbd";
+    public const string CSS_Name_Margin = "Margin";
+    public const string CSS_Name_Padding = "Padding";
     public const string CSS_Name_Section  = "Section";
 
     public const string CSS_Name_CSS_Classes = "CSS Classes";

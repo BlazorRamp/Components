@@ -6,13 +6,13 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
-		<Title>BlazorRamp.Core</Title>
+		<Title>BlazorRamp.CssClasses</Title>
 		<Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
 		<PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
 		<PackageTags>Blazor; Accessible Components; Accessibility;CSS Classes;</PackageTags>
 		<PackageReleaseNotes>Initial release of the Blazor Ramp Css Classes.	</PackageReleaseNotes>
-		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<AssemblyVersion>1.0.0</AssemblyVersion>
 		<FileVersion>1.0.0</FileVersion>
 		<Version>1.0.0</Version>
@@ -22,7 +22,7 @@
 		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 		<Authors>Paul Kent</Authors>
 		<PackageId>$(AssemblyName)</PackageId>
-		<Description>A set of css classes that use the same underlying Blazor Ramp Core projects CSS variables.</Description>
+		<Description>A set of css classes and assoicatied C# helper classes that use the same underlying Blazor Ramp Core projects CSS variables.</Description>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 

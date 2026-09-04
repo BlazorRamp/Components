@@ -2,11 +2,232 @@
 
 <PageTitle>@GlobalValues.CSS_Name_Buttons @GlobalValues.Common_Page_Title_Api_Usage</PageTitle>
 
-<h1>@GlobalValues.CSS_Name_Buttons @GlobalValues.Common_Page_Title_Api_Usage . . . In Progress . . .</h1>
+<h1>@GlobalValues.CSS_Name_Buttons @GlobalValues.Common_Page_Title_Api_Usage</h1>
+
+
+<p>
+    Everything you need to work with the <span class="@CodeSpan.Base">br-button</span> CSS class: the BEM classes it provides, the strongly-typed <span class="@CodeSpan.Base">Button</span> C# object
+    used to apply them, supporting enums, and the CSS variables used for styling.
+</p>
+
+<h2 class="page-heading">Overview</h2>
+
+<p>
+    <span class="@CodeSpan.Base">br-button</span> is a theme-reactive button element that shares its underlying styling - border radius, focus indicator, active/hover states - with every button used inside Blazor Ramp components.
+</p>
+<p>
+    Colours are theme-reactive: they're built from the <span class="@CodeSpan.Base">--br-cls-*</span> variables described below, which in turn derive from the same
+    <span class="@CodeSpan.Base">--br-unit-*</span> primitives used across every Blazor Ramp component. Changing your theme updates <span class="@CodeSpan.Base">br-button</span> automatically
+    - no separate configuration needed.
+</p>
+<p>
+    Unlike <span class="@CodeSpan.Base">@CodeSpan.Base</span> and <span class="@CodeSpan.Base">br-kbd</span>, solid colour scheme text colours for the base primary/secondary/accent/neutral/danger/warning/success/info
+    schemes are computed automatically using the CSS <span class="@CodeSpan.Base">contrast-color()</span> function, since the underlying hue is user-themeable and cannot be predicted in advance.
+    The lighter and darker scheme variants use fixed, curated text colours instead, since their contrast direction is always known.
+</p>
 
 
 <section>
-    <h3>Default component button</h3>
+    <h2 id="c#-classes" class="page-heading">C# API</h2>
+    <p>
+        <span class="@CodeSpan.Base">Button</span> provides the BEM CSS classes for the br-button block: a theme-reactive
+        button element that shares its underlying styling with every Blazor Ramp component.
+    </p>
+    <section class="code-table">
+        <h3 id="button-class" class="code-table__heading">Button class</h3>
+        <table aria-labelledby="button-class">
+            <thead>
+                <tr>
+                    <th scope="col">Return</th>
+                    <th scope="col">Const/Static Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>string</td>
+                    <td>Button.Base</td>
+                    <td>The base class, <span class="@CodeSpan.Base">br-button</span>. Always required.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Button.FullWidth</td>
+                    <td>Makes the button take the full width of its container.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Button.Size(ButtonSize buttonSize)</td>
+                    <td>Gets the class that sets the button's size.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Button.Scheme(ButtonSolidScheme solidScheme)</td>
+                    <td>Gets the class that sets the button's solid colour scheme: its background, border, and a contrasting text colour.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Button.FixedRadius(UnitRadius unitRadius)</td>
+                    <td>
+                        Gets the modifier class that sets the button's border radius to a
+                        fixed unit value, bypassing the themeable default button group radius.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting enums</h2>
+    <section class="code-table">
+        <h3 id="button-size-enum" class="code-table__heading">ButtonSize enum</h3>
+        <p>
+            Sets the size of a <span class="@CodeSpan.Base">br-button</span> element.
+        </p>
+        <table aria-labelledby="button-size-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Small</td>
+                    <td>A smaller button. Still meets the WCAG minimum target size.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Regular</td>
+                    <td>The regular, default button size.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Large</td>
+                    <td>A larger button, one step above regular.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>ExtraLarge</td>
+                    <td>The largest button size available on this scale.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+        <h3 id="button-solid-scheme-enum" class="code-table__heading">ButtonSolidScheme enum</h3>
+        <p>
+            Sets the solid colour scheme (background, border, and contrasting text colour) of a <span class="@CodeSpan.Base">br-button</span> element.
+        </p>
+        <table aria-labelledby="button-solid-scheme-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Inverted</td>
+                    <td>An inverted solid scheme, using the canvas colour and its inverted counterpart.</td>
+                </tr>
+                <tr>
+                    <td>
+                        1<br>9<br>17
+                    </td>
+                    <td>
+                        Neutral<br>NeutralLighter<br>NeutralDarker
+                    </td>
+                    <td>Neutral solid scheme, and its light and dark variants.</td>
+                </tr>
+                <tr>
+                    <td>
+                        2<br>12<br>20
+                    </td>
+                    <td>
+                        Primary<br>PrimaryLighter<br>PrimaryDarker
+                    </td>
+                    <td>Primary-hue solid scheme, and its light and dark variants.</td>
+                </tr>
+                <tr>
+                    <td>
+                        3<br>10<br>18
+                    </td>
+                    <td>
+                        Secondary<br>SecondaryLighter<br>SecondaryDarker
+                    </td>
+                    <td>Secondary-hue solid scheme, and its light and dark variants.</td>
+                </tr>
+                <tr>
+                    <td>
+                        4<br>11<br>19
+                    </td>
+                    <td>
+                        Accent<br>AccentLighter<br>AccentDarker
+                    </td>
+                    <td>Accent-hue solid scheme, and its light and dark variants.</td>
+                </tr>
+                <tr>
+                    <td>
+                        5<br>13<br>21
+                    </td>
+                    <td>
+                        Danger<br>DangerLighter<br>DangerDarker
+                    </td>
+                    <td>Danger (error/destructive) solid scheme, and its light and dark variants.</td>
+                </tr>
+                <tr>
+                    <td>
+                        6<br>14<br>22
+                    </td>
+                    <td>
+                        Warning<br>WarningLighter<br>WarningDarker
+                    </td>
+                    <td>Warning solid scheme, and its light and dark variants.</td>
+                </tr>
+                <tr>
+                    <td>
+                        7<br>15<br>23
+                    </td>
+                    <td>
+                        Success<br>SuccessLighter<br>SuccessDarker
+                    </td>
+                    <td>Success solid scheme, and its light and dark variants.</td>
+                </tr>
+                <tr>
+                    <td>
+                        8<br>16<br>24
+                    </td>
+                    <td>
+                        Info<br>InfoLighter<br>InfoDarker
+                    </td>
+                    <td>Informational solid scheme, and its light and dark variants.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section>
+     <h2 class="page-heading">Usage</h2>
+    <p>
+        The following shows examples of the styles applied to buttons.
+        <b>Note: </b>All of the CSS classes have variables for both light and dark schemes and the dark theme variables. Click the Theme button at the top of the page.
+    </p>
+    <p>
+        The following shows an example styling the button to be a regular size without any scheme so the default button styles are applied.
+    </p>
+    <CodeBox CodeBlock="@CssClassesSnippets.Button_Regular_Default_Example" AriaLabel="Button styling code example" />
+    <p>
+       <button class="@Button.Base @Button.Size(ButtonSize.Regular)">Settings</button>
+    </p>
+
+    <h3>Default component styling</h3>
     <p>The component buttons are clear so just show the background colour.</p>
     <div style="display:flex;flex-wrap:wrap; gap:var(--br-unit-space-5);margin-block:var(--br-unit-space-5)">
         <button type="button" class="@Button.Base @Button.Size(ButtonSize.Small)">Default Small</button>
@@ -14,6 +235,11 @@
         <button type="button" class="@Button.Base @Button.Size(ButtonSize.Large)">Default Large</button>
         <button type="button" class="@Button.Base @Button.Size(ButtonSize.ExtraLarge)">Default Extra Large</button>
     </div>
+    
+    <h3>Fixed central unit colour value from each of the colour palettes</h3>
+    <p>
+        Excluding the inverted scheme, the colour of the text for these are set via the CSS <span class="@CodeSpan.Base">contrast-color</span> function.
+    </p>
     <div style="display:flex;flex-wrap:wrap; gap:var(--br-unit-space-5);margin-block:var(--br-unit-space-5)">
         <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Primary)">Solid Primary</button>
         <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Neutral)">Solid Neutral</button>
@@ -25,6 +251,8 @@
         <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Info)">Solid Info</button>
         <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Inverted)">Solid Inverted</button>
     </div>
+    
+    <h3>Uses the lighter shade with a darker text of the same colour from each colour palette</h3>
 
     <div style="display:flex;flex-wrap:wrap; gap:var(--br-unit-space-5);margin-block:var(--br-unit-space-5)">
         <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.PrimaryLighter)">Solid Primary Lighter</button>
@@ -37,6 +265,8 @@
         <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.InfoLighter)">Solid Info Lighter</button>
 
     </div>
+    
+    <h3>Uses a darker shade with a lighter text of the same colour from each colour palette</h3>
 
     <div style="display:flex;flex-wrap:wrap; gap:var(--br-unit-space-5);margin-block:var(--br-unit-space-5)">
         <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.PrimaryDarker)">Solid Primary Darker</button>
@@ -49,7 +279,284 @@
         <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.InfoDarker)">Solid Info Darker</button>
     </div>
 
+    <h3>Fixed border radius that does not respond to the button border group</h3>
+
+     <div style="display:flex;flex-wrap:wrap; gap:var(--br-unit-space-5);margin-block:var(--br-unit-space-5)">
+        <button class="@Button.Base @Button.FixedRadius(UnitRadius.Two)" >Default Regular With a Fixed Radius of 2</button>
+        <button class="@Button.Base @Button.Scheme(ButtonSolidScheme.Neutral) @Button.FixedRadius(UnitRadius.Four)">Solid Neutral Large With a Fixed Radius of 4</button>
+     </div>
+
 </section>
+<ThemeColourTool />
+
+<ThemeBorderTool Title="Theme border tool" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
+    <BorderGroups>
+        <BorderGroup Title="Button borders">
+            <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
+
+
+<section class="code-table">
+    <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
+
+    <table aria-labelledby="css-classes">
+        <thead>
+            <tr>
+                <th scope="col">Class</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>br-button</td>
+                <td>Block</td>
+                <td>The root button element. Sets default padding, border radius, font, colour, background, and interaction states.</td>
+            </tr>
+            <tr>
+                <td>br-button--full-width</td>
+                <td>Modifier</td>
+                <td>Makes the button take the full width of its container.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-button--small<br>
+                    br-button--regular<br>
+                    br-button--large<br>
+                    br-button--extra-large
+                </td>
+                <td>Modifier(s)</td>
+                <td>Sets the button's size.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-button--solid-inverted
+                </td>
+                <td>Modifier</td>
+                <td>Solid inverted background and border, using the canvas colour and its inverted counterpart.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-button--solid-neutral<br>
+                    br-button--solid-neutral-lighter<br>
+                    br-button--solid-neutral-darker
+                </td>
+                <td>Modifier(s)</td>
+                <td>Solid neutral background and border, and its light/dark variants.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-button--solid-primary<br>
+                    br-button--solid-primary-lighter<br>
+                    br-button--solid-primary-darker
+                </td>
+                <td>Modifier(s)</td>
+                <td>Solid primary-hue background and border, and its light/dark variants.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-button--solid-secondary<br>
+                    br-button--solid-secondary-lighter<br>
+                    br-button--solid-secondary-darker
+                </td>
+                <td>Modifier(s)</td>
+                <td>Solid secondary-hue background and border, and its light/dark variants.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-button--solid-accent<br>
+                    br-button--solid-accent-lighter<br>
+                    br-button--solid-accent-darker
+                </td>
+                <td>Modifier(s)</td>
+                <td>Solid accent-hue background and border, and its light/dark variants.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-button--solid-danger<br>
+                    br-button--solid-danger-lighter<br>
+                    br-button--solid-danger-darker
+                </td>
+                <td>Modifier(s)</td>
+                <td>Solid danger background and border, and its light/dark variants.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-button--solid-warning<br>
+                    br-button--solid-warning-lighter<br>
+                    br-button--solid-warning-darker
+                </td>
+                <td>Modifier(s)</td>
+                <td>Solid warning background and border, and its light/dark variants.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-button--solid-success<br>
+                    br-button--solid-success-lighter<br>
+                    br-button--solid-success-darker
+                </td>
+                <td>Modifier(s)</td>
+                <td>Solid success background and border, and its light/dark variants.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-button--solid-info<br>
+                    br-button--solid-info-lighter<br>
+                    br-button--solid-info-darker
+                </td>
+                <td>Modifier(s)</td>
+                <td>Solid informational background and border, and its light/dark variants.</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2 class="page-heading">CSS variables</h2>
+    <p>
+        The following variables can be overridden to alter the appearance of br-button. Colour variables are consumed from the shared
+        <span class="@CodeSpan.Base">--br-cls-*</span> layer, so a theme change updates every button on the page automatically -
+        you don't need to override anything to stay in sync with your chosen theme.
+    </p>
+
+    <section class="code-table">
+        <h3 id="button-base-variables" class="code-table__heading">Button base variables</h3>
+        <p>Private variables set on the element itself before any modifier is applied.</p>
+        <table aria-labelledby="button-base-variables">
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--_button-border-colour</td>
+                    <td>var(--br-comp-all-button-border-colour)</td>
+                    <td>The button's border colour before any scheme modifier is applied.</td>
+                </tr>
+                <tr>
+                    <td>--_button-background</td>
+                    <td>var(--br-comp-all-button-background)</td>
+                    <td>The button's background colour before any scheme modifier is applied.</td>
+                </tr>
+                <tr>
+                    <td>--_button-text</td>
+                    <td>var(--br-comp-all-button-text)</td>
+                    <td>The button's text colour before any scheme modifier is applied.</td>
+                </tr>
+                <tr>
+                    <td>--_button-padding-block</td>
+                    <td>var(--br-unit-space-3)</td>
+                    <td>The button's block-direction (top/bottom) padding before any size modifier is applied.</td>
+                </tr>
+                <tr>
+                    <td>--_button-padding-inline</td>
+                    <td>var(--br-unit-space-4)</td>
+                    <td>The button's inline-direction (left/right) padding before any size modifier is applied.</td>
+                </tr>
+                <tr>
+                    <td>--_button-hover</td>
+                    <td>hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10))</td>
+                    <td>The background colour applied on hover for non-solid buttons.</td>
+                </tr>
+                <tr>
+                    <td>--_button-hover-brightness</td>
+                    <td>115%</td>
+                    <td>The brightness filter applied on hover for solid buttons.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="code-table">
+        <h3 id="button-shared-variables" class="code-table__heading">Shared variables consumed</h3>
+        <p>
+            <span class="@CodeSpan.Base">br-button's</span> solid colour scheme modifiers read from these shared
+            <span class="@CodeSpan.Base">--br-cls-*</span> tokens.
+        </p>
+        <table aria-labelledby="button-shared-variables">
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        --br-cls-neutral<br>
+                        --br-cls-primary<br>
+                        --br-cls-secondary<br>
+                        --br-cls-accent<br>
+                        --br-cls-danger<br>
+                        --br-cls-warning<br>
+                        --br-cls-success<br>
+                        --br-cls-info
+                    </td>
+                    <td>
+                        Background and border colours used by the base solid scheme modifiers. Text colour for these is computed with <span class="@CodeSpan.Base">contrast-color()</span>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        --br-cls-neutral-lighter, -secondary-lighter, -accent-lighter, -primary-lighter, -danger-lighter, -warning-lighter, -success-lighter, -info-lighter
+                    </td>
+                    <td>
+                        Background and border colours used by the <span class="@CodeSpan.Base">-lighter</span> solid scheme modifiers.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        --br-cls-neutral-darker, -secondary-darker, -accent-darker, -primary-darker, -danger-darker, -warning-darker, -success-darker, -info-darker
+                    </td>
+                    <td>
+                        Background and border colours used by the <span class="@CodeSpan.Base">-darker</span> solid scheme modifiers.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        --br-cls-neutral-text-dark, -secondary-text-dark, -accent-text-dark, -primary-text-dark, -danger-text-dark, -warning-text-dark, -success-text-dark, -info-text-dark
+                    </td>
+                    <td>
+                        Text colours used by the <span class="@CodeSpan.Base">-lighter</span> solid scheme modifiers.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        --br-cls-neutral-text-light, -secondary-text-light, -accent-text-light, -primary-text-light, -danger-text-light, -warning-text-light, -success-text-light, -info-text-light
+                    </td>
+                    <td>
+                        Text colours used by the <span class="@CodeSpan.Base">-darker</span> solid scheme modifiers.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -32,20 +32,44 @@ public static class Kbd
     /// <summary>
     /// Gets the class that sets the key's font size.
     /// </summary>
-    /// <param name="fontSize">The font size to apply. See <see cref="KbdFontSize"/>.</param>
-    /// <returns>The <c>br-kbd</c> modifier class for the given <paramref name="fontSize"/>.</returns>
-    public static string FontSize(KbdFontSize fontSize)
+    /// <param name="unitFontSize">The font size to apply. See <see cref="UnitFontSize"/>.</param>
+    /// <returns>The <c>br-kbd</c> modifier class for the given <paramref name="unitFontSize"/>.</returns>
+    public static string FontSize(UnitFontSize unitFontSize)
     {
-        return fontSize switch
+        return unitFontSize switch
         {
-            KbdFontSize.Label   => $"{Base}--font-size-label",
-            KbdFontSize.Regular => $"{Base}--font-size-one",
-            KbdFontSize.Two     => $"{Base}--font-size-two",
-            KbdFontSize.Three   => $"{Base}--font-size-three",
-            KbdFontSize.Four    => $"{Base}--font-size-four",
-            KbdFontSize.Five    => $"{Base}--font-size-five",
-            KbdFontSize.Six     => $"{Base}--font-size-six",
-            _                   => $"{Base}--font-size-one",
+            UnitFontSize.Label   => $"{Base}--font-size-label",
+            UnitFontSize.Regular => $"{Base}--font-size-one",
+            UnitFontSize.Two     => $"{Base}--font-size-two",
+            UnitFontSize.Three   => $"{Base}--font-size-three",
+            UnitFontSize.Four    => $"{Base}--font-size-four",
+            UnitFontSize.Five    => $"{Base}--font-size-five",
+            UnitFontSize.Six     => $"{Base}--font-size-six",
+            _                    => $"{Base}--font-size-one",
         };
     }
+
+    /// <summary>
+    /// Gets the class that sets the key's border radius to a fixed <c>--br-unit-radius-*</c>
+    /// value, bypassing the key's default fixed radius.
+    /// </summary>
+    /// <param name="unitRadius">The fixed radius to apply. See <see cref="UnitRadius"/>.</param>
+    /// <returns>The <c>br-kbd</c> modifier class for the given <paramref name="unitRadius"/>.</returns>
+    public static string FixedRadius(UnitRadius unitRadius)
+
+        => unitRadius switch
+        {
+            UnitRadius.None  => $"{Base}--radius-none",
+            UnitRadius.One   => $"{Base}--radius-one",
+            UnitRadius.Two   => $"{Base}--radius-two",
+            UnitRadius.Three => $"{Base}--radius-three",
+            UnitRadius.Four  => $"{Base}--radius-four",
+            UnitRadius.Five  => $"{Base}--radius-five",
+            UnitRadius.Six   => $"{Base}--radius-six",
+            UnitRadius.Seven => $"{Base}--radius-seven",
+            UnitRadius.Eight => $"{Base}--radius-eight",
+            UnitRadius.Nine  => $"{Base}--radius-nine",
+            UnitRadius.Full  => $"{Base}--radius-full",
+            _ => $"{Base}--radius-none",
+        };
 }

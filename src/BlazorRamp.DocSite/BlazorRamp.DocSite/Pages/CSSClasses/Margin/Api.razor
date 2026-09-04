@@ -1,0 +1,284 @@
+﻿@using BlazorRamp.DocSite.Pages.GettingStarted
+@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Margin}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.CSS_Name_Margin @GlobalValues.Common_Page_Title_Api_Usage</PageTitle>
+
+<h1>@GlobalValues.CSS_Name_Margin @GlobalValues.Common_Page_Title_Api_Usage</h1>
+
+
+<p>
+    Everything you need to work with the <span class="br-code-span">br-margin-*</span> CSS classes: the utility classes provided, the strongly-typed <span class="br-code-span">Margin</span> C# object
+    used to apply them, and the supporting enum used to select a spacing value.
+</p>
+
+<h2 class="page-heading">Overview</h2>
+
+<p>
+    <span class="br-code-span">Margin</span> is a <b>utility class</b>, not a BEM component class like <span class="br-code-span">Section</span> or <span class="br-code-span">Button</span>.
+    Rather than describing a block, element, or its variants, each class here sets a single CSS property to a fixed value from the shared <span class="br-code-span">--br-unit-space-*</span>
+    spacing scale, plus a small set of fixed <span class="br-code-span">auto</span> margin classes. Utility classes are flat and single-purpose by design, so they can be freely combined
+    with each other and with any other class - including component classes - on the same element.
+</p>
+<p>
+    Because they read directly from the <span class="br-code-span">--br-unit-space-*</span> primitives - values that rarely change once a theme is set - these classes are not
+    part of the <span class="br-code-span">--br-cls-*</span> theme-reactive colour layer described on other pages.
+</p>
+<p>
+    Unlike <span class="br-code-span">Padding</span>, <span class="br-code-span">Margin</span> also provides fixed <span class="br-code-span">auto</span> classes.
+    <span class="br-code-span">padding: auto</span> is not valid CSS, so no equivalent exists on the <span class="br-code-span">Padding</span> class.
+</p>
+
+<section>
+    <h2 id="c#-classes" class="page-heading">C# API</h2>
+    <p>
+        <span class="br-code-span">Margin</span> provides utility classes that set margin from the <span class="br-code-span">--br-unit-space-*</span> primitive scale, plus fixed
+        <span class="br-code-span">auto</span> margin classes.
+    </p>
+    <section class="code-table">
+        <h3 id="margin-class" class="code-table__heading">Margin class</h3>
+        <table aria-labelledby="margin-class">
+            <thead>
+                <tr>
+                    <th scope="col">Return</th>
+                    <th scope="col">Const/Static Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>string</td>
+                    <td>Margin.AutoInline</td>
+                    <td>Centres the element horizontally by setting inline-direction margin to <span class="br-code-span">auto</span>.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Margin.AutoBlock</td>
+                    <td>Sets block-direction margin to <span class="br-code-span">auto</span>.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Margin.Auto</td>
+                    <td>Sets margin to <span class="br-code-span">auto</span> on all sides.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Margin.All(UnitSpace unitSpace)</td>
+                    <td>Gets the class that sets margin on all sides.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Margin.Inline(UnitSpace unitSpace)</td>
+                    <td>Gets the class that sets inline-direction (left/right in LTR) margin.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Margin.InlineStart(UnitSpace unitSpace)</td>
+                    <td>Gets the class that sets inline-start (left in LTR) margin.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Margin.InlineEnd(UnitSpace unitSpace)</td>
+                    <td>Gets the class that sets inline-end (right in LTR) margin.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Margin.Block(UnitSpace unitSpace)</td>
+                    <td>Gets the class that sets block-direction (top/bottom) margin.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Margin.BlockStart(UnitSpace unitSpace)</td>
+                    <td>Gets the class that sets block-start (top) margin.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Margin.BlockEnd(UnitSpace unitSpace)</td>
+                    <td>Gets the class that sets block-end (bottom) margin.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting enum</h2>
+    <section class="code-table">
+        <h3 id="unit-space-enum" class="code-table__heading">UnitSpace enum</h3>
+        <p>
+            Sets a spacing value from the <span class="br-code-span">--br-unit-space-*</span> primitive scale. Shared across the <span class="br-code-span">Padding</span> and
+            <span class="br-code-span">Margin</span> utility classes.
+        </p>
+        <table aria-labelledby="unit-space-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>None</td>
+                    <td>No spacing. Maps to <span class="br-code-span">--br-unit-space-0</span>.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>One</td>
+                    <td>Maps to <span class="br-code-span">--br-unit-space-1</span>.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Two</td>
+                    <td>Maps to <span class="br-code-span">--br-unit-space-2</span>.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Three</td>
+                    <td>Maps to <span class="br-code-span">--br-unit-space-3</span>.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Four</td>
+                    <td>Maps to <span class="br-code-span">--br-unit-space-4</span>.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Five</td>
+                    <td>Maps to <span class="br-code-span">--br-unit-space-5</span>.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Six</td>
+                    <td>Maps to <span class="br-code-span">--br-unit-space-6</span>.</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Seven</td>
+                    <td>Maps to <span class="br-code-span">--br-unit-space-7</span>.</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Eight</td>
+                    <td>Maps to <span class="br-code-span">--br-unit-space-8</span>.</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Nine</td>
+                    <td>Maps to <span class="br-code-span">--br-unit-space-9</span>.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section class="code-table">
+    <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
+
+    <table aria-labelledby="css-classes">
+        <thead>
+            <tr>
+                <th scope="col">Class</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>br-margin-inline-auto</td>
+                <td>Utility</td>
+                <td>Centres the element horizontally by setting inline-direction margin to <span class="br-code-span">auto</span>.</td>
+            </tr>
+            <tr>
+                <td>br-margin-block-auto</td>
+                <td>Utility</td>
+                <td>Sets block-direction margin to <span class="br-code-span">auto</span>.</td>
+            </tr>
+            <tr>
+                <td>br-margin-auto</td>
+                <td>Utility</td>
+                <td>Sets margin to <span class="br-code-span">auto</span> on all sides.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-margin-0 through br-margin-9
+                </td>
+                <td>Utility</td>
+                <td>Sets margin on all sides.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-margin-inline-0 through br-margin-inline-9
+                </td>
+                <td>Utility</td>
+                <td>Sets inline-direction (left/right in LTR) margin.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-margin-inline-start-0 through br-margin-inline-start-9
+                </td>
+                <td>Utility</td>
+                <td>Sets inline-start (left in LTR) margin.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-margin-inline-end-0 through br-margin-inline-end-9
+                </td>
+                <td>Utility</td>
+                <td>Sets inline-end (right in LTR) margin.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-margin-block-0 through br-margin-block-9
+                </td>
+                <td>Utility</td>
+                <td>Sets block-direction (top/bottom) margin.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-margin-block-start-0 through br-margin-block-start-9
+                </td>
+                <td>Utility</td>
+                <td>Sets block-start (top) margin.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-margin-block-end-0 through br-margin-block-end-9
+                </td>
+                <td>Utility</td>
+                <td>Sets block-end (bottom) margin.</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2 class="page-heading">Usage</h2>
+    <p>
+        The following code example and result shows a button inside a section that has had its padding removed, with the button adding 
+        a margin setting of 5 (which equates to 1rem) on the top (block-start) and a margin setting of 3 (which equates to 0.5rem) on its left side (inline-start).
+    </p>
+    
+    <CodeBox CodeBlock="@CssClassesSnippets.Margin_Code_Example" AriaLabel="Margin code example." />
+
+    <div class="@Section.Base @Section.Bordered @Section.FixedRadius(UnitRadius.One) @Section.NoPadding">
+        <button class="@Button.Base @Button.FixedRadius(UnitRadius.One) @Margin.InlineStart(UnitSpace.Three) @Margin.BlockStart(UnitSpace.Five)">A button inside a section</button>
+    </div>
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Kbd}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_Kbd - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Padding}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_Padding - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}
+

@@ -1,0 +1,246 @@
+﻿@using BlazorRamp.DocSite.Pages.GettingStarted
+@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Padding}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.CSS_Name_Padding @GlobalValues.Common_Page_Title_Api_Usage</PageTitle>
+
+<h1>@GlobalValues.CSS_Name_Padding @GlobalValues.Common_Page_Title_Api_Usage</h1>
+
+<p>
+    Everything you need to work with the <span class="@CodeSpan.Base">br-padding-*</span> CSS classes: the utility classes provided, the strongly-typed <span class="@CodeSpan.Base">Padding</span> C# object
+    used to apply them, and the supporting enum used to select a spacing value.
+</p>
+
+<h2 class="page-heading">Overview</h2>
+
+<p>
+    <span class="@CodeSpan.Base">Padding</span> is a <b>utility class</b>, not a BEM component class like <span class="@CodeSpan.Base">Section</span> or <span class="@CodeSpan.Base">Button</span>.
+    Rather than describing a block, element, or its variants, each class here sets a single CSS property to a fixed value from the shared <span class="@CodeSpan.Base">--br-unit-space-*</span>
+    spacing scale. Utility classes are flat and single-purpose by design, so they can be freely combined with each other and with any other class - including component classes - on the same element.
+</p>
+<p>
+    Because they read directly from the <span class="@CodeSpan.Base">--br-unit-space-*</span> primitives - values that rarely change once a theme is set - these classes are not
+    part of the <span class="@CodeSpan.Base">--br-cls-*</span> theme-reactive colour layer described on other pages.
+</p>
+
+<section>
+    <h2 id="c#-classes" class="page-heading">C# API</h2>
+    <p>
+        <span class="@CodeSpan.Base">Padding</span> provides utility classes that set padding from the <span class="@CodeSpan.Base">--br-unit-space-*</span> primitive scale.
+    </p>
+    <section class="code-table">
+        <h3 id="padding-class" class="code-table__heading">Padding class</h3>
+        <table aria-labelledby="padding-class">
+            <thead>
+                <tr>
+                    <th scope="col">Return</th>
+                    <th scope="col">Static Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>string</td>
+                    <td>Padding.All(UnitSpace unitSpace)</td>
+                    <td>Gets the class that sets padding on all sides.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Padding.Inline(UnitSpace unitSpace)</td>
+                    <td>Gets the class that sets inline-direction (left/right in LTR) padding.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Padding.InlineStart(UnitSpace unitSpace)</td>
+                    <td>Gets the class that sets inline-start (left in LTR) padding.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Padding.InlineEnd(UnitSpace unitSpace)</td>
+                    <td>Gets the class that sets inline-end (right in LTR) padding.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Padding.Block(UnitSpace unitSpace)</td>
+                    <td>Gets the class that sets block-direction (top/bottom) padding.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Padding.BlockStart(UnitSpace unitSpace)</td>
+                    <td>Gets the class that sets block-start (top) padding.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Padding.BlockEnd(UnitSpace unitSpace)</td>
+                    <td>Gets the class that sets block-end (bottom) padding.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting enum</h2>
+    <section class="code-table">
+        <h3 id="unit-space-enum" class="code-table__heading">UnitSpace enum</h3>
+        <p>
+            Sets a spacing value from the <span class="@CodeSpan.Base">--br-unit-space-*</span> primitive scale. Shared across the <span class="@CodeSpan.Base">Padding</span> and
+            <span class="@CodeSpan.Base">Margin</span> utility classes.
+        </p>
+        <table aria-labelledby="unit-space-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>None</td>
+                    <td>No spacing. Maps to <span class="@CodeSpan.Base">--br-unit-space-0</span>.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>One</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-1</span>.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Two</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-2</span>.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Three</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-3</span>.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Four</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-4</span>.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Five</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-5</span>.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Six</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-6</span>.</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Seven</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-7</span>.</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Eight</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-8</span>.</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Nine</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-9</span>.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section class="code-table">
+    <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
+
+    <table aria-labelledby="css-classes">
+        <thead>
+            <tr>
+                <th scope="col">Class</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    br-padding-0 through br-padding-9
+                </td>
+                <td>Utility</td>
+                <td>Sets padding on all sides.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-padding-inline-0 through br-padding-inline-9
+                </td>
+                <td>Utility</td>
+                <td>Sets inline-direction (left/right in LTR) padding.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-padding-inline-start-0 through br-padding-inline-start-9
+                </td>
+                <td>Utility</td>
+                <td>Sets inline-start (left in LTR) padding.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-padding-inline-end-0 through br-padding-inline-end-9
+                </td>
+                <td>Utility</td>
+                <td>Sets inline-end (right in LTR) padding.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-padding-block-0 through br-padding-block-9
+                </td>
+                <td>Utility</td>
+                <td>Sets block-direction (top/bottom) padding.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-padding-block-start-0 through br-padding-block-start-9
+                </td>
+                <td>Utility</td>
+                <td>Sets block-start (top) padding.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-padding-block-end-0 through br-padding-block-end-9
+                </td>
+                <td>Utility</td>
+                <td>Sets block-end (bottom) padding.</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2 class="page-heading">Usage</h2>
+    <p>
+        The following code example and result shows a button inside a section that has had its default padding removed, and then added with the utility
+        so that the button sits 0.5rem from the left edge (inline-start) and 1rem from the top (block-start).
+    </p>
+
+    <CodeBox CodeBlock="@CssClassesSnippets.Padding_Code_Example" AriaLabel="Padding code example." />
+
+    <div class="@Section.Base @Section.Bordered @Section.FixedRadius(UnitRadius.One) @Section.NoPadding @Padding.InlineStart(UnitSpace.Three) @Padding.BlockStart(UnitSpace.Five)">
+        <button class="@Button.Base @Button.FixedRadius(UnitRadius.One)">A button inside a section</button>
+    </div>
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Margin}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_Margin - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Section}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_Section - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}

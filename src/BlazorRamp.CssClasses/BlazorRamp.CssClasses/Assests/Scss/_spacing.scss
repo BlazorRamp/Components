@@ -16,3 +16,7 @@
 @include generate-space-classes("br-margin-block","margin-block", "--br-unit-space",9);
 @include generate-space-classes("br-margin-block-end","margin-block-end", "--br-unit-space",9);
 @include generate-space-classes("br-margin-block-start","margin-block-start", "--br-unit-space",9);
+
+.br-margin-inline-auto { margin-inline: auto; }
+.br-margin-block-auto  { margin-block: auto; }
+.br-margin-auto        { margin: auto; }

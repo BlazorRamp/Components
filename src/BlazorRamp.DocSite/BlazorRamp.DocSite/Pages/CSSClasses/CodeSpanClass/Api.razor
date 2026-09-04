@@ -21,7 +21,7 @@
     - no separate configuration needed.
 </p>
 <p>
-    Unlike <span class="@CodeSpan.Base">br-section</span>, <span class="@CodeSpan.Base">@CodeSpan.Base</span> has a fixed border radius and does not expose a radius modifier.
+    <span class="@CodeSpan.Base">@CodeSpan.Base</span> is not part of a radius group and has its own independent radius settings..
 </p>
 
 <section>
@@ -48,13 +48,21 @@
                 </tr>
                 <tr>
                     <td>string</td>
-                    <td>CodeSpan.FontSize(CodeSpanFontSize codeSpanFontSize)</td>
+                    <td>CodeSpan.FontSize(UnitFontSize unitFontSize)</td>
                     <td>Gets the class that sets the code span's font size.</td>
                 </tr>
                 <tr>
                     <td>string</td>
                     <td>CodeSpan.Scheme(CodeSpanScheme scheme)</td>
                     <td>Gets the class that sets the code span's colour scheme.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>CodeSpan.FixedRadius(UnitRadius unitRadius)</td>
+                    <td>
+                        Gets the modifier class that sets the span's border radius to a
+                        fixed unit value.
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -64,7 +72,7 @@
 <section>
     <h2 class="page-heading">Supporting enums</h2>
     <section class="code-table">
-        <h3 id="codespan-font-size-enum" class="code-table__heading">CodeSpanFontSize enum</h3>
+        <h3 id="codespan-font-size-enum" class="code-table__heading">UnitFontSize enum</h3>
         <p>
             Sets the font size of a <span class="@CodeSpan.Base">@CodeSpan.Base</span> element.
         </p>
@@ -158,6 +166,78 @@
             </tbody>
         </table>
     </section>
+    <section class="code-table">
+        <h3 id="unit-radius-enum" class="code-table__heading">UnitRadius enum</h3>
+        <p>
+            Sets a fixed border radius from the <span class="@CodeSpan.Base">--br-unit-radius-*</span> primitive scale, bypassing any themeable border radius grouping.
+        </p>
+        <table aria-labelledby="unit-radius-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>None</td>
+                    <td>No border radius. Maps to <span class="@CodeSpan.Base">--br-unit-radius-0</span>.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>One</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-1</span>.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Two</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-2</span>.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Three</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-3</span>.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Four</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-4</span>.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Five</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-5</span>.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Six</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-6</span>.</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Seven</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-7</span>.</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Eight</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-8</span>.</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Nine</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-9</span>.</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Full</td>
+                    <td>Fully rounded. Maps to <span class="@CodeSpan.Base">--br-unit-radius-full</span>.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 </section>
 
 <section>
@@ -175,11 +255,11 @@
     </p>
 
     <p>
-        A code span using the primary colour scheme and a larger font size:
+        A code span using the primary colour scheme and a larger font size with the full fixed radius setting:
     </p>
     <CodeBox CodeBlock="@CssClassesSnippets.CodeSpan_Scheme_Font_Example" AriaLabel="Themed code span example" />
     <p>
-        Call <span class="@CodeSpan.Base @CodeSpan.Scheme(CodeSpanScheme.Primary) @CodeSpan.FontSize(CodeSpanFontSize.Two)">ClearFilter() </span>to reset the input.
+        Call <span class="@CodeSpan.Base @CodeSpan.Scheme(CodeSpanScheme.Primary) @CodeSpan.FontSize(UnitFontSize.Two) @CodeSpan.FixedRadius(UnitRadius.Full)">ClearFilter()</span>to reset the input.
     </p>
 
 </section>
@@ -237,6 +317,41 @@
         you don't need to override anything to stay in sync with your chosen theme.
     </p>
 
+    <section class="code-table">
+        <h3 id="codespan-base-variables" class="code-table__heading">CodeSpan base variables</h3>
+        <p>Private variables set on the element itself before any modifier is applied.</p>
+        <table aria-labelledby="codespan-base-variables">
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--_code-span-font-size</td>
+                    <td>var(--br-unit-font-size-1)</td>
+                    <td>The code span's font size before any size modifier is applied.</td>
+                </tr>
+                <tr>
+                    <td>--_code-span-text</td>
+                    <td>var(--br-unit-colour-canvas-text-inverted)</td>
+                    <td>The code span's text colour before any scheme modifier is applied.</td>
+                </tr>
+                <tr>
+                    <td>--_code-span-background</td>
+                    <td>var(--br-unit-colour-canvas-inverted)</td>
+                    <td>The code span's background colour before any scheme modifier is applied.</td>
+                </tr>
+                <tr>
+                    <td>--_code-span-border-radius</td>
+                    <td>var(--br-unit-radius-3)</td>
+                    <td>The code span's border radius before any modifier is applied.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
     <section class="code-table">
         <h3 id="codespan-shared-variables" class="code-table__heading">Shared variables consumed</h3>
         <p>

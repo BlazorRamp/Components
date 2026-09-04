@@ -11,7 +11,7 @@
     appearance: none;
     box-sizing: border-box;
     flex: none;
-    align-self: center;;
+    align-self: center;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -55,6 +55,18 @@
         outline-style: var(--br-comp-all-outline-style);
         outline-color: var(--br-comp-all-outline-colour);
     }
+    
+    &--radius-none  {border-radius: var(--br-unit-radius-0);}
+    &--radius-one   {border-radius: var(--br-unit-radius-1);}
+    &--radius-two   {border-radius: var(--br-unit-radius-2);}
+    &--radius-three {border-radius: var(--br-unit-radius-3);}
+    &--radius-four  {border-radius: var(--br-unit-radius-4);}
+    &--radius-five  {border-radius: var(--br-unit-radius-5);}
+    &--radius-six   {border-radius: var(--br-unit-radius-6);}
+    &--radius-seven {border-radius: var(--br-unit-radius-7);}
+    &--radius-eight {border-radius: var(--br-unit-radius-8);}
+    &--radius-nine  {border-radius: var(--br-unit-radius-9);}
+    &--radius-full  {border-radius: var(--br-unit-radius-full);}
 }
 
 .br-button {
@@ -150,7 +162,7 @@
     &--solid-accent-lighter {
         --_button-background: var(--br-cls-accent-lighter);
         --_button-text: var(--br-cls-accent-text-dark);
-        --_button-border-colour: var(--br-cls-secondary-text-dark);
+        --_button-border-colour: var(--br-cls-accent-text-dark);
     }
 
     &--solid-primary-lighter {

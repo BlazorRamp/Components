@@ -11,7 +11,7 @@
 <h2 class="page-heading">Overview</h2>
 
 <p>
-    <span class="@CodeSpan.Base">br-kbd</span> is an inline element used to present a keyboard key or key combination within a line of text, such as an instruction to press a shortcut.
+    <span class="@CodeSpan.Base">br-kbd</span> is not part of a radius group and has its own independent radius settings..
 </p>
 <p>
     Colours are theme-reactive: they're built from the <span class="@CodeSpan.Base">--br-cls-*</span> variables described below, which in turn derive from the same
@@ -53,8 +53,16 @@
                 </tr>
                 <tr>
                     <td>string</td>
-                    <td>Kbd.FontSize(KbdFontSize fontSize)</td>
+                    <td>Kbd.FontSize(UnitFontSize unitFontSize)</td>
                     <td>Gets the class that sets the key's font size.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Kbd.FixedRadius(UnitRadius unitRadius)</td>
+                    <td>
+                        Gets the modifier class that sets the key's border radius to a
+                        fixed unit value.
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -64,7 +72,7 @@
 <section>
     <h2 class="page-heading">Supporting enums</h2>
     <section class="code-table">
-        <h3 id="kbd-font-size-enum" class="code-table__heading">KbdFontSize enum</h3>
+        <h3 id="kbd-font-size-enum" class="code-table__heading">UnitFontSize enum</h3>
         <p>
             Sets the font size of a <span class="@CodeSpan.Base">br-kbd</span> element.
         </p>
@@ -158,6 +166,290 @@
             </tbody>
         </table>
     </section>
+    <section>
+        <h2 class="page-heading">Supporting enums</h2>
+        <section class="code-table">
+            <h3 id="section-radius-enum" class="code-table__heading">SectionRadius enum</h3>
+            <p>
+                Sets the border radius grouping applied to a <span class="@CodeSpan.Base">br-section</span> element.
+            </p>
+            <table aria-labelledby="section-radius-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Content</td>
+                        <td>
+                            Border radius for general content areas.
+                            Uses the content border radius grouping.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Container</td>
+                        <td>
+                            Border radius matching cards, tables, and similar boxed UI.
+                            Uses the container border radius grouping.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Dialog</td>
+                        <td>
+                            Border radius matching a dialog surface, for custom dialog-like content built outside the Modal Dialog fra
+                            Uses the dialog border radius grouping.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="code-table">
+            <h3 id="section-background-enum" class="code-table__heading">SectionBackground enum</h3>
+            <p>
+                Sets the background colour of a <span class="@CodeSpan.Base">br-section</span> element.
+            </p>
+            <table aria-labelledby="section-background-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>NeutralLighter</td>
+                        <td>A light neutral background colour.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>SecondaryLighter</td>
+                        <td>A light secondary-hue background colour.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>AccentLighter</td>
+                        <td>A light accent-hue background colour.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>PrimaryLighter</td>
+                        <td>A light primary-hue background colour.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="code-table">
+            <h3 id="section-text-enum" class="code-table__heading">SectionText enum</h3>
+            <p>
+                Sets the colour of a <span class="@CodeSpan.Base">br-section</span> element.
+            </p>
+            <table aria-labelledby="section-text-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>NeutralDark</td>
+                        <td>Neutral text colour.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>SecondaryDark</td>
+                        <td>Secondary-hue text colour.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>AccentDark</td>
+                        <td>Accent-hue text colour.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>PrimaryDark</td>
+                        <td>Primary-hue text colour.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="code-table">
+            <h3 id="section-font-size-enum" class="code-table__heading">UnitFontSize enum</h3>
+            <p>
+                Sets the base font size of the <span class="@CodeSpan.Base">br-section</span> and the <span class="@CodeSpan.Base">br-section__heading</span> elements respectively.
+            </p>
+            <table aria-labelledby="section-font-size-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Label</td>
+                        <td>Label-sized text, matching the size used for input/form labels.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Regular</td>
+                        <td>The regular body text size.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Two</td>
+                        <td>A larger text size, one step above regular.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Three</td>
+                        <td>A larger text size, two steps above regular.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Four</td>
+                        <td>A larger text size, three steps above regular.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Five</td>
+                        <td>A larger text size, four steps above regular.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Six</td>
+                        <td>The largest text size available on this scale.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="code-table">
+            <h3 id="section-heading-text-enum" class="code-table__heading">SectionHeadingText enum</h3>
+            <p>
+                Sets the text colour of a <span class="@CodeSpan.Base">br-section__heading</span> element.
+            </p>
+            <table aria-labelledby="section-heading-text-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>NeutralDark</td>
+                        <td>Neutral heading text colour.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>SecondaryDark</td>
+                        <td>SecondaryDark-hue heading text colour.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>AccentDark</td>
+                        <td>Accent-hue heading text colour.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>PrimaryDark</td>
+                        <td>Primary-hue heading text colour.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="code-table">
+            <h3 id="unit-radius-enum" class="code-table__heading">UnitRadius enum</h3>
+            <p>
+                Sets a fixed border radius from the <span class="@CodeSpan.Base">--br-unit-radius-*</span> primitive scale, bypassing any themeable border radius grouping.
+            </p>
+            <table aria-labelledby="unit-radius-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>None</td>
+                        <td>No border radius. Maps to <span class="@CodeSpan.Base">--br-unit-radius-0</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>One</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-1</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Two</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-2</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Three</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-3</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Four</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-4</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Five</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-5</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Six</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-6</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Seven</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-7</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Eight</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-8</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Nine</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-9</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Full</td>
+                        <td>Fully rounded. Maps to <span class="@CodeSpan.Base">--br-unit-radius-full</span>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </section>
 </section>
 
 <section>
@@ -167,21 +459,21 @@
         Below each code section is the result of the code in the section.
     </p>
     <p>
-        A basic key, inline with text:
+        A basic key, inline with text using the defaults:
     </p>
 
     <CodeBox CodeBlock="@CssClassesSnippets.Kbd_Basic_Example" AriaLabel="Basic Kbd code example" />
     <p>Press <span class="@Kbd.Base">Esc</span> to close the dialog.</p>
     <p>
-        A key combination using the accent colour scheme and a larger font size:
+        A key combination using the accent colour scheme, a larger font and a small radius of 2, the default is 3:
     </p>
 
     <CodeBox CodeBlock="@CssClassesSnippets.Kbd_Modifier_Example" AriaLabel="Themed kbd example code example" />
 
     <p>
-        Press <span class="@Kbd.Base @Kbd.Scheme(KbdScheme.Accent) @Kbd.FontSize(KbdFontSize.Two)">Ctrl</span>
+        Press <span class="@Kbd.Base @Kbd.Scheme(KbdScheme.Accent) @Kbd.FontSize(UnitFontSize.Two) @Kbd.FixedRadius(UnitRadius.Two)">Ctrl</span>
         + 
-        <span class="@Kbd.Base @Kbd.Scheme(KbdScheme.Accent) @Kbd.FontSize(KbdFontSize.Two)">K</span> to open the command palette.
+        <span class="@Kbd.Base @Kbd.Scheme(KbdScheme.Accent) @Kbd.FontSize(UnitFontSize.Two) @Kbd.FixedRadius(UnitRadius.Two)">K</span> to open the command palette.
     </p>
 
 </section>
@@ -238,7 +530,41 @@
         <span class="@CodeSpan.Base">--br-cls-*</span> layer, so a theme change updates every key on the page automatically -
         you don't need to override anything to stay in sync with your chosen theme.
     </p>
-
+    <section class="code-table">
+        <h3 id="kbd-base-variables" class="code-table__heading">Kbd base variables</h3>
+        <p>Private variables set on the element itself before any modifier is applied.</p>
+        <table aria-labelledby="kbd-base-variables">
+            <thead>
+                <tr>
+                    <th scope="col">Variable Name</th>
+                    <th scope="col">Default Value</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>--_kbd-font-size</td>
+                    <td>var(--br-unit-font-size-1)</td>
+                    <td>The key's font size before any size modifier is applied.</td>
+                </tr>
+                <tr>
+                    <td>--_kbd-text</td>
+                    <td>var(--br-unit-colour-canvas-text-inverted)</td>
+                    <td>The key's text colour before any scheme modifier is applied.</td>
+                </tr>
+                <tr>
+                    <td>--_kbd-background</td>
+                    <td>var(--br-unit-colour-canvas-inverted)</td>
+                    <td>The key's background colour before any scheme modifier is applied.</td>
+                </tr>
+                <tr>
+                    <td>--_kbd-border-radius</td>
+                    <td>var(--br-unit-radius-3)</td>
+                    <td>The border radius before any modifier is applied.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
     <section class="code-table">
         <h3 id="kbd-shared-variables" class="code-table__heading">Shared variables consumed</h3>
         <p>
@@ -296,9 +622,9 @@
         <span>@GlobalValues.CSS_Name_CodeSpan - @GlobalValues.Common_Page_Title_Api_Usage</span>
         <span aria-hidden="true"></span>
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Section}/{GlobalValues.Common_Page_Path_Api}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Margin}/{GlobalValues.Common_Page_Path_Api}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.CSS_Name_Section - @GlobalValues.Common_Page_Title_Api_Usage</span>
+        <span>@GlobalValues.CSS_Name_Margin - @GlobalValues.Common_Page_Title_Api_Usage</span>
         <span aria-hidden="true"></span>
     </a>
 </div>

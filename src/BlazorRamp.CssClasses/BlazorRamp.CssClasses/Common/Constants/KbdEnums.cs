@@ -1,25 +1,29 @@
 ﻿namespace BlazorRamp.CssClasses.Common.Constants;
 
-public enum KbdFontSize : int
-{
-    Label = 0,
-    Regular = 1,
-    Two = 2,
-    Three = 3,
 
-    Four = 4,
-
-    Five = 5,
-
-    Six = 6
-
-}
-
+/// <summary>
+/// Sets the colour scheme (text and background colour pairing) of a <c>kbd</c> element.
+/// </summary>
 public enum KbdScheme : int
 {
+    /// <summary>
+    /// An inverted colour scheme, using the canvas colour and its inverted counterpart.
+    /// </summary>
     Inverted = 0,
+    /// <summary>
+    /// A neutral colour scheme.
+    /// </summary>
     Neutral = 1,
+    /// <summary>
+    /// A primary-hue colour scheme.
+    /// </summary>
     Primary = 2,
+    /// <summary>
+    /// A secondary-hue colour scheme.
+    /// </summary>
     Secondary = 3,
+    /// <summary>
+    /// An accent-hue colour scheme.
+    /// </summary>
     Accent = 4
 }
