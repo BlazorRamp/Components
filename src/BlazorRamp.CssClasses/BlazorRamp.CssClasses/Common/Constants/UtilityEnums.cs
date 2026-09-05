@@ -48,7 +48,31 @@ public enum UnitSpace : int
     /// <summary>
     /// Maps to <c>--br-unit-space-9</c>.
     /// </summary>
-    Nine = 9
+    Nine = 9,
+    /// <summary>
+    /// Maps to <c>--br-unit-space-10</c>.
+    /// </summary>
+    Ten = 10,
+    /// <summary>
+    /// Maps to <c>--br-unit-space-11</c>.
+    /// </summary>
+    Eleven = 11,
+    /// <summary>
+    /// Maps to <c>--br-unit-space-12</c>.
+    /// </summary>
+    Twelve = 12,
+    /// <summary>
+    /// Maps to <c>--br-unit-space-13</c>.
+    /// </summary>
+    Thirteen = 13,
+    /// <summary>
+    /// Maps to <c>--br-unit-space-14</c>.
+    /// </summary>
+    Fourteen = 14,
+    /// <summary>
+    /// Maps to <c>--br-unit-space-15</c>.
+    /// </summary>
+    Fifteen = 15,
 }
 
 /// <summary>
@@ -137,4 +161,37 @@ public enum UnitFontSize : int
     /// The largest text size available on this scale.
     /// </summary>
     Six = 6
+}
+
+/// <summary>
+/// Sets a CSS <c>overflow</c> value. Used by <see cref="Scroll"/> and by classes exposing
+/// their own overflow modifiers, such as <see cref="Section"/>.
+/// </summary>
+public enum UnitScroll : int
+{
+    /// <summary>
+    /// Content is not clipped and may overflow the element's box. The CSS initial value.
+    /// </summary>
+    Visible = 0,
+
+    /// <summary>
+    /// Content is clipped at the padding edge, with no scrollbars offered.
+    /// </summary>
+    Hidden = 1,
+
+    /// <summary>
+    /// Content is clipped, and scrollbars are always shown, whether or not content overflows.
+    /// </summary>
+    Scroll = 2,
+
+    /// <summary>
+    /// The browser shows scrollbars only if content actually overflows. The most common choice for scrollable regions.
+    /// </summary>
+    Auto = 3,
+
+    /// <summary>
+    /// Content is clipped at the padding edge, like <see cref="Hidden"/>, but does not
+    /// establish a new formatting context or scroll container. Not supported in all browsers.
+    /// </summary>
+    Clip = 4
 }

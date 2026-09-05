@@ -6,13 +6,17 @@
    --_section-text: var(--br-unit-colour-canvas-text);
    --_section-font-size: var(--br-unit-font-size-1);
    --_section-border-radius: var(--br-group-content-border-radius);
+   --_section-overflow-x: auto;
+   --_section-overflow-y: auto;
+
 
     position:relative;
     margin-block: var(--br-unit-space-5);
     padding: var(--br-unit-space-5);
     color: var(--_section-text);
     background-color: var(--_section-background);
-    overflow-x: auto;
+    overflow-x: var(--_section-overflow-x);
+    overflow-y: var(--_section-overflow-y);
     width: auto;
     font-size:var(--_section-font-size);
 
@@ -63,6 +67,20 @@
     &--accent-text-dark    {--_section-text: var(--br-cls-accent-text-dark); }
     &--primary-text-dark   {--_section-text: var(--br-cls-primary-text-dark); }
     
+    &--overflow-x-visible {--_section-overflow-x: visible;}
+    &--overflow-x-hidden  {--_section-overflow-x: hidden;}
+    &--overflow-x-scroll  {--_section-overflow-x: scroll;}
+    &--overflow-x-auto    {--_section-overflow-x: auto;}
+    &--overflow-x-clip    {--_section-overflow-x: clip;}
+
+    &--overflow-y-visible {--_section-overflow-y: visible;}
+    &--overflow-y-hidden  {--_section-overflow-y: hidden;}
+    &--overflow-y-scroll  {--_section-overflow-y: scroll;}
+    &--overflow-y-auto    {--_section-overflow-y: auto;}
+    &--overflow-y-clip    {--_section-overflow-y: clip;}
+
+
+
     &--column-centred{
         display:flex;
         flex-direction:column;

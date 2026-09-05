@@ -131,6 +131,48 @@ public static class Section
         };
 
     /// <summary>
+    /// Gets the class that sets the section's horizontal (<c>overflow-x</c>) scroll behaviour.
+    /// </summary>
+    /// <remarks>
+    /// Setting this to anything other than <see cref="UnitScroll.Visible"/> may cause the
+    /// vertical axis to compute as <c>auto</c> as well, per the CSS overflow specification,
+    /// unless <see cref="OverflowY"/> is also set explicitly.
+    /// </remarks>
+    /// <param name="unitScroll">The overflow value to apply. See <see cref="UnitScroll"/>.</param>
+    /// <returns>The <c>br-section</c> modifier class for the given <paramref name="unitScroll"/>.</returns>
+    public static string OverflowX(UnitScroll unitScroll)
+
+        => unitScroll switch
+        {
+            UnitScroll.Visible => $"{Base}--overflow-x-visible",
+            UnitScroll.Hidden  => $"{Base}--overflow-x-hidden",
+            UnitScroll.Scroll  => $"{Base}--overflow-x-scroll",
+            UnitScroll.Clip    => $"{Base}--overflow-x-clip",
+            _ => $"{Base}--overflow-x-auto",
+        };
+
+    /// <summary>
+    /// Gets the class that sets the section's vertical (<c>overflow-y</c>) scroll behaviour.
+    /// </summary>
+    /// <remarks>
+    /// Setting this to anything other than <see cref="UnitScroll.Visible"/> may cause the
+    /// horizontal axis to compute as <c>auto</c> as well, per the CSS overflow specification,
+    /// unless <see cref="OverflowX"/> is also set explicitly.
+    /// </remarks>
+    /// <param name="unitScroll">The overflow value to apply. See <see cref="UnitScroll"/>.</param>
+    /// <returns>The <c>br-section</c> modifier class for the given <paramref name="unitScroll"/>.</returns>
+    public static string OverflowY(UnitScroll unitScroll)
+
+        => unitScroll switch
+        {
+            UnitScroll.Visible => $"{Base}--overflow-y-visible",
+            UnitScroll.Hidden  => $"{Base}--overflow-y-hidden",
+            UnitScroll.Scroll  => $"{Base}--overflow-y-scroll",
+            UnitScroll.Clip    => $"{Base}--overflow-y-clip",
+            _ => $"{Base}--overflow-y-auto",
+        };
+
+    /// <summary>
     /// Provides the BEM CSS classes for the <c>br-section__heading</c> element,
     /// the heading sub-part of a <c>br-section</c>.
     /// </summary>

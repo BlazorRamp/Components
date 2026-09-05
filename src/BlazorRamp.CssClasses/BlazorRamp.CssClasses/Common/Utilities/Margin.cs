@@ -93,16 +93,22 @@ public static class Margin
  
         => spaceUnit switch
         {
-            UnitSpace.None  => $"{className}-0",
-            UnitSpace.One   => $"{className}-1",
-            UnitSpace.Two   => $"{className}-2",
-            UnitSpace.Three => $"{className}-3",
-            UnitSpace.Four  => $"{className}-4",
-            UnitSpace.Five  => $"{className}-5",
-            UnitSpace.Six   => $"{className}-6",
-            UnitSpace.Seven => $"{className}-7",
-            UnitSpace.Eight => $"{className}-8",
-            UnitSpace.Nine  => $"{className}-9",
+            UnitSpace.None     => $"{className}-0",
+            UnitSpace.One      => $"{className}-1",
+            UnitSpace.Two      => $"{className}-2",
+            UnitSpace.Three    => $"{className}-3",
+            UnitSpace.Four     => $"{className}-4",
+            UnitSpace.Five     => $"{className}-5",
+            UnitSpace.Six      => $"{className}-6",
+            UnitSpace.Seven    => $"{className}-7",
+            UnitSpace.Eight    => $"{className}-8",
+            UnitSpace.Nine     => $"{className}-9",
+            UnitSpace.Ten      => $"{className}-10",
+            UnitSpace.Eleven   => $"{className}-11",
+            UnitSpace.Twelve   => $"{className}-12",
+            UnitSpace.Thirteen => $"{className}-13",
+            UnitSpace.Fourteen => $"{className}-14",
+            UnitSpace.Fifteen  => $"{className}-15",
             _ => $"{className}-0",
         };
 }

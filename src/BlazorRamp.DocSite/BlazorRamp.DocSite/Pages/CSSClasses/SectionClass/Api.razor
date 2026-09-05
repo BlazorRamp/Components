@@ -98,6 +98,22 @@
                         fixed unit value, bypassing the themeable content/container/dialog groupings.
                     </td>
                 </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Section.OverflowX(UnitScroll unitScroll)</td>
+                    <td>
+                        Gets the modifier class that sets the section's horizontal (overflow-x) scroll behaviour. 
+                        <span class="@CodeSpan.Base">Section.Base</span> has <span class="@CodeSpan.Base">overflow-x:auto</span> on by default.
+                    </td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Section.OverflowY(UnitScroll unitScroll)</td>
+                    <td>
+                        Gets the modifier class that sets the section's vertical (overflow-y) scroll behaviour.
+                        <span class="@CodeSpan.Base">Section.Base</span> has <span class="@CodeSpan.Base">overflow-y:auto</span> on by default.
+                    </td>
+                </tr>
             </tbody>
         </table>
     </section>
@@ -190,7 +206,49 @@
             </tbody>
         </table>
     </section>
-
+    <section class="code-table">
+        <h3 id="unit-scroll-enum" class="code-table__heading">UnitScroll enum</h3>
+        <p>
+            Sets a CSS <span class="@CodeSpan.Base">overflow</span> value. Used by the <span class="@CodeSpan.Base">Scroll</span> utility class (pending release) and by classes exposing their own
+            overflow modifiers, such as <span class="@CodeSpan.Base">Section</span>.
+        </p>
+        <table aria-labelledby="unit-scroll-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Visible</td>
+                    <td>Content is not clipped and may overflow the element's box. The CSS initial value.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Hidden</td>
+                    <td>Content is clipped at the padding edge, with no scrollbars offered.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Scroll</td>
+                    <td>Content is clipped, and scrollbars are always shown, whether or not content overflows.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Auto</td>
+                    <td>The browser shows scrollbars only if content actually overflows. The most common choice for scrollable regions.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Clip</td>
+                    <td>Content is clipped at the padding edge, like Hidden, but does not establish a new formatting context or scroll container. Not supported in all browsers.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
     <section class="code-table">
         <h3 id="section-background-enum" class="code-table__heading">SectionBackground enum</h3>
         <p>
