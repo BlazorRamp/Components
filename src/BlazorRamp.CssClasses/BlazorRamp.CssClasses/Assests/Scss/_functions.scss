@@ -19,7 +19,7 @@
 }
 
 @mixin media-device-xl($width: min-width) {
-    @media (width:$device-xl-min-width ) {
+    @media ($width:$device-xl-min-width ) {
         @content;
     }
 }

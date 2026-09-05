@@ -166,289 +166,77 @@
             </tbody>
         </table>
     </section>
-    <section>
-        <h2 class="page-heading">Supporting enums</h2>
-        <section class="code-table">
-            <h3 id="section-radius-enum" class="code-table__heading">SectionRadius enum</h3>
-            <p>
-                Sets the border radius grouping applied to a <span class="@CodeSpan.Base">br-section</span> element.
-            </p>
-            <table aria-labelledby="section-radius-enum">
-                <thead>
-                    <tr>
-                        <th scope="col">Value</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>Content</td>
-                        <td>
-                            Border radius for general content areas.
-                            Uses the content border radius grouping.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Container</td>
-                        <td>
-                            Border radius matching cards, tables, and similar boxed UI.
-                            Uses the container border radius grouping.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Dialog</td>
-                        <td>
-                            Border radius matching a dialog surface, for custom dialog-like content built outside the Modal Dialog fra
-                            Uses the dialog border radius grouping.
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section class="code-table">
-            <h3 id="section-background-enum" class="code-table__heading">SectionBackground enum</h3>
-            <p>
-                Sets the background colour of a <span class="@CodeSpan.Base">br-section</span> element.
-            </p>
-            <table aria-labelledby="section-background-enum">
-                <thead>
-                    <tr>
-                        <th scope="col">Value</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>NeutralLighter</td>
-                        <td>A light neutral background colour.</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>SecondaryLighter</td>
-                        <td>A light secondary-hue background colour.</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>AccentLighter</td>
-                        <td>A light accent-hue background colour.</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>PrimaryLighter</td>
-                        <td>A light primary-hue background colour.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section class="code-table">
-            <h3 id="section-text-enum" class="code-table__heading">SectionText enum</h3>
-            <p>
-                Sets the colour of a <span class="@CodeSpan.Base">br-section</span> element.
-            </p>
-            <table aria-labelledby="section-text-enum">
-                <thead>
-                    <tr>
-                        <th scope="col">Value</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>NeutralDark</td>
-                        <td>Neutral text colour.</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>SecondaryDark</td>
-                        <td>Secondary-hue text colour.</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>AccentDark</td>
-                        <td>Accent-hue text colour.</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>PrimaryDark</td>
-                        <td>Primary-hue text colour.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section class="code-table">
-            <h3 id="section-font-size-enum" class="code-table__heading">UnitFontSize enum</h3>
-            <p>
-                Sets the base font size of the <span class="@CodeSpan.Base">br-section</span> and the <span class="@CodeSpan.Base">br-section__heading</span> elements respectively.
-            </p>
-            <table aria-labelledby="section-font-size-enum">
-                <thead>
-                    <tr>
-                        <th scope="col">Value</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>Label</td>
-                        <td>Label-sized text, matching the size used for input/form labels.</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Regular</td>
-                        <td>The regular body text size.</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Two</td>
-                        <td>A larger text size, one step above regular.</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Three</td>
-                        <td>A larger text size, two steps above regular.</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Four</td>
-                        <td>A larger text size, three steps above regular.</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Five</td>
-                        <td>A larger text size, four steps above regular.</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Six</td>
-                        <td>The largest text size available on this scale.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section class="code-table">
-            <h3 id="section-heading-text-enum" class="code-table__heading">SectionHeadingText enum</h3>
-            <p>
-                Sets the text colour of a <span class="@CodeSpan.Base">br-section__heading</span> element.
-            </p>
-            <table aria-labelledby="section-heading-text-enum">
-                <thead>
-                    <tr>
-                        <th scope="col">Value</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>NeutralDark</td>
-                        <td>Neutral heading text colour.</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>SecondaryDark</td>
-                        <td>SecondaryDark-hue heading text colour.</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>AccentDark</td>
-                        <td>Accent-hue heading text colour.</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>PrimaryDark</td>
-                        <td>Primary-hue heading text colour.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section class="code-table">
-            <h3 id="unit-radius-enum" class="code-table__heading">UnitRadius enum</h3>
-            <p>
-                Sets a fixed border radius from the <span class="@CodeSpan.Base">--br-unit-radius-*</span> primitive scale, bypassing any themeable border radius grouping.
-            </p>
-            <table aria-labelledby="unit-radius-enum">
-                <thead>
-                    <tr>
-                        <th scope="col">Value</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>None</td>
-                        <td>No border radius. Maps to <span class="@CodeSpan.Base">--br-unit-radius-0</span>.</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>One</td>
-                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-1</span>.</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Two</td>
-                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-2</span>.</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Three</td>
-                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-3</span>.</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Four</td>
-                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-4</span>.</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Five</td>
-                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-5</span>.</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Six</td>
-                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-6</span>.</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Seven</td>
-                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-7</span>.</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>Eight</td>
-                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-8</span>.</td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>Nine</td>
-                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-9</span>.</td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>Full</td>
-                        <td>Fully rounded. Maps to <span class="@CodeSpan.Base">--br-unit-radius-full</span>.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+    <section class="code-table">
+        <h3 id="unit-radius-enum" class="code-table__heading">UnitRadius enum</h3>
+        <p>
+            Sets a fixed border radius from the <span class="@CodeSpan.Base">--br-unit-radius-*</span> primitive scale, bypassing any themeable border radius grouping.
+        </p>
+        <table aria-labelledby="unit-radius-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>None</td>
+                    <td>No border radius. Maps to <span class="@CodeSpan.Base">--br-unit-radius-0</span>.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>One</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-1</span>.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Two</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-2</span>.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Three</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-3</span>.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Four</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-4</span>.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Five</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-5</span>.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Six</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-6</span>.</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Seven</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-7</span>.</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Eight</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-8</span>.</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Nine</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-9</span>.</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Full</td>
+                    <td>Fully rounded. Maps to <span class="@CodeSpan.Base">--br-unit-radius-full</span>.</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 </section>
 

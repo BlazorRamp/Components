@@ -10,11 +10,11 @@
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region;</PackageTags>
-    <PackageReleaseNotes>Added two more variables for border radius groupings, one for a content group and an additional variable for finer control of inputs.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added 5 additional --br-unit-space variables so spacing now has a maxinum of 8rem.</PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <AssemblyVersion>1.1.6</AssemblyVersion>
-    <FileVersion>1.1.6</FileVersion>
-	  <Version>1.1.6</Version>
+    <AssemblyVersion>1.1.7</AssemblyVersion>
+    <FileVersion>1.1.7</FileVersion>
+	  <Version>1.1.7</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
