@@ -20,3 +20,28 @@
 .br-margin-inline-auto { margin-inline: auto; }
 .br-margin-block-auto  { margin-block: auto; }
 .br-margin-auto        { margin: auto; }
+
+
+.br-overflow-x-visible {overflow-x: visible;}
+.br-overflow-x-hidden  {overflow-x: hidden;}
+.br-overflow-x-scroll  {overflow-x: scroll;}
+.br-overflow-x-auto    {overflow-x: auto;}
+.br-overflow-x-clip    {overflow-x: clip;}
+
+.br-overflow-y-visible {overflow-y: visible;}
+.br-overflow-y-hidden  {overflow-y: hidden;}
+.br-overflow-y-scroll  {overflow-y: scroll;}
+.br-overflow-y-auto    {overflow-y: auto;}
+.br-overflow-y-clip    {overflow-y: clip;}
+
+.br-overflow-xy-visible {overflow: visible;}
+.br-overflow-xy-hidden  {overflow: hidden;}
+.br-overflow-xy-scroll  {overflow: scroll;}
+.br-overflow-xy-auto    {overflow: auto;}
+.br-overflow-xy-clip    {overflow: clip;}
+
+.br-position-static   {position: static;}
+.br-position-relative {position: relative;}
+.br-position-absolute {position: absolute;}
+.br-position-fixed    {position: fixed;}
+.br-position-sticky   {position: sticky;}

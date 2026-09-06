@@ -114,6 +114,14 @@
                         <span class="@CodeSpan.Base">Section.Base</span> has <span class="@CodeSpan.Base">overflow-y:auto</span> on by default.
                     </td>
                 </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Section.Position(UnitPosition unitPosition)</td>
+                    <td>
+                        Gets the class that sets the section's CSS position.
+                        <span class="@CodeSpan.Base">Section.Base</span> has <span class="@CodeSpan.Base">position:relative</span> as its default.
+                    </td>
+                </tr>
             </tbody>
         </table>
     </section>
@@ -209,8 +217,7 @@
     <section class="code-table">
         <h3 id="unit-scroll-enum" class="code-table__heading">UnitScroll enum</h3>
         <p>
-            Sets a CSS <span class="@CodeSpan.Base">overflow</span> value. Used by the <span class="@CodeSpan.Base">Scroll</span> utility class (pending release) and by classes exposing their own
-            overflow modifiers, such as <span class="@CodeSpan.Base">Section</span>.
+            Sets a CSS <span class="@CodeSpan.Base">overflow</span> value applied to a <span class="@CodeSpan.Base">br-section</span> element.
         </p>
         <table aria-labelledby="unit-scroll-enum">
             <thead>
@@ -282,6 +289,11 @@
                     <td>3</td>
                     <td>PrimaryLighter</td>
                     <td>A light primary-hue background colour.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Transparent</td>
+                    <td>See-through. shows what its sitting on. Caution - check text contrast.</td>
                 </tr>
             </tbody>
         </table>
@@ -377,7 +389,49 @@
             </tbody>
         </table>
     </section>
-
+    <section class="code-table">
+        <h3 id="unit-position-enum" class="code-table__heading">UnitPosition enum</h3>
+        <p>
+            Sets a CSS <span class="@CodeSpan.Base">position</span> value. Used by <span class="@CodeSpan.Base">Section.Position()</span> and by the
+            <span class="@CodeSpan.Base">Position</span> utility class.
+        </p>
+        <table aria-labelledby="unit-position-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Static</td>
+                    <td>The element is positioned according to normal document flow. Disables anchoring for components such as the Busy Indicator that expect a positioned container.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Relative</td>
+                    <td>The element is positioned according to normal flow, then offset relative to itself if offset properties are set. The section's default.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Absolute</td>
+                    <td>The element is removed from normal flow and positioned relative to its nearest positioned ancestor.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Fixed</td>
+                    <td>The element is removed from normal flow and positioned relative to the viewport.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Sticky</td>
+                    <td>The element is positioned according to normal flow, then treated as fixed once its scrolling ancestor reaches a given scroll position.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
     <section class="code-table">
         <h3 id="section-heading-text-enum" class="code-table__heading">SectionHeadingText enum</h3>
         <p>
@@ -721,6 +775,22 @@
                     <td>var(--br-unit-font-size-1)</td>
                     <td>The section's base font size before any size modifier is applied.</td>
                 </tr>
+                <tr>
+                    <td>--_section-border-radius</td>
+                    <td>var(--br-group-content-border-radius)</td>
+                    <td>The sections base radius which uses the content group radius by default.</td>
+                </tr>
+                <tr>
+                    <td>--_section-overflow-x</td>
+                    <td>auto</td>
+                    <td>The sections default overflow-x value.</td>
+                </tr>
+                <tr>
+                    <td>--_section-overflow-y</td>
+                    <td>auto</td>
+                    <td>The sections default overflow-y value.</td>
+                </tr>
+
             </tbody>
         </table>
     </section>
@@ -782,9 +852,9 @@
 </section>
 
 <div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Padding}/{GlobalValues.Common_Page_Path_Api}")">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Position}/{GlobalValues.Common_Page_Path_Api}")">
         <span aria-hidden="true"></span>
-        <span>@GlobalValues.CSS_Name_Padding - @GlobalValues.Common_Page_Title_Api</span>
+        <span>@GlobalValues.CSS_Name_Position - @GlobalValues.Common_Page_Title_Api</span>
         <span aria-hidden="true"></span>
     </a>
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_FAQS}/{GlobalValues.Common_Page_Path_Questions}")">

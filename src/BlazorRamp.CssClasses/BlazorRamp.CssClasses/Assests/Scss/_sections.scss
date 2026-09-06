@@ -62,6 +62,7 @@
     &--secondary-lighter   {--_section-background: var(--br-cls-secondary-lighter); }
     &--accent-lighter      {--_section-background: var(--br-cls-accent-lighter); }
     &--primary-lighter     {--_section-background: var(--br-cls-primary-lighter); }
+    &--transparent         {--_section-background: transparent; }
     &--neutral-text-dark   {--_section-text: var(--br-cls-neutral-text-dark); }
     &--secondary-text-dark {--_section-text: var(--br-cls-secondary-text-dark); }
     &--accent-text-dark    {--_section-text: var(--br-cls-accent-text-dark); }
@@ -93,6 +94,19 @@
         }
     }
 
+    &--position-static   {position: static;}
+    &--position-relative {position: relative;}
+    &--position-absolute {position: absolute;}
+    &--position-fixed    {position: fixed;}
+    &--position-sticky   {position: sticky;}
+
+    &:focus-visible {
+        outline-style: var(--br-comp-all-outline-style);
+        outline-width: var(--br-comp-all-outline-width);
+        outline-offset: var(--br-comp-all-outline-offset);
+        outline-color: var(--br-comp-all-outline-colour);
+    }
+
     &__heading{
        --_section-heading-text:var(--_section-text);
         --_section-heading-font-size: var(--br-unit-font-size-2);
@@ -120,11 +134,4 @@
     }
 
 
-
-    &:focus {
-        outline-style: var(--br-comp-all-outline-style);
-        outline-width: var(--br-comp-all-outline-width);
-        outline-offset: var(--br-comp-all-outline-offset);
-        outline-color: var(--br-comp-all-outline-colour);
-    }
 }

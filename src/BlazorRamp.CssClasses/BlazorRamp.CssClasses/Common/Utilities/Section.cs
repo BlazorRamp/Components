@@ -66,6 +66,7 @@ public static class Section
             SectionBackground.NeutralLighter    => $"{Base}--neutral-lighter",
             SectionBackground.SecondaryLighter  => $"{Base}--secondary-lighter",
             SectionBackground.AccentLighter     => $"{Base}--accent-lighter",
+            SectionBackground.Transparent       => $"{Base}--transparent",
             _ => $"{Base}--neutral-lighter",
 
         };
@@ -171,6 +172,32 @@ public static class Section
             UnitScroll.Clip    => $"{Base}--overflow-y-clip",
             _ => $"{Base}--overflow-y-auto",
         };
+
+
+    /// <summary>
+    /// Gets the class that sets the section's CSS <c>position</c>.
+    /// </summary>
+    /// <remarks>
+    /// The section's default position is <see cref="UnitPosition.Relative"/>, which allows
+    /// components such as the Busy Indicator to anchor themselves to the section as a
+    /// positioning container. Switching to <see cref="UnitPosition.Static"/> will disable
+    /// that behaviour for any component relying on it.
+    /// </remarks>
+    /// <param name="unitPosition">The position value to apply. See <see cref="UnitPosition"/>.</param>
+    /// <returns>The <c>br-section</c> modifier class for the given <paramref name="unitPosition"/>.</returns>
+    public static string Position(UnitPosition unitPosition)
+
+        => unitPosition switch
+        {
+            UnitPosition.Static   => $"{Base}--position-static",
+            UnitPosition.Relative => $"{Base}--position-relative",
+            UnitPosition.Absolute => $"{Base}--position-absolute",
+            UnitPosition.Fixed    => $"{Base}--position-fixed",
+            UnitPosition.Sticky   => $"{Base}--position-sticky",
+            _ => $"{Base}--position-relative",
+        };
+
+
 
     /// <summary>
     /// Provides the BEM CSS classes for the <c>br-section__heading</c> element,

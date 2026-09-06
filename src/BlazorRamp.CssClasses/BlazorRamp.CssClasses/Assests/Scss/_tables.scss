@@ -1,1 +1,91 @@
-﻿
+﻿.br-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: start;
+    border-radius: var(--br-group-container-area-header-border-radius);
+    border: 1px solid var(--br-comp-all-divider-colour);
+
+    th {
+        border-style: none;
+        border-width: var(--br-unit-border-1);
+        border-color: var(--br-comp-all-divider-colour);
+        border-bottom-style: var(--br-comp-all-area-header-border-style);
+        border-right-style: var(--br-comp-all-area-header-border-style);
+        background-color: var(--br-unit-colour-neutral-10);
+        color: var(--br-comp-all-area-header-text);
+        font-family: var(--br-comp-all-area-header-font-family);
+        font-size: var(--br-unit-font-size-label);
+        font-weight: var(--br-unit-font-weight-500, bold);
+        line-height: var(--br-comp-all-area-header-line-height);
+        padding-block: var(--br-unit-space-3);
+        padding-inline: var(--br-unit-space-4);
+        margin: 0;
+    }
+
+        th:first-of-type {
+            border-top-left-radius: var(--br-group-container-area-header-border-radius);
+        }
+
+        th:last-of-type {
+            border-top-right-radius: var(--br-group-container-area-header-border-radius);
+            border-right: none;
+        }
+
+    td {
+        background-color: transparent;
+        padding-block: var(--br-unit-space-3);
+        padding-inline: var(--br-unit-space-4);
+        border-style: none;
+        border-color: var(--br-comp-all-divider-colour);
+        border-width: var(--br-unit-border-1);
+        border-right-style: var(--br-comp-all-area-content-border-style);
+        border-bottom-style: var(--br-comp-all-area-content-border-style);
+        font-family: var(--br-comp-all-area-content-font-family);
+        font-size: var(--br-unit-font-size-label);
+        font-weight: var(--br-comp-all-area-content-font-weight);
+        line-height: var(--br-comp-all-area-content-line-height);
+        max-width: 0;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+        td:last-child {
+            border-right: none;
+        }
+
+    tr:last-child {
+        td {
+            border-block-end: none;
+        }
+    }
+
+
+
+    &--scrollable {
+        border: none;
+        border-radius: 0;
+
+        th {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            white-space: nowrap;
+        }
+
+            th:first-of-type,
+            th:last-of-type {
+                border-radius: 0;
+            }
+
+        td {
+            white-space: nowrap;
+        }
+    }
+}
+.br-scroll-frame {
+    border-radius: var(--br-group-container-area-header-border-radius);
+    border: 1px solid var(--br-comp-all-divider-colour);
+    overflow-y: auto;
+    overflow-x: hidden;
+}

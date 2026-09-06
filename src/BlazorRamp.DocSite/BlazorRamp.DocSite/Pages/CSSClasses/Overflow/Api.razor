@@ -1,0 +1,192 @@
+﻿@using BlazorRamp.DocSite.Pages.GettingStarted
+@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Overflow}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.CSS_Name_Overflow @GlobalValues.Common_Page_Title_Api_Usage</PageTitle>
+
+<h1>@GlobalValues.CSS_Name_Overflow @GlobalValues.Common_Page_Title_Api_Usage</h1>
+
+
+<p>
+    Everything you need to work with the <span class="@CodeSpan.Base">br-overflow-*</span> CSS classes: the utility classes provided, the strongly-typed <span class="@CodeSpan.Base">Overflow</span> C# object
+    used to apply them, and the supporting enum used to select an overflow value.
+</p>
+
+<h2 class="page-heading">Overview</h2>
+
+<p>
+    <span class="@CodeSpan.Base">Overflow</span> is a <b>utility class</b>, not a BEM component class like <span class="@CodeSpan.Base">Section</span> or <span class="@CodeSpan.Base">Button</span>.
+    Rather than describing a block, element, or its variants, each class here sets the CSS <span class="@CodeSpan.Base">overflow</span> behaviour of an element on a single axis, or
+    both at once. Utility classes are flat and single-purpose by design, so they can be freely combined with each other and with any other class - including component classes - on the same element.
+</p>
+<p>
+    If the element already has a component class with its own overflow modifiers - for example <span class="@CodeSpan.Base">br-section</span>, which exposes
+    <span class="@CodeSpan.Base">Section.OverflowX()</span> and <span class="@CodeSpan.Base">Section.OverflowY()</span> - prefer that class's own modifier instead. 
+</p>
+<p>
+    Per the CSS overflow specification, setting one axis to anything other than <span class="@CodeSpan.Base">visible</span> while leaving the other axis untouched will cause the browser
+    to compute the untouched axis as <span class="@CodeSpan.Base">auto</span> as well. Set both axes explicitly with <span class="@CodeSpan.Base">Overflow.X()</span> and
+    <span class="@CodeSpan.Base">Overflow.Y()</span>, or use <span class="@CodeSpan.Base">Overflow.XY()</span>, if you need both axes to behave the same way.
+</p>
+
+<section>
+    <h2 id="c#-classes" class="page-heading">C# API</h2>
+    <p>
+        <span class="@CodeSpan.Base">Overflow</span> provides utility classes that set the CSS <span class="@CodeSpan.Base">overflow</span> behaviour of an element.
+    </p>
+    <section class="code-table">
+        <h3 id="overflow-class" class="code-table__heading">Overflow class</h3>
+        <table aria-labelledby="overflow-class">
+            <thead>
+                <tr>
+                    <th scope="col">Return</th>
+                    <th scope="col">Static Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>string</td>
+                    <td>Overflow.X(UnitScroll unitScroll)</td>
+                    <td>Gets the class that sets an element's horizontal (<span class="@CodeSpan.Base">overflow-x</span>) scroll behaviour.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Overflow.Y(UnitScroll unitScroll)</td>
+                    <td>Gets the class that sets an element's vertical (<span class="@CodeSpan.Base">overflow-y</span>) scroll behaviour.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Overflow.XY(UnitScroll unitScroll)</td>
+                    <td>Gets the class that sets an element's overflow behaviour on both axes at once, using the CSS <span class="@CodeSpan.Base">overflow</span> shorthand.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting enum</h2>
+    <section class="code-table">
+        <h3 id="unit-scroll-enum" class="code-table__heading">UnitScroll enum</h3>
+        <p>
+            Sets a CSS <span class="@CodeSpan.Base">overflow</span> value. Used by the <span class="@CodeSpan.Base">Overflow</span> utility class and by classes exposing their own
+            overflow modifiers, such as <span class="@CodeSpan.Base">Section</span>.
+        </p>
+        <table aria-labelledby="unit-scroll-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Visible</td>
+                    <td>Content is not clipped and may overflow the element's box. The CSS initial value.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Hidden</td>
+                    <td>Content is clipped at the padding edge, with no scrollbars offered.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Scroll</td>
+                    <td>Content is clipped, and scrollbars are always shown, whether or not content overflows.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Auto</td>
+                    <td>The browser shows scrollbars only if content actually overflows. The most common choice for scrollable regions.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Clip</td>
+                    <td>Content is clipped at the padding edge, like Hidden, but does not establish a new formatting context or scroll container. Not supported in all browsers.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section class="code-table">
+    <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
+
+    <table aria-labelledby="css-classes">
+        <thead>
+            <tr>
+                <th scope="col">Class</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    br-overflow-x-visible<br>
+                    br-overflow-x-hidden<br>
+                    br-overflow-x-scroll<br>
+                    br-overflow-x-auto<br>
+                    br-overflow-x-clip
+                </td>
+                <td>Utility</td>
+                <td>Sets horizontal (<span class="@CodeSpan.Base">overflow-x</span>) scroll behaviour.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-overflow-y-visible<br>
+                    br-overflow-y-hidden<br>
+                    br-overflow-y-scroll<br>
+                    br-overflow-y-auto<br>
+                    br-overflow-y-clip
+                </td>
+                <td>Utility</td>
+                <td>Sets vertical (<span class="@CodeSpan.Base">overflow-y</span>) scroll behaviour.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-overflow-xy-visible<br>
+                    br-overflow-xy-hidden<br>
+                    br-overflow-xy-scroll<br>
+                    br-overflow-xy-auto<br>
+                    br-overflow-xy-clip
+                </td>
+                <td>Utility</td>
+                <td>Sets scroll behaviour on both axes at once, using the CSS <span class="@CodeSpan.Base">overflow</span> shorthand.</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="@Margin.BlockEnd(UnitSpace.Five)">
+    <h2 class="page-heading">Usage</h2>
+    <p>
+    The following example uses <span class="@CodeSpan.Base" >Overflow.XY(UnitScroll.Hidden)</span> to hide the text the would normally just overflow the container 
+    without scrollbars
+    </p>
+    
+    <CodeBox CodeBlock="@CssClassesSnippets.Overflow_Code_Example" AriaLabel="Overflow code example." />
+
+    <div style="width:200px;height:75px;padding:var(--br-unit-space-3); border:1px solid var(--br-comp-all-divider-colour);" 
+        class="@Overflow.XY(UnitScroll.Hidden)">
+        This text will have some of its content hidden because its too big to fit in the box.
+    </div>
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Margin}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_Margin - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Padding}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_Padding - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}

@@ -11,11 +11,12 @@
 		<PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
 		<PackageTags>Blazor; Accessible Components; Accessibility;CSS Classes;</PackageTags>
-		<PackageReleaseNotes>Initial release of the Blazor Ramp Css Classes.	</PackageReleaseNotes>
+		<PackageReleaseNotes>Added general Overflow, Position and Radius utility classes as well adding a position method to the Section class. 
+Added a transparent background Enum option for the Section class.</PackageReleaseNotes>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
-		<AssemblyVersion>1.0.0</AssemblyVersion>
-		<FileVersion>1.0.0</FileVersion>
-		<Version>1.0.0</Version>
+		<AssemblyVersion>1.0.1</AssemblyVersion>
+		<FileVersion>1.0.1</FileVersion>
+		<Version>1.0.1</Version>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 		<Deterministic>true</Deterministic>

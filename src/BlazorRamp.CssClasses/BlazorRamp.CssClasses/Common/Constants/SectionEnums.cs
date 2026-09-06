@@ -47,7 +47,11 @@ public enum SectionBackground : int
     /// <summary>
     /// A light primary-hue background colour.
     /// </summary>
-    PrimaryLighter = 3
+    PrimaryLighter = 3,
+   /// <summary>
+   /// See-through. shows what its sitting on. Check text contrast.
+   /// </summary>
+    Transparent = 4,
 }
 
 /// <summary>

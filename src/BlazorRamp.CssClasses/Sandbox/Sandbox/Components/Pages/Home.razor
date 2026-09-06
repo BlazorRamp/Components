@@ -1,7 +1,84 @@
 ﻿@page "/"
+@using BlazorRamp.CssClasses.Common.Constants
+@using BlazorRamp.CssClasses.Common.Utilities
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+@rendermode @(new InteractiveServerRenderMode(false))
 
-Welcome to your new app.
+<section class="br-section br-section--no-padding">
+    <h3 id="my-table-heading">Table title</h3>
+
+    <div class="br-section br-section--bordered br-section--no-padding br-section--overflow-x-hidden br-section--overflow-y-hidden @Section.FixedRadius(UnitRadius.Five)">
+        <div style="max-height: 400px; overflow-y: auto;"
+             tabindex="0" role="region" aria-labelledby="my-table-heading">
+            <table class="br-table br-table--scrollable">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Temp. (C)</th>
+                        <th scope="col">Temp. (F)</th>
+                        <th scope="col">Summary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var forecast in _forecasts)
+                    {
+                        <tr>
+                            <td>@forecast.Date.ToShortDateString()</td>
+                            <td>@forecast.TemperatureC</td>
+                            <td>@forecast.TemperatureF</td>
+                            <td>@forecast.Summary</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@*     <table class="br-table">
+  
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Temp. (C)</th>
+                <th scope="col">Temp. (F)</th>
+                <th scope="col">Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in _forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table> *@
+
+
+
+@code {
+
+
+    private List<WeatherForecast> _forecasts = [];
+
+
+    protected override void OnInitialized()
+    {
+        var startDate = DateOnly.FromDateTime(DateTime.Now);
+        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
+
+        _forecasts = Enumerable.Range(1, 10)
+                        .Select(index => new WeatherForecast(startDate.AddDays(index), Random.Shared.Next(-20, 55), summaries[Random.Shared.Next(summaries.Length)])).ToList();
+
+    }
+    private record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+    {
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
+}

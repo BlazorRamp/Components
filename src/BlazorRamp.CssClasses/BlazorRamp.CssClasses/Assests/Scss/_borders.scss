@@ -1,0 +1,10 @@
+﻿
+@use "_functions" as *;
+
+
+
+@include generate-radius-classes("br-radius-all","border-radius", "--br-unit-radius",9,true);
+@include generate-radius-classes("br-radius-start-start","border-start-start-radius", "--br-unit-radius",9,true);
+@include generate-radius-classes("br-radius-start-end","border-start-end-radius", "--br-unit-radius",9,true);
+@include generate-radius-classes("br-radius-end-start","border-end-start-radius", "--br-unit-radius",9,true);
+@include generate-radius-classes("br-radius-end-end","border-end-end-radius", "--br-unit-radius",9,true);

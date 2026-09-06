@@ -195,3 +195,40 @@ public enum UnitScroll : int
     /// </summary>
     Clip = 4
 }
+
+
+/// <summary>
+/// Sets a CSS <c>position</c> value. Used by <see cref="Section.Position"/> and by the
+/// <see cref="Position"/> utility class.
+/// </summary>
+public enum UnitPosition : int
+{
+    /// <summary>
+    /// The element is positioned according to normal document flow. Disables anchoring
+    /// for components such as the Busy Indicator that expect a positioned container.
+    /// </summary>
+    Static = 0,
+
+    /// <summary>
+    /// The element is positioned according to normal flow, then offset relative to
+    /// itself if offset properties are set. The section's default.
+    /// </summary>
+    Relative = 1,
+
+    /// <summary>
+    /// The element is removed from normal flow and positioned relative to its nearest
+    /// positioned ancestor.
+    /// </summary>
+    Absolute = 2,
+
+    /// <summary>
+    /// The element is removed from normal flow and positioned relative to the viewport.
+    /// </summary>
+    Fixed = 3,
+
+    /// <summary>
+    /// The element is positioned according to normal flow, then treated as fixed once
+    /// its scrolling ancestor reaches a given scroll position.
+    /// </summary>
+    Sticky = 4
+}

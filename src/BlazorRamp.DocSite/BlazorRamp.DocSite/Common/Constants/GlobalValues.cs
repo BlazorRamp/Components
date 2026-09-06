@@ -164,8 +164,11 @@ public class GlobalValues
     public const string CSS_Path_Part_Buttons = "buttons";
     public const string CSS_Path_Part_CodeSpan = "codespan";  
     public const string CSS_Path_Part_Kbd = "kbd";
-    public const string CSS_Path_Part_Margin = "padding";
-    public const string CSS_Path_Part_Padding = "margin";
+    public const string CSS_Path_Part_Margin = "margin";
+    public const string CSS_Path_Part_Overflow = "overflow";
+    public const string CSS_Path_Part_Padding = "padding";
+    public const string CSS_Path_Part_Position = "position";
+    public const string CSS_Path_Part_Radius = "radius";
     public const string CSS_Path_Part_Section = "section";
 
 
@@ -173,7 +176,10 @@ public class GlobalValues
     public const string CSS_Name_CodeSpan = "CodeSpan";
     public const string CSS_Name_Kbd     = "Kbd";
     public const string CSS_Name_Margin = "Margin";
+    public const string CSS_Name_Position = "Position";
+    public const string CSS_Name_Overflow = "Overflow";
     public const string CSS_Name_Padding = "Padding";
+    public const string CSS_Name_Radius = "Radius";
     public const string CSS_Name_Section  = "Section";
 
     public const string CSS_Name_CSS_Classes = "CSS Classes";

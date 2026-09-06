@@ -1,0 +1,235 @@
+﻿@using BlazorRamp.DocSite.Pages.GettingStarted
+@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Radius}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.CSS_Name_Radius @GlobalValues.Common_Page_Title_Api_Usage</PageTitle>
+
+<h1>@GlobalValues.CSS_Name_Radius @GlobalValues.Common_Page_Title_Api_Usage</h1>
+
+<p>
+    Everything you need to work with the <span class="@CodeSpan.Base">br-radius-*</span> CSS classes: the utility classes provided, the strongly-typed <span class="@CodeSpan.Base">Radius</span> C# object
+    used to apply them, and the supporting enum used to select a radius value.
+</p>
+
+<h2 class="page-heading">Overview</h2>
+
+<p>
+    <span class="@CodeSpan.Base">Radius</span> is a <b>utility class</b>, not a BEM component class like <span class="@CodeSpan.Base">Section</span> or <span class="@CodeSpan.Base">Button</span>.
+    Rather than describing a block, element, or its variants, each class here sets a border radius from the shared <span class="@CodeSpan.Base">--br-unit-radius-*</span> primitive scale.
+    Utility classes are flat and single-purpose by design, so they can be freely combined with each other and with any other class - including component classes - on the same element.
+</p>
+<p>
+    The four corner methods use CSS <b>logical</b> border radius properties (<span class="@CodeSpan.Base">border-start-start-radius</span> and similar) rather than physical
+    <span class="@CodeSpan.Base">top</span>/<span class="@CodeSpan.Base">bottom</span>/<span class="@CodeSpan.Base">left</span>/<span class="@CodeSpan.Base">right</span> properties.
+    Logical properties adapt automatically to the direction text flows in, so a corner correctly stays on the "start" side of the content whether the page is left-to-right or
+    right-to-left, without needing separate styling for each.
+</p>
+<p>
+    The method and class names below describe the corner in terms of the <span class="@CodeSpan.Base">block</span> (vertical) and <span class="@CodeSpan.Base">inline</span> (horizontal)
+    axes, and assume a horizontal writing mode - the case for the vast majority of content. In a vertical writing mode, the block and inline axes are swapped, and the "top-left" example
+    given for each corner no longer applies.
+</p>
+
+<section>
+    <h2 id="c#-classes" class="page-heading">C# API</h2>
+    <p>
+        <span class="@CodeSpan.Base">Radius</span> provides utility classes that set an element's border radius from the <span class="@CodeSpan.Base">--br-unit-radius-*</span> primitive scale.
+    </p>
+    <section class="code-table">
+        <h3 id="radius-class" class="code-table__heading">Radius class</h3>
+        <table aria-labelledby="radius-class">
+            <thead>
+                <tr>
+                    <th scope="col">Return</th>
+                    <th scope="col">Static Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>string</td>
+                    <td>Radius.All(UnitRadius unitRadius)</td>
+                    <td>Gets the class that sets a uniform border radius on all four corners.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Radius.BlockStartInlineStart(UnitRadius unitRadius)</td>
+                    <td>Gets the class that sets the corner between the block-start and inline-start sides of the element (top-left in a horizontal, left-to-right writing mode).</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Radius.BlockStartInlineEnd(UnitRadius unitRadius)</td>
+                    <td>Gets the class that sets the corner between the block-start and inline-end sides of the element (top-right in a horizontal, left-to-right writing mode).</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Radius.BlockEndInlineStart(UnitRadius unitRadius)</td>
+                    <td>Gets the class that sets the corner between the block-end and inline-start sides of the element (bottom-left in a horizontal, left-to-right writing mode).</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Radius.BlockEndInlineEnd(UnitRadius unitRadius)</td>
+                    <td>Gets the class that sets the corner between the block-end and inline-end sides of the element (bottom-right in a horizontal, left-to-right writing mode).</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting enum</h2>
+    <section class="code-table">
+        <h3 id="unit-radius-enum" class="code-table__heading">UnitRadius enum</h3>
+        <p>
+            Sets a fixed border radius from the <span class="@CodeSpan.Base">--br-unit-radius-*</span> primitive scale. Shared across the <span class="@CodeSpan.Base">Radius</span>
+            utility class and any component classes exposing their own <span class="@CodeSpan.Base">FixedRadius()</span> method, such as <span class="@CodeSpan.Base">Section</span>,
+            <span class="@CodeSpan.Base">Button</span>, <span class="@CodeSpan.Base">CodeSpan</span>, and <span class="@CodeSpan.Base">Kbd</span>.
+        </p>
+        <table aria-labelledby="unit-radius-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>None</td>
+                    <td>No border radius. Maps to <span class="@CodeSpan.Base">--br-unit-radius-0</span>.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>One</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-1</span>.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Two</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-2</span>.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Three</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-3</span>.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Four</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-4</span>.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Five</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-5</span>.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Six</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-6</span>.</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Seven</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-7</span>.</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Eight</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-8</span>.</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Nine</td>
+                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-9</span>.</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Full</td>
+                    <td>Fully rounded. Maps to <span class="@CodeSpan.Base">--br-unit-radius-full</span>.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section class="code-table">
+    <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
+
+    <table aria-labelledby="css-classes">
+        <thead>
+            <tr>
+                <th scope="col">Class</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    br-radius-all-0 through br-radius-all-9, br-radius-all-full
+                </td>
+                <td>Utility</td>
+                <td>Sets a uniform border radius on all four corners.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-radius-start-start-0 through br-radius-start-start-9, br-radius-start-start-full
+                </td>
+                <td>Utility</td>
+                <td>Sets the block-start/inline-start corner (top-left in a horizontal, left-to-right writing mode).</td>
+            </tr>
+            <tr>
+                <td>
+                    br-radius-start-end-0 through br-radius-start-end-9, br-radius-start-end-full
+                </td>
+                <td>Utility</td>
+                <td>Sets the block-start/inline-end corner (top-right in a horizontal, left-to-right writing mode).</td>
+            </tr>
+            <tr>
+                <td>
+                    br-radius-end-start-0 through br-radius-end-start-9, br-radius-end-start-full
+                </td>
+                <td>Utility</td>
+                <td>Sets the block-end/inline-start corner (bottom-left in a horizontal, left-to-right writing mode).</td>
+            </tr>
+            <tr>
+                <td>
+                    br-radius-end-end-0 through br-radius-end-end-9, br-radius-end-end-full
+                </td>
+                <td>Utility</td>
+                <td>Sets the block-end/inline-end corner (bottom-right in a horizontal, left-to-right writing mode).</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="@Margin.BlockEnd(UnitSpace.Five);">
+    <h2 class="page-heading">Usage</h2>
+    <p>
+        The example below sets the top left (ltr) and bottom right (ltr) corners of the div.
+    </p>
+    
+    <CodeBox CodeBlock="@CssClassesSnippets.Radius_Code_Example" AriaLabel="Radius code example" />
+
+    <div style="border:5px solid var(--br-comp-all-divider-colour);width:400px;height:150px;display:flex;justify-content:center;align-items:center;" 
+        class="@Radius.BlockStartInlineStart(UnitRadius.Five) @Radius.BlockEndInlineEnd(UnitRadius.Five)">
+        Text in a box with two rounded corners
+    </div>
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Position}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_Position - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Section}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_Section - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}

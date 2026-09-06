@@ -80,13 +80,46 @@ public class CssClassesSnippets
 
     public const string Margin_Code_Example = """
         <div class="@Section.Base @Section.Bordered @Section.FixedRadius(UnitRadius.One) @Section.NoPadding">
-            <button class="@Button.Base @Button.FixedRadius(UnitRadius.One) @Margin.InlineStart(UnitSpace.Three) @Margin.BlockStart(UnitSpace.Five)">A button inside a section</button>
+            <button class="@Button.Base @Button.FixedRadius(UnitRadius.One) 
+                @Margin.InlineStart(UnitSpace.Three) @Margin.BlockStart(UnitSpace.Five)">
+                A button inside a section
+            </button>
         </div>
         """;
 
     public const string Padding_Code_Example = """
-        <div class="@Section.Base @Section.Bordered @Section.FixedRadius(UnitRadius.One) @Section.NoPadding @Padding.InlineStart(UnitSpace.Three) @Padding.BlockStart(UnitSpace.Five)">
+        <div class="@Section.Base @Section.Bordered @Section.FixedRadius(UnitRadius.One) @Section.NoPadding 
+            @Padding.InlineStart(UnitSpace.Three) @Padding.BlockStart(UnitSpace.Five)">
             <button class="@Button.Base @Button.FixedRadius(UnitRadius.One)">A button inside a section</button>
+        </div>
+        """;
+
+    public const string Position_Code_Example = """
+        <div style="width:400px;height:200px;" class="@Overflow.Y(UnitScroll.Auto)" tabindex="0" role="region" aria-label="Scrollable region for position sticky example.">
+            <p>
+                Text inside a 200px * 200px div with a scrollbar and red box below it that uses position sticky. It has a top of 50px which means the red box will never 
+                move above this. Below the red box is just some lorem ipsum text for you to scroll.
+            </p>
+            <div style="background-color:red;height:100px;width:100px;top:50px;" class="@Position.SetAs(UnitPosition.Sticky)"></div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent facilisis lectus sit amet varius convallis. Suspendisse tempor neque sit amet neque dignissim, ac accumsan enim pellentesque. 
+                Nam a nisl vitae magna lacinia placerat ac in erat. Donec vehicula pulvinar venenatis. Maecenas vehicula vehicula nibh. Nullam vehicula leo ex, sit amet consequat mi lacinia et. Cras aliquam 
+                lacus nec turpis vestibulum feugiat. Suspendisse sit amet felis at arcu viverra ornare eu imperdiet arcu. Nullam pulvinar odio in nisi pharetra sodales. Fusce tempor ex in ligula rhoncus 
+                ultrices. Cras enim elit, consectetur at vestibulum eget, laoreet sit amet erat. Integer id turpis urna.
+            </p>
+        </div>
+        """;
+
+    public const string Overflow_Code_Example = """
+        <div style="width:200px;height:75px;padding:var(--br-unit-space-3); border:1px solid var(--br-comp-all-divider-colour);" 
+            class="@Overflow.XY(UnitScroll.Hidden)">
+            This text will have some of its content hidden because its too big to fit in the box.
+        </div>
+        """;
+    public const string Radius_Code_Example = """
+         <div style="border:5px solid var(--br-comp-all-divider-colour);width:400px;height:150px;display:flex;justify-content:center;align-items:center;" 
+            class="@Radius.BlockStartInlineStart(UnitRadius.Five) @Radius.BlockEndInlineEnd(UnitRadius.Five)">
+            Text in a box with two rounded corners
         </div>
         """;
 }

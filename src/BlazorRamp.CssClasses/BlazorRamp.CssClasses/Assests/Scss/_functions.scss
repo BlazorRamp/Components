@@ -30,3 +30,13 @@
         .#{$className}-#{$counter} {#{$property}: var(#{$unitName}-#{$counter});}
     }
 }
+
+@mixin generate-radius-classes($className, $property, $unitName, $max, $addFull) {
+    @for $counter from 0 through $max {
+        .#{$className}-#{$counter} {#{$property}: var(#{$unitName}-#{$counter});}
+    }
+
+   @if $addFull == true{
+       .#{$className}-full {#{$property}: var(#{$unitName}-full);}
+   }
+}
