@@ -1,0 +1,215 @@
+﻿@using BlazorRamp.DocSite.Pages.GettingStarted
+@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_VerticalAlign}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.CSS_Name_VerticalAlign @GlobalValues.Common_Page_Title_Api_Usage</PageTitle>
+
+<h1>@GlobalValues.CSS_Name_VerticalAlign @GlobalValues.Common_Page_Title_Api_Usage</h1>
+
+
+<p>
+    Everything you need to work with the <span class="@CodeSpan.Base">br-vertical-align-*</span> CSS classes: the utility classes provided, the strongly-typed <span class="@CodeSpan.Base">VerticalAlign</span> C# object
+    used to apply them, and the supporting enum used to select an alignment value.
+</p>
+
+<h2 class="page-heading">Overview</h2>
+
+<p>
+    <span class="@CodeSpan.Base">VerticalAlign</span> is a <b>utility class</b>, not a BEM component class like <span class="@CodeSpan.Base">Section</span> or <span class="@CodeSpan.Base">Button</span>.
+    Rather than describing a block, element, or its variants, it sets a single CSS property - <span class="@CodeSpan.Base">vertical-align</span> - to a fixed value. Utility classes are flat
+    and single-purpose by design, so they can be freely combined with each other and with any other class - including component classes - on the same element.
+</p>
+<p>
+    <span class="@CodeSpan.Base">vertical-align</span> only has an effect on inline-level elements (such as a <span class="@CodeSpan.Base">span</span> sitting inline with text) and
+    table cells (<span class="@CodeSpan.Base">td</span>/<span class="@CodeSpan.Base">th</span>). It has <b>no effect</b> on block-level elements such as a plain
+    <span class="@CodeSpan.Base">div</span>. To vertically centre content within a block-level container, use a flexbox utility instead (<span class="@CodeSpan.Base">align-items</span>),
+    once available.
+</p>
+<p>
+    Only <span class="@CodeSpan.Base">Top</span>, <span class="@CodeSpan.Base">Middle</span>, and <span class="@CodeSpan.Base">Bottom</span> are meaningful when applied to a table cell
+    (<span class="@CodeSpan.Base">td</span>/<span class="@CodeSpan.Base">th</span>), where they align the cell's content within the cell's own height. The remaining values are intended
+    for aligning inline-level content against surrounding line content, and generally have no visible effect on a table cell.
+</p>
+
+<section>
+    <h2 id="c#-classes" class="page-heading">C# API</h2>
+    <p>
+        <span class="@CodeSpan.Base">VerticalAlign</span> provides a utility class that sets an element's CSS <span class="@CodeSpan.Base">vertical-align</span>.
+    </p>
+    <section class="code-table">
+        <h3 id="vertical-align-class" class="code-table__heading">VerticalAlign class</h3>
+        <table aria-labelledby="vertical-align-class">
+            <thead>
+                <tr>
+                    <th scope="col">Return</th>
+                    <th scope="col">Static Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>string</td>
+                    <td>VerticalAlign.SetAs(UnitVerticalAlign unitVerticalAlign)</td>
+                    <td>Gets the class that sets an element's CSS <span class="@CodeSpan.Base">vertical-align</span>.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting enum</h2>
+    <section class="code-table">
+        <h3 id="unit-vertical-align-enum" class="code-table__heading">UnitVerticalAlign enum</h3>
+        <p>
+            Sets a CSS <span class="@CodeSpan.Base">vertical-align</span> value.
+        </p>
+        <table aria-labelledby="unit-vertical-align-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>Baseline</td>
+                    <td>Aligns the element's baseline with the baseline of its parent. The CSS initial value, and the default returned when no value matches.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Sub</td>
+                    <td>Lowers the element to the parent's subscript baseline.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Super</td>
+                    <td>Raises the element to the parent's superscript baseline.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>TextTop</td>
+                    <td>Aligns the top of the element with the top of the parent element's font.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>TextBottom</td>
+                    <td>Aligns the bottom of the element with the bottom of the parent element's font.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Middle</td>
+                    <td>Aligns the middle of the element with the baseline plus half the x-height of the parent.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Top</td>
+                    <td>Aligns the top of the element with the top of the tallest element on the line. On a table cell, aligns the cell's content to the top of the cell.</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Bottom</td>
+                    <td>Aligns the bottom of the element with the bottom of the lowest element on the line. On a table cell, aligns the cell's content to the bottom of the cell.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section class="code-table">
+    <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
+
+    <table aria-labelledby="css-classes">
+        <thead>
+            <tr>
+                <th scope="col">Class</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>br-vertical-align-baseline</td>
+                <td>Utility</td>
+                <td>Sets <span class="@CodeSpan.Base">vertical-align: baseline</span>.</td>
+            </tr>
+            <tr>
+                <td>br-vertical-align-sub</td>
+                <td>Utility</td>
+                <td>Sets <span class="@CodeSpan.Base">vertical-align: sub</span>.</td>
+            </tr>
+            <tr>
+                <td>br-vertical-align-super</td>
+                <td>Utility</td>
+                <td>Sets <span class="@CodeSpan.Base">vertical-align: super</span>.</td>
+            </tr>
+            <tr>
+                <td>br-vertical-align-text-top</td>
+                <td>Utility</td>
+                <td>Sets <span class="@CodeSpan.Base">vertical-align: text-top</span>.</td>
+            </tr>
+            <tr>
+                <td>br-vertical-align-text-bottom</td>
+                <td>Utility</td>
+                <td>Sets <span class="@CodeSpan.Base">vertical-align: text-bottom</span>.</td>
+            </tr>
+            <tr>
+                <td>br-vertical-align-middle</td>
+                <td>Utility</td>
+                <td>Sets <span class="@CodeSpan.Base">vertical-align: middle</span>.</td>
+            </tr>
+            <tr>
+                <td>br-vertical-align-top</td>
+                <td>Utility</td>
+                <td>Sets <span class="@CodeSpan.Base">vertical-align: top</span>.</td>
+            </tr>
+            <tr>
+                <td>br-vertical-align-bottom</td>
+                <td>Utility</td>
+                <td>Sets <span class="@CodeSpan.Base">vertical-align: bottom</span>.</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2 class="page-heading">Usage</h2>
+    <p>
+        The following example shows text in a single rew of a table (without column headers) using three of the available values.
+    </p>
+    
+    <CodeBox CodeBlock="@CssClassesSnippets.VerticalAlign_Code_Example" AriaLabel="VerticalAlign code example." />
+
+    <table class="@Table.Base">
+        <tr>
+            <td class="@VerticalAlign.SetAs(UnitVerticalAlign.Top)">Top<br>extra line<br>extra line</td>
+            <td class="@VerticalAlign.SetAs(UnitVerticalAlign.Middle)">Middle</td>
+            <td class="@VerticalAlign.SetAs(UnitVerticalAlign.Bottom)">Bottom</td>
+        </tr>
+    </table>
+    <p>
+        <span class="@CodeSpan.Base">Top</span>, <span class="@CodeSpan.Base">Middle</span>, and
+        <span class="@CodeSpan.Base">Bottom</span> are the values worth relying on for predictable results.
+        The remaining values (<span class="@CodeSpan.Base">TextTop</span>, <span class="@CodeSpan.Base">TextBottom</span>,
+        <span class="@CodeSpan.Base">Sub</span>, <span class="@CodeSpan.Base">Super</span>) are supported and available,
+        but are known to render inconsistently across browsers - use with caution.
+    </p>
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_TextAlign}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_TextAlign - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_FAQS}/{GlobalValues.Common_Page_Path_Questions}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Faqs_Name - @GlobalValues.Common_Page_Title_FAQ_Questions</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}
+

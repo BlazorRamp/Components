@@ -424,6 +424,7 @@
   --br-cls-secondary-light: var(--br-unit-colour-secondary-dark);
   --br-cls-secondary-dark: var(--br-unit-colour-secondary-light);
   --br-cls-secondary-darker: var(--br-unit-colour-secondary-lighter);
+  --br-cls-neutral-lightest: var(--br-unit-colour-neutral-70);
   --br-cls-neutral-lighter: var(--br-unit-colour-neutral-70);
   --br-cls-neutral-light: var(--br-unit-colour-neutral-60);
   --br-cls-neutral-dark: var(--br-unit-colour-neutral-30);

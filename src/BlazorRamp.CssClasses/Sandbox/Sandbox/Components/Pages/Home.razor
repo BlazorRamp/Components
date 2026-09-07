@@ -6,13 +6,14 @@
 
 @rendermode @(new InteractiveServerRenderMode(false))
 
-<section class="br-section br-section--no-padding">
+@* <section class="br-section br-section--no-padding @Section.Background(SectionBackground.Transparent)">
     <h3 id="my-table-heading">Table title</h3>
 
-    <div class="br-section br-section--bordered br-section--no-padding br-section--overflow-x-hidden br-section--overflow-y-hidden @Section.FixedRadius(UnitRadius.Five)">
-        <div style="max-height: 400px; overflow-y: auto;"
+    <div class="@Section.Base @Section.Bordered @Section.NoPadding @Section.OverflowY(UnitScroll.Hidden) 
+                @Section.OverflowX(UnitScroll.Hidden) @Section.FixedRadius(UnitRadius.Five) @Section.Background(SectionBackground.Transparent)">
+        <div style="max-height: 350px; overflow-y: auto;"
              tabindex="0" role="region" aria-labelledby="my-table-heading">
-            <table class="br-table br-table--scrollable">
+            <table class="br-table br-table--scrollable br-table--striped-rows">
                 <thead>
                     <tr>
                         <th scope="col">Date</th>
@@ -36,8 +37,8 @@
         </div>
     </div>
 </section>
-
-@*     <table class="br-table">
+ *@
+    <table class="@Table.Base @Table.AlignColumn(UnitColumn.Two, UnitTextAlign.Centre)">
   
         <thead>
             <tr>
@@ -58,7 +59,7 @@
                 </tr>
             }
         </tbody>
-    </table> *@
+    </table>
 
 
 

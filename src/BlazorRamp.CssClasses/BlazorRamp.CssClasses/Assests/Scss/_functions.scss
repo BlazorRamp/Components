@@ -40,3 +40,15 @@
        .#{$className}-full {#{$property}: var(#{$unitName}-full);}
    }
 }
+
+@mixin generate-nth-col-alignments($className, $textAlignment, $maxCols) {
+
+    @for $counter from 1 through $maxCols {
+        .#{$className}-#{$counter}-#{$textAlignment} {
+            th:nth-child(#{$counter}),
+            td:nth-child(#{$counter}) {
+                text-align: #{$textAlignment};
+            }
+        }
+    }
+}

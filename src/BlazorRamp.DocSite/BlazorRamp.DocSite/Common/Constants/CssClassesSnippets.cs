@@ -122,4 +122,22 @@ public class CssClassesSnippets
             Text in a box with two rounded corners
         </div>
         """;
+
+
+    public const string VerticalAlign_Code_Example = """
+        <table class="@Table.Base">
+            <tr>
+                <td class="@VerticalAlign.SetAs(UnitVerticalAlign.Top)">Top<br>extra line<br>extra line</td>
+                <td class="@VerticalAlign.SetAs(UnitVerticalAlign.Middle)">Middle</td>
+                <td class="@VerticalAlign.SetAs(UnitVerticalAlign.Bottom)">Bottom</td>
+            </tr>
+        </table>
+        """;
+
+    public const string TextAlign_Code_Example = """
+        <div style="width:400px; height:100px;border:1px solid var(--br-comp-all-divider-colour);" 
+        class="@TextAlign.SetAs(UnitTextAlign.Centre)">
+            Text horizontally centred in a box.
+        </div>
+        """;
 }

@@ -232,3 +232,87 @@ public enum UnitPosition : int
     /// </summary>
     Sticky = 4
 }
+
+/// <summary>
+/// Sets a CSS <c>text-align</c> value.
+/// </summary>
+public enum UnitTextAlign : int
+{
+    /// <summary>
+    /// Aligns text to the start edge of the line box (left in a horizontal,
+    /// left-to-right writing mode). Adapts automatically for right-to-left content.
+    /// </summary>
+    Start = 0,
+
+    /// <summary>
+    /// Centres text within the line box.
+    /// </summary>
+    Centre = 1,
+
+    /// <summary>
+    /// Aligns text to the end edge of the line box (right in a horizontal,
+    /// left-to-right writing mode). Adapts automatically for right-to-left content.
+    /// </summary>
+    End = 2,
+
+    /// <summary>
+    /// Stretches lines so each line (other than the last) has equal width, with text
+    /// spaced to fill the full width of the line box.
+    /// </summary>
+    Justify = 3
+}
+
+/// <summary>
+/// Sets a CSS <c>vertical-align</c> value.
+/// </summary>
+/// <remarks>
+/// Only <see cref="Top"/>, <see cref="Middle"/>, and <see cref="Bottom"/> are meaningful
+/// when applied to a table cell (<c>td</c>/<c>th</c>), where they align the cell's
+/// content within the cell's own height. The remaining values are intended for aligning
+/// inline-level content against surrounding line content, and generally have no visible
+/// effect on a table cell.
+/// </remarks>
+public enum UnitVerticalAlign : int
+{
+    /// <summary>
+    /// Aligns the element's baseline with the baseline of its parent. The CSS initial value.
+    /// </summary>
+    Baseline = 0,
+
+    /// <summary>
+    /// Lowers the element to the parent's subscript baseline.
+    /// </summary>
+    Sub = 1,
+
+    /// <summary>
+    /// Raises the element to the parent's superscript baseline.
+    /// </summary>
+    Super = 2,
+
+    /// <summary>
+    /// Aligns the top of the element with the top of the parent element's font.
+    /// </summary>
+    TextTop = 3,
+
+    /// <summary>
+    /// Aligns the bottom of the element with the bottom of the parent element's font.
+    /// </summary>
+    TextBottom = 4,
+
+    /// <summary>
+    /// Aligns the middle of the element with the baseline plus half the x-height of the parent.
+    /// </summary>
+    Middle = 5,
+
+    /// <summary>
+    /// Aligns the top of the element with the top of the tallest element on the line.
+    /// On a table cell, aligns the cell's content to the top of the cell.
+    /// </summary>
+    Top = 6,
+
+    /// <summary>
+    /// Aligns the bottom of the element with the bottom of the lowest element on the line.
+    /// On a table cell, aligns the cell's content to the bottom of the cell.
+    /// </summary>
+    Bottom = 7
+}

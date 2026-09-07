@@ -1,4 +1,6 @@
-﻿.br-table {
+﻿@use "_functions" as *;
+
+.br-table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
@@ -12,7 +14,7 @@
         border-color: var(--br-comp-all-divider-colour);
         border-bottom-style: var(--br-comp-all-area-header-border-style);
         border-right-style: var(--br-comp-all-area-header-border-style);
-        background-color: var(--br-unit-colour-neutral-10);
+        background-color: var(--br-cls-neutral-lightest);
         color: var(--br-comp-all-area-header-text);
         font-family: var(--br-comp-all-area-header-font-family);
         font-size: var(--br-unit-font-size-label);
@@ -60,6 +62,11 @@
         }
     }
 
+    &--striped-rows {
+        tr:nth-child(even) {
+            background-color: var(--br-cls-neutral-lightest);
+        }
+    }
 
 
     &--scrollable {
@@ -82,10 +89,11 @@
             white-space: nowrap;
         }
     }
+
 }
-.br-scroll-frame {
-    border-radius: var(--br-group-container-area-header-border-radius);
-    border: 1px solid var(--br-comp-all-divider-colour);
-    overflow-y: auto;
-    overflow-x: hidden;
-}
+
+
+@include generate-nth-col-alignments("br-table--align-col", "start", 12);
+@include generate-nth-col-alignments("br-table--align-col", "center", 12);
+@include generate-nth-col-alignments("br-table--align-col", "end", 12);
+@include generate-nth-col-alignments("br-table--align-col", "justify", 12);

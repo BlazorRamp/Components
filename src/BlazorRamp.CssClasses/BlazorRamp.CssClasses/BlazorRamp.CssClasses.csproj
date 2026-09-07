@@ -64,4 +64,8 @@ Added a transparent background Enum option for the Section class.</PackageReleas
     <None Include="compilerconfig.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\css\" />
+  </ItemGroup>
+
 </Project>

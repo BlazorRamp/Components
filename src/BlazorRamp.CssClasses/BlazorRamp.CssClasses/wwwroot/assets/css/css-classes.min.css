@@ -6,6 +6,7 @@
     --br-cls-primary: var(--br-unit-colour-primary-50);
     --br-cls-primary-dark: var(--br-unit-colour-primary-60);
     --br-cls-primary-darker: var(--br-unit-colour-primary-70);
+    --br-cls-neutral-lightest: var(--br-unit-colour-neutral-10);
     --br-cls-neutral-lighter: var(--br-unit-colour-neutral-20);
     --br-cls-neutral-light: var(--br-unit-colour-neutral-30);
     --br-cls-neutral: var(--br-unit-colour-neutral);
@@ -860,6 +861,283 @@
 
 .br-button--full-width {
     width: 100%;
+}
+
+.br-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: start;
+    border-radius: var(--br-group-container-area-header-border-radius);
+    border: 1px solid var(--br-comp-all-divider-colour);
+}
+
+    .br-table th {
+        border-style: none;
+        border-width: var(--br-unit-border-1);
+        border-color: var(--br-comp-all-divider-colour);
+        border-bottom-style: var(--br-comp-all-area-header-border-style);
+        border-right-style: var(--br-comp-all-area-header-border-style);
+        background-color: var(--br-cls-neutral-lightest);
+        color: var(--br-comp-all-area-header-text);
+        font-family: var(--br-comp-all-area-header-font-family);
+        font-size: var(--br-unit-font-size-label);
+        font-weight: var(--br-unit-font-weight-500,bold);
+        line-height: var(--br-comp-all-area-header-line-height);
+        padding-block: var(--br-unit-space-3);
+        padding-inline: var(--br-unit-space-4);
+        margin: 0;
+    }
+
+        .br-table th:first-of-type {
+            border-top-left-radius: var(--br-group-container-area-header-border-radius);
+        }
+
+        .br-table th:last-of-type {
+            border-top-right-radius: var(--br-group-container-area-header-border-radius);
+            border-right: 0;
+        }
+
+    .br-table td {
+        background-color: transparent;
+        padding-block: var(--br-unit-space-3);
+        padding-inline: var(--br-unit-space-4);
+        border-style: none;
+        border-color: var(--br-comp-all-divider-colour);
+        border-width: var(--br-unit-border-1);
+        border-right-style: var(--br-comp-all-area-content-border-style);
+        border-bottom-style: var(--br-comp-all-area-content-border-style);
+        font-family: var(--br-comp-all-area-content-font-family);
+        font-size: var(--br-unit-font-size-label);
+        font-weight: var(--br-comp-all-area-content-font-weight);
+        line-height: var(--br-comp-all-area-content-line-height);
+        max-width: 0;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+        .br-table td:last-child {
+            border-right: 0;
+        }
+
+    .br-table tr:last-child td {
+        border-block-end: none;
+    }
+
+.br-table--striped-rows tr:nth-child(even) {
+    background-color: var(--br-cls-neutral-lightest);
+}
+
+.br-table--scrollable {
+    border: 0;
+    border-radius: 0;
+}
+
+    .br-table--scrollable th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        white-space: nowrap;
+    }
+
+        .br-table--scrollable th:first-of-type, .br-table--scrollable th:last-of-type {
+            border-radius: 0;
+        }
+
+    .br-table--scrollable td {
+        white-space: nowrap;
+    }
+
+.br-table--align-col-1-start th:nth-child(1), .br-table--align-col-1-start td:nth-child(1) {
+    text-align: start;
+}
+
+.br-table--align-col-2-start th:nth-child(2), .br-table--align-col-2-start td:nth-child(2) {
+    text-align: start;
+}
+
+.br-table--align-col-3-start th:nth-child(3), .br-table--align-col-3-start td:nth-child(3) {
+    text-align: start;
+}
+
+.br-table--align-col-4-start th:nth-child(4), .br-table--align-col-4-start td:nth-child(4) {
+    text-align: start;
+}
+
+.br-table--align-col-5-start th:nth-child(5), .br-table--align-col-5-start td:nth-child(5) {
+    text-align: start;
+}
+
+.br-table--align-col-6-start th:nth-child(6), .br-table--align-col-6-start td:nth-child(6) {
+    text-align: start;
+}
+
+.br-table--align-col-7-start th:nth-child(7), .br-table--align-col-7-start td:nth-child(7) {
+    text-align: start;
+}
+
+.br-table--align-col-8-start th:nth-child(8), .br-table--align-col-8-start td:nth-child(8) {
+    text-align: start;
+}
+
+.br-table--align-col-9-start th:nth-child(9), .br-table--align-col-9-start td:nth-child(9) {
+    text-align: start;
+}
+
+.br-table--align-col-10-start th:nth-child(10), .br-table--align-col-10-start td:nth-child(10) {
+    text-align: start;
+}
+
+.br-table--align-col-11-start th:nth-child(11), .br-table--align-col-11-start td:nth-child(11) {
+    text-align: start;
+}
+
+.br-table--align-col-12-start th:nth-child(12), .br-table--align-col-12-start td:nth-child(12) {
+    text-align: start;
+}
+
+.br-table--align-col-1-center th:nth-child(1), .br-table--align-col-1-center td:nth-child(1) {
+    text-align: center;
+}
+
+.br-table--align-col-2-center th:nth-child(2), .br-table--align-col-2-center td:nth-child(2) {
+    text-align: center;
+}
+
+.br-table--align-col-3-center th:nth-child(3), .br-table--align-col-3-center td:nth-child(3) {
+    text-align: center;
+}
+
+.br-table--align-col-4-center th:nth-child(4), .br-table--align-col-4-center td:nth-child(4) {
+    text-align: center;
+}
+
+.br-table--align-col-5-center th:nth-child(5), .br-table--align-col-5-center td:nth-child(5) {
+    text-align: center;
+}
+
+.br-table--align-col-6-center th:nth-child(6), .br-table--align-col-6-center td:nth-child(6) {
+    text-align: center;
+}
+
+.br-table--align-col-7-center th:nth-child(7), .br-table--align-col-7-center td:nth-child(7) {
+    text-align: center;
+}
+
+.br-table--align-col-8-center th:nth-child(8), .br-table--align-col-8-center td:nth-child(8) {
+    text-align: center;
+}
+
+.br-table--align-col-9-center th:nth-child(9), .br-table--align-col-9-center td:nth-child(9) {
+    text-align: center;
+}
+
+.br-table--align-col-10-center th:nth-child(10), .br-table--align-col-10-center td:nth-child(10) {
+    text-align: center;
+}
+
+.br-table--align-col-11-center th:nth-child(11), .br-table--align-col-11-center td:nth-child(11) {
+    text-align: center;
+}
+
+.br-table--align-col-12-center th:nth-child(12), .br-table--align-col-12-center td:nth-child(12) {
+    text-align: center;
+}
+
+.br-table--align-col-1-end th:nth-child(1), .br-table--align-col-1-end td:nth-child(1) {
+    text-align: end;
+}
+
+.br-table--align-col-2-end th:nth-child(2), .br-table--align-col-2-end td:nth-child(2) {
+    text-align: end;
+}
+
+.br-table--align-col-3-end th:nth-child(3), .br-table--align-col-3-end td:nth-child(3) {
+    text-align: end;
+}
+
+.br-table--align-col-4-end th:nth-child(4), .br-table--align-col-4-end td:nth-child(4) {
+    text-align: end;
+}
+
+.br-table--align-col-5-end th:nth-child(5), .br-table--align-col-5-end td:nth-child(5) {
+    text-align: end;
+}
+
+.br-table--align-col-6-end th:nth-child(6), .br-table--align-col-6-end td:nth-child(6) {
+    text-align: end;
+}
+
+.br-table--align-col-7-end th:nth-child(7), .br-table--align-col-7-end td:nth-child(7) {
+    text-align: end;
+}
+
+.br-table--align-col-8-end th:nth-child(8), .br-table--align-col-8-end td:nth-child(8) {
+    text-align: end;
+}
+
+.br-table--align-col-9-end th:nth-child(9), .br-table--align-col-9-end td:nth-child(9) {
+    text-align: end;
+}
+
+.br-table--align-col-10-end th:nth-child(10), .br-table--align-col-10-end td:nth-child(10) {
+    text-align: end;
+}
+
+.br-table--align-col-11-end th:nth-child(11), .br-table--align-col-11-end td:nth-child(11) {
+    text-align: end;
+}
+
+.br-table--align-col-12-end th:nth-child(12), .br-table--align-col-12-end td:nth-child(12) {
+    text-align: end;
+}
+
+.br-table--align-col-1-justify th:nth-child(1), .br-table--align-col-1-justify td:nth-child(1) {
+    text-align: justify;
+}
+
+.br-table--align-col-2-justify th:nth-child(2), .br-table--align-col-2-justify td:nth-child(2) {
+    text-align: justify;
+}
+
+.br-table--align-col-3-justify th:nth-child(3), .br-table--align-col-3-justify td:nth-child(3) {
+    text-align: justify;
+}
+
+.br-table--align-col-4-justify th:nth-child(4), .br-table--align-col-4-justify td:nth-child(4) {
+    text-align: justify;
+}
+
+.br-table--align-col-5-justify th:nth-child(5), .br-table--align-col-5-justify td:nth-child(5) {
+    text-align: justify;
+}
+
+.br-table--align-col-6-justify th:nth-child(6), .br-table--align-col-6-justify td:nth-child(6) {
+    text-align: justify;
+}
+
+.br-table--align-col-7-justify th:nth-child(7), .br-table--align-col-7-justify td:nth-child(7) {
+    text-align: justify;
+}
+
+.br-table--align-col-8-justify th:nth-child(8), .br-table--align-col-8-justify td:nth-child(8) {
+    text-align: justify;
+}
+
+.br-table--align-col-9-justify th:nth-child(9), .br-table--align-col-9-justify td:nth-child(9) {
+    text-align: justify;
+}
+
+.br-table--align-col-10-justify th:nth-child(10), .br-table--align-col-10-justify td:nth-child(10) {
+    text-align: justify;
+}
+
+.br-table--align-col-11-justify th:nth-child(11), .br-table--align-col-11-justify td:nth-child(11) {
+    text-align: justify;
+}
+
+.br-table--align-col-12-justify th:nth-child(12), .br-table--align-col-12-justify td:nth-child(12) {
+    text-align: justify;
 }
 
 .br-padding-0 {
@@ -1848,6 +2126,54 @@
 
 .br-position-sticky {
     position: sticky;
+}
+
+.br-vertical-align-baseline {
+    vertical-align: baseline;
+}
+
+.br-vertical-align-sub {
+    vertical-align: sub;
+}
+
+.br-vertical-align-super {
+    vertical-align: super;
+}
+
+.br-vertical-align-text-top {
+    vertical-align: text-top;
+}
+
+.br-vertical-align-text-bottom {
+    vertical-align: text-bottom;
+}
+
+.br-vertical-align-middle {
+    vertical-align: middle;
+}
+
+.br-vertical-align-top {
+    vertical-align: top;
+}
+
+.br-vertical-align-bottom {
+    vertical-align: bottom;
+}
+
+.br-text-align-start {
+    text-align: start;
+}
+
+.br-text-align-center {
+    text-align: center;
+}
+
+.br-text-align-end {
+    text-align: end;
+}
+
+.br-text-align-justify {
+    text-align: justify;
 }
 
 .br-radius-all-0 {
