@@ -9,8 +9,8 @@
 <section>
  
     <h3 id="my-table-heading">Table title</h3>
-        <div class="@Section.Base @Section.Bordered @Section.NoPadding @Section.NoMarginBlock @Section.FixedRadius(UnitRadius.Five)">
-        <div style="max-height: 350px;"class="@Section.Base @Section.NoPadding @Section.NoMarginBlock">
+            <div class="@Section.Base @Section.Bordered @Section.NoPadding @Section.NoMarginBlock @Section.FixedRadius(UnitRadius.Five) @Section.Bordered">
+        <div style="max-height: 350px;" class="@Section.Base @Section.NoPadding @Section.NoMarginBlock @Overflow.XY(UnitScroll.Auto) ">
             <table class="@Table.Base @Table.StripedRows @Table.NoBorder @Table.HoverRows"  tabindex="0" aria-labelledby="my-table-heading">
                 <thead>
                     <tr>
@@ -36,8 +36,10 @@
     </div>
    
 </section>
-
-@*     <table class="@Table.Base @Table.StripedRows @Table.Scrollable
+<p>
+    test
+</p>
+    <table class="@Table.Base @Table.StripedRows 
         @Table.AlignColumn(UnitColumn.Two, UnitTextAlign.Centre)
         @Table.AlignColumn(UnitColumn.Three, UnitTextAlign.End)
         @Table.AlignColumn(UnitColumn.Five, UnitTextAlign.Start)">
@@ -61,9 +63,20 @@
                 </tr>
             }
         </tbody>
-    </table> *@
+    </table>
+
+    <div>
+        <pre>
 
 
+            d
+
+
+            d
+
+            d
+        </pre>
+    </div>
 
 @code {
 

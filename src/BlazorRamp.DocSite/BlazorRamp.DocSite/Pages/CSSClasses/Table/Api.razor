@@ -1,0 +1,439 @@
+﻿@using BlazorRamp.DocSite.Pages.GettingStarted
+@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Table}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.CSS_Name_Table @GlobalValues.Common_Page_Title_Api_Usage</PageTitle>
+
+<h1>@GlobalValues.CSS_Name_Table @GlobalValues.Common_Page_Title_Api_Usage</h1>
+
+
+<p>
+    Everything you need to work with the <span class="@CodeSpan.Base">br-table</span> CSS class: the BEM classes it provides, the strongly-typed <span class="@CodeSpan.Base">Table</span> C# object
+    used to apply them, supporting enums, and the column-alignment classes generated for static tables.
+</p>
+
+<h2 class="page-heading">Overview</h2>
+
+<p>
+    <span class="@CodeSpan.Base">br-table</span> is a theme-reactive, static table for presenting tabular content that does not require sorting, selection, or paging. For data-driven,
+    interactive tables, see the Data Table component instead.
+</p>
+<p>
+    Colours are theme-reactive: they're built from the <span class="@CodeSpan.Base">--br-cls-*</span> variables and shared <span class="@CodeSpan.Base">--br-comp-*</span> component
+    tokens, so changing your theme updates <span class="@CodeSpan.Base">br-table</span> automatically - no separate configuration needed.
+</p>
+<p>
+    <span class="@CodeSpan.Base">br-table</span> works standalone with no wrapper required - just add the class to a <span class="@CodeSpan.Base">table</span> element. For a fixed-height,
+    internally-scrolling table, see the <span class="@CodeSpan.Base">Table.NoBorder</span> entry below and the scrollable usage example.
+</p>
+
+<section>
+    <h2 id="c#-classes" class="page-heading">C# API</h2>
+    <p>
+        <span class="@CodeSpan.Base">Table</span> provides the BEM CSS classes for the br-table block.
+    </p>
+    <section class="code-table">
+        <h3 id="table-class" class="code-table__heading">Table class</h3>
+        <table aria-labelledby="table-class">
+            <thead>
+                <tr>
+                    <th scope="col">Return</th>
+                    <th scope="col">Const/Static Method</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>string</td>
+                    <td>Table.Base</td>
+                    <td>The base class, <span class="@CodeSpan.Base">br-table</span>. Always required. Includes its own border and border radius, suitable for a table placed directly on the page.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Table.StripedRows</td>
+                    <td>Applies an alternating background colour to every other body row.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Table.NoBorder</td>
+                    <td>Removes the table's own border and border radius, and makes the header row sticky. Use when wrapping the table in its own bordered, rounded scroll container.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Table.HoverRows</td>
+                    <td>Highlights a row's background colour on hover.</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>Table.AlignColumn(UnitColumn unitColumn, UnitTextAlign unitTextAlign)</td>
+                    <td>Gets the class that aligns a whole column - its header and every body cell - by targeting the given column position.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting enums</h2>
+    <section class="code-table">
+        <h3 id="unit-column-enum" class="code-table__heading">UnitColumn enum</h3>
+        <p>
+            Sets a 1-based column position, used to target a whole table column (header and body cells together) for alignment via <span class="@CodeSpan.Base">Table.AlignColumn()</span>.
+        </p>
+        <table aria-labelledby="unit-column-enum">
+            <thead>
+                <tr>
+                    <th scope="col">Value</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>One</td><td>The 1st column.</td></tr>
+                <tr><td>2</td><td>Two</td><td>The 2nd column.</td></tr>
+                <tr><td>3</td><td>Three</td><td>The 3rd column.</td></tr>
+                <tr><td>4</td><td>Four</td><td>The 4th column.</td></tr>
+                <tr><td>5</td><td>Five</td><td>The 5th column.</td></tr>
+                <tr><td>6</td><td>Six</td><td>The 6th column.</td></tr>
+                <tr><td>7</td><td>Seven</td><td>The 7th column.</td></tr>
+                <tr><td>8</td><td>Eight</td><td>The 8th column.</td></tr>
+                <tr><td>9</td><td>Nine</td><td>The 9th column.</td></tr>
+                <tr><td>10</td><td>Ten</td><td>The 10th column.</td></tr>
+                <tr><td>11</td><td>Eleven</td><td>The 11th column.</td></tr>
+                <tr><td>12</td><td>Twelve</td><td>The 12th column.</td></tr>
+            </tbody>
+        </table>
+        <p>
+            Column-alignment classes are pre-generated for columns 1 through 12, for <span class="@CodeSpan.Base">start</span>, <span class="@CodeSpan.Base">center</span>,
+            <span class="@CodeSpan.Base">end</span>, and <span class="@CodeSpan.Base">justify</span>. A table with more than 12 columns needing per-column alignment will need
+            a hand-written <span class="@CodeSpan.Base">nth-child</span> selector for the additional columns.
+        </p>
+        <p>
+            <span class="@CodeSpan.Base">justify</span> only has a visible effect on cells whose content wraps onto multiple lines; for typical single-line table data it will
+            look identical to <span class="@CodeSpan.Base">start</span>.
+        </p>
+    </section>
+
+    <p>
+        <span class="@CodeSpan.Base">Table.AlignColumn()</span> also uses <span class="@CodeSpan.Base">UnitTextAlign</span> - see the <a href="/css-classes/textalign/api">TextAlign API Reference</a> for its values.
+    </p>
+</section>
+
+<section class="code-table">
+    <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
+
+    <table aria-labelledby="css-classes">
+        <thead>
+            <tr>
+                <th scope="col">Class</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>br-table</td>
+                <td>Block</td>
+                <td>The root table element. Sets default border, border radius, header/content styling, and column widths.</td>
+            </tr>
+            <tr>
+                <td>br-table--striped-rows</td>
+                <td>Modifier</td>
+                <td>Applies an alternating background colour to every other body row.</td>
+            </tr>
+            <tr>
+                <td>br-table--no-border</td>
+                <td>Modifier</td>
+                <td>Removes the table's own border and border radius, and makes the header row sticky.</td>
+            </tr>
+            <tr>
+                <td>br-table--hover-rows</td>
+                <td>Modifier</td>
+                <td>Highlights a row's background colour on hover.</td>
+            </tr>
+            <tr>
+                <td>
+                    br-table--align-col-1-start through br-table--align-col-12-start<br>
+                    br-table--align-col-1-center through br-table--align-col-12-center<br>
+                    br-table--align-col-1-end through br-table--align-col-12-end<br>
+                    br-table--align-col-1-justify through br-table--align-col-12-justify
+                </td>
+                <td>Modifier(s)</td>
+                <td>Aligns the header and every body cell of the given column position.</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+<section class="@Section.Base @Section.NoPadding @Margin.BlockEnd(UnitSpace.Nine)">
+    <h2 class="page-heading">Usage</h2>
+
+    <p>
+        The following example is not restricted by height so had no need of a vertical scrollbar.
+    </p>
+    <div class="@Section.Base @Section.NoPadding @Padding.BlockEnd(UnitSpace.Two) @Section.OverflowX(UnitScroll.Auto)">
+
+        <p>
+            As the table could be too wide on smaller screens the parent container of this text
+            has <span class="@CodeSpan.Base">overflow-x:auto</span> set on it which may or may not be suitable for you needs.
+            The subsequent example will show scrollbars on the table.itself which requires a little more work.
+        </p>
+        <p>
+            The uses striped row and has had each column explicitly aligned.
+        </p>
+
+        <h3 id="basic-example">Basic table example</h3>
+
+        <table tabindex="0" aria-labelledby="basic-example" class="@Table.Base @Table.StripedRows
+            @Table.AlignColumn(UnitColumn.One, UnitTextAlign.Start)
+            @Table.AlignColumn(UnitColumn.Two, UnitTextAlign.Start)
+            @Table.AlignColumn(UnitColumn.Three, UnitTextAlign.Start)
+            @Table.AlignColumn(UnitColumn.Four, UnitTextAlign.Start)
+            @Table.AlignColumn(UnitColumn.Five, UnitTextAlign.Centre)
+            @Table.AlignColumn(UnitColumn.Six, UnitTextAlign.End)">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">First Name:</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Date of Birth</th>
+                    <th scope="col">Hourly Rate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Gabriel</td>
+                    <td>Kennedy</td>
+                    <td>Dominican Republic</td>
+                    <td>15/12/1913</td>
+                    <td>£57.88</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Abigail</td>
+                    <td>Thompson</td>
+                    <td>Guinea-Bissau</td>
+                    <td>05/12/2018</td>
+                    <td>£26.43</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Luke</td>
+                    <td>Simpson</td>
+                    <td>Georgia</td>
+                    <td>17/09/2024</td>
+                    <td>£39.14</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Sophia</td>
+                    <td>Phillips</td>
+                    <td>Philippines</td>
+                    <td>05/06/1988</td>
+                    <td>£33.05</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Michael</td>
+                    <td>Yates</td>
+                    <td>Singapore</td>
+                    <td>10/05/1921</td>
+                    <td>£66.15</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Olivia</td>
+                    <td>Collins</td>
+                    <td>Malta</td>
+                    <td>23/04/1990</td>
+                    <td>£74.59</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Hudson</td>
+                    <td>Wood</td>
+                    <td>Sweden</td>
+                    <td>17/11/1907</td>
+                    <td>£38.64</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Isla</td>
+                    <td>Richards</td>
+                    <td>Papua New Guinea</td>
+                    <td>18/09/1948</td>
+                    <td>£58.87</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Benjamin</td>
+                    <td>Gray</td>
+                    <td>Dominica</td>
+                    <td>16/07/1944</td>
+                    <td>£42.33</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Sophia</td>
+                    <td>Phillips</td>
+                    <td>Iran</td>
+                    <td>27/07/1919</td>
+                    <td>£73.68</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <p>
+        For this example we would like to vertically scroll the table. In order to achieve this
+        we need to remove the border from the table. Then we need a container to provide the scroll and
+        another to add the border so it looks like the scrollbars belong to the table.
+    </p>
+    <p>
+        <strong>Note: </strong>The outer div uses <span class="@CodeSpan.Base">overflow: hidden</span> so
+        the scrollbar does not draw over the border.
+    </p>
+    <p>
+        <strong>Note: </strong>Unlike the Data Table that uses the Container header radius group the Table uses the Container content radius group 
+    </p>
+    <h2 id="scrollable-table">Scrollable table example</h2>
+
+    <div class="@Section.Base @Section.NoPadding @Section.NoMarginBlock @Section.Bordered @Section.Radius(SectionRadius.Container) @Overflow.XY(UnitScroll.Hidden)">
+
+        <div class="@Section.Base @Section.NoPadding @Section.NoMarginBlock @Section.OverflowY(UnitScroll.Auto) @Section.Radius(SectionRadius.Container)" style="height:300px;">
+
+            <table tabindex="0" aria-labelledby="basic-example" class="@Table.Base @Table.StripedRows @Table.NoBorder
+                @Table.AlignColumn(UnitColumn.One, UnitTextAlign.Start)
+                @Table.AlignColumn(UnitColumn.Two, UnitTextAlign.Start)
+                @Table.AlignColumn(UnitColumn.Three, UnitTextAlign.Start)
+                @Table.AlignColumn(UnitColumn.Four, UnitTextAlign.Start)
+                @Table.AlignColumn(UnitColumn.Five, UnitTextAlign.Centre)
+                @Table.AlignColumn(UnitColumn.Six, UnitTextAlign.End)">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">First Name:</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Date of Birth</th>
+                        <th scope="col">Hourly Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Gabriel</td>
+                        <td>Kennedy</td>
+                        <td>Dominican Republic</td>
+                        <td>15/12/1913</td>
+                        <td>£57.88</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Abigail</td>
+                        <td>Thompson</td>
+                        <td>Guinea-Bissau</td>
+                        <td>05/12/2018</td>
+                        <td>£26.43</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Luke</td>
+                        <td>Simpson</td>
+                        <td>Georgia</td>
+                        <td>17/09/2024</td>
+                        <td>£39.14</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Sophia</td>
+                        <td>Phillips</td>
+                        <td>Philippines</td>
+                        <td>05/06/1988</td>
+                        <td>£33.05</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Michael</td>
+                        <td>Yates</td>
+                        <td>Singapore</td>
+                        <td>10/05/1921</td>
+                        <td>£66.15</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Olivia</td>
+                        <td>Collins</td>
+                        <td>Malta</td>
+                        <td>23/04/1990</td>
+                        <td>£74.59</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Hudson</td>
+                        <td>Wood</td>
+                        <td>Sweden</td>
+                        <td>17/11/1907</td>
+                        <td>£38.64</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Isla</td>
+                        <td>Richards</td>
+                        <td>Papua New Guinea</td>
+                        <td>18/09/1948</td>
+                        <td>£58.87</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Benjamin</td>
+                        <td>Gray</td>
+                        <td>Dominica</td>
+                        <td>16/07/1944</td>
+                        <td>£42.33</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Sophia</td>
+                        <td>Phillips</td>
+                        <td>Iran</td>
+                        <td>27/07/1919</td>
+                        <td>£73.68</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+<ThemeBorderTool Title="Theme border tool" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
+    <BorderGroups>
+        <BorderGroup Title="Container borders">
+            <BorderRadius LabelText="Content radius" ResetText="Reset content radius" MaxRangeValue="@GlobalValues.Radius_Container_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Content)])" />
+            <BorderRadius LabelText="Header radius" ResetText="Reset header radius" MaxRangeValue="@GlobalValues.Radius_Container_Header_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Header)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
+
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Section}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_Section - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_TextAlign}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_TextAlign - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}

@@ -170,6 +170,7 @@ public class GlobalValues
     public const string CSS_Path_Part_Position = "position";
     public const string CSS_Path_Part_Radius = "radius";
     public const string CSS_Path_Part_Section = "section";
+    public const string CSS_Path_Part_Table = "table";
     public const string CSS_Path_Part_TextAlign = "text-align";
     public const string CSS_Path_Part_VerticalAlign = "vertical-align";
 
@@ -183,6 +184,8 @@ public class GlobalValues
     public const string CSS_Name_Padding = "Padding";
     public const string CSS_Name_Radius = "Radius";
     public const string CSS_Name_Section  = "Section";
+
+    public const string CSS_Name_Table = "Table";
     public const string CSS_Name_TextAlign = "TextAlign";
     public const string CSS_Name_VerticalAlign = "VerticalAlign";
 

@@ -6,8 +6,8 @@
    --_section-text: var(--br-unit-colour-canvas-text);
    --_section-font-size: var(--br-unit-font-size-1);
    --_section-border-radius: var(--br-group-content-border-radius);
-   --_section-overflow-x: auto;
-   --_section-overflow-y: auto;
+   --_section-overflow-x: visible;
+   --_section-overflow-y: visble;
 
 
     position:relative;
@@ -133,7 +133,7 @@
         &--font-size-six   {--_section-heading-font-size:var(--br-unit-font-size-6);}
     }
 
-    &:has( > .br-section > table.br-table:focus) {
+    &:has( > table.br-table:focus-visible) {
             outline-style: var(--br-comp-all-outline-style);
             outline-width: var(--br-comp-all-outline-width);
             outline-offset: var(--br-comp-all-outline-offset);
