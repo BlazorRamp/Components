@@ -6,14 +6,12 @@
 
 @rendermode @(new InteractiveServerRenderMode(false))
 
-@* <section class="br-section br-section--no-padding @Section.Background(SectionBackground.Transparent)">
+<section>
+ 
     <h3 id="my-table-heading">Table title</h3>
-
-    <div class="@Section.Base @Section.Bordered @Section.NoPadding @Section.OverflowY(UnitScroll.Hidden) 
-                @Section.OverflowX(UnitScroll.Hidden) @Section.FixedRadius(UnitRadius.Five) @Section.Background(SectionBackground.Transparent)">
-        <div style="max-height: 350px; overflow-y: auto;"
-             tabindex="0" role="region" aria-labelledby="my-table-heading">
-            <table class="br-table br-table--scrollable br-table--striped-rows">
+        <div class="@Section.Base @Section.Bordered @Section.NoPadding @Section.NoMarginBlock @Section.FixedRadius(UnitRadius.Five)">
+        <div style="max-height: 350px;"class="@Section.Base @Section.NoPadding @Section.NoMarginBlock">
+            <table class="@Table.Base @Table.StripedRows @Table.NoBorder @Table.HoverRows"  tabindex="0" aria-labelledby="my-table-heading">
                 <thead>
                     <tr>
                         <th scope="col">Date</th>
@@ -34,11 +32,15 @@
                     }
                 </tbody>
             </table>
-        </div>
+          </div>
     </div>
+   
 </section>
- *@
-    <table class="@Table.Base @Table.AlignColumn(UnitColumn.Two, UnitTextAlign.Centre)">
+
+@*     <table class="@Table.Base @Table.StripedRows @Table.Scrollable
+        @Table.AlignColumn(UnitColumn.Two, UnitTextAlign.Centre)
+        @Table.AlignColumn(UnitColumn.Three, UnitTextAlign.End)
+        @Table.AlignColumn(UnitColumn.Five, UnitTextAlign.Start)">
   
         <thead>
             <tr>
@@ -59,7 +61,7 @@
                 </tr>
             }
         </tbody>
-    </table>
+    </table> *@
 
 
 

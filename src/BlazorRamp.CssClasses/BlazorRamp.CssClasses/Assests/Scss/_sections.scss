@@ -133,5 +133,11 @@
         &--font-size-six   {--_section-heading-font-size:var(--br-unit-font-size-6);}
     }
 
-
+    &:has( > .br-section > table.br-table:focus) {
+            outline-style: var(--br-comp-all-outline-style);
+            outline-width: var(--br-comp-all-outline-width);
+            outline-offset: var(--br-comp-all-outline-offset);
+            outline-color: var(--br-comp-all-outline-colour);
+           
+        }
 }

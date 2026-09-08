@@ -6,8 +6,9 @@ public static class Table
 {
     public const string Base = "br-table";
     public const string StripedRows = $"{Base}--striped-rows";
-    
-    public const string Scrollable = $"{Base}--scrollable";
+    public const string NoBorder = $"{Base}--no-border";
+
+    public const string HoverRows = $"{Base}--hover-rows";
 
     public static string AlignColumn(UnitColumn unitColumn, UnitTextAlign unitTextAlign)
     {
