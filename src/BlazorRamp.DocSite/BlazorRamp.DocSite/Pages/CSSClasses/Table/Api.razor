@@ -25,7 +25,51 @@
     <span class="@CodeSpan.Base">br-table</span> works standalone with no wrapper required - just add the class to a <span class="@CodeSpan.Base">table</span> element. For a fixed-height,
     internally-scrolling table, see the <span class="@CodeSpan.Base">Table.NoBorder</span> entry below and the scrollable usage example.
 </p>
-
+<p>
+    Always structure your table with <span class="@CodeSpan.Base">thead</span> and <span class="@CodeSpan.Base">tbody</span>, with header cells (<span class="@CodeSpan.Base">th</span>)
+    inside <span class="@CodeSpan.Base">thead</span> and data cells inside <span class="@CodeSpan.Base">tbody</span>. Several features of <span class="@CodeSpan.Base">br-table</span>
+    depend on this structure: the sticky header used by <span class="@CodeSpan.Base">Table.NoBorder</span> relies on the header and body rows being distinct groups, and
+    <span class="@CodeSpan.Base">Table.StripedRows</span> and <span class="@CodeSpan.Base">Table.HoverRows</span> only target rows within <span class="@CodeSpan.Base">tbody</span>,
+    so a header row placed outside that structure will not be styled by them - but omitting the structure may cause other, less predictable results, such as a header row
+    being counted as a body row for column-alignment purposes.
+</p>
+<p>
+    By default, <span class="@CodeSpan.Base">br-table</span> uses the browser's standard content-aware column sizing (<span class="@CodeSpan.Base">table-layout: auto</span>).
+    Columns are sized collectively based on the content of every header and data cell, and text is allowed to wrap onto multiple lines rather than forcing the table
+    wider than its container. This means a column with little content can shrink quite narrow, wrapping longer text onto several lines instead of staying at its
+    "natural" single-line width.
+</p>
+<p>
+    Header cells (<span class="@CodeSpan.Base">th</span>) wrap at normal word boundaries only - they will not break in the middle of a word. Data cells
+    (<span class="@CodeSpan.Base">td</span>) additionally allow breaking mid-word if a single piece of content is too long to fit (<span class="@CodeSpan.Base">overflow-wrap: anywhere</span>),
+    since data cells often contain unpredictable content such as long identifiers or URLs. If a header label doesn't fit its column, consider shortening the
+    label or setting an explicit <span class="@CodeSpan.Base">width</span> on that column, rather than relying on the browser to wrap it.
+</p>
+<p>
+    To control a specific column's width directly, set a <span class="@CodeSpan.Base">width</span> on its <span class="@CodeSpan.Base">th</span> - the browser will use
+    this as a strong hint when computing the table's layout, though it may still be adjusted to accommodate other columns' content. To stop a column's text from
+    wrapping at all, add <span class="@CodeSpan.Base">white-space: nowrap</span> to that column's cells; combined with the <span class="@CodeSpan.Base">Table.NoBorder</span>
+    scrollable pattern, this lets wide, non-wrapping content scroll horizontally instead of squeezing into a narrow column.
+</p>
+<p>
+    <b>Known issue:</b> if a non-scrollable table (one that still has its own border and radius, i.e. <span class="@CodeSpan.Base">Table.NoBorder</span> has not
+    been applied) is the last item inside a container that has a non-<span class="@CodeSpan.Base">visible</span> <span class="@CodeSpan.Base">overflow-x</span>
+    or <span class="@CodeSpan.Base">overflow-y</span> - for example a <span class="@CodeSpan.Base">Section</span> using <span class="@CodeSpan.Base">OverflowX</span>
+    or <span class="@CodeSpan.Base">OverflowY</span> - some browsers may fail to correctly render the container's rounded corners where they touch the table.
+    This is a rendering issue in the browser, not a fault in your markup. The fix is to add a small amount of padding between the bottom of the table and the
+    container - for example <span class="@CodeSpan.Base">Padding.BlockEnd(UnitSpace.Four)</span> on the container.
+</p>
+<p>
+    <strong>Important: </strong>Given how you need to structure the HTML for a scrollable table scenario (see below) and the need to ensure scrollable regions are keyboard 
+    only accessible, the caption element is not used. Instead for accessibilty you should add a title/heading and link it to the table via <span class="@CodeSpan.Base">aria-labelledby</span>.
+    When you know the table will be scrollable you just add <span class="@CodeSpan.Base">tabindex="0"</span> on the table, and keyboard only users will see a focus indicator as well as be able to activate
+    the scrollbar in browsers that still do not support this functionality natively. If you do not want to use visible text you can also use the <span class="@CodeSpan.Base">aria-label</span> attribute.
+</p>
+<p>
+    The element that has the <span class="@CodeSpan.Base">br-section</span> class containing the table as a direct child holds the focus indicator when the table with a tabindex recieves keyboard focus
+    (<span class="@CodeSpan.Base">:focus-visible</span>). As a side note, the <span class="@CodeSpan.Base">br-section</span> class also uses <span class="@CodeSpan.Base">:focus-visible</span> so if you have a scrollable
+    section that has no focusalbe items inside, you can set a tabindex on the element holding the class along with a role and accessible name for WCAG conformance.
+</p>
 <section>
     <h2 id="c#-classes" class="page-heading">C# API</h2>
     <p>
@@ -114,7 +158,8 @@
     </section>
 
     <p>
-        <span class="@CodeSpan.Base">Table.AlignColumn()</span> also uses <span class="@CodeSpan.Base">UnitTextAlign</span> - see the <a href="/css-classes/textalign/api">TextAlign API Reference</a> for its values.
+        <span class="@CodeSpan.Base">Table.AlignColumn()</span> also uses <span class="@CodeSpan.Base">UnitTextAlign</span> - see the 
+        <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_TextAlign}/{GlobalValues.Common_Page_Path_Api}")">TextAlign API Reference</a> for its values.
     </p>
 </section>
 
@@ -165,13 +210,13 @@
 </section>
 
 
-<section class="@Section.Base @Section.NoPadding @Margin.BlockEnd(UnitSpace.Nine)">
+<section class="@Section.Base @Section.NoPadding @Margin.BlockEnd(UnitSpace.Nine) ">
     <h2 class="page-heading">Usage</h2>
 
     <p>
         The following example is not restricted by height so had no need of a vertical scrollbar.
     </p>
-    <div class="@Section.Base @Section.NoPadding @Padding.BlockEnd(UnitSpace.Two) @Section.OverflowX(UnitScroll.Auto)">
+    <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Margin.BlockEnd(UnitSpace.Nine) @Padding.BlockEnd(UnitSpace.Four)">
 
         <p>
             As the table could be too wide on smaller screens the parent container of this text
@@ -288,7 +333,7 @@
     </div>
 
     <p>
-        For this example we would like to vertically scroll the table. In order to achieve this
+        For the next example we would like to vertically scroll the table. In order to achieve this
         we need to remove the border from the table. Then we need a container to provide the scroll and
         another to add the border so it looks like the scrollbars belong to the table.
     </p>
@@ -305,7 +350,7 @@
 
         <div class="@Section.Base @Section.NoPadding @Section.NoMarginBlock @Section.OverflowY(UnitScroll.Auto) @Section.Radius(SectionRadius.Container)" style="height:300px;">
 
-            <table tabindex="0" aria-labelledby="basic-example" class="@Table.Base @Table.StripedRows @Table.NoBorder
+            <table tabindex="0" aria-labelledby="scrollable-table" class="@Table.Base @Table.StripedRows @Table.NoBorder
                 @Table.AlignColumn(UnitColumn.One, UnitTextAlign.Start)
                 @Table.AlignColumn(UnitColumn.Two, UnitTextAlign.Start)
                 @Table.AlignColumn(UnitColumn.Three, UnitTextAlign.Start)
@@ -412,6 +457,7 @@
 
 </section>
 
+
 <ThemeBorderTool Title="Theme border tool" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
     <BorderGroups>
         <BorderGroup Title="Container borders">
@@ -420,7 +466,6 @@
         </BorderGroup>
     </BorderGroups>
 </ThemeBorderTool>
-
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Section}/{GlobalValues.Common_Page_Path_Api}")">

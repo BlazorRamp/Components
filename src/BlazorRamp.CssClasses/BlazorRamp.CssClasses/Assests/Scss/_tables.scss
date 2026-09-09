@@ -7,8 +7,7 @@
     text-align: start;
     border-radius: var(--br-group-container-area-content-border-radius);
     border: 1px solid var(--br-comp-all-divider-colour);
-
-
+    overflow: hidden;
 
     th {
         border-style: none;
@@ -73,14 +72,21 @@
     }
 
     &--striped-rows {
-        tr:nth-child(even) {
+        tbody tr:nth-child(even) {
             background-color: var(--br-cls-neutral-lightest);
+        }
+    }
+
+    &--hover-rows {
+        tbody tr:hover {
+            background-color: var(--br-comp-all-link-hover-background-colour);
         }
     }
 
     &--no-border {
         border: none;
         border-radius: 0;
+        overflow: visible;
 
         th:first-of-type,
         th:last-of-type {
@@ -103,8 +109,6 @@
     &:focus {
         outline: none;
     }
-
-
 }
 
 
