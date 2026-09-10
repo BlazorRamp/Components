@@ -801,20 +801,20 @@ h2:focus-visible {
   outline-color: var(--br-comp-all-outline-colour);
 }
 
-.br-table td {
+.br-table--code td {
   font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
   width: 33%;
 }
-.br-table td:last-child {
+.br-table--code td:last-child {
   font-family: var(--br-unit-font-family-default);
 }
-.br-table td:nth-child(1) {
+.br-table--code td:nth-child(1) {
   width: 30%;
 }
-.br-table td:nth-child(2) {
+.br-table--code td:nth-child(2) {
   width: 30%;
 }
-.br-table td:nth-child(3) {
+.br-table--code td:nth-child(3) {
   width: 40%;
 }
 

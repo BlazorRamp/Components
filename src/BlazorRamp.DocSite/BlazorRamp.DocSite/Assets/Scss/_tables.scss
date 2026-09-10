@@ -1,7 +1,7 @@
 ﻿@use "_configuration" as *;
 @use "_functions" as *;
 
-.br-table {
+.br-table--code {
 
     & td {
         font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;

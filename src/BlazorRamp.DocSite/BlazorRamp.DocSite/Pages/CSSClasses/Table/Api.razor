@@ -219,7 +219,7 @@
     <p>
         The following example is not restricted by height so had no need of a vertical scrollbar.
     </p>
-    <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Margin.BlockEnd(UnitSpace.Nine) @Padding.BlockEnd(UnitSpace.Four)">
+ 
 
         <p>
             As the table could be too wide on smaller screens the parent container of this text
@@ -231,6 +231,8 @@
         </p>
 
         <h3 id="basic-example">Basic table example</h3>
+    
+    <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
 
         <table tabindex="0" aria-labelledby="basic-example" class="@Table.Base @Table.StripedRows
             @Table.AlignColumn(UnitColumn.One, UnitTextAlign.Start)
@@ -239,6 +241,7 @@
             @Table.AlignColumn(UnitColumn.Four, UnitTextAlign.Start)
             @Table.AlignColumn(UnitColumn.Five, UnitTextAlign.Centre)
             @Table.AlignColumn(UnitColumn.Six, UnitTextAlign.End)">
+      
             <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -334,6 +337,9 @@
         </table>
 
     </div>
+    <p>The code that that was used for the basic table example</p>
+    
+    <CodeBox CodeBlock="@CssClassesSnippets.Table_Basic_Example" AriaLabel="Code for the basic table example" />
 
     <p>
         For the next example we would like to vertically scroll the table. In order to achieve this
@@ -362,7 +368,7 @@
                 @Table.AlignColumn(UnitColumn.Six, UnitTextAlign.End)">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col" style="width:100px;">ID</th>
                         <th scope="col">First Name:</th>
                         <th scope="col">Surname</th>
                         <th scope="col">Country</th>
@@ -457,6 +463,12 @@
         </div>
 
     </div>
+
+    <p>
+        The code for the scrollable example.
+    </p>
+    <CodeBox CodeBlock="@CssClassesSnippets.Table_Vertical_Scroll_Example" AriaLabel="Code for the scrollable table example" />
+
 
 </section>
 

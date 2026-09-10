@@ -140,4 +140,226 @@ public class CssClassesSnippets
             Text horizontally centred in a box.
         </div>
         """;
+
+
+
+    public const string Table_Basic_Example = """
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+
+            <table tabindex="0" aria-labelledby="basic-example" class="@Table.Base @Table.StripedRows
+                @Table.AlignColumn(UnitColumn.One, UnitTextAlign.Start)
+                @Table.AlignColumn(UnitColumn.Two, UnitTextAlign.Start)
+                @Table.AlignColumn(UnitColumn.Three, UnitTextAlign.Start)
+                @Table.AlignColumn(UnitColumn.Four, UnitTextAlign.Start)
+                @Table.AlignColumn(UnitColumn.Five, UnitTextAlign.Centre)
+                @Table.AlignColumn(UnitColumn.Six, UnitTextAlign.End)">
+
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">First Name:</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Date of Birth</th>
+                        <th scope="col">Hourly Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Gabriel</td>
+                        <td>Kennedy</td>
+                        <td>Dominican Republic</td>
+                        <td>15/12/1913</td>
+                        <td>£57.88</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Abigail</td>
+                        <td>Thompson</td>
+                        <td>Guinea-Bissau</td>
+                        <td>05/12/2018</td>
+                        <td>£26.43</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Luke</td>
+                        <td>Simpson</td>
+                        <td>Georgia</td>
+                        <td>17/09/2024</td>
+                        <td>£39.14</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Sophia</td>
+                        <td>Phillips</td>
+                        <td>Philippines</td>
+                        <td>05/06/1988</td>
+                        <td>£33.05</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Michael</td>
+                        <td>Yates</td>
+                        <td>Singapore</td>
+                        <td>10/05/1921</td>
+                        <td>£66.15</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Olivia</td>
+                        <td>Collins</td>
+                        <td>Malta</td>
+                        <td>23/04/1990</td>
+                        <td>£74.59</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Hudson</td>
+                        <td>Wood</td>
+                        <td>Sweden</td>
+                        <td>17/11/1907</td>
+                        <td>£38.64</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Isla</td>
+                        <td>Richards</td>
+                        <td>Papua New Guinea</td>
+                        <td>18/09/1948</td>
+                        <td>£58.87</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Benjamin</td>
+                        <td>Gray</td>
+                        <td>Dominica</td>
+                        <td>16/07/1944</td>
+                        <td>£42.33</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Sophia</td>
+                        <td>Phillips</td>
+                        <td>Iran</td>
+                        <td>27/07/1919</td>
+                        <td>£73.68</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        """;
+
+
+    public const string Table_Vertical_Scroll_Example = """
+        <div class="@Section.Base @Section.NoPadding @Section.NoMarginBlock @Section.Bordered @Section.Radius(SectionRadius.Container) @Overflow.XY(UnitScroll.Hidden)">
+
+            <div class="@Section.Base @Section.NoPadding @Section.NoMarginBlock @Section.OverflowY(UnitScroll.Auto) @Section.Radius(SectionRadius.Container)" style="height:300px;">
+
+                <table tabindex="0" aria-labelledby="scrollable-table" class="@Table.Base @Table.StripedRows @Table.NoBorder
+                    @Table.AlignColumn(UnitColumn.One, UnitTextAlign.Start)
+                    @Table.AlignColumn(UnitColumn.Two, UnitTextAlign.Start)
+                    @Table.AlignColumn(UnitColumn.Three, UnitTextAlign.Start)
+                    @Table.AlignColumn(UnitColumn.Four, UnitTextAlign.Start)
+                    @Table.AlignColumn(UnitColumn.Five, UnitTextAlign.Centre)
+                    @Table.AlignColumn(UnitColumn.Six, UnitTextAlign.End)">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width:100px;">ID</th>
+                            <th scope="col">First Name:</th>
+                            <th scope="col">Surname</th>
+                            <th scope="col">Country</th>
+                            <th scope="col">Date of Birth</th>
+                            <th scope="col">Hourly Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Gabriel</td>
+                            <td>Kennedy</td>
+                            <td>Dominican Republic</td>
+                            <td>15/12/1913</td>
+                            <td>£57.88</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Abigail</td>
+                            <td>Thompson</td>
+                            <td>Guinea-Bissau</td>
+                            <td>05/12/2018</td>
+                            <td>£26.43</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Luke</td>
+                            <td>Simpson</td>
+                            <td>Georgia</td>
+                            <td>17/09/2024</td>
+                            <td>£39.14</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Sophia</td>
+                            <td>Phillips</td>
+                            <td>Philippines</td>
+                            <td>05/06/1988</td>
+                            <td>£33.05</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Michael</td>
+                            <td>Yates</td>
+                            <td>Singapore</td>
+                            <td>10/05/1921</td>
+                            <td>£66.15</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Olivia</td>
+                            <td>Collins</td>
+                            <td>Malta</td>
+                            <td>23/04/1990</td>
+                            <td>£74.59</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Hudson</td>
+                            <td>Wood</td>
+                            <td>Sweden</td>
+                            <td>17/11/1907</td>
+                            <td>£38.64</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Isla</td>
+                            <td>Richards</td>
+                            <td>Papua New Guinea</td>
+                            <td>18/09/1948</td>
+                            <td>£58.87</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Benjamin</td>
+                            <td>Gray</td>
+                            <td>Dominica</td>
+                            <td>16/07/1944</td>
+                            <td>£42.33</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Sophia</td>
+                            <td>Phillips</td>
+                            <td>Iran</td>
+                            <td>27/07/1919</td>
+                            <td>£73.68</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        """;
 }
