@@ -17,25 +17,27 @@
         public methods, and any supporting classes or enumerations required for use.
     </p>
 
-    <section class="code-table">
+    <section class="@Section.Base @Section.NoPadding">
         
         <h3 id="accordion-component-parameters" class="code-table__heading">Accordion component (parent) parameters</h3>
 
-        <table aria-labelledby="accordion-component-parameters">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+
+            <table class="@Table.Base" tabindex="0" aria-labelledby="accordion-component-parameters">
 
             <thead>
                 <tr>
-                    <th scope="col">Parameter</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Description</th>
+                    <th scope="col" width="33%">Parameter</th>
+                        <th scope="col" width="33%">Type</th>
+                        <th scope="col" width="33%">Description</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>ChildContent</td>
                     <td>RenderFragment?</td>
-                    <td>
-                        The render fragment used for the child content (for each AccordionItem).
+                        <td>
+                            The render fragment used for the child content (for each AccordionItem).
                     </td>
                 </tr>
                 <tr>
@@ -57,7 +59,7 @@
 
                 <tr>
                     <td>OnAccordionItemHeadingClicked</td>
-                    <td>EventCallback&lt;ItemHeadingData&gt;</td>
+                        <td>EventCallback&lt;ItemHeadingData&gt;</td>
                     <td>
                         Gets or sets the callback invoked when an accordion item heading is clicked,
                         providing an <span class="@CodeSpan.Base">ItemHeadingData</span> payload containing the item index,
@@ -71,6 +73,7 @@
                 </tr>
             </tbody>
         </table>
+        </div>
     </section>
 
     <section class="code-table">

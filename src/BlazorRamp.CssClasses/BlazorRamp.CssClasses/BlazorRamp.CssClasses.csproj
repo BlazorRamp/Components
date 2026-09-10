@@ -11,11 +11,11 @@
 		<PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
 		<PackageTags>Blazor; Accessible Components; Accessibility;CSS Classes;</PackageTags>
-		<PackageReleaseNotes>Added a Table class and helpers so you can have static/manual tables look like the Data Table component.</PackageReleaseNotes>
+		<PackageReleaseNotes>Additional selector added to the Section class for focus indicators when tables have a tabindex and are focus-visible.</PackageReleaseNotes>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
-		<AssemblyVersion>1.1.0</AssemblyVersion>
-		<FileVersion>1.1.0</FileVersion>
-		<Version>1.1.0</Version>
+		<AssemblyVersion>1.1.1</AssemblyVersion>
+		<FileVersion>1.1.1</FileVersion>
+		<Version>1.1.1</Version>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 		<Deterministic>true</Deterministic>
