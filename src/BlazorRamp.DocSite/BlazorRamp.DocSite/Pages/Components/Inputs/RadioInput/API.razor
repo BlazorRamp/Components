@@ -38,271 +38,275 @@
         The following sections cover all components that make up this feature, including their parameters,
         public methods, and any supporting classes or enumerations required for use.
     </p>
-    <section class="code-table">
+    <section>
 
         <h3 id="radio-input-group-component-parameters" class="code-table__heading">RadioInputGroup component (parent) parameters</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="radio-input-group-component-parameters">
 
-        <table aria-labelledby="radio-input-group-component-parameters">
+                <thead>
+                    <tr>
+                        <th scope="col">Parameter</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>OptionValues</td>
+                        <td>RenderFragment?</td>
+                        <td>The render fragment used for the child <span class="@CodeSpan.Base">&lt;RadioInput /&gt;</span> components</td>
+                    </tr>
+                    <tr>
+                        <td>LabelText</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets the name used for to title this radio group.
+                            If the value is null, empty, or whitespace then the field name is used.
+                            <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
+                            and changes thereafter are ignored.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ControlID</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets the <span class="@CodeSpan.Base">id</span> attribute applied to, in this instance the parent container for the radio inputs elements.
+                            When null, empty, or whitespace a <span class="@CodeSpan.Base">Guid</span> string is generated automatically. Leading and trailing whitespace is trimmed before use.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>HintText</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets the hint text rendered below the title of the radio group and above the radio inputs. When set, the text is normalised so it always ends with a full stop, and is
+                            associated to the radio input group via <span class="@CodeSpan.Base">aria-describedby</span>. When null, empty, or whitespace no hint element is rendered.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Required</td>
+                        <td>bool</td>
+                        <td>
+                            Gets or sets whether a value for the radio input group is required. When <span class="@CodeSpan.Base">true</span>, <span class="@CodeSpan.Base">aria-required="true"</span>
+                            is applied to the radio input group component and a visually hidden asterisk is appended to the title. Defaults to <span class="@CodeSpan.Base">true</span>.
+                        </td>
+                    </tr>
 
-            <thead>
-                <tr>
-                    <th scope="col">Parameter</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>OptionValues</td>
-                    <td>RenderFragment?</td>
-                    <td>The render fragment used for the child <span class="@CodeSpan.Base">&lt;RadioInput /&gt;</span> components</td>
-                </tr>
-                <tr>
-                    <td>LabelText</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets the name used for to title this radio group.
-                        If the value is null, empty, or whitespace then the field name is used.
-                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
-                        and changes thereafter are ignored.
-                    </td>
-                </tr>
-                <tr>
-                    <td>ControlID</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets the <span class="@CodeSpan.Base">id</span> attribute applied to, in this instance the parent container for the radio inputs elements.
-                        When null, empty, or whitespace a <span class="@CodeSpan.Base">Guid</span> string is generated automatically. Leading and trailing whitespace is trimmed before use.
-                    </td>
-                </tr>
-                <tr>
-                    <td>HintText</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets the hint text rendered below the title of the radio group and above the radio inputs. When set, the text is normalised so it always ends with a full stop, and is
-                        associated to the radio input group via <span class="@CodeSpan.Base">aria-describedby</span>. When null, empty, or whitespace no hint element is rendered.
-                    </td>
-                </tr>
-                <tr>
-                    <td>Required</td>
-                    <td>bool</td>
-                    <td>
-                        Gets or sets whether a value for the radio input group is required. When <span class="@CodeSpan.Base">true</span>, <span class="@CodeSpan.Base">aria-required="true"</span>
-                        is applied to the radio input group component and a visually hidden asterisk is appended to the title. Defaults to <span class="@CodeSpan.Base">true</span>.
-                    </td>
-                </tr>
+                    <tr>
+                        <td>ErrorsLabel</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets the accessible label for the tabbable error region, used when
+                            <span class="@CodeSpan.Base">ValidationDisplayMode</span> is set to <span class="@CodeSpan.Base">ValidationDisplayMode.TabbableWithHint</span>.
+                            Defaults to <span class="@CodeSpan.Base">Errors</span>.
+                            <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
+                            and changes thereafter are ignored.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Orientation</td>
+                        <td>Orientation (enum)</td>
+                        <td>
+                            Gets or sets the layout orientation of the radio inputs within the group.
+                            Defaults to <span class="@CodeSpan.Base">Orientation.Horizontal</span> />.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ValidationDisplayMode</td>
+                        <td>ValidationDisplayMode (enum)</td>
+                        <td>
+                            Gets or sets the validation display mode which controls how <span class="@CodeSpan.Base">aria-describedby</span>
+                            is set and whether the error region is tabbable. Defaults to <span class="@CodeSpan.Base">ValidationDisplayMode.DescribedByWithHint</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SvgIcon</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
+                            used as a mask-image icon alongside the tab title. Must begin with <span class="@CodeSpan.Base">--</span>.
+                            For example: <span class="@CodeSpan.Base">--svg-my-icon</span>.
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td>ErrorsLabel</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets the accessible label for the tabbable error region, used when
-                        <span class="@CodeSpan.Base">ValidationDisplayMode</span> is set to <span class="@CodeSpan.Base">ValidationDisplayMode.TabbableWithHint</span>.
-                        Defaults to <span class="@CodeSpan.Base">Errors</span>.
-                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
-                        and changes thereafter are ignored.
-                    </td>
-                </tr>
-                <tr>
-                    <td>Orientation</td>
-                    <td>Orientation (enum)</td>
-                    <td>
-                        Gets or sets the layout orientation of the radio inputs within the group.
-                        Defaults to <span class="@CodeSpan.Base">Orientation.Horizontal</span> />.
-                    </td>
-                </tr>
-                <tr>
-                    <td>ValidationDisplayMode</td>
-                    <td>ValidationDisplayMode (enum)</td>
-                    <td>
-                        Gets or sets the validation display mode which controls how <span class="@CodeSpan.Base">aria-describedby</span>
-                        is set and whether the error region is tabbable. Defaults to <span class="@CodeSpan.Base">ValidationDisplayMode.DescribedByWithHint</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>SvgIcon</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
-                        used as a mask-image icon alongside the tab title. Must begin with <span class="@CodeSpan.Base">--</span>.
-                        For example: <span class="@CodeSpan.Base">--svg-my-icon</span>.
-                    </td>
-                </tr>
+                    <tr>
+                        <td>AdditionalAttributes</td>
+                        <td>Dictionary&lt;string, object&gt;?</td>
+                        <td>
+                            Sets additional attributes applied to the radio input group components root element.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Value</td>
+                        <td>string</td>
+                        <td>
 
-                <tr>
-                    <td>AdditionalAttributes</td>
-                    <td>Dictionary&lt;string, object&gt;?</td>
-                    <td>
-                        Sets additional attributes applied to the radio input group components root element.
-                    </td>
-                </tr>
-                <tr>
-                    <td>Value</td>
-                    <td>string</td>
-                    <td>
-
-                        Gets or sets the value of the radio input group, bound to a property on your model. Typically provided automatically when using
-                        <span class="@CodeSpan.Base">@@bind-Value="Model.PropertyName</span> syntax.
-                    </td>
-                </tr>
-                <tr>
-                    <td>ValueChanged</td>
-                    <td>EventCallback&lt;string&gt;></td>
-                    <td>
-                        Gets or sets a callback invoked when the bound value changes. Used for both one-way binding, where you handle the new value directly in the event callback, and two-way binding via
-                        <span class="@CodeSpan.Base">@@bind-Value="Model.PropertyName</span> where it is provided and managed automatically by the framework.
-                    </td>
-                </tr>
-                <tr>
-                    <td>ValueExpression</td>
-                    <td>Expression&lt;Func&lt;string&gt;&gt;</td>
-                    <td>
-                        Gets or sets an expression that identifies the bound model property.
-                    </td>
-                </tr>
-                <tr>
-                    <td>ReadOnly</td>
-                    <td>bool</td>
-                    <td>
-                        <strong>Note: </strong>Currently not supported, this is ignored if used.
-                    </td>
-                </tr>
-                <tr>
-                    <td>AriaDisabled</td>
-                    <td>bool</td>
-                    <td>
-                        <strong>Note: </strong>Currently not supported, this is ignored if used.
-                    </td>
-                </tr>
-                <tr>
-                    <td>DisplayName</td>
-                    <td>string</td>
-                    <td>
-                        Inherited from <span class="@CodeSpan.Base">InputBase&lt;TValue&gt;</span> but is <strong>not used by the Blazor Ramp inputs</strong>.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                            Gets or sets the value of the radio input group, bound to a property on your model. Typically provided automatically when using
+                            <span class="@CodeSpan.Base">@@bind-Value="Model.PropertyName</span> syntax.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ValueChanged</td>
+                        <td>EventCallback&lt;string&gt;></td>
+                        <td>
+                            Gets or sets a callback invoked when the bound value changes. Used for both one-way binding, where you handle the new value directly in the event callback, and two-way binding via
+                            <span class="@CodeSpan.Base">@@bind-Value="Model.PropertyName</span> where it is provided and managed automatically by the framework.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ValueExpression</td>
+                        <td>Expression&lt;Func&lt;string&gt;&gt;</td>
+                        <td>
+                            Gets or sets an expression that identifies the bound model property.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ReadOnly</td>
+                        <td>bool</td>
+                        <td>
+                            <strong>Note: </strong>Currently not supported, this is ignored if used.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>AriaDisabled</td>
+                        <td>bool</td>
+                        <td>
+                            <strong>Note: </strong>Currently not supported, this is ignored if used.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DisplayName</td>
+                        <td>string</td>
+                        <td>
+                            Inherited from <span class="@CodeSpan.Base">InputBase&lt;TValue&gt;</span> but is <strong>not used by the Blazor Ramp inputs</strong>.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
-    <section class="code-table">
+    <section>
 
         <h3 id="radio-input-component-parameters" class="code-table__heading">RadioInput component (child) parameters</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="radio-input-component-parameters">
 
-        <table aria-labelledby="radio-input-component-parameters">
+                <thead>
+                    <tr>
+                        <th scope="col">Parameter</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>LabelText</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets the name used for the radio input control label.
+                            If the value is null, empty, or whitespace then the field name is used.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Value</td>
+                        <td>TValue</td>
+                        <td>
+                            The value assigned to the radio input when checked. Should detect the parent type, but if necessary, as is the case if you want to use a nullable type
+                            you would then have to specify the <span class="@CodeSpan.Base">TValue</span> on each radio input.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>AdditionalAttributes</td>
+                        <td>Dictionary&lt;string, object&gt;?</td>
+                        <td>
+                            Sets additional attributes applied to the radio input.
+                        </td>
+                    </tr>
 
-            <thead>
-                <tr>
-                    <th scope="col">Parameter</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>LabelText</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets the name used for the radio input control label.
-                        If the value is null, empty, or whitespace then the field name is used.
-                    </td>
-                </tr>
-                <tr>
-                    <td>Value</td>
-                    <td>TValue</td>
-                    <td>
-                        The value assigned to the radio input when checked. Should detect the parent type, but if necessary, as is the case if you want to use a nullable type
-                        you would then have to specify the <span class="@CodeSpan.Base">TValue</span> on each radio input.
-                    </td>
-                </tr>
-                <tr>
-                    <td>AdditionalAttributes</td>
-                    <td>Dictionary&lt;string, object&gt;?</td>
-                    <td>
-                        Sets additional attributes applied to the radio input.
-                    </td>
-                </tr>
-
-        </tbody>
-    </table>
-</section>
+                </tbody>
+            </table>
+        </div>
+    </section>
 </section>
 
 <section>
 
     <h2 class="code-table__heading">Supporting enums</h2>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="radio-input-group-orientation-enum" class="code-table__heading">Orientation enum</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="radio-input-group-orientation-enum">
 
-        <table aria-labelledby="radio-input-group-orientation-enum">
-
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>Horizontal</td>
-                    <td>
-                        The component uses a horizontal wrapping layout for the radio inputs
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Vertical</td>
-                    <td>
-                        The component uses a vertically wrapping layout for the radio inputs
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Horizontal</td>
+                        <td>
+                            The component uses a horizontal wrapping layout for the radio inputs
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Vertical</td>
+                        <td>
+                            The component uses a vertically wrapping layout for the radio inputs
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
-    <section class="code-table">
+    <section>
 
         <h3 id="validation-display-mode-enum" class="code-table__heading">ValidationDisplayMode enum</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="validation-display-mode-enum">
 
-        <table aria-labelledby="validation-display-mode-enum">
-
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>DescribedByWithHint</td>
-                    <td>
-                        Error message ID and hint text ID are both included in <span class="@CodeSpan.Base">aria-describedby</span>.
-                        Error region is not tabbable. This is the default mode.
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>DescribedByHintSuppressed</td>
-                    <td>
-                        Only the error message ID is included in <span class="@CodeSpan.Base">aria-describedby</span> when errors
-                        are present, suppressing the hint text association. Error region is not tabbable.
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>TabbableWithHint</td>
-                    <td>
-                        The error region is rendered as a tabbable <span class="@CodeSpan.Base">role="region"</span> element with a
-                        <span class="@CodeSpan.Base">tabindex="0"</span>, allowing keyboard users to navigate directly to the errors.
-                        Only the hint text ID is included in <span class="@CodeSpan.Base">aria-describedby</span>.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>DescribedByWithHint</td>
+                        <td>
+                            Error message ID and hint text ID are both included in <span class="@CodeSpan.Base">aria-describedby</span>.
+                            Error region is not tabbable. This is the default mode.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>DescribedByHintSuppressed</td>
+                        <td>
+                            Only the error message ID is included in <span class="@CodeSpan.Base">aria-describedby</span> when errors
+                            are present, suppressing the hint text association. Error region is not tabbable.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>TabbableWithHint</td>
+                        <td>
+                            The error region is rendered as a tabbable <span class="@CodeSpan.Base">role="region"</span> element with a
+                            <span class="@CodeSpan.Base">tabindex="0"</span>, allowing keyboard users to navigate directly to the errors.
+                            Only the hint text ID is included in <span class="@CodeSpan.Base">aria-describedby</span>.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
     </section>
 

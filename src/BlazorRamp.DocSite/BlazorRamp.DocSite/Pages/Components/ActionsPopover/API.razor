@@ -15,11 +15,12 @@
         The following sections cover all components that make up this feature, including their parameters,
         public methods, and any supporting classes or enumerations required for use.
     </p>
-    <section class="code-table">
+    <section>
 
         <h3 id="actions-popover-component-parameters" class="code-table__heading">ActionsPopover component (container/button) parameters</h3>
 
-        <table aria-labelledby="actions-popover-component-parameters">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0"  aria-labelledby="actions-popover-component-parameters">
 
             <thead>
                 <tr>
@@ -82,13 +83,14 @@
                 </tr>
             </tbody>
         </table>
-
+        </div>
     </section>
-    <section class="code-table">
+    <section>
 
         <h3 id="action-popover-button-component-parameters" class="code-table__heading">ActionPopoverButton component parameters</h3>
 
-        <table aria-labelledby="action-popover-button-component-parameters">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="action-popover-button-component-parameters">
 
             <thead>
                 <tr>
@@ -150,12 +152,13 @@
                 </tr>
             </tbody>
         </table>
-
+        </div>
     </section>
-    <section class="code-table">
+    <section>
         <h3 id="action-popover-link-component-parameters" class="code-table__heading">ActionPopoverLink component parameters</h3>
 
-        <table aria-labelledby="action-popover-link-component-parameters">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="action-popover-link-component-parameters">
 
             <thead>
                 <tr>
@@ -242,63 +245,65 @@
                 </tr>
             </tbody>
         </table>
+        </div>
     </section>
-    <section class="code-table">
+    <section>
         <h3 id="action-popover-separator-component-parameters" class="code-table__heading">ActionPopoverSeparator component parameters</h3>
         <p>
             This component has no parameters an merely outputs a styled <span class="@CodeSpan.Base">hr</span> to act as separator between groups of
             related actions.
         </p>
     </section>
-    <section class="code-table">
+    <section>
 
         <h3 id="action-popover-button-class" class="code-table__heading">ActionPopoverButton&lt;TData&gt; class</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="action-popover-button-class">
 
-        <table aria-labelledby="action-popover-button-class">
-
-            <thead>
-                <tr>
-                    <th scope="col">Type</th>
-                    <th scope="col">Property/Method</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>string</td>
-                    <td>ButtonText</td>
-                    <td>
-                        Gets the trimmed text of the button that was clicked.
-                    </td>
-                </tr>
-                <tr>
-                    <td>TData</td>
-                    <td>GetValueOr(TData? fallback)</td>
-                    <td>
-                        Gets the item data associated with the clicked button, or a fallback value if no data was supplied.
-                        For non-nullable value-typed <span class="@CodeSpan.Base">TData</span> (e.g. int, bool),
-                        a default value (e.g. 0) is indistinguishable from "no value was supplied" and is
-                        always treated as a real value — <span class="@CodeSpan.Base">fallback</span> will never be returned in that
-                        case. Use a nullable value type (e.g. int?) as <span class="@CodeSpan.Base">TData</span> if this
-                        distinction matters to you.
-                        <span class="@CodeSpan.Base">fallback</span>The value to return if no data was supplied.
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3">
-                        <b>Constructor:</b><br />
-                        ButtonActionData&lt;TData&gt;(string buttonText, TData? payload)
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col">Property/Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>string</td>
+                        <td>ButtonText</td>
+                        <td>
+                            Gets the trimmed text of the button that was clicked.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>TData</td>
+                        <td>GetValueOr(TData? fallback)</td>
+                        <td>
+                            Gets the item data associated with the clicked button, or a fallback value if no data was supplied.
+                            For non-nullable value-typed <span class="@CodeSpan.Base">TData</span> (e.g. int, bool),
+                            a default value (e.g. 0) is indistinguishable from "no value was supplied" and is
+                            always treated as a real value — <span class="@CodeSpan.Base">fallback</span> will never be returned in that
+                            case. Use a nullable value type (e.g. int?) as <span class="@CodeSpan.Base">TData</span> if this
+                            distinction matters to you.
+                            <span class="@CodeSpan.Base">fallback</span>The value to return if no data was supplied.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <b>Constructor:</b><br />
+                            ButtonActionData&lt;TData&gt;(string buttonText, TData? payload)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
     </section>
-    <section class="code-table">
+    <section>
 
         <h3 id="action-popover-link-class" class="code-table__heading">ActionPopoverLink&lt;TData&gt; class</h3>
-
-        <table aria-labelledby="action-popover-link-class">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+           <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="action-popover-link-class">
 
             <thead>
                 <tr>
@@ -351,18 +356,18 @@
                 </tr>
             </tbody>
         </table>
-
+        </div>
     </section>
 </section>
 
 <section>
     <h2 class="page-heading">Supporting enums</h2>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="actions-popover-position-enum" class="code-table__heading">ActionsPopoverPosition enum</h3>
-
-        <table aria-labelledby="actions-popover-position-enum">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="actions-popover-position-enum">
 
             <thead>
                 <tr>
@@ -414,13 +419,13 @@
                 </tr>
             </tbody>
         </table>
-
+        </div>
     </section>
-    <section class="code-table">
+    <section>
 
         <h3 id="target-type-enum" class="code-table__heading">PopoverLinkTargetType enum</h3>
-
-        <table aria-labelledby="target-type-enum">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="target-type-enum">
 
             <thead>
                 <tr>
@@ -455,7 +460,7 @@
                 </tr>
             </tbody>
         </table>
-
+        </div>
     </section>
 
 
@@ -469,11 +474,11 @@
         You can of course also override its style classes directly.
     </p>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="actions-popover-trigger-variables" class="code-table__heading">Action popover triggering button variables</h3>
-
-        <table aria-labelledby="actions-popover-trigger-variables">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="actions-popover-trigger-variables">
 
             <thead>
                 <tr>
@@ -607,12 +612,13 @@
                 </tr>
             </tbody>
         </table>
+        </div>
     </section>
-    <section class="code-table">
+    <section>
 
         <h3 id="action-popover-item-variables" class="code-table__heading">Action popover item (button and link) variables</h3>
-
-        <table aria-labelledby="action-popover-item-variables">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="action-popover-item-variables">
 
             <thead>
                 <tr>
@@ -743,14 +749,16 @@
                 </tr>
             </tbody>
         </table>
+        </div>
     </section>
-    <section class="code-table">
+    <section>
 
         <h3 id="pane-panel-variables" class="code-table__heading">Pane panel variables</h3>
         <p>
             The panel that the buttons and links sit on.
         </p>
-        <table aria-labelledby="pane-panel-variables">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="pane-panel-variables">
             <thead>
                 <tr>
                     <th scope="col">Variable Name</th>
@@ -801,13 +809,13 @@
                 </tr>
             </tbody>
         </table>
-
+        </div>
     </section>
-    <section class="code-table">
+    <section>
 
         <h3 id="separator-variables" class="code-table__heading">Action popover separator variables</h3>
-
-        <table aria-labelledby="separator-variables">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="separator-variables">
 
             <thead>
                 <tr>
@@ -840,17 +848,17 @@
                 </tr>
             </tbody>
         </table>
-
+        </div>
     </section>
-    <section class="code-table">
+    <section>
 
         <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
         <p>
             The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
             by standard mappings to the <span class="@CodeSpan.Base">--br-comp-all</span> variables.
         </p>
-
-        <table aria-labelledby="unmapped-variables">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unmapped-variables">
 
             <thead>
                 <tr>
@@ -921,7 +929,7 @@
                 </tr>
             </tbody>
         </table>
-
+        </div>
     </section>
 </section>
 

@@ -8,7 +8,7 @@
 </p>
 
 <section>
-    
+
     <h2 class="page-heading">
         Component parameters, methods, supporting classes and enums.
     </h2>
@@ -16,94 +16,95 @@
         The following sections cover all components that make up this feature, including their parameters,
         public methods, and any supporting classes or enumerations required for use.
     </p>
-    <section class="code-table">
+    <section>
 
         <h3 id="announcement-history-component" class="code-table__heading">AnnouncementHistory component</h3>
 
-        <table aria-labelledby="announcement-history-component">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="announcement-history-component">
 
-            <thead>
-                <tr>
-                    <th scope="col">Parameter</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Title</td>
-                    <td>string</td>
-                    <td>
-                        The h2 heading text displayed for the announcement history dialog and used for the aria-labelledby attribute.
-                        A default value of "Recent Announcements" will be used if omitted.
-                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
-                        and changes thereafter are ignored.
-                    </td>
-                </tr>
-                <tr>
-                    <td>CloseText</td>
-                    <td>string</td>
-                    <td>
-                        The text for the button that closes the history dialog.
-                        A default value of "Close" will be used if omitted.
-                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
-                        and changes thereafter are ignored.
-                    </td>
-                </tr>
-                <tr>
-                    <td>ClearCloseText</td>
-                    <td>string</td>
-                    <td>
-                        The text for the button that clears the announcement history logs and closes the dialog.
-                        A default value of "Clear & Close" will be used if omitted.
-                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
-                        and changes thereafter are ignored.
-                    </td>
-                </tr>
-                <tr>
-                    <td>RefreshText</td>
-                    <td>string</td>
-                    <td>
-                        The text for the button that refreshes the history list displayed in the dialog.
-                        A default value of "Refresh" will be used if omitted.
-                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
-                        and changes thereafter are ignored.
-                    </td>
-                </tr>
-                <tr>
-                    <td>NoDataText</td>
-                    <td>string</td>
-                    <td>
-                        The text displayed when there are no announcements in the history.
-                        A default value of "No Announcements" will be used if omitted.
-                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
-                        and changes thereafter are ignored.
-                    </td>
-                </tr>
-                <tr>
-                    <td>TriggerText</td>
-                    <td>string</td>
-                    <td>
-                        The text for the trigger button that opens the history dialog.
-                        A default value of "Alerts" will be used if omitted.
-                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
-                        and changes thereafter are ignored.
-                    </td>
-                </tr>
-                <tr>
-                    <td>TriggerVisible</td>
-                    <td>bool</td>
-                    <td>
-                        Determines if the trigger button is always visible or only visible when focused via the keyboard.
-                        <b>The default value is false, so it will be hidden by default</b>. Please ensure to advise users of the
-                        short cut keys.
-                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
-                        and changes thereafter are ignored.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
+                <thead>
+                    <tr>
+                        <th scope="col">Parameter</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Title</td>
+                        <td>string</td>
+                        <td>
+                            The h2 heading text displayed for the announcement history dialog and used for the aria-labelledby attribute.
+                            A default value of "Recent Announcements" will be used if omitted.
+                            <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
+                            and changes thereafter are ignored.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CloseText</td>
+                        <td>string</td>
+                        <td>
+                            The text for the button that closes the history dialog.
+                            A default value of "Close" will be used if omitted.
+                            <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
+                            and changes thereafter are ignored.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ClearCloseText</td>
+                        <td>string</td>
+                        <td>
+                            The text for the button that clears the announcement history logs and closes the dialog.
+                            A default value of "Clear & Close" will be used if omitted.
+                            <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
+                            and changes thereafter are ignored.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>RefreshText</td>
+                        <td>string</td>
+                        <td>
+                            The text for the button that refreshes the history list displayed in the dialog.
+                            A default value of "Refresh" will be used if omitted.
+                            <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
+                            and changes thereafter are ignored.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>NoDataText</td>
+                        <td>string</td>
+                        <td>
+                            The text displayed when there are no announcements in the history.
+                            A default value of "No Announcements" will be used if omitted.
+                            <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
+                            and changes thereafter are ignored.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>TriggerText</td>
+                        <td>string</td>
+                        <td>
+                            The text for the trigger button that opens the history dialog.
+                            A default value of "Alerts" will be used if omitted.
+                            <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
+                            and changes thereafter are ignored.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>TriggerVisible</td>
+                        <td>bool</td>
+                        <td>
+                            Determines if the trigger button is always visible or only visible when focused via the keyboard.
+                            <b>The default value is false, so it will be hidden by default</b>. Please ensure to advise users of the
+                            short cut keys.
+                            <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
+                            and changes thereafter are ignored.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
 </section>
@@ -117,143 +118,144 @@
         You can of course also override its style classes directly.
     </p>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="dialog-outline-variables" class="code-table__heading">Dialog outline variables</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="dialog-outline-variables">
 
-        <table aria-labelledby="dialog-outline-variables">
-
-            <thead>
-                <tr>
-                    <th scope="col">Variable Name</th>
-                    <th scope="col">Default Value</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>--br-comp-history-box-shadow</td>
-                    <td>var(--br-unit-box-shadow-1)</td>
-                    <td>Box shadow around the dialog - no shared component variable so points to the the unit value.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-history-outline-style</td>
-                    <td>var(--br-comp-all-outline-style)</td>
-                    <td>Outline around the dialog on focus - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-history-outline-width</td>
-                    <td>var(--br-comp-all-outline-width)</td>
-                    <td>Width of the outline - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-history-outline-offset</td>
-                    <td>0px</td>
-                    <td>Outline offset - <b>sets its own value of 0px to turn off the outline.</b></td>
-                </tr>
-                <tr>
-                    <td>--br-comp-history-outline-colour</td>
-                    <td>var(--br-comp-all-outline-colour)</td>
-                    <td>The outline colour - uses the shared component variable.</td>
-                </tr>
-            </tbody>
-        </table>
-
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Default Value</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--br-comp-history-box-shadow</td>
+                        <td>var(--br-unit-box-shadow-1)</td>
+                        <td>Box shadow around the dialog - no shared component variable so points to the the unit value.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-history-outline-style</td>
+                        <td>var(--br-comp-all-outline-style)</td>
+                        <td>Outline around the dialog on focus - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-history-outline-width</td>
+                        <td>var(--br-comp-all-outline-width)</td>
+                        <td>Width of the outline - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-history-outline-offset</td>
+                        <td>0px</td>
+                        <td>Outline offset - <b>sets its own value of 0px to turn off the outline.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-history-outline-colour</td>
+                        <td>var(--br-comp-all-outline-colour)</td>
+                        <td>The outline colour - uses the shared component variable.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="pane-base-variables" class="code-table__heading">Pane base variables</h3>
 
-        <table aria-labelledby="pane-base-variables">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="pane-base-variables">
 
-            <thead>
-                <tr>
-                    <th scope="col">Variable Name</th>
-                    <th scope="col">Default Value</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>--br-comp-history-pane-base-background</td>
-                    <td>var(--br-comp-all-pane-base-background)</td>
-                    <td>The background colour of the base pane - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-history-pane-base-border-style</td>
-                    <td>var(--br-comp-all-pane-base-border-style)</td>
-                    <td>The border style - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-history-pane-base-border-colour</td>
-                    <td>var(--br-comp-all-pane-base-border-colour)</td>
-                    <td>The border colour - uses the shared component variable. </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-history-pane-base-border-width</td>
-                    <td>var(--br-unit-border-1)</td>
-                    <td>The border width - <b>does not use the shared component variable</b></td>
-                </tr>
-                <tr>
-                    <td>--br-comp-history-pane-base-border-radius</td>
-                    <td>var(--br-group-dialog-pane-base-border-radius)</td>
-                    <td>The border radius - uses a shared border radius grouping variable.</td>
-                </tr>
-            </tbody>
-        </table>
-
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Default Value</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--br-comp-history-pane-base-background</td>
+                        <td>var(--br-comp-all-pane-base-background)</td>
+                        <td>The background colour of the base pane - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-history-pane-base-border-style</td>
+                        <td>var(--br-comp-all-pane-base-border-style)</td>
+                        <td>The border style - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-history-pane-base-border-colour</td>
+                        <td>var(--br-comp-all-pane-base-border-colour)</td>
+                        <td>The border colour - uses the shared component variable. </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-history-pane-base-border-width</td>
+                        <td>var(--br-unit-border-1)</td>
+                        <td>The border width - <b>does not use the shared component variable</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-history-pane-base-border-radius</td>
+                        <td>var(--br-group-dialog-pane-base-border-radius)</td>
+                        <td>The border radius - uses a shared border radius grouping variable.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="pane-panel-variables" class="code-table__heading">Pane panel variables</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="pane-panel-variables">
 
-        <table aria-labelledby="pane-panel-variables">
-
-            <thead>
-                <tr>
-                    <th scope="col">Variable Name</th>
-                    <th scope="col">Default Value</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>--br-comp-history-pane-panel-background</td>
-                    <td>var(--br-comp-all-pane-panel-background)</td>
-                    <td>The background colour of the panel pane - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-history-pane-panel-border-style</td>
-                    <td>var(--br-comp-all-pane-panel-border-style)</td>
-                    <td>The border style - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-history-pane-panel-border-colour</td>
-                    <td>var(--br-comp-all-pane-panel-border-colour)</td>
-                    <td>The border colour - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-history-pane-panel-border-width</td>
-                    <td>var(--br-comp-all-pane-panel-border-width)</td>
-                    <td>The border width - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-history-pane-panel-border-radius</td>
-                    <td>var(--br-group-dialog-pane-panel-border-radius)</td>
-                    <td>The border radius - uses a shared border radius grouping variable.</td>
-                </tr>
-            </tbody>
-        </table>
-
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Default Value</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--br-comp-history-pane-panel-background</td>
+                        <td>var(--br-comp-all-pane-panel-background)</td>
+                        <td>The background colour of the panel pane - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-history-pane-panel-border-style</td>
+                        <td>var(--br-comp-all-pane-panel-border-style)</td>
+                        <td>The border style - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-history-pane-panel-border-colour</td>
+                        <td>var(--br-comp-all-pane-panel-border-colour)</td>
+                        <td>The border colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-history-pane-panel-border-width</td>
+                        <td>var(--br-comp-all-pane-panel-border-width)</td>
+                        <td>The border width - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-history-pane-panel-border-radius</td>
+                        <td>var(--br-group-dialog-pane-panel-border-radius)</td>
+                        <td>The border radius - uses a shared border radius grouping variable.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="pane-surface-variables" class="code-table__heading">Pane surface variables</h3>
-
-        <table aria-labelledby="pane-surface-variables">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="pane-surface-variables">
 
             <thead>
                 <tr>
@@ -317,14 +319,14 @@
 
             </tbody>
         </table>
-
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="header-area-variables" class="code-table__heading">Header area variables</h3>
-
-        <table aria-labelledby="header-area-variables">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="header-area-variables">
 
             <thead>
                 <tr>
@@ -386,14 +388,14 @@
                 </tr>
             </tbody>
         </table>
-
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="content-area-variables" class="code-table__heading">Content area variables</h3>
-
-        <table aria-labelledby="content-area-variables">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="content-area-variables">
 
             <thead>
                 <tr>
@@ -455,14 +457,14 @@
                 </tr>
             </tbody>
         </table>
-
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="footer-area-variables" class="code-table__heading">Footer area variables</h3>
-
-        <table aria-labelledby="footer-area-variables">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="footer-area-variables">
 
             <thead>
                 <tr>
@@ -524,14 +526,14 @@
                 </tr>
             </tbody>
         </table>
-
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="internal-button-variables" class="code-table__heading">Internal button variables</h3>
-
-        <table aria-labelledby="internal-button-variables">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="internal-button-variables">
 
             <thead>
                 <tr>
@@ -628,7 +630,7 @@
                 </tr>
             </tbody>
         </table>
-
+        </div>
     </section>
 </section>
 
@@ -641,11 +643,11 @@
         You can of course also override its style classes directly.
     </p>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="trigger-pane-surface-variables" class="code-table__heading">Trigger pane surface variables</h3>
-
-        <table aria-labelledby="trigger-pane-surface-variables">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="trigger-pane-surface-variables">
 
             <thead>
                 <tr>
@@ -707,14 +709,14 @@
                 </tr>
             </tbody>
         </table>
-
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="trigger-button-outline-variables" class="code-table__heading">Trigger button outline variables</h3>
-
-        <table aria-labelledby="trigger-button-outline-variables">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="trigger-button-outline-variables">
 
             <thead>
                 <tr>
@@ -746,14 +748,14 @@
                 </tr>
             </tbody>
         </table>
-
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="trigger-button-state-variables" class="code-table__heading">Trigger button state variables</h3>
-
-        <table aria-labelledby="trigger-button-state-variables">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="trigger-button-state-variables">
 
             <thead>
                 <tr>
@@ -780,7 +782,7 @@
                 </tr>
             </tbody>
         </table>
-
+        </div>
     </section>
 
 </section>
@@ -788,16 +790,16 @@
 <section>
 
     <h2 class="page-heading">CSS variables from the above not mapped to the <span class="@CodeSpan.Base @CodeSpan.FontSize(UnitFontSize.Two)">--br-comp-all</span> variables.</h2>
-    
+
     <p>
         The following table of unmapped variables are those for both the announcement dialog and its associated trigger that needed to deviate from the underlying values provided by
         by standard mappings to the <span class="@CodeSpan.Base">--br-comp-all</span> variables.
     </p>
 
-    <section class="code-table">
+    <section>
         <h3 id="unmapped-variables" class="code-table__heading">Unmapped variables</h3>
-
-        <table aria-labelledby="unmapped-variables">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unmapped-variables">
 
             <thead>
                 <tr>
@@ -854,6 +856,7 @@
                 </tr>
             </tbody>
         </table>
+        </div>
     </section>
 
 

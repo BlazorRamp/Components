@@ -30,213 +30,221 @@
         <span class="@CodeSpan.Base">CodeSpan</span> provides the BEM CSS classes for the @CodeSpan.Base block: an inline element
         used to present a short fragment of code within a line of text.
     </p>
-    <section class="code-table">
+    <section>
         <h3 id="codespan-class" class="code-table__heading">CodeSpan class</h3>
-        <table aria-labelledby="codespan-class">
-            <thead>
-                <tr>
-                    <th scope="col">Return</th>
-                    <th scope="col">Const/Static Method</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>string</td>
-                    <td>CodeSpan.Base</td>
-                    <td>The base class, <span class="@CodeSpan.Base">@CodeSpan.Base</span>. Always required.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>CodeSpan.FontSize(UnitFontSize unitFontSize)</td>
-                    <td>Gets the class that sets the code span's font size.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>CodeSpan.Scheme(CodeSpanScheme scheme)</td>
-                    <td>Gets the class that sets the code span's colour scheme.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>CodeSpan.FixedRadius(UnitRadius unitRadius)</td>
-                    <td>
-                        Gets the modifier class that sets the span's border radius to a
-                        fixed unit value.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="codespan-class">
+                <thead>
+                    <tr>
+                        <th scope="col">Return</th>
+                        <th scope="col">Const/Static Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>string</td>
+                        <td>CodeSpan.Base</td>
+                        <td>The base class, <span class="@CodeSpan.Base">@CodeSpan.Base</span>. Always required.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>CodeSpan.FontSize(UnitFontSize unitFontSize)</td>
+                        <td>Gets the class that sets the code span's font size.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>CodeSpan.Scheme(CodeSpanScheme scheme)</td>
+                        <td>Gets the class that sets the code span's colour scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>CodeSpan.FixedRadius(UnitRadius unitRadius)</td>
+                        <td>
+                            Gets the modifier class that sets the span's border radius to a
+                            fixed unit value.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 </section>
 
 <section>
     <h2 class="page-heading">Supporting enums</h2>
-    <section class="code-table">
+    <section>
         <h3 id="codespan-font-size-enum" class="code-table__heading">UnitFontSize enum</h3>
         <p>
             Sets the font size of a <span class="@CodeSpan.Base">@CodeSpan.Base</span> element.
         </p>
-        <table aria-labelledby="codespan-font-size-enum">
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>Label</td>
-                    <td>Label-sized text, matching the size used for input/form labels.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Regular</td>
-                    <td>The regular body text size.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Two</td>
-                    <td>A larger text size, one step above regular.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Three</td>
-                    <td>A larger text size, two steps above regular.</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Four</td>
-                    <td>A larger text size, three steps above regular.</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Five</td>
-                    <td>A larger text size, four steps above regular.</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Six</td>
-                    <td>The largest text size available on this scale.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="codespan-font-size-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Label</td>
+                        <td>Label-sized text, matching the size used for input/form labels.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Regular</td>
+                        <td>The regular body text size.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Two</td>
+                        <td>A larger text size, one step above regular.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Three</td>
+                        <td>A larger text size, two steps above regular.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Four</td>
+                        <td>A larger text size, three steps above regular.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Five</td>
+                        <td>A larger text size, four steps above regular.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Six</td>
+                        <td>The largest text size available on this scale.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
         <h3 id="codespan-scheme-enum" class="code-table__heading">CodeSpanScheme enum</h3>
         <p>
             Sets the colour scheme (text and background colour pairing) of a <span class="@CodeSpan.Base">@CodeSpan.Base</span> element.
         </p>
-        <table aria-labelledby="codespan-scheme-enum">
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>Inverted</td>
-                    <td>An inverted colour scheme, using the canvas colour and its inverted counterpart. The default scheme.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Neutral</td>
-                    <td>A neutral colour scheme.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Primary</td>
-                    <td>A primary-hue colour scheme.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Secondary</td>
-                    <td>A secondary-hue colour scheme.</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Accent</td>
-                    <td>An accent-hue colour scheme. The scheme applied when no modifier is present.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="codespan-scheme-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Inverted</td>
+                        <td>An inverted colour scheme, using the canvas colour and its inverted counterpart. The default scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Neutral</td>
+                        <td>A neutral colour scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Primary</td>
+                        <td>A primary-hue colour scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Secondary</td>
+                        <td>A secondary-hue colour scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Accent</td>
+                        <td>An accent-hue colour scheme. The scheme applied when no modifier is present.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
-    <section class="code-table">
+    <section>
         <h3 id="unit-radius-enum" class="code-table__heading">UnitRadius enum</h3>
         <p>
             Sets a fixed border radius from the <span class="@CodeSpan.Base">--br-unit-radius-*</span> primitive scale, bypassing any themeable border radius grouping.
         </p>
-        <table aria-labelledby="unit-radius-enum">
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>None</td>
-                    <td>No border radius. Maps to <span class="@CodeSpan.Base">--br-unit-radius-0</span>.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>One</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-1</span>.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Two</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-2</span>.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Three</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-3</span>.</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Four</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-4</span>.</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Five</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-5</span>.</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Six</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-6</span>.</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Seven</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-7</span>.</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Eight</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-8</span>.</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Nine</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-9</span>.</td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Full</td>
-                    <td>Fully rounded. Maps to <span class="@CodeSpan.Base">--br-unit-radius-full</span>.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-radius-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>None</td>
+                        <td>No border radius. Maps to <span class="@CodeSpan.Base">--br-unit-radius-0</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>One</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-1</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Two</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-2</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Three</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-3</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Four</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-4</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Five</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-5</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Six</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-6</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Seven</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-7</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Eight</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-8</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Nine</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-9</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Full</td>
+                        <td>Fully rounded. Maps to <span class="@CodeSpan.Base">--br-unit-radius-full</span>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 </section>
 
@@ -264,49 +272,50 @@
 
 </section>
 
-<section class="code-table">
+<section>
     <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
-
-    <table aria-labelledby="css-classes">
-        <thead>
-            <tr>
-                <th scope="col">Class</th>
-                <th scope="col">Type</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>@CodeSpan.Base</td>
-                <td>Block</td>
-                <td>The root code span element. Sets default padding, border radius, font, colour and background.</td>
-            </tr>
-            <tr>
-                <td>
-                    @CodeSpan.Base--font-size-label<br>
-                    @CodeSpan.Base--font-size-one<br>
-                    @CodeSpan.Base--font-size-two<br>
-                    @CodeSpan.Base--font-size-three<br>
-                    @CodeSpan.Base--font-size-four<br>
-                    @CodeSpan.Base--font-size-five<br>
-                    @CodeSpan.Base--font-size-six
-                </td>
-                <td>Modifier(s)</td>
-                <td>Sets the code span's font size.</td>
-            </tr>
-            <tr>
-                <td>
-                    @CodeSpan.Base--inverted-scheme<br>
-                    @CodeSpan.Base--neutral-scheme<br>
-                    @CodeSpan.Base--primary-scheme<br>
-                    @CodeSpan.Base--secondary-scheme<br>
-                    @CodeSpan.Base--accent-scheme
-                </td>
-                <td>Modifier(s)</td>
-                <td>Sets the code span's text and background colour pairing.</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="css-classes">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@CodeSpan.Base</td>
+                    <td>Block</td>
+                    <td>The root code span element. Sets default padding, border radius, font, colour and background.</td>
+                </tr>
+                <tr>
+                    <td>
+                        @CodeSpan.Base--font-size-label<br>
+                        @CodeSpan.Base--font-size-one<br>
+                        @CodeSpan.Base--font-size-two<br>
+                        @CodeSpan.Base--font-size-three<br>
+                        @CodeSpan.Base--font-size-four<br>
+                        @CodeSpan.Base--font-size-five<br>
+                        @CodeSpan.Base--font-size-six
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Sets the code span's font size.</td>
+                </tr>
+                <tr>
+                    <td>
+                        @CodeSpan.Base--inverted-scheme<br>
+                        @CodeSpan.Base--neutral-scheme<br>
+                        @CodeSpan.Base--primary-scheme<br>
+                        @CodeSpan.Base--secondary-scheme<br>
+                        @CodeSpan.Base--accent-scheme
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Sets the code span's text and background colour pairing.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <section>
@@ -317,87 +326,91 @@
         you don't need to override anything to stay in sync with your chosen theme.
     </p>
 
-    <section class="code-table">
+    <section>
         <h3 id="codespan-base-variables" class="code-table__heading">CodeSpan base variables</h3>
         <p>Private variables set on the element itself before any modifier is applied.</p>
-        <table aria-labelledby="codespan-base-variables">
-            <thead>
-                <tr>
-                    <th scope="col">Variable Name</th>
-                    <th scope="col">Default Value</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>--_code-span-font-size</td>
-                    <td>var(--br-unit-font-size-1)</td>
-                    <td>The code span's font size before any size modifier is applied.</td>
-                </tr>
-                <tr>
-                    <td>--_code-span-text</td>
-                    <td>var(--br-unit-colour-canvas-text-inverted)</td>
-                    <td>The code span's text colour before any scheme modifier is applied.</td>
-                </tr>
-                <tr>
-                    <td>--_code-span-background</td>
-                    <td>var(--br-unit-colour-canvas-inverted)</td>
-                    <td>The code span's background colour before any scheme modifier is applied.</td>
-                </tr>
-                <tr>
-                    <td>--_code-span-border-radius</td>
-                    <td>var(--br-unit-radius-3)</td>
-                    <td>The code span's border radius before any modifier is applied.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="codespan-base-variables">
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Default Value</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--_code-span-font-size</td>
+                        <td>var(--br-unit-font-size-1)</td>
+                        <td>The code span's font size before any size modifier is applied.</td>
+                    </tr>
+                    <tr>
+                        <td>--_code-span-text</td>
+                        <td>var(--br-unit-colour-canvas-text-inverted)</td>
+                        <td>The code span's text colour before any scheme modifier is applied.</td>
+                    </tr>
+                    <tr>
+                        <td>--_code-span-background</td>
+                        <td>var(--br-unit-colour-canvas-inverted)</td>
+                        <td>The code span's background colour before any scheme modifier is applied.</td>
+                    </tr>
+                    <tr>
+                        <td>--_code-span-border-radius</td>
+                        <td>var(--br-unit-radius-3)</td>
+                        <td>The code span's border radius before any modifier is applied.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
-    <section class="code-table">
+    <section>
         <h3 id="codespan-shared-variables" class="code-table__heading">Shared variables consumed</h3>
         <p>
             <span class="@CodeSpan.Base">@CodeSpan.Base's</span> colour scheme modifiers and font family read from these shared
             <span class="@CodeSpan.Base">--br-cls-*</span> tokens.
         </p>
-        <table aria-labelledby="codespan-shared-variables">
-            <thead>
-                <tr>
-                    <th scope="col">Variable Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>--br-cls-code-font-family</td>
-                    <td>The font family used by the code span.</td>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="codespan-shared-variables">
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--br-cls-code-font-family</td>
+                        <td>The font family used by the code span.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            --br-cls-neutral-lighter<br>
+                            --br-cls-secondary-lighter<br>
+                            --br-cls-accent-lighter<br>
+                            --br-cls-primary-lighter
+                        </td>
+                        <td>
+                            Background colours used by the <span class="@CodeSpan.Base">
+                            --neutral-scheme<br>--secondary-scheme<br>--accent-scheme<br>
+                            --primary-scheme
+                        </span> modifiers.
+                    </td>
                 </tr>
                 <tr>
                     <td>
-                        --br-cls-neutral-lighter<br>
-                        --br-cls-secondary-lighter<br>
-                        --br-cls-accent-lighter<br>
-                        --br-cls-primary-lighter
+                        --br-cls-neutral-text<br>
+                        --br-cls-secondary-text-dark<br>
+                        --br-cls-accent-text-dark<br>
+                        --br-cls-primary-text-dark
                     </td>
                     <td>
-                        Background colours used by the <span class="@CodeSpan.Base">
-                        --neutral-scheme<br>--secondary-scheme<br>--accent-scheme<br>
-                        --primary-scheme
-                    </span> modifiers.
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    --br-cls-neutral-text<br>
-                    --br-cls-secondary-text-dark<br>
-                    --br-cls-accent-text-dark<br>
-                    --br-cls-primary-text-dark
-                </td>
-                <td>
-                    Text colours used by the
-                    <span class="@CodeSpan.Base">--neutral-scheme<br>--secondary-scheme<br>--accent-scheme<br>--primary-scheme</span> modifiers.
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                        Text colours used by the
+                        <span class="@CodeSpan.Base">--neutral-scheme<br>--secondary-scheme<br>--accent-scheme<br>--primary-scheme</span> modifiers.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 </section>
 

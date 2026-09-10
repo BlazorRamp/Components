@@ -35,142 +35,147 @@
     <p>
         <span class="@CodeSpan.Base">VerticalAlign</span> provides a utility class that sets an element's CSS <span class="@CodeSpan.Base">vertical-align</span>.
     </p>
-    <section class="code-table">
+    <section>
         <h3 id="vertical-align-class" class="code-table__heading">VerticalAlign class</h3>
-        <table aria-labelledby="vertical-align-class">
-            <thead>
-                <tr>
-                    <th scope="col">Return</th>
-                    <th scope="col">Static Method</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>string</td>
-                    <td>VerticalAlign.SetAs(UnitVerticalAlign unitVerticalAlign)</td>
-                    <td>Gets the class that sets an element's CSS <span class="@CodeSpan.Base">vertical-align</span>.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="vertical-align-class">
+                <thead>
+                    <tr>
+                        <th scope="col">Return</th>
+                        <th scope="col">Static Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>string</td>
+                        <td>VerticalAlign.SetAs(UnitVerticalAlign unitVerticalAlign)</td>
+                        <td>Gets the class that sets an element's CSS <span class="@CodeSpan.Base">vertical-align</span>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 </section>
 
 <section>
     <h2 class="page-heading">Supporting enum</h2>
-    <section class="code-table">
+    <section>
         <h3 id="unit-vertical-align-enum" class="code-table__heading">UnitVerticalAlign enum</h3>
         <p>
             Sets a CSS <span class="@CodeSpan.Base">vertical-align</span> value.
         </p>
-        <table aria-labelledby="unit-vertical-align-enum">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-vertical-align-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Baseline</td>
+                        <td>Aligns the element's baseline with the baseline of its parent. The CSS initial value, and the default returned when no value matches.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Sub</td>
+                        <td>Lowers the element to the parent's subscript baseline.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Super</td>
+                        <td>Raises the element to the parent's superscript baseline.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>TextTop</td>
+                        <td>Aligns the top of the element with the top of the parent element's font.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>TextBottom</td>
+                        <td>Aligns the bottom of the element with the bottom of the parent element's font.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Middle</td>
+                        <td>Aligns the middle of the element with the baseline plus half the x-height of the parent.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Top</td>
+                        <td>Aligns the top of the element with the top of the tallest element on the line. On a table cell, aligns the cell's content to the top of the cell.</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Bottom</td>
+                        <td>Aligns the bottom of the element with the bottom of the lowest element on the line. On a table cell, aligns the cell's content to the bottom of the cell.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
+    <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="css-classes">
             <thead>
                 <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Class</th>
+                    <th scope="col">Type</th>
                     <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>0</td>
-                    <td>Baseline</td>
-                    <td>Aligns the element's baseline with the baseline of its parent. The CSS initial value, and the default returned when no value matches.</td>
+                    <td>br-vertical-align-baseline</td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">vertical-align: baseline</span>.</td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>Sub</td>
-                    <td>Lowers the element to the parent's subscript baseline.</td>
+                    <td>br-vertical-align-sub</td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">vertical-align: sub</span>.</td>
                 </tr>
                 <tr>
-                    <td>2</td>
-                    <td>Super</td>
-                    <td>Raises the element to the parent's superscript baseline.</td>
+                    <td>br-vertical-align-super</td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">vertical-align: super</span>.</td>
                 </tr>
                 <tr>
-                    <td>3</td>
-                    <td>TextTop</td>
-                    <td>Aligns the top of the element with the top of the parent element's font.</td>
+                    <td>br-vertical-align-text-top</td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">vertical-align: text-top</span>.</td>
                 </tr>
                 <tr>
-                    <td>4</td>
-                    <td>TextBottom</td>
-                    <td>Aligns the bottom of the element with the bottom of the parent element's font.</td>
+                    <td>br-vertical-align-text-bottom</td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">vertical-align: text-bottom</span>.</td>
                 </tr>
                 <tr>
-                    <td>5</td>
-                    <td>Middle</td>
-                    <td>Aligns the middle of the element with the baseline plus half the x-height of the parent.</td>
+                    <td>br-vertical-align-middle</td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">vertical-align: middle</span>.</td>
                 </tr>
                 <tr>
-                    <td>6</td>
-                    <td>Top</td>
-                    <td>Aligns the top of the element with the top of the tallest element on the line. On a table cell, aligns the cell's content to the top of the cell.</td>
+                    <td>br-vertical-align-top</td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">vertical-align: top</span>.</td>
                 </tr>
                 <tr>
-                    <td>7</td>
-                    <td>Bottom</td>
-                    <td>Aligns the bottom of the element with the bottom of the lowest element on the line. On a table cell, aligns the cell's content to the bottom of the cell.</td>
+                    <td>br-vertical-align-bottom</td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">vertical-align: bottom</span>.</td>
                 </tr>
             </tbody>
         </table>
-    </section>
-</section>
-
-<section class="code-table">
-    <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
-
-    <table aria-labelledby="css-classes">
-        <thead>
-            <tr>
-                <th scope="col">Class</th>
-                <th scope="col">Type</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>br-vertical-align-baseline</td>
-                <td>Utility</td>
-                <td>Sets <span class="@CodeSpan.Base">vertical-align: baseline</span>.</td>
-            </tr>
-            <tr>
-                <td>br-vertical-align-sub</td>
-                <td>Utility</td>
-                <td>Sets <span class="@CodeSpan.Base">vertical-align: sub</span>.</td>
-            </tr>
-            <tr>
-                <td>br-vertical-align-super</td>
-                <td>Utility</td>
-                <td>Sets <span class="@CodeSpan.Base">vertical-align: super</span>.</td>
-            </tr>
-            <tr>
-                <td>br-vertical-align-text-top</td>
-                <td>Utility</td>
-                <td>Sets <span class="@CodeSpan.Base">vertical-align: text-top</span>.</td>
-            </tr>
-            <tr>
-                <td>br-vertical-align-text-bottom</td>
-                <td>Utility</td>
-                <td>Sets <span class="@CodeSpan.Base">vertical-align: text-bottom</span>.</td>
-            </tr>
-            <tr>
-                <td>br-vertical-align-middle</td>
-                <td>Utility</td>
-                <td>Sets <span class="@CodeSpan.Base">vertical-align: middle</span>.</td>
-            </tr>
-            <tr>
-                <td>br-vertical-align-top</td>
-                <td>Utility</td>
-                <td>Sets <span class="@CodeSpan.Base">vertical-align: top</span>.</td>
-            </tr>
-            <tr>
-                <td>br-vertical-align-bottom</td>
-                <td>Utility</td>
-                <td>Sets <span class="@CodeSpan.Base">vertical-align: bottom</span>.</td>
-            </tr>
-        </tbody>
-    </table>
+    </div>
 </section>
 
 <section>
@@ -178,7 +183,7 @@
     <p>
         The following example shows text in a single rew of a table (without column headers) using three of the available values.
     </p>
-    
+
     <CodeBox CodeBlock="@CssClassesSnippets.VerticalAlign_Code_Example" AriaLabel="VerticalAlign code example." />
 
     <table class="@Table.Base">

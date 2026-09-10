@@ -53,14 +53,12 @@
 </p>
 <p>
     <b>Known issue:</b> if a non-scrollable table (one that still has its own border and radius, i.e. <span class="@CodeSpan.Base">Table.NoBorder</span> has not
-    been applied) is the last item inside a container that has a non-<span class="@CodeSpan.Base">visible</span> <span class="@CodeSpan.Base">overflow-x</span>
-    or <span class="@CodeSpan.Base">overflow-y</span> - for example a <span class="@CodeSpan.Base">Section</span> using <span class="@CodeSpan.Base">OverflowX</span>
-    or <span class="@CodeSpan.Base">OverflowY</span> - some browsers may fail to correctly render the container's rounded corners where they touch the table.
-    This is a rendering issue in the browser, not a fault in your markup. The fix is to add a small amount of padding between the bottom of the table and the
-    container - for example <span class="@CodeSpan.Base">Padding.BlockEnd(UnitSpace.Four)</span> on the container.
+    been applied) is the inside a container that uses scrollbars and there is nothing between the top or bottom of the table and the container the corners get clipped.
+    This is a rendering issue in the browser, not a fault in your markup. The fix is to add a small amount of padding between table and the
+    container - for example add <span class="@CodeSpan.Base">Padding.Block(UnitSpace.Four)</span> on the container.
 </p>
 <p>
-    <strong>Important: </strong>Given how you need to structure the HTML for a scrollable table scenario (see below) and the need to ensure scrollable regions are keyboard 
+    <strong>Important: </strong>Given how you need to structure the HTML for a scrollable table scenario (see below) and the need to ensure scrollable regions are keyboard
     only accessible, the caption element is not used. Instead for accessibilty you should add a title/heading and link it to the table via <span class="@CodeSpan.Base">aria-labelledby</span>.
     When you know the table will be scrollable you just add <span class="@CodeSpan.Base">tabindex="0"</span> on the table, and keyboard only users will see a focus indicator as well as be able to activate
     the scrollbar in browsers that still do not support this functionality natively. If you do not want to use visible text you can also use the <span class="@CodeSpan.Base">aria-label</span> attribute.
@@ -75,77 +73,81 @@
     <p>
         <span class="@CodeSpan.Base">Table</span> provides the BEM CSS classes for the br-table block.
     </p>
-    <section class="code-table">
+    <section>
         <h3 id="table-class" class="code-table__heading">Table class</h3>
-        <table aria-labelledby="table-class">
-            <thead>
-                <tr>
-                    <th scope="col">Return</th>
-                    <th scope="col">Const/Static Method</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>string</td>
-                    <td>Table.Base</td>
-                    <td>The base class, <span class="@CodeSpan.Base">br-table</span>. Always required. Includes its own border and border radius, suitable for a table placed directly on the page.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Table.StripedRows</td>
-                    <td>Applies an alternating background colour to every other body row.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Table.NoBorder</td>
-                    <td>Removes the table's own border and border radius, and makes the header row sticky. Use when wrapping the table in its own bordered, rounded scroll container.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Table.HoverRows</td>
-                    <td>Highlights a row's background colour on hover.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Table.AlignColumn(UnitColumn unitColumn, UnitTextAlign unitTextAlign)</td>
-                    <td>Gets the class that aligns a whole column - its header and every body cell - by targeting the given column position.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="table-class">
+                <thead>
+                    <tr>
+                        <th scope="col">Return</th>
+                        <th scope="col">Const/Static Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>string</td>
+                        <td>Table.Base</td>
+                        <td>The base class, <span class="@CodeSpan.Base">br-table</span>. Always required. Includes its own border and border radius, suitable for a table placed directly on the page.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Table.StripedRows</td>
+                        <td>Applies an alternating background colour to every other body row.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Table.NoBorder</td>
+                        <td>Removes the table's own border and border radius, and makes the header row sticky. Use when wrapping the table in its own bordered, rounded scroll container.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Table.HoverRows</td>
+                        <td>Highlights a row's background colour on hover.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Table.AlignColumn(UnitColumn unitColumn, UnitTextAlign unitTextAlign)</td>
+                        <td>Gets the class that aligns a whole column - its header and every body cell - by targeting the given column position.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 </section>
 
 <section>
     <h2 class="page-heading">Supporting enums</h2>
-    <section class="code-table">
+    <section>
         <h3 id="unit-column-enum" class="code-table__heading">UnitColumn enum</h3>
         <p>
             Sets a 1-based column position, used to target a whole table column (header and body cells together) for alignment via <span class="@CodeSpan.Base">Table.AlignColumn()</span>.
         </p>
-        <table aria-labelledby="unit-column-enum">
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>1</td><td>One</td><td>The 1st column.</td></tr>
-                <tr><td>2</td><td>Two</td><td>The 2nd column.</td></tr>
-                <tr><td>3</td><td>Three</td><td>The 3rd column.</td></tr>
-                <tr><td>4</td><td>Four</td><td>The 4th column.</td></tr>
-                <tr><td>5</td><td>Five</td><td>The 5th column.</td></tr>
-                <tr><td>6</td><td>Six</td><td>The 6th column.</td></tr>
-                <tr><td>7</td><td>Seven</td><td>The 7th column.</td></tr>
-                <tr><td>8</td><td>Eight</td><td>The 8th column.</td></tr>
-                <tr><td>9</td><td>Nine</td><td>The 9th column.</td></tr>
-                <tr><td>10</td><td>Ten</td><td>The 10th column.</td></tr>
-                <tr><td>11</td><td>Eleven</td><td>The 11th column.</td></tr>
-                <tr><td>12</td><td>Twelve</td><td>The 12th column.</td></tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-column-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>One</td><td>The 1st column.</td></tr>
+                    <tr><td>2</td><td>Two</td><td>The 2nd column.</td></tr>
+                    <tr><td>3</td><td>Three</td><td>The 3rd column.</td></tr>
+                    <tr><td>4</td><td>Four</td><td>The 4th column.</td></tr>
+                    <tr><td>5</td><td>Five</td><td>The 5th column.</td></tr>
+                    <tr><td>6</td><td>Six</td><td>The 6th column.</td></tr>
+                    <tr><td>7</td><td>Seven</td><td>The 7th column.</td></tr>
+                    <tr><td>8</td><td>Eight</td><td>The 8th column.</td></tr>
+                    <tr><td>9</td><td>Nine</td><td>The 9th column.</td></tr>
+                    <tr><td>10</td><td>Ten</td><td>The 10th column.</td></tr>
+                    <tr><td>11</td><td>Eleven</td><td>The 11th column.</td></tr>
+                    <tr><td>12</td><td>Twelve</td><td>The 12th column.</td></tr>
+                </tbody>
+            </table>
+        </div>
         <p>
             Column-alignment classes are pre-generated for columns 1 through 12, for <span class="@CodeSpan.Base">start</span>, <span class="@CodeSpan.Base">center</span>,
             <span class="@CodeSpan.Base">end</span>, and <span class="@CodeSpan.Base">justify</span>. A table with more than 12 columns needing per-column alignment will need
@@ -158,55 +160,56 @@
     </section>
 
     <p>
-        <span class="@CodeSpan.Base">Table.AlignColumn()</span> also uses <span class="@CodeSpan.Base">UnitTextAlign</span> - see the 
+        <span class="@CodeSpan.Base">Table.AlignColumn()</span> also uses <span class="@CodeSpan.Base">UnitTextAlign</span> - see the
         <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_TextAlign}/{GlobalValues.Common_Page_Path_Api}")">TextAlign API Reference</a> for its values.
     </p>
 </section>
 
-<section class="code-table">
+<section>
     <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
-
-    <table aria-labelledby="css-classes">
-        <thead>
-            <tr>
-                <th scope="col">Class</th>
-                <th scope="col">Type</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>br-table</td>
-                <td>Block</td>
-                <td>The root table element. Sets default border, border radius, header/content styling, and column widths.</td>
-            </tr>
-            <tr>
-                <td>br-table--striped-rows</td>
-                <td>Modifier</td>
-                <td>Applies an alternating background colour to every other body row.</td>
-            </tr>
-            <tr>
-                <td>br-table--no-border</td>
-                <td>Modifier</td>
-                <td>Removes the table's own border and border radius, and makes the header row sticky.</td>
-            </tr>
-            <tr>
-                <td>br-table--hover-rows</td>
-                <td>Modifier</td>
-                <td>Highlights a row's background colour on hover.</td>
-            </tr>
-            <tr>
-                <td>
-                    br-table--align-col-1-start through br-table--align-col-12-start<br>
-                    br-table--align-col-1-center through br-table--align-col-12-center<br>
-                    br-table--align-col-1-end through br-table--align-col-12-end<br>
-                    br-table--align-col-1-justify through br-table--align-col-12-justify
-                </td>
-                <td>Modifier(s)</td>
-                <td>Aligns the header and every body cell of the given column position.</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="css-classes">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>br-table</td>
+                    <td>Block</td>
+                    <td>The root table element. Sets default border, border radius, header/content styling, and column widths.</td>
+                </tr>
+                <tr>
+                    <td>br-table--striped-rows</td>
+                    <td>Modifier</td>
+                    <td>Applies an alternating background colour to every other body row.</td>
+                </tr>
+                <tr>
+                    <td>br-table--no-border</td>
+                    <td>Modifier</td>
+                    <td>Removes the table's own border and border radius, and makes the header row sticky.</td>
+                </tr>
+                <tr>
+                    <td>br-table--hover-rows</td>
+                    <td>Modifier</td>
+                    <td>Highlights a row's background colour on hover.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-table--align-col-1-start through br-table--align-col-12-start<br>
+                        br-table--align-col-1-center through br-table--align-col-12-center<br>
+                        br-table--align-col-1-end through br-table--align-col-12-end<br>
+                        br-table--align-col-1-justify through br-table--align-col-12-justify
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Aligns the header and every body cell of the given column position.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 
 
@@ -342,7 +345,7 @@
         the scrollbar does not draw over the border.
     </p>
     <p>
-        <strong>Note: </strong>Unlike the Data Table that uses the Container header radius group the Table uses the Container content radius group 
+        <strong>Note: </strong>Unlike the Data Table that uses the Container header radius group the Table uses the Container content radius group
     </p>
     <h2 id="scrollable-table">Scrollable table example</h2>
 

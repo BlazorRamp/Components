@@ -27,102 +27,107 @@
     <p>
         <span class="@CodeSpan.Base">TextAlign</span> provides a utility class that sets an element's CSS <span class="@CodeSpan.Base">text-align</span>.
     </p>
-    <section class="code-table">
+    <section>
         <h3 id="text-align-class" class="code-table__heading">TextAlign class</h3>
-        <table aria-labelledby="text-align-class">
-            <thead>
-                <tr>
-                    <th scope="col">Return</th>
-                    <th scope="col">Static Method</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>string</td>
-                    <td>TextAlign.SetAs(UnitTextAlign unitTextAlign)</td>
-                    <td>Gets the class that sets an element's CSS <span class="@CodeSpan.Base">text-align</span>.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="text-align-class">
+                <thead>
+                    <tr>
+                        <th scope="col">Return</th>
+                        <th scope="col">Static Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>string</td>
+                        <td>TextAlign.SetAs(UnitTextAlign unitTextAlign)</td>
+                        <td>Gets the class that sets an element's CSS <span class="@CodeSpan.Base">text-align</span>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 </section>
 
 <section>
     <h2 class="page-heading">Supporting enum</h2>
-    <section class="code-table">
+    <section>
         <h3 id="unit-text-align-enum" class="code-table__heading">UnitTextAlign enum</h3>
         <p>
             Sets a CSS <span class="@CodeSpan.Base">text-align</span> value.
         </p>
-        <table aria-labelledby="unit-text-align-enum">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-text-align-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Start</td>
+                        <td>Aligns text to the start edge of the line box (left in a horizontal, left-to-right writing mode). Adapts automatically for right-to-left content.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Centre</td>
+                        <td>Centres text within the line box.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>End</td>
+                        <td>Aligns text to the end edge of the line box (right in a horizontal, left-to-right writing mode). Adapts automatically for right-to-left content.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Justify</td>
+                        <td>Stretches lines so each line (other than the last) has equal width, with text spaced to fill the full width of the line box.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
+    <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="css-classes">
             <thead>
                 <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Class</th>
+                    <th scope="col">Type</th>
                     <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>0</td>
-                    <td>Start</td>
-                    <td>Aligns text to the start edge of the line box (left in a horizontal, left-to-right writing mode). Adapts automatically for right-to-left content.</td>
+                    <td>br-text-align-start</td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">text-align: start</span>.</td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>Centre</td>
-                    <td>Centres text within the line box.</td>
+                    <td>br-text-align-center</td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">text-align: center</span>.</td>
                 </tr>
                 <tr>
-                    <td>2</td>
-                    <td>End</td>
-                    <td>Aligns text to the end edge of the line box (right in a horizontal, left-to-right writing mode). Adapts automatically for right-to-left content.</td>
+                    <td>br-text-align-end</td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">text-align: end</span>.</td>
                 </tr>
                 <tr>
-                    <td>3</td>
-                    <td>Justify</td>
-                    <td>Stretches lines so each line (other than the last) has equal width, with text spaced to fill the full width of the line box.</td>
+                    <td>br-text-align-justify</td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">text-align: justify</span>.</td>
                 </tr>
             </tbody>
         </table>
-    </section>
-</section>
-
-<section class="code-table">
-    <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
-
-    <table aria-labelledby="css-classes">
-        <thead>
-            <tr>
-                <th scope="col">Class</th>
-                <th scope="col">Type</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>br-text-align-start</td>
-                <td>Utility</td>
-                <td>Sets <span class="@CodeSpan.Base">text-align: start</span>.</td>
-            </tr>
-            <tr>
-                <td>br-text-align-center</td>
-                <td>Utility</td>
-                <td>Sets <span class="@CodeSpan.Base">text-align: center</span>.</td>
-            </tr>
-            <tr>
-                <td>br-text-align-end</td>
-                <td>Utility</td>
-                <td>Sets <span class="@CodeSpan.Base">text-align: end</span>.</td>
-            </tr>
-            <tr>
-                <td>br-text-align-justify</td>
-                <td>Utility</td>
-                <td>Sets <span class="@CodeSpan.Base">text-align: justify</span>.</td>
-            </tr>
-        </tbody>
-    </table>
+    </div>
 </section>
 
 <section>
@@ -130,7 +135,7 @@
     <p>
         The following example just shows text in a box centred horizontally.
     </p>
-    
+
     <CodeBox CodeBlock="@CssClassesSnippets.TextAlign_Code_Example" AriaLabel="TextAlign code example." />
 
     <div style="width:400px; height:100px;border:1px solid var(--br-comp-all-divider-colour);" class="@TextAlign.SetAs(UnitTextAlign.Centre)">

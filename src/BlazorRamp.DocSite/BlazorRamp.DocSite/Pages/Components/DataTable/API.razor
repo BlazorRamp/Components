@@ -16,697 +16,702 @@
         The following sections cover all components that make up this feature, including their parameters,
         public methods, and any supporting classes or enumerations required for use.
     </p>
-    <section class="code-table">
+    <section>
 
         <h3 id="data-table-component-parameters" class="code-table__heading">Data Table parent component parameters</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="data-table-component-parameters">
 
-        <table aria-labelledby="data-table-component-parameters">
-
-            <thead>
-                <tr>
-                    <th scope="col">Parameter</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>TableColumns</td>
-                    <td>RenderFragment</td>
-                    <td>
-                        Placeholder for all of the <span class="@CodeSpan.Base">DataColumn</span> and <span class="@CodeSpan.Base">TemplateColumn</span>
-                        components, which get added to the tables column collection.
-                    </td>
-                </tr>
-                <tr>
-                    <td>Title</td>
-                    <td>string</td>
-                    <td>Gets or sets the table's title, shown above the content and used as the accessible name for the table. Default value: <span class="@CodeSpan.Base">Results</span>.</td>
-                </tr>
-                <tr>
-                    <td>TitleAlignment</td>
-                    <td>TitleAlignment (enum)</td>
-                    <td>Gets or sets the horizontal alignment of the title. Default value: <span class="@CodeSpan.Base">TitleAlignment.Start</span>.</td>
-                </tr>
-                <tr>
-                    <td>TitleHidden</td>
-                    <td>bool</td>
-                    <td>Gets or sets whether the title is visually hidden while remaining available to assistive technology. Default value: <span class="@CodeSpan.Base">false</span>.</td>
-                </tr>
-                <tr>
-                    <td>Filter</td>
-                    <td>RenderFragment?</td>
-                    <td>The optional markup for a custom filter UI, rendered above the table.</td>
-                </tr>
-                <tr>
-                    <td>FilterAlignment</td>
-                    <td>FilterAlignment</td>
-                    <td>Gets or sets the horizontal alignment of the filter area. Default value: <span class="@CodeSpan.Base">FilterAlignment.End</span>.</td>
-                </tr>
-                <tr>
-                    <td>TopPager</td>
-                    <td>RenderFragment?</td>
-                    <td>The optional markup for a pager rendered above the table.</td>
-                </tr>
-                <tr>
-                    <td>BottomPager</td>
-                    <td>RenderFragment?</td>
-                    <td>The optional markup for a pager rendered below the table.</td>
-                </tr>
-                <tr>
-                    <td>VirtualizeItemSizePX</td>
-                    <td>int</td>
-                    <td>
-                        Gets or sets the estimated pixel height of each row, used by the virtualized rendering path. 
-                        Set below 1 to disable virtualization. Default value: <span class="@CodeSpan.Base">32</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>OverscanCount</td>
-                    <td>int</td>
-                    <td>
-                        Gets or sets the number of extra rows rendered above and below the visible viewport when virtualization 
-                        is active, to reduce blank space during fast scrolling. 
-                        Default value: <span class="@CodeSpan.Base">50</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>TableHeight</td>
-                    <td>string?</td>
-                    <td>
-                        Gets or sets the table's height, in any valid CSS unit. Applied as a fixed <span class="@CodeSpan.Base">height</span> when 
-                        using virtualized rendering (required, since the Virtualize component needs a definite height to measure against), 
-                        or as a <span class="@CodeSpan.Base">max-height</span> when paging is enabled, allowing the table to shrink for fewer rows. 
-                        Defaults if null, empty, or whitespace. Default value: <span class="@CodeSpan.Base">500px</span>.</td>
-                </tr>
-                <tr>
-                    <td>PagerBinding</td>
-                    <td>PagerBinding?</td>
-                    <td>
-                        When supplied, enables paging and binds the table to the given paging state.
-                        Default value: <span class="@CodeSpan.Base">null</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>RowSelectHeading</td>
-                    <td>string?</td>
-                    <td>
-                        Gets or sets the header text for the row-selection column. Defaults if null, empty, or whitespace.
-                        Default value: <span class="@CodeSpan.Base">Select</span>.
-                        <br /><b>Note:</b> This value is captured during the OnInitialized method and changes thereafter are ignored.
-                    </td>
-                </tr>
-                <tr>
-                    <td>RowIdentifierFunc</td>
-                    <td>Func&lt;TData, string&gt;?</td>
-                    <td>
-                        Gets or sets an optional function producing a per-row accessible label for that row's selection checkbox to make a better/unique accessible name.
-                    </td>
-                </tr>
-                <tr>
-                    <td>NoRecordText</td>
-                    <td>string?</td>
-                    <td>
-                        Gets or sets the text shown when there are no rows to display. Defaults if null, empty, or whitespace.
-                        Default value: <span class="@CodeSpan.Base">No entries found.</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>FilterCountText</td>
-                    <td>string?</td>
-                    <td>
-                        Gets or sets a template for the row-count message shown when a filter is active. Supports {filteredrows} and {totalrows} tokens.
-                        Default value: <span class="@CodeSpan.Base">Showing {filteredrows} filtered items from a total of {totalrows}.</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>RecordCountText</td>
-                    <td>string?</td>
-                    <td>
-                        Gets or sets a template for the row-count message shown when no filter is active.
-                        Supports the {totalrows} token. Default value: <span class="@CodeSpan.Base">Showing {totalrows} items.</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>DataSource</td>
-                    <td>List&lt;TData&gt;</td>
-                    <td>
-                        The full list of rows to display. Required. Treated as immutable: to add, remove, or otherwise change rows, 
-                        assign a new List instance rather than mutating this one in place — only a new reference is detected as a data change.
-                        If you mutate DataSource in place instead, call Refresh() afterwards via an ElementReference set on the DataTable i.e 
-                        <span class="@CodeSpan.Base">private DataTable DataTableRef {get;set;}</span> with <span class="@CodeSpan.Base">@@ref="DataTableRef"</span>
-                        Default value: <span class="@CodeSpan.Base">[]</span>.</td>
-                </tr>
-                <tr>
-                    <td>RowSelectionMode</td>
-                    <td>RowSelectionMode (enum)</td>
-                    <td>
-                        Determines whether rows can be selected, and if so, whether selection is single or multiple. 
-                        Default value: <span class="@CodeSpan.Base">RowSelectionMode.None</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>SelectedRows</td>
-                    <td>List&lt;TData&gt;</td>
-                    <td>
-                        The currently selected rows. Default value: <span class="@CodeSpan.Base">[]</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>RowStyleFunc</td>
-                    <td>Func&lt;TData, string?&gt;?</td>
-                    <td>
-                        Gets or sets an optional function returning inline CSS for a row's <span class="@CodeSpan.Base">&lt;tr&gt;</span> element.
-                        Default value: <span class="@CodeSpan.Base">null</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>FilterRule</td>
-                    <td>Func&lt;TData, bool&gt;?</td>
-                    <td>
-                        Gets or sets an options predicate used to filter the DataSource. Supplying a new delegate instance triggers re-filtering; reusing the same instance across renders will not.
-                    </td>
-                </tr>
-                <tr>
-                    <td>FilteredStatusText</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets screen reader announcement text used when a filter has been applied.
-                        Default value: <span class="@CodeSpan.Base">Filtering completed.</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>SortUpStatusText</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets screen reader announcement text used when a column is sorted ascending.
-                        Default value: <span class="@CodeSpan.Base">Sort up completed.</span>. 
-                        <b>Note:</b> I find it audibly hard to distinguish, ascending / descending when using a screen reader
-                        up / down I never mis hear. 
-                    </td>
-                </tr>
-                <tr>
-                    <td>SortDownStatusText</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets screen reader announcement text used when a column is sorted descending.
-                        Default value: <span class="@CodeSpan.Base">Sort down completed.</span>.
-                        <b>Note:</b> I find it audibly hard to distinguish, ascending / descending when using a screen reader
-                        up / down I never mis hear.
-                    </td>
-                </tr>
-                <tr>
-                    <td>SortRemovedStatusText</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets screen reader announcement text used when a column's sort is cleared.
-                        Default value: <span class="@CodeSpan.Base">Sort removed.</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>PressToSortText</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets the hidden hint text describing sort buttons to assistive technology, referenced via
-                        <span class="@CodeSpan.Base">aria-describedby</span>.
-                        Default value: <span class="@CodeSpan.Base">Press to sort.</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>AddTableTabIndex</td>
-                    <td>bool</td>
-                    <td>
-                        Changes the tabindex of -1 to 0 on the table element. You would only need to do this if 
-                        the table was scrollable without any interactive focusable elements such as sortable headers, selection checkboxes or custom row actions. 
-                        A focusable item on the table allows keyboard only users the ability move any scrollbars. Default value: <span class="@CodeSpan.Base">false</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>AdditionalAttributes</td>
-                    <td>Dictionary&lt;string, object&gt;?</td>
-                    <td>Gets or sets additional attributes applied to the underlying table element.</td>
-                </tr>
-                <tr>
-                    <td>SelectedRowsChanged</td>
-                    <td>EventCallback&lt;List&lt;TData&gt;&gt;</td>
-                    <td>Raised whenever the selected rows change.</td>
-                </tr>
-            </tbody>
-        </table>
-
+                <thead>
+                    <tr>
+                        <th scope="col">Parameter</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>TableColumns</td>
+                        <td>RenderFragment</td>
+                        <td>
+                            Placeholder for all of the <span class="@CodeSpan.Base">DataColumn</span> and <span class="@CodeSpan.Base">TemplateColumn</span>
+                            components, which get added to the tables column collection.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Title</td>
+                        <td>string</td>
+                        <td>Gets or sets the table's title, shown above the content and used as the accessible name for the table. Default value: <span class="@CodeSpan.Base">Results</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>TitleAlignment</td>
+                        <td>TitleAlignment (enum)</td>
+                        <td>Gets or sets the horizontal alignment of the title. Default value: <span class="@CodeSpan.Base">TitleAlignment.Start</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>TitleHidden</td>
+                        <td>bool</td>
+                        <td>Gets or sets whether the title is visually hidden while remaining available to assistive technology. Default value: <span class="@CodeSpan.Base">false</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>Filter</td>
+                        <td>RenderFragment?</td>
+                        <td>The optional markup for a custom filter UI, rendered above the table.</td>
+                    </tr>
+                    <tr>
+                        <td>FilterAlignment</td>
+                        <td>FilterAlignment</td>
+                        <td>Gets or sets the horizontal alignment of the filter area. Default value: <span class="@CodeSpan.Base">FilterAlignment.End</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>TopPager</td>
+                        <td>RenderFragment?</td>
+                        <td>The optional markup for a pager rendered above the table.</td>
+                    </tr>
+                    <tr>
+                        <td>BottomPager</td>
+                        <td>RenderFragment?</td>
+                        <td>The optional markup for a pager rendered below the table.</td>
+                    </tr>
+                    <tr>
+                        <td>VirtualizeItemSizePX</td>
+                        <td>int</td>
+                        <td>
+                            Gets or sets the estimated pixel height of each row, used by the virtualized rendering path.
+                            Set below 1 to disable virtualization. Default value: <span class="@CodeSpan.Base">32</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OverscanCount</td>
+                        <td>int</td>
+                        <td>
+                            Gets or sets the number of extra rows rendered above and below the visible viewport when virtualization
+                            is active, to reduce blank space during fast scrolling.
+                            Default value: <span class="@CodeSpan.Base">50</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>TableHeight</td>
+                        <td>string?</td>
+                        <td>
+                            Gets or sets the table's height, in any valid CSS unit. Applied as a fixed <span class="@CodeSpan.Base">height</span> when
+                            using virtualized rendering (required, since the Virtualize component needs a definite height to measure against),
+                            or as a <span class="@CodeSpan.Base">max-height</span> when paging is enabled, allowing the table to shrink for fewer rows.
+                            Defaults if null, empty, or whitespace. Default value: <span class="@CodeSpan.Base">500px</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PagerBinding</td>
+                        <td>PagerBinding?</td>
+                        <td>
+                            When supplied, enables paging and binds the table to the given paging state.
+                            Default value: <span class="@CodeSpan.Base">null</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>RowSelectHeading</td>
+                        <td>string?</td>
+                        <td>
+                            Gets or sets the header text for the row-selection column. Defaults if null, empty, or whitespace.
+                            Default value: <span class="@CodeSpan.Base">Select</span>.
+                            <br /><b>Note:</b> This value is captured during the OnInitialized method and changes thereafter are ignored.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>RowIdentifierFunc</td>
+                        <td>Func&lt;TData, string&gt;?</td>
+                        <td>
+                            Gets or sets an optional function producing a per-row accessible label for that row's selection checkbox to make a better/unique accessible name.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>NoRecordText</td>
+                        <td>string?</td>
+                        <td>
+                            Gets or sets the text shown when there are no rows to display. Defaults if null, empty, or whitespace.
+                            Default value: <span class="@CodeSpan.Base">No entries found.</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>FilterCountText</td>
+                        <td>string?</td>
+                        <td>
+                            Gets or sets a template for the row-count message shown when a filter is active. Supports {filteredrows} and {totalrows} tokens.
+                            Default value: <span class="@CodeSpan.Base">Showing {filteredrows} filtered items from a total of {totalrows}.</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>RecordCountText</td>
+                        <td>string?</td>
+                        <td>
+                            Gets or sets a template for the row-count message shown when no filter is active.
+                            Supports the {totalrows} token. Default value: <span class="@CodeSpan.Base">Showing {totalrows} items.</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DataSource</td>
+                        <td>List&lt;TData&gt;</td>
+                        <td>
+                            The full list of rows to display. Required. Treated as immutable: to add, remove, or otherwise change rows,
+                            assign a new List instance rather than mutating this one in place — only a new reference is detected as a data change.
+                            If you mutate DataSource in place instead, call Refresh() afterwards via an ElementReference set on the DataTable i.e
+                            <span class="@CodeSpan.Base">private DataTable DataTableRef {get;set;}</span> with <span class="@CodeSpan.Base">@@ref="DataTableRef"</span>
+                            Default value: <span class="@CodeSpan.Base">[]</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>RowSelectionMode</td>
+                        <td>RowSelectionMode (enum)</td>
+                        <td>
+                            Determines whether rows can be selected, and if so, whether selection is single or multiple.
+                            Default value: <span class="@CodeSpan.Base">RowSelectionMode.None</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SelectedRows</td>
+                        <td>List&lt;TData&gt;</td>
+                        <td>
+                            The currently selected rows. Default value: <span class="@CodeSpan.Base">[]</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>RowStyleFunc</td>
+                        <td>Func&lt;TData, string?&gt;?</td>
+                        <td>
+                            Gets or sets an optional function returning inline CSS for a row's <span class="@CodeSpan.Base">&lt;tr&gt;</span> element.
+                            Default value: <span class="@CodeSpan.Base">null</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>FilterRule</td>
+                        <td>Func&lt;TData, bool&gt;?</td>
+                        <td>
+                            Gets or sets an options predicate used to filter the DataSource. Supplying a new delegate instance triggers re-filtering; reusing the same instance across renders will not.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>FilteredStatusText</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets screen reader announcement text used when a filter has been applied.
+                            Default value: <span class="@CodeSpan.Base">Filtering completed.</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SortUpStatusText</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets screen reader announcement text used when a column is sorted ascending.
+                            Default value: <span class="@CodeSpan.Base">Sort up completed.</span>.
+                            <b>Note:</b> I find it audibly hard to distinguish, ascending / descending when using a screen reader
+                            up / down I never mis hear.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SortDownStatusText</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets screen reader announcement text used when a column is sorted descending.
+                            Default value: <span class="@CodeSpan.Base">Sort down completed.</span>.
+                            <b>Note:</b> I find it audibly hard to distinguish, ascending / descending when using a screen reader
+                            up / down I never mis hear.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SortRemovedStatusText</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets screen reader announcement text used when a column's sort is cleared.
+                            Default value: <span class="@CodeSpan.Base">Sort removed.</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PressToSortText</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets the hidden hint text describing sort buttons to assistive technology, referenced via
+                            <span class="@CodeSpan.Base">aria-describedby</span>.
+                            Default value: <span class="@CodeSpan.Base">Press to sort.</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>AddTableTabIndex</td>
+                        <td>bool</td>
+                        <td>
+                            Changes the tabindex of -1 to 0 on the table element. You would only need to do this if
+                            the table was scrollable without any interactive focusable elements such as sortable headers, selection checkboxes or custom row actions.
+                            A focusable item on the table allows keyboard only users the ability move any scrollbars. Default value: <span class="@CodeSpan.Base">false</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>AdditionalAttributes</td>
+                        <td>Dictionary&lt;string, object&gt;?</td>
+                        <td>Gets or sets additional attributes applied to the underlying table element.</td>
+                    </tr>
+                    <tr>
+                        <td>SelectedRowsChanged</td>
+                        <td>EventCallback&lt;List&lt;TData&gt;&gt;</td>
+                        <td>Raised whenever the selected rows change.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
-    <section class="code-table">
+    <section>
 
         <h3 id="data-column-component-parameters" class="code-table__heading">DataColumn component parameters</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="data-column-component-parameters">
 
-        <table aria-labelledby="data-column-component-parameters">
-
-            <thead>
-                <tr>
-                    <th scope="col">Parameter</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>DataProperty</td>
-                    <td>Expression&lt;Func&lt;TData, object&gt;&gt;?</td>
-                    <td>
-                        The property on TData this column reads its value from. Required. 
-                        Default value: <span class="@CodeSpan.Base">default</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>CellStyleFunc</td>
-                    <td>Func&lt;TData, string?&gt;?</td>
-                    <td>
-                        Gets or sets the optional function returning inline CSS for a specific row's cell in this column. 
-                        Default value: <span class="@CodeSpan.Base">null</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>IsSortable</td>
-                    <td>bool</td>
-                    <td>Gets or sets the whether column sorting is available for this column. Default value: <span class="@CodeSpan.Base">false</span>.</td>
-                </tr>
-                <tr>
-                    <td>CellTemplate</td>
-                    <td>RenderFragment&lt;TData&gt;?</td>
-                    <td>
-                        Gets or sets the optional template used to render each cell's content instead of just the raw value. 
-                        Default value: <span class="@CodeSpan.Base">default</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>HeaderStyle</td>
-                    <td>string?</td>
-                    <td>
-                        Gets or sets the optional inline CSS values applied to a style attribute on the column's header cell. 
-                        Default value: <span class="@CodeSpan.Base">null</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>CellStyle</td>
-                    <td>string?</td>
-                    <td>
-                        Gets or sets the optional inline CSS values applied to a style attribute added to every cell in the column. 
-                        Default value: <span class="@CodeSpan.Base">null</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>DisplayName</td>
-                    <td>string</td>
-                    <td>Gets or sets the text shown in the column header. Default to the field name if not entered.</td>
-                </tr>
-                <tr>
-                    <td>CellFormat</td>
-                    <td>string?</td>
-                    <td>
-                        Gets or sets the optional .NET format string applied to the cell's value, e.g. for dates or numbers. 
-                        Default value: <span class="@CodeSpan.Base">null</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>ColumnAlignment</td>
-                    <td>ColumnAlignment (enum)</td>
-                    <td>
-                        Horizontal alignment applied to the column's header and cells. 
-                        Default value: <span class="@CodeSpan.Base">ColumnAlignment.Start</span>.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
+                <thead>
+                    <tr>
+                        <th scope="col">Parameter</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DataProperty</td>
+                        <td>Expression&lt;Func&lt;TData, object&gt;&gt;?</td>
+                        <td>
+                            The property on TData this column reads its value from. Required.
+                            Default value: <span class="@CodeSpan.Base">default</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CellStyleFunc</td>
+                        <td>Func&lt;TData, string?&gt;?</td>
+                        <td>
+                            Gets or sets the optional function returning inline CSS for a specific row's cell in this column.
+                            Default value: <span class="@CodeSpan.Base">null</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>IsSortable</td>
+                        <td>bool</td>
+                        <td>Gets or sets the whether column sorting is available for this column. Default value: <span class="@CodeSpan.Base">false</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>CellTemplate</td>
+                        <td>RenderFragment&lt;TData&gt;?</td>
+                        <td>
+                            Gets or sets the optional template used to render each cell's content instead of just the raw value.
+                            Default value: <span class="@CodeSpan.Base">default</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>HeaderStyle</td>
+                        <td>string?</td>
+                        <td>
+                            Gets or sets the optional inline CSS values applied to a style attribute on the column's header cell.
+                            Default value: <span class="@CodeSpan.Base">null</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CellStyle</td>
+                        <td>string?</td>
+                        <td>
+                            Gets or sets the optional inline CSS values applied to a style attribute added to every cell in the column.
+                            Default value: <span class="@CodeSpan.Base">null</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DisplayName</td>
+                        <td>string</td>
+                        <td>Gets or sets the text shown in the column header. Default to the field name if not entered.</td>
+                    </tr>
+                    <tr>
+                        <td>CellFormat</td>
+                        <td>string?</td>
+                        <td>
+                            Gets or sets the optional .NET format string applied to the cell's value, e.g. for dates or numbers.
+                            Default value: <span class="@CodeSpan.Base">null</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ColumnAlignment</td>
+                        <td>ColumnAlignment (enum)</td>
+                        <td>
+                            Horizontal alignment applied to the column's header and cells.
+                            Default value: <span class="@CodeSpan.Base">ColumnAlignment.Start</span>.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
-    <section class="code-table">
+    <section>
         <h3 id="template-column-component-parameters" class="code-table__heading">TemplateColumn component parameters</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="template-column-component-parameters">
 
-        <table aria-labelledby="template-column-component-parameters">
-
-            <thead>
-                <tr>
-                    <th scope="col">Parameter</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>HeaderTemplate</td>
-                    <td>RenderFragment&lt;string&gt;?</td>
-                    <td>
-                        Gets or sets the optional template used to render the column header. Receives the column's display name.
-                    </td>
-                </tr>
-                <tr>
-                    <td>CellTemplate</td>
-                    <td>RenderFragment&lt;TData&gt;?</td>
-                    <td>
-                        Gets or sets the optional template used to render each cell's content instead of just the raw value.
-                        Default value: <span class="@CodeSpan.Base">default</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>HeaderStyle</td>
-                    <td>string?</td>
-                    <td>
-                        Gets or sets the optional inline CSS values applied to a style attribute on the column's header cell.
-                        Default value: <span class="@CodeSpan.Base">null</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>CellStyle</td>
-                    <td>string?</td>
-                    <td>
-                        Gets or sets the optional inline CSS values applied to a style attribute added to every cell in the column.
-                        Default value: <span class="@CodeSpan.Base">null</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>DisplayName</td>
-                    <td>string</td>
-                    <td>Gets or sets the text shown in the column header. Default to the field name if not entered.</td>
-                </tr>
-                <tr>
-                    <td>CellFormat</td>
-                    <td>string?</td>
-                    <td>
-                        Gets or sets the optional .NET format string applied to the cell's value, e.g. for dates or numbers.
-                        Default value: <span class="@CodeSpan.Base">null</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>ColumnAlignment</td>
-                    <td>ColumnAlignment (enum)</td>
-                    <td>
-                        Horizontal alignment applied to the column's header and cells.
-                        Default value: <span class="@CodeSpan.Base">ColumnAlignment.Start</span>.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th scope="col">Parameter</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>HeaderTemplate</td>
+                        <td>RenderFragment&lt;string&gt;?</td>
+                        <td>
+                            Gets or sets the optional template used to render the column header. Receives the column's display name.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CellTemplate</td>
+                        <td>RenderFragment&lt;TData&gt;?</td>
+                        <td>
+                            Gets or sets the optional template used to render each cell's content instead of just the raw value.
+                            Default value: <span class="@CodeSpan.Base">default</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>HeaderStyle</td>
+                        <td>string?</td>
+                        <td>
+                            Gets or sets the optional inline CSS values applied to a style attribute on the column's header cell.
+                            Default value: <span class="@CodeSpan.Base">null</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CellStyle</td>
+                        <td>string?</td>
+                        <td>
+                            Gets or sets the optional inline CSS values applied to a style attribute added to every cell in the column.
+                            Default value: <span class="@CodeSpan.Base">null</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DisplayName</td>
+                        <td>string</td>
+                        <td>Gets or sets the text shown in the column header. Default to the field name if not entered.</td>
+                    </tr>
+                    <tr>
+                        <td>CellFormat</td>
+                        <td>string?</td>
+                        <td>
+                            Gets or sets the optional .NET format string applied to the cell's value, e.g. for dates or numbers.
+                            Default value: <span class="@CodeSpan.Base">null</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ColumnAlignment</td>
+                        <td>ColumnAlignment (enum)</td>
+                        <td>
+                            Horizontal alignment applied to the column's header and cells.
+                            Default value: <span class="@CodeSpan.Base">ColumnAlignment.Start</span>.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
         <h3 id="data-table-methods" class="code-table__heading">DataTable component methods</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="data-table-methods">
 
-        <table aria-labelledby="data-table-methods">
-
-            <thead>
-                <tr>
-                    <th scope="col">Return</th>
-                    <th scope="col">Method</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Task</td>
-                    <td>SetTableFocus()</td>
-                    <td>
-                        Programmatically using JavaScript sets focus on the table element.
-                        and applies a temporary modifier class to ensure that a focus indicator
-                        is visible around the table whilst it has this focus.
-                    </td>
-                </tr>
-                <tr>
-                    <td>TData?</td>
-                    <td>GetAdjacentDisplayedRow(TData rowItem)</td>
-                    <td>
-                        Returns the row adjacent to <span class="@CodeSpan.Base">rowItem</span> in the currently displayed order — the
-                        next row if one exists, otherwise the previous row, otherwise default if rowItem was the only
-                        displayed row.
-                    </td>
-                </tr>
-                <tr>
-                    <td>Task</td>
-                     <td>Refresh()</td>
-                    <td>
-                        Forces the table to re-filter, re-sort, and re-page from <span class="@CodeSpan.Base">DataSource</span> 
-                        Call this after mutating the existing DataSource list in place (e.g. Add/Remove/Clear) rather than
-                        assigning a new List instance, since in-place mutation is not detected automatically.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th scope="col">Return</th>
+                        <th scope="col">Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Task</td>
+                        <td>SetTableFocus()</td>
+                        <td>
+                            Programmatically using JavaScript sets focus on the table element.
+                            and applies a temporary modifier class to ensure that a focus indicator
+                            is visible around the table whilst it has this focus.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>TData?</td>
+                        <td>GetAdjacentDisplayedRow(TData rowItem)</td>
+                        <td>
+                            Returns the row adjacent to <span class="@CodeSpan.Base">rowItem</span> in the currently displayed order — the
+                            next row if one exists, otherwise the previous row, otherwise default if rowItem was the only
+                            displayed row.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Task</td>
+                        <td>Refresh()</td>
+                        <td>
+                            Forces the table to re-filter, re-sort, and re-page from <span class="@CodeSpan.Base">DataSource</span>
+                            Call this after mutating the existing DataSource list in place (e.g. Add/Remove/Clear) rather than
+                            assigning a new List instance, since in-place mutation is not detected automatically.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="pager-binding-class" class="code-table__heading">PagerBinding class</h3>
         <p>
             This class just holds and binds the information used by both the pager and the data table.
         </p>
-        <table aria-labelledby="pager-binding-class">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="pager-binding-class">
 
-            <thead>
-                <tr>
-                    <th scope="col">Type</th>
-                    <th scope="col">Property</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>int</td>
-                    <td>ItemsPerPage</td>
-                    <td>
-                        The number of rows to display per page.
-                        Defaults to <span class="@CodeSpan.Base">10</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>int</td>
-                    <td>CurrentPage</td>
-                    <td>
-                        The page currently being displayed.
-                        Defaults to <span class="@CodeSpan.Base">0</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>int</td>
-                    <td>CurrentItemCount</td>
-                    <td>
-                        he number of rows in the current filtered/unfiltered data set.
-                        Defaults to <span class="@CodeSpan.Base">0</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>int</td>
-                    <td>TotalItemCount</td>
-                    <td>
-                        The total number of rows available before filtering.
-                        Defaults to <span class="@CodeSpan.Base">0</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3">
-                        <b>Constructor:</b><br />
-                        PagerBinding(int itemsPerPage = 10)
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
+                <thead>
+                    <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col">Property</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>int</td>
+                        <td>ItemsPerPage</td>
+                        <td>
+                            The number of rows to display per page.
+                            Defaults to <span class="@CodeSpan.Base">10</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>int</td>
+                        <td>CurrentPage</td>
+                        <td>
+                            The page currently being displayed.
+                            Defaults to <span class="@CodeSpan.Base">0</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>int</td>
+                        <td>CurrentItemCount</td>
+                        <td>
+                            he number of rows in the current filtered/unfiltered data set.
+                            Defaults to <span class="@CodeSpan.Base">0</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>int</td>
+                        <td>TotalItemCount</td>
+                        <td>
+                            The total number of rows available before filtering.
+                            Defaults to <span class="@CodeSpan.Base">0</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <b>Constructor:</b><br />
+                            PagerBinding(int itemsPerPage = 10)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 </section>
 <section>
     <h2 class="page-heading">Supporting enums</h2>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="title-alignment-enum" class="code-table__heading">TitleAlignment enum</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="title-alignment-enum">
 
-        <table aria-labelledby="title-alignment-enum">
-
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>Start</td>
-                    <td>
-                        Align the title to the start (left in LTR layouts).
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Centre</td>
-                    <td>
-                        Centre the content.
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>End</td>
-                    <td>
-                        Align the title to the end (right in LTR layouts).
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Start</td>
+                        <td>
+                            Align the title to the start (left in LTR layouts).
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Centre</td>
+                        <td>
+                            Centre the content.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>End</td>
+                        <td>
+                            Align the title to the end (right in LTR layouts).
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="column-alignment-enum" class="code-table__heading">ColumnAlignment enum</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="column-alignment-enum">
 
-        <table aria-labelledby="column-alignment-enum">
-
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>Start</td>
-                    <td>
-                        Align content to the start (left in LTR layouts).
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Centre</td>
-                    <td>
-                        Centre the content
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>End</td>
-                    <td>
-                        Align content to the end (right in LTR layouts).
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Start</td>
+                        <td>
+                            Align content to the start (left in LTR layouts).
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Centre</td>
+                        <td>
+                            Centre the content
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>End</td>
+                        <td>
+                            Align content to the end (right in LTR layouts).
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="filter-alignment-enum" class="code-table__heading">FilterAlignment enum</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="filter-alignment-enum">
 
-        <table aria-labelledby="filter-alignment-enum">
-
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                     <td>None</td>
-                    <td>
-                        The filter aligns in its default orientation.
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Start</td>
-                    <td>
-                        Align the filter area to the start (left in LTR layouts).
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Centre</td>
-                    <td>
-                        Centre the filter area.
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>End</td>
-                    <td>
-                        Align the filter area to the end (right in LTR layouts).
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>None</td>
+                        <td>
+                            The filter aligns in its default orientation.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Start</td>
+                        <td>
+                            Align the filter area to the start (left in LTR layouts).
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Centre</td>
+                        <td>
+                            Centre the filter area.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>End</td>
+                        <td>
+                            Align the filter area to the end (right in LTR layouts).
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="column-sort-direction-enum" class="code-table__heading">ColumnSortDirection enum</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="column-sort-direction-enum">
 
-        <table aria-labelledby="column-sort-direction-enum">
-
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>NotSorted</td>
-                    <td>The column is not currently used to sort the data..</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Ascending</td>
-                    <td>The data is sorted by this column in ascending order.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Descending</td>
-                    <td>The data is sorted by this column in descending order.</td>
-                </tr>
-            </tbody>
-        </table>
-
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>NotSorted</td>
+                        <td>The column is not currently used to sort the data..</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Ascending</td>
+                        <td>The data is sorted by this column in ascending order.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Descending</td>
+                        <td>The data is sorted by this column in descending order.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="row-selection-mode-enum" class="code-table__heading">RowSelectionMode enum</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="row-selection-mode-enum">
 
-        <table aria-labelledby="row-selection-mode-enum">
-
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>None</td>
-                    <td>Rows cannot be selected; no selection column is rendered..</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Single</td>
-                    <td>Only one row may be selected at a time; selecting a new row clears any previous selection.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Multiple</td>
-                    <td>Any number of rows may be selected.</td>
-                </tr>
-            </tbody>
-        </table>
-
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>None</td>
+                        <td>Rows cannot be selected; no selection column is rendered..</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Single</td>
+                        <td>Only one row may be selected at a time; selecting a new row clears any previous selection.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Multiple</td>
+                        <td>Any number of rows may be selected.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
 </section>
@@ -719,403 +724,407 @@
         You can of course also override its style classes directly.
     </p>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="table-outline-variables" class="code-table__heading">Table outline variables</h3>
         <p>
             For a focus indicator around the table is circumstances when the table has to receive focus.
         </p>
-        <table aria-labelledby="table-outline-variables">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="table-outline-variables">
 
-            <thead>
-                <tr>
-                    <th scope="col">Variable Name</th>
-                    <th scope="col">Default Value</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>--br-comp-data-table-outline-style</td>
-                    <td>var(--br-comp-all-outline-style)</td>
-                    <td>The style of the outline - uses the shared variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-outline-width</td>
-                    <td>var(--br-comp-all-outline-width)</td>
-                    <td>The width of the outline - uses the shared variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-outline-offset</td>
-                    <td>var(--br-comp-all-outline-offset)</td>
-                    <td>The outline offset - uses the shared variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-outline-colour</td>
-                    <td>var(--br-comp-all-outline-colour)</td>
-                    <td>The colour of the outline - uses the shared variable.</td>
-                </tr>
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Default Value</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--br-comp-data-table-outline-style</td>
+                        <td>var(--br-comp-all-outline-style)</td>
+                        <td>The style of the outline - uses the shared variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-outline-width</td>
+                        <td>var(--br-comp-all-outline-width)</td>
+                        <td>The width of the outline - uses the shared variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-outline-offset</td>
+                        <td>var(--br-comp-all-outline-offset)</td>
+                        <td>The outline offset - uses the shared variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-outline-colour</td>
+                        <td>var(--br-comp-all-outline-colour)</td>
+                        <td>The colour of the outline - uses the shared variable.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
 
-    <section class="code-table">
+    <section>
 
         <h3 id="column-header-variables" class="code-table__heading">Column header area and title variables</h3>
         <p>
             When sorting is used, buttons are placed inside the th element. These have outlines for
             keyboard users.
         </p>
-        <table aria-labelledby="column-header-variables">
-            <thead>
-                <tr>
-                    <th scope="col">Variable Name</th>
-                    <th scope="col">Default Value</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>--br-comp-data-table-area-header-font-size</td>
-                    <td>var(--br-unit-font-size-label)</td>
-                    <td>
-                        The size of the font used - uses a direct unit value.
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-font-weight</td>
-                    <td>var(--br-unit-font-weight-500, bold)</td>
-                    <td>
-                        The font weight - uses a direct unit value.
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-text</td>
-                    <td>var(--br-comp-all-area-header-text)</td>
-                    <td>
-                        The colour of the text - uses the shared component variable.
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-background</td>
-                    <td>var(--br-unit-colour-neutral-10)</td>
-                    <td>
-                        The background colour - uses a direct unit value.
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-font-family</td>
-                    <td>var(--br-comp-all-area-header-font-family)</td>
-                    <td>
-                        The font family used - uses the shared component variable
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-line-height</td>
-                    <td>var(--br-comp-all-area-header-line-height)</td>
-                    <td>
-                       The line height - uses the shared component variable
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-border-style</td>
-                    <td>var(--br-comp-all-area-header-border-style)</td>
-                    <td>
-                        The border style - uses the shared component variable
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-border-colour</td>
-                    <td>var(--br-comp-all-divider-colour)</td>
-                    <td>
-                        The border colour - <b>does not >use the shared component variable.</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-border-width</td>
-                    <td>var(--br-unit-border-1)</td>
-                    <td>
-                         The border width - uses a direct untt value.
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-border-radius</td>
-                    <td>var(--br-group-container-area-header-border-radius);</td>
-                    <td>
-                        The border radius for each corner - uses the shared component variable
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-sort-outline-width</td>
-                    <td>var(--br-comp-all-outline-width)</td>
-                    <td>
-                        The outline width - <b>no defined common sort outline variable so uses the shared outline variable</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-sort-outline-style</td>
-                    <td>var(--br-comp-all-outline-style)</td>
-                    <td>The border radius - uses a shared border radius grouping variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-sort-outline-offset</td>
-                    <td>var(--br-comp-all-outline-offset)</td>
-                    <td>
-                        The outline offset - <b>no defined common sort outline variable so uses the shared outline variable</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-sort-outline-colour</td>
-                    <td>var(--br-comp-all-outline-colour)</td>
-                    <td>
-                     The outline colour - <b>no defined common sort outline variable so uses the shared outline variable</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-title-info-font-size</td>
-                    <td>var(--br-unit-font-size-1)</td>
-                    <td>The font size - uses a direct unit value.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-title-info-font-weight</td>
-                    <td>var(--br-unit-font-weight-500)</td>
-                    <td>The font weight - uses a direct unit value.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-title-info-text</td>
-                    <td>var(--br-comp-all-area-header-text)</td>
-                    <td>The colour of the text - uses the same colour as the heading text.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-title-info-font-family</td>
-                    <td>var(--br-comp-all-area-header-font-family)</td>
-                    <td>The font family used - uses the same font family as the headings.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-title-info-line-height</td>
-                    <td>var(--br-comp-all-area-header-line-height)</td>
-                    <td>The line height - uses the same line-height as the headings.</td>
-                </tr>
-            </tbody>
-        </table>
-
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="column-header-variables">
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Default Value</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-font-size</td>
+                        <td>var(--br-unit-font-size-label)</td>
+                        <td>
+                            The size of the font used - uses a direct unit value.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-font-weight</td>
+                        <td>var(--br-unit-font-weight-500, bold)</td>
+                        <td>
+                            The font weight - uses a direct unit value.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-text</td>
+                        <td>var(--br-comp-all-area-header-text)</td>
+                        <td>
+                            The colour of the text - uses the shared component variable.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-background</td>
+                        <td>var(--br-unit-colour-neutral-10)</td>
+                        <td>
+                            The background colour - uses a direct unit value.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-font-family</td>
+                        <td>var(--br-comp-all-area-header-font-family)</td>
+                        <td>
+                            The font family used - uses the shared component variable
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-line-height</td>
+                        <td>var(--br-comp-all-area-header-line-height)</td>
+                        <td>
+                            The line height - uses the shared component variable
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-border-style</td>
+                        <td>var(--br-comp-all-area-header-border-style)</td>
+                        <td>
+                            The border style - uses the shared component variable
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-border-colour</td>
+                        <td>var(--br-comp-all-divider-colour)</td>
+                        <td>
+                            The border colour - <b>does not >use the shared component variable.</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-border-width</td>
+                        <td>var(--br-unit-border-1)</td>
+                        <td>
+                            The border width - uses a direct untt value.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-border-radius</td>
+                        <td>var(--br-group-container-area-header-border-radius);</td>
+                        <td>
+                            The border radius for each corner - uses the shared component variable
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-sort-outline-width</td>
+                        <td>var(--br-comp-all-outline-width)</td>
+                        <td>
+                            The outline width - <b>no defined common sort outline variable so uses the shared outline variable</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-sort-outline-style</td>
+                        <td>var(--br-comp-all-outline-style)</td>
+                        <td>The border radius - uses a shared border radius grouping variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-sort-outline-offset</td>
+                        <td>var(--br-comp-all-outline-offset)</td>
+                        <td>
+                            The outline offset - <b>no defined common sort outline variable so uses the shared outline variable</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-sort-outline-colour</td>
+                        <td>var(--br-comp-all-outline-colour)</td>
+                        <td>
+                            The outline colour - <b>no defined common sort outline variable so uses the shared outline variable</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-title-info-font-size</td>
+                        <td>var(--br-unit-font-size-1)</td>
+                        <td>The font size - uses a direct unit value.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-title-info-font-weight</td>
+                        <td>var(--br-unit-font-weight-500)</td>
+                        <td>The font weight - uses a direct unit value.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-title-info-text</td>
+                        <td>var(--br-comp-all-area-header-text)</td>
+                        <td>The colour of the text - uses the same colour as the heading text.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-title-info-font-family</td>
+                        <td>var(--br-comp-all-area-header-font-family)</td>
+                        <td>The font family used - uses the same font family as the headings.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-title-info-line-height</td>
+                        <td>var(--br-comp-all-area-header-line-height)</td>
+                        <td>The line height - uses the same line-height as the headings.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="content-area-variables" class="code-table__heading">Content area variables</h3>
         <p>
             These variables are used for the main body of the table.
         </p>
-        <table aria-labelledby="content-area-variables">
-            <thead>
-                <tr>
-                    <th scope="col">Variable Name</th>
-                    <th scope="col">Default Value</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>--br-comp-data-table-area-content-background</td>
-                    <td>var(--br-comp-all-area-content-background)</td>
-                    <td>The background colour - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-content-text</td>
-                    <td>var(--br-comp-all-area-content-text)</td>
-                    <td>The text colour - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-content-font-family</td>
-                    <td>var(--br-comp-all-area-content-font-family)</td>
-                    <td>The font family - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-content-font-size</td>
-                    <td>var(--br-unit-font-size-label)</td>
-                    <td>The font size - uses a direct unit value.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-content-font-weight</td>
-                    <td>var(--br-comp-all-area-content-font-weight)</td>
-                    <td>The font weight - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-content-line-height</td>
-                    <td>var(--br-comp-all-area-content-line-height)</td>
-                    <td>The line height - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-content-border-style</td>
-                    <td>var(--br-comp-all-area-content-border-style)</td>
-                    <td>The border style - uses the shared component variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-content-border-colour</td>
-                    <td>var(--br-comp-all-divider-colour)</td>
-                    <td>
-                        The border colour - <b>does not >use the shared component variable.</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-content-border-width</td>
-                    <td>var(--br-unit-border-1)</td>
-                    <td>The border width - uses a direct unit value.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-selected-row</td>
-                    <td>var(--br-comp-all-selection-colour)</td>
-                    <td>The background colour of a selected row  - no defined variable uses a shared common variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-selectable-row</td>
-                    <td>var(--br-comp-all-link-hover-background-colour)</td>
-                    <td>
-                        The hover colour for a selectable row - no defined variable uses a shared common variable.
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-alternate-row</td>
-                    <td>var(--br-unit-colour-neutral-10)</td>
-                    <td>A second background colour used to creates the striping - uses a direct unit value.</td>
-                </tr>
-            </tbody>
-        </table>
-
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="content-area-variables">
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Default Value</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--br-comp-data-table-area-content-background</td>
+                        <td>var(--br-comp-all-area-content-background)</td>
+                        <td>The background colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-content-text</td>
+                        <td>var(--br-comp-all-area-content-text)</td>
+                        <td>The text colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-content-font-family</td>
+                        <td>var(--br-comp-all-area-content-font-family)</td>
+                        <td>The font family - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-content-font-size</td>
+                        <td>var(--br-unit-font-size-label)</td>
+                        <td>The font size - uses a direct unit value.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-content-font-weight</td>
+                        <td>var(--br-comp-all-area-content-font-weight)</td>
+                        <td>The font weight - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-content-line-height</td>
+                        <td>var(--br-comp-all-area-content-line-height)</td>
+                        <td>The line height - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-content-border-style</td>
+                        <td>var(--br-comp-all-area-content-border-style)</td>
+                        <td>The border style - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-content-border-colour</td>
+                        <td>var(--br-comp-all-divider-colour)</td>
+                        <td>
+                            The border colour - <b>does not >use the shared component variable.</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-content-border-width</td>
+                        <td>var(--br-unit-border-1)</td>
+                        <td>The border width - uses a direct unit value.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-selected-row</td>
+                        <td>var(--br-comp-all-selection-colour)</td>
+                        <td>The background colour of a selected row  - no defined variable uses a shared common variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-selectable-row</td>
+                        <td>var(--br-comp-all-link-hover-background-colour)</td>
+                        <td>
+                            The hover colour for a selectable row - no defined variable uses a shared common variable.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-alternate-row</td>
+                        <td>var(--br-unit-colour-neutral-10)</td>
+                        <td>A second background colour used to creates the striping - uses a direct unit value.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="unmapped-variables" class="code-table__heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
         <p>
             The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
             by standard mappings to the <span class="@CodeSpan.Base">--br-comp-all</span> variables.
         </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unmapped-variables">
 
-        <table aria-labelledby="unmapped-variables">
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Default Value</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-font-size</td>
+                        <td>var(--br-unit-font-size-label)</td>
+                        <td>
+                            The size of the font used - uses a direct unit value.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-font-weight</td>
+                        <td>var(--br-unit-font-weight-500, bold)</td>
+                        <td>
+                            The font weight - uses a direct unit value.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-background</td>
+                        <td>var(--br-unit-colour-neutral-10)</td>
+                        <td>
+                            The background colour - uses a direct unit value.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-border-colour</td>
+                        <td>var(--br-comp-all-divider-colour)</td>
+                        <td>
+                            The border colour - <b>does not >use the shared component variable.</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-border-width</td>
+                        <td>var(--br-unit-border-1)</td>
+                        <td>
+                            The border width - uses a direct unit value.
+                        </td>
+                    </tr>
 
-            <thead>
-                <tr>
-                    <th scope="col">Variable Name</th>
-                    <th scope="col">Default Value</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>--br-comp-data-table-area-header-font-size</td>
-                    <td>var(--br-unit-font-size-label)</td>
-                    <td>
-                        The size of the font used - uses a direct unit value.
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-font-weight</td>
-                    <td>var(--br-unit-font-weight-500, bold)</td>
-                    <td>
-                        The font weight - uses a direct unit value.
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-background</td>
-                    <td>var(--br-unit-colour-neutral-10)</td>
-                    <td>
-                        The background colour - uses a direct unit value.
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-border-colour</td>
-                    <td>var(--br-comp-all-divider-colour)</td>
-                    <td>
-                        The border colour - <b>does not >use the shared component variable.</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-border-width</td>
-                    <td>var(--br-unit-border-1)</td>
-                    <td>
-                        The border width - uses a direct unit value.
-                    </td>
-                </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-sort-outline-width</td>
+                        <td>var(--br-comp-all-outline-width)</td>
+                        <td>
+                            The outline width - <b>no defined common sort outline variable so uses the shared outline variable</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-sort-outline-style</td>
+                        <td>var(--br-comp-all-outline-style)</td>
+                        <td>
+                            The outline style - <b>no defined common sort outline variable so uses the shared outline variable</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-sort-outline-offset</td>
+                        <td>var(--br-comp-all-outline-offset)</td>
+                        <td>
+                            The outline offset - <b>no defined common sort outline variable so uses the shared outline variable</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-header-sort-outline-colour</td>
+                        <td>var(--br-comp-all-outline-colour)</td>
+                        <td>
+                            The outline colour - <b>no defined common sort outline variable so uses the shared outline variable</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-content-font-size</td>
+                        <td>var(--br-unit-font-size-label)</td>
+                        <td>The font size - uses a direct unit value.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-content-border-colour</td>
+                        <td>var(--br-comp-all-divider-colour)</td>
+                        <td>
+                            The border colour - <b>does not >use the shared component variable.</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-area-content-border-width</td>
+                        <td>var(--br-unit-border-1)</td>
+                        <td>The border width - uses a direct unit value.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-selected-row</td>
+                        <td>var(--br-comp-all-selection-colour)</td>
+                        <td>The background colour of a selected row  - no defined variable uses a shared common variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-selectable-row</td>
+                        <td>var(--br-comp-all-link-hover-background-colour)</td>
+                        <td>
+                            The hover colour for a selectable row - no defined variable uses a shared common variable.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-alternate-row</td>
+                        <td>var(--br-unit-colour-neutral-10)</td>
+                        <td>A second background colour used to creates the striping - uses a direct unit value.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-title-info-font-size</td>
+                        <td>var(--br-unit-font-size-1)</td>
+                        <td>The font size - uses a direct unit value.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-data-table-title-info-font-weight</td>
+                        <td>var(--br-unit-font-weight-500)</td>
+                        <td>The font weight - uses a direct unit value.</td>
+                    </tr>
 
-                <tr>
-                    <td>--br-comp-data-table-area-header-sort-outline-width</td>
-                    <td>var(--br-comp-all-outline-width)</td>
-                    <td>
-                        The outline width - <b>no defined common sort outline variable so uses the shared outline variable</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-sort-outline-style</td>
-                    <td>var(--br-comp-all-outline-style)</td>
-                    <td>
-                        The outline style - <b>no defined common sort outline variable so uses the shared outline variable</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-sort-outline-offset</td>
-                    <td>var(--br-comp-all-outline-offset)</td>
-                    <td>
-                        The outline offset - <b>no defined common sort outline variable so uses the shared outline variable</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-header-sort-outline-colour</td>
-                    <td>var(--br-comp-all-outline-colour)</td>
-                    <td>
-                        The outline colour - <b>no defined common sort outline variable so uses the shared outline variable</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-content-font-size</td>
-                    <td>var(--br-unit-font-size-label)</td>
-                    <td>The font size - uses a direct unit value.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-content-border-colour</td>
-                    <td>var(--br-comp-all-divider-colour)</td>
-                    <td>
-                        The border colour - <b>does not >use the shared component variable.</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-area-content-border-width</td>
-                    <td>var(--br-unit-border-1)</td>
-                    <td>The border width - uses a direct unit value.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-selected-row</td>
-                    <td>var(--br-comp-all-selection-colour)</td>
-                    <td>The background colour of a selected row  - no defined variable uses a shared common variable.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-selectable-row</td>
-                    <td>var(--br-comp-all-link-hover-background-colour)</td>
-                    <td>
-                        The hover colour for a selectable row - no defined variable uses a shared common variable.
-                    </td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-alternate-row</td>
-                    <td>var(--br-unit-colour-neutral-10)</td>
-                    <td>A second background colour used to creates the striping - uses a direct unit value.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-title-info-font-size</td>
-                    <td>var(--br-unit-font-size-1)</td>
-                    <td>The font size - uses a direct unit value.</td>
-                </tr>
-                <tr>
-                    <td>--br-comp-data-table-title-info-font-weight</td>
-                    <td>var(--br-unit-font-weight-500)</td>
-                    <td>The font weight - uses a direct unit value.</td>
-                </tr>
-
-            </tbody>
-        </table>
-
+                </tbody>
+            </table>
+        </div>
     </section>
 
 </section>

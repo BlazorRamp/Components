@@ -7,9 +7,11 @@
     Everything you need to work with the TextArea Input component: parameters, methods, models, enums, and CSS variables for styling.
 </p>
 <p>
-    Unlike the TextInput component, this component has a character count displayed below the textarea which changes to the colour used to indicate errors when the 
-    <span class="@CodeSpan.Base">MaxCharacters</span> paramter value is exceeded. Screen reader users are also informed of this character count using the <b>BlazorRamp.Core 
-    Live Region Service.</b> As this is only a character count, it is not added to the rolling log used by the Announcement History viewer/dialog.
+    Unlike the TextInput component, this component has a character count displayed below the textarea which changes to the colour used to indicate errors when the
+    <span class="@CodeSpan.Base">MaxCharacters</span> paramter value is exceeded. Screen reader users are also informed of this character count using the <b>
+    BlazorRamp.Core
+    Live Region Service.
+</b> As this is only a character count, it is not added to the rolling log used by the Announcement History viewer/dialog.
 </p>
 <p>
     As each Input component is a single unit that contains both the input, its label and regions for both hint and error text the <b>BlazorRamp.Inputs</b> stylesheet also contains a 12 column grid layout container with
@@ -26,7 +28,7 @@
 </p>
 <p>
     <strong>Note: </strong>The input components do not define parameters for the common input attributes. You can add any of these to the Input component directly as attribute splatting will place these on the
-    underlying input element. For WCAG dependant on the context in which the data is being used, you should ensure that the inputs have the appropriate autocomplete values specified. 
+    underlying input element. For WCAG dependant on the context in which the data is being used, you should ensure that the inputs have the appropriate autocomplete values specified.
 </p>
 
 <section>
@@ -37,254 +39,256 @@
         The following sections cover all components that make up this feature, including their parameters,
         public methods, and any supporting classes or enumerations required for use.
     </p>
-    <section class="code-table">
+    <section>
 
         <h3 id="text-input-component-parameters" class="code-table__heading">TextAreaInput component parameters</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="text-input-component-parameters">
 
-        <table aria-labelledby="text-input-component-parameters">
+                <thead>
+                    <tr>
+                        <th scope="col">Parameter</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>LabelText</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets the name used for the input control label.
+                            If the value is null, empty, or whitespace then the field name is used.
+                            <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
+                            and changes thereafter are ignored.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ControlID</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets the <span class="@CodeSpan.Base">id</span> attribute applied to the underlying <span class="@CodeSpan.Base">&lt;input&gt;</span>
+                            element. When null, empty, or whitespace a <span class="@CodeSpan.Base">Guid</span> string is generated automatically. Leading and trailing whitespace is trimmed before use.
+                            <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
+                            and changes thereafter are ignored.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>UpdateOnInputDelayMs</td>
+                        <td>int</td>
+                        <td>
+                            Gets or sets the debounce delay in milliseconds applied when the <span class="@CodeSpan.Base">UpdateOnInput</span> is true.
+                            No text values are updated until after the typing stops and the duration is reached.
+                            Values below the default of 500 milliseconds fallback to the default.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>TextAreaRows</td>
+                        <td>int</td>
+                        <td>
+                            Gets or sets the number of visible text rows rendered for the textarea element.
+                            Values less than 1 fall back to the default of 5. Used with or without <span class="@CodeSpan.Base">AutoSize</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>AutoSize</td>
+                        <td>bool</td>
+                        <td>
+                            Gets or sets whether the textarea grows vertically to fit its content using the
+                            CSS <span class="@CodeSpan.Base">field-sizing: content</span> property. Defaults to true.
+                            If this is false when the number of rows exceeds the default, the vertical scrollbar
+                            will appear.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MaxCharacters</td>
+                        <td>int</td>
+                        <td>
+                            Gets or sets the maximum number of characters for the textarea counter
+                            and screen reader announcements. This does not restrict the actual number of characters
+                            that can be entered.Used Values less than 1 fallback to the default of 8000.
+                            <b>Note: </b>Although you can set the <span class="@CodeSpan.Base">maxlength</span> attribute via attribute
+                            splatting it is recommended just to use validation to enforce the length and let the user
+                            adjust their entry if necessary.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CharactersRemainingText</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets the template string displayed in the character counter when the user
+                            is within the character limit. Must contain the <span class="@CodeSpan.Base">{count}</span> token (with the braces), which is
+                            replaced with the number of characters remaining. When null, empty, whitespace, or missing the token,
+                            falls back to the default of: "You have {count} characters remaining.".
+                            <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
+                            and changes thereafter are ignored.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CharactersOverLimitText</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets the template string displayed in the character counter when the user
+                            has exceeded the character limit. Must contain the <span class="@CodeSpan.Base">{count}</span> token (with the braces),
+                            which is replaced with the number of characters over the limit. When null, empty, whitespace, or missing the token,
+                            falls back to the default of: "You are {count} characters over the limit".
+                            <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
+                            and changes thereafter are ignored.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>HintText</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets the hint text rendered below the label and above the input field. When set, the text is normalised so it always ends with a full stop, and is
+                            associated to the input via <span class="@CodeSpan.Base">aria-describedby</span>. When null, empty, or whitespace no hint element is rendered.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ReadOnly</td>
+                        <td>bool</td>
+                        <td>
+                            Gets or sets whether the input is read-only. When <span class="@CodeSpan.Base">true</span>, the HTML <span class="@CodeSpan.Base">readonly</span> attribute is applied
+                            to the underlying <span class="@CodeSpan.Base">&lt;input&gt;</span> element. Takes precedence over the <span class="@CodeSpan.Base">AriaDisabled</span> parameter when
+                            both are set.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>AriaDisabled</td>
+                        <td>bool</td>
+                        <td>
+                            Gets or sets whether the input is aria-disabled. When <span class="@CodeSpan.Base">true</span>, the input is visually and functionally disabled via <span class="@CodeSpan.Base">aria-disabled="true"</span> without
+                            using the native <span class="@CodeSpan.Base">disabled</span> attribute, keeping the field focusable and readable by screen readers. JavaScript handlers block keyboard input and paste.
+                            Has no effect when <span class="@CodeSpan.Base">ReadOnly</span> is also <span class="@CodeSpan.Base">true</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Required</td>
+                        <td>bool</td>
+                        <td>
+                            Gets or sets whether the field is required. When <span class="@CodeSpan.Base">true</span>, <span class="@CodeSpan.Base">aria-required="true"</span>
+                            is applied to the input and a visually hidden asterisk is appended to the label. Defaults to <span class="@CodeSpan.Base">true</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>TrimOnBlur</td>
+                        <td>bool</td>
+                        <td>
+                            Gets or sets whether the value is trimmed when the focus is lost. Defaults to <span class="@CodeSpan.Base">false</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DataPosition</td>
+                        <td>DataPosition (enum)</td>
+                        <td>
+                            Gets or sets the text/data alignment in the input.
+                            Defaults to <span class="@CodeSpan.Base">DataPosition.Start</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ErrorsLabel</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets the accessible label for the tabbable error region, used when
+                            <span class="@CodeSpan.Base">ValidationDisplayMode</span> is set to <span class="@CodeSpan.Base">ValidationDisplayMode.TabbableWithHint</span>.
+                            Defaults to <span class="@CodeSpan.Base">Errors</span>.
+                            <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
+                            and changes thereafter are ignored.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ValidationDisplayMode</td>
+                        <td>ValidationDisplayMode (enum)</td>
+                        <td>
+                            Gets or sets the validation display mode which controls how <span class="@CodeSpan.Base">aria-describedby</span>
+                            is set and whether the error region is tabbable. Defaults to <span class="@CodeSpan.Base">ValidationDisplayMode.DescribedByWithHint</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>SvgIcon</td>
+                        <td>string</td>
+                        <td>
+                            Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
+                            used as a mask-image icon alongside the tab title. Must begin with <span class="@CodeSpan.Base">--</span>.
+                            For example: <span class="@CodeSpan.Base">--svg-my-icon</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>UpdateOnInput</td>
+                        <td>bool</td>
+                        <td>
+                            Gets or sets whether the input value is updated on every keystroke via the
+                            <span class="@CodeSpan.Base">oninput</span> event. When <span class="@CodeSpan.Base">false</span> the value updates on <span class="@CodeSpan.Base">onchange</span>
+                            (i.e. when the field loses focus). Defaults to <span class="@CodeSpan.Base">false</span>.
+                        </td>
+                    </tr>
 
-            <thead>
-                <tr>
-                    <th scope="col">Parameter</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>LabelText</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets the name used for the input control label.
-                        If the value is null, empty, or whitespace then the field name is used.
-                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
-                        and changes thereafter are ignored.
-                    </td>
-                </tr>
-                <tr>
-                    <td>ControlID</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets the <span class="@CodeSpan.Base">id</span> attribute applied to the underlying <span class="@CodeSpan.Base">&lt;input&gt;</span>
-                        element. When null, empty, or whitespace a <span class="@CodeSpan.Base">Guid</span> string is generated automatically. Leading and trailing whitespace is trimmed before use.
-                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
-                        and changes thereafter are ignored.
-                    </td>
-                </tr>
-                <tr>
-                    <td>UpdateOnInputDelayMs</td>
-                    <td>int</td>
-                    <td>
-                        Gets or sets the debounce delay in milliseconds applied when the <span class="@CodeSpan.Base">UpdateOnInput</span> is true.
-                        No text values are updated until after the typing stops and the duration is reached.
-                        Values below the default of 500 milliseconds fallback to the default.
-                    </td>
-                </tr>
-                <tr>
-                    <td>TextAreaRows</td>
-                    <td>int</td>
-                    <td>
-                        Gets or sets the number of visible text rows rendered for the textarea element.
-                        Values less than 1 fall back to the default of 5. Used with or without <span class="@CodeSpan.Base">AutoSize</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>AutoSize</td>
-                    <td>bool</td>
-                    <td>
-                        Gets or sets whether the textarea grows vertically to fit its content using the
-                        CSS <span class="@CodeSpan.Base">field-sizing: content</span> property. Defaults to true.
-                        If this is false when the number of rows exceeds the default, the vertical scrollbar
-                        will appear.
-                    </td>
-                </tr>
-                <tr>
-                    <td>MaxCharacters</td>
-                    <td>int</td>
-                    <td>
-                        Gets or sets the maximum number of characters for the textarea counter
-                        and screen reader announcements. This does not restrict the actual number of characters
-                        that can be entered.Used Values less than 1 fallback to the default of 8000.
-                        <b>Note: </b>Although you can set the <span class="@CodeSpan.Base">maxlength</span> attribute via attribute
-                        splatting it is recommended just to use validation to enforce the length and let the user
-                        adjust their entry if necessary.
-                    </td>
-                </tr>
-                <tr>
-                    <td>CharactersRemainingText</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets the template string displayed in the character counter when the user
-                        is within the character limit. Must contain the <span class="@CodeSpan.Base">{count}</span> token (with the braces), which is
-                        replaced with the number of characters remaining. When null, empty, whitespace, or missing the token,
-                        falls back to the default of: "You have {count} characters remaining.".
-                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
-                        and changes thereafter are ignored.
-                    </td>
-                </tr>
-                <tr>
-                    <td>CharactersOverLimitText</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets the template string displayed in the character counter when the user
-                        has exceeded the character limit. Must contain the <span class="@CodeSpan.Base">{count}</span> token (with the braces),
-                        which is replaced with the number of characters over the limit. When null, empty, whitespace, or missing the token,
-                        falls back to the default of: "You are {count} characters over the limit".
-                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
-                        and changes thereafter are ignored.
-                    </td>
-                </tr>
-                <tr>
-                    <td>HintText</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets the hint text rendered below the label and above the input field. When set, the text is normalised so it always ends with a full stop, and is
-                        associated to the input via <span class="@CodeSpan.Base">aria-describedby</span>. When null, empty, or whitespace no hint element is rendered.
-                    </td>
-                </tr>
-                <tr>
-                    <td>ReadOnly</td>
-                    <td>bool</td>
-                    <td>
-                        Gets or sets whether the input is read-only. When <span class="@CodeSpan.Base">true</span>, the HTML <span class="@CodeSpan.Base">readonly</span> attribute is applied
-                        to the underlying <span class="@CodeSpan.Base">&lt;input&gt;</span> element. Takes precedence over the <span class="@CodeSpan.Base">AriaDisabled</span> parameter when
-                        both are set.
-                    </td>
-                </tr>
-                <tr>
-                    <td>AriaDisabled</td>
-                    <td>bool</td>
-                    <td>
-                        Gets or sets whether the input is aria-disabled. When <span class="@CodeSpan.Base">true</span>, the input is visually and functionally disabled via <span class="@CodeSpan.Base">aria-disabled="true"</span> without
-                        using the native <span class="@CodeSpan.Base">disabled</span> attribute, keeping the field focusable and readable by screen readers. JavaScript handlers block keyboard input and paste.
-                        Has no effect when <span class="@CodeSpan.Base">ReadOnly</span> is also <span class="@CodeSpan.Base">true</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>Required</td>
-                    <td>bool</td>
-                    <td>
-                        Gets or sets whether the field is required. When <span class="@CodeSpan.Base">true</span>, <span class="@CodeSpan.Base">aria-required="true"</span>
-                        is applied to the input and a visually hidden asterisk is appended to the label. Defaults to <span class="@CodeSpan.Base">true</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>TrimOnBlur</td>
-                    <td>bool</td>
-                    <td>
-                        Gets or sets whether the value is trimmed when the focus is lost. Defaults to <span class="@CodeSpan.Base">false</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>DataPosition</td>
-                    <td>DataPosition (enum)</td>
-                    <td>
-                        Gets or sets the text/data alignment in the input.
-                        Defaults to <span class="@CodeSpan.Base">DataPosition.Start</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>ErrorsLabel</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets the accessible label for the tabbable error region, used when
-                        <span class="@CodeSpan.Base">ValidationDisplayMode</span> is set to <span class="@CodeSpan.Base">ValidationDisplayMode.TabbableWithHint</span>.
-                        Defaults to <span class="@CodeSpan.Base">Errors</span>.
-                        <strong>Note: </strong>This value is captured during the <span class="@CodeSpan.Base">OnInitialized</span> method
-                        and changes thereafter are ignored.
-                    </td>
-                </tr>
-                <tr>
-                    <td>ValidationDisplayMode</td>
-                    <td>ValidationDisplayMode (enum)</td>
-                    <td>
-                        Gets or sets the validation display mode which controls how <span class="@CodeSpan.Base">aria-describedby</span>
-                        is set and whether the error region is tabbable. Defaults to <span class="@CodeSpan.Base">ValidationDisplayMode.DescribedByWithHint</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>SvgIcon</td>
-                    <td>string</td>
-                    <td>
-                        Gets or sets the name of a CSS custom property that resolves to an SVG data URI,
-                        used as a mask-image icon alongside the tab title. Must begin with <span class="@CodeSpan.Base">--</span>.
-                        For example: <span class="@CodeSpan.Base">--svg-my-icon</span>.
-                    </td>
-                </tr>
-                <tr>
-                    <td>UpdateOnInput</td>
-                    <td>bool</td>
-                    <td>
-                        Gets or sets whether the input value is updated on every keystroke via the
-                        <span class="@CodeSpan.Base">oninput</span> event. When <span class="@CodeSpan.Base">false</span> the value updates on <span class="@CodeSpan.Base">onchange</span>
-                        (i.e. when the field loses focus). Defaults to <span class="@CodeSpan.Base">false</span>.
-                    </td>
-                </tr>
+                    <tr>
+                        <td>AdditionalAttributes</td>
+                        <td>Dictionary&lt;string, object&gt;?</td>
+                        <td>
+                            Sets additional attributes applied to the input element.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Value</td>
+                        <td>string</td>
+                        <td>
 
-                <tr>
-                    <td>AdditionalAttributes</td>
-                    <td>Dictionary&lt;string, object&gt;?</td>
-                    <td>
-                        Sets additional attributes applied to the input element.
-                    </td>
-                </tr>
-                <tr>
-                    <td>Value</td>
-                    <td>string</td>
-                    <td>
-
-                        Gets or sets the value of the input field, bound to a property on your model. Typically provided automatically when using
-                        <span class="@CodeSpan.Base">@@bind-Value="Model.PropertyName</span> syntax.
-                    </td>
-                </tr>
-                <tr>
-                    <td>ValueChanged</td>
-                    <td>EventCallback&lt;string&gt;></td>
-                    <td>
-                        Gets or sets a callback invoked when the bound value changes. Used for both one-way binding, where you handle the new value directly in the event callback, and two-way binding via
-                        <span class="@CodeSpan.Base">@@bind-Value="Model.PropertyName</span> where it is provided and managed automatically by the framework.
-                    </td>
-                </tr>
-                <tr>
-                    <td>ValueExpression</td>
-                    <td>Expression&lt;Func&lt;string&gt;&gt;</td>
-                    <td>
-                        Gets or sets an expression that identifies the bound model property.
-                    </td>
-                </tr>
-                <tr>
-                    <td>DisplayName</td>
-                    <td>string</td>
-                    <td>
-                        Inherited from <span class="@CodeSpan.Base">InputBase&lt;TValue&gt;</span> but is <strong>not used by the Blazor Ramp inputs</strong>.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                            Gets or sets the value of the input field, bound to a property on your model. Typically provided automatically when using
+                            <span class="@CodeSpan.Base">@@bind-Value="Model.PropertyName</span> syntax.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ValueChanged</td>
+                        <td>EventCallback&lt;string&gt;></td>
+                        <td>
+                            Gets or sets a callback invoked when the bound value changes. Used for both one-way binding, where you handle the new value directly in the event callback, and two-way binding via
+                            <span class="@CodeSpan.Base">@@bind-Value="Model.PropertyName</span> where it is provided and managed automatically by the framework.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ValueExpression</td>
+                        <td>Expression&lt;Func&lt;string&gt;&gt;</td>
+                        <td>
+                            Gets or sets an expression that identifies the bound model property.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DisplayName</td>
+                        <td>string</td>
+                        <td>
+                            Inherited from <span class="@CodeSpan.Base">InputBase&lt;TValue&gt;</span> but is <strong>not used by the Blazor Ramp inputs</strong>.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
         <h3 id="textarea-input-component-methods" class="code-table__heading">TextAreaInput component properties and methods</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="textarea-input-component-methods">
 
-        <table aria-labelledby="textarea-input-component-methods">
-
-            <thead>
-                <tr>
-                    <th scope="col">Type/Return</th>
-                    <th scope="col">Property/Method</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>ElementReference</td>
-                    <td>ControlReference</td>
-                    <td>
-                        Property that returns the underlying <span class="@CodeSpan.Base">ElementReference</span> for the input control.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th scope="col">Type/Return</th>
+                        <th scope="col">Property/Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ElementReference</td>
+                        <td>ControlReference</td>
+                        <td>
+                            Property that returns the underlying <span class="@CodeSpan.Base">ElementReference</span> for the input control.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 </section>
 
@@ -292,86 +296,88 @@
 
     <h2 class="code-table__heading">Supporting enums</h2>
 
-    <section class="code-table">
+    <section>
 
         <h3 id="validation-display-mode-enum" class="code-table__heading">ValidationDisplayMode enum</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="validation-display-mode-enum">
 
-        <table aria-labelledby="validation-display-mode-enum">
-
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>DescribedByWithHint</td>
-                    <td>
-                        Error message ID and hint text ID are both included in <span class="@CodeSpan.Base">aria-describedby</span>.
-                        Error region is not tabbable. This is the default mode.
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>DescribedByHintSuppressed</td>
-                    <td>
-                        Only the error message ID is included in <span class="@CodeSpan.Base">aria-describedby</span> when errors
-                        are present, suppressing the hint text association. Error region is not tabbable.
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>TabbableWithHint</td>
-                    <td>
-                        The error region is rendered as a tabbable <span class="@CodeSpan.Base">role="region"</span> element with a
-                        <span class="@CodeSpan.Base">tabindex="0"</span>, allowing keyboard users to navigate directly to the errors.
-                        Only the hint text ID is included in <span class="@CodeSpan.Base">aria-describedby</span>.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>DescribedByWithHint</td>
+                        <td>
+                            Error message ID and hint text ID are both included in <span class="@CodeSpan.Base">aria-describedby</span>.
+                            Error region is not tabbable. This is the default mode.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>DescribedByHintSuppressed</td>
+                        <td>
+                            Only the error message ID is included in <span class="@CodeSpan.Base">aria-describedby</span> when errors
+                            are present, suppressing the hint text association. Error region is not tabbable.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>TabbableWithHint</td>
+                        <td>
+                            The error region is rendered as a tabbable <span class="@CodeSpan.Base">role="region"</span> element with a
+                            <span class="@CodeSpan.Base">tabindex="0"</span>, allowing keyboard users to navigate directly to the errors.
+                            Only the hint text ID is included in <span class="@CodeSpan.Base">aria-describedby</span>.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
     </section>
-    <section class="code-table">
+    <section>
 
         <h3 id="data-position-enum" class="code-table__heading">DataPosition enum</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="validation-display-mode-enum">
 
-        <table aria-labelledby="validation-display-mode-enum">
-
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>Start</td>
-                    <td>
-                        Left aligned in LTR, right aligned in RTL
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Centre</td>
-                    <td>
-                        The text/data is centred.
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>End</td>
-                    <td>
-                        Right aligned in LTR, left aligned in RTL
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Start</td>
+                        <td>
+                            Left aligned in LTR, right aligned in RTL
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Centre</td>
+                        <td>
+                            The text/data is centred.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>End</td>
+                        <td>
+                            Right aligned in LTR, left aligned in RTL
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
     </section>
 </section>

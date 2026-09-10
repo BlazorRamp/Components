@@ -1,6 +1,21 @@
 ﻿@use "_configuration" as *;
 @use "_functions" as *;
 
+.br-table {
+
+    & td {
+        font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+        width: 33%;
+    }
+
+    & td:last-child {font-family: var(--br-unit-font-family-default);}
+
+    & td:nth-child(1) {width:30%;}
+    & td:nth-child(2) {width:30%;}
+    & td:nth-child(3) {width:40%;}
+
+}
+
 .code-table {
     overflow-x: auto;
 

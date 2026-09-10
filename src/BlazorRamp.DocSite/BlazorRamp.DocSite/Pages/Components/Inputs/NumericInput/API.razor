@@ -32,11 +32,11 @@
         The following sections cover all components that make up this feature, including their parameters,
         public methods, and any supporting classes or enumerations required for use.
     </p>
-    <section class="code-table">
+    <section>
 
         <h3 id="numeric-input-component-parameters" class="code-table__heading">NumericInput component parameters</h3>
-
-        <table aria-labelledby="numeric-input-component-parameters">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="numeric-input-component-parameters">
 
             <thead>
                 <tr>
@@ -207,16 +207,17 @@
                 </tr>
             </tbody>
         </table>
+        </div>
         <p>
             <b>Note: </b>The HTML type and inputmode attributes are set to <span class="@CodeSpan.Base">type="text"</span>, with <span class="@CodeSpan.Base">inputmode="numeric"</span> 
              for when the datatype is an integer otherwise <span class="@CodeSpan.Base">inputmode="decimal"</span> is used.   
         </p>
     </section>
     
-    <section class="code-table">
+    <section>
         <h3 id="numeric-input-component-methods" class="code-table__heading">NumericInput component properties and methods</h3>
-
-        <table aria-labelledby="numeric-input-component-methods">
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="numeric-input-component-methods">
 
             <thead>
                 <tr>
@@ -235,17 +236,18 @@
                 </tr>
             </tbody>
         </table>
+            </div>
     </section>
 
     <section>
 
         <h2 class="code-table__heading">Supporting enums</h2>
 
-        <section class="code-table">
+        <section>
 
             <h3 id="validation-display-mode-enum" class="code-table__heading">ValidationDisplayMode enum</h3>
-
-            <table aria-labelledby="validation-display-mode-enum">
+            <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+                <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="validation-display-mode-enum">
 
                 <thead>
                     <tr>
@@ -282,47 +284,48 @@
                     </tr>
                 </tbody>
             </table>
-
-            <section class="code-table">
-
-                <h3 id="data-position-enum" class="code-table__heading">DataPosition enum</h3>
-
-                <table aria-labelledby="validation-display-mode-enum">
-
-                    <thead>
-                        <tr>
-                            <th scope="col">Value</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>0</td>
-                            <td>Start</td>
-                            <td>
-                                Left aligned in LTR, right aligned in RTL
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Centre</td>
-                            <td>
-                                The text/data is centred.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>End</td>
-                            <td>
-                                Right aligned in LTR, left aligned in RTL
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </section>
+            </div>
         </section>
+        <section>
+
+            <h3 id="data-position-enum" class="code-table__heading">DataPosition enum</h3>
+            <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="validation-display-mode-enum">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Start</td>
+                        <td>
+                            Left aligned in LTR, right aligned in RTL
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Centre</td>
+                        <td>
+                            The text/data is centred.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>End</td>
+                        <td>
+                            Right aligned in LTR, left aligned in RTL
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </section>
+
     </section>
 
 </section>

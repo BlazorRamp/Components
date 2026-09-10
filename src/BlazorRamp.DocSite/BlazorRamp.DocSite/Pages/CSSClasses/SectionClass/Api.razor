@@ -29,716 +29,737 @@
         <span class="@CodeSpan.Base">Section</span> provides the BEM CSS classes for the br-section block: a general-purpose,
         theme-reactive content section used for page content, cards, and other bordered or coloured content areas.
     </p>
-    <section class="code-table">
+    <section>
         <h3 id="section-class" class="code-table__heading">Section class</h3>
-        <table aria-labelledby="section-class">
-            <thead>
-                <tr>
-                    <th scope="col">Return</th>
-                    <th scope="col">Const/Static Method</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>string</td>
-                    <td>Section.Base</td>
-                    <td>The base class, <span class="@CodeSpan.Base">br-section</span>. Always required.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Section.Bordered</td>
-                    <td>Adds a visible border using the shared divider colour.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Section.NoPadding</td>
-                    <td>Removes the default section's base padding.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Section.CodeFont</td>
-                    <td>Switches the section's font family to the shared code font.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Section.NoMarginBlock</td>
-                    <td>Switches the section's font family to the shared code font.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Section.ColumnCentred</td>
-                    <td>Lays out the section's content as a centred flex column.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Section.Radius(SectionRadius sectionRadius)</td>
-                    <td>Gets the class that sets the section's border radius.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Section.Background(SectionBackground sectionBackground)</td>
-                    <td>Gets the class that sets the section's background colour.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Section.Text(SectionText sectionText)</td>
-                    <td>Gets the class that sets the section's text colour.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Section.FontSize(UnitFontSize unitFontSize)</td>
-                    <td>Gets the class that sets the section's base font size.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Section.FixedRadius(UnitRadius unitRadius)</td>
-                    <td>
-                        Gets the modifier class that sets the section's border radius to a 
-                        fixed unit value, bypassing the themeable content/container/dialog groupings.
-                    </td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Section.OverflowX(UnitScroll unitScroll)</td>
-                    <td>
-                        Gets the modifier class that sets the section's horizontal (overflow-x) scroll behaviour. 
-                        <span class="@CodeSpan.Base">Section.Base</span> has <span class="@CodeSpan.Base">overflow-x:visible</span> on by default.
-                    </td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Section.OverflowY(UnitScroll unitScroll)</td>
-                    <td>
-                        Gets the modifier class that sets the section's vertical (overflow-y) scroll behaviour.
-                        <span class="@CodeSpan.Base">Section.Base</span> has <span class="@CodeSpan.Base">overflow-y:visible</span> on by default.
-                    </td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Section.Position(UnitPosition unitPosition)</td>
-                    <td>
-                        Gets the class that sets the section's CSS position.
-                        <span class="@CodeSpan.Base">Section.Base</span> has <span class="@CodeSpan.Base">position:relative</span> as its default.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="section-class">
+                <thead>
+                    <tr>
+                        <th scope="col">Return</th>
+                        <th scope="col">Const/Static Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.Base</td>
+                        <td>The base class, <span class="@CodeSpan.Base">br-section</span>. Always required.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.Bordered</td>
+                        <td>Adds a visible border using the shared divider colour.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.NoPadding</td>
+                        <td>Removes the default section's base padding.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.CodeFont</td>
+                        <td>Switches the section's font family to the shared code font.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.NoMarginBlock</td>
+                        <td>Switches the section's font family to the shared code font.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.ColumnCentred</td>
+                        <td>Lays out the section's content as a centred flex column.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.Radius(SectionRadius sectionRadius)</td>
+                        <td>Gets the class that sets the section's border radius.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.Background(SectionBackground sectionBackground)</td>
+                        <td>Gets the class that sets the section's background colour.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.Text(SectionText sectionText)</td>
+                        <td>Gets the class that sets the section's text colour.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.FontSize(UnitFontSize unitFontSize)</td>
+                        <td>Gets the class that sets the section's base font size.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.FixedRadius(UnitRadius unitRadius)</td>
+                        <td>
+                            Gets the modifier class that sets the section's border radius to a
+                            fixed unit value, bypassing the themeable content/container/dialog groupings.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.OverflowX(UnitScroll unitScroll)</td>
+                        <td>
+                            Gets the modifier class that sets the section's horizontal (overflow-x) scroll behaviour.
+                            <span class="@CodeSpan.Base">Section.Base</span> has <span class="@CodeSpan.Base">overflow-x:visible</span> on by default.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.OverflowY(UnitScroll unitScroll)</td>
+                        <td>
+                            Gets the modifier class that sets the section's vertical (overflow-y) scroll behaviour.
+                            <span class="@CodeSpan.Base">Section.Base</span> has <span class="@CodeSpan.Base">overflow-y:visible</span> on by default.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.Position(UnitPosition unitPosition)</td>
+                        <td>
+                            Gets the class that sets the section's CSS position.
+                            <span class="@CodeSpan.Base">Section.Base</span> has <span class="@CodeSpan.Base">position:relative</span> as its default.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
         <h3 id="section-heading-class" class="code-table__heading">Section.Heading class</h3>
         <p>
             <span class="@CodeSpan.Base">Section.Heading</span>. Provides the BEM CSS classes for the <span class="@CodeSpan.Base">br-section__heading</span>
             element, the heading sub-part of a <span class="@CodeSpan.Base">br-section</span>.
         </p>
-        <table aria-labelledby="section-heading-class">
-            <thead>
-                <tr>
-                    <th scope="col">Return</th>
-                    <th scope="col">Const/Static Method</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>string</td>
-                    <td>Section.Heading.Base</td>
-                    <td>The base class, <span class="@CodeSpan.Base">br-section__heading</span>. Always required.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Section.Heading.MobileCentred</td>
-                    <td>Centre-aligns the heading text below the small breakpoint.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Section.Heading.Text(SectionHeadingText)</td>
-                    <td>Gets the class that sets the heading's text colour</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Section.Heading.Text(SectionHeadingText sectionHeadingText)</td>
-                    <td>Gets the class that sets the heading's text colour.</td>
-                </tr>
-                <tr>
-                    <td>string</td>
-                    <td>Section.Heading.FontSize(UnitFontSize unitFontSize)</td>
-                    <td>Gets the class that sets the heading's font size</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="section-heading-class">
+                <thead>
+                    <tr>
+                        <th scope="col">Return</th>
+                        <th scope="col">Const/Static Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.Heading.Base</td>
+                        <td>The base class, <span class="@CodeSpan.Base">br-section__heading</span>. Always required.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.Heading.MobileCentred</td>
+                        <td>Centre-aligns the heading text below the small breakpoint.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.Heading.Text(SectionHeadingText)</td>
+                        <td>Gets the class that sets the heading's text colour</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.Heading.Text(SectionHeadingText sectionHeadingText)</td>
+                        <td>Gets the class that sets the heading's text colour.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Section.Heading.FontSize(UnitFontSize unitFontSize)</td>
+                        <td>Gets the class that sets the heading's font size</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 </section>
 
 <section>
     <h2 class="page-heading">Supporting enums</h2>
-    <section class="code-table">
+    <section>
         <h3 id="section-radius-enum" class="code-table__heading">SectionRadius enum</h3>
         <p>
             Sets the border radius grouping applied to a <span class="@CodeSpan.Base">br-section</span> element.
         </p>
-        <table aria-labelledby="section-radius-enum">
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>Content</td>
-                    <td>
-                        Border radius for general content areas.
-                        Uses the content border radius grouping.
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Container</td>
-                    <td>
-                        Border radius matching cards, tables, and similar boxed UI.
-                        Uses the container border radius grouping.
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Dialog</td>
-                    <td>
-                        Border radius matching a dialog surface, for custom dialog-like content built outside the Modal Dialog fra
-                        Uses the dialog border radius grouping.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="section-radius-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Content</td>
+                        <td>
+                            Border radius for general content areas.
+                            Uses the content border radius grouping.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Container</td>
+                        <td>
+                            Border radius matching cards, tables, and similar boxed UI.
+                            Uses the container border radius grouping.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Dialog</td>
+                        <td>
+                            Border radius matching a dialog surface, for custom dialog-like content built outside the Modal Dialog fra
+                            Uses the dialog border radius grouping.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
-    <section class="code-table">
+    <section>
         <h3 id="unit-scroll-enum" class="code-table__heading">UnitScroll enum</h3>
         <p>
             Sets a CSS <span class="@CodeSpan.Base">overflow</span> value applied to a <span class="@CodeSpan.Base">br-section</span> element.
         </p>
-        <table aria-labelledby="unit-scroll-enum">
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>Visible</td>
-                    <td>Content is not clipped and may overflow the element's box. The CSS initial value.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Hidden</td>
-                    <td>Content is clipped at the padding edge, with no scrollbars offered.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Scroll</td>
-                    <td>Content is clipped, and scrollbars are always shown, whether or not content overflows.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Auto</td>
-                    <td>The browser shows scrollbars only if content actually overflows. The most common choice for scrollable regions.</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Clip</td>
-                    <td>Content is clipped at the padding edge, like Hidden, but does not establish a new formatting context or scroll container. Not supported in all browsers.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-scroll-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Visible</td>
+                        <td>Content is not clipped and may overflow the element's box. The CSS initial value.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Hidden</td>
+                        <td>Content is clipped at the padding edge, with no scrollbars offered.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Scroll</td>
+                        <td>Content is clipped, and scrollbars are always shown, whether or not content overflows.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Auto</td>
+                        <td>The browser shows scrollbars only if content actually overflows. The most common choice for scrollable regions.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Clip</td>
+                        <td>Content is clipped at the padding edge, like Hidden, but does not establish a new formatting context or scroll container. Not supported in all browsers.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
-    <section class="code-table">
+    <section>
         <h3 id="section-background-enum" class="code-table__heading">SectionBackground enum</h3>
         <p>
             Sets the background colour of a <span class="@CodeSpan.Base">br-section</span> element.
         </p>
-        <table aria-labelledby="section-background-enum">
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>NeutralLighter</td>
-                    <td>A light neutral background colour.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>SecondaryLighter</td>
-                    <td>A light secondary-hue background colour.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>AccentLighter</td>
-                    <td>A light accent-hue background colour.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>PrimaryLighter</td>
-                    <td>A light primary-hue background colour.</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Transparent</td>
-                    <td>See-through. shows what its sitting on. Caution - check text contrast.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="section-background-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>NeutralLighter</td>
+                        <td>A light neutral background colour.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>SecondaryLighter</td>
+                        <td>A light secondary-hue background colour.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>AccentLighter</td>
+                        <td>A light accent-hue background colour.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>PrimaryLighter</td>
+                        <td>A light primary-hue background colour.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Transparent</td>
+                        <td>See-through. shows what its sitting on. Caution - check text contrast.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
         <h3 id="section-text-enum" class="code-table__heading">SectionText enum</h3>
         <p>
             Sets the colour of a <span class="@CodeSpan.Base">br-section</span> element.
         </p>
-        <table aria-labelledby="section-text-enum">
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>NeutralDark</td>
-                    <td>Neutral text colour.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>SecondaryDark</td>
-                    <td>Secondary-hue text colour.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>AccentDark</td>
-                    <td>Accent-hue text colour.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>PrimaryDark</td>
-                    <td>Primary-hue text colour.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="section-text-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>NeutralDark</td>
+                        <td>Neutral text colour.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>SecondaryDark</td>
+                        <td>Secondary-hue text colour.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>AccentDark</td>
+                        <td>Accent-hue text colour.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>PrimaryDark</td>
+                        <td>Primary-hue text colour.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section class="code-table">
+    <section>
         <h3 id="section-font-size-enum" class="code-table__heading">UnitFontSize enum</h3>
         <p>
             Sets the base font size of the <span class="@CodeSpan.Base">br-section</span> and the <span class="@CodeSpan.Base">br-section__heading</span> elements respectively.
         </p>
-        <table aria-labelledby="section-font-size-enum">
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>Label</td>
-                    <td>Label-sized text, matching the size used for input/form labels.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Regular</td>
-                    <td>The regular body text size.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Two</td>
-                    <td>A larger text size, one step above regular.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Three</td>
-                    <td>A larger text size, two steps above regular.</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Four</td>
-                    <td>A larger text size, three steps above regular.</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Five</td>
-                    <td>A larger text size, four steps above regular.</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Six</td>
-                    <td>The largest text size available on this scale.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="section-font-size-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Label</td>
+                        <td>Label-sized text, matching the size used for input/form labels.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Regular</td>
+                        <td>The regular body text size.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Two</td>
+                        <td>A larger text size, one step above regular.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Three</td>
+                        <td>A larger text size, two steps above regular.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Four</td>
+                        <td>A larger text size, three steps above regular.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Five</td>
+                        <td>A larger text size, four steps above regular.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Six</td>
+                        <td>The largest text size available on this scale.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
-    <section class="code-table">
+    <section>
         <h3 id="unit-position-enum" class="code-table__heading">UnitPosition enum</h3>
         <p>
             Sets a CSS <span class="@CodeSpan.Base">position</span> value. Used by <span class="@CodeSpan.Base">Section.Position()</span> and by the
             <span class="@CodeSpan.Base">Position</span> utility class.
         </p>
-        <table aria-labelledby="unit-position-enum">
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>Static</td>
-                    <td>The element is positioned according to normal document flow. Disables anchoring for components such as the Busy Indicator that expect a positioned container.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Relative</td>
-                    <td>The element is positioned according to normal flow, then offset relative to itself if offset properties are set. The section's default.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Absolute</td>
-                    <td>The element is removed from normal flow and positioned relative to its nearest positioned ancestor.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Fixed</td>
-                    <td>The element is removed from normal flow and positioned relative to the viewport.</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Sticky</td>
-                    <td>The element is positioned according to normal flow, then treated as fixed once its scrolling ancestor reaches a given scroll position.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-position-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Static</td>
+                        <td>The element is positioned according to normal document flow. Disables anchoring for components such as the Busy Indicator that expect a positioned container.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Relative</td>
+                        <td>The element is positioned according to normal flow, then offset relative to itself if offset properties are set. The section's default.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Absolute</td>
+                        <td>The element is removed from normal flow and positioned relative to its nearest positioned ancestor.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Fixed</td>
+                        <td>The element is removed from normal flow and positioned relative to the viewport.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Sticky</td>
+                        <td>The element is positioned according to normal flow, then treated as fixed once its scrolling ancestor reaches a given scroll position.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
-    <section class="code-table">
+    <section>
         <h3 id="section-heading-text-enum" class="code-table__heading">SectionHeadingText enum</h3>
         <p>
             Sets the text colour of a <span class="@CodeSpan.Base">br-section__heading</span> element.
         </p>
-        <table aria-labelledby="section-heading-text-enum">
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>NeutralDark</td>
-                    <td>Neutral heading text colour.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>SecondaryDark</td>
-                    <td>SecondaryDark-hue heading text colour.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>AccentDark</td>
-                    <td>Accent-hue heading text colour.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>PrimaryDark</td>
-                    <td>Primary-hue heading text colour.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="section-heading-text-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>NeutralDark</td>
+                        <td>Neutral heading text colour.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>SecondaryDark</td>
+                        <td>SecondaryDark-hue heading text colour.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>AccentDark</td>
+                        <td>Accent-hue heading text colour.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>PrimaryDark</td>
+                        <td>Primary-hue heading text colour.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
 
 
-    <section class="code-table">
+    <section>
         <h3 id="unit-radius-enum" class="code-table__heading">UnitRadius enum</h3>
         <p>
             Sets a fixed border radius from the <span class="@CodeSpan.Base">--br-unit-radius-*</span> primitive scale, bypassing any themeable border radius grouping.
         </p>
-        <table aria-labelledby="unit-radius-enum">
-            <thead>
-                <tr>
-                    <th scope="col">Value</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>None</td>
-                    <td>No border radius. Maps to <span class="@CodeSpan.Base">--br-unit-radius-0</span>.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>One</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-1</span>.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Two</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-2</span>.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Three</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-3</span>.</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Four</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-4</span>.</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Five</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-5</span>.</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Six</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-6</span>.</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Seven</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-7</span>.</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Eight</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-8</span>.</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Nine</td>
-                    <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-9</span>.</td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Full</td>
-                    <td>Fully rounded. Maps to <span class="@CodeSpan.Base">--br-unit-radius-full</span>.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-radius-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>None</td>
+                        <td>No border radius. Maps to <span class="@CodeSpan.Base">--br-unit-radius-0</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>One</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-1</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Two</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-2</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Three</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-3</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Four</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-4</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Five</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-5</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Six</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-6</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Seven</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-7</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Eight</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-8</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Nine</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-9</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Full</td>
+                        <td>Fully rounded. Maps to <span class="@CodeSpan.Base">--br-unit-radius-full</span>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 </section>
 
 <section>
 
-<h2 class="page-heading">Usage</h2>
+    <h2 class="page-heading">Usage</h2>
 
-<p>
-    Below each code section is the result of the code in the section.
-</p>
-<p>
-    A basic section.
-</p>
-<CodeBox CodeBlock="@CssClassesSnippets.Section_Basic_Example" AriaLabel="Basic section example" />
+    <p>
+        Below each code section is the result of the code in the section.
+    </p>
+    <p>
+        A basic section.
+    </p>
+    <CodeBox CodeBlock="@CssClassesSnippets.Section_Basic_Example" AriaLabel="Basic section example" />
 
-<div class="@Section.Base">
-    <p>Basic section content.</p>
-</div>
-<p>
-    A bordered section using the container grouping border radius with a heading:
-</p>
-<CodeBox CodeBlock="@CssClassesSnippets.Section_Container_With_Header_Example" AriaLabel="Section with heading example" />
+    <div class="@Section.Base">
+        <p>Basic section content.</p>
+    </div>
+    <p>
+        A bordered section using the container grouping border radius with a heading:
+    </p>
+    <CodeBox CodeBlock="@CssClassesSnippets.Section_Container_With_Header_Example" AriaLabel="Section with heading example" />
 
-<section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Container)">
-    <h3 class="@Section.Heading.Base">Section title</h3>
-    <p>Content goes here.</p>
+    <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Container)">
+        <h3 class="@Section.Heading.Base">Section title</h3>
+        <p>Content goes here.</p>
+    </section>
+
+    <p>
+        A themed, centred borderless section with a coloured heading that uses the content border radius
+        (explicitly defined for the example, as its the default without any modifier).:
+    </p>
+
+    <CodeBox CodeBlock="@CssClassesSnippets.Section_Coloured_Example" AriaLabel="Section with theme coloured heading example" />
+
+    <section class="@Section.Base
+        @Section.Background(SectionBackground.PrimaryLighter)
+        @Section.Text(SectionText.PrimaryDark)
+        @Section.ColumnCentred
+        @Section.Radius(SectionRadius.Content)">
+        <h3 class="@Section.Heading.Base @Section.Heading.Text(SectionHeadingText.PrimaryDark)">
+            Accent callout
+        </h3>
+        <p>This section uses the primary colour family throughout.</p>
+    </section>
+
+    <ThemeBorderTool Title="Theme border tool" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
+        <BorderGroups>
+
+            <BorderGroup Title="Content borders">
+                <BorderRadius LabelText="Content radius" ResetText="Reset content radius" MaxRangeValue="@GlobalValues.Radius_Content_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Content_Radius)])" />
+            </BorderGroup>
+            <BorderGroup Title="Container borders">
+                <BorderRadius LabelText="Content radius" ResetText="Reset content radius" MaxRangeValue="@GlobalValues.Radius_Container_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Content)])" />
+                <BorderRadius LabelText="Header radius" ResetText="Reset header radius" MaxRangeValue="@GlobalValues.Radius_Container_Header_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Header)])" />
+            </BorderGroup>
+            <BorderGroup Title="Dialog borders">
+                <BorderRadius LabelText="Outer radius" ResetText="Reset outer radius" MaxRangeValue="@GlobalValues.Radius_Dialog_Surface_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Dialog_Radius_Surface), new(CoreCssVariables.Group_Dialog_Radius_Base)])" />
+                <BorderRadius LabelText="Inner radius" ResetText="Reset inner radius" MaxRangeValue="@GlobalValues.Radius_Dialog_Content_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Dialog_Radius_Content)])" />
+            </BorderGroup>
+
+        </BorderGroups>
+    </ThemeBorderTool>
+
 </section>
 
-<p>
-    A themed, centred borderless section with a coloured heading that uses the content border radius 
-    (explicitly defined for the example, as its the default without any modifier).:
-</p>
-
-<CodeBox CodeBlock="@CssClassesSnippets.Section_Coloured_Example" AriaLabel="Section with theme coloured heading example" />
-
-<section class="@Section.Base
-    @Section.Background(SectionBackground.PrimaryLighter)
-    @Section.Text(SectionText.PrimaryDark)
-    @Section.ColumnCentred
-    @Section.Radius(SectionRadius.Content)">
-    <h3 class="@Section.Heading.Base @Section.Heading.Text(SectionHeadingText.PrimaryDark)">
-        Accent callout
-    </h3>
-    <p>This section uses the primary colour family throughout.</p>
-</section>
-
-<ThemeBorderTool  Title="Theme border tool" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
-    <BorderGroups>
-
-        <BorderGroup Title="Content borders">
-            <BorderRadius LabelText="Content radius" ResetText="Reset content radius" MaxRangeValue="@GlobalValues.Radius_Content_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Content_Radius)])" />
-        </BorderGroup>
-        <BorderGroup Title="Container borders">
-            <BorderRadius LabelText="Content radius" ResetText="Reset content radius" MaxRangeValue="@GlobalValues.Radius_Container_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Content)])" />
-            <BorderRadius LabelText="Header radius" ResetText="Reset header radius" MaxRangeValue="@GlobalValues.Radius_Container_Header_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Header)])" />
-        </BorderGroup>
-        <BorderGroup Title="Dialog borders">
-            <BorderRadius LabelText="Outer radius" ResetText="Reset outer radius" MaxRangeValue="@GlobalValues.Radius_Dialog_Surface_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Dialog_Radius_Surface), new(CoreCssVariables.Group_Dialog_Radius_Base)])" />
-            <BorderRadius LabelText="Inner radius" ResetText="Reset inner radius" MaxRangeValue="@GlobalValues.Radius_Dialog_Content_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Dialog_Radius_Content)])" />
-        </BorderGroup>
-
-    </BorderGroups>
-</ThemeBorderTool>
-
-</section>
-
-<section class="code-table">
+<section>
     <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
+    <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="css-classes">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>br-section</td>
+                    <td>Block</td>
+                    <td>The root section block. Sets default padding, margin, background, and text colour.</td>
+                </tr>
+                <tr>
+                    <td>br-section--bordered</td>
+                    <td>Modifier</td>
+                    <td>Adds a visible border using the shared divider colour.</td>
+                </tr>
+                <tr>
+                    <td>br-section--no-padding</td>
+                    <td>Modifier</td>
+                    <td>Removes the default base padding.</td>
+                </tr>
+                <tr>
+                    <td>br-section--no-margin-block</td>
+                    <td>Modifier</td>
+                    <td>Removes the default base block-direction (top/bottom) margin.</td>
+                </tr>
+                <tr>
+                    <td>br-section--code-font</td>
+                    <td>Modifier</td>
+                    <td>Switches the font family to the shared code font.</td>
+                </tr>
+                <tr>
+                    <td>br-section--column-centred</td>
+                    <td>Modifier</td>
+                    <td>
+                        Lays out content as a centred flex column.
+                        <b>Note: </b>This modifier removes margins from child elements and uses <span class="@CodeSpan.Base">gap:var(--br-unit-space-5)</span> <b>1rem</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>br-section--content</td>
+                    <td>Modifier</td>
+                    <td>Sets border radius to the content grouping.</td>
+                </tr>
+                <tr>
+                    <td>br-section--container</td>
+                    <td>Modifier</td>
+                    <td>Sets border radius to the container grouping.</td>
+                </tr>
+                <tr>
+                    <td>br-section--dialog</td>
+                    <td>Modifier</td>
+                    <td>Sets border radius to the dialog grouping.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-section--neutral-lighter<br />
+                        br-section--secondary-lighter<br />
+                        br-section--accent-lighter<br />
+                        br-section--primary-lighter
+                    </td>
 
-    <table aria-labelledby="css-classes">
-        <thead>
-            <tr>
-                <th scope="col">Class</th>
-                <th scope="col">Type</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>br-section</td>
-                <td>Block</td>
-                <td>The root section block. Sets default padding, margin, background, and text colour.</td>
-            </tr>
-            <tr>
-                <td>br-section--bordered</td>
-                <td>Modifier</td>
-                <td>Adds a visible border using the shared divider colour.</td>
-            </tr>
-            <tr>
-                <td>br-section--no-padding</td>
-                <td>Modifier</td>
-                <td>Removes the default base padding.</td>
-            </tr>
-            <tr>
-                <td>br-section--no-margin-block</td>
-                <td>Modifier</td>
-                <td>Removes the default base block-direction (top/bottom) margin.</td>
-            </tr>
-            <tr>
-                <td>br-section--code-font</td>
-                <td>Modifier</td>
-                <td>Switches the font family to the shared code font.</td>
-            </tr>
-            <tr>
-                <td>br-section--column-centred</td>
-                <td>Modifier</td>
-                <td>
-                    Lays out content as a centred flex column.
-                    <b>Note: </b>This modifier removes margins from child elements and uses <span class="@CodeSpan.Base">gap:var(--br-unit-space-5)</span> <b>1rem</b>
-                </td>
-            </tr>
-            <tr>
-                <td>br-section--content</td>
-                <td>Modifier</td>
-                <td>Sets border radius to the content grouping.</td>
-            </tr>
-            <tr>
-                <td>br-section--container</td>
-                <td>Modifier</td>
-                <td>Sets border radius to the container grouping.</td>
-            </tr>
-            <tr>
-                <td>br-section--dialog</td>
-                <td>Modifier</td>
-                <td>Sets border radius to the dialog grouping.</td>
-            </tr>
-            <tr>
-                <td>
-                    br-section--neutral-lighter<br />
-                    br-section--secondary-lighter<br />
-                    br-section--accent-lighter<br />
-                    br-section--primary-lighter
-                </td>
+                    <td>Modifier(s)</td>
+                    <td>Sets background to the respective neutral, secondary, accent or primary lighter colour value.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-section--neutral-text-dark<br />
+                        br-section--secondary-text-dark<br />
+                        br-section--accent-text-dark <br />
+                        br-section--primary-text-dark<br />
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Sets text colour to the respective neutral, secondary, accent ro primary text colour value.</td>
+                </tr>
 
-                <td>Modifier(s)</td>
-                <td>Sets background to the respective neutral, secondary, accent or primary lighter colour value.</td>
-            </tr>
-            <tr>
-                <td>
-                    br-section--neutral-text-dark<br />
-                    br-section--secondary-text-dark<br />
-                    br-section--accent-text-dark <br />
-                    br-section--primary-text-dark<br />
-                </td>
-                <td>Modifier(s)</td>
-                <td>Sets text colour to the respective neutral, secondary, accent ro primary text colour value.</td>
-            </tr>
+                <tr>
+                    <td>
+                        br-section--font-size-label<br />
+                        br-section--font-size-one<br />
+                        br-section--font-size-two<br />
+                        br-section--font-size-three
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Sets the section's base font size.</td>
+                </tr>
+                <tr>
+                    <td>br-section__heading</td>
+                    <td>Element</td>
+                    <td>
+                        Optional heading sub-part of a section.<br />
+                        <b>Note: </b>This class sets <span class="@CodeSpan.Base">margin:0</span> on the element its attached to.
+                    </td>
+                </tr>
+                <tr>
+                    <td>br-section__heading--mobile-centred</td>
+                    <td>Modifier</td>
+                    <td>Centre-aligns heading text below the small breakpoint.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-section__heading--neutral-text-dark<br />
+                        br-section__heading--secondary-text-dark<br />
+                        br-section__heading--accent-text-dark<br />
+                        br-section__heading--primary-text-dark
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Sets the heading's text colour.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-section__heading--font-size-one<br />
+                        br-section__heading--font-size-two<br />
+                        br-section__heading--font-size-three<br />
+                        br-section__heading--font-size-four<br />
+                        br-section__heading--font-size-five<br />
+                        br-section__heading--font-size-six
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Sets the heading's font size.</td>
+                </tr>
 
-            <tr>
-                <td>
-                    br-section--font-size-label<br />
-                    br-section--font-size-one<br />
-                    br-section--font-size-two<br />
-                    br-section--font-size-three
-                </td>
-                <td>Modifier(s)</td>
-                <td>Sets the section's base font size.</td>
-            </tr>
-            <tr>
-                <td>br-section__heading</td>
-                <td>Element</td>
-                <td>
-                    Optional heading sub-part of a section.<br />
-                    <b>Note: </b>This class sets <span class="@CodeSpan.Base">margin:0</span> on the element its attached to.
-                </td>
-            </tr>
-            <tr>
-                <td>br-section__heading--mobile-centred</td>
-                <td>Modifier</td>
-                <td>Centre-aligns heading text below the small breakpoint.</td>
-            </tr>
-            <tr>
-                <td>
-                    br-section__heading--neutral-text-dark<br />
-                    br-section__heading--secondary-text-dark<br />
-                    br-section__heading--accent-text-dark<br />
-                    br-section__heading--primary-text-dark
-                </td>
-                <td>Modifier(s)</td>
-                <td>Sets the heading's text colour.</td>
-            </tr>
-            <tr>
-                <td>
-                    br-section__heading--font-size-one<br />
-                    br-section__heading--font-size-two<br />
-                    br-section__heading--font-size-three<br />
-                    br-section__heading--font-size-four<br />
-                    br-section__heading--font-size-five<br />
-                    br-section__heading--font-size-six
-                </td>
-                <td>Modifier(s)</td>
-                <td>Sets the heading's font size.</td>
-            </tr>
-
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <section>
@@ -748,106 +769,110 @@
         <span class="@CodeSpan.Base">--br-cls-*</span> layer, so a theme change updates every section on the page automatically -
         you don't need to override anything to stay in sync with your chosen theme.
     </p>
-    <section class="code-table">
+    <section>
         <h3 id="section-base-variables" class="code-table__heading">Section base variables</h3>
         <p>Private variables set on the element itself before any modifier is applied.</p>
-        <table aria-labelledby="section-base-variables">
-            <thead>
-                <tr>
-                    <th scope="col">Variable Name</th>
-                    <th scope="col">Default Value</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>--_section-background</td>
-                    <td>var(--br-unit-colour-canvas)</td>
-                    <td>The section's background colour before any colour modifier is applied.</td>
-                </tr>
-                <tr>
-                    <td>--_section-text</td>
-                    <td>var(--br-unit-colour-canvas-text)</td>
-                    <td>The section's text colour before any colour modifier is applied.</td>
-                </tr>
-                <tr>
-                    <td>--_section-font-size</td>
-                    <td>var(--br-unit-font-size-1)</td>
-                    <td>The section's base font size before any size modifier is applied.</td>
-                </tr>
-                <tr>
-                    <td>--_section-border-radius</td>
-                    <td>var(--br-group-content-border-radius)</td>
-                    <td>The sections base radius which uses the content group radius by default.</td>
-                </tr>
-                <tr>
-                    <td>--_section-overflow-x</td>
-                    <td>visible</td>
-                    <td>The sections default overflow-x value.</td>
-                </tr>
-                <tr>
-                    <td>--_section-overflow-y</td>
-                    <td>visible</td>
-                    <td>The sections default overflow-y value.</td>
-                </tr>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="section-base-variables">
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Default Value</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--_section-background</td>
+                        <td>var(--br-unit-colour-canvas)</td>
+                        <td>The section's background colour before any colour modifier is applied.</td>
+                    </tr>
+                    <tr>
+                        <td>--_section-text</td>
+                        <td>var(--br-unit-colour-canvas-text)</td>
+                        <td>The section's text colour before any colour modifier is applied.</td>
+                    </tr>
+                    <tr>
+                        <td>--_section-font-size</td>
+                        <td>var(--br-unit-font-size-1)</td>
+                        <td>The section's base font size before any size modifier is applied.</td>
+                    </tr>
+                    <tr>
+                        <td>--_section-border-radius</td>
+                        <td>var(--br-group-content-border-radius)</td>
+                        <td>The sections base radius which uses the content group radius by default.</td>
+                    </tr>
+                    <tr>
+                        <td>--_section-overflow-x</td>
+                        <td>visible</td>
+                        <td>The sections default overflow-x value.</td>
+                    </tr>
+                    <tr>
+                        <td>--_section-overflow-y</td>
+                        <td>visible</td>
+                        <td>The sections default overflow-y value.</td>
+                    </tr>
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </section>
-    <section class="code-table">
+    <section>
         <h3 id="section-heading-variables" class="code-table__heading">Section heading variables</h3>
         <p>
             <span class="@CodeSpan.Base">br-section's </span>colour modifiers read from these shared
             <span class="@CodeSpan.Base">--br-cls-*</span> tokens.
         </p>
-        <table aria-labelledby="section-heading-variables">
-            <thead>
-                <tr>
-                    <th scope="col">Variable Name</th>
-                    <th scope="col">Description</th>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="section-heading-variables">
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            --br-cls-neutral-lighter<br />
+                            --br-cls-secondary-lighter<br />
+                            --br-cls-accent-lighter<br />
+                            --br-cls-primary-lighter
+                        </td>
+                        <td>
+                            Background colours used by the <span class="@CodeSpan.Base">
+                            --neutral-lighter
+                            <br />--secondary-lighter<br />--accent-lighter<br />
+                            --primary-lighter
+                        </span> modifiers.
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
                 <tr>
                     <td>
-                        --br-cls-neutral-lighter<br />
-                        --br-cls-secondary-lighter<br />
-                        --br-cls-accent-lighter<br />
-                        --br-cls-primary-lighter
+                        --br-cls-neutral-text-dark<br />
+                        --br-cls-secondary-text-dark-dark<br />
+                        --br-cls-accent-text-dark-dark<br />
+                        --br-cls-primary-text-dark
                     </td>
                     <td>
-                        Background colours used by the <span class="@CodeSpan.Base">
-                        --neutral-lighter
-                        <br />--secondary-lighter<br />--accent-lighter<br />
-                        --primary-lighter
-                    </span> modifiers.
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    --br-cls-neutral-text-dark<br />
-                    --br-cls-secondary-text-dark-dark<br />
-                    --br-cls-accent-text-dark-dark<br />
-                    --br-cls-primary-text-dark
-                </td>
-                <td>
-                    Text colours used by the
-                    <span class="@CodeSpan.Base">--neutral-text-dark<br />--secondary-text-dark<br />--accent-text-dark<br />--primary-text-dark</span> modifiers.
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    --br-cls-primary-heading-text-dark<br />
-                    --br-cls-secondary-heading-text-dark<br />
-                    --br-cls-accent-heading-text-dark<br />
-                    --br-cls-neutral-heading-text-dark
-                </td>
-                <td>
-                    Heading text colours used by <span class="@CodeSpan.Base">Section.Heading.Text()</span>.
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                        Text colours used by the
+                        <span class="@CodeSpan.Base">--neutral-text-dark<br />--secondary-text-dark<br />--accent-text-dark<br />--primary-text-dark</span> modifiers.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        --br-cls-primary-heading-text-dark<br />
+                        --br-cls-secondary-heading-text-dark<br />
+                        --br-cls-accent-heading-text-dark<br />
+                        --br-cls-neutral-heading-text-dark
+                    </td>
+                    <td>
+                        Heading text colours used by <span class="@CodeSpan.Base">Section.Heading.Text()</span>.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 </section>
 
