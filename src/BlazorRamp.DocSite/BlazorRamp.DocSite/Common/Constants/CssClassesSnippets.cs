@@ -366,7 +366,7 @@ public class CssClassesSnippets
 
 
     public const string Focus_Outline_Example = """
-        <a href="/" class="@FocusOutline.Base @FocusOutline.OnFocus @CodeSpan.Base"">Home page link</a>
+        <a href="/" class="@FocusOutline.Base @FocusOutline.OnFocus @CodeSpan.Base">Home page link</a>
         """;
 
 }
