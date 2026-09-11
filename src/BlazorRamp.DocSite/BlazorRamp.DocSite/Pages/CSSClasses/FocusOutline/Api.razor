@@ -1,0 +1,354 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_FocusOutline}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.CSS_Name_FocusOutline @GlobalValues.Common_Page_Title_Api_Usage</PageTitle>
+
+<h1>@GlobalValues.CSS_Name_FocusOutline @GlobalValues.Common_Page_Title_Api_Usage</h1>
+
+<p>
+    Everything you need to work with the <span class="@CodeSpan.Base">br-focus-outline</span> CSS class: the BEM classes it provides, the strongly-typed <span class="@CodeSpan.Base">FocusOutline</span> C# object
+    used to apply them, supporting enums, and the CSS variables used for styling.
+</p>
+
+<h2 class="page-heading">Overview</h2>
+
+<p>
+    <span class="@CodeSpan.Base">br-focus-outline</span> is a behavioural utility class that draws a focus indicator from the
+    <span class="@CodeSpan.Base">--br-unit-outline-*</span> and <span class="@CodeSpan.Base">--br-unit-outline-offset-*</span> primitive scales. By default the outline is only shown for
+    keyboard and assistive-technology focus, using <span class="@CodeSpan.Base">:focus-visible</span> - clicking with a mouse won't trigger it.
+</p>
+<p>
+    Colour, style, width and offset all default to the shared <span class="@CodeSpan.Base">--br-comp-all-outline-*</span> tokens, which are the same tokens every focusable
+    component in Blazor Ramp uses for its own focus ring. Overriding those tokens changes the focus indicator everywhere at once; the width and offset
+    modifiers below let you adjust an individual element without touching the shared tokens.
+</p>
+<p>
+    Unlike <span class="@CodeSpan.Base">br-section</span>'s radius grouping, <span class="@CodeSpan.Base">br-focus-outline</span> has no themeable grouping to bypass - the width and offset
+    modifiers always set a fixed value from the unit scale directly.
+</p>
+
+<section>
+    <h2 id="c#-classes" class="page-heading">C# API</h2>
+    <p>
+        <span class="@CodeSpan.Base">FocusOutline</span> provides the BEM CSS classes for the br-focus-outline block: a reusable
+        focus indicator that can be composed onto any focusable element.
+    </p>
+    <section>
+        <h3 id="focusoutline-class" class="code-table__heading">FocusOutline class</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="focusoutline-class">
+                <thead>
+                    <tr>
+                        <th scope="col">Return</th>
+                        <th scope="col">Const/Static Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>string</td>
+                        <td>FocusOutline.Base</td>
+                        <td>The base class, <span class="@CodeSpan.Base">br-focus-outline</span>. Always required.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>FocusOutline.Off</td>
+                        <td>Suppresses the focus outline entirely, for both mouse and keyboard focus.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>FocusOutline.OnFocus</td>
+                        <td>
+                            Shows the outline on any focus, not just keyboard/assistive-technology
+                            focus. Use sparingly - this reintroduces the outline for mouse users too.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>FocusOutline.Width(UnitOutlineWidth unitOutlineWidth)</td>
+                        <td>Gets the class that sets the focus outline's width.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>FocusOutline.Offset(UnitOutlineOffset unitOutlineOffset)</td>
+                        <td>Gets the class that sets the focus outline's offset from the element's edge.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting enums</h2>
+    <section>
+        <h3 id="unit-outline-width-enum" class="code-table__heading">UnitOutlineWidth enum</h3>
+        <p>
+            Sets the width of a <span class="@CodeSpan.Base">br-focus-outline</span> element's outline from the <span class="@CodeSpan.Base">--br-unit-outline-*</span> primitive scale.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-outline-width-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>None</td>
+                        <td>No outline width. Maps to <span class="@CodeSpan.Base">--br-unit-outline-0</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>One</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-outline-1</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Two</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-outline-2</span>. This is the library's default outline width.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Three</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-outline-3</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Four</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-outline-4</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Five</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-outline-5</span>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h3 id="unit-outline-offset-enum" class="code-table__heading">UnitOutlineOffset enum</h3>
+        <p>
+            Sets the offset of a <span class="@CodeSpan.Base">br-focus-outline</span> element's outline from the <span class="@CodeSpan.Base">--br-unit-outline-offset-*</span> primitive scale.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-outline-offset-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>None</td>
+                        <td>No offset - the outline sits flush against the element's edge. Maps to <span class="@CodeSpan.Base">--br-unit-outline-offset-0</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>One</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-outline-offset-1</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Two</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-outline-offset-2</span>. This is the library's default outline offset.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Three</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-outline-offset-3</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Four</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-outline-offset-4</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Five</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-outline-offset-5</span>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Usage</h2>
+
+    <p>
+        Below the code section is the result of the code in the section. I added the CodeSpan class as
+        an unstyled link colours may not have enough constrast. Link styling class coming soon. Use the tab key or 
+        click an hold and move away (so the link does not activate) to see the indicator.
+    </p>
+    <p>
+        Outlines follow the border, so if you wanted a rounded one you could also use the <span class="@CodeSpan.Base">Radius</span>
+        class as well.
+    </p>
+
+    <CodeBox CodeBlock="@CssClassesSnippets.Focus_Outline_Example" AriaLabel="Focus outline code example" />
+
+    <a href="/" class="@FocusOutline.Base @FocusOutline.OnFocus @CodeSpan.Base"">Home page link</a>
+
+</section>
+
+<section>
+    <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
+    <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="css-classes">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>br-focus-outline</td>
+                    <td>Block</td>
+                    <td>The root focus indicator class. Shows an outline on <span class="@CodeSpan.Base">:focus-visible</span> using the shared outline tokens.</td>
+                </tr>
+                <tr>
+                    <td>br-focus-outline--off</td>
+                    <td>Modifier</td>
+                    <td>Suppresses the outline entirely, for both mouse and keyboard focus.</td>
+                </tr>
+                <tr>
+                    <td>br-focus-outline--on-focus</td>
+                    <td>Modifier</td>
+                    <td>Shows the outline on any focus, not just keyboard/assistive-technology focus.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-focus-outline--width-0<br>
+                        br-focus-outline--width-1<br>
+                        br-focus-outline--width-2<br>
+                        br-focus-outline--width-3<br>
+                        br-focus-outline--width-4<br>
+                        br-focus-outline--width-5
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Sets the outline's width.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-focus-outline--offset-0<br>
+                        br-focus-outline--offset-1<br>
+                        br-focus-outline--offset-2<br>
+                        br-focus-outline--offset-3<br>
+                        br-focus-outline--offset-4<br>
+                        br-focus-outline--offset-5
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Sets the outline's offset from the element's edge.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section>
+    <h2 class="page-heading">CSS variables</h2>
+    <p>
+        The following variables can be overridden to alter the appearance of br-focus-outline. Width, style, offset and colour default to the shared
+        <span class="@CodeSpan.Base">--br-comp-all-outline-*</span> layer, so overriding those tokens keeps every component's focus ring - and this utility -
+        in sync automatically.
+    </p>
+    <section>
+        <h3 id="focusoutline-base-variables" class="code-table__heading">FocusOutline base variables</h3>
+        <p>Private variables set on the element itself before any modifier is applied.</p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="focusoutline-base-variables">
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Default Value</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--_focus-outline-width</td>
+                        <td>var(--br-comp-all-outline-width)</td>
+                        <td>The outline's width before any width modifier is applied.</td>
+                    </tr>
+                    <tr>
+                        <td>--_focus-outline-style</td>
+                        <td>var(--br-comp-all-outline-style)</td>
+                        <td>The outline's border style (e.g. solid).</td>
+                    </tr>
+                    <tr>
+                        <td>--_focus-outline-offset</td>
+                        <td>var(--br-comp-all-outline-offset)</td>
+                        <td>The outline's offset from the element's edge before any offset modifier is applied.</td>
+                    </tr>
+                    <tr>
+                        <td>--_focus-outline-colour</td>
+                        <td>var(--br-comp-all-outline-colour)</td>
+                        <td>The outline's colour.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section>
+        <h3 id="focusoutline-shared-variables" class="code-table__heading">Shared variables consumed</h3>
+        <p>
+            <span class="@CodeSpan.Base">br-focus-outline's</span> defaults read from these shared
+            <span class="@CodeSpan.Base">--br-comp-all-outline-*</span> tokens, the same tokens used by every focusable component's own focus ring.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="focusoutline-shared-variables">
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--br-comp-all-outline-width</td>
+                        <td>The default outline width used across the library.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-all-outline-style</td>
+                        <td>The default outline border style used across the library.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-all-outline-offset</td>
+                        <td>The default outline offset used across the library.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-all-outline-colour</td>
+                        <td>The default outline colour used across the library.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_CodeSpan}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_CodeSpan - @GlobalValues.Common_Page_Title_Api_Usage</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Kbd}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_Kbd - @GlobalValues.Common_Page_Title_Api_Usage</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}

@@ -1,0 +1,35 @@
+﻿.br-focus-outline {
+    --_focus-outline-width: var(--br-comp-all-outline-width);
+    --_focus-outline-style: var(--br-comp-all-outline-style);
+    --_focus-outline-offset: var(--br-comp-all-outline-offset);
+    --_focus-outline-colour: var(--br-comp-all-outline-colour);
+
+    &:focus-visible,
+    &--on-focus:focus {
+        outline-width: var(--_focus-outline-width);
+        outline-style: var(--_focus-outline-style);
+        outline-offset: var(--_focus-outline-offset);
+        outline-color: var(--_focus-outline-colour);
+    }
+
+    &--off {
+        &:focus,
+        &:focus-visible {
+            outline: none;
+        }
+    }
+
+    &--width-0 {--_focus-outline-width: var(--br-unit-outline-0);} 
+    &--width-1 {--_focus-outline-width: var(--br-unit-outline-1);} 
+    &--width-2 {--_focus-outline-width: var(--br-unit-outline-2);} 
+    &--width-3 {--_focus-outline-width: var(--br-unit-outline-3);} 
+    &--width-4 {--_focus-outline-width: var(--br-unit-outline-4);} 
+    &--width-5 {--_focus-outline-width: var(--br-unit-outline-5);} 
+
+    &--offset-0 {--_focus-outline-offset: var(--br-unit-outline-offset-0);} 
+    &--offset-1 {--_focus-outline-offset: var(--br-unit-outline-offset-1);} 
+    &--offset-2 {--_focus-outline-offset: var(--br-unit-outline-offset-2);} 
+    &--offset-3 {--_focus-outline-offset: var(--br-unit-outline-offset-3);} 
+    &--offset-4 {--_focus-outline-offset: var(--br-unit-outline-offset-4);} 
+    &--offset-5 {--_focus-outline-offset: var(--br-unit-outline-offset-5);} 
+}

@@ -11,11 +11,11 @@
 		<PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
 		<PackageTags>Blazor; Accessible Components; Accessibility;CSS Classes;</PackageTags>
-		<PackageReleaseNotes>Additional selector added to the Section class for focus indicators when tables have a tabindex and are focus-visible.</PackageReleaseNotes>
+		<PackageReleaseNotes>Added the FocusOutline utility class and associated CSS class br-focus-outline for adding a customisable, accessible focus indicator outline for any focusable element.</PackageReleaseNotes>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
-		<AssemblyVersion>1.1.1</AssemblyVersion>
-		<FileVersion>1.1.1</FileVersion>
-		<Version>1.1.1</Version>
+		<AssemblyVersion>1.2.0</AssemblyVersion>
+		<FileVersion>1.2.0</FileVersion>
+		<Version>1.2.0</Version>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 		<Deterministic>true</Deterministic>

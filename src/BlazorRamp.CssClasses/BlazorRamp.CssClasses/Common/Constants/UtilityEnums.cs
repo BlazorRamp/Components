@@ -316,3 +316,67 @@ public enum UnitVerticalAlign : int
     /// </summary>
     Bottom = 7
 }
+
+/// <summary>
+/// Sets the width of an element's focus outline from the <c>--br-unit-outline-*</c>
+/// primitive scale. Used by the <see cref="FocusOutline"/> utility class.
+/// </summary>
+public enum UnitOutlineWidth : int
+{
+    /// <summary>
+    /// No outline width. Maps to <c>--br-unit-outline-0</c>.
+    /// </summary>
+    None = 0,
+    /// <summary>
+    /// Maps to <c>--br-unit-outline-1</c>.
+    /// </summary>
+    One = 1,
+    /// <summary>
+    /// Maps to <c>--br-unit-outline-2</c>. This is the library's default outline width.
+    /// </summary>
+    Two = 2,
+    /// <summary>
+    /// Maps to <c>--br-unit-outline-3</c>.
+    /// </summary>
+    Three = 3,
+    /// <summary>
+    /// Maps to <c>--br-unit-outline-4</c>.
+    /// </summary>
+    Four = 4,
+    /// <summary>
+    /// Maps to <c>--br-unit-outline-5</c>.
+    /// </summary>
+    Five = 5
+}
+
+/// <summary>
+/// Sets the offset of an element's focus outline from the <c>--br-unit-outline-offset-*</c>
+/// primitive scale. Used by the <see cref="FocusOutline"/> utility class.
+/// </summary>
+public enum UnitOutlineOffset : int
+{
+    /// <summary>
+    /// No offset — the outline sits flush against the element's edge. Maps to <c>--br-unit-outline-offset-0</c>.
+    /// </summary>
+    None = 0,
+    /// <summary>
+    /// Maps to <c>--br-unit-outline-offset-1</c>.
+    /// </summary>
+    One = 1,
+    /// <summary>
+    /// Maps to <c>--br-unit-outline-offset-2</c>. This is the library's default outline offset.
+    /// </summary>
+    Two = 2,
+    /// <summary>
+    /// Maps to <c>--br-unit-outline-offset-3</c>.
+    /// </summary>
+    Three = 3,
+    /// <summary>
+    /// Maps to <c>--br-unit-outline-offset-4</c>.
+    /// </summary>
+    Four = 4,
+    /// <summary>
+    /// Maps to <c>--br-unit-outline-offset-5</c>.
+    /// </summary>
+    Five = 5
+}
