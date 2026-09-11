@@ -70,7 +70,7 @@ public enum UnitColSpan : int
 
 /// <summary>
 /// Identifies a responsive breakpoint, matching the <c>$breakpoints</c> Sass map
-/// used to generate <see cref="GridCol"/>'s media-query classes.
+/// used to generate <see cref="GridRow"/>'s media-query classes.
 /// </summary>
 public enum UnitBreakpoint : int
 {
