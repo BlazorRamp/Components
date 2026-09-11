@@ -52,3 +52,30 @@
         }
     }
 }
+
+
+@mixin generate-grid-column-classes($breakpoint-map: $breakpoints, $number-of-columns: 12, $grid-container-class: "br-grid-row") {
+
+    $grid-container-class: unquote(".#{$grid-container-class}");
+
+    @each $key, $value in $breakpoint-map {
+
+        @if $value == 0px {
+            @include _column-classes($key, $number-of-columns, $grid-container-class);
+        }
+        @else {
+            @media (min-width: #{$value}) {
+                @include _column-classes($key, $number-of-columns, $grid-container-class);
+            }
+        }
+    }
+}
+
+@mixin _column-classes($key-size, $number-of-columns: 12, $grid-container-class: "") {
+
+    @for $counter from 1 through $number-of-columns {
+        #{$grid-container-class} .br-grid-col-#{$key-size}-#{$counter} {
+            grid-column: span $counter;
+        }
+    }
+}

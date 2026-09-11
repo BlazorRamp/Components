@@ -1,0 +1,65 @@
+﻿@use "_functions" as *;
+
+.br-grid-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(var(--br-unit-space-2), min-content);
+    gap: var(--br-unit-space-3);
+    margin-block: var(--br-unit-space-3);
+
+    & [class*="br-grid-col-"] {
+        grid-column: span 12;
+        min-width: 0;
+    }
+}
+
+@include generate-grid-column-classes($grid-container-class: "br-grid-row");
+
+.br-flex-content {
+    display: flex;
+
+    &--columns {
+        flex-direction: column;
+    }
+
+    &--wrap {
+        flex-wrap: wrap;
+    }
+}
+
+.br-justify-content-end     {justify-content: end;}
+.br-justify-content-center  {justify-content: center;}
+.br-justify-content-start   {justify-content: start;}
+.br-justify-content-between {justify-content: space-between;}
+.br-justify-content-around  {justify-content: space-around;}
+.br-justify-content-evenly  {justify-content: space-evenly;}
+.br-justify-content-stretch {justify-content: stretch;}
+
+.br-align-content-center  {align-content: center;}
+.br-align-content-start   {align-content: start;}
+.br-align-content-end     {align-content: end;}
+.br-align-content-between {align-content: space-between;}
+.br-align-content-around  {align-content: space-around;}
+.br-align-content-evenly  {align-content: space-evenly;}
+.br-align-content-stretch {align-content: stretch;}
+
+.br-justify-items-start   {justify-items: start;}
+.br-justify-items-end     {justify-items: end;}
+.br-justify-items-center  {justify-items: center;}
+.br-justify-items-stretch {justify-items: stretch;}
+
+.br-align-items-start   {align-items: start;}
+.br-align-items-end     {align-items: end;}
+.br-align-items-center  {align-items: center;}
+.br-align-items-stretch {align-items: stretch;}
+
+.br-justify-self-start   {justify-self: start;}
+.br-justify-self-end     {justify-self: end;}
+.br-justify-self-center  {justify-self: center;}
+.br-justify-self-stretch {justify-self: stretch;}
+
+.br-align-self-start   {align-self: start;}
+.br-align-self-end     {align-self: end;}
+.br-align-self-center  {align-self: center;}
+.br-align-self-stretch {align-self: stretch;}

@@ -3,3 +3,5 @@ $device-md-min-width: 768px;
 $device-lg-min-width: 992px;
 $device-xl-min-width: 1280px;
 $device-xxl-min-width: 1536px;
+
+$breakpoints: ("xs": 0px, "sm": 576px, "md": 768px, "lg": 992px, "xl": 1280px, "xxl": 1536px);
