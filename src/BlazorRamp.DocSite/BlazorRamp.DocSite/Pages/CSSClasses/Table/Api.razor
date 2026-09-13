@@ -59,7 +59,7 @@
 </p>
 <p>
     <strong>Important: </strong>Given how you need to structure the HTML for a scrollable table scenario (see below) and the need to ensure scrollable regions are keyboard
-    only accessible, the caption element is not used. Instead for accessibilty you should add a title/heading and link it to the table via <span class="@CodeSpan.Base">aria-labelledby</span>.
+    only accessible, I choose not to use the caption element. Instead for accessibilty I prefer a title/heading and link it to the table via <span class="@CodeSpan.Base">aria-labelledby</span>.
     When you know the table will be scrollable you just add <span class="@CodeSpan.Base">tabindex="0"</span> on the table, and keyboard only users will see a focus indicator as well as be able to activate
     the scrollbar in browsers that still do not support this functionality natively. If you do not want to use visible text you can also use the <span class="@CodeSpan.Base">aria-label</span> attribute.
 </p>
