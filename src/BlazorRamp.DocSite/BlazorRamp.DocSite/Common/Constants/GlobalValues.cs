@@ -163,8 +163,13 @@ public class GlobalValues
 
     public const string CSS_Path_Part_Buttons = "buttons";
     public const string CSS_Path_Part_CodeSpan = "codespan";
+    public const string CSS_Path_Part_FlexContent = "flex-content";
     public const string CSS_Path_Part_FocusOutline = "focus-outline";
+
+    public const string CSS_Path_Part_Gap = "gap";
+    public const string CSS_Path_Part_GridRow = "grid-row";
     public const string CSS_Path_Part_Kbd = "kbd";
+    public const string CSS_Path_Part_LayoutAlignment = "layout-alignment";
     public const string CSS_Path_Part_Margin = "margin";
     public const string CSS_Path_Part_Overflow = "overflow";
     public const string CSS_Path_Part_Padding = "padding";
@@ -178,9 +183,13 @@ public class GlobalValues
 
     public const string CSS_Name_Buttons  = "Buttons";
     public const string CSS_Name_CodeSpan = "CodeSpan";
-
+    public const string CSS_Name_FlexContent = "FlexContent";
     public const string CSS_Name_FocusOutline = "FocusOutline";
+
+    public const string CSS_Name_Gap = "Gap";
+    public const string CSS_Name_GridRow = "GridRow";
     public const string CSS_Name_Kbd     = "Kbd";
+    public const string CSS_Name_LayoutAlignment = "LayoutAlignment";
     public const string CSS_Name_Margin = "Margin";
     public const string CSS_Name_Position = "Position";
     public const string CSS_Name_Overflow = "Overflow";

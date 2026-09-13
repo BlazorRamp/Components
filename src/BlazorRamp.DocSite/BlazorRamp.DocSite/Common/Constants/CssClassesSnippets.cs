@@ -366,7 +366,67 @@ public class CssClassesSnippets
 
 
     public const string Focus_Outline_Example = """
-        <a href="/" class="@FocusOutline.Base @FocusOutline.OnFocus @CodeSpan.Base">Home page link</a>
+        <a href="/" class="@FocusOutline.Base @FocusOutline.OnFocus @CodeSpan.Base @CodeSpan.Scheme(CodeSpanScheme.Primary)">Home page link</a>
+        """;
+
+
+    public const string Gap_Example = """
+        <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)
+
+            @Gap.SetGaps(UnitGapSize.Five)">
+
+            <div style="color:black;background-color:var(--br-unit-colour-warning-lighter);width:200px;" class="@FlexContent.Base @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)">
+                Item One
+            </div>
+            <div style="color:black;background-color:var(--br-unit-colour-success-lighter);width:200px" class="@FlexContent.Base @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)">
+                Item Two
+            </div>
+            <div style="color:black;background-color:var(--br-unit-colour-danger-lighter);width:200px" class="@FlexContent.Base @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)">
+                Item Three
+            </div>
+            <div style="color:black;background-color:var(--br-unit-colour-info-lighter);width:200px" class="@FlexContent.Base @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)">
+                Item Four
+            </div>
+        </div>
+        """;
+
+    public const string LayoutAlignment_Justify_Content_Example = """
+        <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetRowGap(UnitGapSize.Five) 
+
+            @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween)">
+
+            <div style="color:black;background-color:var(--br-unit-colour-warning-lighter);width:200px;" class="@FlexContent.Base @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)">
+                Item One
+            </div>
+            <div style="color:black;background-color:var(--br-unit-colour-success-lighter);width:200px" class="@FlexContent.Base @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)">
+                Item Two
+            </div>
+        </div>
+        """;
+
+    public const string FlexContent_Columns_Example = """
+        <div class="@FlexContent.Base @FlexContent.UseColumns @Gap.SetRowGap(UnitGapSize.Five)">
+            <span style="color:black;background-color:var(--br-unit-colour-warning-lighter);width:200px;" class="@FlexContent.Base @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)">
+                Item One
+            </span>
+            <span style="color:black;background-color:var(--br-unit-colour-success-lighter);width:200px" class="@FlexContent.Base @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)">
+                Item Two
+            </span>
+        </div>
+        """;
+
+    public const string GidRow_Code_Example = """
+        <div class="@Section.Base @Section.Bordered @GridRow.Base">
+            <div class="@GridRow.ColSpan(UnitBreakpoint.Md, UnitColSpan.Five)" style="padding: var(--br-unit-space-1); border:1px solid var(--br-comp-all-divider-colour);">
+                colspan md 5
+            </div>
+            <div class="@GridRow.ColSpan(UnitBreakpoint.Md, UnitColSpan.Seven)" style="padding: var(--br-unit-space-1); border:1px solid var(--br-comp-all-divider-colour);">
+                colspan md 7
+            </div>
+            <div class="@GridRow.ColSpan(UnitBreakpoint.Lg, UnitColSpan.Four)" style="padding: var(--br-unit-space-1); border:1px solid var(--br-comp-all-divider-colour);">
+                colspan lg 4
+            </div>
+        </div>
         """;
 
 }

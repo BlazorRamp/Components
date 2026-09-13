@@ -15,6 +15,11 @@ public static class GridRow
     public const string Base = "br-grid-row";
 
     /// <summary>
+    /// Removes the row's default block-axis margin.
+    /// </summary>
+    public const string NoMarginBlock = $"{Base}--no-margin-block";
+
+    /// <summary>
     /// Gets the class that sets a child element's column span at and above the given
     /// <paramref name="unitBreakpoint"/>.
     /// </summary>
@@ -36,4 +41,5 @@ public static class GridRow
 
         return $"br-grid-col-{infix}-{(int)unitColSpan}";
     }
+
 }

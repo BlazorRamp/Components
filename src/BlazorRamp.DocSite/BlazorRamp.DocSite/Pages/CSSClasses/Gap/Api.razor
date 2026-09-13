@@ -1,0 +1,250 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Gap}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.CSS_Name_Gap @GlobalValues.Common_Page_Title_Api_Usage</PageTitle>
+
+<h1>@GlobalValues.CSS_Name_Gap @GlobalValues.Common_Page_Title_Api_Usage</h1>
+
+
+<p>
+    Everything you need to work with the <span class="@CodeSpan.Base">br-gaps-*</span>, <span class="@CodeSpan.Base">br-row-gap-*</span>, and <span class="@CodeSpan.Base">br-col-gap-*</span> CSS classes: the utility classes provided, the strongly-typed <span class="@CodeSpan.Base">Gap</span> C# object
+    used to apply them, and the supporting enum used to select a gap size.
+</p>
+
+<h2 class="page-heading">Overview</h2>
+
+<p>
+    <span class="@CodeSpan.Base">Gap</span> is a <b>utility class</b>, not a BEM component class like <span class="@CodeSpan.Base">GridRow</span> or <span class="@CodeSpan.Base">FlexContent</span>.
+    Rather than describing a block, element, or its variants, each method sets a single CSS gap property to a fixed value. Utility classes are flat
+    and single-purpose by design, so they can be freely combined with each other and with any other class - including component classes - on the same element.
+</p>
+<p>
+    <span class="@CodeSpan.Base">gap</span>, <span class="@CodeSpan.Base">row-gap</span> and <span class="@CodeSpan.Base">column-gap</span> behave identically whether applied within a
+    <span class="@CodeSpan.Base">br-flex-content</span> container or a <span class="@CodeSpan.Base">br-grid-row</span> container, so <span class="@CodeSpan.Base">Gap</span> is shared between both rather than
+    duplicated per layout mode.
+</p>
+<p>
+    <span class="@CodeSpan.Base">SetGaps</span> sets both the row and column gap at once. Combine it with <span class="@CodeSpan.Base">SetRowGap</span> or
+    <span class="@CodeSpan.Base">SetColGap</span> on the same element to override just one axis - e.g. apply <span class="@CodeSpan.Base">Gap.SetGaps(UnitGapSize.Four)</span> alongside
+    <span class="@CodeSpan.Base">Gap.SetRowGap(UnitGapSize.Two)</span> to get a gap of 4 on both axes except the row gap, which becomes 2.
+</p>
+
+<section>
+    <h2 id="c#-classes" class="page-heading">C# API</h2>
+    <p>
+        <span class="@CodeSpan.Base">Gap</span> provides utility classes that set the gap between the children of a flex or grid container.
+    </p>
+    <section>
+        <h3 id="gap-class" class="code-table__heading">Gap class</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="gap-class">
+                <thead>
+                    <tr>
+                        <th scope="col">Return</th>
+                        <th scope="col">Static Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>string</td>
+                        <td>Gap.SetGaps(UnitGapSize unitGapSize)</td>
+                        <td>Gets the class that sets both the row and column gap, between a container's children.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Gap.SetRowGap(UnitGapSize unitGapSize)</td>
+                        <td>Gets the class that sets the row gap only, between a container's children.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Gap.SetColGap(UnitGapSize unitGapSize)</td>
+                        <td>Gets the class that sets the column gap only, between a container's children.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting enum</h2>
+    <section>
+        <h3 id="unit-gap-size-enum" class="code-table__heading">UnitGapSize enum</h3>
+        <p>
+            Sets a gap size from the <span class="@CodeSpan.Base">--br-unit-space-*</span> primitive scale, 0 to 15.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-gap-size-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>None</td>
+                        <td>No gap. Maps to <span class="@CodeSpan.Base">--br-unit-space-0</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>One</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-1</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Two</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-2</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Three</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-3</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Four</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-4</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Five</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-5</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Six</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-6</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Seven</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-7</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Eight</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-8</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Nine</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-9</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Ten</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-10</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Eleven</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-11</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Twelve</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-12</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Thirteen</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-13</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Fourteen</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-14</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>Fifteen</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-space-15</span>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
+    <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="css-classes">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>br-gaps-0 &hellip; br-gaps-15</td>
+                    <td>Utility</td>
+                    <td>Sets both <span class="@CodeSpan.Base">row-gap</span> and <span class="@CodeSpan.Base">column-gap</span>.</td>
+                </tr>
+                <tr>
+                    <td>br-row-gap-0 &hellip; br-row-gap-15</td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">row-gap</span> only.</td>
+                </tr>
+                <tr>
+                    <td>br-col-gap-0 &hellip; br-col-gap-15</td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">column-gap</span> only.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section>
+    <h2 class="page-heading">Usage</h2>
+    <p>
+        The following sets both column and row gap. The example is using a display of flex provided by the <span class="@CodeSpan.Base">FlexContent</span> utility
+        which has a default direction of row. If there is enough room for all four items then you will only see the column gap. If you then minimize the page so 
+        the items wrap, you will then see the row gap. Make it even small so they stack, you then only have the row gap.
+    </p>
+    
+    <CodeBox CodeBlock="@CssClassesSnippets.Gap_Example" AriaLabel="Gap utility code example" />
+
+    <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)
+    
+        @Gap.SetGaps(UnitGapSize.Five)">
+
+        <div style="color:black;background-color:var(--br-unit-colour-warning-lighter);width:200px;" class="@FlexContent.Base @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)">
+            Item One
+        </div>
+        <div style="color:black;background-color:var(--br-unit-colour-success-lighter);width:200px" class="@FlexContent.Base @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)">
+            Item Two
+        </div>
+        <div style="color:black;background-color:var(--br-unit-colour-danger-lighter);width:200px" class="@FlexContent.Base @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)">
+            Item Three
+        </div>
+        <div style="color:black;background-color:var(--br-unit-colour-info-lighter);width:200px" class="@FlexContent.Base @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)">
+            Item Four
+        </div>
+    </div>
+
+</section>
+
+
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_FocusOutline}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_FocusOutline - @GlobalValues.Common_Page_Title_Api_Usage</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_GridRow}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_GridRow - @GlobalValues.Common_Page_Title_Api_Usage</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}

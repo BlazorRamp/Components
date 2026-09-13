@@ -1,0 +1,234 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_FlexContent}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.CSS_Name_FlexContent @GlobalValues.Common_Page_Title_Api_Usage</PageTitle>
+
+<h1>@GlobalValues.CSS_Name_FlexContent @GlobalValues.Common_Page_Title_Api_Usage</h1>
+
+<p>
+    Everything you need to work with the <span class="@CodeSpan.Base">br-flex-content</span> CSS class: the BEM classes it provides, the strongly-typed <span class="@CodeSpan.Base">FlexContent</span> C# object
+    used to apply them, supporting enums, and the CSS variables used for styling.
+</p>
+
+<h2 class="page-heading">Overview</h2>
+
+<p>
+    <span class="@CodeSpan.Base">br-flex-content</span> is a flex container. By default its children lay out in a row without wrapping; the
+    <span class="@CodeSpan.Base">FlexContent.UseColumns</span> modifier switches the main axis to a column direction, and
+    <span class="@CodeSpan.Base">FlexContent.Wrap</span> controls whether children wrap onto multiple lines.
+</p>
+<p>
+    To align a flex container's children, combine <span class="@CodeSpan.Base">br-flex-content</span> with the shared
+    <span class="@CodeSpan.Base">LayoutAlignment</span> utility classes, which cover <span class="@CodeSpan.Base">justify-content</span>,
+    <span class="@CodeSpan.Base">align-content</span>, <span class="@CodeSpan.Base">align-items</span> and <span class="@CodeSpan.Base">align-self</span> - see the
+    <span class="@CodeSpan.Base">LayoutAlignment</span> reference page for the full set. To set the gap between children, use the shared
+    <span class="@CodeSpan.Base">Gap</span> utility classes - see the <span class="@CodeSpan.Base">Gap</span> reference page.
+</p>
+<p>
+    <span class="@CodeSpan.Base">FlexContent.Grow</span> and <span class="@CodeSpan.Base">FlexContent.Shrink</span> are different from <span class="@CodeSpan.Base">UseColumns</span> and
+    <span class="@CodeSpan.Base">Wrap</span> in one important way: they're applied to a flex <b>item</b> (a child of the container), not to the container itself, since
+    growing and shrinking describe how one child behaves relative to its siblings rather than a property of the container as a whole. They live here on
+    <span class="@CodeSpan.Base">FlexContent</span> for discoverability, but the classes they return go on the children you want to grow or shrink, not on the
+    <span class="@CodeSpan.Base">br-flex-content</span> element.
+</p>
+
+<section>
+    <h2 id="c#-classes" class="page-heading">C# API</h2>
+    <p>
+        <span class="@CodeSpan.Base">FlexContent</span> provides the BEM CSS classes for the br-flex-content block: a
+        flex container, plus the modifier classes used to control its direction and wrapping behaviour.
+    </p>
+    <section>
+        <h3 id="flexcontent-class" class="code-table__heading">FlexContent class</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="flexcontent-class">
+                <thead>
+                    <tr>
+                        <th scope="col">Return</th>
+                        <th scope="col">Const/Static Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>string</td>
+                        <td>FlexContent.Base</td>
+                        <td>The base class, <span class="@CodeSpan.Base">br-flex-content</span>. Always required.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>FlexContent.UseColumns</td>
+                        <td>Sets the flex container's main axis to the block (column) direction instead of the default row.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>FlexContent.Wrap(UnitFlexWrap unitFlexWrap)</td>
+                        <td>Gets the class that sets whether the container's children may wrap onto multiple lines.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>FlexContent.Grow(UnitFlexFactor unitFlexFactor)</td>
+                        <td>Gets the class that sets whether a flex item may grow to fill available space along the main axis. Applied to the item, not the container.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>FlexContent.Shrink(UnitFlexFactor unitFlexFactor)</td>
+                        <td>Gets the class that sets whether a flex item may shrink below its base size when space is limited. Applied to the item, not the container.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting enum</h2>
+    <section>
+        <h3 id="unit-flex-wrap-enum" class="code-table__heading">UnitFlexWrap enum</h3>
+        <p>
+            Sets whether a <span class="@CodeSpan.Base">br-flex-content</span> container's children may wrap onto multiple lines.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-flex-wrap-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>NoWrap</td>
+                        <td>Items stay on a single line, even if that overflows the container. The default.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Wrap</td>
+                        <td>Items wrap onto multiple lines as needed.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>WrapReverse</td>
+                        <td>Items wrap onto multiple lines as needed, with lines laid out in reverse order.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h3 id="unit-flex-factor-enum" class="code-table__heading">UnitFlexFactor enum</h3>
+        <p>
+            Sets a flex factor of 0 or 1, used by <span class="@CodeSpan.Base">FlexContent.Grow</span> and <span class="@CodeSpan.Base">FlexContent.Shrink</span> to control
+            a flex item's growing and shrinking behaviour.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-flex-factor-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>None</td>
+                        <td>A factor of 0.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>One</td>
+                        <td>A factor of 1.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Usage</h2>
+    <p>
+        The following examples sets the flex container to use columns to stack the inline <span class="@CodeSpan.Base">span</span> elments.
+    </p>
+
+    <div class="@FlexContent.Base @FlexContent.UseColumns @Gap.SetRowGap(UnitGapSize.Five)">
+        <span style="color:black;background-color:var(--br-unit-colour-warning-lighter);width:200px;" class="@FlexContent.Base @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)">
+            Item One
+        </span>
+        <span style="color:black;background-color:var(--br-unit-colour-success-lighter);width:200px" class="@FlexContent.Base @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)">
+            Item Two
+        </span>
+    </div>
+</section>
+<CodeBox CodeBlock="@CssClassesSnippets.FlexContent_Columns_Example" AriaLabel="Flex content use columns code example." />
+<section>
+    <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
+    <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="css-classes">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>br-flex-content</td>
+                    <td>Block</td>
+                    <td>The flex container. Lays its children out in a non-wrapping row by default.</td>
+                </tr>
+                <tr>
+                    <td>br-flex-content--columns</td>
+                    <td>Modifier</td>
+                    <td>Sets the container's main axis to the block (column) direction.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-flex-content--no-wrap<br>
+                        br-flex-content--wrap<br>
+                        br-flex-content--wrap-reverse
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Sets whether the container's children may wrap onto multiple lines.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-flex-grow-0<br>
+                        br-flex-grow-1
+                    </td>
+                    <td>Utility</td>
+                    <td>Sets a flex item's <span class="@CodeSpan.Base">flex-grow</span> factor. Applied to the item, not the container.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-flex-shrink-0<br>
+                        br-flex-shrink-1
+                    </td>
+                    <td>Utility</td>
+                    <td>Sets a flex item's <span class="@CodeSpan.Base">flex-shrink</span> factor. Applied to the item, not the container.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_CodeSpan}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_CodeSpan - @GlobalValues.Common_Page_Title_Api_Usage</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_GridRow}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_GridRow - @GlobalValues.Common_Page_Title_Api_Usage</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}

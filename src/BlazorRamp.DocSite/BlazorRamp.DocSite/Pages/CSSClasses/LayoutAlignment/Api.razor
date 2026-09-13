@@ -1,0 +1,479 @@
+﻿@using BlazorRamp.DocSite.Pages.GettingStarted
+@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_LayoutAlignment}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.CSS_Name_LayoutAlignment @GlobalValues.Common_Page_Title_Api_Usage</PageTitle>
+
+<h1>@GlobalValues.CSS_Name_LayoutAlignment @GlobalValues.Common_Page_Title_Api_Usage</h1>
+
+<p>
+    Everything you need to work with the <span class="@CodeSpan.Base">br-justify-*</span> and <span class="@CodeSpan.Base">br-align-*</span> CSS classes: the utility classes provided, the strongly-typed <span class="@CodeSpan.Base">LayoutAlignment</span> C# object
+    used to apply them, and the supporting enums used to select an alignment value.
+</p>
+
+<h2 class="page-heading">Overview</h2>
+
+<p>
+    <span class="@CodeSpan.Base">LayoutAlignment</span> is a <b>utility class</b>, not a BEM component class like <span class="@CodeSpan.Base">GridRow</span> or <span class="@CodeSpan.Base">FlexContent</span>.
+    Rather than describing a block, element, or its variants, each method sets a single CSS alignment property to a fixed value. Utility classes are flat
+    and single-purpose by design, so they can be freely combined with each other and with any other class - including component classes - on the same element.
+</p>
+<p>
+    These classes aren't tied to either layout mode - the underlying CSS properties (<span class="@CodeSpan.Base">justify-content</span>, <span class="@CodeSpan.Base">align-content</span>,
+    <span class="@CodeSpan.Base">justify-items</span>, <span class="@CodeSpan.Base">align-items</span>, <span class="@CodeSpan.Base">justify-self</span>, <span class="@CodeSpan.Base">align-self</span>) behave the same way whether applied
+    within a <span class="@CodeSpan.Base">br-flex-content</span> container or a <span class="@CodeSpan.Base">br-grid-row</span> container, so <span class="@CodeSpan.Base">LayoutAlignment</span> is shared between both rather than
+    duplicated per layout mode.
+</p>
+<p>
+    <span class="@CodeSpan.Base">JustifyItems</span> and <span class="@CodeSpan.Base">JustifySelf</span> only take effect within a grid container - flex containers don't support
+    <span class="@CodeSpan.Base">justify-items</span>/<span class="@CodeSpan.Base">justify-self</span> at all, since a flex item's alignment along the main axis is instead
+    controlled by <span class="@CodeSpan.Base">justify-content</span> on the container.
+</p>
+
+<section>
+    <h2 id="c#-classes" class="page-heading">C# API</h2>
+    <p>
+        <span class="@CodeSpan.Base">LayoutAlignment</span> provides utility classes that set an element's alignment along the
+        justify and align axes, for use within a flex or grid container.
+    </p>
+    <section>
+        <h3 id="layout-alignment-class" class="code-table__heading">LayoutAlignment class</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="layout-alignment-class">
+                <thead>
+                    <tr>
+                        <th scope="col">Return</th>
+                        <th scope="col">Static Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>string</td>
+                        <td>LayoutAlignment.JustifyContent(UnitJustifyContent unitJustifyContent)</td>
+                        <td>Gets the class that sets how a container distributes extra space along its main axis between and around content lines.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>LayoutAlignment.AlignContent(UnitAlignContent unitAlignContent)</td>
+                        <td>Gets the class that sets how a container distributes extra space along its cross axis between and around content lines.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>LayoutAlignment.JustifyItems(UnitJustifyItems unitJustifyItems)</td>
+                        <td>Gets the class that sets how a container aligns its items within their cells along the inline axis, as a group. Grid only.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>LayoutAlignment.AlignItems(UnitAlignItems unitAlignItems)</td>
+                        <td>Gets the class that sets how a container aligns its items along the cross axis, as a group.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>LayoutAlignment.JustifySelf(UnitJustifySelf unitJustifySelf)</td>
+                        <td>Gets the class that sets how a single item aligns itself within its cell along the inline axis, overriding the container's <span class="@CodeSpan.Base">JustifyItems</span> value. Grid only.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>LayoutAlignment.AlignSelf(UnitAlignSelf unitAlignSelf)</td>
+                        <td>Gets the class that sets how a single item aligns itself along the cross axis, overriding the container's <span class="@CodeSpan.Base">AlignItems</span> value.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2 class="page-heading">Supporting enums</h2>
+    <section>
+        <h3 id="unit-justify-content-enum" class="code-table__heading">UnitJustifyContent enum</h3>
+        <p>
+            Sets how a flex or grid container distributes extra space along its main axis between and around content lines.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-justify-content-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Start</td>
+                        <td>Packs lines toward the start of the container.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Centre</td>
+                        <td>Packs lines toward the centre of the container.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>End</td>
+                        <td>Packs lines toward the end of the container.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Stretch</td>
+                        <td>Stretches lines to fill the container's main axis.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>SpaceBetween</td>
+                        <td>Distributes lines evenly, with the first line flush to the start and the last flush to the end.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>SpaceAround</td>
+                        <td>Distributes lines evenly, with equal space around each line.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>SpaceEvenly</td>
+                        <td>Distributes lines evenly, with equal space between and around each line.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h3 id="unit-align-content-enum" class="code-table__heading">UnitAlignContent enum</h3>
+        <p>
+            Sets how a flex or grid container distributes extra space along its cross axis between and around content lines.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-align-content-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Start</td>
+                        <td>Packs lines toward the start of the container.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Centre</td>
+                        <td>Packs lines toward the centre of the container.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>End</td>
+                        <td>Packs lines toward the end of the container.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Stretch</td>
+                        <td>Stretches lines to fill the container's cross axis.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>SpaceBetween</td>
+                        <td>Distributes lines evenly, with the first line flush to the start and the last flush to the end.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>SpaceAround</td>
+                        <td>Distributes lines evenly, with equal space around each line.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>SpaceEvenly</td>
+                        <td>Distributes lines evenly, with equal space between and around each line.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h3 id="unit-justify-items-enum" class="code-table__heading">UnitJustifyItems enum</h3>
+        <p>
+            Sets how a grid container aligns its items within their cells along the inline axis, as a group.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-justify-items-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Start</td>
+                        <td>Aligns items to the start of their cell.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Centre</td>
+                        <td>Aligns items to the centre of their cell.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>End</td>
+                        <td>Aligns items to the end of their cell.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Stretch</td>
+                        <td>Stretches items to fill their cell.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h3 id="unit-align-items-enum" class="code-table__heading">UnitAlignItems enum</h3>
+        <p>
+            Sets how a flex or grid container aligns its items along the cross axis, as a group.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-align-items-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Start</td>
+                        <td>Aligns items to the start of the cross axis.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Centre</td>
+                        <td>Aligns items to the centre of the cross axis.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>End</td>
+                        <td>Aligns items to the end of the cross axis.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Stretch</td>
+                        <td>Stretches items to fill the cross axis.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h3 id="unit-justify-self-enum" class="code-table__heading">UnitJustifySelf enum</h3>
+        <p>
+            Sets how a single grid item aligns itself within its cell along the inline axis, overriding the container's <span class="@CodeSpan.Base">UnitJustifyItems</span> value.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-justify-self-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Start</td>
+                        <td>Aligns the item to the start of its cell.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Centre</td>
+                        <td>Aligns the item to the centre of its cell.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>End</td>
+                        <td>Aligns the item to the end of its cell.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Stretch</td>
+                        <td>Stretches the item to fill its cell.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h3 id="unit-align-self-enum" class="code-table__heading">UnitAlignSelf enum</h3>
+        <p>
+            Sets how a single flex or grid item aligns itself along the cross axis, overriding the container's <span class="@CodeSpan.Base">UnitAlignItems</span> value.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-align-self-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Start</td>
+                        <td>Aligns the item to the start of the cross axis.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Centre</td>
+                        <td>Aligns the item to the centre of the cross axis.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>End</td>
+                        <td>Aligns the item to the end of the cross axis.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Stretch</td>
+                        <td>Stretches the item to fill the cross axis.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h3 id="css-classes" class="code-table__heading">CSS classes</h3>
+    <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="css-classes">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        br-justify-content-start<br>
+                        br-justify-content-center<br>
+                        br-justify-content-end<br>
+                        br-justify-content-stretch<br>
+                        br-justify-content-between<br>
+                        br-justify-content-around<br>
+                        br-justify-content-evenly
+                    </td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">justify-content</span>.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-align-content-start<br>
+                        br-align-content-center<br>
+                        br-align-content-end<br>
+                        br-align-content-stretch<br>
+                        br-align-content-between<br>
+                        br-align-content-around<br>
+                        br-align-content-evenly
+                    </td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">align-content</span>.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-justify-items-start<br>
+                        br-justify-items-center<br>
+                        br-justify-items-end<br>
+                        br-justify-items-stretch
+                    </td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">justify-items</span>. Grid only.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-align-items-start<br>
+                        br-align-items-center<br>
+                        br-align-items-end<br>
+                        br-align-items-stretch
+                    </td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">align-items</span>.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-justify-self-start<br>
+                        br-justify-self-center<br>
+                        br-justify-self-end<br>
+                        br-justify-self-stretch
+                    </td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">justify-self</span>. Grid only.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-align-self-start<br>
+                        br-align-self-center<br>
+                        br-align-self-end<br>
+                        br-align-self-stretch
+                    </td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">align-self</span>.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section>
+    <h2 class="page-heading">Usage</h2>
+    <p>
+        The following example uses <span class="@CodeSpan.Base">LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween)</span> to force
+        each item in the <span class="@CodeSpan.Base">div</span> that uses the flexbox to either side of the container.
+    </p>
+
+    <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetRowGap(UnitGapSize.Five) 
+        
+        @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween)">
+
+        <div style="color:black;background-color:var(--br-unit-colour-warning-lighter);width:200px;" class="@FlexContent.Base @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)">
+            Item One
+        </div>
+        <div style="color:black;background-color:var(--br-unit-colour-success-lighter);width:200px" class="@FlexContent.Base @LayoutAlignment.JustifyContent(UnitJustifyContent.Centre)">
+            Item Two
+        </div>
+    </div>
+</section>
+
+<CodeBox CodeBlock="@CssClassesSnippets.LayoutAlignment_Justify_Content_Example" AriaLabel="Layout alignment justify content space bewteen code example" />
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Kbd}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_Kbd - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Margin}/{GlobalValues.Common_Page_Path_Api}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.CSS_Name_Margin - @GlobalValues.Common_Page_Title_Api</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}
+

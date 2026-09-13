@@ -380,3 +380,44 @@ public enum UnitOutlineOffset : int
     /// </summary>
     Five = 5
 }
+
+
+/// <summary>
+/// Sets a gap size from the <c>--br-unit-space-*</c> primitive scale, 0 to 15.
+/// Used by the <see cref="Gap"/> utility class.
+/// </summary>
+public enum UnitGapSize : int
+{
+    /// <summary>No gap. Maps to <c>--br-unit-space-0</c>.</summary>
+    None = 0,
+    /// <summary>Maps to <c>--br-unit-space-1</c>.</summary>
+    One = 1,
+    /// <summary>Maps to <c>--br-unit-space-2</c>.</summary>
+    Two = 2,
+    /// <summary>Maps to <c>--br-unit-space-3</c>.</summary>
+    Three = 3,
+    /// <summary>Maps to <c>--br-unit-space-4</c>.</summary>
+    Four = 4,
+    /// <summary>Maps to <c>--br-unit-space-5</c>.</summary>
+    Five = 5,
+    /// <summary>Maps to <c>--br-unit-space-6</c>.</summary>
+    Six = 6,
+    /// <summary>Maps to <c>--br-unit-space-7</c>.</summary>
+    Seven = 7,
+    /// <summary>Maps to <c>--br-unit-space-8</c>.</summary>
+    Eight = 8,
+    /// <summary>Maps to <c>--br-unit-space-9</c>.</summary>
+    Nine = 9,
+    /// <summary>Maps to <c>--br-unit-space-10</c>.</summary>
+    Ten = 10,
+    /// <summary>Maps to <c>--br-unit-space-11</c>.</summary>
+    Eleven = 11,
+    /// <summary>Maps to <c>--br-unit-space-12</c>.</summary>
+    Twelve = 12,
+    /// <summary>Maps to <c>--br-unit-space-13</c>.</summary>
+    Thirteen = 13,
+    /// <summary>Maps to <c>--br-unit-space-14</c>.</summary>
+    Fourteen = 14,
+    /// <summary>Maps to <c>--br-unit-space-15</c>.</summary>
+    Fifteen = 15
+}
