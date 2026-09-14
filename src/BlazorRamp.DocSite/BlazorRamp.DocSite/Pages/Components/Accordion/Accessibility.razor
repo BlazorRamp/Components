@@ -9,23 +9,16 @@
     behaves predictably across different browsers and assistive technologies.
 </p>
 <p>
-    Each AccordionItem has a <span class="@CodeSpan.Base">PanelHasTabIndex</span> parameter, which by default is true. When true a <span class="@CodeSpan.Base">tabindex="0"</span> is added to the associated panel.
-    If you know there will be no focusable elements in the panel or the panel is scrollable then you should leave this set to true.
-    Without this, when the user is on a AccordionItem header (and the content is shown) pressing the Tab key they would go past the panel and onto the next AccordionItem or next focusable element on the page 
-    and/or may not be able to scroll the panel content.
+    Each AccordionItem has a <span class="@CodeSpan.Base">PanelHasTabIndex</span> parameter, which by default is false. When true a <span class="@CodeSpan.Base">tabindex="0"</span> is added to the associated panel.
+    If you know the panel will be scrollable with no focusable element inside then you should set this to true as well as setting <span class="@CodeSpan.Base">PanelIsRegion</span> to true (which toggles both 
+    the role and an accessible name for the panel). Without this tab stop a keyboard-only user may not be able to scroll the panel.
 </p>
-<p>
-    If you know there will be a focusable element at the start of the panel content or there is a heading at the start of the panel and it's not scrollable,
-    then you can set the <span class="@CodeSpan.Base">PanelHasTabIndex</span> parameter to false to omit the tabindex on the Panel.
-</p>
-<p>
-    If the first focusable element is in the middle of the panel, past important content, then I would retain the tabindex on the panel, so a screen reader user can read from the start of the panel content.
-</p>
+
 <h2 id="accordion-keyboard">Keyboard interaction</h2>
 <ul aria-labelledby="accordion-keyboard">
     <li>
         <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Tab</kbd> - when focus moves into the accordion, places focus onto the the first or last accordion item heading / button.
-        <br />When the accordion item is expanded focus moves to the first focusable element within the accordion panel or focus is set on the panel itself.
+        <br />When the accordion item is expanded focus moves to the first focusable element within the accordion or to the next focusable element on the page (perhaps the next according heading).
         <br />When the accordion item is collapsed focus moves to the next accordion heading or off the accordion going to the next focusable element on the page.
     </li>
     <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Shift + Tab</kbd> reverses tab direction. See above.</li>

@@ -13,7 +13,7 @@ public class AccordionSnippets
 
     public const string Accordion_Setting_Parameters_Example = """
         <Accordion HeadingLevel="HeadingLevel.H3" ExpandMode="ExpandMode.Multiple" style="margin-bottom:var(--br-unit-space-7)">
-            <AccordionItem HeadingText="Food" PanelHasTabIndex="true" PanelIsRegion="false" SvgIcon="--svg-food-icon" PersistContent="true">
+            <AccordionItem HeadingText="Food" PanelHasTabIndex="false" PanelIsRegion="false" SvgIcon="--svg-food-icon" PersistContent="true">
                 <PanelContent>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet sem vulputate, interdum justo vitae, sagittis nulla. 
@@ -24,7 +24,7 @@ public class AccordionSnippets
                     </p>
                 </PanelContent>
             </AccordionItem>
-            <AccordionItem HeadingText="Travel" PanelHasTabIndex="true" PanelIsRegion="false" SvgIcon="--svg-airplane-icon" PersistContent="true">
+            <AccordionItem HeadingText="Travel" PanelHasTabIndex="false" PanelIsRegion="false" SvgIcon="--svg-airplane-icon" PersistContent="true">
                 <PanelContent>
                     <p>
                         Nulla eu est lacus. Mauris sodales tortor in sem viverra porta. Nam in dapibus massa. Vivamus et augue quis mauris luctus pretium
@@ -35,7 +35,7 @@ public class AccordionSnippets
                     </p>
                 </PanelContent>
             </AccordionItem>
-            <AccordionItem HeadingText="Exercise" PanelHasTabIndex="true" PanelIsRegion="false" SvgIcon="--svg-runner-icon" PersistContent="true">
+            <AccordionItem HeadingText="Exercise" PanelHasTabIndex="false" PanelIsRegion="false" SvgIcon="--svg-runner-icon" PersistContent="true">
                 <PanelContent>
                     <p>
                         Mauris imperdiet nisi nec pulvinar porta. Sed semper viverra venenatis. Sed accumsan, erat condimentum ornare malesuada, erat mauris 
