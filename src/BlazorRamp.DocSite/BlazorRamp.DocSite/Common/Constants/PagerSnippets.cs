@@ -65,29 +65,29 @@ public class PagerSnippets
 
         </div>
 
-        <div class="data-table">
-            <table aria-labelledby="table-title">
-                <thead>
+
+        <table class="@Table.Base" aria-labelledby="table-title">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Temp. (C)</th>
+                    <th scope="col">Temp. (F)</th>
+                    <th scope="col">Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var forecast in _pagedForecasts)
+                {
                     <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">Temp. (C)</th>
-                        <th scope="col">Temp. (F)</th>
-                        <th scope="col">Summary</th>
+                        <td>@forecast.Date.ToShortDateString()</td>
+                        <td>@forecast.TemperatureC</td>
+                        <td>@forecast.TemperatureF</td>
+                        <td>@forecast.Summary</td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var forecast in _pagedForecasts)
-                    {
-                        <tr>
-                            <td>@forecast.Date.ToShortDateString()</td>
-                            <td>@forecast.TemperatureC</td>
-                            <td>@forecast.TemperatureF</td>
-                            <td>@forecast.Summary</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                }
+            </tbody>
+        </table>
+
         <Pager CurrentPage="@_currentPage" CurrentPageChanged="HandleCurrentPageChanged" AriaLabel="Weather pager" TotalItemCount="@_totalItemCount" 
         CurrentItemCount="@_currentItemCount" ItemsPerPage="10" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" />
                        

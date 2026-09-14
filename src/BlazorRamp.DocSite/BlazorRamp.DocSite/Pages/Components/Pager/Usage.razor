@@ -1,5 +1,4 @@
-﻿
-@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Pager}/{GlobalValues.Common_Page_Path_Usage}")]
+﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Pager}/{GlobalValues.Common_Page_Path_Usage}")]
 
 <PageTitle>@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
@@ -15,18 +14,18 @@
 
 <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
 
-<h2 id="table-title">Weather table</h2>
+    <h2 id="table-title">Weather table</h2>
 
-<div class="br-input-row" >
-    <DebounceFilter class="br-col-xs-12 br-col-sm-6" FilterLabelText="Filter table" HintText="Data filtered across all columns on pause of typing."
-                    DebounceDelayMs="250" SvgIcon="--svg-filter-icon" Replayable="false"
-                    RegexPattern="^[A-Za-z0-9]*$" ValidationMessage="Invalid filter, filtering paused, letters and numbers only"
-                    OnDebounceFilterResult="HandleDebounce" ParseErrorMessage="System error, filtering is unavailable at this time." />
+    <div class="br-input-row">
+        <DebounceFilter class="br-col-xs-12 br-col-sm-6" FilterLabelText="Filter table" HintText="Data filtered across all columns on pause of typing."
+                        DebounceDelayMs="250" SvgIcon="--svg-filter-icon" Replayable="false"
+                        RegexPattern="^[A-Za-z0-9]*$" ValidationMessage="Invalid filter, filtering paused, letters and numbers only"
+                        OnDebounceFilterResult="HandleDebounce" ParseErrorMessage="System error, filtering is unavailable at this time." />
 
-</div>
+    </div>
 
-<div class="data-table">
-    <table aria-labelledby="table-title">
+
+    <table class="@Table.Base @Margin.BlockEnd(UnitSpace.Five)" aria-labelledby="table-title">
         <thead>
             <tr>
                 <th scope="col">Date</th>
@@ -47,9 +46,9 @@
             }
         </tbody>
     </table>
-</div>
-<Pager CurrentPage="@_currentPage" CurrentPageChanged="HandleCurrentPageChanged" AriaLabel="Weather pager" TotalItemCount="@_totalItemCount" CurrentItemCount="@_currentItemCount" ItemsPerPage="10"
-        PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" />
+
+    <Pager CurrentPage="@_currentPage" CurrentPageChanged="HandleCurrentPageChanged" AriaLabel="Weather pager" TotalItemCount="@_totalItemCount" CurrentItemCount="@_currentItemCount" ItemsPerPage="10"
+           PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" />
 </section>
 
 <ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2" style="margin-top:var(--br-unit-space-9);">
@@ -85,15 +84,15 @@
 </div>
 @code {
 
-    private List<WeatherForecast> _forecasts         = [];
-    private List<WeatherForecast> _pagedForecasts    = [];
+    private List<WeatherForecast> _forecasts = [];
+    private List<WeatherForecast> _pagedForecasts = [];
     private List<WeatherForecast> _filteredForecasts = [];
 
     private string _filterText = String.Empty;
-    private int _currentPage      = 1;
-    private int _totalItemCount   = 0;
+    private int _currentPage = 1;
+    private int _totalItemCount = 0;
     private int _currentItemCount = 0;
-    private int _itemsPerPage     = 10;
+    private int _itemsPerPage = 10;
 
     protected override void OnInitialized()
     {
@@ -136,13 +135,13 @@
                                  || filterValue == String.Empty).ToList();
 
         _currentItemCount = _filteredForecasts.Count;
-        _pagedForecasts   = _filteredForecasts.Take(_itemsPerPage).ToList();
-        _currentPage      = _currentItemCount > 0 ? 1 : 0;
-        _filterText       = filterValue;
+        _pagedForecasts = _filteredForecasts.Take(_itemsPerPage).ToList();
+        _currentPage = _currentItemCount > 0 ? 1 : 0;
+        _filterText = filterValue;
         await InvokeAsync(StateHasChanged);
         /*
-            * Debounce uses a Func not an EventCallback so no renders occur if the filter is invalid 
-            * As we are here its valid so call state as changed to render the page and child components. 
+            * Debounce uses a Func not an EventCallback so no renders occur if the filter is invalid
+            * As we are here its valid so call state as changed to render the page and child components.
         */
     }
 

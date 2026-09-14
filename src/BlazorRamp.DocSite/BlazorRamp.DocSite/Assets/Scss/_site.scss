@@ -203,11 +203,13 @@ h4, h5, h6 {
     font-weight: var(--br-unit-font-weight-500);
     margin-bottom: var(--br-unit-space-3);
 }
-.page-heading {
+
+.mobile-centred-heading {
     @include media-device-sm(max-width) {
         text-align: center;
     }
 }
+
 b {
     font-weight:bold;
 }

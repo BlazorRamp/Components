@@ -13,38 +13,37 @@ public class ActionsPopoverSnippets
     public const string Usage_Example_Row_Actions = """
         <h2 id="table-title">Contacts table (Northwind lives on)</h2>
 
-        <div class="data-table">
-            <table aria-labelledby="table-title">
-                <thead>
+        <table class="@Table.Base" aria-labelledby="table-title">
+            <thead>
+                <tr>
+                    <th scope="col">Contact ID</th>
+                    <th scope="col">Given Name</th>
+                    <th scope="col">Family Name</th>
+                    <th scope="col">Job Title</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var contact in _contacts)
+                {
                     <tr>
-                        <th scope="col">Contact ID</th>
-                        <th scope="col">Given Name</th>
-                        <th scope="col">Family Name</th>
-                        <th scope="col">Job Title</th>
-                        <th scope="col">Actions</th>
+                        <td>@contact.ContactID</td>
+                        <td>@contact.GivenName</td>
+                        <td>@contact.FamilyName</td>
+                        <td>@contact.JobTitle</td>
+                        <td style="width:1%;white-space:nowrap;">                            
+                            <ActionsPopover TriggerText="@($"For: {contact.GivenName} {contact.FamilyName}")" Stretch="true" ActionsPopoverPosition="ActionsPopoverPosition.BottomRight">
+                                <PopoverItems>
+                                    <ActionPopoverButton TData="Contact" ButtonText="Edit" SvgIcon="--svg-pencil-icon" OnClick="HandleOnEdit" ItemData="@contact"/>
+                                        <ActionPopoverButton TData="Contact" ButtonText="Delete" SvgIcon="--svg-trash-can-icon" OnClick="HandleOnDelete" ItemData="@contact" />
+                                </PopoverItems>
+                            </ActionsPopover>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var contact in _contacts)
-                    {
-                        <tr>
-                            <td>@contact.ContactID</td>
-                            <td>@contact.GivenName</td>
-                            <td>@contact.FamilyName</td>
-                            <td>@contact.JobTitle</td>
-                            <td style="width:1%;white-space:nowrap;">                            
-                                <ActionsPopover TriggerText="@($"For: {contact.GivenName} {contact.FamilyName}")" Stretch="true" ActionsPopoverPosition="ActionsPopoverPosition.BottomRight">
-                                    <PopoverItems>
-                                        <ActionPopoverButton TData="Contact" ButtonText="Edit" SvgIcon="--svg-pencil-icon" OnClick="HandleOnEdit" ItemData="@contact"/>
-                                         <ActionPopoverButton TData="Contact" ButtonText="Delete" SvgIcon="--svg-trash-can-icon" OnClick="HandleOnDelete" ItemData="@contact" />
-                                    </PopoverItems>
-                                </ActionsPopover>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                }
+            </tbody>
+        </table>
+
         <div style="margin-top:var(--br-unit-space-5);">
             <p> @_output</p>
         </div>

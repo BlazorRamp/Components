@@ -51,9 +51,9 @@ public partial class AccordionItem : IDisposable
     /// <summary>
     /// Gets or sets a value indicating whether <c>tabindex="0"</c> is applied to the
     /// accordion panel, enabling keyboard focus and arrow key scrolling if the panel
-    /// has a constrained height. Defaults to <see langword="true"/>.
+    /// has a constrained height. Defaults to <see langword="false"/>.
     /// </summary>
-    [Parameter] public bool PanelHasTabIndex { get; set; } = true;
+    [Parameter] public bool PanelHasTabIndex { get; set; } = false;
 
     /// <summary>
     /// Gets or sets a value indicating whether the panel content is retained in the DOM

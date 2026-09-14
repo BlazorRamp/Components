@@ -29,8 +29,7 @@
 
     <h2 id="table-title">Contacts table (Northwind lives on)</h2>
 
-    <div class="data-table">
-        <table aria-labelledby="table-title">
+        <table class="@Table.Base" aria-labelledby="table-title">
             <thead>
                 <tr>
                     <th scope="col">Contact ID</th>
@@ -60,7 +59,7 @@
                 }
             </tbody>
         </table>
-    </div>
+
     <div style="margin-top:var(--br-unit-space-5);">
         <p> @_output</p>
     </div>
@@ -82,7 +81,7 @@
 <h2>
     Code from the example
 </h2>
-<CodeBox CodeBlock="@ActionsPopoverSnippets.Usage_Example_Row_Actions" AriaLabel="_Actions Popover usage code block" />
+<CodeBox CodeBlock="@ActionsPopoverSnippets.Usage_Example_Row_Actions" AriaLabel="Actions Popover usage code block" />
 
 
 <div class="flex-content justify-content-between">

@@ -21,9 +21,8 @@ public class DebounceSnippets
                             OnDebounceFilterResult="HandleDebounce" ParseErrorMessage="System error, filtering is unavailable at this time." />
 
         </div>
-        <div class="data-table">
 
-            <table>
+            <table class="@Table.Base">
                 <caption>Weather Table</caption>
                 <thead>
                     <tr>
@@ -45,7 +44,7 @@ public class DebounceSnippets
                     }
                 </tbody>
             </table>
-        </div>
+
         <div style="display:flex;justify-content:space-between">
             <span> @_filterRowMessage</span>
             <button class="@Button.Base" @onclick="ClearFilter">Clear Filter</button>
