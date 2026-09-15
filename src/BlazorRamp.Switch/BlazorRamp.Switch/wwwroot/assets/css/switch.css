@@ -16,7 +16,7 @@
   --br-comp-switch-thumb-colour: var(--br-comp-all-thumb-colour);
   --br-comp-switch-thumb-Hover-colour: var(--br-unit-colour-primary-60);
   --br-comp-switch-thumb-hover-shadow: 0 0 10px 5px hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-30));
-  --br-comp-switch-area-content-background: var(--br-comp-all-area-content-background);
+  --br-comp-switch-area-content-background: transparent;
   --br-comp-switch-area-content-text: var(--br-comp-all-area-content-text);
   --br-comp-switch-area-content-font-family: var(--br-comp-all-area-content-font-family);
   --br-comp-switch-area-content-font-size: var(--br-unit-font-size-label);
