@@ -260,7 +260,7 @@
             cursor: pointer;
 
             &:hover {
-                background-color: var(--br-comp-data-table-selectable-row) !important;//Important keyword is missing from released version
+                background-color: var(--br-comp-data-table-selectable-row) !important; //Important keyword is missing from released version
             }
         }
 
