@@ -19,7 +19,7 @@
     overflow-y: var(--_section-overflow-y);
     width: auto;
     font-size:var(--_section-font-size);
-
+    scrollbar-width:thin;
     border-radius: var(--_section-border-radius);
 
     &--container {--_section-border-radius: var(--br-group-container-area-content-border-radius);}

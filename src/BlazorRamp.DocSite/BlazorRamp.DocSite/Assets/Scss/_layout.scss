@@ -180,22 +180,33 @@
 
     &__nav {
         padding: var(--br-unit-space-5);
-        padding-right: var(--br-unit-space-3); //main has 1 rem left margin.
+        padding-right: var(--br-unit-space-3); 
         grid-column: 1/2;
         grid-row: 2/3;
         width: $app-nav-max-width;
         height: 100%;
         overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+
+
+        &:hover, &:focus-within {
+            scrollbar-color: var(--br-cls-neutral-dark) transparent;
+        }
     }
 
     &__main {
         margin: var(--br-unit-space-5);
+        margin-inline-start:0;
         border-radius: var(--br-group-content-border-radius); //var(--br-unit-radius-5);
         padding: var(--br-unit-space-5);
         grid-column: 2/3;
         grid-row: 2/3;
         overflow-y: auto;
         overflow-x: hidden;
+        scrollbar-width: thin;
+        scrollbar-color: var(--br-cls-neutral-dark) transparent;
+
 
         &:focus-visible {
             outline-width: var(--br-comp-all-outline-width);

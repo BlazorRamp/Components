@@ -19,6 +19,13 @@ public static class Button
     public const string FullWidth = $"{Base}--full-width";
 
     /// <summary>
+    /// Hides the button's background and border until hovered or focused, showing only
+    /// underlined text by default. Combine with a <see cref="Scheme"/> - the colours from
+    /// that scheme are revealed on interaction.
+    /// </summary>
+    public const string LinkStyle = $"{Base}--link-style";
+
+    /// <summary>
     /// Gets the class that sets the button's size.
     /// </summary>
     /// <param name="buttonSize">The size to apply. See <see cref="ButtonSize"/>.</param>

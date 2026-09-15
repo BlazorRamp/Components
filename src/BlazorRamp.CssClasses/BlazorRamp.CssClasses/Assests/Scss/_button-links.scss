@@ -3,9 +3,10 @@
     --_button-border-colour: var(--br-comp-all-button-border-colour);
     --_button-background: var(--br-comp-all-button-background);
     --_button-text: var(--br-comp-all-button-text);
+    --_button-link-text: var(--br-comp-all-button-text);
     --_button-padding-block: var(--br-unit-space-3);
     --_button-padding-inline: var(--br-unit-space-4);
-    --_button-hover: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10));
+    --_button-hover: var(--br-cls-button-link-hover);
     --_button-hover-brightness: 115%;
     //
     appearance: none;
@@ -55,18 +56,50 @@
         outline-style: var(--br-comp-all-outline-style);
         outline-color: var(--br-comp-all-outline-colour);
     }
-    
-    &--radius-none  {border-radius: var(--br-unit-radius-0);}
-    &--radius-one   {border-radius: var(--br-unit-radius-1);}
-    &--radius-two   {border-radius: var(--br-unit-radius-2);}
-    &--radius-three {border-radius: var(--br-unit-radius-3);}
-    &--radius-four  {border-radius: var(--br-unit-radius-4);}
-    &--radius-five  {border-radius: var(--br-unit-radius-5);}
-    &--radius-six   {border-radius: var(--br-unit-radius-6);}
-    &--radius-seven {border-radius: var(--br-unit-radius-7);}
-    &--radius-eight {border-radius: var(--br-unit-radius-8);}
-    &--radius-nine  {border-radius: var(--br-unit-radius-9);}
-    &--radius-full  {border-radius: var(--br-unit-radius-full);}
+
+    &--radius-none {
+        border-radius: var(--br-unit-radius-0);
+    }
+
+    &--radius-one {
+        border-radius: var(--br-unit-radius-1);
+    }
+
+    &--radius-two {
+        border-radius: var(--br-unit-radius-2);
+    }
+
+    &--radius-three {
+        border-radius: var(--br-unit-radius-3);
+    }
+
+    &--radius-four {
+        border-radius: var(--br-unit-radius-4);
+    }
+
+    &--radius-five {
+        border-radius: var(--br-unit-radius-5);
+    }
+
+    &--radius-six {
+        border-radius: var(--br-unit-radius-6);
+    }
+
+    &--radius-seven {
+        border-radius: var(--br-unit-radius-7);
+    }
+
+    &--radius-eight {
+        border-radius: var(--br-unit-radius-8);
+    }
+
+    &--radius-nine {
+        border-radius: var(--br-unit-radius-9);
+    }
+
+    &--radius-full {
+        border-radius: var(--br-unit-radius-full);
+    }
 }
 
 .br-button {
@@ -97,153 +130,229 @@
         --_button-background: var(--br-cls-primary);
         --_button-text: contrast-color(var(--br-cls-primary));
         --_button-border-colour: var(--br-cls-primary);
+        --_button-link-text: var(--br-cls-primary-text-dark);
     }
 
     &--solid-neutral {
         --_button-background: var(--br-cls-neutral);
         --_button-text: contrast-color(var(--br-cls-neutral));
         --_button-border-colour: var(--br-cls-neutral);
+        --_button-link-text: var(--br-cls-neutral-text-dark);
     }
 
     &--solid-secondary {
         --_button-background: var(--br-cls-secondary);
         --_button-text: contrast-color(var(--br-cls-secondary));
         --_button-border-colour: var(--br-cls-secondary);
+        --_button-link-text: var(--br-cls-secondary-text-dark);
     }
 
     &--solid-accent {
         --_button-background: var(--br-cls-accent);
         --_button-text: contrast-color(var(--br-cls-accent));
         --_button-border-colour: var(--br-cls-accent);
+        --_button-link-text: var(--br-cls-accent-text-dark);
     }
 
     &--solid-danger {
         --_button-background: var(--br-cls-danger);
         --_button-text: contrast-color(var(--br-cls-danger));
         --_button-border-colour: var(--br-cls-danger);
+        --_button-link-text: var(--br-cls-danger-text-dark);
     }
 
     &--solid-warning {
         --_button-background: var(--br-cls-warning);
         --_button-text: contrast-color(var(--br-cls-warning));
         --_button-border-colour: var(--br-cls-warning);
+        --_button-link-text: var(--br-cls-warning-text-dark);
     }
 
     &--solid-success {
         --_button-background: var(--br-cls-success);
         --_button-text: contrast-color(var(--br-cls-success));
         --_button-border-colour: var(--br-cls-success);
+        --_button-link-text: var(--br-cls-success-text-dark);
     }
 
     &--solid-info {
         --_button-background: var(--br-cls-info);
         --_button-text: contrast-color(var(--br-cls-info));
         --_button-border-colour: var(--br-cls-info);
+        --_button-link-text: var(--br-cls-info-text-dark);
     }
 
     &--solid-inverted {
         --_button-background: var(--br-unit-colour-canvas-inverted);
         --_button-text: var(--br-unit-colour-canvas-text-inverted);
         --_button-border-colour: var(--br-unit-colour-canvas-inverted);
+        --_button-link-text: var(--br-unit-colour-canvas-text);
     }
 
     &--solid-neutral-lighter {
         --_button-background: var(--br-cls-neutral-lighter);
         --_button-text: var(--br-cls-neutral-text-dark);
         --_button-border-colour: var(--br-cls-neutral-text-dark);
+        --_button-link-text: var(--br-cls-neutral-text-dark);
     }
 
     &--solid-secondary-lighter {
         --_button-background: var(--br-cls-secondary-lighter);
         --_button-text: var(--br-cls-secondary-text-dark);
         --_button-border-colour: var(--br-cls-secondary-text-dark);
+        --_button-link-text: var(--br-cls-secondary-text-dark);
     }
 
     &--solid-accent-lighter {
         --_button-background: var(--br-cls-accent-lighter);
         --_button-text: var(--br-cls-accent-text-dark);
         --_button-border-colour: var(--br-cls-accent-text-dark);
+        --_button-link-text: var(--br-cls-accent-text-dark);
     }
 
     &--solid-primary-lighter {
         --_button-background: var(--br-cls-primary-lighter);
         --_button-text: var(--br-cls-primary-text-dark);
         --_button-border-colour: var(--br-cls-primary-text-dark);
+        --_button-link-text: var(--br-cls-primary-text-dark);
     }
 
     &--solid-danger-lighter {
         --_button-background: var(--br-cls-danger-lighter);
         --_button-text: var(--br-cls-danger-text-dark);
         --_button-border-colour: var(--br-cls-danger-text-dark);
+        --_button-link-text: var(--br-cls-danger-text-dark);
     }
 
     &--solid-warning-lighter {
         --_button-background: var(--br-cls-warning-lighter);
         --_button-text: var(--br-cls-warning-text-dark);
         --_button-border-colour: var(--br-cls-warning-text-dark);
+        --_button-link-text: var(--br-cls-warning-text-dark);
     }
 
     &--solid-success-lighter {
         --_button-background: var(--br-cls-success-lighter);
         --_button-text: var(--br-cls-success-text-dark);
         --_button-border-colour: var(--br-cls-success-text-dark);
+        --_button-link-text: var(--br-cls-success-text-dark);
     }
 
     &--solid-info-lighter {
         --_button-background: var(--br-cls-info-lighter);
         --_button-text: var(--br-cls-info-text-dark);
         --_button-border-colour: var(--br-cls-info-text-dark);
+        --_button-link-text: var(--br-cls-info-text-dark);
     }
 
     &--solid-neutral-darker {
         --_button-background: var(--br-cls-neutral-darker);
         --_button-text: var(--br-cls-neutral-text-light);
         --_button-border-colour: var(--br-cls-neutral-darker);
+        --_button-link-text: var(--br-cls-neutral-text-dark);
     }
 
     &--solid-secondary-darker {
         --_button-background: var(--br-cls-secondary-darker);
         --_button-text: var(--br-cls-secondary-text-light);
         --_button-border-colour: var(--br-cls-secondary-darker);
+        --_button-link-text: var(--br-cls-secondary-text-dark);
     }
 
     &--solid-accent-darker {
         --_button-background: var(--br-cls-accent-darker);
         --_button-text: var(--br-cls-accent-text-light);
         --_button-border-colour: var(--br-cls-accent-darker);
+        --_button-link-text: var(--br-cls-accent-text-dark);
     }
 
     &--solid-primary-darker {
         --_button-background: var(--br-cls-primary-darker);
         --_button-text: var(--br-cls-primary-text-light);
         --_button-border-colour: var(--br-cls-primary-darker);
+        --_button-link-text: var(--br-cls-primary-text-dark);
     }
 
     &--solid-danger-darker {
         --_button-background: var(--br-cls-danger-darker);
         --_button-text: var(--br-cls-danger-text-light);
         --_button-border-colour: var(--br-cls-danger-darker);
+        --_button-link-text: var(--br-cls-danger-text-dark);
     }
 
     &--solid-warning-darker {
         --_button-background: var(--br-cls-warning-darker);
         --_button-text: var(--br-cls-warning-text-light);
         --_button-border-colour: var(--br-cls-warning-darker);
+        --_button-link-text: var(--br-cls-warning-text-dark);
     }
 
     &--solid-success-darker {
         --_button-background: var(--br-cls-success-darker);
         --_button-text: var(--br-cls-success-text-light);
         --_button-border-colour: var(--br-cls-success-darker);
+        --_button-link-text: var(--br-cls-success-text-dark);
     }
 
     &--solid-info-darker {
         --_button-background: var(--br-cls-info-darker);
         --_button-text: var(--br-cls-info-text-light);
         --_button-border-colour: var(--br-cls-info-darker);
+        --_button-link-text: var(--br-cls-info-text-dark);
     }
 
-    &--full-width {width:100%;}
+    &--full-width {
+        width: 100%;
+    }
+    /*
+    &--link-style {
+        background: transparent;
+        border-color: transparent;
+        color: var(--_button-link-text);
+        text-decoration: underline;
+        --_button-hover: var(--_button-background);
+        --_button-hover-brightness: 100%;
+
+        &:hover,
+        &:focus-visible {
+            background: var(--_button-background);
+            border-color: var(--_button-border-colour);
+            color: var(--_button-text);
+            text-decoration: none;
+        }
+
+        &:active {
+            transform: none;
+            filter: none;
+        }
+    }*/
+
+    &--link-style {
+        background: transparent;
+        border-color: transparent;
+        color: var(--_button-link-text);
+        text-decoration: underline;
+        --_button-hover-brightness: 100%;
+
+        &:not([class*="--solid-"]):hover,
+        &:not([class*="--solid-"]):focus-visible {
+            background-color: var(--_button-hover);
+            text-decoration: none;
+        }
+
+        &[class*="--solid-"]:hover,
+        &[class*="--solid-"]:focus-visible {
+            background-color: var(--_button-background);
+            color: var(--_button-text);
+            text-decoration: none;
+            border-color: var(--_button-border-colour);
+        }
+
+        &:active {
+            transform: none;
+            filter: none;
+        }
+    }
 }
 
 
