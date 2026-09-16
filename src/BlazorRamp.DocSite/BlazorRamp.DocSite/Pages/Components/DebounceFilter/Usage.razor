@@ -70,7 +70,7 @@
         <BorderGroup Title="Input borders">
             <BorderRadius LabelText="Input radius" ResetText="Reset input radius" MaxRangeValue="@GlobalValues.Radius_Input_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Input_Radius_Base)])" />
         </BorderGroup>
-        <BorderGroup Title="Button borders">
+        <BorderGroup Title="Button/link borders">
             <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
         </BorderGroup>
     </BorderGroups>
@@ -80,16 +80,16 @@
 </h2>
 <CodeBox CodeBlock="@DebounceSnippets.Usage_Example" AriaLabel="Debounce filter code example" />
 
-<div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DebounceFilter}/{GlobalValues.Common_Page_Path_Api}")">
-        <span aria-hidden="true"></span>
+<div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DebounceFilter}/{GlobalValues.Common_Page_Path_Api}")">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
         <span>@GlobalValues.Component_Name_Debounce_Filter - @GlobalValues.Common_Page_Title_Api</span>
-        <span aria-hidden="true"></span>
+
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Overview}")">
-        <span aria-hidden="true"></span>
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Overview}")">
+
         <span>@GlobalValues.Component_Name_Inputs - @GlobalValues.Common_Page_Title_Overview</span>
-        <span aria-hidden="true"></span>
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-right-arrow-circle-icon)"></span>
     </a>
 </div>
 

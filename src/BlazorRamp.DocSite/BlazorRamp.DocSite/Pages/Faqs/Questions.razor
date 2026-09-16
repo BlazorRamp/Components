@@ -8,15 +8,15 @@
     This section will be amended with all the answers to frequently asked questions.  
 </p>
 
-<div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_VerticalAlign}/{GlobalValues.Common_Page_Path_Api}")">
-        <span aria-hidden="true"></span>
+<div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_VerticalAlign}/{GlobalValues.Common_Page_Path_Api}")">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
         <span>@GlobalValues.CSS_Name_VerticalAlign - @GlobalValues.Common_Page_Title_Api</span>
-        <span aria-hidden="true"></span>
+
     </a>
-@*     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@GlobalValues.Page_Heading_FAQs_Questions">
-        <span aria-hidden="true"></span>
+@*         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@GlobalValues.Page_Heading_FAQs_Questions">
+
         <span>@GlobalValues.Main_Nav_Section_Heading_FAQs - @GlobalValues.Page_Heading_FAQs_Questions</span>
-        <span aria-hidden="true"></span>
+
     </a> *@
 </div>

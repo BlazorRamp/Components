@@ -16,6 +16,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    vertical-align: middle;
     white-space: nowrap;
     margin: 0;
     padding: 0;
@@ -35,6 +36,7 @@
     border-width: var(--br-comp-all-button-border-width);
     border-color: var(--_button-border-colour);
     cursor: pointer;
+    gap: var(--br-unit-space-3);
 
     &:not([class*="--solid-"]):hover {
         background-color: var(--_button-hover);
@@ -56,50 +58,17 @@
         outline-style: var(--br-comp-all-outline-style);
         outline-color: var(--br-comp-all-outline-colour);
     }
-
-    &--radius-none {
-        border-radius: var(--br-unit-radius-0);
-    }
-
-    &--radius-one {
-        border-radius: var(--br-unit-radius-1);
-    }
-
-    &--radius-two {
-        border-radius: var(--br-unit-radius-2);
-    }
-
-    &--radius-three {
-        border-radius: var(--br-unit-radius-3);
-    }
-
-    &--radius-four {
-        border-radius: var(--br-unit-radius-4);
-    }
-
-    &--radius-five {
-        border-radius: var(--br-unit-radius-5);
-    }
-
-    &--radius-six {
-        border-radius: var(--br-unit-radius-6);
-    }
-
-    &--radius-seven {
-        border-radius: var(--br-unit-radius-7);
-    }
-
-    &--radius-eight {
-        border-radius: var(--br-unit-radius-8);
-    }
-
-    &--radius-nine {
-        border-radius: var(--br-unit-radius-9);
-    }
-
-    &--radius-full {
-        border-radius: var(--br-unit-radius-full);
-    }
+    &--radius-none  {border-radius: var(--br-unit-radius-0);}
+    &--radius-one   {border-radius: var(--br-unit-radius-1);}
+    &--radius-two   {border-radius: var(--br-unit-radius-2);}
+    &--radius-three {border-radius: var(--br-unit-radius-3);}
+    &--radius-four  {border-radius: var(--br-unit-radius-4);}
+    &--radius-five  {border-radius: var(--br-unit-radius-5);}
+    &--radius-six   {border-radius: var(--br-unit-radius-6);}
+    &--radius-seven {border-radius: var(--br-unit-radius-7);}
+    &--radius-eight {border-radius: var(--br-unit-radius-8);}
+    &--radius-nine  {border-radius: var(--br-unit-radius-9);}
+    &--radius-full  {border-radius: var(--br-unit-radius-full);}
 }
 
 .br-button {
@@ -304,28 +273,6 @@
     &--full-width {
         width: 100%;
     }
-    /*
-    &--link-style {
-        background: transparent;
-        border-color: transparent;
-        color: var(--_button-link-text);
-        text-decoration: underline;
-        --_button-hover: var(--_button-background);
-        --_button-hover-brightness: 100%;
-
-        &:hover,
-        &:focus-visible {
-            background: var(--_button-background);
-            border-color: var(--_button-border-colour);
-            color: var(--_button-text);
-            text-decoration: none;
-        }
-
-        &:active {
-            transform: none;
-            filter: none;
-        }
-    }*/
 
     &--link-style {
         background: transparent;
@@ -353,8 +300,54 @@
             filter: none;
         }
     }
+
+    &--columns {flex-direction: column;}
+
+    &--squared {
+        aspect-ratio: 1/1;
+        min-width: var(--br-unit-wcag-target-2a);
+        min-height: var(--br-unit-wcag-target-2a);
+        padding: var(--_button-padding-block);
+    }
+
 }
 
+.br-link {
+    font-size: inherit;
+    border-width: 0;
+    padding: 0;
+    margin: 0;
+    color: inherit; //var(--br-unit-colour-convas-text);
+    flex: none;
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    border-radius: var(--br-group-button-border-radius);
+    background-color: transparent;
+    text-decoration:underline;
+    gap:var(--br-unit-space-3);
+    
+    &:focus-visible, &:hover {
+        text-decoration: none;
+        outline-offset: var(--br-comp-all-outline-offset);
+        outline-width: calc(var(--br-comp-all-outline-width) * 1.5);
+        outline-style: var(--br-comp-all-outline-style);
+        outline-color: var(--br-comp-all-outline-colour);
+    }
 
+    &--radius-none  {border-radius: var(--br-unit-radius-0);}
+    &--radius-one   {border-radius: var(--br-unit-radius-1);}
+    &--radius-two   {border-radius: var(--br-unit-radius-2);}
+    &--radius-three {border-radius: var(--br-unit-radius-3);}
+    &--radius-four  {border-radius: var(--br-unit-radius-4);}
+    &--radius-five  {border-radius: var(--br-unit-radius-5);}
+    &--radius-six   {border-radius: var(--br-unit-radius-6);}
+    &--radius-seven {border-radius: var(--br-unit-radius-7);}
+    &--radius-eight {border-radius: var(--br-unit-radius-8);}
+    &--radius-nine  {border-radius: var(--br-unit-radius-9);}
+    &--radius-full  {border-radius: var(--br-unit-radius-full);}
 
-
+    &--columns{flex-direction:column;}
+}

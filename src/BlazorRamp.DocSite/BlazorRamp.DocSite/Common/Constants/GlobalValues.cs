@@ -170,12 +170,14 @@ public class GlobalValues
     public const string CSS_Path_Part_GridRow = "grid-row";
     public const string CSS_Path_Part_Kbd = "kbd";
     public const string CSS_Path_Part_LayoutAlignment = "layout-alignment";
+    public const string CSS_Path_Part_Link = "link";
     public const string CSS_Path_Part_Margin = "margin";
     public const string CSS_Path_Part_Overflow = "overflow";
     public const string CSS_Path_Part_Padding = "padding";
     public const string CSS_Path_Part_Position = "position";
     public const string CSS_Path_Part_Radius = "radius";
     public const string CSS_Path_Part_Section = "section";
+    public const string CSS_Path_Part_SvgIcon = "svg-icon";
     public const string CSS_Path_Part_Table = "table";
     public const string CSS_Path_Part_TextAlign = "text-align";
     public const string CSS_Path_Part_VerticalAlign = "vertical-align";
@@ -190,12 +192,15 @@ public class GlobalValues
     public const string CSS_Name_GridRow = "GridRow";
     public const string CSS_Name_Kbd     = "Kbd";
     public const string CSS_Name_LayoutAlignment = "LayoutAlignment";
+    public const string CSS_Name_Link = "Link";
     public const string CSS_Name_Margin = "Margin";
     public const string CSS_Name_Position = "Position";
     public const string CSS_Name_Overflow = "Overflow";
     public const string CSS_Name_Padding = "Padding";
     public const string CSS_Name_Radius = "Radius";
     public const string CSS_Name_Section  = "Section";
+
+    public const string CSS_Name_SvgIcon = "SvgIcon";
 
     public const string CSS_Name_Table = "Table";
     public const string CSS_Name_TextAlign = "TextAlign";

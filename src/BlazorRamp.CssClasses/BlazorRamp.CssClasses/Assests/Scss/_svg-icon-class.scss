@@ -1,0 +1,23 @@
+﻿
+.br-svg-icon {
+    --_svg-icon-source: none;
+    --_svg-icon-size: 1.5em;
+    display: inline-block;
+    width: var(--_svg-icon-size);
+    height: var(--_svg-icon-size);
+    flex-shrink: 0;
+    background-color: currentColor;
+    mask-image: var(--_svg-icon-source);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+
+
+    @media (forced-colors: active) {
+        background-color: CanvasText;
+    }
+
+    &--small       {--_svg-icon-size:1.25em;}
+    &--regular     {--_svg-icon-size:1.5em;}
+    &--large       {--_svg-icon-size:1.75em;}
+    &--extra-large {--_svg-icon-size:2em;}
+}

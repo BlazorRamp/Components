@@ -1,0 +1,225 @@
+﻿@using BlazorRamp.DocSite.Pages.GettingStarted
+@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_SvgIcon}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.CSS_Name_SvgIcon @GlobalValues.Common_Page_Title_Api_Usage</PageTitle>
+
+<h1>@GlobalValues.CSS_Name_SvgIcon @GlobalValues.Common_Page_Title_Api_Usage</h1>
+
+<p>
+    Everything you need to work with the <span class="@CodeSpan.Base">br-svg-icon</span> CSS class: the BEM classes it provides, the strongly-typed <span class="@CodeSpan.Base">SvgIcon</span> C# object
+    used to apply them, the supporting enum used to select a size, and the CSS variables used for styling.
+</p>
+
+<h2 class="mobile-centred-heading">Overview</h2>
+
+<p>
+    <span class="@CodeSpan.Base">br-svg-icon</span> renders a single-colour icon, masked from an SVG you provide and tinted with
+    <span class="@CodeSpan.Base">currentColor</span> so it automatically matches whatever text colour surrounds it - a <span class="@CodeSpan.Base">Button</span>'s scheme, a
+    <span class="@CodeSpan.Base">Link</span>'s inherited colour, or plain body text. It isn't tied to any one component; drop it anywhere colour should follow its
+    surroundings.
+</p>
+<p>
+    Supply the icon by setting the <span class="@CodeSpan.Base">--_svg-icon-source</span> custom property inline, with a <span class="@CodeSpan.Base">mask-image</span> URL or data
+    URI, on the same element carrying <span class="@CodeSpan.Base">br-svg-icon</span>:
+    <span class="@CodeSpan.Base">&lt;span class="br-svg-icon" style="--_svg-icon-source: url('data:image/svg+xml,...')" aria-hidden="true"&gt;&lt;/span&gt;</span>
+</p>
+<p>
+    The simplest method is to store the --svg-icon: url(. . .) variable in the <span class="@CodeSpan.Base">:root</span> class and then just set the value for using:
+    <span class="@CodeSpan.Base">style="--_svg-icon-source:var(--my-svg-icon);"</span>
+</p>
+<p>
+    This is a CSS custom property assignment, not a presentational inline style - the icon's size, colour, and forced-colours behaviour all still come from this
+    stylesheet, untouched by what's supplied inline. Setting nothing at all is deliberate too: <span class="@CodeSpan.Base">--_svg-icon-source</span> defaults to
+    <span class="@CodeSpan.Base">none</span>, so a forgotten icon renders as an obvious solid <span class="@CodeSpan.Base">currentColor</span> square rather than silently
+    disappearing.
+</p>
+<p>
+    Because a mask is just a shape - it has no colour information of its own - <span class="@CodeSpan.Base">br-svg-icon</span> only supports single-colour,
+    silhouette-style icons. That's a deliberate constraint, not just a limitation: a multi-colour icon would clash with whichever colour scheme it's placed
+    inside anyway.
+</p>
+<p>
+    Always add <span class="@CodeSpan.Base">aria-hidden="true"</span> to the icon element - it carries no meaning of its own to assistive technology. If you're
+    building an icon-only control with no visible text, the control itself still needs an accessible name from elsewhere - prefer adding visually hidden text,
+    or use <span class="@CodeSpan.Base">aria-label</span>, since there's no text content left for assistive technology to fall back on otherwise.
+</p>
+
+<section>
+    <h2 id="c#-classes" class="mobile-centred-heading">C# API</h2>
+    <p>
+        <span class="@CodeSpan.Base">SvgIcon</span> provides the BEM CSS classes for the br-svg-icon block: a masked,
+        colour-inheriting icon sized as a multiple of the current font-size.
+    </p>
+    <section>
+        <h3 id="svgicon-class" class="mobile-centred-heading">SvgIcon class</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="svgicon-class">
+                <thead>
+                    <tr>
+                        <th scope="col">Return</th>
+                        <th scope="col">Const/Static Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>string</td>
+                        <td>SvgIcon.Base</td>
+                        <td>The base class, <span class="@CodeSpan.Base">br-svg-icon</span>. Always required. Renders at the regular size unless a <span class="@CodeSpan.Base">Size</span> modifier is applied.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>SvgIcon.Size(UnitIconSize unitIconSize)</td>
+                        <td>Gets the class that sets the icon's size, as a multiple of the current font-size.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2 class="mobile-centred-heading">Supporting enum</h2>
+    <section>
+        <h3 id="unit-icon-size-enum" class="mobile-centred-heading">UnitIconSize enum</h3>
+        <p>
+            Sets an icon's size as a multiple of the current font-size. <span class="@CodeSpan.Base">Small</span> and <span class="@CodeSpan.Base">Regular</span> fit inside
+            any <span class="@CodeSpan.Base">ButtonSize</span> without adding height, since they stay at or under a button's default line-height. <span class="@CodeSpan.Base">Large</span> and
+            <span class="@CodeSpan.Base">ExtraLarge</span> exceed a button's default line-height and will make the button taller, regardless of its own size tier.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-icon-size-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Small</td>
+                        <td>1.25em. Fits inside any button size without adding height.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Regular</td>
+                        <td>1.5em, one step above small. The default size when no modifier is applied. Still fits inside any button size without adding height.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Large</td>
+                        <td>1.75em, one step above regular. Exceeds a button's default line-height and will add height.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>ExtraLarge</td>
+                        <td>2em, the largest size on this scale. Exceeds a button's default line-height and will add height.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section class="@Margin.BlockEnd(UnitSpace.Five)">
+    <h2 class="mobile-centred-heading">Usage</h2>
+    <p>
+        The following example mimics the navigation links at the bottom of the page that use the <span class="@CodeSpan.Base">Button.LinkStyle</span> and 
+        utility classes
+    </p>
+
+    <CodeBox CodeBlock="@CssClassesSnippets.Svg_Icon_Code_Example" AriaLabel="Svg icon code example." />
+
+    <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="css-classes/section/api">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
+        <span>@GlobalValues.CSS_Name_Section - @GlobalValues.Common_Page_Title_Api</span>
+    </a>
+
+</section>
+<ThemeBorderTool Title="Theme border tool" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
+    <BorderGroups>
+        <BorderGroup Title="Button/link borders">
+            <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
+<section>
+    <h2 id="css-classes" class="mobile-centred-heading">CSS classes</h2>
+    <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="css-classes">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>br-svg-icon</td>
+                    <td>Block</td>
+                    <td>The icon element. Masks the supplied SVG and tints it with <span class="@CodeSpan.Base">currentColor</span>. Renders at the regular size by default.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-svg-icon--small<br>
+                        br-svg-icon--regular<br>
+                        br-svg-icon--large<br>
+                        br-svg-icon--extra-large
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Sets the icon's size.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section>
+    <h2 class="mobile-centred-heading">CSS variables</h2>
+    <p>Private variables set on the element itself before any modifier is applied.</p>
+    <section>
+        <h3 id="svgicon-base-variables" class="mobile-centred-heading">SvgIcon base variables</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="svgicon-base-variables">
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Default Value</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--_svg-icon-source</td>
+                        <td>none</td>
+                        <td>The masked SVG, supplied inline by the consumer. Left unset, the icon renders as a plain <span class="@CodeSpan.Base">currentColor</span> square rather than disappearing.</td>
+                    </tr>
+                    <tr>
+                        <td>--_svg-icon-size</td>
+                        <td>1.5em</td>
+                        <td>The icon's width and height, before any <span class="@CodeSpan.Base">Size</span> modifier is applied.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Section}/{GlobalValues.Common_Page_Path_Api}")">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
+        <span>@GlobalValues.CSS_Name_Section - @GlobalValues.Common_Page_Title_Api</span>
+
+    </a>
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Table}/{GlobalValues.Common_Page_Path_Api}")">
+
+        <span>@GlobalValues.CSS_Name_Table - @GlobalValues.Common_Page_Title_Api</span>
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-right-arrow-circle-icon)"></span>
+    </a>
+</div>
+@code {
+
+}

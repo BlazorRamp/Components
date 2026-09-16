@@ -1,4 +1,8 @@
 ﻿using BlazorRamp.CssClasses.Common.Constants;
+using System.Data;
+using System.Drawing;
+using System.Runtime.Intrinsics.X86;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BlazorRamp.CssClasses.Common.Utilities;
 
@@ -18,6 +22,15 @@ public static class Button
     /// </summary>
     public const string FullWidth = $"{Base}--full-width";
 
+
+    /// <summary>
+    /// Constrains the button to a square aspect ratio, sized from its current padding.
+    /// Combine with an <see cref="SvgIcon"/> and no visible text for an icon-only button -
+    /// but prefer adding visually hidden text, or use <c>aria-label</c>, since there's no
+    /// text content left for assistive technology to fall back on otherwise.
+    /// </summary>
+    public const string Squared = $"{Base}--squared";
+
     /// <summary>
     /// Hides the button's background and border until hovered or focused, showing only
     /// underlined text by default. Combine with a <see cref="Scheme"/> - the colours from
@@ -25,6 +38,10 @@ public static class Button
     /// </summary>
     public const string LinkStyle = $"{Base}--link-style";
 
+    /// <summary>
+    /// Sets the buttons flex layout axis to use the direction of column instead of the default row.
+    /// </summary>
+    public const string UseColumns = $"{Base}--columns";
     /// <summary>
     /// Gets the class that sets the button's size.
     /// </summary>

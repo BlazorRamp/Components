@@ -75,7 +75,7 @@ public class CssClassesSnippets
 
 
     public const string Button_Regular_Default_Example = """
-        <button class="@Button.Base @Button.Size(ButtonSize.Regular)">Settings</button>
+        <button type="button" class="@Button.Base @Button.Size(ButtonSize.Regular)">Settings</button>
         """;
 
     public const string Margin_Code_Example = """
@@ -427,6 +427,18 @@ public class CssClassesSnippets
                 colspan lg 4
             </div>
         </div>
+        """;
+
+    public const string Svg_Icon_Code_Example = """
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="css-classes/section/api">
+            <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
+            <span>@GlobalValues.CSS_Name_Section - @GlobalValues.Common_Page_Title_Api</span>
+        </a>
+        """;
+
+
+    public const string Link_Code_Example = """
+        <a class="@Link.Base" href="/">Blazor Ramp home page</a>    
         """;
 
 }

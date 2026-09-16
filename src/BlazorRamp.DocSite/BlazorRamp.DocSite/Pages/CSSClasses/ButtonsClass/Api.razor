@@ -85,6 +85,22 @@
                             fixed unit value, bypassing the themeable default button group radius.
                         </td>
                     </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Button.Squared</td>
+                        <td>
+                            Constrains the button to a square aspect ratio, sized from its current padding.
+                            Combine with an <span class="@CodeSpan.Base">SvgIcon</span> and no visible text for an icon-only button,
+                            however, I always recommend having text along side icons.
+                            Note an icon only button would need an accessible name via preferably using visually hidden text or by using the 
+                            the <span class="@CodeSpan.Base">aria-label</span> attribute.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Button.UseColumns</td>
+                        <td>Sets the buttons flex display to use the direction of column instead of the default row.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -242,7 +258,7 @@
     </p>
     <CodeBox CodeBlock="@CssClassesSnippets.Button_Regular_Default_Example" AriaLabel="Button styling code example" />
     <p>
-        <button class="@Button.Base @Button.Size(ButtonSize.Regular)">Settings</button>
+        <button type="button" class="@Button.Base @Button.Size(ButtonSize.Regular)">Settings</button>
     </p>
 
     <h3>Default styling</h3>
@@ -305,9 +321,18 @@
     </div>
 
 </section>
+<ThemeColourTool />
+
+<ThemeBorderTool Title="Theme border tool" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
+    <BorderGroups>
+        <BorderGroup Title="Button/link borders">
+            <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
 
 <section>
-    <h2 class="mobile-centred-heading">Usage</h2>
+    <h2 class="mobile-centred-heading">Linkstyle Usage</h2>
     <p>
         The following examples use the same set as styles as the buttons, in this instance they are applied to an anchor (link) element, with the <span class="@CodeSpan.Base">Button.LinkStyle</span> modifier added.
         <b>Note: </b>All of the CSS classes have variables for both light and dark schemes. Click the Theme button at the top of the page
@@ -395,15 +420,55 @@
 
 <ThemeBorderTool Title="Theme border tool" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
     <BorderGroups>
-        <BorderGroup Title="Button borders">
+        <BorderGroup Title="Button/link borders">
             <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
         </BorderGroup>
     </BorderGroups>
 </ThemeBorderTool>
 
+<section>
+    <h2 class="mobile-centred-heading">Using Icons</h2>
+    <p>
+        You can add spans to your button content that hold icons to create buttons with icons and text or icon only buttons. 
+        <strong>Note: </strong> although icon only buttons are WCAG compliant with an accessible name, this does make it harder for
+        voice control users as unless they know what the buttons hidden accessible name is. The software they use can add a grid and/or just
+        numbers next to controls without visible names for the user. Try to add text if possible, I provide examples of both.
+    </p>
+    <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five)">
+        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter)">
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+            <span>Save</span>
+        </button>
+        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter)">
+            <span>Save</span>
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+        </button>
+        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) @Button.Squared @Button.Size(ButtonSize.Regular) @Button.UseColumns @Button.FixedRadius(UnitRadius.Two) @Gap.SetGaps(UnitGapSize.None)">
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+            <span>Save</span>
+        </button>
+        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) @Button.Squared @Button.Size(ButtonSize.Regular) @Button.UseColumns @Button.FixedRadius(UnitRadius.Two) @Gap.SetGaps(UnitGapSize.None)">
+            <span>Save</span>
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+        </button>
+        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) @Button.Squared @Button.Size(ButtonSize.Small)">
+            <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Small)" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+        </button>
+        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) @Button.Squared @Button.Size(ButtonSize.Regular)">
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+        </button>
+        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) @Button.Squared @Button.Size(ButtonSize.Regular) @Button.FixedRadius(UnitRadius.Two)">
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+        </button>
+        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) @Button.Squared @Button.Size(ButtonSize.ExtraLarge) @Button.FixedRadius(UnitRadius.Two)">
+            <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Regular)" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+        </button>
+    </div>
+
+</section>
 
 <section>
-    <h3 id="css-classes" class="mobile-centred-heading">CSS classes</h3>
+    <h2 id="css-classes" class="mobile-centred-heading">CSS classes</h2>
     <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
         <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="css-classes">
             <thead>
@@ -651,16 +716,16 @@
 
 
 
-<div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.Common_Page_Path_CSS_Variables}")">
-        <span aria-hidden="true"></span>
+<div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.Common_Page_Path_CSS_Variables}")">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
         <span>@GlobalValues.CSS_Name_CSS_Classes - @GlobalValues.Common_Page_Title_Variables</span>
-        <span aria-hidden="true"></span>
+
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_CodeSpan}/{GlobalValues.Common_Page_Path_Api}")">
-        <span aria-hidden="true"></span>
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_CodeSpan}/{GlobalValues.Common_Page_Path_Api}")">
+
         <span>@GlobalValues.CSS_Name_CodeSpan - @GlobalValues.Common_Page_Title_Api_Usage</span>
-        <span aria-hidden="true"></span>
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-right-arrow-circle-icon)"></span>
     </a>
 </div>
 @code {

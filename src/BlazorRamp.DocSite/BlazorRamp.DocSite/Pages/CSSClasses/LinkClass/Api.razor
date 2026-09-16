@@ -1,0 +1,278 @@
+﻿@using BlazorRamp.DocSite.Pages.GettingStarted
+@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Link}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.CSS_Name_Link @GlobalValues.Common_Page_Title_Api_Usage</PageTitle>
+
+<h1>@GlobalValues.CSS_Name_Link @GlobalValues.Common_Page_Title_Api_Usage</h1>
+
+<p>
+    Everything you need to work with the <span class="@CodeSpan.Base">br-link</span> CSS class: the BEM classes it provides, the strongly-typed <span class="@CodeSpan.Base">Link</span> C# object
+    used to apply them, supporting enums, and the CSS variables used for styling.
+</p>
+
+<h2 class="mobile-centred-heading">Overview</h2>
+
+<p>
+    <span class="@CodeSpan.Base">br-link</span> is for a link that sits inside a paragraph or body of text - underlined by default, coloured to inherit
+    its surrounding text colour rather than a fixed link colour, and laid out as a small inline flex container so it can hold an
+    <span class="@CodeSpan.Base">SvgIcon</span> alongside its text without breaking its inline flow.
+</p>
+<p>
+    For a link that should look like a button instead - solid fill, no underline, a distinct colour scheme - don't use
+    <span class="@CodeSpan.Base">br-link</span>. Apply <span class="@CodeSpan.Base">Button</span>'s classes directly to your <span class="@CodeSpan.Base">&lt;a&gt;</span> element instead; a real,
+    navigating anchor styled to look like a button is both the simpler and the more accessible pattern - see the <span class="@CodeSpan.Base">Button</span> reference page,
+    including its <span class="@CodeSpan.Base">LinkStyle</span> modifier for a button that only reveals its fill on hover or focus.
+</p>
+<p>
+    To align a link's children (for example when combined with <span class="@CodeSpan.Base">UseColumns</span>), or to change the gap between an icon and its text,
+    combine <span class="@CodeSpan.Base">br-link</span> with the shared <span class="@CodeSpan.Base">LayoutAlignment</span> and <span class="@CodeSpan.Base">Gap</span> utility classes - see their
+    respective reference pages.
+</p>
+
+<section>
+    <h2 id="c#-classes" class="mobile-centred-heading">C# API</h2>
+    <p>
+        <span class="@CodeSpan.Base">Link</span> provides the BEM CSS classes for the br-link block: an inline flex element
+        for a link that sits within a paragraph or body of text.
+    </p>
+    <section>
+        <h3 id="link-class" class="mobile-centred-heading">Link class</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="link-class">
+                <thead>
+                    <tr>
+                        <th scope="col">Return</th>
+                        <th scope="col">Const/Static Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>string</td>
+                        <td>Link.Base</td>
+                        <td>The base class, <span class="@CodeSpan.Base">br-link</span>. Always required.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Link.UseColumns</td>
+                        <td>Sets the link's flex layout axis to use the direction of column instead of the default row.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Link.FixedRadius(UnitRadius unitRadius)</td>
+                        <td>
+                            Gets the modifier class that sets the link's border radius to a
+                            fixed unit value, bypassing the themeable border radius grouping used by default.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2 class="mobile-centred-heading">Supporting enum</h2>
+    <section>
+        <h3 id="unit-radius-enum" class="mobile-centred-heading">UnitRadius enum</h3>
+        <p>
+            Sets a fixed border radius from the <span class="@CodeSpan.Base">--br-unit-radius-*</span> primitive scale, bypassing any themeable border radius grouping.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-radius-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>None</td>
+                        <td>No border radius. Maps to <span class="@CodeSpan.Base">--br-unit-radius-0</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>One</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-1</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Two</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-2</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Three</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-3</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Four</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-4</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Five</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-5</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Six</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-6</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Seven</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-7</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Eight</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-8</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Nine</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-9</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Full</td>
+                        <td>Fully rounded. Maps to <span class="@CodeSpan.Base">--br-unit-radius-full</span>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2 class="mobile-centred-heading">Usage</h2>
+    <p>
+        Below is a paragraph of Lorum Ipsum text with a link to the Blazor Ramp homepage, appearing after the first two words.
+    </p>
+    <p>
+        orem ipsum <a class="@Link.Base" href="/">Blazor Ramp home page</a> dolor sit amet, consectetur adipiscing elit. Donec eleifend tortor pulvinar diam fringilla luctus. Quisque tincidunt
+        purus a mi condimentum efficitur. Sed arcu nulla, convallis ut est vel, malesuada pellentesque diam. Aliquam gravida a leo
+        quis commodo. Sed a mi ullamcorper, condimentum nisl quis, imperdiet sapien. Vestibulum quis risus.
+    </p>
+    <CodeBox CodeBlock="@CssClassesSnippets.Link_Code_Example" AriaLabel="Link code example" />
+</section>
+
+<ThemeBorderTool Title="Theme border tool" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
+    <BorderGroups>
+        <BorderGroup Title="Button/link borders">
+            <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
+
+<section>
+    <h3 id="css-classes" class="mobile-centred-heading">CSS classes</h3>
+    <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="css-classes">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>br-link</td>
+                    <td>Block</td>
+                    <td>
+                        The root link element. Underlined by default, coloured to inherit its surrounding text, laid
+                        out as an inline flex row with a default gap between its children.
+                    </td>
+                </tr>
+                <tr>
+                    <td>br-link--columns</td>
+                    <td>Modifier</td>
+                    <td>Sets the link's flex layout axis to the block (column) direction instead of the default row.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-link--radius-none<br>
+                        br-link--radius-one<br>
+                        br-link--radius-two<br>
+                        br-link--radius-three<br>
+                        br-link--radius-four<br>
+                        br-link--radius-five<br>
+                        br-link--radius-six<br>
+                        br-link--radius-seven<br>
+                        br-link--radius-eight<br>
+                        br-link--radius-nine<br>
+                        br-link--radius-full
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Sets the link's border radius to a fixed unit value, bypassing the themeable border radius grouping used by default.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section>
+    <h2 class="mobile-centred-heading">CSS variables</h2>
+    <p>
+        <span class="@CodeSpan.Base">br-link</span> doesn't define its own private variables - its border radius and focus outline read directly
+        from the following shared tokens, so a theme change updates every link on the page automatically.
+    </p>
+    <section>
+        <h3 id="link-shared-variables" class="mobile-centred-heading">Shared variables consumed</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="link-shared-variables">
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--br-group-button-border-radius</td>
+                        <td>The link's default border radius, before any <span class="@CodeSpan.Base">FixedRadius</span> modifier is applied.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-unit-space-3</td>
+                        <td>The default gap between the link's children (for example, an icon and its text).</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            --br-comp-all-outline-offset<br>
+                            --br-comp-all-outline-width<br>
+                            --br-comp-all-outline-style<br>
+                            --br-comp-all-outline-colour
+                        </td>
+                        <td>
+                            The focus outline shown on <span class="@CodeSpan.Base">:focus-visible</span> and <span class="@CodeSpan.Base">:hover</span>. The outline width is
+                            1.5&times; the shared default width, to stand out against the link's own underline.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
+
+    <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_LayoutAlignment}/{GlobalValues.Common_Page_Path_Api}")">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
+        <span>@GlobalValues.CSS_Name_LayoutAlignment - @GlobalValues.Common_Page_Title_Api</span>
+    </a>
+
+    <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Margin}/{GlobalValues.Common_Page_Path_Api}")">
+        <span>@GlobalValues.CSS_Name_Margin - @GlobalValues.Common_Page_Title_Api</span>
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-right-arrow-circle-icon)"></span>
+    </a>
+</div>
+@code {
+
+}
+

@@ -49,16 +49,16 @@
 <CodeBox CodeBlock="@InputSnippets.Checkbox_Input_Example" AriaLabel="Checkbox input code example" />
 
 
-<div class="flex-content justify-content-between">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_CheckboxInput}/{GlobalValues.Common_Page_Path_Api}")">
-        <span aria-hidden="true"></span>
+<div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_CheckboxInput}/{GlobalValues.Common_Page_Path_Api}")">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
         <span>@GlobalValues.Component_Name_Checkbox_Input - @GlobalValues.Common_Page_Title_Api</span>
-        <span aria-hidden="true"></span>
+
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_DateInput}/{GlobalValues.Common_Page_Path_Api}")">
-        <span aria-hidden="true"></span>
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_DateInput}/{GlobalValues.Common_Page_Path_Api}")">
+
         <span>@GlobalValues.Component_Name_Date_Input - @GlobalValues.Common_Page_Title_Api</span>
-        <span aria-hidden="true"></span>
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-right-arrow-circle-icon)"></span>
     </a>
 </div>
 

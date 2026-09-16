@@ -1,4 +1,6 @@
-﻿.br-table--code {
+﻿@use "_functions" as *;
+
+.br-table--code {
 
     & td {
         font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
@@ -20,4 +22,19 @@
         & td:nth-child(3) {
             width: 40%;
         }
+}
+
+.br-flex-content {
+
+    @include media-device-sm(max-width) {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    &:has( > .br-button--link-style > .br-svg-icon) {
+        margin-block-end: var(--br-unit-space-14);
+    }
+
+  
 }

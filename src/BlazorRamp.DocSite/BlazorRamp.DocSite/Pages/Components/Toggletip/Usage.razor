@@ -44,22 +44,22 @@
             <BorderRadius LabelText="Outer radius" ResetText="Reset outer radius" MaxRangeValue="@GlobalValues.Radius_Dialog_Surface_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Dialog_Radius_Surface), new(CoreCssVariables.Group_Dialog_Radius_Base)])" />
             <BorderRadius LabelText="Inner radius" ResetText="Reset inner radius" MaxRangeValue="@GlobalValues.Radius_Dialog_Content_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Dialog_Radius_Content)])" />
         </BorderGroup>
-        <BorderGroup Title="Button borders">
+        <BorderGroup Title="Button/link borders">
             <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
         </BorderGroup>
     </BorderGroups>
 </ThemeBorderTool>
 
 <div class="flex-content justify-content-between" style="margin-top:2rem;">
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Toggletip}/{GlobalValues.Common_Page_Path_Api}")">
-        <span aria-hidden="true"></span>
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Toggletip}/{GlobalValues.Common_Page_Path_Api}")">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
         <span>@GlobalValues.Component_Name_Toggletip - @GlobalValues.Common_Page_Title_Api</span>
-        <span aria-hidden="true"></span>
+
     </a>
-    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Overview}")">
-        <span aria-hidden="true"></span>
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Overview}")">
+
         <span>@GlobalValues.Framework_Name_Modal - @GlobalValues.Common_Page_Title_Overview</span>
-        <span aria-hidden="true"></span>
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-right-arrow-circle-icon)"></span>
     </a>
 </div>
 @code {
