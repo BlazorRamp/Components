@@ -2,13 +2,13 @@
     @GetHeadingFragment(ThemeToolHeadingLevel, _titleText, @GlobalValues.Theme_Colour_Tool_Title_Class)
     <div class="@GlobalValues.Theme_Colour_Tool_Content_Class">
         <div class="@GlobalValues.Theme_Colour_Tool_Controls_Class">
-            <label for="colour-picker" class="@GlobalValues.Theme_Colour_Tool_Label_Class">Choose your primary:</label>
-            <input id="colour-picker" type="color" value="@_primaryColourValue" @oninput="HandleOnInput" @onchange="HandleOnChange" />
+            <label for="@_inputID" class="@GlobalValues.Theme_Colour_Tool_Label_Class">Choose your primary:</label>
+            <input id="@_inputID" type="color" value="@_primaryColourValue" @oninput="HandleOnInput" @onchange="HandleOnChange" />
         </div>
 
         <div class="@GlobalValues.Theme_Colour_Tool_Controls_Class">
-            <label for="neutral-slider" class="@GlobalValues.Theme_Colour_Tool_Label_Class">Adjust neutral tinge:</label>
-            <input id="neutral-slider" type="range" min="0" max="15" value="@_neutralSaturationValue" @oninput="HandleSaturation" @onchange="HandleOnChange" />
+            <label for="@_sliderID" class="@GlobalValues.Theme_Colour_Tool_Label_Class">Adjust neutral tinge:</label>
+            <input id="@_sliderID" type="range" min="0" max="15" value="@_neutralSaturationValue" @oninput="HandleSaturation" @onchange="HandleOnChange" />
         </div>
         <div class="@GlobalValues.Theme_Colour_Tool_Controls_Class">
             <span class="@GlobalValues.Theme_Colour_Tool_Label_Class">Neutral tinge value:</span>
@@ -47,6 +47,10 @@
     private string _neutralSaturationValue  = CoreCssVariables.Colour_Neutral_Saturation_Original_Value;
 
     private string _titleText = "Theme colour tool";
+
+
+    private string _sliderID = Guid.NewGuid().ToString();
+    private string _inputID = Guid.NewGuid().ToString();
 
     protected override void OnParametersSet()
     {
