@@ -89,11 +89,17 @@
                         <td>string</td>
                         <td>Button.Squared</td>
                         <td>
+                            <p class="@Margin.BlockStart(UnitSpace.None)">
                             Constrains the button to a square aspect ratio, sized from its current padding.
                             Combine with an <span class="@CodeSpan.Base">SvgIcon</span> and no visible text for an icon-only button,
                             however, I always recommend having text along side icons.
-                            Note an icon only button would need an accessible name via preferably using visually hidden text or by using the 
-                            the <span class="@CodeSpan.Base">aria-label</span> attribute.
+                            <strong>Note: </strong> an icon only button needs an accessible name, you can use the <span class="@CodeSpan.Base">aria-label</span> attribute
+                            to provide one.
+                            </p>
+                             <p class="@Margin.BlockEnd(UnitSpace.None)">
+                                <strong>Note: </strong> do not forget that buttons have a full border radius by default. Using a square aspect ratio will make them circular
+                                until the full radius is removed.
+                            </p>
                         </td>
                     </tr>
                     <tr>
@@ -434,37 +440,63 @@
         voice control users as unless they know what the buttons hidden accessible name is. The software they use can add a grid and/or just
         numbers next to controls without visible names for the user. Try to add text if possible, I provide examples of both.
     </p>
+    <p>
+        <strong>Note: </strong> do not forget that buttons have a full border radius by default. Using a square aspect ratio will make them circular
+        until the full radius is removed.
+    </p>
     <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five)">
-        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter)">
+        
+        <button type="button" class="@Button.Base">
             <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
             <span>Save</span>
         </button>
-        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter)">
+        
+        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Primary)">
             <span>Save</span>
             <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
         </button>
-        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) @Button.Squared @Button.Size(ButtonSize.Regular) @Button.UseColumns @Button.FixedRadius(UnitRadius.Two) @Gap.SetGaps(UnitGapSize.None)">
+        
+        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) 
+                                     @Button.Squared @Button.Size(ButtonSize.Regular) @Button.UseColumns 
+                                     @Button.FixedRadius(UnitRadius.Two) @Gap.SetGaps(UnitGapSize.None)">
             <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
             <span>Save</span>
         </button>
-        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) @Button.Squared @Button.Size(ButtonSize.Regular) @Button.UseColumns @Button.FixedRadius(UnitRadius.Two) @Gap.SetGaps(UnitGapSize.None)">
+        
+        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) @Button.Squared 
+                                     @Button.Size(ButtonSize.Regular) @Button.UseColumns @Button.FixedRadius(UnitRadius.Two) 
+                                     @Gap.SetGaps(UnitGapSize.None)">
             <span>Save</span>
             <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
         </button>
-        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) @Button.Squared @Button.Size(ButtonSize.Small)">
+        
+        <button aria-label="Save" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Inverted) @Button.Squared 
+                                                       @Button.Size(ButtonSize.Small)">
             <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Small)" style="--_svg-icon-source:var(--svg-save-icon);"></span>
         </button>
-        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) @Button.Squared @Button.Size(ButtonSize.Regular)">
+        
+        <button aria-label="Save" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.InfoDarker) @Button.Squared 
+                                                       @Button.Size(ButtonSize.Regular)">
             <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
         </button>
-        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) @Button.Squared @Button.Size(ButtonSize.Regular) @Button.FixedRadius(UnitRadius.Two)">
+        
+        <button aria-label="Save" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.WarningDarker) @Button.Squared 
+                                                       @Button.Size(ButtonSize.Regular) @Button.FixedRadius(UnitRadius.Two)">
             <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
         </button>
-        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) @Button.Squared @Button.Size(ButtonSize.ExtraLarge) @Button.FixedRadius(UnitRadius.Two)">
-            <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Regular)" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+        
+        <button aria-label="Save" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.AccentLighter) @Button.Squared 
+                                                       @Button.Size(ButtonSize.ExtraLarge) @Button.FixedRadius(UnitRadius.Two)">
+            <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" style="--_svg-icon-source:var(--svg-save-icon);"></span>
         </button>
     </div>
-
+    <p>
+        <strong>Note: </strong> You can alter and/or increase sizes further by using the <span class="@CodeSpan.Base">Padding</span> utility.
+    </p>
+    <p>
+        Below is all of the code used for the icon buttons.
+    </p>
+    <CodeBox CodeBlock="@CssClassesSnippets.IconButtons_Code_Example" AriaLabel="Icon button code example." />
 </section>
 
 <section>

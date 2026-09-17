@@ -441,4 +441,50 @@ public class CssClassesSnippets
         <a class="@Link.Base" href="/">Blazor Ramp home page</a>    
         """;
 
+
+    public const string IconButtons_Code_Example = """
+        <button type="button" class="@Button.Base">
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+            <span>Save</span>
+        </button>
+
+        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Primary)">
+            <span>Save</span>
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+        </button>
+
+        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) 
+                                     @Button.Squared @Button.Size(ButtonSize.Regular) @Button.UseColumns 
+                                     @Button.FixedRadius(UnitRadius.Two) @Gap.SetGaps(UnitGapSize.None)">
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+            <span>Save</span>
+        </button>
+
+        <button type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) @Button.Squared 
+                                     @Button.Size(ButtonSize.Regular) @Button.UseColumns @Button.FixedRadius(UnitRadius.Two) 
+                                     @Gap.SetGaps(UnitGapSize.None)">
+            <span>Save</span>
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+        </button>
+
+        <button aria-label="Save" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Inverted) @Button.Squared 
+                                                       @Button.Size(ButtonSize.Small)">
+            <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Small)" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+        </button>
+
+        <button aria-label="Save" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.InfoDarker) @Button.Squared 
+                                                       @Button.Size(ButtonSize.Regular)">
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+        </button>
+
+        <button aria-label="Save" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.WarningDarker) @Button.Squared 
+                                                       @Button.Size(ButtonSize.Regular) @Button.FixedRadius(UnitRadius.Two)">
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+        </button>
+
+        <button aria-label="Save" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.AccentLighter) @Button.Squared 
+                                                       @Button.Size(ButtonSize.ExtraLarge) @Button.FixedRadius(UnitRadius.Two)">
+            <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+        </button>
+        """;
 }

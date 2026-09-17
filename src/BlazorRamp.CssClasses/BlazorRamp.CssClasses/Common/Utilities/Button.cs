@@ -25,9 +25,9 @@ public static class Button
 
     /// <summary>
     /// Constrains the button to a square aspect ratio, sized from its current padding.
-    /// Combine with an <see cref="SvgIcon"/> and no visible text for an icon-only button -
-    /// but prefer adding visually hidden text, or use <c>aria-label</c>, since there's no
-    /// text content left for assistive technology to fall back on otherwise.
+    /// Combine with an <see cref="SvgIcon"/> and no visible text for an icon-only button.
+    /// You will need to provide an accessible name via the <c>aria-label</c>, since there's no
+    /// text content left for assistive technology to fall back.
     /// </summary>
     public const string Squared = $"{Base}--squared";
 

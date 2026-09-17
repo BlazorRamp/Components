@@ -241,6 +241,9 @@
   display: none;
 }
 @media (max-width: 576px) {
+  #app:has(#menu-toggler[aria-expanded=false]) #app__main {
+    margin: var(--br-unit-space-5);
+  }
   #app:has(#menu-toggler[aria-expanded=true]) #app__main {
     display: none;
   }
