@@ -1,4 +1,4 @@
-# Blazor Ramp
+<img src="assets/blazor-ramp.svg" alt="Blazor Ramp logo" height="120" />
 
 **Accessibility-first Blazor components, developed and manually tested with real screen readers, keyboards, and voice control from day one.**
 
