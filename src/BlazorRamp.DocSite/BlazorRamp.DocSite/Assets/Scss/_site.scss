@@ -302,3 +302,20 @@ h2:focus-visible {
     mask-position: center;
     forced-color-adjust: none;
 }
+
+.site-logo {
+    display: block; 
+    width: 100%; 
+    max-width: 150px; 
+    height: auto; 
+    min-width: 120px;
+    margin-top:0.125rem;
+}
+
+.logo-top{
+    fill:var(--br-cls-primary);
+}
+
+.logo-bottom{
+    fill:var(--br-unit-colour-canvas-text);
+}

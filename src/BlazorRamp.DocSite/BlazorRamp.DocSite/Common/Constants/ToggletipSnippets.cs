@@ -12,30 +12,28 @@ public class ToggletipSnippets
 
     public const string Usage_Example = """
         <ToggleTip CloseText="Close Keyboard Info." Label="Keyboard info:" ShowClose="true" ShowLabel="true" 
-        ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" ToggleTipSize="ToggleTipSize.Small">
-        <h3 id="toggletip-demo">Keyboard interaction</h3>
-        <ul aria-labelledby="toggletip-demo">
-            <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Space</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
-            <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Enter</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
-            <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Escape</kbd> - closes the toggletip</li>
-        </ul>
+        <ToggleTip CloseText="Close Keyboard Info." Label="Keyboard info:" ShowClose="true" ShowLabel="true" ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" ToggleTipSize="ToggleTipSize.Small">
+            <h2 id="toggletip-demo">Keyboard interaction</h2>
+            <ul aria-labelledby="toggletip-demo">
+                <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Space</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
+                <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Enter</kbd> - when focus is on the toggletip icon, expands or collapses the content.</li>
+                <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Escape</kbd> - closes the toggletip</li>
+            </ul>
 
-        <p>
-            Lorem ipsum text below to force a scroll bar. The toggletip is responsive so if you do not see a scrollbar, 
-            just make your window narrower.
-        </p>
+            <p>Lorem ipsum text below to force a scroll bar. The toggletip is responsive so if you do not see a scrollbar, just make your window narrower.</p>
 
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum massa, feugiat id sapien
-            non, egestas vestibulum dolor. Nulla luctus est ac urna imperdiet tristique. Vestibulum ante
-            ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent egestas massa
-            nec sem sagittis, at efficitur urna rutrum. Nunc et.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum massa, feugiat id sapien
-            non, egestas vestibulum dolor. Nulla luctus est ac urna imperdiet tristique. Vestibulum ante
-            ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent egestas massa
-            nec sem sagittis, at efficitur urna rutrum. Nunc et.
-        </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum massa, feugiat id sapien
+                non, egestas vestibulum dolor. Nulla luctus est ac urna imperdiet tristique. Vestibulum ante
+                ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent egestas massa
+                nec sem sagittis, at efficitur urna rutrum. Nunc et.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ipsum massa, feugiat id sapien
+                non, egestas vestibulum dolor. Nulla luctus est ac urna imperdiet tristique. Vestibulum ante
+                ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent egestas massa
+                nec sem sagittis, at efficitur urna rutrum. Nunc et.
+            </p>
+        </ToggleTip>
         """;
 }

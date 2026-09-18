@@ -17,9 +17,10 @@
 #app__header > span:first-child {
   color: var(--br-comp-all-area-header-text);
   font-size: var(--br-unit-font-size-3);
-  white-space: nowrap;
+  /*            white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis;*/
+  order: -2;
 }
 #app__header #menu-toggler {
   margin-top: var(--br-unit-space-2);
@@ -240,9 +241,14 @@
 #app:has(#menu-toggler[aria-expanded=false]) #app__nav {
   display: none;
 }
+#app:has(#menu-toggler[aria-expanded=false]) #app__main {
+  margin: var(--br-unit-space-5);
+}
 @media (max-width: 576px) {
-  #app:has(#menu-toggler[aria-expanded=false]) #app__main {
-    margin: var(--br-unit-space-5);
+  #app {
+    /*        #app__main {
+        margin: var(--br-unit-space-5);
+    }*/
   }
   #app:has(#menu-toggler[aria-expanded=true]) #app__main {
     display: none;
@@ -659,6 +665,23 @@ h2:focus-visible {
   mask-size: 100% 100%;
   mask-position: center;
   forced-color-adjust: none;
+}
+
+.site-logo {
+  display: block;
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  min-width: 120px;
+  margin-top: 0.125rem;
+}
+
+.logo-top {
+  fill: var(--br-cls-primary);
+}
+
+.logo-bottom {
+  fill: var(--br-unit-colour-canvas-text);
 }
 
 .main-navigation > ul {
