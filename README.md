@@ -118,7 +118,7 @@ builder.Services.AddBlazorRampCore();
 
 From there, drop the component into your markup. Full usage, parameters, and live examples for every component are on the [documentation site](https://docs.blazorramp.uk).
 
-**Note: ** on my sites I have `TriggerVisible="true"` so non-screen reader users can access some of the announcements made.
+**Note:** on my sites I have `TriggerVisible="true"` so non-screen reader users can access some of the announcements made.
 ## Status
 
 This project is under active, in-progress development - new components and packages are being added regularly. Check back often, and see the [releases](https://github.com/BlazorRamp/Components/releases) for what's shipped so far.
