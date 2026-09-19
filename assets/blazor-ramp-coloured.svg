@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1751 813" role="img" aria-labelledby="title">
 <style>
-  .blazor-purple { fill: #b045a5; }
-  .ramp-black { fill: #b045a5; }
+	.blazor-purple { fill: #667f6f; }
+	.ramp-black { fill: #667f6f; }
 </style>
 <title id="title">Blazor Ramp logo</title>
 

@@ -173,3 +173,42 @@ body {
     outline-style: var(--br-comp-all-outline-style);
     outline-color: var(--br-comp-all-outline-colour);
 }
+
+.logo-link {
+    display:inline-flex;
+    text-decoration: none;
+    border:none;
+    &:focus-visible, &:hover {
+        border-radius: var(--br-unit-radius-3);
+        outline-offset: var(--br-comp-all-outline-offset);
+        outline-width: calc(var(--br-comp-all-outline-width) * 1.5);
+        outline-style: var(--br-comp-all-outline-style);
+        outline-color: var(--br-comp-all-outline-colour);
+    }
+}
+
+.site-logo {
+    border:none;
+    display: inline-block;
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+    min-width: 100px;
+    margin-top: 0.125rem;
+
+}
+
+.logo-top {
+    fill: var(--br-unit-colour-primary);
+}
+
+.logo-bottom {
+    fill: var(--br-unit-colour-canvas-text);
+}
+
+@media (forced-colors: active) {
+    .logo-top,
+    .logo-bottom {
+        fill: CanvasText;
+    }
+}

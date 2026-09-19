@@ -18,19 +18,13 @@
         gap: var(--br-unit-space-5);
         padding: var(--br-unit-space-5);
         align-items: center;
-
-
-        & > span:first-child {
-            color: var(--br-comp-all-area-header-text);
-            font-size: var(--br-unit-font-size-3);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        margin-block-start: 1rem;
+        
+        & #header-logo {
+            margin-top: -0.5rem;
         }
 
         & #menu-toggler {
-            margin-top: var(--br-unit-space-2);
-            order: -1;
             flex-shrink: 0;
             appearance: none;
             border: none;
@@ -83,7 +77,6 @@
         }
 
         & #theme-toggler {
-            margin-top: var(--br-unit-space-2);
             flex-shrink: 0;
             appearance: none;
             border: none;
@@ -123,7 +116,7 @@
             }
 
             &:focus-visible {
-                outline-offset: var(--br-comp-all-outline-offset);
+                outline-offset: 0;
                 outline-width: var(--br-comp-all-outline-width);
                 outline-style: var(--br-comp-all-outline-style);
                 outline-color: var(--br-comp-all-focus-indicator-colour);
@@ -135,10 +128,9 @@
             }
         }
 
-        & > a {
+        & #github-repo {
             margin-left: auto;
             font-size: var(--br-unit-font-size-label);
-            margin-top: var(--br-unit-space-2);
             flex-shrink: 0;
             border: none;
             outline: none;
@@ -162,7 +154,7 @@
             }
 
             &:focus-visible {
-                outline-offset: var(--br-comp-all-outline-offset);
+                outline-offset: 0;
                 outline-width: var(--br-comp-all-outline-width);
                 outline-style: var(--br-comp-all-outline-style);
                 outline-color: var(--br-comp-all-focus-indicator-colour);
@@ -195,7 +187,7 @@
         overflow-y: auto;
         overflow-x: hidden;
 
-       
+
         &:focus-visible {
             outline-width: var(--br-comp-all-outline-width);
             outline-color: var(--br-comp-all-outline-colour);

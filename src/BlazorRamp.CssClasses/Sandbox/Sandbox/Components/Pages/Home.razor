@@ -6,19 +6,27 @@
 
 @rendermode @(new InteractiveServerRenderMode(false))
 
-<p>
-    orem ipsum <a class="@Link.Base" href="/">some url to something</a> dolor sit amet, consectetur adipiscing elit. Donec eleifend tortor pulvinar diam fringilla luctus. Quisque tincidunt
-    purus a mi condimentum efficitur. Sed arcu nulla, convallis ut est vel, malesuada pellentesque diam. Aliquam gravida a leo 
-    quis commodo. Sed a mi ullamcorper, condimentum nisl quis, imperdiet sapien. Vestibulum quis risus.
-</p>
 
-<button class="@Button.Base @Button.Size(ButtonSize.ExtraLarge) @Button.FixedRadius(UnitRadius.Two) @Button.Squared @Button.UseColumns">
-    <span class="br-svg-icon br-svg-icon--extra-large" style="--_svg-icon-source:var(--br-svg-wheelchair-icon);"></span>
+<button id="trigger" aria-describedby="my-tooltip" popovertarget="my-tooltip">
+    Hover over me
 </button>
 
-<button class="@Button.Base">
-    <span>My button</span>
-</button>
+<div id="my-tooltip" role="tooltip" popover="auto">
+    This is a tooltip popover!
+</div>
+
+<script>
+    const trigger = document.getElementById('trigger');
+    const tooltip = document.getElementById('my-tooltip');
+
+    trigger.addEventListener('mouseenter', () => {
+        tooltip.showPopover();
+    });
+
+    trigger.addEventListener('mouseleave', () => {
+        tooltip.hidePopover();
+    });
+</script>
 
 <section>
  

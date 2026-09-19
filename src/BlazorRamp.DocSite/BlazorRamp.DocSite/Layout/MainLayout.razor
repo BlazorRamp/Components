@@ -8,8 +8,9 @@
 @inject ILiveRegionService _liveRegionService
 
 <header id="app__header">
-<span>
+<span id="site-logo">
 @*     @GlobalValues.Site_Banner_Title *@
+        <a href="/" class="@Link.Base @Link.FixedRadius(UnitRadius.Two)" aria-current="@(_isHomePage ? "page" : null)">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1751 813" role="img" aria-labelledby="title" class="site-logo">
             <title id="title">Blazor Ramp logo</title>
 
@@ -20,9 +21,14 @@
                 <path d="M 1246 577 L 1247 750 L 1310 749 L 1310 648 L 1315 636 L 1321 630 L 1328 627 L 1338 627 L 1346 630 L 1352 636 L 1355 643 L 1357 750 L 1420 749 L 1420 650 L 1424 637 L 1431 630 L 1439 627 L 1449 627 L 1456 630 L 1463 637 L 1466 646 L 1466 749 L 1530 749 L 1529 630 L 1525 614 L 1520 604 L 1505 587 L 1488 578 L 1469 574 L 1448 575 L 1425 583 L 1416 589 L 1406 599 L 1398 590 L 1387 582 L 1375 577 L 1362 574 L 1346 574 L 1328 579 L 1320 583 L 1309 593 L 1307 591 L 1307 577 Z M 1718 592 L 1698 580 L 1672 573 L 1646 573 L 1637 575 L 1620 582 L 1607 593 L 1606 577 L 1544 577 L 1545 812 L 1608 811 L 1609 738 L 1622 748 L 1634 753 L 1648 756 L 1670 756 L 1685 753 L 1706 744 L 1719 735 L 1732 721 L 1743 701 L 1749 679 L 1750 657 L 1746 634 L 1740 619 L 1727 600 Z M 1640 622 L 1650 622 L 1659 624 L 1670 630 L 1678 639 L 1684 653 L 1685 671 L 1679 688 L 1666 701 L 1654 706 L 1634 705 L 1621 698 L 1613 690 L 1606 671 L 1607 652 L 1612 640 L 1621 630 L 1627 626 Z M 1068 593 L 1086 635 L 1098 628 L 1116 621 L 1132 618 L 1144 618 L 1158 622 L 1167 631 L 1169 637 L 1168 645 L 1152 643 L 1126 643 L 1102 647 L 1083 655 L 1069 666 L 1063 675 L 1059 685 L 1057 694 L 1057 707 L 1060 720 L 1064 728 L 1074 740 L 1086 748 L 1096 752 L 1110 755 L 1129 755 L 1151 749 L 1166 739 L 1171 733 L 1173 750 L 1229 750 L 1229 632 L 1224 614 L 1219 604 L 1211 594 L 1200 585 L 1186 578 L 1168 573 L 1149 571 L 1128 572 L 1103 577 L 1089 582 Z M 1118 688 L 1127 680 L 1137 677 L 1162 677 L 1169 679 L 1169 693 L 1165 704 L 1153 714 L 1141 717 L 1129 716 L 1118 708 L 1115 700 Z M 846 526 L 846 749 L 913 750 L 913 679 L 927 677 L 939 679 L 983 750 L 1057 750 L 1056 746 L 1039 719 L 1014 683 L 1004 666 L 1020 657 L 1029 649 L 1040 635 L 1047 617 L 1048 589 L 1044 574 L 1034 557 L 1023 546 L 1011 538 L 1000 533 L 978 527 L 958 525 Z M 914 575 L 958 575 L 974 582 L 979 588 L 982 598 L 981 610 L 976 620 L 970 625 L 957 630 L 915 630 L 913 626 Z" fill-rule="evenodd" />
             </g>
         </svg>
-
+        </a>
 </span>
-    <a href="@GlobalValues.Web_Site_Path_GitHub_Repo" target="_self">
+    <button id="menu-toggler" type="button" aria-expanded="true" aria-controls="@GlobalValues.Main_Navigation_ID" @ref="MenuButtonRef">
+        <span aria-hidden="true"></span>
+        <span>Menu</span>
+    </button>
+
+    <a id="github-repo" href="@GlobalValues.Web_Site_Path_GitHub_Repo" target="_self">
         <span aria-hidden="true"></span>
         <span>GitHub</span>
     </a>
@@ -30,11 +36,6 @@
         <span aria-hidden="true"></span>
         <span class="br-visually-hidden">Dark</span>
         <span>Theme</span>
-    </button>
-
-    <button id="menu-toggler" type="button" aria-expanded="true" aria-controls="@GlobalValues.Main_Navigation_ID" @ref="MenuButtonRef">
-        <span aria-hidden="true"></span>
-        <span>Menu</span>
     </button>
 
 </header>
@@ -58,6 +59,8 @@
     private Announcement _darkThemeAnnouncement = new Announcement("The site is now using a dark coloured theme.", AnnouncementType.Info,  "Dark Theme Switch", LiveRegionType.Polite);
     private Announcement _lightThemAnnouncement = new Announcement("The site is now using a light coloured theme.", AnnouncementType.Info, "Dark Theme Switch", LiveRegionType.Polite);
 
+    private bool _isHomePage = true;
+
     protected override async Task OnInitializedAsync()
     {
         _navigationManager.LocationChanged+=  Navigation_LocationChanged;
@@ -66,8 +69,9 @@
             _jsLiveRegionModule    = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", CoreGlobalValues.JS_Utils_File_Path);
             _jsDocSiteModule = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Doc_Site_Module_File_Path);
 
-             await _jsDocSiteModule.InvokeVoidAsync(GlobalValues.JS_Doc_Site_Initialise_Func, MenuButtonRef, SideNavigationRef, MainContentRef, GlobalValues.Start_Width_For_Collapsed_Menu);
+            await _jsDocSiteModule.InvokeVoidAsync(GlobalValues.JS_Doc_Site_Initialise_Func, MenuButtonRef, SideNavigationRef, MainContentRef, GlobalValues.Start_Width_For_Collapsed_Menu);
 
+            _isHomePage = (_navigationManager.Uri == _navigationManager.BaseUri);
         }
         catch (Exception ex)
         {
@@ -77,6 +81,9 @@
     private async void Navigation_LocationChanged(object? sender, LocationChangedEventArgs args)
     {
         if (_jsLiveRegionModule is not null) await _jsDocSiteModule!.InvokeVoidAsync(GlobalValues.JS_Doc_Site_Check_Close_Nav, MenuButtonRef);
+
+        _isHomePage = (_navigationManager.Uri == _navigationManager.BaseUri);
+        StateHasChanged();
     }
 
     private async Task ToggleTheme()
@@ -95,4 +102,5 @@
 
         _navigationManager.LocationChanged-= Navigation_LocationChanged;
     }
+
 }
