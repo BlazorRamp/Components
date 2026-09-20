@@ -1,0 +1,17 @@
+{
+    "compileOnSave": true,
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es2022",
+    "module": "es2022",
+    "rootDir": "Assets/Scripts",
+    "outDir": "wwwroot/assets/js",
+    "strict": true
+  },
+    "include": [
+        "Assets/Scripts/*"
+    ]
+}

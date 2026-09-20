@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+  <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
+    <Title>BlazorRamp.Tooltip</Title>
+    <Version>1.0.0</Version>
+    <Authors>Paul Kent</Authors>
+    <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
+    <Description>Tooltip component for the Blazor Ramp ecosystem.</Description>
+    <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
+    <RepositoryType></RepositoryType>
+    <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Tooltip;</PackageTags>
+    <PackageReleaseNotes>Initial release of the Tooltip component</PackageReleaseNotes>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+	 <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	 <Deterministic>true</Deterministic>
+  </PropertyGroup>
+	
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Remove="compilerconfig.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\..\LICENSE">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="compilerconfig.json" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BlazorRamp.Core" Version="1.1.7" />
+	  <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.29" />
+	  <PackageReference Include="BuildWebCompiler2022" Version="1.14.15">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\js\" />
+  </ItemGroup>
+
+</Project>
