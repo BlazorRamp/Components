@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BlazorRamp.Tooltip\BlazorRamp.Tooltip.csproj" />
     <ProjectReference Include="..\Sandbox.Client\Sandbox.Client.csproj" />
     <PackageReference Include="BlazorRamp.Core" Version="1.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.12" />

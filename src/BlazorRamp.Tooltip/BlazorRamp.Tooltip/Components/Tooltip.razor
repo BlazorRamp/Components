@@ -1,9 +1,19 @@
-﻿
-<div>
-    @ChildContent
-    
-    <div>
+﻿@using Microsoft.AspNetCore.Components.Forms
 
+
+<div id="@_containerID" class="@GlobalValues.Tooltip_class" >
+    @ChildContent
+    <div id="@_tooltipID" popover="manual" data-br-tooltip-position="@_tooltipPosition" class="@GlobalValues.Tooltip_Content_Wrapper_class">
+
+        <div class="@GetContentAreaClasses(InvertColours)">
+            <span class="@GlobalValues.Tooltip_Closer_Class">
+                <span class="@GlobalValues.Tooltip_icon_class" aria-hidden="true"></span>
+            </span>
+            <span class="@GlobalValues.Tooltip_Content_class">
+                @TooltipText
+            </span>
+
+        </div>
     </div>
 </div>
 

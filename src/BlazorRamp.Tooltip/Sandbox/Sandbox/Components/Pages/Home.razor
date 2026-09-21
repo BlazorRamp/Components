@@ -1,7 +1,33 @@
 ﻿@page "/"
 
+
+@rendermode InteractiveServer
+
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+<div sttyle="height:400px;width:600px;border:1px solid green;">
+
+    <button type="button" popovertarget="popoverid">Open</button>
+
+    <div id="popoverid" popover="auto" style="width:200px;height:200px;">
+        My popover
+
+        <Tooltip TooltipID="TestTwoID" TooltipText="Tooltipposition and some text Tooltipposition and the some text" TooltipPosition="TooltipPosition.TopCentre" InvertColours="true">
+            <button type="button" aria-describedby="TestTwoID">test</button>
+        </Tooltip>
+
+    </div>
+</div>
+
+
+
+
+<Tooltip TooltipID="TestOneID" TooltipText="Tooltipposition and some text Tooltipposition and the some text" TooltipPosition="TooltipPosition.BottomRight">
+<button type="button" aria-describedby="TestOneID">test</button>
+</Tooltip>
+
+and some text after the tooltip
+

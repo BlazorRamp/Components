@@ -4,6 +4,7 @@
     "noImplicitAny": false,
     "noEmitOnError": true,
     "removeComments": false,
+    "inlineSources": true,
     "sourceMap": true,
     "target": "es2022",
     "module": "es2022",
