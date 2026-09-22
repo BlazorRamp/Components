@@ -84,6 +84,18 @@ public class Tooltip_Tests
             tooltipComponent.Instance.TooltipText.Should().Be(_tooltipText);
         }
     }
+    [Fact]
+    public async Task Should_preserve_blank_lines_in_the_rendered_tooltip_text()
+    {
+
+        await using var context = new BunitContext();  
+        var tooltipText = "My text\r\n\r\nwith a blank line";
+        var expectedFormattedText = "My text\n\nwith a blank line";
+
+        var tooltipComponent = CreateTooltip(context, p => p.Add(x => x.TooltipID, _tooltipID).Add(x => x.TooltipText, tooltipText));
+
+        tooltipComponent.Find($".{GlobalValues.Tooltip_Content_class}").TextContent.Should().Be(expectedFormattedText);
+    }
 
     [Theory]
     [InlineData(true)]

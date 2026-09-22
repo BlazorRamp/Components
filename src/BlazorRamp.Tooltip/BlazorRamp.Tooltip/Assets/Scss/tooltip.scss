@@ -15,10 +15,8 @@
         position-anchor: --tooltip-anchor;
         border: none;
         position-try-order: most-space;
-
         //Still to buggy on macOS/safari 26 to include
-
-/*        opacity: 0;
+        /*        opacity: 0;
         transition: opacity 300ms ease, display 300ms allow-discrete, overlay 300ms allow-discrete;
 
         &:popover-open {
@@ -107,6 +105,7 @@
     &__content {
         grid-column: 1/2;
         grid-row: 1/2;
+        white-space: pre-line;
     }
 
     &__closer {

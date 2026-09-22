@@ -52,6 +52,8 @@ public partial class Tooltip: IAsyncDisposable
 
     private string _tooltipPosition = "top-centre";
 
+    private string _formattedText = String.Empty;
+
     /// <summary>
     /// Recomputes the CSS position modifier whenever <see cref="TooltipPosition"/> changes.
     /// </summary>
@@ -69,6 +71,7 @@ public partial class Tooltip: IAsyncDisposable
         if (String.IsNullOrWhiteSpace(TooltipText)) throw new ArgumentNullException(nameof(TooltipText), "TooltipText cannot be null, empty, or whitespace.");
 
         _tooltipID = TooltipID;
+        _formattedText = TooltipText.Trim().Replace("\r\n", "\n");
     }
 
     /// <summary>

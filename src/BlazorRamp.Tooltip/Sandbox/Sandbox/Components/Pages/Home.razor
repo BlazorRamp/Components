@@ -24,7 +24,7 @@ Welcome to your new app.
 
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows: auto auto auto; width:600px;">
     
-    <Tooltip TooltipID="TestOneID" TooltipText="Tooltip in the top left cell"
+    <Tooltip TooltipID="TestOneID" TooltipText="@topLeftText"
              TooltipPosition="TooltipPosition.TopLeft" style="grid-column:1/2;grid-row:1/2;justify-self:start;">
         <button type="button" aria-describedby="TestOneID">Top left</button>
     </Tooltip>
@@ -70,4 +70,6 @@ Welcome to your new app.
 
 and some text after the tooltip
 
-
+@code{
+    public string topLeftText = "Tooltip in the top left cell\r\n\r\nwith blank line";
+}
