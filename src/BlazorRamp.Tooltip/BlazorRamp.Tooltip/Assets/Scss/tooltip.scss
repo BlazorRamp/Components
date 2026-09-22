@@ -14,7 +14,17 @@
         position-anchor: --tooltip-anchor;
         border: none;
         position-try-order: most-space;
+        opacity: 0;
+        transition: opacity 300ms ease, display 300ms allow-discrete, overlay 300ms allow-discrete;
+        border: 1px solid red;
 
+        &:popover-open {
+            opacity: 1;
+
+            @starting-style {
+                opacity: 0;
+            }
+        }
 
         &[data-br-tooltip-position="top-centre"] {
             position-area: block-start;

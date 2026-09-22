@@ -7,6 +7,10 @@ internal class GlobalValues
     public const string JS_Register_Tooltip_Func = "registerTooltip";
     public const string JS_Unregister_Tooltip_Func = "unregisterTooltip";
 
+    public const string JS_Close_Open_Tooltips_Func = "closeOpenTooltips";
+
+
+
     public const string Tooltip_class = "br-tooltip";
 
     public const string Tooltip_Content_Wrapper_class = $"{Tooltip_class}__content-wrapper";

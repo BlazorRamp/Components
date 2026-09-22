@@ -30,9 +30,9 @@ public partial class Tooltip: IAsyncDisposable
 
 
     protected override void OnParametersSet()
-    {
-        _tooltipPosition = GetTooltipPopoverPositionFromEnum(TooltipPosition);
-    }
+    
+        =>  _tooltipPosition = GetTooltipPopoverPositionFromEnum(TooltipPosition);
+    
 
     protected override void OnInitialized()
     {
@@ -54,9 +54,16 @@ public partial class Tooltip: IAsyncDisposable
         }
     }
 
+    private async Task CloseTooltip()
+    {
+        if (_jSModule is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Close_Open_Tooltips_Func);
+    }
+
+
     private string GetContentAreaClasses(bool invertedColours)
 
         => $"{GlobalValues.Tooltip_Content_Area_class}{(invertedColours? " " + GlobalValues.Tooltip_Content_Area_Modifier : "")}";
+
     private string GetTooltipPopoverPositionFromEnum(TooltipPosition tooltipPosition)
 
         => tooltipPosition switch

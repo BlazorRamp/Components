@@ -15,7 +15,7 @@ const closeOpenTooltips = (): void => {
     _openTooltips.clear();
 };
 
-const showTooltip = (containerElement: HTMLElement, tooltipElement: HTMLElement): void => {
+const showTooltip = (tooltipElement: HTMLElement): void => {
 
     closeOpenTooltips();
     tooltipElement.showPopover();
@@ -37,7 +37,7 @@ const registerEscapeHandler = (): void => {
         if (event.key !== "Escape" || _openTooltips.size === 0) return;
 
         closeOpenTooltips();
-        event.preventDefault(); // stop this same Escape also reaching the dialog's own close watcher
+        event.preventDefault();
     });
 
     _escapeHandlerRegistered = true;
@@ -66,10 +66,20 @@ const registerTooltip = (containerId: string, tooltipId: string): void => {
 
     removeTooltipListeners(containerElement);
 
-    const mouseEnterHandler: EventListener = () => showTooltip(containerElement, tooltipElement);
-    const mouseLeaveHandler: EventListener = () => hideTooltip(tooltipElement);
-    const focusInHandler: EventListener = () => showTooltip(containerElement, tooltipElement);
-    const focusOutHandler: EventListener = () => hideTooltip(tooltipElement);
+    // Per-tooltip state — has to live here, not at module level, since each
+    // tooltip on the page needs its own independent pointer/focus tracking.
+    let isPointerOver = false;
+    let isFocused = false;
+
+    const hideIfNeitherActive = (): void => {
+        if (isPointerOver || isFocused) return;
+        hideTooltip(tooltipElement);
+    };
+
+    const mouseEnterHandler: EventListener = () => { isPointerOver = true; showTooltip(tooltipElement); };
+    const mouseLeaveHandler: EventListener = () => { isPointerOver = false; hideIfNeitherActive(); };
+    const focusInHandler: EventListener = () => { isFocused = true; showTooltip(tooltipElement); };
+    const focusOutHandler: EventListener = () => { isFocused = false; hideIfNeitherActive(); };
 
     containerElement.addEventListener("mouseenter", mouseEnterHandler);
     containerElement.addEventListener("mouseleave", mouseLeaveHandler);
@@ -90,4 +100,4 @@ const unregisterTooltip = (containerId: string): void => {
     removeTooltipListeners(containerElement);
 };
 
-export { registerTooltip, unregisterTooltip };
+export { registerTooltip, unregisterTooltip, closeOpenTooltips };
