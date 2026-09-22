@@ -1,13 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms
 
 
-<div id="@_containerID" class="@GlobalValues.Tooltip_class" >
+<div @attributes="@AdditionalAttributes" id="@_containerID" class="@GlobalValues.Tooltip_class">
     @ChildContent
-    <div id="@_tooltipID" popover="manual" data-br-tooltip-position="@_tooltipPosition" class="@GlobalValues.Tooltip_Content_Wrapper_class">
+    <div id="@_tooltipID" popover="manual" role="tooltip" data-br-tooltip-position="@_tooltipPosition" class="@GlobalValues.Tooltip_Content_Wrapper_class">
 
         <div class="@GetContentAreaClasses(InvertColours)">
-            <span class="@GlobalValues.Tooltip_Closer_Class" @onclick="async () => await CloseTooltip()">
-                <span class="@GlobalValues.Tooltip_icon_class" aria-hidden="true"></span>
+            <span class="@GlobalValues.Tooltip_Closer_Class" @onclick="async () => await CloseTooltip()" aria-hidden="true">
+                <span class="@GlobalValues.Tooltip_icon_class"></span>
             </span>
             <span class="@GlobalValues.Tooltip_Content_class">
                 @TooltipText

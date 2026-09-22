@@ -6,13 +6,32 @@ using System.Runtime.InteropServices;
 
 namespace BlazorRamp.Tooltip.Components;
 
+/// <summary>
+/// A hover/focus-triggered tooltip built on the Popover API. Wraps <see cref="ChildContent"/>
+/// and shows <see cref="TooltipText"/> in a positioned popup when the trigger is hovered or focused.
+/// </summary>
 public partial class Tooltip: IAsyncDisposable
 {
-    [Parameter] public RenderFragment? ChildContent  { get; set; } = null;
-    [Parameter] public string          TooltipText   { get; set; } = String.Empty;
-    [Parameter] public bool            InvertColours { get; set; } =false;
+    /// <summary>
+    /// Gets or sets the content the tooltip is attached to (the trigger).
+    /// </summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; } = null;
 
-    [Parameter] public string TooltipID { get; set; }
+    /// <summary>
+    /// Gets or sets the text displayed inside the tooltip.
+    /// </summary>
+    [Parameter, EditorRequired] public string TooltipText { get; set; } = String.Empty;
+
+    /// <summary>
+    /// Gets or sets whether the tooltip uses its inverted colour scheme.
+    /// </summary>
+    [Parameter] public bool InvertColours { get; set; } = false;
+
+    /// <summary>
+    /// Gets or sets the unique id used for the tooltip element, so the consumer can
+    /// reference it via <c>aria-describedby</c> on the trigger element.
+    /// </summary>
+    [Parameter, EditorRequired] public string TooltipID { get; set; }
 
     /// <summary>
     /// Gets or sets the position of the popover relative to the trigger.
@@ -20,6 +39,11 @@ public partial class Tooltip: IAsyncDisposable
     /// </summary>
     [Parameter] public TooltipPosition TooltipPosition { get; set; } = TooltipPosition.TopCentre;
 
+    /// <summary>
+    /// Gets or sets additional attributes that will be applied to the container element,
+    /// </summary>
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
     [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
 
     private IJSObjectReference? _jSModule = null;    
@@ -28,20 +52,28 @@ public partial class Tooltip: IAsyncDisposable
 
     private string _tooltipPosition = "top-centre";
 
-
+    /// <summary>
+    /// Recomputes the CSS position modifier whenever <see cref="TooltipPosition"/> changes.
+    /// </summary>
     protected override void OnParametersSet()
     
         =>  _tooltipPosition = GetTooltipPopoverPositionFromEnum(TooltipPosition);
-    
 
+    /// <summary>
+    /// Validates that <see cref="TooltipID"/> and <see cref="TooltipText"/> have been supplied and captures the id for use in markup.
+    /// </summary>
+    /// <exception cref="ArgumentNullException">Thrown if <see cref="TooltipID"/> or <see cref="TooltipText"/> is null, empty, or whitespace.</exception>
     protected override void OnInitialized()
     {
-       if(String.IsNullOrWhiteSpace(TooltipID)) throw new ArgumentNullException(nameof(TooltipID));
+        if (String.IsNullOrWhiteSpace(TooltipID)) throw new ArgumentNullException(nameof(TooltipID), "TooltipID cannot be null, empty, or whitespace.");
+        if (String.IsNullOrWhiteSpace(TooltipText)) throw new ArgumentNullException(nameof(TooltipText), "TooltipText cannot be null, empty, or whitespace.");
 
         _tooltipID = TooltipID;
     }
 
-    
+    /// <summary>
+    /// Imports the tooltip JS module and registers this instance's event handlers on first render.
+    /// </summary>
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -53,7 +85,9 @@ public partial class Tooltip: IAsyncDisposable
             
         }
     }
-
+    /// <summary>
+    /// Closes any currently open tooltips. Invoked by the pointer-only close control.
+    /// </summary>
     private async Task CloseTooltip()
     {
         if (_jSModule is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Close_Open_Tooltips_Func);
@@ -80,6 +114,9 @@ public partial class Tooltip: IAsyncDisposable
 
         };
 
+    /// <summary>
+    /// Unregisters this instance's JS event handlers and releases the JS module reference.
+    /// </summary>
     public async ValueTask DisposeAsync()
     {
         if (_jSModule is not null)

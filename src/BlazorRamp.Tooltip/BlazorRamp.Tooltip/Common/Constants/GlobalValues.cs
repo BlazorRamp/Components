@@ -1,4 +1,6 @@
-﻿namespace BlazorRamp.Tooltip.Common.Constants;
+﻿using System.Data.Common;
+
+namespace BlazorRamp.Tooltip.Common.Constants;
 
 internal class GlobalValues
 {
@@ -10,7 +12,8 @@ internal class GlobalValues
     public const string JS_Close_Open_Tooltips_Func = "closeOpenTooltips";
 
 
-
+    public const string Tooltip_ID_Exception_Message = "TooltipID cannot be null, empty, or whitespace.";
+    public const string Tooltip_Text_Exception_Message = "TooltipText cannot be null, empty, or whitespace.";
     public const string Tooltip_class = "br-tooltip";
 
     public const string Tooltip_Content_Wrapper_class = $"{Tooltip_class}__content-wrapper";

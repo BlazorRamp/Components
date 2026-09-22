@@ -15,19 +15,59 @@ Welcome to your new app.
     <div id="popoverid" popover="auto" style="width:200px;height:200px;">
         My popover
 
-        <Tooltip TooltipID="TestTwoID" TooltipText="Tooltipposition and some text Tooltipposition and the some text" TooltipPosition="TooltipPosition.TopCentre" InvertColours="true">
-            <button type="button" aria-describedby="TestTwoID">test</button>
+        <Tooltip TooltipID="TestID" TooltipText="Tooltipposition and some text Tooltipposition and the some text" TooltipPosition="TooltipPosition.TopCentre" InvertColours="true">
+            <button type="button" aria-describedby="TestID">test</button>
         </Tooltip>
 
     </div>
 </div>
 
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows: auto auto auto; width:600px;">
+    
+    <Tooltip TooltipID="TestOneID" TooltipText="Tooltip in the top left cell"
+             TooltipPosition="TooltipPosition.TopLeft" style="grid-column:1/2;grid-row:1/2;justify-self:start;">
+        <button type="button" aria-describedby="TestOneID">Top left</button>
+    </Tooltip>
+    
+    <Tooltip TooltipID="TestTwoID" TooltipText="Tooltip in the top centre cell" TooltipPosition="TooltipPosition.TopCentre" style="grid-column:2/3;grid-row:1/2;justify-self:center;">
+        <button type="button" aria-describedby="TestTwoID">Top centre</button>
+    </Tooltip>
+
+    <Tooltip TooltipID="TestThreeID" TooltipText="Tooltip in the top right cell" TooltipPosition="TooltipPosition.TopRight" style="grid-column:3/4;grid-row:1/2;justify-self:end;">
+        <button type="button" aria-describedby="TestThreeID">Top right</button>
+    </Tooltip>
+  
+
+    <Tooltip TooltipID="TestFourID" TooltipText="Tooltip in the centre left cell" InvertColours="true"
+             TooltipPosition="TooltipPosition.CentreLeft" style="grid-column:1/2;grid-row:2/3;justify-self:start;">
+        <button type="button" aria-describedby="TestFourID">Centre left</button>
+    </Tooltip>
+
+    <Tooltip TooltipID="TestFiveID" TooltipText="Tooltip in the centre right cell" InvertColours="true"
+             TooltipPosition="TooltipPosition.CentreRight" style="grid-column:3/4;grid-row:2/3;justify-self:end;">
+        <button type="button" aria-describedby="TestFiveID">Centre Right</button>
+    </Tooltip>
+
+
+    <Tooltip TooltipID="TestSixID" TooltipText="Tooltip in the bottom left cell"
+             TooltipPosition="TooltipPosition.BottomLeft" style="grid-column:1/2;grid-row:3/4;justify-self:start;">
+        <button type="button" aria-describedby="TestSixID">Bottom left</button>
+    </Tooltip>
+
+    <Tooltip TooltipID="TestSevenID" TooltipText="Tooltip in the bottom centre cell" TooltipPosition="TooltipPosition.BottomCentre" style="grid-column:2/3;grid-row:3/4;justify-self:center;">
+        <button type="button" aria-describedby="TestSevenID">Bottom centre</button>
+    </Tooltip>
+
+    <Tooltip TooltipID="TestEightID" TooltipText="Tooltip in the bottom right cell" TooltipPosition="TooltipPosition.BottomRight" style="grid-column:3/4;grid-row:3/4;justify-self:end;">
+        <button type="button" aria-describedby="TestEightID">Bottom right</button>
+    </Tooltip>
+
+</div>
 
 
 
-<Tooltip TooltipID="TestOneID" TooltipText="Tooltipposition and some text Tooltipposition and the some text" TooltipPosition="TooltipPosition.TopLeft">
-<button type="button" aria-describedby="TestOneID">test</button>
-</Tooltip>
+
 
 and some text after the tooltip
+
 

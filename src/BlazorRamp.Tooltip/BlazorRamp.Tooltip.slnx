@@ -6,4 +6,8 @@
     <Project Path="Sandbox/Sandbox.Client/Sandbox.Client.csproj" />
     <Project Path="Sandbox/Sandbox/Sandbox.csproj" />
   </Folder>
+  <Folder Name="/03 - Tests/">
+    <Project Path="BlazorRamp.Tooltip.Tests.Unit/BlazorRamp.Tooltip.Tests.Unit.csproj" Id="031a1e62-c839-45ad-b3cd-163779f1966c" />
+  </Folder>
+  <Folder Name="/03 - Tests/01 - Unit/" />
 </Solution>
