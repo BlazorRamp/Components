@@ -52,7 +52,7 @@ rely on assistive technology. More broadly, the goal is to help move the needle 
 
 - **Documentation:** [docs.blazorramp.uk](https://docs.blazorramp.uk) - live, working examples of every component, alongside full API reference.
 - **Assistive technology test site:** [blazorramp.uk](https://blazorramp.uk) - the same components, but geared toward trying them out with assistive technology directly. Every test page includes a script describing what the component does and what you 
-- should expect to hear/experience.
+should expect to hear/experience.
 
 ## Packages
  
