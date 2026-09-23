@@ -76,11 +76,6 @@
     &__content-area {
         --_tooltip-text: var(--br-comp-tooltip-area-content-text);
         --_tooltip-background: var(--br-comp-tooltip-area-content-background);
-        display: inline-grid;
-        grid-template-columns: 1fr 24px;
-        gap: 0.5rem;
-        justify-content: start;
-        align-items: center;
         padding: var(--br-unit-space-4);
         background-color: var(--_tooltip-background);
         color: var(--_tooltip-text);
@@ -92,9 +87,9 @@
         border-color: var(--br-comp-tooltip-area-content-border-colour);
         border-width: var(--br-comp-tooltip-area-content-border-width);
         border-radius: var(--br-comp-tooltip-area-content-border-radius);
-        min-width: fit-content;
+        box-shadow: var(--br-unit-box-shadow-1);
+        min-width: 10ch;
         max-width: 50ch;
-        box-shadow: var( --br-unit-box-shadow-1);
 
         &--inverted-colours {
             --_tooltip-background: var(--br-comp-tooltip-area-content-text);
@@ -103,19 +98,19 @@
     }
 
     &__content {
-        grid-column: 1/2;
-        grid-row: 1/2;
         white-space: pre-line;
     }
 
     &__closer {
-        grid-column: 2/3;
-        grid-row: 1/2;
+        display:flex;
+        margin-block-start:-2px;
         border-radius: var(--br-unit-radius-3);
         aspect-ratio: 1/1;
         height: var(--br-unit-wcag-target-2a);
         cursor: pointer;
         align-self: start;
+        float: inline-end;
+        margin-inline-start: var(--br-unit-space-2);
 
         &:hover {
             background-color: var(--_tooltip-text);

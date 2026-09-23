@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using BlazorRamp.CssClasses
 @using BlazorRamp.CssClasses.Common.Constants
 @using BlazorRamp.CssClasses.Common.Utilities
 
@@ -6,27 +7,6 @@
 
 @rendermode @(new InteractiveServerRenderMode(false))
 
-
-<button id="trigger" aria-describedby="my-tooltip" popovertarget="my-tooltip">
-    Hover over me
-</button>
-
-<div id="my-tooltip" role="tooltip" popover="auto">
-    This is a tooltip popover!
-</div>
-
-<script>
-    const trigger = document.getElementById('trigger');
-    const tooltip = document.getElementById('my-tooltip');
-
-    trigger.addEventListener('mouseenter', () => {
-        tooltip.showPopover();
-    });
-
-    trigger.addEventListener('mouseleave', () => {
-        tooltip.hidePopover();
-    });
-</script>
 
 <section>
  
@@ -101,7 +81,6 @@
     </div>
 
 @code {
-
 
     private List<WeatherForecast> _forecasts = [];
 

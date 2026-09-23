@@ -1,6 +1,4 @@
-﻿using System.Data.Common;
-
-namespace BlazorRamp.Tooltip.Common.Constants;
+﻿namespace BlazorRamp.Tooltip.Common.Constants;
 
 internal class GlobalValues
 {
@@ -21,6 +19,6 @@ internal class GlobalValues
     public const string Tooltip_Content_Area_Modifier = $"{Tooltip_class}__content-area--inverted-colours";
     public const string Tooltip_Content_class         = $"{Tooltip_class}__content";
     public const string Tooltip_Closer_Class          = $"{Tooltip_class}__closer";
-    public const string Tooltip_icon_class            = $"{Tooltip_class}__icon";
+    public const string Tooltip_Icon_class            = $"{Tooltip_class}__icon";
 
 }

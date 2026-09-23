@@ -1,5 +1,4 @@
 ﻿:root {
-
     --br-svg-close-square-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m9.17 14.83l5.66-5.66m0 5.66L9.17 9.17M9 22h6c5 0 7-2 7-7V9c0-5-2-7-7-7H9C4 2 2 4 2 9v6c0 5 2 7 7 7'/%3E%3C/svg%3E");
     --br-comp-tooltip-area-content-background: var(--br-unit-colour-canvas);
     --br-comp-tooltip-area-content-text: var(--br-unit-colour-canvas-text);
@@ -10,5 +9,5 @@
     --br-comp-tooltip-area-content-border-style: var(--br-comp-all-area-content-border-style);
     --br-comp-tooltip-area-content-border-colour: var(--br-comp-all-area-content-border-colour);
     --br-comp-tooltip-area-content-border-width: var(--br-unit-border-1);
-    --br-comp-tooltip-area-content-border-radius: var(--br-comp-all-area-content-border-radius);
+    --br-comp-tooltip-area-content-border-radius: var(--br-group-container-area-content-border-radius);
 }

@@ -2,7 +2,6 @@
 using BlazorRamp.Tooltip.Common.Constants;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System.Runtime.InteropServices;
 
 namespace BlazorRamp.Tooltip.Components;
 
@@ -20,7 +19,7 @@ public partial class Tooltip: IAsyncDisposable
     /// <summary>
     /// Gets or sets the text displayed inside the tooltip.
     /// </summary>
-    [Parameter, EditorRequired] public string TooltipText { get; set; } = String.Empty;
+    [Parameter, EditorRequired] public string TooltipText { get; set; } = default!;
 
     /// <summary>
     /// Gets or sets whether the tooltip uses its inverted colour scheme.
@@ -31,7 +30,7 @@ public partial class Tooltip: IAsyncDisposable
     /// Gets or sets the unique id used for the tooltip element, so the consumer can
     /// reference it via <c>aria-describedby</c> on the trigger element.
     /// </summary>
-    [Parameter, EditorRequired] public string TooltipID { get; set; }
+    [Parameter, EditorRequired] public string TooltipID { get; set; } = default!;
 
     /// <summary>
     /// Gets or sets the position of the popover relative to the trigger.
@@ -57,21 +56,22 @@ public partial class Tooltip: IAsyncDisposable
     /// <summary>
     /// Recomputes the CSS position modifier whenever <see cref="TooltipPosition"/> changes.
     /// </summary>
+    /// <exception cref="ArgumentNullException">Thrown if <see cref="TooltipText"/> is null, empty, or whitespace.</exception>
     protected override void OnParametersSet()
-    
-        =>  _tooltipPosition = GetTooltipPopoverPositionFromEnum(TooltipPosition);
+    {
+        if (String.IsNullOrWhiteSpace(TooltipText)) throw new ArgumentNullException(nameof(TooltipText), "TooltipText cannot be null, empty, or whitespace.");
 
+        _formattedText   = TooltipText.Trim().Replace("\r\n", "\n");
+        _tooltipPosition = GetTooltipPopoverPositionFromEnum(TooltipPosition);
+    }
     /// <summary>
-    /// Validates that <see cref="TooltipID"/> and <see cref="TooltipText"/> have been supplied and captures the id for use in markup.
+    /// Validates that <see cref="TooltipID"/> has been supplied and captures the id for use in markup.
     /// </summary>
-    /// <exception cref="ArgumentNullException">Thrown if <see cref="TooltipID"/> or <see cref="TooltipText"/> is null, empty, or whitespace.</exception>
+    /// <exception cref="ArgumentNullException">Thrown if <see cref="TooltipID"/> is null, empty, or whitespace.</exception>
     protected override void OnInitialized()
     {
         if (String.IsNullOrWhiteSpace(TooltipID)) throw new ArgumentNullException(nameof(TooltipID), "TooltipID cannot be null, empty, or whitespace.");
-        if (String.IsNullOrWhiteSpace(TooltipText)) throw new ArgumentNullException(nameof(TooltipText), "TooltipText cannot be null, empty, or whitespace.");
-
         _tooltipID = TooltipID;
-        _formattedText = TooltipText.Trim().Replace("\r\n", "\n");
     }
 
     /// <summary>
