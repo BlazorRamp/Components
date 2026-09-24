@@ -1,0 +1,70 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tooltip}/{GlobalValues.Common_Page_Path_Accessibility}")]
+
+<PageTitle>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Accessibility</PageTitle>
+
+<h1>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Accessibility</h1>
+
+<p>
+    The tooltip's behaviour is governed primarily by <abbr title="Web Content Accessibility Guidelines">WCAG</abbr>
+    <strong>1.4.13 Content on Hover or Focus</strong> (Level AA), which applies to any additional content such as a tooltip that appears on hover or keyboard focus and
+    disappears when the user moves away. This criterion has three requirements, each reflected in how this component is built:
+</p>
+<ul>
+  <li>
+    <strong>Dismissible</strong> — the tooltip can be closed without moving the pointer or keyboard focus, typically with the <kbd class="@CodeSpan.Base">Escape</kbd> key, and doing so does not
+    unintentionally close anything else on the page.
+  </li>
+  <li>
+    <strong>Hoverable</strong> — the pointer can move from the trigger onto the tooltip content itself without the tooltip disappearing.
+  </li>
+  <li>
+    <strong>Persistent</strong> — the tooltip remains visible until the user dismisses it, moves focus or the pointer away, or its content is no longer valid; it does not
+    time out on its own.
+  </li>
+</ul>
+<p>
+    Two further criteria also apply: <strong>4.1.2 Name, Role, Value</strong> (Level A), satisfied via <code class="@CodeSpan.Base">role="tooltip"</code> and the <code>aria-describedby</code>
+    relationship you provide on the trigger element, and <strong>2.1.1 Keyboard</strong> (Level A), satisfied by the tooltip appearing on keyboard focus as well as on hover.
+</p>
+
+<h2 id="tooltip-keyboard">Keyboard interaction</h2>
+<ul aria-labelledby="tooltip-keyboard">
+    <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Tab</kbd> - moves focus to the focusable item the tooltip is wrapping.</li>
+    <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Escape</kbd> - closes the tooltip.</li>
+</ul>
+
+<p>
+    <strong>Note:</strong> to assist pointer users where it may be difficult to use the escape key, an un-focusable but clickable close icon is also available.
+</p>
+
+
+<h2 id="device-testing">Accessibility device testing</h2>
+
+<ul aria-labelledby="device-testing">
+    <li>JAWS, Narrator and NVDA on Windows were each paired with every one of the following browsers: Google Chrome, Microsoft Edge and Mozilla Firefox.</li>
+    <li>VoiceOver on macOS was paired with Apple's Safari.</li>
+    <li>VoiceOver on iPhone was paired with mobile Safari.</li>
+    <li>Talkback on Android was paired with mobile Google Chrome.</li>
+    <li>Voice access on Windows 11</li>
+</ul>
+
+<p>
+    <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were available at the time of testing (see release history on the installation page for approximate testing dates)
+</p>
+
+<div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
+    <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tooltip}/{GlobalValues.Common_Page_Path_Installation}")">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
+        <span>@GlobalValues.Component_Name_Tooltip - @GlobalValues.Common_Page_Title_Installation</span>
+
+    </a>
+    <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tooltip}/{GlobalValues.Common_Page_Path_Api}")">
+
+        <span>@GlobalValues.Component_Name_Tooltip - @GlobalValues.Common_Page_Title_Api</span>
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-right-arrow-circle-icon)"></span>
+
+    </a>
+</div>
+@code {
+
+}

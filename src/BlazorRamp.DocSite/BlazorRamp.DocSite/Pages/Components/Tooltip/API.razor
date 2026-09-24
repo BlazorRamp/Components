@@ -1,0 +1,177 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tooltip}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Api</PageTitle>
+
+<h1>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Api . . .  In Progress . . .</h1>
+
+<p>
+    Everything you need to work with the Tooltip component: parameters, methods, models, enums, and CSS variables for styling.
+</p>
+
+<section>
+    <h2 class="mobile-centred-heading">
+        Component parameters, methods, supporting classes and enums.
+    </h2>
+    <p>
+        The following sections cover all components that make up this feature, including their parameters,
+        public methods, and any supporting classes or enumerations required for use.
+    </p>
+
+    <section>
+
+        <h3 id="tooltip-component-parameters" class="mobile-centred-heading">Tooltip component parameters</h3>
+
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="tooltip-component-parameters">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Parameter</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+</section>
+<section>
+    <h2 class="mobile-centred-heading">Supporting enums</h2>
+
+    <section>
+
+        <h3 id="tooltippposition-enum" class="mobile-centred-heading">ToggleTipPosition enum</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="tooltippposition-enum">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>TopCentre</td>
+                        <td>Positions the tooltip above and centred on the container.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>TopLeft</td>
+                        <td>Positions the tooltip above and aligned to the left of the container.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>TopRight</td>
+                        <td>Positions the tooltip above and aligned to the right of the container.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>CentreLeft</td>
+                        <td>Positions the tooltip to the left and vertically centred on the container.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>CentreRight</td>
+                        <td>Positions the tooltip to the right and vertically centred on the container.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>BottomCentre</td>
+                        <td> Positions the tooltip below and centred on the container.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>BottomLeft</td>
+                        <td>Positions the tooltip below and aligned to the left of the container.</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>BottomRight</td>
+                        <td>Positions the tooltip below and aligned to the right of the container.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2 class="mobile-centred-heading">CSS variables defined for the toolltip component.</h2>
+
+    <p>
+        The following sections outline all of the css variables that can be set to alter the styling of the tooltip component.
+        You can of course also override its style classes directly.
+    </p>
+@*     <p>
+        <strong>Note: </strong> The toggletip is split into three styling sections, the (optional) label, the trigger (icon button) and the toggletip contents which uses panes.
+    </p> *@
+    <section>
+
+        <h3 id="tooltip-variables" class="mobile-centred-heading">Tooltip variables</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="tooltip-variables">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Default Value</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+
+    <section>
+
+        <h3 id="unmapped-variables" class="mobile-centred-heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
+        <p>
+            The following table of unmapped variables are those for those that needed to deviate from the underlying values provided by
+            by standard mappings to the <span class="@CodeSpan.Base">--br-comp-all</span> variables.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unmapped-variables">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Default Value</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</section>
+
+<div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tooltip}/{GlobalValues.Common_Page_Path_Accessibility}")">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
+        <span>@GlobalValues.Component_Name_Tooltip - @GlobalValues.Common_Page_Title_Accessibility</span>
+
+    </a>
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tooltip}/{GlobalValues.Common_Page_Path_Usage}")">
+
+        <span>@GlobalValues.Component_Name_Tooltip - @GlobalValues.Common_Page_Title_Usage</span>
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-right-arrow-circle-icon)"></span>
+    </a>
+</div>
+@code {
+
+}

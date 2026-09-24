@@ -18,12 +18,10 @@
 #app__header #site-logo {
   color: var(--br-comp-all-area-header-text);
   font-size: var(--br-unit-font-size-3);
-  /*            white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;*/
   margin-top: -0.5rem;
 }
 #app__header #menu-toggler {
+  order: -1;
   flex-shrink: 0;
   appearance: none;
   border: none;

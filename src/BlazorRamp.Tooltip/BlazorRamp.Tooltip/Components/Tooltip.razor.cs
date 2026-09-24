@@ -54,7 +54,8 @@ public partial class Tooltip: IAsyncDisposable
     private string _formattedText = String.Empty;
 
     /// <summary>
-    /// Recomputes the CSS position modifier whenever <see cref="TooltipPosition"/> changes.
+    /// Validates <see cref="TooltipText"/> and recomputes the formatted text and CSS position
+    /// modifier whenever <see cref="TooltipText"/> or <see cref="TooltipPosition"/> changes.
     /// </summary>
     /// <exception cref="ArgumentNullException">Thrown if <see cref="TooltipText"/> is null, empty, or whitespace.</exception>
     protected override void OnParametersSet()

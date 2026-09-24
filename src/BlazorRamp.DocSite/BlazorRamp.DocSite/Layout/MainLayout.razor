@@ -23,10 +23,7 @@
         </svg>
         </a>
 </span>
-    <button id="menu-toggler" type="button" aria-expanded="true" aria-controls="@GlobalValues.Main_Navigation_ID" @ref="MenuButtonRef">
-        <span aria-hidden="true"></span>
-        <span>Menu</span>
-    </button>
+
 
     <a id="github-repo" href="@GlobalValues.Web_Site_Path_GitHub_Repo" target="_self">
         <span aria-hidden="true"></span>
@@ -37,7 +34,10 @@
         <span class="br-visually-hidden">Dark</span>
         <span>Theme</span>
     </button>
-
+    <button id="menu-toggler" type="button" aria-expanded="true" aria-controls="@GlobalValues.Main_Navigation_ID" @ref="MenuButtonRef">
+        <span aria-hidden="true"></span>
+        <span>Menu</span>
+    </button>
 </header>
 <div id="app__nav" @ref="SideNavigationRef">
     <MainNavigation />

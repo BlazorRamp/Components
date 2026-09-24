@@ -63,13 +63,13 @@ public class CssClassesSnippets
 
     public const string CodeSpan_Basic_Example = """
         <p>
-            Set the <span class="@CodeSpan.Base">ControlID</span> parameter to override the generated id.
+            Set the <code class="@CodeSpan.Base">ControlID</code> parameter to override the generated id.
         </p>
         """;
 
     public const string CodeSpan_Scheme_Font_Example = """
         <p>
-            Call <span class="@CodeSpan.Base @CodeSpan.Scheme(CodeSpanScheme.Primary) @CodeSpan.FontSize(UnitFontSize.Two) @CodeSpan.FixedRadius(UnitRadius.Full)">ClearFilter()</span>to reset the input.
+            Call <code class="@CodeSpan.Base @CodeSpan.Scheme(CodeSpanScheme.Primary) @CodeSpan.FontSize(UnitFontSize.Two) @CodeSpan.FixedRadius(UnitRadius.Full)">ClearFilter()</code>to reset the input.
         </p>
         """;
 

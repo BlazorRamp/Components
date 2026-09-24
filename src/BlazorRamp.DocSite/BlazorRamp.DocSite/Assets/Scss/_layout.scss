@@ -26,16 +26,12 @@
         & #site-logo {
             color: var(--br-comp-all-area-header-text);
             font-size: var(--br-unit-font-size-3);
-            /*            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;*/
             //order: -2;
            margin-top:-0.5rem;
         }
 
         & #menu-toggler {
-            //margin-top: var(--br-unit-space-2);
-            //order: -1;
+            order: -1;
             flex-shrink: 0;
             appearance: none;
             border: none;

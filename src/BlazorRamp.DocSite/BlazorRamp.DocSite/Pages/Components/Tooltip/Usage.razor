@@ -1,0 +1,51 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tooltip}/{GlobalValues.Common_Page_Path_Usage}")]
+
+<PageTitle>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Usage</PageTitle>
+
+<h1>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Usage . . .  In Progress . . .</h1>
+<p>
+    Practical examples showing the Tooltip component configured with various parameters.
+</p>
+
+<p>
+    Move your mouse or tab to the icon only button below to see the tooltip. The tooltip cas been configured for it to show horizontally centred above the button.
+</p>
+
+<Tooltip TooltipID="save-button-tooltip-id" TooltipText="Saves the current item" TooltipPosition="TooltipPosition.TopCentre">
+    <button type="button" aria-describedby="save-button-tooltip-id" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) 
+                                                                           @Button.Squared @Button.Size(ButtonSize.Regular) @Button.UseColumns 
+                                                                           @Button.FixedRadius(UnitRadius.Two) @Gap.SetGaps(UnitGapSize.None)">
+        <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+    </button>
+</Tooltip>
+
+<p>
+    Below is the code used in the example - the button was created using the Blazor Ramp Css Classes and helpers.
+</p>
+
+<CodeBox CodeBlock="@TooltipSnippets.Icon_Button_Example" AriaLabel="Tooltip code example." />
+
+<ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2" style="margin-top:var(--br-unit-space-9);">
+    <BorderGroups>
+        <BorderGroup Title="Container borders">
+            <BorderRadius LabelText="Content radius" ResetText="Reset content radius" MaxRangeValue="@GlobalValues.Radius_Container_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Content)])" />
+            <BorderRadius LabelText="Header radius" ResetText="Reset header radius" MaxRangeValue="@GlobalValues.Radius_Container_Header_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Header)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
+
+<div class="flex-content justify-content-between" style="margin-top:2rem;">
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Toggletip}/{GlobalValues.Common_Page_Path_Api}")">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
+        <span>@GlobalValues.Component_Name_Toggletip - @GlobalValues.Common_Page_Title_Api</span>
+
+    </a>
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Overview}")">
+
+        <span>@GlobalValues.Framework_Name_Modal - @GlobalValues.Common_Page_Title_Overview</span>
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-right-arrow-circle-icon)"></span>
+    </a>
+</div>
+@code {
+
+}

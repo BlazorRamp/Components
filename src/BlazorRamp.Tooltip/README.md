@@ -2,7 +2,7 @@
 
 The Blazor Ramp project aims to provide a suite of modular, accessibility-first Blazor components. 
 
-The **Tooltip** component provides a small, informative pop-up box that appears when you hover your mouse pointer over and/or set focus on interface element such as an icon only button..
+The **Tooltip** component provides a small, informative pop-up box that appears when you hover your mouse pointer over and/or set focus on an interface element such as an icon only button..
 
 ## Requirements
 It is a requirement that the Blazor Ramp Core script, Live Region Service, and associated Announcement History component are added alongside this component’s specific 
@@ -61,9 +61,30 @@ Title="Recent Announcements" TriggerVisible="true" TriggerText="Alerts" />
 ```
 
 ## Using the Tooltip
+The `Tooltip` component is designed to wrap a single focusable element, such as an icon-only button. You must provide a unique id via the `TooltipID` parameter - this is assigned to 
+the tooltip's content element, so you can reference that same id in an `aria-describedby` attribute on your focusable element. This association is what allows assistive technologies, 
+such as screen readers, to announce the tooltip content to the user.
+
+Tooltip content is plain text, but can include newline characters if you need to show more than a single sentence or short paragraph.
+
+The example below shows a tooltip on an icon-only button, configured to appear centred above it.
+
+```
+<Tooltip TooltipID="save-button-tooltip-id" TooltipText="Saves the current item" TooltipPosition="TooltipPosition.TopCentre">
+    <button type="button" aria-describedby="save-button-tooltip-id" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) 
+                                                                           @Button.Squared @Button.Size(ButtonSize.Regular) @Button.UseColumns 
+                                                                           @Button.FixedRadius(UnitRadius.Two) @Gap.SetGaps(UnitGapSize.None)">
+        <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+    </button>
+</Tooltip>
+```
+
+> **Important:** The `Tooltip` component uses CSS anchor positioning, with fallbacks for when the tooltip won't fit in its preferred location. This only reached Baseline availability 
+in early 2026. Depending on your target audience and supported browser versions, you may want to reference the [OddBird anchor positioning polyfill](https://github.com/oddbird/css-anchor-positioning) to support older browsers.
+
+For the full description of all the component parameters and events, please see the documentation for the Tooltip: https://docs.blazorramp.uk
 
 
-For the full description of all the component parameters and events, please see the documentation for the Tooltip: https://docs.blazorramp.uk/components/tootlip
 
 
 ## Using the Live Region Service (directly)

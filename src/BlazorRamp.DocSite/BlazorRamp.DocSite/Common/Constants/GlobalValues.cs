@@ -134,6 +134,7 @@ public class GlobalValues
     public const string Component_Name_Switch       = "Switch";
     public const string Component_Name_Tabs         = "Tabs";
     public const string Component_Name_Toggletip    = "Toggletip";
+    public const string Component_Name_Tooltip = "Tooltip";
 
     public const string Component_Path_Part_Accordion       = "accordion";
     public const string Component_Path_Part_ActionsPopover  = "actions-popover";
@@ -157,6 +158,7 @@ public class GlobalValues
     public const string Component_Path_Part_Switch          = "switch";
     public const string Component_Path_Part_Tabs            = "tabs";
     public const string Component_Path_Part_Toggletip       = "toggletip";
+    public const string Component_Path_Part_Tooltip         = "tooltip";
     public const string Component_Path_Part_NavGroup        = "nav-group";
     public const string Component_Path_Part_Usage           = "usage";
 

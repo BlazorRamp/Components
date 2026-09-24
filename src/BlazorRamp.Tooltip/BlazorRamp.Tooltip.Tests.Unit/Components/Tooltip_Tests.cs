@@ -156,4 +156,22 @@ public class Tooltip_Tests
 
         context.JSInterop.VerifyInvoke(GlobalValues.JS_Close_Open_Tooltips_Func);
     }
+
+    [Fact]
+    public async Task Should_capture_unmatched_attributed_and_apply_to_the_component()
+    {
+        await using var context = new BunitContext();
+
+        var tooltipComponent = CreateTooltip(context, p => p.Add(x => x.TooltipID, _tooltipID).Add(x => x.TooltipText, _tooltipText).AddUnmatched("style", "color:red;"));
+
+        using(new AssertionScope())
+        {
+            tooltipComponent.Instance.AdditionalAttributes.Should().ContainKey("style").WhoseValue.Should().Be("color:red;");
+
+            tooltipComponent.Find($".{GlobalValues.Tooltip_class}").GetAttribute("style").Should().Be("color:red;");
+        }
+        
+
+
+    }
 }
