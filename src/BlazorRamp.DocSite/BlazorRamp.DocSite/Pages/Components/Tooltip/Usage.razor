@@ -8,17 +8,26 @@
 </p>
 
 <p>
-    Move your mouse or tab to the icon only button below to see the tooltip. The tooltip cas been configured for it to show horizontally centred above the button.
+    Move your mouse or tab to the icon only buttons below to see the tooltip. The first tooltip has been configured to show above the button starting/aligned at the left edge
+    using the default colour scheme. The second button has been configured to show the tooltip below the button starting/aligned at the right edge using inverted colours.
 </p>
+<div class="@FlexContent.Base @Gap.SetGaps(UnitGapSize.Five)">
+    <Tooltip TooltipID="save-button-tooltip-id" TooltipText="Saves the current item" TooltipPosition="TooltipPosition.TopLeft">
+        <button type="button" aria-describedby="save-button-tooltip-id" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) 
+                                                                               @Button.Squared @Button.Size(ButtonSize.Regular) @Button.UseColumns 
+                                                                               @Button.FixedRadius(UnitRadius.Two) @Gap.SetGaps(UnitGapSize.None)">
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+        </button>
+    </Tooltip>
 
-<Tooltip TooltipID="save-button-tooltip-id" TooltipText="Saves the current item" TooltipPosition="TooltipPosition.TopCentre">
-    <button type="button" aria-describedby="save-button-tooltip-id" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) 
-                                                                           @Button.Squared @Button.Size(ButtonSize.Regular) @Button.UseColumns 
-                                                                           @Button.FixedRadius(UnitRadius.Two) @Gap.SetGaps(UnitGapSize.None)">
-        <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
+<Tooltip TooltipID="edit-button-tooltip-id" TooltipText="Edit the current item" TooltipPosition="TooltipPosition.BottomRight" InvertColours="true">
+    <button type="button" aria-describedby="edit-button-tooltip-id" class="@Button.Base @Button.Scheme(ButtonSolidScheme.InfoLighter)
+        @Button.Squared @Button.Size(ButtonSize.Regular) @Button.UseColumns
+        @Button.FixedRadius(UnitRadius.Two) @Gap.SetGaps(UnitGapSize.None)">
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-pencil-icon);"></span>
     </button>
-</Tooltip>
-
+    </Tooltip>
+</div>
 <p>
     Below is the code used in the example - the button was created using the Blazor Ramp Css Classes and helpers.
 </p>

@@ -15,6 +15,7 @@
         position-anchor: --tooltip-anchor;
         border: none;
         position-try-order: most-space;
+  
         //Still to buggy on macOS/safari 26 to include
         /*        opacity: 0;
         transition: opacity 300ms ease, display 300ms allow-discrete, overlay 300ms allow-discrete;
@@ -102,8 +103,8 @@
     }
 
     &__closer {
-        display:flex;
-        margin-block-start:-2px;
+        display: flex;
+        margin-block-start: -2px;
         border-radius: var(--br-unit-radius-3);
         aspect-ratio: 1/1;
         height: var(--br-unit-wcag-target-2a);
