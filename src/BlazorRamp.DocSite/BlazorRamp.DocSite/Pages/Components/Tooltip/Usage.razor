@@ -2,7 +2,7 @@
 
 <PageTitle>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Usage . . .  In Progress . . .</h1>
+<h1>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Usage</h1>
 <p>
     Practical examples showing the Tooltip component configured with various parameters.
 </p>
@@ -10,22 +10,32 @@
 <p>
     Move your mouse or tab to the icon only buttons below to see the tooltip. The first tooltip has been configured to show above the button starting/aligned at the left edge
     using the default colour scheme. The second button has been configured to show the tooltip below the button starting/aligned at the right edge using inverted colours.
+    The third tooltip is shown centre right and uses a text string with a new line. 
+
 </p>
 <div class="@FlexContent.Base @Gap.SetGaps(UnitGapSize.Five)">
     <Tooltip TooltipID="save-button-tooltip-id" TooltipText="Saves the current item" TooltipPosition="TooltipPosition.TopLeft">
-        <button type="button" aria-describedby="save-button-tooltip-id" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) 
+        <button aria-label="Save" type="button" aria-describedby="save-button-tooltip-id" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) 
                                                                                @Button.Squared @Button.Size(ButtonSize.Regular) @Button.UseColumns 
                                                                                @Button.FixedRadius(UnitRadius.Two) @Gap.SetGaps(UnitGapSize.None)">
             <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-save-icon);"></span>
         </button>
     </Tooltip>
 
-<Tooltip TooltipID="edit-button-tooltip-id" TooltipText="Edit the current item" TooltipPosition="TooltipPosition.BottomRight" InvertColours="true">
-    <button type="button" aria-describedby="edit-button-tooltip-id" class="@Button.Base @Button.Scheme(ButtonSolidScheme.InfoLighter)
-        @Button.Squared @Button.Size(ButtonSize.Regular) @Button.UseColumns
-        @Button.FixedRadius(UnitRadius.Two) @Gap.SetGaps(UnitGapSize.None)">
-            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-pencil-icon);"></span>
-    </button>
+    <Tooltip TooltipID="edit-button-tooltip-id" TooltipText="Edit the current item" TooltipPosition="TooltipPosition.BottomRight" InvertColours="true">
+        <button aria-label="Edit" type="button" aria-describedby="edit-button-tooltip-id" class="@Button.Base @Button.Scheme(ButtonSolidScheme.InfoLighter)
+            @Button.Squared @Button.Size(ButtonSize.Regular) @Button.UseColumns
+            @Button.FixedRadius(UnitRadius.Two) @Gap.SetGaps(UnitGapSize.None)">
+                <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-pencil-icon);"></span>
+        </button>
+    </Tooltip>
+
+    <Tooltip TooltipID="view-button-tooltip-id" TooltipText="@_viewDetails" TooltipPosition="TooltipPosition.CentreRight" InvertColours="false">
+        <button aria-label="View" type="button" aria-describedby="view-button-tooltip-id" class="@Button.Base @Button.Scheme(ButtonSolidScheme.WarningLighter)
+            @Button.Squared @Button.Size(ButtonSize.Regular) @Button.UseColumns
+            @Button.FixedRadius(UnitRadius.Two) @Gap.SetGaps(UnitGapSize.None)">
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-overview-icon);"></span>
+        </button>
     </Tooltip>
 </div>
 <p>
@@ -57,4 +67,9 @@
 </div>
 @code {
 
+    public string _viewDetails = """
+       View more information.
+
+       Lorem ipsum dolor sit amet, consectetur adipiscing elit.Integer convallis, lorem non suscipit tempor, metus dolor  eleifend nulla, et commodo.
+    """;
 }

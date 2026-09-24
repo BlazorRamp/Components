@@ -1,4 +1,3 @@
 <Solution>
-  <Project Path="../BlazorRamp.Tooltip/BlazorRamp.Tooltip/BlazorRamp.Tooltip.csproj" />
   <Project Path="BlazorRamp.DocSite/BlazorRamp.DocSite.csproj" />
 </Solution>

@@ -2,7 +2,7 @@
 
 <PageTitle>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Installation</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Installation . . .  In Progress . . .</h1>
+<h1>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Installation</h1>
 
 
 <p>
@@ -20,7 +20,12 @@
     ensuring that in the <span class="@CodeSpan.Base">&lt;head&gt;</span> section you also add the Tooltip stylesheet as follows:
 </p>
 <CodeBox CodeBlock="@TooltipSnippets.Add_Tooltip_Style_Sheet" AriaLabel="Add tooltip stylesheet code block" />
-
+<p>
+    <strong>Important: </strong>The Tooltip component uses CSS anchor positioning with fallbacks for when it wont fit in the desired location which was only baseline at the start of the year 2026.
+    Dependant on your target audience and supported browser versions, you may want to consider referencing the OddBird anchor positioning polyfill
+    see: <a class="@GlobalValues.Link_Class" target="_blank" href="https://github.com/oddbird/css-anchor-positioning">https://github.com/oddbird/css-anchor-positioning (opens in new window)</a>
+    to support older browser versions.
+</p>
 
 
 <h2 id="release-history">Release history</h2>
