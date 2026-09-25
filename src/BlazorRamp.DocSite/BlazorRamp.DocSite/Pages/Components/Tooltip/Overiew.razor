@@ -3,7 +3,20 @@
 
 <PageTitle>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Overview</PageTitle>
 
-<h1>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Overview . . .  In Progress . . .</h1>
+<h1>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Overview</h1>
+
+<p>
+    The Tooltip component provides accessible, hover and focus-triggered supplementary content for a single focusable element, typically an icon-only
+    button, or any control whose purpose isn't already conveyed by visible text. It's built on the browser's native Popover API rather than a custom positioned overlay,
+    which means the tooltip is promoted to the top layer automatically, positioned relative to its trigger using CSS anchor positioning, and dismissed correctly even
+    when it's nested inside other overlays such as dialogs or menus.
+</p>
+
+<p>
+    Positioning is configurable to any of eight placements around the trigger, with automatic fallback to an alternative position when the preferred one won't fit in
+    the viewport. Tooltip content is plain text, including multi-line text where needed. I was kept deliberately simple in line with the WCAG guidance that this component follows, since a tooltip
+    is meant to be a brief, glanceable aside rather than a place for interactive or richly formatted content.
+</p>
 
 <p>
     <strong>Important: </strong>The Tooltip component uses CSS anchor positioning with fallbacks for when it wont fit in the desired location which was only baseline at the start of the year 2026. 

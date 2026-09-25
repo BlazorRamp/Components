@@ -26,7 +26,10 @@
     Two further criteria also apply: <strong>4.1.2 Name, Role, Value</strong> (Level A), satisfied via <code class="@CodeSpan.Base">role="tooltip"</code> and the <code>aria-describedby</code>
     relationship you provide on the trigger element, and <strong>2.1.1 Keyboard</strong> (Level A), satisfied by the tooltip appearing on keyboard focus as well as on hover.
 </p>
-
+<p>
+    <strong>Note: </strong> many advocate avoid using <span class="@CodeSpan.Base">role="tooltip"</span> as there is still no consensus as to how this should be supported by assistive technologies.
+    In my tests no screen reader announced the role and including or omitting this role did not appear to change or effect the behaviour of the assistive technologies so I opted to leave it in place.
+</p>
 <h2 id="tooltip-keyboard">Keyboard interaction</h2>
 <ul aria-labelledby="tooltip-keyboard">
     <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Tab</kbd> - moves focus to the focusable item that the tooltip is wrapping.</li>
