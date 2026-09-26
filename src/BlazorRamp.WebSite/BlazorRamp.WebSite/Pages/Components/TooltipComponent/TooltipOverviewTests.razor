@@ -1,0 +1,97 @@
+﻿
+@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Tooltip}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
+
+<PageTitle>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
+
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Overview_Tests</h1>
+    <p>
+        The Tooltip component provides hover and focus-triggered supplementary content for a single focusable element, typically an icon-only
+        button, or any control whose purpose isn't already conveyed by visible text. It's built on the browser's native Popover API rather than a custom positioned overlay,
+        which means the tooltip is promoted to the top layer automatically, positioned relative to its trigger using CSS anchor positioning, and dismissed correctly even
+        when it's nested inside other overlays such as dialogs or menus.
+    </p>
+
+    <p>
+        <strong>Important: </strong>The Tooltip component uses CSS anchor positioning with fallbacks for when it wont fit in the desired location which was only baseline at the start of the year 2026.
+        For older browsers developers can add the OddBird anchor positioning polyfill see: <a class="@GlobalValues.Link_Class" target="_blank" href="https://github.com/oddbird/css-anchor-positioning">https://github.com/oddbird/css-anchor-positioning (opens in new window)</a>
+        to support older browser versions. This sites uses no third party software and as such does not reference the aforementioned script; if your browser does not support anchor positioning you may find the tooltip floating up to the top left of the screen.
+    </p>
+
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
+    <p>
+        You should be able to tab to and/or move you mouse cursor over interactive element wrapped with the tooltip component, in this case an icon only button upon doing the text only tooltip should appear. 
+        In this instance the tooltip has been configured to show horizontally centred above the the icon only button.
+    </p>
+
+    <h3 id="tooltip-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h3>
+    <ul aria-labelledby="tooltip-keyboard">
+        <li><kbd>Tab</kbd> moves focus to or from the icon only button. Moving focus to another element closes the tooltip.</li>
+        <li><kbd>Escape</kbd> - closes the tooltip.</li>
+    </ul>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+    <ul>
+     <li>
+         Moving the pointer over the icon only button shows the tooltip, with the tooltip remaining open when moving the cursor from the icon only button on to the tooltip.
+     </li>
+     <li>
+         Moving the pointer away from the tooltip closes it. Pointer users can also close the tooltip by clicking the non focusable cross (X) appearing in the top right of the tooltip.
+     </li>
+     <li>
+         Pressing the escape key or moving focus to another element should close the tooltip. If opened via the keyboard, clicking outside of the triggering element 
+         or tooltip should also close the tooltip.
+     </li>
+     <li>
+         The tooltip should remain open unless you specifically close it or move away from it.
+     </li>
+     <li>
+         When focus lands on the icon only button, screen reader users should be advised of the buttons accessible name, followed by the text only content contained inside the tooltip.
+     </li>
+    </ul>
+
+    <p>
+        <strong>Note: </strong>As there is no visible accessible name, voice control users, if not knowing the name of the icon only button would require their software provide an
+        overlayed identifier which can then be announced to have focus set on the icon only button in order to view the tooltip. For reasons such as these, its always better if you can
+        provide visible accessible names and display supplemental text be on screen.
+    </p>
+</section>
+<section class="section-box">
+    <h3>Tooltip test</h3>
+
+<div class="@FlexContent.Base @Gap.SetGaps(UnitGapSize.Five)">
+    <Tooltip TooltipID="edit-button-tooltip-id" TooltipText="Enables editing of the current item" TooltipPosition="TooltipPosition.TopCentre" InvertColours="false">
+        <button aria-label="Edit" type="button" aria-describedby="edit-button-tooltip-id" class="@Button.Base @Button.Scheme(ButtonSolidScheme.InfoLighter)
+            @Button.Squared @Button.Size(ButtonSize.Regular) @Button.UseColumns
+            @Button.FixedRadius(UnitRadius.Two) @Gap.SetGaps(UnitGapSize.None)">
+                <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-pencil-icon);"></span>
+        </button>
+    </Tooltip>
+</div>
+</section>
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Toggletip}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Toggletip - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Framework_Name_Modal - @GlobalValues.Common_Page_Title_Overview_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+
+@code {
+
+}
