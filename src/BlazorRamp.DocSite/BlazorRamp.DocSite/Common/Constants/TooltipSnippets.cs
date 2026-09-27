@@ -38,7 +38,7 @@ public class TooltipSnippets
         @code {
 
             public string _editDetails = """
-               Edit the currently selected item..
+               Edit the currently selected item.
 
                Lorem ipsum dolor sit amet, consectetur adipiscing elit.Integer convallis, lorem non suscipit tempor, metus dolor  eleifend nulla, et commodo.
             """;
