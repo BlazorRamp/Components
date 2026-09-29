@@ -65,10 +65,13 @@ public sealed class LiveRegionService : ILiveRegionService, IAsyncDisposable
     /// </summary>
     private async void NavigationManager_LocationChanged(object? sender, LocationChangedEventArgs e)
     {
-        _jsLiveRegionModule = await GetJSLiveRegionModule(CoreGlobalValues.JS_Live_Region_File_Path);
+        try
+        {
+            _jsLiveRegionModule = await GetJSLiveRegionModule(CoreGlobalValues.JS_Live_Region_File_Path);
 
-        if (_jsLiveRegionModule is not null) await _jsLiveRegionModule.InvokeVoidAsync(CoreGlobalValues.JS_Live_Region_Check_Close_Popover_Func);  
-        
+            if (_jsLiveRegionModule is not null) await _jsLiveRegionModule.InvokeVoidAsync(CoreGlobalValues.JS_Live_Region_Check_Close_Popover_Func);
+        }
+        catch (JSDisconnectedException) { } // circuit is gone (navigation happened as the app was tearing down) - nothing left to notify        
     }
 
     /// <summary>

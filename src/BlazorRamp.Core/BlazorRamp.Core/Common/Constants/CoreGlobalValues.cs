@@ -14,6 +14,9 @@ internal static class CoreGlobalValues
     public const string JS_Live_Region_Check_Close_Popover_Func = "closePopoverOnLocationChanged";
 
 
+    public const string JS_Utils_Register_Container_For_Tab_Func = "registerContainerForAutoTabindex";
+    public const string JS_Utils_Unregister_Container_For_Tab_Func = "unregisterContainerForAutoTabindex";
+
     public const string Blazor_Ramp_ID             = "blazor-ramp";
     public const string Live_Regions_ID            = $"{Blazor_Ramp_ID}-live-regions";
     public const string Live_Region_Assertive_One_ID = $"{Blazor_Ramp_ID}-live-region-assertive_one";

@@ -20,6 +20,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddBlazorRampCore(this IServiceCollection services)
     {
         services.AddScoped<ILiveRegionService, LiveRegionService>();
+        services.AddScoped<ICoreUtilityService, CoreUtilityService>();
         return services;
     }
 }

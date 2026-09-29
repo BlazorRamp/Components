@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 
 
-namespace BlazorRamp.Core.Tests.Unit.Components.LiveRegion;
+namespace BlazorRamp.Core.Tests.Unit.Services;
 
 public class LiveRegionService_Tests
 {

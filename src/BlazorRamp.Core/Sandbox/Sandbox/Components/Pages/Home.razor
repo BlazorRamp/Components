@@ -1,5 +1,9 @@
 ﻿@page "/"
+
+@implements IAsyncDisposable
+
 @inject ILiveRegionService _liveRegionService
+@inject ICoreUtilityService _coreUtilityService
 
 <PageTitle>Home</PageTitle>
 
@@ -10,7 +14,37 @@ Welcome to your new app.
 
 <button type="button" @onclick="TestService">Test Live Service</button>
 
+<div @ref="MyContainer" style="overflow-y:scroll;max-height:50vh;border: 1px solid red;" role="group" aria-label="paul">
+    <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet tortor ornare mollis porta. Nunc scelerisque pharetra viverra. Ut at euismod sem. Donec viverra semper urna, nec 
+    blandit purus blandit vel. Vestibulum consequat nisi augue, aliquet aliquam eros tincidunt in. Aliquam vulputate eros sit amet metus lobortis, sed pulvinar leo rutrum. Cras id gravida tellus, 
+    vitae finibus augue. Nulla facilisi. Sed pulvinar tortor at feugiat ultrices. Sed non ante felis. Nulla sed tincidunt velit, at eleifend urna. Donec sit amet arcu quis turpis convallis tempor 
+    eu sit amet ante. Aenean commodo urna diam, tincidunt scelerisque magna faucibus ut. Curabitur quis dui sollicitudin, tempus sem dapibus, dictum est.
+    </p>
+
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet tortor ornare mollis porta. Nunc scelerisque pharetra viverra. Ut at euismod sem. Donec viverra semper urna, nec
+        blandit purus blandit vel. Vestibulum consequat nisi augue, aliquet aliquam eros tincidunt in. Aliquam vulputate eros sit amet metus lobortis, sed pulvinar leo rutrum. Cras id gravida tellus,
+        vitae finibus augue. Nulla facilisi. Sed pulvinar tortor at feugiat ultrices. Sed non ante felis. Nulla sed tincidunt velit, at eleifend urna. Donec sit amet arcu quis turpis convallis tempor
+        eu sit amet ante. Aenean commodo urna diam, tincidunt scelerisque magna faucibus ut. Curabitur quis dui sollicitudin, tempus sem dapibus, dictum est.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet tortor ornare mollis porta. Nunc scelerisque pharetra viverra. Ut at euismod sem. Donec viverra semper urna, nec
+        blandit purus blandit vel. Vestibulum consequat nisi augue, aliquet aliquam eros tincidunt in. Aliquam vulputate eros sit amet metus lobortis, sed pulvinar leo rutrum. Cras id gravida tellus,
+        vitae finibus augue. Nulla facilisi. Sed pulvinar tortor at feugiat ultrices. Sed non ante felis. Nulla sed tincidunt velit, at eleifend urna. Donec sit amet arcu quis turpis convallis tempor
+        eu sit amet ante. Aenean commodo urna diam, tincidunt scelerisque magna faucibus ut. Curabitur quis dui sollicitudin, tempus sem dapibus, dictum est.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet tortor ornare mollis porta. Nunc scelerisque pharetra viverra. Ut at euismod sem. Donec viverra semper urna, nec
+        blandit purus blandit vel. Vestibulum consequat nisi augue, aliquet aliquam eros tincidunt in. Aliquam vulputate eros sit amet metus lobortis, sed pulvinar leo rutrum. Cras id gravida tellus,
+        vitae finibus augue. Nulla facilisi. Sed pulvinar tortor at feugiat ultrices. Sed non ante felis. Nulla sed tincidunt velit, at eleifend urna. Donec sit amet arcu quis turpis convallis tempor
+        eu sit amet ante. Aenean commodo urna diam, tincidunt scelerisque magna faucibus ut. Curabitur quis dui sollicitudin, tempus sem dapibus, dictum est.
+    </p>
+</div>
+
 @code{
+
+    private ElementReference MyContainer { get; set; }
 
     private async Task TestService()
     {
@@ -18,5 +52,23 @@ Welcome to your new app.
 
         await _liveRegionService.MakeAnnouncement(announcement, true);
     }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(true == firstRender)
+        {
+            await _coreUtilityService.RegisterContainerForAutoTabindex(MyContainer);
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        try
+        {
+            await _coreUtilityService.UnregisterContainerForAutoTabindex(MyContainer);
+        }
+        catch{}
+    }
+
 
 }
