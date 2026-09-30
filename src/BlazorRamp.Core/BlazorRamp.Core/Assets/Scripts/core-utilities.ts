@@ -15,6 +15,8 @@ const _tabFocusElements =
     'button:not([disabled]), iframe, object, embed, [contenteditable]:not([contenteditable="false"]), ' +
     '[tabindex]:not([tabindex="-1"]), audio[controls], video[controls], summary';
 
+const _genericTagNames = new Set(["DIV", "SPAN"]);
+
 const _scrollableOverflowValues = ["auto", "scroll"];
 
 const _autoTabindexRegistrations = new Map<HTMLElement, AutoTabindexRegistration>();
@@ -36,6 +38,7 @@ const hasFocusableContent = (element: HTMLElement): boolean => {
     return Array.from(element.querySelectorAll<HTMLElement>(_tabFocusElements)).some(descendant => !descendant.closest("[inert]") && descendant.checkVisibility?.({ visibilityProperty: true }) !== false);
 }
 
+
 const addTabStopToContainer = (element: HTMLElement, registration: AutoTabindexRegistration): void => {
 
     element.setAttribute("tabindex", "0");
@@ -49,15 +52,28 @@ const addTabStopToContainer = (element: HTMLElement, registration: AutoTabindexR
     // "group" rather than "region" on purpose: region is a landmark, and auto-labelling every scrollable panel on a
     // page as a landmark would clutter landmark navigation. A consumer who wants the landmark can set role="region"
     // themselves, and since we only add a role when none exists, that choice is left alone.
-    if (!element.hasAttribute("role")) {
+    // Restricted to div/span: hasAttribute("role") only sees an *explicit* role attribute, not an element's *implicit*
+    // one (e.g. <nav>, <table>, <ul>, <dialog> all have a real implicit role with no role attribute present). An
+    // explicit role always overrides implicit semantics in the accessibility tree, so setting one on those tags
+    // would silently strip their native role. div/span are the only tags with no meaningful implicit role of their
+    // own (both map to role=generic), so they're the only tags it's safe to assign role="group" to here.
+
+
+
+    if (_genericTagNames.has(element.tagName) && !element.hasAttribute("role")) {
         element.setAttribute("role", "group");
         registration.addedRole = true;
     }
 
     // WCAG 4.1.2 (Name, Role, Value): a role needs an accessible name, and that need is even stronger once it is
     // also a tab stop, since a screen reader user can now land directly on it via Tab with nothing read out.
-    // This covers both a role we just added above and a pre-existing role that was never given a name - either way
-    // we only ever add the missing name, we never overwrite one that's already there (aria-label or aria-labelledby).
+    // This covers both a role we just added above and a pre-existing role (implicit or explicit) that was never
+    // given a name - either way we only ever add the missing name, we never overwrite one that's already there
+    // (aria-label or aria-labelledby). Left ungated by tag name on purpose: naming a <nav> or <table> doesn't
+    // change its role, it only supplies what's missing, so it's safe even on elements with strong native semantics.
+
+
+
     if (!element.hasAttribute("aria-label") && !element.hasAttribute("aria-labelledby")) {
         element.setAttribute("aria-label", registration.labelName);
         registration.addedAriaLabel = true;
@@ -65,6 +81,7 @@ const addTabStopToContainer = (element: HTMLElement, registration: AutoTabindexR
 
     registration.applied = true;
 };
+
 
 const removeTabStopFromContainer = (element: HTMLElement, registration: AutoTabindexRegistration): void => {
 

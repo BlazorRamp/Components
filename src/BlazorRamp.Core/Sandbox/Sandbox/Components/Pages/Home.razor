@@ -12,9 +12,9 @@
 
 Welcome to your new app.
 
-<button type="button" @onclick="TestService">Test Live Service</button>
+@* <button type="button" @onclick="TestService">Test Live Service</button> *@
 
-<div @ref="MyContainer" style="overflow-y:scroll;max-height:50vh;border: 1px solid red;" role="group" aria-label="paul">
+<div @ref="MyContainer" style="overflow-y:scroll;max-height:50vh;border: 1px solid red;" role="group" aria-label="my content">
     <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquet tortor ornare mollis porta. Nunc scelerisque pharetra viverra. Ut at euismod sem. Donec viverra semper urna, nec 
     blandit purus blandit vel. Vestibulum consequat nisi augue, aliquet aliquam eros tincidunt in. Aliquam vulputate eros sit amet metus lobortis, sed pulvinar leo rutrum. Cras id gravida tellus, 
@@ -57,7 +57,7 @@ Welcome to your new app.
     {
         if(true == firstRender)
         {
-            await _coreUtilityService.RegisterContainerForAutoTabindex(MyContainer);
+           await _coreUtilityService.RegisterContainerForAutoTabindex(MyContainer);
         }
     }
 
