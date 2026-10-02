@@ -1,0 +1,18 @@
+﻿
+<div class="@GlobalValues.Disclosure_Class">
+
+    <button type="button" class="@GlobalValues.Disclosure_Trigger_Class"
+    @onclick="async () => await ToggleState()"
+    aria-controls="@_contentID"
+    aria-expanded="@_isExpanded.ToString().ToLower()">
+        <span>@_triggerText</span>
+        <span class="@GlobalValues.Disclosure_Trigger_Expander_Icon_Class" aria-hidden="true">
+            <span></span>
+        </span>
+    </button>
+
+    <div id="@_contentID" class="@GlobalValues.Disclosure_Content_Class">
+        @ChildContent
+    </div>
+
+</div>
