@@ -16,10 +16,10 @@ edit and delete</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; Actions Popover; ARIA; </PackageTags>
-    <PackageReleaseNotes>Fix: The trigger hover state variable was incorrectly mapped to the item hover state variable</PackageReleaseNotes>
-    <Version>2.1.5</Version>
-    <AssemblyVersion>2.1.5</AssemblyVersion>
-    <FileVersion>2.1.5</FileVersion>
+    <PackageReleaseNotes>Fix: Spacing issue with the icon and text when both are used with the stretch option.</PackageReleaseNotes>
+    <Version>2.1.6</Version>
+    <AssemblyVersion>2.1.6</AssemblyVersion>
+    <FileVersion>2.1.6</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>

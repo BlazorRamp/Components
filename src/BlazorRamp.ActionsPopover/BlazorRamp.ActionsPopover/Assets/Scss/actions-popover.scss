@@ -115,6 +115,11 @@
         }
     }
 
+    &__trigger-content {
+        display: flex;
+        align-items: center;
+        gap: var(--br-unit-space-3);
+    }
 
     &__trigger-text {
         color: inherit;
