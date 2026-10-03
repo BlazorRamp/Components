@@ -1,18 +1,33 @@
 ﻿
-<div class="@GlobalValues.Disclosure_Class">
+<div @attributes="@AdditionalAttributes" class="@GetDisclosureClasses(AdditionalAttributes)">
 
-    <button type="button" class="@GlobalValues.Disclosure_Trigger_Class"
-    @onclick="async () => await ToggleState()"
-    aria-controls="@_contentID"
-    aria-expanded="@_isExpanded.ToString().ToLower()">
-        <span>@_triggerText</span>
+    <button id="@_triggerID" type="button" class="@GetTriggerContentClasses(RemoveTriggerBorderPadding, true)"
+            @onclick="async () => await ToggleExpandedState()"
+            aria-controls="@_contentID"
+            aria-expanded="@_isExpanded.ToString().ToLower()">
+                
+        <span class="@GlobalValues.Disclosure_Trigger_Content_Class">
+            @if (_svgIcon is not null)
+            {
+                <span aria-hidden="true" class="@GlobalValues.Disclosure_Icon_Class" style="@_svgIcon"></span>
+            }
+            <span>@_triggerText</span>
+        </span>
+
         <span class="@GlobalValues.Disclosure_Trigger_Expander_Icon_Class" aria-hidden="true">
             <span></span>
         </span>
     </button>
 
-    <div id="@_contentID" class="@GlobalValues.Disclosure_Content_Class">
-        @ChildContent
+    <div id="@_contentID" @ref="@ContainerRef" class="@GetTriggerContentClasses(RemoveContentBorderPadding, false)" 
+        role="@(_contentIsRegion ? "region" : null)" 
+        aria-labelledby="@(_contentIsRegion ? _triggerID : null)"
+        style="@(_contentHeightStyle ?? null)">
+
+        @if (_isExpanded || _persistContent)
+        {
+            @ChildContent
+        }
     </div>
 
 </div>

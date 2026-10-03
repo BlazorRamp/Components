@@ -7,8 +7,8 @@
 
 <h1>Hello, world!</h1>
 
-
-<Disclosure TriggerText="This is my trigger">
+<div >
+<Disclosure TriggerText="This is my trigger" SvgIcon="--svg-food-icon" @ref="@_disclosure" ContentMaxHeight="70vh">
     <div>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pharetra ullamcorper. Quisque lectus enim, laoreet eu nisi id, hendrerit convallis est. 
@@ -30,22 +30,55 @@
             mauris ut, pharetra volutpat mauris. Aliquam venenatis lacus at magna aliquet, nec semper tortor dapibus. Donec eget consectetur metus. Duis pulvinar aliquet augue quis accumsan. 
             Quisque risus odio, dapibus sit amet consequat vel, elementum id libero.
         </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pharetra ullamcorper. Quisque lectus enim, laoreet eu nisi id, hendrerit convallis est.
+                Nam et gravida purus, eget tincidunt erat. Ut mattis diam at est ullamcorper, et ultrices est ultricies. Nam vel ultricies metus. Cras at aliquam sem. Curabitur
+                consectetur velit vulputate vestibulum sagittis. In et scelerisque libero. Vestibulum condimentum venenatis metus, sit amet commodo tortor rutrum vel.
+            </p>
+            <p>
+                Suspendisse felis nibh, molestie id sapien at, venenatis condimentum erat. Nam id dui mi. Vestibulum accumsan lacus nec turpis pharetra, eget scelerisque quam gravida.
+                Sed eget libero condimentum, sodales lorem non, bibendum dui. Nunc iaculis lacinia turpis non mattis. Pellentesque ut lectus nec quam rutrum sagittis eget non mi. Aliquam
+                at euismod purus. Curabitur maximus, risus eget mattis fermentum, lorem lorem vehicula sapien, id consequat nisi est at tellus. In a volutpat enim. Aliquam vitae nisl in
+                nisl vulputate mollis. Donec sapien quam, sagittis at est eget, egestas placerat quam. Donec ipsum orci, facilisis sit amet viverra a, ultrices auctor nisi. Duis volutpat
+                rutrum dui ac scelerisque. Vivamus dapibus faucibus massa sit amet efficitur.
+
+            </p>
+            <p>
+                Donec eu turpis leo. Morbi vehicula sem feugiat, aliquet erat malesuada, pellentesque metus. Mauris vitae dolor sodales, imperdiet magna consectetur, tristique felis.
+                Nunc aliquam elit vitae orci tristique, ut porta nisi interdum. Donec tellus tortor, lobortis vel augue sed, imperdiet cursus massa. Duis quis magna porttitor, molestie
+                tortor et, rutrum ipsum. Nunc et nibh porta, dignissim purus et, rutrum sapien. Vestibulum a orci libero. Suspendisse quis scelerisque quam. Quisque purus lorem, accumsan vel
+                mauris ut, pharetra volutpat mauris. Aliquam venenatis lacus at magna aliquet, nec semper tortor dapibus. Donec eget consectetur metus. Duis pulvinar aliquet augue quis accumsan.
+                Quisque risus odio, dapibus sit amet consequat vel, elementum id libero.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pharetra ullamcorper. Quisque lectus enim, laoreet eu nisi id, hendrerit convallis est.
+                Nam et gravida purus, eget tincidunt erat. Ut mattis diam at est ullamcorper, et ultrices est ultricies. Nam vel ultricies metus. Cras at aliquam sem. Curabitur
+                consectetur velit vulputate vestibulum sagittis. In et scelerisque libero. Vestibulum condimentum venenatis metus, sit amet commodo tortor rutrum vel.
+            </p>
     </div>
+        <Disclosure TriggerText="Another trigger" SvgIcon="--svg-food-icon" @ref="@_disclosure" ContentMaxHeight="20vh">
+            <p>
+                Donec eu turpis leo. Morbi vehicula sem feugiat, aliquet erat malesuada, pellentesque metus. Mauris vitae dolor sodales, imperdiet magna consectetur, tristique felis.
+                Nunc aliquam elit vitae orci tristique, ut porta nisi interdum. Donec tellus tortor, lobortis vel augue sed, imperdiet cursus massa. Duis quis magna porttitor, molestie
+                tortor et, rutrum ipsum. Nunc et nibh porta, dignissim purus et, rutrum sapien. Vestibulum a orci libero. Suspendisse quis scelerisque quam. Quisque purus lorem, accumsan vel
+                mauris ut, pharetra volutpat mauris. Aliquam venenatis lacus at magna aliquet, nec semper tortor dapibus. Donec eget consectetur metus. Duis pulvinar aliquet augue quis accumsan.
+                Quisque risus odio, dapibus sit amet consequat vel, elementum id libero.
+            </p>
+        </Disclosure>
+
 </Disclosure>
 
-@* <p>
-    <button type="button">Tab stop before group</button>
-</p>
-<div role="group" aria-label="Toolbox">
-    <button type="button">Edit</button>
-    <button type="button">Delete</button>
-    <button type="button">View details</button>
 </div>
 
+<button @onclick="() => SetExpanded(true)">Set Expanded</button>
+<button @onclick="() => SetExpanded(false)">Set Collapsed</button>
 
-<p>
-    <button type="button">Tab stop after group</button>
-</p> *@
 @code{
+    private Disclosure _disclosure { get; set; } = null!;
 
+
+    private async Task SetExpanded(bool expandedState)
+    {
+        await _disclosure.SetExpandedState(expandedState);
+    }
 }
