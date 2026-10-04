@@ -2,8 +2,9 @@
 
 The Blazor Ramp project aims to provide a suite of modular, accessibility-first Blazor components. 
 
-The **Disclosure** component provides the ability to show/hide content on activating its triggering element. It was created due to screen readers announcing the native details/summary differently with some
-announcing the "disclosure triangle" even if the graphic is removed.
+The **Disclosure** component provides an accessible way to show and hide a single region of content. It's made up of a button, the trigger, and the 
+content that the button controls. Activating the trigger with a mouse, touch, or the Enter or Space keys toggles the content, while the trigger's 
+`aria-expanded` attribute tells assistive technologies whether the content is currently shown and `aria-controls` associates the trigger with the content it controls. 
 
 
 ## Requirements
@@ -63,6 +64,43 @@ Title="Recent Announcements" TriggerVisible="true" TriggerText="Alerts" />
 ```
 
 ## Using the Disclosure
+
+The following example has set the content to have a maximum height of 40vh units. Dependant on the window size, if there is not 
+enough room for the content a vertical scrollbar will appear. This addition and removal of a scrollbar is monitored with attributes 
+automatically added to ensure that the scrollable region is keyboard accessible. if there is no focusable content detected a `role="group"` 
+attribute is added (if no existing role defined). A tabindex="0" is also added along with the `aria-labelledby`, so the trigger text is used for the groups 
+accessible name. These attributes are removed if the page is sized as such to not need a scrollbar.
+
+```
+<Disclosure TriggerText="Lorem ipson text in a disclosure" ContentMaxHeight="40vh">
+    <p style="margin:0">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pharetra ullamcorper. Quisque lectus 
+        enim, laoreet eu nisi id, hendrerit convallis est. Nam et gravida purus, eget tincidunt erat. Ut mattis diam 
+        at est ullamcorper, et ultrices est ultricies. Nam vel ultricies metus. Cras at aliquam sem. Curabitur
+        consectetur velit vulputate vestibulum sagittis. In et scelerisque libero. Vestibulum condimentum venenatis 
+        metus, sit amet commodo tortor rutrum vel.
+    </p>
+    <p>
+        Suspendisse felis nibh, molestie id sapien at, venenatis condimentum erat. Nam id dui mi. Vestibulum accumsan 
+        lacus nec turpis pharetra, eget scelerisque quam gravida.Sed eget libero condimentum, sodales lorem non, bibendum dui. 
+        Nunc iaculis lacinia turpis non mattis. Pellentesque ut lectus nec quam rutrum sagittis eget non mi. Aliquam
+        at euismod purus. Curabitur maximus, risus eget mattis fermentum, lorem lorem vehicula sapien, id consequat nisi 
+        est at tellus. In a volutpat enim. Aliquam vitae nisl in nisl vulputate mollis. Donec sapien quam, sagittis at est eget, 
+        egestas placerat quam. Donec ipsum orci, facilisis sit amet viverra a, ultrices auctor nisi. Duis volutpat
+        rutrum dui ac scelerisque. Vivamus dapibus faucibus massa sit amet efficitur.
+
+    </p>
+    <p>
+        Donec eu turpis leo. Morbi vehicula sem feugiat, aliquet erat malesuada, pellentesque metus. Mauris vitae dolor sodales,
+        imperdiet magna consectetur, tristique felis. Nunc aliquam elit vitae orci tristique, ut porta nisi interdum. Donec tellus 
+        tortor, lobortis vel augue sed, imperdiet cursus massa. Duis quis magna porttitor, molestie tortor et, rutrum ipsum. Nunc 
+        et nibh porta, dignissim purus et, rutrum sapien. Vestibulum a orci libero. Suspendisse quis scelerisque quam. Quisque purus lorem, 
+        accumsan vel  mauris ut, pharetra volutpat mauris. Aliquam venenatis lacus at magna aliquet, nec semper tortor dapibus. Donec
+        eget consectetur metus. Duis pulvinar aliquet augue quis accumsan.Quisque risus odio, dapibus sit amet consequat vel, elementum id libero.
+    </p>
+
+</Disclosure>
+```
 
 For the full description of all the component parameters and events, please see the documentation for the Disclosure component: https://docs.blazorramp.uk
 
