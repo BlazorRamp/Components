@@ -5,17 +5,47 @@
 <h1>@GlobalValues.Component_Name_Disclosure @GlobalValues.Common_Page_Title_Overview</h1>
 
 
+<p>
+    The Disclosure component provides an accessible way to show and hide a single region of content. It's made up of a button, the trigger, and the content that the button
+    controls. Activating the trigger with a mouse, touch, or the <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Enter</kbd> or <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Space</kbd> 
+    keys toggles the content, while the trigger's <span class="@CodeSpan.Base">aria-expanded</span> attribute tells assistive technologies whether the content is currently shown 
+    and <span class="@CodeSpan.Base">aria-controls</span> associates the trigger with the content it controls.
+    This is the disclosure pattern described in the WAI-ARIA Authoring Practices Guide.
+</p>
 
+<p>
+    The component is deliberately built from a <span class="@CodeSpan.Base">div</span>, a <span class="@CodeSpan.Base">button</span> and a second <span class="@CodeSpan.Base">div</span> rather than the native
+    <span class="@CodeSpan.Base">details</span> and <span class="@CodeSpan.Base">summary</span> elements. Some screen readers announce the <span class="@CodeSpan.Base">summary</span> element as a "disclosure triangle",
+    even when its marker has been hidden with CSS, whereas a button with <span class="@CodeSpan.Base">aria-expanded</span> is announced as a button and its state. Unlike an accordion item, a disclosure doesn't
+    require a heading, so the trigger text is simply the button's accessible name.
+</p>
 
+<p>
+    The initial expanded state can be set when the component first renders, bound using <span class="@CodeSpan.Base">@@bind-Expanded</span>, or changed from code using the
+    <span class="@CodeSpan.Base">SetExpandedState</span> method. By default the content stays in the DOM while it's collapsed, so anything inside it keeps its state; it can instead be removed when collapsed.
+    An optional icon can be shown beside the trigger text, and the border and padding of both the trigger and the content can be removed so the component sits comfortably inside other containers.
+</p>
 
+<p>
+    The height of the content can be capped so that longer content scrolls within its own region. When a region scrolls and has nothing focusable inside it, it's made keyboard focusable automatically
+    so that keyboard users can still reach and scroll it. The content can also optionally be exposed as a region landmark, which is best reserved for substantial content as each region becomes another landmark
+    for screen reader users to navigate.
+</p>
 
-
+<p>
+    The Disclosure is intended for an individual show and hide region. If you need a group of related sections, see the
+    <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Overview}")">@GlobalValues.Component_Name_Accordion</a>,
+    for navigation menus see the
+    <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_NavGroup}/{GlobalValues.Common_Page_Path_Overview}")">@GlobalValues.Component_Name_NavGroup</a>,
+    and for brief supplementary text shown in a popup see the
+    <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Toggletip}/{GlobalValues.Common_Page_Path_Overview}")">@GlobalValues.Component_Name_Toggletip</a>.
+</p>
 
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
-    <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DebounceFilter}/{GlobalValues.Common_Page_Path_Usage}")">
+    <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Disclosure}/{GlobalValues.Common_Page_Path_Usage}")">
         <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
-        <span>@GlobalValues.Component_Name_Debounce_Filter - @GlobalValues.Common_Page_Title_Usage</span>
+        <span>@GlobalValues.Component_Name_Disclosure - @GlobalValues.Common_Page_Title_Usage</span>
 
     </a>
     <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Disclosure}/{GlobalValues.Common_Page_Path_Installation}")">
