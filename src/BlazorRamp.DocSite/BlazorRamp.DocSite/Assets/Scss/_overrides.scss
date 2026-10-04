@@ -24,7 +24,7 @@
         }
 }
 
-.br-flex-content {
+/*.br-flex-content {
 
     @include media-device-sm(max-width) {
         justify-content: center;
@@ -37,4 +37,13 @@
     }
 
   
+}*/
+.br-flex-content:has( > .br-button--link-style > .br-svg-icon) {
+    margin-block-end: var(--br-unit-space-14);
+
+    @include media-device-sm(max-width) {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 }

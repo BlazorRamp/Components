@@ -1,11 +1,117 @@
-﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Disclosure}/{GlobalValues.Common_Page_Path_Usage}")]
+﻿
+@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Disclosure}/{GlobalValues.Common_Page_Path_Usage}")]
 
 <PageTitle>@GlobalValues.Component_Name_Disclosure @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
 <h1>@GlobalValues.Component_Name_Disclosure @GlobalValues.Common_Page_Title_Usage</h1>
+<p>
+    Practical examples showing the Disclosure component configured with various parameters.
+</p>
+<p>
+    The following example has set the content to have a maximum height of 40vh units. Dependant on the window size, if there is not enough room
+    for the content a vertical scrollbar will appear.This addition and removal of a scrollbar is monitored with attributes automatically added to 
+    ensure that the scrollable region is keyboard accessible. If there is no focusable content detected a <span class="@CodeSpan.Base">role="group"</span> 
+    attribute is added (if no existing role defined). A <span>tabindex="0"</span> is also added along with the <span class="@CodeSpan.Base">aria-labelledby</span>, 
+    so the trigger text is used for the groups accessible name. These attributes are removed if the page is sized as such to not need a scrollbar.
+</p>
 
+<Disclosure TriggerText="Lorem ipsum text in a disclosure" ContentMaxHeight="40vh">
+    <p style="margin:0">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pharetra ullamcorper. Quisque lectus enim, laoreet eu nisi id, 
+        hendrerit convallis est.Nam et gravida purus, eget tincidunt erat. Ut mattis diam at est ullamcorper, et ultrices est ultricies. Nam 
+        vel ultricies metus. Cras at aliquam sem. Curabitur consectetur velit vulputate vestibulum sagittis. In et scelerisque 
+        libero. Vestibulum condimentum venenatis metus, sit amet commodo tortor rutrum vel.
+    </p>
+    <p>
+        Suspendisse felis nibh, molestie id sapien at, venenatis condimentum erat. Nam id dui mi. Vestibulum accumsan lacus nec turpis pharetra, 
+        eget scelerisque quam gravida.Sed eget libero condimentum, sodales lorem non, bibendum dui. Nunc iaculis lacinia turpis non mattis. 
+        Pellentesque ut lectus nec quam rutrum sagittis eget non mi. Aliquam at euismod purus. Curabitur maximus, risus eget mattis fermentum, 
+        lorem lorem vehicula sapien, id consequat nisi est at tellus. In a volutpat enim. Aliquam vitae nisl in nisl vulputate mollis. Donec 
+        sapien quam, sagittis at est eget, egestas placerat quam. Donec ipsum orci, facilisis sit amet viverra a, ultrices auctor nisi. Duis volutpat
+        rutrum dui ac scelerisque. Vivamus dapibus faucibus massa sit amet efficitur.
 
+    </p>
+    <p>
+        Donec eu turpis leo. Morbi vehicula sem feugiat, aliquet erat malesuada, pellentesque metus. Mauris vitae dolor sodales, imperdiet magna consectetur,
+        tristique felis. Nunc aliquam elit vitae orci tristique, ut porta nisi interdum. Donec tellus tortor, lobortis vel augue sed, imperdiet cursus massa. 
+        Duis quis magna porttitor, molestie tortor et, rutrum ipsum. Nunc et nibh porta, dignissim purus et, rutrum sapien. Vestibulum a orci libero. 
+        Suspendisse quis scelerisque quam. Quisque purus lorem, accumsan vel mauris ut, pharetra volutpat mauris. Aliquam venenatis lacus at magna aliquet, nec 
+        semper tortor dapibus. Donec eget consectetur metus. Duis pulvinar aliquet augue quis accumsan. Quisque risus odio, dapibus sit amet consequat vel, 
+        elementum id libero.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pharetra ullamcorper. Quisque lectus enim, laoreet eu nisi id, hendrerit convallis est.
+        Nam et gravida purus, eget tincidunt erat. Ut mattis diam at est ullamcorper, et ultrices est ultricies. Nam vel ultricies metus. Cras at aliquam sem. 
+        Curabitur consectetur velit vulputate vestibulum sagittis. In et scelerisque libero. Vestibulum condimentum venenatis metus, sit amet commodo tortor 
+        rutrum vel.
+    </p>
 
+</Disclosure>
+
+<p>The code from the example above.</p>
+
+<CodeBox CodeBlock="@DisclosureSnippets.Disclosure_With_Scrollbar_Example" AriaLabel="Disclosure with a maximum content height code example." />
+<p>
+    The following example has no max height setting defined but has the border and padding removed from the content region; the trigger still has its border and padding along with
+    an icon assigned.
+</p>
+
+<Disclosure TriggerText="More lorem ipsum text" RemoveContentBorderPadding="true" SvgIcon="--svg-article-icon">
+  <p style="margin:0">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pharetra ullamcorper. Quisque lectus enim, laoreet eu nisi id, hendrerit convallis est.
+    Nam et gravida purus, eget tincidunt erat. Ut mattis diam at est ullamcorper, et ultrices est ultricies. Nam vel ultricies metus. Cras at aliquam sem. Curabitur
+    consectetur velit vulputate vestibulum sagittis. In et scelerisque libero. Vestibulum condimentum venenatis metus, sit amet commodo tortor rutrum vel.
+  </p>
+</Disclosure>
+
+<p>The code from the example above.</p>
+
+<CodeBox CodeBlock="@DisclosureSnippets.Disclosure_Content_Border_Removed_Example" AriaLabel="Disclosure with a maximum content height code example." />
+
+<p>
+    The following example just adds a couple of icon only buttons (that do nothing) using the Blazor Ramp Css Classes along with the Tooltip component. It also uses two-way
+    binding with the initial value set to show the disclosure in its expanded state.
+</p>
+
+<Disclosure TriggerText="Even more lorem ipsum text" SvgIcon="--svg-article-icon" @bind-Expanded="@_isExpanded">
+    <div class="@FlexContent.Base @LayoutAlignment.AlignItems(UnitAlignItems.Centre) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @FlexContent.Wrap(UnitFlexWrap.Wrap)">
+        <span>
+            Lorem Ipsum Text
+        </span>
+        <div class="@FlexContent.Base @Gap.SetGaps(UnitGapSize.Four) @Padding.Block(UnitSpace.Three) @FlexContent.Wrap(UnitFlexWrap.NoWrap)">
+            <Tooltip TooltipText="Opens a popup for editing the content." TooltipID="edit-tooltip" TooltipPosition="TooltipPosition.TopRight" InvertColours="true">
+                <button aria-describedby="edit-tooltip" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Warning)  @Button.Squared">
+                    <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-pencil-icon);"></span>
+                </button>
+            </Tooltip>
+            <Tooltip TooltipText="Opens a new page with the full article." TooltipID="view-tooltip" TooltipPosition="TooltipPosition.TopRight" InvertColours="true">
+                <button id="view-button-id" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Info) @Button.Squared">
+                    <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-glasses-icon);"></span>
+                </button>
+            </Tooltip>
+        </div>
+
+    </div>
+
+    <p style="margin:0;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pharetra ullamcorper. Quisque lectus enim, laoreet eu nisi id, hendrerit convallis est.
+        Nam et gravida purus, eget tincidunt erat. Ut mattis diam at est ullamcorper, et ultrices est ultricies. Nam vel ultricies metus. Cras at aliquam sem. Curabitur
+        consectetur velit vulputate vestibulum sagittis. In et scelerisque libero. Vestibulum condimentum venenatis metus, sit amet commodo tortor rutrum ve [. . . ]
+    </p>
+
+</Disclosure>
+
+<ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2" style="margin-top:var(--br-unit-space-9);">
+    <BorderGroups>
+        <BorderGroup Title="Container borders">
+            <BorderRadius LabelText="Content radius" ResetText="Reset content radius" MaxRangeValue="@GlobalValues.Radius_Container_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Content)])" />
+            <BorderRadius LabelText="Header radius" ResetText="Reset header radius" MaxRangeValue="@GlobalValues.Radius_Container_Header_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Container_Radius_Header)])" />
+        </BorderGroup>
+        <BorderGroup Title="Button/link borders">
+            <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
+        </BorderGroup>
+    </BorderGroups>
+</ThemeBorderTool>
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
     <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Disclosure}/{GlobalValues.Common_Page_Path_Api}")">
@@ -19,3 +125,8 @@
         <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-right-arrow-circle-icon)"></span>
     </a>
 </div>
+
+    @code{
+
+    private bool _isExpanded = true;
+    }
