@@ -421,3 +421,27 @@ public enum UnitGapSize : int
     /// <summary>Maps to <c>--br-unit-space-15</c>.</summary>
     Fifteen = 15
 }
+/// <summary>
+/// Sets a box shadow from the <c>--br-unit-box-shadow-*</c> primitive scale, defined in
+/// <c>BlazorRamp.Core</c>. Used by the <see cref="BoxShadow"/> utility class.
+/// </summary>
+public enum UnitBoxShadow : int
+{
+    /// <summary>
+    /// No box shadow. Unlike <see cref="One"/> and <see cref="Two"/>, this isn't sourced
+    /// from a Core primitive - there's no <c>--br-unit-box-shadow-0</c> - it sets
+    /// <c>box-shadow: none</c> directly.
+    /// </summary>
+    None = 0,
+
+    /// <summary>
+    /// Maps to <c>--br-unit-box-shadow-1</c>.
+    /// </summary>
+    One = 1,
+
+    /// <summary>
+    /// Maps to <c>--br-unit-box-shadow-2</c>. The largest box shadow available on this scale.
+    /// </summary>
+    Two = 2
+}
+
