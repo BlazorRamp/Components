@@ -1,0 +1,218 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_BoxShadow}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.CSS_Name_BoxShadow @GlobalValues.Common_Page_Title_Api_Usage</PageTitle>
+
+<h1>@GlobalValues.CSS_Name_BoxShadow @GlobalValues.Common_Page_Title_Api_Usage</h1>
+
+<p>
+    Everything you need to work with the <span class="@CodeSpan.Base">br-box-shadow-*</span> CSS classes: the utility classes provided, the strongly-typed <span class="@CodeSpan.Base">BoxShadow</span> C# object
+    used to apply them, and the supporting enum used to select a box shadow.
+</p>
+
+<h2 class="mobile-centred-heading">Overview</h2>
+
+<p>
+    <span class="@CodeSpan.Base">BoxShadow</span> is a <b>utility class</b>, not a BEM component class like <span class="@CodeSpan.Base">GridRow</span> or <span class="@CodeSpan.Base">FlexContent</span>.
+    Rather than describing a block, element, or its variants, it sets a single CSS property - <span class="@CodeSpan.Base">box-shadow</span> - to a fixed value. Utility classes are flat
+    and single-purpose by design, so they can be freely combined with each other and with any other class - including component classes - on the same element.
+</p>
+<p>
+    <span class="@CodeSpan.Base">UnitBoxShadow.One</span> and <span class="@CodeSpan.Base">UnitBoxShadow.Two</span> read from the <span class="@CodeSpan.Base">--br-unit-box-shadow-*</span> primitive
+    scale, defined in <span class="@CodeSpan.Base">BlazorRamp.Core</span>, so a theme change updates them automatically. <span class="@CodeSpan.Base">UnitBoxShadow.None</span> is the
+    exception - there's no <span class="@CodeSpan.Base">--br-unit-box-shadow-0</span> primitive, it simply sets <span class="@CodeSpan.Base">box-shadow: none</span> directly.
+</p>
+
+<section>
+    <h2 id="c#-classes" class="mobile-centred-heading">C# API</h2>
+    <p>
+        <span class="@CodeSpan.Base">BoxShadow</span> provides a utility class that sets an element's CSS <span class="@CodeSpan.Base">box-shadow</span>.
+    </p>
+    <section>
+        <h3 id="box-shadow-class" class="mobile-centred-heading">BoxShadow class</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="box-shadow-class">
+                <thead>
+                    <tr>
+                        <th scope="col">Return</th>
+                        <th scope="col">Static Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>string</td>
+                        <td>BoxShadow.SetShadow(UnitBoxShadow unitBoxShadow)</td>
+                        <td>Gets the class that sets an element's CSS <span class="@CodeSpan.Base">box-shadow</span>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2 class="mobile-centred-heading">Supporting enum</h2>
+    <section>
+        <h3 id="unit-box-shadow-enum" class="mobile-centred-heading">UnitBoxShadow enum</h3>
+        <p>
+            Sets a box shadow from the <span class="@CodeSpan.Base">--br-unit-box-shadow-*</span> primitive scale, defined in <span class="@CodeSpan.Base">BlazorRamp.Core</span>.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-box-shadow-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>None</td>
+                        <td>No box shadow. Sets <span class="@CodeSpan.Base">box-shadow: none</span> directly - there's no <span class="@CodeSpan.Base">--br-unit-box-shadow-0</span> primitive.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>One</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-box-shadow-1</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Two</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-box-shadow-2</span>. The largest box shadow available on this scale.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2 class="mobile-centred-heading">Usage</h2>
+    <p>
+        The following shows a box shadow applied to some buttons that also use the <span class="@CodeSpan.Base">Button</span> class.
+        The last two buttons are icon only buttons, the first uses box shadow one, the second uses box shadow two.
+    </p>
+    <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five) @Margin.BlockEnd(UnitSpace.Ten)">
+
+        <button class="@Button.Base @BoxShadow.SetShadow(UnitBoxShadow.One)">
+            Default Regular Box Shadow One
+        </button>
+        
+        <button class="@Button.Base @BoxShadow.SetShadow(UnitBoxShadow.Two)">
+            Default Regular Box Shadow Two
+        </button>
+        
+        <button class="@Button.Base @Button.Scheme(ButtonSolidScheme.InfoDarker) @BoxShadow.SetShadow(UnitBoxShadow.One)">
+            Info Darker Regular Box Shadow One
+        </button>
+        
+        <button class="@Button.Base @Button.Scheme(ButtonSolidScheme.InfoDarker) @BoxShadow.SetShadow(UnitBoxShadow.Two)">
+            Infor Darker Regular Box Shadow Two
+        </button>
+        
+        <button aria-label="Edit." type="button" class="@Button.Base @Button.Squared @BoxShadow.SetShadow(UnitBoxShadow.One)">
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-pencil-icon);"></span>
+        </button>
+        
+        <button aria-label="Edit Two." type="button" class="@Button.Base @Button.Squared @BoxShadow.SetShadow(UnitBoxShadow.Two)">
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-pencil-icon);"></span>
+        </button>
+
+    </div>
+    <p>
+        The code used for the above examples:
+    </p>
+    
+    <CodeBox CodeBlock="@CssClassesSnippets.BoxShadow_Buttons_Example" AriaLabel="Box shadow on button code examples"/>
+    
+    <p class="@Margin.BlockStart(UnitSpace.Ten)">
+       The next two examples are box shadows applied to <span class="@CodeSpan.Base">div</span> elements that also use the <span class="@CodeSpan.Base">Section</span> class
+    </p>
+    <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five) @Margin.BlockEnd(UnitSpace.Ten)">
+        
+        <div class="@Section.Base @Section.NoMarginBlock @Section.Background(SectionBackground.NeutralLighter) 
+                    @BoxShadow.SetShadow(UnitBoxShadow.One) @FlexContent.Grow(UnitFlexFactor.One)">
+            <p>
+                An un-bordered area using the neutral lighter and a box shadow of one.
+            </p>
+
+        </div>
+        
+        <div class="@Section.Base @Section.Bordered @Section.NoMarginBlock @Section.Background(SectionBackground.Transparent) 
+            @BoxShadow.SetShadow(UnitBoxShadow.Two) @FlexContent.Grow(UnitFlexFactor.One)">
+            <p>
+                A bordered area that uses the transparent background with a box shadow of two.
+            </p>
+        </div>
+
+    </div>
+    <p>
+        The code used for the above examples:
+    </p>
+
+    <CodeBox CodeBlock="@CssClassesSnippets.BoxShadow_Section_Examples" AriaLabel="Box shadow on div elements using the section class code examples" />
+
+    <ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H3" style="margin-top:var(--br-unit-space-9);">
+        <BorderGroups>
+            <BorderGroup Title="Content borders">
+                <BorderRadius LabelText="Content radius" ResetText="Reset content radius" MaxRangeValue="@GlobalValues.Radius_Content_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Content_Radius)])" />
+            </BorderGroup>
+            <BorderGroup Title="Button/link borders">
+                <BorderRadius LabelText="Button radius" ResetText="Reset button radius" MaxRangeValue="@GlobalValues.Radius_Button_Max_Range_Value" CssProperties="@([new(CoreCssVariables.Group_Button_Radius)])" />
+            </BorderGroup>
+        </BorderGroups>
+    </ThemeBorderTool>
+</section>
+
+
+
+<section>
+    <h3 id="css-classes" class="mobile-centred-heading @Margin.BlockStart(UnitSpace.Ten)">CSS classes</h3>
+    <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="css-classes">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>br-box-shadow-0</td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">box-shadow: none</span>.</td>
+                </tr>
+                <tr>
+                    <td>br-box-shadow-1</td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">box-shadow: var(--br-unit-box-shadow-1)</span>.</td>
+                </tr>
+                <tr>
+                    <td>br-box-shadow-2</td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">box-shadow: var(--br-unit-box-shadow-2)</span>.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+<div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
+    <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.Common_Page_Path_CSS_Variables}")">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
+        <span>@GlobalValues.CSS_Name_CSS_Classes - @GlobalValues.Common_Page_Title_Variables</span>
+
+    </a>
+    <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Buttons}/{GlobalValues.Common_Page_Path_Api}")">
+
+        <span>@GlobalValues.CSS_Name_Buttons - @GlobalValues.Common_Page_Title_Api_Usage</span>
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-right-arrow-circle-icon)"></span>
+    </a>
+</div>
+@code {
+
+}

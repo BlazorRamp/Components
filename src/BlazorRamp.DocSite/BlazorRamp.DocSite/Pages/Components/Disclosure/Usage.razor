@@ -48,7 +48,7 @@
 
 </Disclosure>
 
-<p>The code from the example above.</p>
+<p class="@Margin.BlockStart(UnitSpace.Ten)">The code from the example above.</p>
 
 <CodeBox CodeBlock="@DisclosureSnippets.Disclosure_With_Scrollbar_Example" AriaLabel="Disclosure with a maximum content height code example." />
 <p>
@@ -64,11 +64,11 @@
   </p>
 </Disclosure>
 
-<p>The code from the example above.</p>
+<p class="@Margin.BlockStart(UnitSpace.Ten)">The code from the example above.</p>
 
 <CodeBox CodeBlock="@DisclosureSnippets.Disclosure_Content_Border_Removed_Example" AriaLabel="Disclosure with a maximum content height code example." />
 
-<p>
+<p class="@Margin.BlockStart(UnitSpace.Ten)">
     The following example just adds a couple of icon only buttons (that do nothing) using the Blazor Ramp Css Classes along with the Tooltip component. It also uses two-way
     binding with the initial value set to show the disclosure in its expanded state.
 </p>
@@ -79,18 +79,17 @@
             Lorem Ipsum Text
         </span>
         <div class="@FlexContent.Base @Gap.SetGaps(UnitGapSize.Four) @Padding.Block(UnitSpace.Three) @FlexContent.Wrap(UnitFlexWrap.NoWrap)">
-            <Tooltip TooltipText="Opens a popup for editing the content." TooltipID="edit-tooltip" TooltipPosition="TooltipPosition.TopRight" InvertColours="true">
-                <button aria-describedby="edit-tooltip" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Warning)  @Button.Squared">
+            <Tooltip TooltipText="Opens a dialog for editing the content." TooltipID="edit-tooltip" TooltipPosition="TooltipPosition.TopRight" InvertColours="true">
+                <button aria-label="Edit content." aria-describedby="edit-tooltip" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Warning)  @Button.Squared @BoxShadow.SetShadow(UnitBoxShadow.One)">
                     <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-pencil-icon);"></span>
                 </button>
             </Tooltip>
             <Tooltip TooltipText="Opens a new page with the full article." TooltipID="view-tooltip" TooltipPosition="TooltipPosition.TopRight" InvertColours="true">
-                <button id="view-button-id" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Info) @Button.Squared">
+                <button aria-label="View more." aria-describedby="view-tooltip" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Info) @Button.Squared @BoxShadow.SetShadow(UnitBoxShadow.One)">
                     <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-glasses-icon);"></span>
                 </button>
             </Tooltip>
         </div>
-
     </div>
 
     <p style="margin:0;">

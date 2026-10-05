@@ -166,6 +166,7 @@ public class GlobalValues
     public const string Component_Path_Part_Usage           = "usage";
 
 
+    public const string CSS_Path_Part_BoxShadow = "box-shadow";
     public const string CSS_Path_Part_Buttons = "buttons";
     public const string CSS_Path_Part_CodeSpan = "codespan";
     public const string CSS_Path_Part_FlexContent = "flex-content";
@@ -187,7 +188,7 @@ public class GlobalValues
     public const string CSS_Path_Part_TextAlign = "text-align";
     public const string CSS_Path_Part_VerticalAlign = "vertical-align";
 
-
+    public const string CSS_Name_BoxShadow = "BoxShadow";
     public const string CSS_Name_Buttons  = "Buttons";
     public const string CSS_Name_CodeSpan = "CodeSpan";
     public const string CSS_Name_FlexContent = "FlexContent";

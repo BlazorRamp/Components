@@ -487,4 +487,52 @@ public class CssClassesSnippets
             <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" style="--_svg-icon-source:var(--svg-save-icon);"></span>
         </button>
         """;
+
+
+    public const string BoxShadow_Buttons_Example = """
+        <button class="@Button.Base @BoxShadow.SetShadow(UnitBoxShadow.One)">
+            Default Regular Box Shadow One
+        </button>
+
+        <button class="@Button.Base @BoxShadow.SetShadow(UnitBoxShadow.Two)">
+            Default Regular Box Shadow Two
+        </button>
+
+        <button class="@Button.Base @Button.Scheme(ButtonSolidScheme.InfoDarker) @BoxShadow.SetShadow(UnitBoxShadow.One)">
+            Info Darker Regular Box Shadow One
+        </button>
+
+        <button class="@Button.Base @Button.Scheme(ButtonSolidScheme.InfoDarker) @BoxShadow.SetShadow(UnitBoxShadow.Two)">
+            Infor Darker Regular Box Shadow Two
+        </button>
+
+        <button aria-label="Edit." type="button" class="@Button.Base @Button.Squared @BoxShadow.SetShadow(UnitBoxShadow.One)">
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-pencil-icon);"></span>
+        </button>
+
+        <button aria-label="Edit Two." type="button" class="@Button.Base @Button.Squared @BoxShadow.SetShadow(UnitBoxShadow.Two)">
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-pencil-icon);"></span>
+        </button>
+        """;
+
+    public const string BoxShadow_Section_Examples = """
+        <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five) @Margin.Block(UnitSpace.Five)">
+
+            <div class="@Section.Base @Section.NoMarginBlock @Section.Background(SectionBackground.NeutralLighter) 
+                        @BoxShadow.SetShadow(UnitBoxShadow.One) @FlexContent.Grow(UnitFlexFactor.One)">
+                <p>
+                    An un-bordered area using the neutral lighter and a box shadow of one.
+                </p>
+
+            </div>
+
+            <div class="@Section.Base @Section.Bordered @Section.NoMarginBlock @Section.Background(SectionBackground.Transparent) 
+                @BoxShadow.SetShadow(UnitBoxShadow.Two) @FlexContent.Grow(UnitFlexFactor.One)">
+                <p>
+                    A bordered area that uses the transparent background with a box shadow of two.
+                </p>
+            </div>
+
+        </div>
+        """;
 }

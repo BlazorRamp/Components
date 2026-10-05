@@ -63,21 +63,20 @@ public class DisclosureSnippets
                     Lorem Ipsum Text
                 </span>
                 <div class="@FlexContent.Base @Gap.SetGaps(UnitGapSize.Four) @Padding.Block(UnitSpace.Three) @FlexContent.Wrap(UnitFlexWrap.NoWrap)">
-                    <Tooltip TooltipText="Opens a popup for editing the content." TooltipID="edit-tooltip" TooltipPosition="TooltipPosition.TopRight" InvertColours="true">
-                        <button aria-describedby="edit-tooltip" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Warning)  @Button.Squared">
+                    <Tooltip TooltipText="Opens a dialog for editing the content." TooltipID="edit-tooltip" TooltipPosition="TooltipPosition.TopRight" InvertColours="true">
+                        <button aria-label="Edit content." aria-describedby="edit-tooltip" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Warning)  @Button.Squared @BoxShadow.SetShadow(UnitBoxShadow.One)">
                             <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-pencil-icon);"></span>
                         </button>
                     </Tooltip>
                     <Tooltip TooltipText="Opens a new page with the full article." TooltipID="view-tooltip" TooltipPosition="TooltipPosition.TopRight" InvertColours="true">
-                        <button id="view-button-id" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Info) @Button.Squared">
+                        <button aria-label="View more." aria-describedby="view-tooltip" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Info) @Button.Squared @BoxShadow.SetShadow(UnitBoxShadow.One)">
                             <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-glasses-icon);"></span>
                         </button>
                     </Tooltip>
                 </div>
-
             </div>
 
-            <p>
+            <p style="margin:0;">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pharetra ullamcorper. Quisque lectus enim, laoreet eu nisi id, hendrerit convallis est.
                 Nam et gravida purus, eget tincidunt erat. Ut mattis diam at est ullamcorper, et ultrices est ultricies. Nam vel ultricies metus. Cras at aliquam sem. Curabitur
                 consectetur velit vulputate vestibulum sagittis. In et scelerisque libero. Vestibulum condimentum venenatis metus, sit amet commodo tortor rutrum ve [. . . ]

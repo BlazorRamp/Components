@@ -260,7 +260,7 @@
         <b>Note: </b>All of the CSS classes have variables for both light and dark schemes. Click the Theme button at the top of the page.
     </p>
     <p>
-        The following shows an example styling the button to be a regular size without any scheme so the default button styles are applied.
+        Below shows styling the button to be a regular size without any scheme so the default button styles are applied.
     </p>
     <CodeBox CodeBlock="@CssClassesSnippets.Button_Regular_Default_Example" AriaLabel="Button styling code example" />
     <p>
@@ -498,7 +498,30 @@
     </p>
     <CodeBox CodeBlock="@CssClassesSnippets.IconButtons_Code_Example" AriaLabel="Icon button code example." />
 </section>
+<secion>
+    <h2 class="mobile-centred-heading">Addition enhancements</h2>
+    <p>
+        You can also use the separate <span class="@CodeSpan.Base">BoxShadow</span> class to add depth. The following 
+        have box shadow one applied. 
+        See 
+        <a class="@Link.Base @Link.FixedRadius(UnitRadius.Two)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_BoxShadow}/{GlobalValues.Common_Page_Path_Api}")">
+            <span>@GlobalValues.CSS_Name_BoxShadow - @GlobalValues.Common_Page_Title_Api_Usage</span>
+        </a>
+        for more details.
+    </p>
+    <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five) @Margin.BlockEnd(UnitSpace.Ten)">
 
+        <button class="@Button.Base @BoxShadow.SetShadow(UnitBoxShadow.One)">
+            Default Regular Box Shadow One
+        </button>
+
+        <button aria-label="Edit." type="button" class="@Button.Base @Button.Squared @BoxShadow.SetShadow(UnitBoxShadow.One)">
+            <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-pencil-icon);"></span>
+        </button>
+
+
+    </div>
+</secion>
 <section>
     <h2 id="css-classes" class="mobile-centred-heading">CSS classes</h2>
     <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
@@ -749,9 +772,9 @@
 
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
-        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.Common_Page_Path_CSS_Variables}")">
+    <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_BoxShadow}/{GlobalValues.Common_Page_Path_Api}")">
         <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
-        <span>@GlobalValues.CSS_Name_CSS_Classes - @GlobalValues.Common_Page_Title_Variables</span>
+        <span>@GlobalValues.CSS_Name_BoxShadow - @GlobalValues.Common_Page_Title_Api_Usage</span>
 
     </a>
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_CodeSpan}/{GlobalValues.Common_Page_Path_Api}")">
