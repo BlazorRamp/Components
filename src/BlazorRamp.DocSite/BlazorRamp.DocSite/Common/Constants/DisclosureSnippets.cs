@@ -46,7 +46,7 @@ public class DisclosureSnippets
         """;
 
     public const string Disclosure_Content_Border_Removed_Example = """
-        <Disclosure TriggerText="More lorem ipsum text" SvgIcon="--svg-article-icon">
+        <Disclosure TriggerText="More lorem ipsum text" RemoveContentBorderPadding="true" SvgIcon="--svg-article-icon">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pharetra ullamcorper. Quisque lectus enim, laoreet eu nisi id, hendrerit convallis est.
             Nam et gravida purus, eget tincidunt erat. Ut mattis diam at est ullamcorper, et ultrices est ultricies. Nam vel ultricies metus. Cras at aliquam sem. Curabitur
@@ -56,7 +56,7 @@ public class DisclosureSnippets
         """;
 
 
-    public const string Disclosre_Binding_Example = """
+    public const string Disclosure_Binding_Example = """
         <Disclosure TriggerText="Even more lorem ipsum text" SvgIcon="--svg-article-icon" @bind-Expanded="@_isExpanded">
             <div class="@FlexContent.Base @LayoutAlignment.AlignItems(UnitAlignItems.Centre) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @FlexContent.Wrap(UnitFlexWrap.Wrap)">
                 <span>
@@ -83,5 +83,10 @@ public class DisclosureSnippets
             </p>
 
         </Disclosure>
+
+        @code{
+
+            private bool _isExpanded = true;
+        }
         """;
 }

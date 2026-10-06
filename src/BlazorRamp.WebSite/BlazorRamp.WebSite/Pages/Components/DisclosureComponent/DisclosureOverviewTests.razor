@@ -1,0 +1,118 @@
+﻿@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Disclosure}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
+
+<PageTitle>@GlobalValues.Component_Name_Disclosure @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Disclosure @GlobalValues.Common_Page_Title_Overview_Tests</h1>
+
+    <p>
+        A disclosure is a simple component that shows or hides its content on activating its triggering element.
+    </p>
+    <p>
+        <b>Released: </b>Current version <b>v1.0.0</b> See the documentation site for more information: <a target="_blank" class="@GlobalValues.Link_Class" href="@GlobalValues.Site_Link_Docs_Disclosure">Disclosure documentation (opens in new window)</a>
+    </p>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
+    <p>
+        Below is a single Disclosure component which, in this instance has been configured with a maximum content height of 40vh (viewpoint height units). This is proportionate to the window size and as such 
+        if its not large enough for the content a vertical scrollbar will appear. You can adjust the window to make the scrollbar appear/disappear.
+    </p>
+    <p>
+        Using the keys as described below, navigate to the disclosure ensuring you can expand and collapse it to read its content.
+    </p>
+    <p>
+        Change the page size so a scrollbar appears, using only a keyboard try to scroll the content.
+    </p>
+    <h2 id="disclosure-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
+    <ul aria-labelledby="disclosure-keyboard">
+        <li>
+            <kbd>Tab</kbd> - places focus on the trigger button. When the content is expanded, focus then moves through any focusable elements inside it, or onto the content
+            itself if it scrolls and has nothing focusable inside.
+        </li>
+
+        <li><kbd>Space or Enter</kbd> - when on the trigger, expands or collapses the content..</li>
+        <li>
+            <kbd>Arrow keys</kbd> - <kbd>Page Up, Page Down</kbd> - <kbd>Home, End</kbd> when a scrollable content region has focus, scroll it using the browser's standard behaviour.
+        </li>
+    </ul>
+
+</section>
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+    <ul>
+        <li>
+            Tabbing to the disclosure component should set focus on the triggering element (button).
+        </li>
+        <li>
+            Using the enter or space key should expand or collapse the disclosure. Screen reader users should be advised of the state, expanded/collapsed.
+        </li>
+        <li>
+            Keyboard-only users should be able to tab to the content area when there is a scrollbar and be able to scroll the content. Screen reader users
+            should be advised that this stop is for a group, with the name of the triggering element ("Lorem ipsum text in a disclosure") -but only when there
+            is a scrollbar.
+        </li>
+        <li>
+            Voice control users should be able to navigate, expand or collapse the disclosure by using the visible accessible name with the associated command.
+        </li>
+    </ul>
+</section>
+
+<section class="section-box">
+    <h3>Disclosure test</h3>
+
+<Disclosure TriggerText="Lorem ipsum text in a disclosure" ContentMaxHeight="40vh">
+    <p style="margin:0">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pharetra ullamcorper. Quisque lectus enim, laoreet eu nisi id, 
+        hendrerit convallis est.Nam et gravida purus, eget tincidunt erat. Ut mattis diam at est ullamcorper, et ultrices est ultricies. Nam 
+        vel ultricies metus. Cras at aliquam sem. Curabitur consectetur velit vulputate vestibulum sagittis. In et scelerisque 
+        libero. Vestibulum condimentum venenatis metus, sit amet commodo tortor rutrum vel.
+    </p>
+    <p>
+        Suspendisse felis nibh, molestie id sapien at, venenatis condimentum erat. Nam id dui mi. Vestibulum accumsan lacus nec turpis pharetra, 
+        eget scelerisque quam gravida.Sed eget libero condimentum, sodales lorem non, bibendum dui. Nunc iaculis lacinia turpis non mattis. 
+        Pellentesque ut lectus nec quam rutrum sagittis eget non mi. Aliquam at euismod purus. Curabitur maximus, risus eget mattis fermentum, 
+        lorem lorem vehicula sapien, id consequat nisi est at tellus. In a volutpat enim. Aliquam vitae nisl in nisl vulputate mollis. Donec 
+        sapien quam, sagittis at est eget, egestas placerat quam. Donec ipsum orci, facilisis sit amet viverra a, ultrices auctor nisi. Duis volutpat
+        rutrum dui ac scelerisque. Vivamus dapibus faucibus massa sit amet efficitur.
+
+    </p>
+    <p>
+        Donec eu turpis leo. Morbi vehicula sem feugiat, aliquet erat malesuada, pellentesque metus. Mauris vitae dolor sodales, imperdiet magna consectetur,
+        tristique felis. Nunc aliquam elit vitae orci tristique, ut porta nisi interdum. Donec tellus tortor, lobortis vel augue sed, imperdiet cursus massa. 
+        Duis quis magna porttitor, molestie tortor et, rutrum ipsum. Nunc et nibh porta, dignissim purus et, rutrum sapien. Vestibulum a orci libero. 
+        Suspendisse quis scelerisque quam. Quisque purus lorem, accumsan vel mauris ut, pharetra volutpat mauris. Aliquam venenatis lacus at magna aliquet, nec 
+        semper tortor dapibus. Donec eget consectetur metus. Duis pulvinar aliquet augue quis accumsan. Quisque risus odio, dapibus sit amet consequat vel, 
+        elementum id libero.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pharetra ullamcorper. Quisque lectus enim, laoreet eu nisi id, hendrerit convallis est.
+        Nam et gravida purus, eget tincidunt erat. Ut mattis diam at est ullamcorper, et ultrices est ultricies. Nam vel ultricies metus. Cras at aliquam sem. 
+        Curabitur consectetur velit vulputate vestibulum sagittis. In et scelerisque libero. Vestibulum condimentum venenatis metus, sit amet commodo tortor 
+        rutrum vel.
+    </p>
+
+</Disclosure>
+
+</section>
+
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_DebounceFilter}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Debounce_Filter - @GlobalValues.Common_Page_Path_Overview_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Disclosure}/{GlobalValues.Common_Page_Path_Quirks_Issues}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Disclosure - @GlobalValues.Common_Page_Title_Quirks_Issues</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}
