@@ -1,4 +1,5 @@
 ﻿using BlazorRamp.CssClasses.Common.Utilities;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BlazorRamp.CssClasses.Common.Constants;
 
@@ -445,3 +446,30 @@ public enum UnitBoxShadow : int
     Two = 2
 }
 
+/// <summary>
+/// Sets a font weight from the <c>--br-unit-font-weight-*</c> primitive scale.
+/// Used by the <see cref="Font"/> utility class.
+/// </summary>
+public enum UnitFontWeight : int
+{
+    /// <summary>Maps to <c>--br-unit-font-weight-100</c>.</summary>
+    Thin = 0,
+
+    /// <summary>Maps to <c>--br-unit-font-weight-200</c>.</summary>
+    ExtraLight = 1,
+
+    /// <summary>Maps to <c>--br-unit-font-weight-300</c>.</summary>
+    Light = 2,
+
+    /// <summary>The regular, default font weight. Maps to <c>--br-unit-font-weight-400</c>.</summary>
+    Normal = 3,
+
+    /// <summary>Maps to <c>--br-unit-font-weight-500</c>.</summary>
+    Medium = 4,
+
+    /// <summary>Maps to <c>--br-unit-font-weight-600</c>.</summary>
+    SemiBold = 5,
+
+    /// <summary>The boldest weight available on this scale. Maps to <c>--br-unit-font-weight-700</c>.</summary>
+    Bold = 6
+}
