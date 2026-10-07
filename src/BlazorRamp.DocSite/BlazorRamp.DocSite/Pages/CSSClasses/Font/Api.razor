@@ -1,0 +1,247 @@
+﻿
+@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Font}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.CSS_Name_Font @GlobalValues.Common_Page_Title_Api_Usage</PageTitle>
+
+<h1>@GlobalValues.CSS_Name_Font @GlobalValues.Common_Page_Title_Api_Usage</h1>
+
+<p>
+    Everything you need to work with the <span class="@CodeSpan.Base">br-font-size-*</span> and <span class="@CodeSpan.Base">br-font-weight-*</span> CSS classes: the utility classes provided, the strongly-typed
+    <span class="@CodeSpan.Base">Font</span> C# object used to apply them, and the supporting enums used to select a size and weight.
+</p>
+
+<h2 class="mobile-centred-heading">Overview</h2>
+
+<p>
+    <span class="@CodeSpan.Base">Font</span> is a <b>utility class</b>, not a BEM component class like <span class="@CodeSpan.Base">GridRow</span> or <span class="@CodeSpan.Base">FlexContent</span>.
+    Rather than describing a block, element, or its variants, it sets a single CSS property per method - <span class="@CodeSpan.Base">font-size</span> or <span class="@CodeSpan.Base">font-weight</span> -
+    to a fixed value. Utility classes are flat and single-purpose by design, so they can be freely combined with each other and with any other class - including component classes - on the same
+    element, for example a larger, bolder heading.
+</p>
+<p>
+    Both methods read from their own <span class="@CodeSpan.Base">--br-unit-*</span> primitive scale, defined in <span class="@CodeSpan.Base">BlazorRamp.Core</span>, so a theme change updates them
+    automatically.
+</p>
+<p>
+    <span class="@CodeSpan.Base">Font</span> doesn't provide a font family option. The project uses a single font family throughout, set once at the root level, so there's currently
+    nothing to choose between.
+</p>
+
+<section>
+    <h2 id="c#-classes" class="mobile-centred-heading">C# API</h2>
+    <p>
+        <span class="@CodeSpan.Base">Font</span> provides utility classes that set an element's font size and font weight.
+    </p>
+    <section>
+        <h3 id="font-class" class="mobile-centred-heading">Font class</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="font-class">
+                <thead>
+                    <tr>
+                        <th scope="col">Return</th>
+                        <th scope="col">Static Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>string</td>
+                        <td>Font.Size(UnitFontSize unitFontSize)</td>
+                        <td>Gets the class that sets an element's font size.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Font.Weight(UnitFontWeight unitFontWeight)</td>
+                        <td>Gets the class that sets an element's font weight.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2 class="mobile-centred-heading">Supporting enums</h2>
+    <section>
+        <h3 id="unit-font-size-enum" class="mobile-centred-heading">UnitFontSize enum</h3>
+        <p>
+            Sets a font size from the <span class="@CodeSpan.Base">--br-unit-font-size-*</span> primitive scale.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-font-size-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Label</td>
+                        <td>Label-sized text, matching the size used for input/form labels.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Regular</td>
+                        <td>The regular body text size.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Two</td>
+                        <td>A larger text size, one step above regular.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Three</td>
+                        <td>A larger text size, two steps above regular.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Four</td>
+                        <td>A larger text size, three steps above regular.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Five</td>
+                        <td>A larger text size, four steps above regular.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Six</td>
+                        <td>The largest text size available on this scale.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h3 id="unit-font-weight-enum" class="mobile-centred-heading">UnitFontWeight enum</h3>
+        <p>
+            Sets a font weight from the <span class="@CodeSpan.Base">--br-unit-font-weight-*</span> primitive scale.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-font-weight-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Thin</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-font-weight-100</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>ExtraLight</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-font-weight-200</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Light</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-font-weight-300</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Normal</td>
+                        <td>The regular, default font weight. Maps to <span class="@CodeSpan.Base">--br-unit-font-weight-400</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Medium</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-font-weight-500</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>SemiBold</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-font-weight-600</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Bold</td>
+                        <td>The boldest weight available on this scale. Maps to <span class="@CodeSpan.Base">--br-unit-font-weight-700</span>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2 class="mobile-centred-heading">Usage</h2>
+    <p>the following example uses the <span class="@CodeSpan.Base">Font</span> utility to set both size and weight.</p>
+    <p>
+        This is a <span class="@Font.Size(UnitFontSize.Two) @Font.Weight(UnitFontWeight.Light)">font size of 2 with a weight of light (300)</span>
+    </p>
+    <p>
+        This is a <span class="@Font.Size(UnitFontSize.Three) @Font.Weight(UnitFontWeight.SemiBold)">font size of 3 with a weight of semi-bold (600)</span>
+    </p>
+    <p>Code used for the above example</p>
+    <CodeBox CodeBlock="@CssClassesSnippets.Font_Size_Weight_Examples" AriaLabel="Font size and weight code example." />
+</section>
+
+<section>
+    <h3 id="css-classes" class="mobile-centred-heading">CSS classes</h3>
+    <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="css-classes">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        br-font-size-label<br>
+                        br-font-size-one<br>
+                        br-font-size-two<br>
+                        br-font-size-three<br>
+                        br-font-size-four<br>
+                        br-font-size-five<br>
+                        br-font-size-six
+                    </td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">font-size</span>.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-font-weight-100<br>
+                        br-font-weight-200<br>
+                        br-font-weight-300<br>
+                        br-font-weight-400<br>
+                        br-font-weight-500<br>
+                        br-font-weight-600<br>
+                        br-font-weight-700
+                    </td>
+                    <td>Utility</td>
+                    <td>Sets <span class="@CodeSpan.Base">font-weight</span>.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+<div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_FocusOutline}/{GlobalValues.Common_Page_Path_Api}")">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
+        <span>@GlobalValues.CSS_Name_FocusOutline - @GlobalValues.Common_Page_Title_Api_Usage</span>
+
+    </a>
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Gap}/{GlobalValues.Common_Page_Path_Api}")">
+
+        <span>@GlobalValues.CSS_Name_Gap - @GlobalValues.Common_Page_Title_Api_Usage</span>
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-right-arrow-circle-icon)"></span>
+    </a>
+</div>
+@code {
+
+}

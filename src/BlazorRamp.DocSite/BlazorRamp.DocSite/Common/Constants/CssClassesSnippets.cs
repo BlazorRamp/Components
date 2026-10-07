@@ -535,4 +535,14 @@ public class CssClassesSnippets
 
         </div>
         """;
+
+
+    public const string Font_Size_Weight_Examples = """
+        <p>
+            This is a <span class="@Font.Size(UnitFontSize.Two) @Font.Weight(UnitFontWeight.Light)">font size of 2 with a weight of light (300)</span>
+        </p>
+        <p>
+            This is a <span class="@Font.Size(UnitFontSize.Three) @Font.Weight(UnitFontWeight.SemiBold)">font size of 3 with a weight of semi-bold (600)</span>
+        </p>
+        """;
 }
