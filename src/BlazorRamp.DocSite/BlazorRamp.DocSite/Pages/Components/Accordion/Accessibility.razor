@@ -13,7 +13,11 @@
     If you know the panel will be scrollable with no focusable element inside then you should set this to true as well as setting <span class="@CodeSpan.Base">PanelIsRegion</span> to true (which toggles both 
     the role and an accessible name for the panel). Without this tab stop a keyboard-only user may not be able to scroll the panel.
 </p>
-
+<p>
+    <strong>Updated: </strong> as well being able to set panels as regions and manually set a <span class="@CodeSpan.Base">tabindex</span> each accordion panel is now monitored for the addition and
+    removal of panel scrollbars. The monitoring service will automatically ensure panels are keyboard-only accessible via the addition (if needed) of the appropriate attributes such as <span class="@CodeSpan.Base">role="group"</span>,
+     <span class="@CodeSpan.Base">tabindex="0"</span> as well as to assign the the accordion items heading as the group/panels accessible name. Added attributes are removed when the scrollbar is removed.
+</p>
 <h2 id="accordion-keyboard">Keyboard interaction</h2>
 <ul aria-labelledby="accordion-keyboard">
     <li>
