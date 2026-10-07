@@ -8,16 +8,16 @@
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
     <Title>BlazorRamp.Accordion</Title>
-    <Version>1.0.6</Version>
+    <Version>1.1.0</Version>
     <Authors>Paul Kent</Authors>
     <Description>An Accordion Component for the Blazor Ramp ecosystem </Description>
     <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Accordion; </PackageTags>
-    <PackageReleaseNotes>Fix: Tab panel is now transparent by default</PackageReleaseNotes>
-    <AssemblyVersion>1.0.6</AssemblyVersion>
-    <FileVersion>1.0.6</FileVersion>
+    <PackageReleaseNotes>Added the auto tabindex Core utility service for kebyboard-only panel access when scrollbars are present.</PackageReleaseNotes>
+    <AssemblyVersion>1.1.0</AssemblyVersion>
+    <FileVersion>1.1.0</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
@@ -42,7 +42,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="BlazorRamp.Core" Version="1.1.7" />
+		<PackageReference Include="BlazorRamp.Core" Version="1.1.8" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.29" />
 		<PackageReference Include="BuildWebCompiler2022" Version="1.14.15">
 			<PrivateAssets>all</PrivateAssets>

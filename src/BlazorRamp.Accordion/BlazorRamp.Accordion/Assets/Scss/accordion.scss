@@ -161,6 +161,7 @@
         border-bottom-width: var(--br-comp-accordion-area-content-border-width);
         border-bottom-color: var(--br-comp-accordion-area-content-border-colour);
         border-bottom-style: var(--br-comp-accordion-area-content-border-style);
+        scrollbar-width: thin;
 
         &:focus-visible {
             border-radius: var(--br-comp-accordion-area-content-border-radius);

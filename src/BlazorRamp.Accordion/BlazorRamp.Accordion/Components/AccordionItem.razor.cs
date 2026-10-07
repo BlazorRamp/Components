@@ -1,4 +1,5 @@
 ﻿using BlazorRamp.Accordion.Common.Constants;
+using BlazorRamp.Core.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
@@ -9,7 +10,7 @@ namespace BlazorRamp.Accordion.Components;
 /// semantic heading with a trigger button and a collapsible content panel.
 /// Must be used as a direct child of <see cref="Accordion"/>.
 /// </summary>
-public partial class AccordionItem : IDisposable
+public partial class AccordionItem : IAsyncDisposable
 {
     /// <summary>
     /// Gets or sets the parent <see cref="Accordion"/> component. Populated automatically
@@ -67,7 +68,13 @@ public partial class AccordionItem : IDisposable
     /// For example: <c>--svg-my-icon</c>.
     /// </summary>
     [Parameter] public string? SvgIcon { get; set; } = default;
+
+    /// <summary>
+    /// The Core service that adds and removes <c>tabindex</c> on the content element when it becomes scrollable.
+    /// </summary>
+    [Inject] private ICoreUtilityService CoreUtilityService { get; set; } = default!;
     private ElementReference AccordionButtonRef { get; set; }
+    private ElementReference AccordionPanelRef { get; set; }
 
     internal bool  IsExpanded         { get; private set; } = false;
     private string AccordionPanelID   { get; } = $"accordion-panel-{Guid.NewGuid()}";
@@ -107,6 +114,21 @@ public partial class AccordionItem : IDisposable
          ParentControl?.AddAccordionItem(this);
 
         IsExpanded = Expanded;
+    }
+
+    /// <summary>
+    /// On first render, registers the content element with the Core service so it automatically receives a
+    /// <c>tabindex</c> when it overflows and has no focusable descendants.
+    /// </summary>
+    /// <param name="firstRender">
+    /// <see langword="true"/> if this is the first time the component has rendered; otherwise <see langword="false"/>.
+    /// </param>
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (true == firstRender)
+        {
+            if (AccordionPanelRef.Context is not null) await CoreUtilityService.RegisterContainerForAutoTabindex(AccordionPanelRef, _headingText);
+        }
     }
 
     /// <summary>
@@ -194,11 +216,19 @@ public partial class AccordionItem : IDisposable
         return iconVariable is null ? null : $"{GlobalValues.Accordion_Svg_Css_Variable_Name}:{iconVariable};";
     }
 
+
     /// <summary>
+    /// Unregisters the content element from the Core auto-tabindex service. Any exception, such as
+    /// a disconnected circuit, is ignored because the underlying observers go away with the element.
     /// Cleans up the component by removing this item from the parent <see cref="Accordion"/>.
     /// </summary>
-    public void Dispose()
-    
-        => ParentControl?.RemoveAccordionItem(this);    
-    
+    public async ValueTask DisposeAsync()
+    {
+        try
+        {
+              ParentControl?.RemoveAccordionItem(this);
+            if (AccordionPanelRef.Context is not null) await CoreUtilityService.UnregisterContainerForAutoTabindex(AccordionPanelRef);
+        }
+        catch { }
+    }
 }

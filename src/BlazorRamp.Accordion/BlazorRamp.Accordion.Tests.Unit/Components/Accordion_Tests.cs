@@ -1,5 +1,6 @@
 ﻿using BlazorRamp.Accordion.Common.Constants;
 using BlazorRamp.Accordion.Common.Models;
+using BlazorRamp.Core.Common.Extensions;
 using Bunit;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -12,10 +13,22 @@ namespace BlazorRamp.Accordion.Tests.Unit.Components;
 
 public class Accordion_Tests
 {
+    public const string _coreUtilsModulePath = "./_content/BlazorRamp.Core/assets/js/core-utilities.js";
+    public const string _coreRegisterContainerFunc = "registerContainerForAutoTabindex";
+    public const string _coreUnregisterContainerFunc = "unregisterContainerForAutoTabindex";
+
+
     public static IRenderedComponent<AccordionComponennt> CreateAccordionWithParamByName<TValue>(BunitContext context, string paramName, TValue paramValue)
     {
         var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Module_File_Path);
         moduleInterop.SetupVoid(GlobalValues.JS_Register_Handler_Func, _ => true).SetVoidResult();
+
+        context.Services.AddBlazorRampCore();
+
+        var coreModuleInterop = context.JSInterop.SetupModule(_coreUtilsModulePath);
+
+        coreModuleInterop.SetupVoid(_coreRegisterContainerFunc, _ => true).SetVoidResult();
+        coreModuleInterop.SetupVoid(_coreUnregisterContainerFunc, _ => true).SetVoidResult();
 
         return context.Render<AccordionComponennt>(paramBuilder =>
         {
@@ -123,7 +136,12 @@ public class Accordion_Tests
 
             var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Module_File_Path);
             moduleInterop.SetupVoid(GlobalValues.JS_Register_Handler_Func, _ => true).SetVoidResult();
+            context.Services.AddBlazorRampCore();
 
+            var coreModuleInterop = context.JSInterop.SetupModule(_coreUtilsModulePath);
+
+            coreModuleInterop.SetupVoid(_coreRegisterContainerFunc, _ => true).SetVoidResult();
+            coreModuleInterop.SetupVoid(_coreUnregisterContainerFunc, _ => true).SetVoidResult();
             ItemHeadingData? receivedPayload = null;
 
             var accComponent = context.Render<AccordionComponennt>(paramBuilder =>
@@ -185,6 +203,13 @@ public class Accordion_Tests
 
             var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Module_File_Path);
             moduleInterop.SetupVoid(GlobalValues.JS_Register_Handler_Func, _ => true).SetVoidResult();
+
+            context.Services.AddBlazorRampCore();
+
+            var coreModuleInterop = context.JSInterop.SetupModule(_coreUtilsModulePath);
+
+            coreModuleInterop.SetupVoid(_coreRegisterContainerFunc, _ => true).SetVoidResult();
+            coreModuleInterop.SetupVoid(_coreUnregisterContainerFunc, _ => true).SetVoidResult();
 
             var accComponent = context.Render<AccordionComponennt>(paramBuilder =>
             {
@@ -350,7 +375,12 @@ public class Accordion_Tests
         {
             var moduleInterop = context.JSInterop.SetupModule(GlobalValues.JS_Module_File_Path);
             moduleInterop.SetupVoid(GlobalValues.JS_Register_Handler_Func, _ => true).SetVoidResult();
+            context.Services.AddBlazorRampCore();
 
+            var coreModuleInterop = context.JSInterop.SetupModule(_coreUtilsModulePath);
+
+            coreModuleInterop.SetupVoid(_coreRegisterContainerFunc, _ => true).SetVoidResult();
+            coreModuleInterop.SetupVoid(_coreUnregisterContainerFunc, _ => true).SetVoidResult();
             return context.Render<AccordionComponennt>(paramBuilder =>
             {
                 paramBuilder.Add(p => p.ExpandMode, ExpandMode.Multiple);
