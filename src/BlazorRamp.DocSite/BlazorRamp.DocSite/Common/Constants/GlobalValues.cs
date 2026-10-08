@@ -38,7 +38,7 @@ public class GlobalValues
 
     public const string Site_Banner_Title = "Blazor Ramp Docs";
 
-    public const int Start_Width_For_Collapsed_Menu = 576;
+    public const int Start_Width_For_Collapsed_Menu = 768;//576;
 
     public const string Main_Nav_Heading_Getting_Started = "Getting Started";
     public const string Main_Nav_Heading_Theming    = "Theming";

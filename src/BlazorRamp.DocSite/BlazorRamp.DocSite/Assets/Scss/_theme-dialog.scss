@@ -76,7 +76,7 @@
         min-height: 0;
         flex: 1 1 auto;
         border-radius: var(--br-group-dialog-area-content-border-radius);
-
+        scrollbar-width:thin;
         &:focus-visible {
             outline-offset: var(--br-comp-all-outline-offset);
             outline-color: var(--br-comp-all-outline-colour);

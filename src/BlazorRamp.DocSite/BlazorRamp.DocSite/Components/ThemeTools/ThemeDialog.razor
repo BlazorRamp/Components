@@ -18,7 +18,7 @@
             <span id="@_themeHeadingID" >
                 Theme variables
             </span>
-            <button type="button" class="@Button.Base @Button.Size(ButtonSize.Small)" @onclick="HandleCopyTheme">
+            <button type="button" class="@Button.Base @Button.Size(ButtonSize.Small) @BoxShadow.SetShadow(UnitBoxShadow.One)" @onclick="HandleCopyTheme">
                 <span class="@GlobalValues.Theme_Dialog_Icon_Class" aria-hidden="true"></span>
                 Copy theme
                 <span class="@GlobalValues.Theme_Dialog_Icon_Class" aria-hidden="true">
@@ -39,7 +39,7 @@
                 Dark theme variables
             </span>
            
-            <button type="button" class="@Button.Base @Button.Size(ButtonSize.Small)" @onclick="HandleCopyDarkTheme">
+            <button type="button" class="@Button.Base @Button.Size(ButtonSize.Small) @BoxShadow.SetShadow(UnitBoxShadow.One)" @onclick="HandleCopyDarkTheme">
                 <span class="@GlobalValues.Theme_Dialog_Icon_Class" aria-hidden="true"></span>
                 Copy dark theme
                 <span class="@GlobalValues.Theme_Dialog_Icon_Class" aria-hidden="true">
