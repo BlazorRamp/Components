@@ -1,4 +1,4 @@
-﻿@attribute [Route($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Installation}")]
+﻿@attribute [Route($"{GlobalValues.Root_Path}{GlobalValues.Common_Page_Path_Installation}")]
 
 <PageTitle>@GlobalValues.Common_Page_Title_Installation</PageTitle>
 
@@ -69,12 +69,13 @@
 </p>
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
-        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Getting_Started}")">
+    <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_Path}")">
         <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
-        <span>@GlobalValues.Common_Page_Title_Overview</span>
-
+        <span>@GlobalValues.Common_Page_Title_About</span>
     </a>
-        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Getting_Started}{GlobalValues.Common_Page_Path_Accessibility}")">
+
+       
+        <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_Path}{GlobalValues.Common_Page_Path_Accessibility}")">
 
         <span>@GlobalValues.Common_Page_Title_Accessibility</span>
         <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-right-arrow-circle-icon)"></span>

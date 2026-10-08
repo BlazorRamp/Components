@@ -39,8 +39,8 @@ const checkCloseSideNavigation = (menuButton, minWidth = 576) => {
     if (window.innerWidth <= minWidth && menuButton)
         menuButton.setAttribute("aria-expanded", "false");
 };
-const initialise = (menuButton, sideNavigation, mainContent, startMinWidth = 576) => {
-    if (!menuButton || !sideNavigation || !mainContent)
+const initialise = (menuButton, sideNavigation, startMinWidth = 576) => {
+    if (!menuButton || !sideNavigation)
         return;
     if (_initialised)
         return;

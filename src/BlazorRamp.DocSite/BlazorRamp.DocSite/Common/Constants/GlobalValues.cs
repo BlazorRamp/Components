@@ -49,7 +49,7 @@ public class GlobalValues
     public const string Main_Nav_Heading_CSS_Classes = "CSS Classes";
     public const string Main_Nav_Heading_FAQs       = "FAQs";
 
-    public const string Root_path_Getting_Started = "/";
+    public const string Root_Path = "/";
     public const string Root_path_Components = "/components";
     public const string Root_path_CSS_Classes = "/css-classes";
     public const string Root_path_Theming = "/theming";
@@ -80,6 +80,7 @@ public class GlobalValues
     public const string Common_Page_Path_Virtualizing   = "virtualizing";
     public const string Common_Page_Path_Typical_Usage  = "typical-usage";
 
+    public const string Common_Page_Title_About         = "About Us";
     public const string Common_Page_Title_Introduction   = "Introduction";
     public const string Common_Page_Title_Roadmap        = "Roadmap";
     public const string Common_Page_Title_Overview       = "Overview";

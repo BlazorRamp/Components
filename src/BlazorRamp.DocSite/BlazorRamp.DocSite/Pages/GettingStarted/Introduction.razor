@@ -1,5 +1,5 @@
-﻿@attribute [Route($"{GlobalValues.Root_path_Getting_Started}")]
-
+﻿@* @attribute [Route($"{GlobalValues.Root_Path}")] *@
+@* 
 <PageTitle>@GlobalValues.Common_Page_Title_Introduction</PageTitle>
 
 <h1>@GlobalValues.Common_Page_Title_Introduction</h1>
@@ -65,3 +65,62 @@
 @code {
 
 }
+ *@
+
+
+
+<PageTitle>Blazor Ramp - Accessible Blazor components</PageTitle>
+
+<div class="landing">
+
+    <section class="landing__hero" aria-labelledby="hero-heading">
+        <h1 id="hero-heading">Accessible Blazor components, built to WCAG from the start</h1>
+        <p class="landing__lead">
+            Components designed for keyboard and screen reader users first,
+            with live region announcements, large touch targets and contrast-checked themes.
+        </p>
+        <div class="landing__actions">
+            <a class="landing__btn landing__btn--primary" href="/getting-started">Get started</a>
+            <a class="landing__btn landing__btn--secondary" href="/components">Components</a>
+        </div>
+    </section>
+
+    <section class="landing__section" aria-labelledby="install-heading">
+        <h2 id="install-heading">Install</h2>
+        <pre class="landing__code"><code>dotnet add package BlazorRamp</code></pre>
+    </section>
+
+    <section class="landing__section" aria-labelledby="features-heading">
+        <h2 id="features-heading">Why Blazor Ramp</h2>
+        <ul class="landing__cards">
+            <li>
+                <h3>Tested with assistive technology</h3>
+                <p>Checked with screen readers and keyboard-only navigation, not just automated tools.</p>
+            </li>
+            <li>
+                <h3>WCAG 2.2 focused</h3>
+                <p>Target sizes, focus indicators and contrast follow the guidelines. State your level here once you can back it up.</p>
+            </li>
+            <li>
+                <h3>Light and dark themes</h3>
+                <p>Both themes use design tokens with contrast checked for each.</p>
+            </li>
+            <li>
+                <h3>Any Blazor hosting model</h3>
+                <p>Works with Server, WebAssembly and Auto render modes.</p>
+            </li>
+        </ul>
+    </section>
+
+    <section class="landing__section" aria-labelledby="demo-heading">
+        <h2 id="demo-heading">See it working</h2>
+        <p>Replace this with one live component, such as the live region announcer.</p>
+    </section>
+
+    <footer class="landing__footer">
+        <a href="@GlobalValues.Web_Site_Path_GitHub_Repo">GitHub</a>
+        <a href="https://www.nuget.org/">NuGet</a>
+        <span>MIT licence</span>
+    </footer>
+
+</div>

@@ -57,9 +57,9 @@ const checkCloseSideNavigation = (menuButton: HTMLButtonElement, minWidth:number
 }
 
 
-const initialise = (menuButton: HTMLButtonElement, sideNavigation: HTMLElement, mainContent: HTMLElement, startMinWidth:number = 576): void => {
+const initialise = (menuButton: HTMLButtonElement, sideNavigation: HTMLElement, startMinWidth:number = 576): void => {
 
-    if (!menuButton || !sideNavigation || !mainContent) return;
+    if (!menuButton || !sideNavigation) return;
 
     if (_initialised) return;
 
