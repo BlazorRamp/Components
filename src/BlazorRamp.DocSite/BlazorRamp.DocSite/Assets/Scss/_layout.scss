@@ -287,39 +287,6 @@
         flex-wrap: wrap;
     }
 
-    &__btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: var(--br-unit-wcag-target-3a);
-        padding-inline: calc(var(--br-unit-space-5) * 1.5);
-        border-radius: var(--br-unit-radius-5);
-        border: 2px solid var(--br-comp-all-focus-indicator-colour); // swap for your accent token
-        font-weight: 600;
-        text-decoration: none;
-
-        &--primary {
-            background-color: var(--br-comp-all-focus-indicator-colour); // swap for your accent token
-            color: var(--br-unit-colour-canvas); // swap for a text colour with enough contrast on the accent
-        }
-
-        &--secondary {
-            background-color: transparent;
-            color: var(--br-unit-colour-canvas-text);
-        }
-
-        &:hover {
-            background-color: var(--br-comp-all-button-state-hover);
-            color: var(--br-unit-colour-canvas-text);
-        }
-
-        &:focus-visible {
-            outline-offset: var(--br-comp-all-outline-offset);
-            outline-width: var(--br-comp-all-outline-width);
-            outline-style: var(--br-comp-all-outline-style);
-            outline-color: var(--br-comp-all-focus-indicator-colour);
-        }
-    }
 
     &__section {
         padding-block: var(--br-unit-space-5);

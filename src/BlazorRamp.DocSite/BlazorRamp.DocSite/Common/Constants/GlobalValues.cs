@@ -238,7 +238,7 @@ public class GlobalValues
 
     public const string Web_Site_Path_Component_Test = "https://blazorramp.uk";
     public const string Web_Site_Path_GitHub_Repo = "https://github.com/BlazorRamp/Components";
-
+    public const string NuGet_Blazor_Ramp_Components = "https://www.nuget.org/packages?q=blazorramp";
 
     public const string Validated_Repo_Site = "https://github.com/code-dispenser/Validated";
     public const string Validated_Blazor_Repo_Site = "https://github.com/code-dispenser/Validated-Blazor";
