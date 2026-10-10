@@ -11,6 +11,11 @@
     grid-template-columns: auto 1fr;
     color: var(--br-unit-colour-canvas-text);
 
+    &:has(#app__main.splash-screen) {
+        background: radial-gradient(circle min(70rem, 120vw) at top right, var(--br-unit-colour-primary), transparent 100%);
+    }
+
+
     &__header {
         grid-column: 1/3;
         grid-row: 1/2;
@@ -46,6 +51,7 @@
             aspect-ratio: 1/1;
             padding: var(--br-unit-space-4);
             color: var(--br-unit-colour-canvas-text);
+
 
             &[aria-expanded="false"] {
                 & > span:first-child {
@@ -110,6 +116,10 @@
                     min-width: 1.5rem;
                     color: var(--br-unit-colour-warning);
                     @include dark-theme-icon;
+
+                    &.splash-screen {
+                        color: contrast-color(var(--br-unit-colour-primary));
+                    }
                 }
             }
 
@@ -131,6 +141,15 @@
                 outline-style: var(--br-comp-all-outline-style);
                 outline-color: var(--br-comp-all-focus-indicator-colour);
                 background-color: var(--br-comp-all-link-focused-background-colour);
+            }
+
+            &.splash-screen {
+                color: contrast-color(var(--br-unit-colour-primary));
+
+                &:focus-visible {
+                    background-color: transparent;
+                    outline-color: contrast-color(var(--br-unit-colour-primary));
+                }
             }
 
             &:hover {
@@ -170,6 +189,15 @@
                 outline-style: var(--br-comp-all-outline-style);
                 outline-color: var(--br-comp-all-focus-indicator-colour);
                 background-color: var(--br-comp-all-link-focused-background-colour);
+            }
+
+            &.splash-screen {
+                color: contrast-color(var(--br-unit-colour-primary));
+
+                &:focus-visible {
+                    background-color: transparent;
+                    outline-color: contrast-color(var(--br-unit-colour-primary));
+                }
             }
 
             &:hover {
@@ -219,12 +247,12 @@
         }
 
         &.splash-screen {
-            margin:0;
+            margin: 0;
             margin-top: var(--br-unit-space-5);
             padding: var(--br-unit-space-5);
             border-radius: 0;
             border: none;
-            border-top: 1px solid var(--br-comp-all-divider-colour);
+            border-top: 2px solid var(--br-comp-all-divider-colour);
         }
     }
 
@@ -296,13 +324,6 @@
         }
     }
 
-    &__code {
-        overflow-x: auto;
-        padding: var(--br-unit-space-5);
-        border: 1px solid var(--br-comp-all-divider-colour);
-        border-radius: var(--br-unit-radius-5);
-        margin: 0;
-    }
 
     &__cards {
         list-style: none;
@@ -329,5 +350,6 @@
         flex-wrap: wrap;
         padding-block: var(--br-unit-space-5);
         border-top: 1px solid var(--br-comp-all-divider-colour);
+        margin-bottom:var(--br-unit-space-13);
     }
 }

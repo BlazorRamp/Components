@@ -16,13 +16,16 @@
             <a class="@Button.Base @Button.Size(ButtonSize.ExtraLarge) @Button.Scheme(ButtonSolidScheme.PrimaryDarker) 
                       @Font.Size(UnitFontSize.Two)
                       @Font.Weight(UnitFontWeight.Medium)"
-               href="/installation" style="text-decoration:none;">Get Started</a>
+               href="/installation" style="text-decoration:none;">
+                <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-api-icon);" aria-hidden="true"></span>
+               <span>Read the docs</span></a>
             <a class="@Button.Base @Button.Size(ButtonSize.ExtraLarge)
                         @Font.Size(UnitFontSize.Two)
                         @Font.Weight(UnitFontWeight.Medium)"
-               href="/accessibility" style="text-decoration:none;">Accessibility</a>
-@*             <a class="landing__btn landing__btn--primary" href="/getting-started">Get started</a>
-            <a class="landing__btn landing__btn--secondary" href="/components">Components</a> *@
+               href="/accessibility" style="text-decoration:none;">
+               <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-accessibility-icon);" aria-hidden="true"></span> 
+               <span>Accessibility</span>
+           </a>
         </div>
     </section>
     <section class="landing__section" aria-labelledby="features-heading">
@@ -37,19 +40,42 @@
                 <p>Target sizes, focus indicators and contrast follow the guidelines. State your level here once you can back it up.</p>
             </li>
             <li>
-                <h3>Light and dark themes</h3>
-                <p>Both themes use design tokens with contrast checked for each.</p>
-            </li>
-            <li>
-                <h3>Any Blazor hosting model</h3>
-                <p>Works with Server, WebAssembly and Auto render modes.</p>
+                <h3>Built from scratch</h3>
+                <p>Blazor Ramp uses no third-party CSS or JavaScript libraries, and doesn't import code from component libraries 
+                   like Shadcn. Every line - markup, styles, and behaviour - is written from scratch, by hand, specifically for this project.</p>
             </li>
         </ul>
     </section>
-
     <section class="landing__section" aria-labelledby="demo-heading">
-        <h2 id="demo-heading">See it working</h2>
-        <p>Replace this with one live component, such as the live region announcer.</p>
+        <h2 id="demo-heading">See it working - latest releases and updaes</h2>
+        <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content) @Section.Background(SectionBackground.Transparent)" style="margin-top:var(--br-unit-space-7);">
+            <Disclosure SvgIcon="--svg-disclosure-icon" ContentMaxHeight="20vh" TriggerText="Disclosure component v1.0.0">
+                <div class="@FlexContent.Base @LayoutAlignment.AlignItems(UnitAlignItems.Centre) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @FlexContent.Wrap(UnitFlexWrap.Wrap)">
+                    <span>
+                        Lorem Ipsum Text
+                    </span>
+                    <div class="@FlexContent.Base @Gap.SetGaps(UnitGapSize.Four) @Padding.Block(UnitSpace.Three) @FlexContent.Wrap(UnitFlexWrap.NoWrap)">
+                        <Tooltip TooltipText="Opens a dialog for editing the content." TooltipID="edit-tooltip" TooltipPosition="TooltipPosition.TopRight" InvertColours="true">
+                            <button aria-label="Edit content." aria-describedby="edit-tooltip" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Warning)  @Button.Squared @BoxShadow.SetShadow(UnitBoxShadow.One)">
+                                <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-pencil-icon);"></span>
+                            </button>
+                        </Tooltip>
+                        <Tooltip TooltipText="Opens a new page with the full article." TooltipID="view-tooltip" TooltipPosition="TooltipPosition.TopRight" InvertColours="true">
+                            <button aria-label="View more." aria-describedby="view-tooltip" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Info) @Button.Squared @BoxShadow.SetShadow(UnitBoxShadow.One)">
+                                <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-glasses-icon);"></span>
+                            </button>
+                        </Tooltip>
+                    </div>
+                </div>
+
+                <p style="margin:0;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pharetra ullamcorper. Quisque lectus enim, laoreet eu nisi id, hendrerit convallis est.
+                    Nam et gravida purus, eget tincidunt erat. Ut mattis diam at est ullamcorper, et ultrices est ultricies. Nam vel ultricies metus. Cras at aliquam sem. Curabitur
+                    consectetur velit vulputate vestibulum sagittis. In et scelerisque libero. Vestibulum condimentum venenatis metus, sit amet commodo tortor rutrum ve [. . . ]
+                </p>
+            </Disclosure>
+
+        </section>
     </section>
 
     <footer class="landing__footer">
@@ -75,13 +101,21 @@
                     <path d="M 1246 577 L 1247 750 L 1310 749 L 1310 648 L 1315 636 L 1321 630 L 1328 627 L 1338 627 L 1346 630 L 1352 636 L 1355 643 L 1357 750 L 1420 749 L 1420 650 L 1424 637 L 1431 630 L 1439 627 L 1449 627 L 1456 630 L 1463 637 L 1466 646 L 1466 749 L 1530 749 L 1529 630 L 1525 614 L 1520 604 L 1505 587 L 1488 578 L 1469 574 L 1448 575 L 1425 583 L 1416 589 L 1406 599 L 1398 590 L 1387 582 L 1375 577 L 1362 574 L 1346 574 L 1328 579 L 1320 583 L 1309 593 L 1307 591 L 1307 577 Z M 1718 592 L 1698 580 L 1672 573 L 1646 573 L 1637 575 L 1620 582 L 1607 593 L 1606 577 L 1544 577 L 1545 812 L 1608 811 L 1609 738 L 1622 748 L 1634 753 L 1648 756 L 1670 756 L 1685 753 L 1706 744 L 1719 735 L 1732 721 L 1743 701 L 1749 679 L 1750 657 L 1746 634 L 1740 619 L 1727 600 Z M 1640 622 L 1650 622 L 1659 624 L 1670 630 L 1678 639 L 1684 653 L 1685 671 L 1679 688 L 1666 701 L 1654 706 L 1634 705 L 1621 698 L 1613 690 L 1606 671 L 1607 652 L 1612 640 L 1621 630 L 1627 626 Z M 1068 593 L 1086 635 L 1098 628 L 1116 621 L 1132 618 L 1144 618 L 1158 622 L 1167 631 L 1169 637 L 1168 645 L 1152 643 L 1126 643 L 1102 647 L 1083 655 L 1069 666 L 1063 675 L 1059 685 L 1057 694 L 1057 707 L 1060 720 L 1064 728 L 1074 740 L 1086 748 L 1096 752 L 1110 755 L 1129 755 L 1151 749 L 1166 739 L 1171 733 L 1173 750 L 1229 750 L 1229 632 L 1224 614 L 1219 604 L 1211 594 L 1200 585 L 1186 578 L 1168 573 L 1149 571 L 1128 572 L 1103 577 L 1089 582 Z M 1118 688 L 1127 680 L 1137 677 L 1162 677 L 1169 679 L 1169 693 L 1165 704 L 1153 714 L 1141 717 L 1129 716 L 1118 708 L 1115 700 Z M 846 526 L 846 749 L 913 750 L 913 679 L 927 677 L 939 679 L 983 750 L 1057 750 L 1056 746 L 1039 719 L 1014 683 L 1004 666 L 1020 657 L 1029 649 L 1040 635 L 1047 617 L 1048 589 L 1044 574 L 1034 557 L 1023 546 L 1011 538 L 1000 533 L 978 527 L 958 525 Z M 914 575 L 958 575 L 974 582 L 979 588 L 982 598 L 981 610 L 976 620 L 970 625 L 957 630 L 915 630 L 913 626 Z" fill-rule="evenodd" />
                 </g>
             </svg>
+            <span class="br-visually-hidden">
+                Blazor Ramp
+            </span>
             <span>
                 Test Site
             </span>
             <span class="br-visually-hidden">opens in a new window</span>
         </a>
-        <span class="logos--apache-software-foundation-icon"></span>
-        <span>MIT licence</span>
+        
+        <a target="_blank" rel="noreferrer" href="@GlobalValues.Web_Site_Path_Apache_Licence_About"
+           class="@Link.Base @Padding.Inline(UnitSpace.Two)">
+            <span class="logo-apache"></span>
+            <span>Project uses the Apache 2.0 Licence</span>
+            <span class="br-visually-hidden">opens in a new window</span>
+        </a>
     </footer>
 
 </div>

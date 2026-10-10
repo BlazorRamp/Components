@@ -7,7 +7,7 @@
     addRoleAndLabel: boolean;
     originalTabindex: string | null;         // captured at registration so it can be restored (e.g. "-1" panels)
     applied: boolean;                        // true while we have added the tab stop
-    addedRole: boolean;                      // true if we added role="region" (none was present) and so must remove it
+    addedRole: boolean;                      // true if we added role="group" (none was present) and so must remove it
     addedAriaLabel: boolean;                 // true if we added aria-label (no name was present) and so must remove it
 }
 const _tabFocusElements =
