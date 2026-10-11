@@ -340,6 +340,30 @@
         }
     }
 
+    &__support {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: var(--br-unit-space-4);
+        margin-block-start: calc(var(--br-unit-space-5) * 1.5);
+
+        & ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: var(--br-unit-space-3);
+        }
+
+        & li {
+            padding: var(--br-unit-space-2) var(--br-unit-space-4);
+            border: 1px solid var(--br-comp-all-divider-colour);
+            border-radius: var(--br-unit-radius-3);
+            font-weight: 600;
+            background-color: var(--br-cls-secondary-light);
+        }
+    }
 
     &__cards {
         list-style: none;

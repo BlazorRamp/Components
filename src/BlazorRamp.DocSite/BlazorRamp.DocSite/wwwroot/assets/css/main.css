@@ -333,6 +333,28 @@
 .landing__section h2 {
   margin-block-start: 0;
 }
+.landing__support {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--br-unit-space-4);
+  margin-block-start: calc(var(--br-unit-space-5) * 1.5);
+}
+.landing__support ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--br-unit-space-3);
+}
+.landing__support li {
+  padding: var(--br-unit-space-2) var(--br-unit-space-4);
+  border: 1px solid var(--br-comp-all-divider-colour);
+  border-radius: var(--br-unit-radius-3);
+  font-weight: 600;
+  background-color: var(--br-cls-secondary-light);
+}
 .landing__cards {
   list-style: none;
   margin: 0;
