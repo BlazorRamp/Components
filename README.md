@@ -7,7 +7,7 @@ Blazor Ramp is a suite of modular, accessible Blazor components, delivered indiv
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/BlazorRamp/Components/blob/main/LICENSE)
 [![Docs](https://img.shields.io/badge/docs-docs.blazorramp.uk-informational)](https://docs.blazorramp.uk)
 [![Try it live](https://img.shields.io/badge/try%20it-blazorramp.uk-informational)](https://blazorramp.uk)
-
+![.NET](https://img.shields.io/badge/.NET-8%20%7C%209%20%7C%2010-512BD4)
 ---
 
 ## Why Blazor Ramp exists
