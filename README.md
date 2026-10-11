@@ -77,6 +77,11 @@ Every package automatically references `BlazorRamp.Core` (the live region servic
 | [`BlazorRamp.Tabs`](src/BlazorRamp.Tabs) | Accessible tabs with automatic or manual panel activation, and optional per-tab icons. | [NuGet](https://www.nuget.org/packages/BlazorRamp.Tabs) | [![NuGet](https://img.shields.io/nuget/v/BlazorRamp.Tabs.svg)](https://www.nuget.org/packages/BlazorRamp.Tabs) |
 | [`BlazorRamp.ToggleTip`](src/BlazorRamp.ToggleTip) | A "toggletip" (Heydon Pickering's term) - supplemental content shown on click/keypress/touch rather than hover, built on the Popover API and CSS anchor positioning. | [NuGet](https://www.nuget.org/packages/BlazorRamp.ToggleTip) | [![NuGet](https://img.shields.io/nuget/v/BlazorRamp.ToggleTip.svg)](https://www.nuget.org/packages/BlazorRamp.ToggleTip) |
 | [`BlazorRamp.Tooltip`](src/BlazorRamp.Tooltip) | A tooltip component that provides a small, informative pop-up box that appears when you hover your mouse pointer over and/or set focus on an interface element such as an icon only button. | [NuGet](https://www.nuget.org/packages/BlazorRamp.Tooltip) | [![NuGet](https://img.shields.io/nuget/v/BlazorRamp.Tooltip.svg)](https://www.nuget.org/packages/BlazorRamp.Tooltip) |
+
+## Supported .NET versions
+
+Every Blazor Ramp package targets **.NET 8, .NET 9 and .NET 10**, so you can use the components without being on the latest release. The install steps below are the same on all three.
+
 ## Getting started
 
 Every package follows the same install pattern. Using `BlazorRamp.SkipTo` as an example:
