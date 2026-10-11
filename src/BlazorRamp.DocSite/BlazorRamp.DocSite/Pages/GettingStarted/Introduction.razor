@@ -1,4 +1,4 @@
-﻿@* @attribute [Route($"{GlobalValues.Root_Path}")]  *@
+﻿ @attribute [Route($"{GlobalValues.Root_Path}")]
 
 
 <PageTitle>Blazor Ramp - Accessible Blazor components</PageTitle>
@@ -8,18 +8,17 @@
     <section class="landing__hero" aria-labelledby="hero-heading">
         <h1 id="hero-heading">Accessible Blazor components, built to WCAG from the start</h1>
         <p class="landing__lead">
-            Components designed for keyboard and screen reader users first,
-            with live region announcements, large touch targets and contrast-checked themes.
+            Designed for keyboard and screen reader users first, with live region announcements so nothing happens silently.
         </p>
         <div class="landing__actions">
 
-            <a class="@Button.Base @Button.Size(ButtonSize.ExtraLarge) @Button.Scheme(ButtonSolidScheme.PrimaryDarker) 
+            <a class="@Button.Base @Button.Size(ButtonSize.ExtraLarge) 
                       @Font.Size(UnitFontSize.Two)
                       @Font.Weight(UnitFontWeight.Medium)"
                href="/installation" style="text-decoration:none;">
                 <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-api-icon);" aria-hidden="true"></span>
                <span>Read the docs</span></a>
-            <a class="@Button.Base @Button.Size(ButtonSize.ExtraLarge)
+            <a class="@Button.Base @Button.Size(ButtonSize.ExtraLarge) @Button.Scheme(ButtonSolidScheme.PrimaryDarker)
                         @Font.Size(UnitFontSize.Two)
                         @Font.Weight(UnitFontWeight.Medium)"
                href="/accessibility" style="text-decoration:none;">
@@ -32,48 +31,136 @@
         <h2 id="features-heading">Why Blazor Ramp</h2>
         <ul class="landing__cards">
             <li>
-                <h3>Tested with assistive technology</h3>
-                <p>Checked with screen readers and keyboard-only navigation, not just automated tools.</p>
-            </li>
-            <li>
-                <h3>WCAG 2.2 focused</h3>
-                <p>Target sizes, focus indicators and contrast follow the guidelines. State your level here once you can back it up.</p>
+                <h3>Tested by hand, on real assistive technology</h3>
+                <p>
+                    Every component is built with a screen reader running, then manually checked before release
+                    with JAWS, NVDA, Narrator, VoiceOver and TalkBack, plus keyboard-only and voice control.
+                    Automated scanners alone miss too much.
+                </p>
             </li>
             <li>
                 <h3>Built from scratch</h3>
-                <p>Blazor Ramp uses no third-party CSS or JavaScript libraries, and doesn't import code from component libraries 
-                   like Shadcn. Every line - markup, styles, and behaviour - is written from scratch, by hand, specifically for this project.</p>
+                <p>
+                    Blazor Ramp uses no third-party CSS or JavaScript libraries, and doesn't import code from
+                    component libraries like Shadcn. Every line, from markup and styles, and behaviour, is written
+                    from scratch, by hand, specifically for this project.
+                </p>
+            </li>
+            <li>
+                <h3>Take only what you need</h3>
+                <p>
+                    Each component ships as its own NuGet package, so you only install what you use. Every
+                    package builds on the same shared Core and design tokens, giving you consistent behaviour,
+                    live region announcements and theming throughout.
+                </p>
+            </li>
+            <li>
+                <h3>Who it's for</h3>
+                <p>
+                    Any team building an interactive Blazor site or app that must work for keyboard, screen
+                    reader and voice control users, whether for legal reasons (WCAG, Section 508, EN 301 549)
+                    or simply to do right by people who rely on assistive technology.
+                </p>
             </li>
         </ul>
     </section>
     <section class="landing__section" aria-labelledby="demo-heading">
-        <h2 id="demo-heading">See it working - latest releases and updaes</h2>
+        <h2 id="demo-heading">See it working - live examples</h2>
         <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content) @Section.Background(SectionBackground.Transparent)" style="margin-top:var(--br-unit-space-7);">
-            <Disclosure SvgIcon="--svg-disclosure-icon" ContentMaxHeight="20vh" TriggerText="Disclosure component v1.0.0">
+            <Disclosure SvgIcon="--svg-disclosure-icon" ContentMaxHeight="20vh" TriggerText="Disclosure component v1.0.0 - new" @bind-Expanded="@_expanded" style="margin-block-end:2rem;">
                 <div class="@FlexContent.Base @LayoutAlignment.AlignItems(UnitAlignItems.Centre) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @FlexContent.Wrap(UnitFlexWrap.Wrap)">
                     <span>
-                        Lorem Ipsum Text
+                        Overview
                     </span>
                     <div class="@FlexContent.Base @Gap.SetGaps(UnitGapSize.Four) @Padding.Block(UnitSpace.Three) @FlexContent.Wrap(UnitFlexWrap.NoWrap)">
-                        <Tooltip TooltipText="Opens a dialog for editing the content." TooltipID="edit-tooltip" TooltipPosition="TooltipPosition.TopRight" InvertColours="true">
-                            <button aria-label="Edit content." aria-describedby="edit-tooltip" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Warning)  @Button.Squared @BoxShadow.SetShadow(UnitBoxShadow.One)">
-                                <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-pencil-icon);"></span>
-                            </button>
+                        <Tooltip TooltipText="View the Accessibility Information." TooltipID="edit-tooltip" TooltipPosition="TooltipPosition.TopRight" InvertColours="true">
+                            <a aria-label="Accessibility Information" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Inverted)  @Button.Squared @BoxShadow.SetShadow(UnitBoxShadow.Two)"
+                               href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Disclosure}/{GlobalValues.Common_Page_Path_Accessibility}")">
+                                <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-accessibility-icon);"></span>
+                            </a>
                         </Tooltip>
-                        <Tooltip TooltipText="Opens a new page with the full article." TooltipID="view-tooltip" TooltipPosition="TooltipPosition.TopRight" InvertColours="true">
-                            <button aria-label="View more." aria-describedby="view-tooltip" type="button" class="@Button.Base @Button.Scheme(ButtonSolidScheme.Info) @Button.Squared @BoxShadow.SetShadow(UnitBoxShadow.One)">
-                                <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-glasses-icon);"></span>
-                            </button>
+                        <Tooltip TooltipText="View the Disclosure API." TooltipID="view-tooltip" TooltipPosition="TooltipPosition.TopRight" InvertColours="false">
+                            <a aria-label="Disclosure API" class="@Button.Base @Button.Scheme(ButtonSolidScheme.NeutralLighter) @Button.Squared @BoxShadow.SetShadow(UnitBoxShadow.Two)"
+                               href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Disclosure}/{GlobalValues.Common_Page_Path_Api}")">
+                                <span class="@SvgIcon.Base" style="--_svg-icon-source:var(--svg-disclosure-icon);"></span>
+                            </a>
                         </Tooltip>
                     </div>
                 </div>
 
-                <p style="margin:0;">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pharetra ullamcorper. Quisque lectus enim, laoreet eu nisi id, hendrerit convallis est.
-                    Nam et gravida purus, eget tincidunt erat. Ut mattis diam at est ullamcorper, et ultrices est ultricies. Nam vel ultricies metus. Cras at aliquam sem. Curabitur
-                    consectetur velit vulputate vestibulum sagittis. In et scelerisque libero. Vestibulum condimentum venenatis metus, sit amet commodo tortor rutrum ve [. . . ]
+                <p>
+                    The Disclosure component provides an accessible way to show and hide a single region of content. It's made up of a button, the trigger, and the content that the button
+                    controls. Activating the trigger with a mouse, touch, or the <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Enter</kbd> or <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Space</kbd>
+                    keys toggles the content, while the trigger's <span class="@CodeSpan.Base">aria-expanded</span> attribute tells assistive technologies whether the content is currently shown
+                    and <span class="@CodeSpan.Base">aria-controls</span> associates the trigger with the content it controls.
+                    This is the disclosure pattern described in the WAI-ARIA Authoring Practices Guide.
                 </p>
             </Disclosure>
+            <p>
+
+                Lose the mouse and just use your keyboard to navigate. Or fire up a screen reader - table keys for:  
+            <ToggleTip CloseText="Close Keyboard Info." Label="NVDA:" ShowClose="true" ShowLabel="true" ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" ToggleTipSize="ToggleTipSize.Medium">
+                <h3>NVDA table keys</h3>
+                    <ul>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">T</kbd> or <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Shift</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">T</kbd> - move to the next or previous table.</li>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Ctrl</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Alt</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Arrow keys</kbd> - move between cells: up and down for rows, left and right for columns.</li>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Ctrl</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Alt</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Home</kbd> or <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">End</kbd> - jump to the first or last column in the row.</li>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">NVDA</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Ctrl</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Alt</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Arrow keys</kbd> - read the current row or column aloud.</li>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Enter</kbd> or <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Space</kbd> - activate a column header sort button.</li>
+                    </ul>
+            </ToggleTip>
+            <ToggleTip CloseText="Close" Label="JAWS:" ShowClose="true" ShowLabel="true" ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" ToggleTipSize="ToggleTipSize.Medium">
+                   <h3>JAWS table keys</h3>
+                    <ul>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">T</kbd> or <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Shift</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">T</kbd> - move to the next or previous table.</li>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Ctrl</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Alt</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Arrow keys</kbd> - move between cells: up and down for rows, left and right for columns.</li>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Ctrl</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Alt</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Numpad 5</kbd> - read the current cell with its row and column headers.</li>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Insert</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Shift</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Up Arrow</kbd> - read the current row aloud.</li>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Enter</kbd> or <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Space</kbd> - activate a column header sort button.</li>
+                    </ul>
+            </ToggleTip>
+                <ToggleTip CloseText="Close" Label="Narrator:" ShowClose="true" ShowLabel="true" ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" ToggleTipSize="ToggleTipSize.Medium">
+                 <h3>Narrator table keys</h3>
+                    <ul>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">T</kbd> or <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Shift</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">T</kbd> - move to the next or previous table (scan mode).</li>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Ctrl</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Alt</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Arrow keys</kbd> - move between cells: up and down for rows, left and right for columns.</li>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Ctrl</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Shift</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Alt</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">/</kbd> - announce your location in the table.</li>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Ctrl</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Shift</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Alt</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Arrow keys</kbd> - read the row or column headers, or the current row or column.</li>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Enter</kbd> or <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Space</kbd> - activate a column header sort button.</li>
+                    </ul>
+            </ToggleTip>
+                <ToggleTip CloseText="Close" Label="VoiceOver:" ShowClose="true" ShowLabel="true" ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" ToggleTipSize="ToggleTipSize.Medium">
+                <h3>VoiceOver table keys</h3>
+                    <p>The <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">VO</kbd> key is <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Control</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Option</kbd>, or <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Caps Lock</kbd>.</p>
+                    <ul>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">VO</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Command</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">T</kbd> - move to the next table.</li>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">VO</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Arrow keys</kbd> - move between cells: up and down for rows, left and right for columns.</li>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">VO</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Home</kbd> or <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">End</kbd> - jump to the first or last cell in the table.</li>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">VO</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Shift</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Down Arrow</kbd> or <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Up Arrow</kbd> - start or stop interacting with a table, if table grouping is off.</li>
+                        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">VO</kbd> + <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Space</kbd> - activate a column header sort button.</li>
+                    </ul>
+            </ToggleTip>
+            </p>
+
+            <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule"
+                       FilterAlignment="FilterAlignment.Start" TitleAlignment="TitleAlignment.Start">
+                <Filter>
+                    <DebounceFilter HintText="Filters the table below across all columns" RegexPattern="^[A-Za-z0-9 ]*$" OnDebounceFilterResult="HandleOnDebounce"
+                                    ValidationMessage="Invalid filter, filtering paused, letters, numbers and spaces only" />
+                </Filter>
+                <TableColumns>
+                    <DataColumn DataProperty="c => c.ContactID" DisplayName="ID" IsSortable="true" />
+                    <DataColumn DataProperty="c => c.GivenName" DisplayName="First Name" IsSortable="true" />
+                    <DataColumn DataProperty="c => c.FamilyName" DisplayName="Surname" IsSortable="true" />
+                    <DataColumn DataProperty="c => c.Country" DisplayName="Country" IsSortable="true" />
+                    <DataColumn DataProperty="c => c.Rate" DisplayName="Hourly Rate" IsSortable="true" CellFormat="C" ColumnAlignment="ColumnAlignment.End" />
+                </TableColumns>
+                <BottomPager>
+                    <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Contacts pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount"
+                           ItemsPerPage="@_pagerBinding.ItemsPerPage" PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" />
+                </BottomPager>
+            </DataTable>
+
 
         </section>
     </section>
@@ -119,3 +206,34 @@
     </footer>
 
 </div>
+
+@code{
+    private bool _expanded = true;
+
+    private Func<Contact, bool>? _filterRule = null;
+    private PagerBinding _pagerBinding = new(itemsPerPage: 10);
+    private List<Contact> _dataSource = [];
+
+    protected override void OnInitialized()
+
+        => _dataSource = StaticData.GetContacts(10_000);
+
+    private async Task HandleOnDebounce(DebouncedFilterResult debounceResult)
+    {
+        if (debounceResult.IsValid)
+        {
+            _filterRule = (data) => data.ContactID.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.GivenName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.FamilyName.Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.Country.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.DateOfBirth.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase)
+                                    || data.Rate.ToString().Contains(debounceResult.FilterValue, StringComparison.OrdinalIgnoreCase);
+
+            /*
+                * The debounce uses a Func not an EventCallback to negate renders if the filter value is invalid so
+                * you call StateHasChanged if all is well.
+            */
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+}

@@ -81,4 +81,9 @@ const setFocus = (elementId: string): void => {
     element.focus();
 };
 
-export { initialise, checkCloseSideNavigation, setFocus}
+const scrollMainToTop = (): void => {
+    const main = document.getElementById("app__main");
+    if (main) main.scrollTop = 0;
+}
+
+export { initialise, checkCloseSideNavigation, setFocus, scrollMainToTop }

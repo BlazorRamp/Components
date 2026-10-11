@@ -72,7 +72,7 @@
             await _jsDocSiteModule.InvokeVoidAsync(GlobalValues.JS_Doc_Site_Initialise_Func, MenuButtonRef, SideNavigationRef, GlobalValues.Start_Width_For_Collapsed_Menu);
 
             _isSplashScreen = _isHomePage = (_navigationManager.Uri == _navigationManager.BaseUri);
-            _isSplashScreen = false;
+            //_isSplashScreen = false;
         }
         catch (Exception ex)
         {
@@ -81,10 +81,14 @@
     }
     private async void Navigation_LocationChanged(object? sender, LocationChangedEventArgs args)
     {
-        if (_jsDocSiteModule is not null) await _jsDocSiteModule!.InvokeVoidAsync(GlobalValues.JS_Doc_Site_Check_Close_Nav, MenuButtonRef);
-
+        if (_jsDocSiteModule is not null)
+        {
+            await _jsDocSiteModule!.InvokeVoidAsync(GlobalValues.JS_Doc_Site_Check_Close_Nav, MenuButtonRef);
+            await _jsDocSiteModule.InvokeVoidAsync("scrollMainToTop");
+        }
+       
         _isSplashScreen = _isHomePage = (_navigationManager.Uri == _navigationManager.BaseUri);
-        _isSplashScreen = false;
+        //_isSplashScreen = false;
         StateHasChanged();
     }
 

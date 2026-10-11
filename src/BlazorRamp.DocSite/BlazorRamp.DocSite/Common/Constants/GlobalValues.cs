@@ -12,7 +12,7 @@ public class GlobalValues
     public const string JS_Doc_Site_Initialise_Func  = "initialise";
     public const string JS_Doc_Site_Check_Close_Nav  = "checkCloseSideNavigation";
     public const string JS_Doc_Site_Set_Focus        = "setFocus";
-
+    public const string JS_Doc_Site_Scroll_To_Main_Top = "scrollMainToTop";
     public const string JS_Theme_Get_Comp_Style_Property_Func = "getComputedStyleProperty";//variable name
     public const string JS_Theme_Get_Resolved_Colour_Func     = "getResolvedHexColourValue";//variable name
     public const string JS_Theme_Set_Style_Property_Func      = "setStyleProperty";// name, value

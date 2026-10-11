@@ -56,5 +56,10 @@ const setFocus = (elementId) => {
         return;
     element.focus();
 };
-export { initialise, checkCloseSideNavigation, setFocus };
+const scrollMainToTop = () => {
+    const main = document.getElementById("app__main");
+    if (main)
+        main.scrollTop = 0;
+};
+export { initialise, checkCloseSideNavigation, setFocus, scrollMainToTop };
 //# sourceMappingURL=doc-site.js.map
