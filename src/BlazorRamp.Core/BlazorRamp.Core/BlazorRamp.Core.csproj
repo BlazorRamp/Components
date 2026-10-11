@@ -10,11 +10,11 @@
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Live Region;</PackageTags>
-    <PackageReleaseNotes>Added an internal service that can currently only be consumed by certain components that may require tab stops automatically adding to scrollable containers.</PackageReleaseNotes>
+    <PackageReleaseNotes>Change to the --br-comp-all-divider-colour variable value for better contrast it was using neutral-30 now its about a neutral-56.</PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <AssemblyVersion>1.1.8</AssemblyVersion>
-    <FileVersion>1.1.8</FileVersion>
-	  <Version>1.1.8</Version>
+    <AssemblyVersion>1.1.9</AssemblyVersion>
+    <FileVersion>1.1.9</FileVersion>
+	  <Version>1.1.9</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>

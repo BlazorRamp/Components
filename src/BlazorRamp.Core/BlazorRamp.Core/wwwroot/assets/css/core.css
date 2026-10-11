@@ -275,7 +275,7 @@
   --br-comp-all-overlay-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.15);
   --br-comp-all-border-interactive-colour: var(--br-unit-colour-primary-50);
   --br-comp-all-hint-text-brightness: 85%;
-  --br-comp-all-divider-colour: var(--br-unit-colour-neutral-30);
+  --br-comp-all-divider-colour: hsl(from var(--br-unit-colour-neutral) h s calc(l * 0.7));
   --br-comp-all-selection-colour: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-10));
   /*
       * Outlines
