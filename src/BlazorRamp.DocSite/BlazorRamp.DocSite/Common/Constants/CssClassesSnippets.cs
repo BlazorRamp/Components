@@ -77,6 +77,9 @@ public class CssClassesSnippets
     public const string Button_Regular_Default_Example = """
         <button type="button" class="@Button.Base @Button.Size(ButtonSize.Regular)">Settings</button>
         """;
+    public const string Badge_Small_Default_Example = """
+        <span class="@Badge.Base">Settings</span>
+        """;
 
     public const string Margin_Code_Example = """
         <div class="@Section.Base @Section.Bordered @Section.FixedRadius(UnitRadius.One) @Section.NoPadding">

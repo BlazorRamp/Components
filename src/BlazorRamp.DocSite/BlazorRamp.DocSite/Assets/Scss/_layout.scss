@@ -353,15 +353,7 @@
             margin: 0;
             padding: 0;
             display: flex;
-            gap: var(--br-unit-space-3);
-        }
-
-        & li {
-            padding: var(--br-unit-space-2) var(--br-unit-space-4);
-            border: 1px solid var(--br-comp-all-divider-colour);
-            border-radius: var(--br-unit-radius-3);
-            font-weight: 600;
-            background-color: var(--br-cls-secondary-light);
+            gap: var(--br-unit-space-4);
         }
     }
 

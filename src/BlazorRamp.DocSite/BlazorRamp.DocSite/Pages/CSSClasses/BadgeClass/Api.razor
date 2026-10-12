@@ -1,0 +1,111 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_Badge}/{GlobalValues.Common_Page_Path_Api}")]
+
+<PageTitle>@GlobalValues.CSS_Name_Badge @GlobalValues.Common_Page_Title_Api_Usage</PageTitle>
+
+<h1>@GlobalValues.CSS_Name_Badge @GlobalValues.Common_Page_Title_Api_Usage</h1>
+
+<section>
+    <h2 class="mobile-centred-heading">Usage</h2>
+    <p>
+        The following shows examples of the styles applied to badges.
+        <b>Note: </b>All of the CSS classes have variables for both light and dark schemes. Click the Theme button at the top of the page.
+    </p>
+    <p>
+        Below shows styling the badge using its default size of small without any scheme so the default styles are applied.
+    </p>
+    <CodeBox CodeBlock="@CssClassesSnippets.Badge_Small_Default_Example" AriaLabel="Button styling code example" />
+    <p>
+        <span class="@Badge.Base">Default Badge</span>
+    </p>
+    <p>
+        <strong>Note: </strong> all badges do have a border to keep sizes even, that can be removed. By default every badge size has a fixed border radius of 3 which
+        can be changed.
+    </p>
+    <h3>Default styling</h3>
+    <p>All badges are bordered with transparent background with a fixed border radius of 3 (that you can change).</p>
+    <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five) @Margin.Block(UnitSpace.Five)">
+        <span type="button" class="@Badge.Base @Badge.Size(BadgeSize.Tiny)">Tiny Badge</span>
+        <span type="button" class="@Badge.Base @Badge.Size(BadgeSize.Small)">Small Badge</span>
+        <span type="button" class="@Badge.Base @Badge.Size(BadgeSize.Medium)">Medium Badge</span>
+        <span type="button" class="@Badge.Base @Badge.Size(BadgeSize.Large)">Large Badge</span>
+    </div>
+   
+    <h3>Fixed central unit colour value from each of the colour palettes</h3>
+    <p>
+        Excluding the inverted scheme, the colour of the text for these are set via the CSS <span class="@CodeSpan.Base">contrast-color</span> function.
+    </p>
+    <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five) @Margin.Block(UnitSpace.Five)">
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.Primary)">Primary Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.Neutral)">Neutral Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.Secondary)">Secondary Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.Accent)">Accent Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.Danger)">Danger Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.Warning)">Warning Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.Success)">Success Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.Info)">Info Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.Inverted)">Inverted Badge</span>
+    </div>
+
+    <h3>Uses the lighter shade with a darker text of the same colour from each colour palette</h3>
+
+    <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five) @Margin.Block(UnitSpace.Five)">
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.PrimaryLighter)">Primary Lighter</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.NeutralLighter)">Neutral Lighter</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.SecondaryLighter)">Solid Secondary Lighter</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.AccentLighter)">Accent Lighter</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.DangerLighter)">Danger Lighter</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.WarningLighter)">Warning Lighter</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.SuccessLighter)">Success Lighter</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.InfoLighter)">Info Lighter</span>
+
+    </div>
+    <h3>Uses the lighter shade with a darker text of the same colour from each colour palette with the border removed</h3>
+
+    <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five) @Margin.Block(UnitSpace.Five)">
+        <span class="@Badge.Base @Badge.NoBorder @Badge.Scheme(BadgeSolidScheme.PrimaryLighter)">Primary Lighter</span>
+        <span class="@Badge.Base @Badge.NoBorder @Badge.Scheme(BadgeSolidScheme.NeutralLighter)">Neutral Lighter</span>
+        <span class="@Badge.Base @Badge.NoBorder @Badge.Scheme(BadgeSolidScheme.SecondaryLighter)">Solid Secondary Lighter</span>
+        <span class="@Badge.Base @Badge.NoBorder @Badge.Scheme(BadgeSolidScheme.AccentLighter)">Accent Lighter</span>
+        <span class="@Badge.Base @Badge.NoBorder @Badge.Scheme(BadgeSolidScheme.DangerLighter)">Danger Lighter</span>
+        <span class="@Badge.Base @Badge.NoBorder @Badge.Scheme(BadgeSolidScheme.WarningLighter)">Warning Lighter</span>
+        <span class="@Badge.Base @Badge.NoBorder @Badge.Scheme(BadgeSolidScheme.SuccessLighter)">Success Lighter</span>
+        <span class="@Badge.Base @Badge.NoBorder @Badge.Scheme(BadgeSolidScheme.InfoLighter)">Info Lighter</span>
+
+    </div>
+    <h3>Uses a darker shade with a lighter text of the same colour from each colour palette</h3>
+
+    <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five) @Margin.Block(UnitSpace.Five)">
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.PrimaryDarker)">Primary Darker</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.NeutralDarker)">Neutral Darker</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.SecondaryDarker)">Secondary Darker</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.AccentDarker)">Accent Darker</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.DangerDarker)">Danger Darker</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.WarningDarker)">Warning Darker</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.SuccessDarker)">Success Darker</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.InfoDarker)">Info Darker</span>
+    </div>
+    @* 
+    <h3>Fixed border radius that does not respond to the button border group</h3>
+
+    <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five) @Margin.Block(UnitSpace.Five)">
+        <button class="@Button.Base @Button.FixedRadius(UnitRadius.Two)">Default Regular With a Fixed Radius of 2</button>
+        <button class="@Button.Base @Button.Scheme(ButtonSolidScheme.Neutral) @Button.FixedRadius(UnitRadius.Four)">Solid Neutral Large With a Fixed Radius of 4</button>
+    </div> *@
+
+</section>
+
+<div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
+    <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.Common_Page_Path_CSS_Variables}")">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
+        <span>@GlobalValues.CSS_Name_CSS_Classes - @GlobalValues.Common_Page_Title_Variables</span>
+
+    </a>
+    <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.CSS_Path_Part_BoxShadow}/{GlobalValues.Common_Page_Path_Api}")">
+
+        <span>@GlobalValues.CSS_Name_BoxShadow - @GlobalValues.Common_Page_Title_Api_Usage</span>
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-right-arrow-circle-icon)"></span>
+    </a>
+</div>
+@code {
+
+}

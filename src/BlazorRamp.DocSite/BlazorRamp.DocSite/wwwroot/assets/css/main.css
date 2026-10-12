@@ -346,14 +346,7 @@
   margin: 0;
   padding: 0;
   display: flex;
-  gap: var(--br-unit-space-3);
-}
-.landing__support li {
-  padding: var(--br-unit-space-2) var(--br-unit-space-4);
-  border: 1px solid var(--br-comp-all-divider-colour);
-  border-radius: var(--br-unit-radius-3);
-  font-weight: 600;
-  background-color: var(--br-cls-secondary-light);
+  gap: var(--br-unit-space-4);
 }
 .landing__cards {
   list-style: none;
@@ -555,7 +548,6 @@
   --br-comp-all-area-content-text: var(--br-unit-colour-neutral-5);
   --br-unit-colour-canvas: var(--br-unit-colour-neutral-90);
   --br-unit-colour-canvas-text: var(--br-unit-colour-neutral-5);
-  --br-comp-all-button-text: var(--br-unit-colour-primary-text-light);
   --br-comp-all-button-state-hover: hsl(from var(--br-unit-colour-primary) h s l / var(--br-unit-opacity-val-30));
   --br-comp-all-link-current-page-background-colour: var(--br-unit-colour-secondary-darker);
   --br-comp-all-link-hover-background-colour: hsl(from var(--br-unit-colour-secondary) h s l / 0.15);

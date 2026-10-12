@@ -1,5 +1,4 @@
 ﻿using BlazorRamp.CssClasses.Common.Constants;
-using static BlazorRamp.CssClasses.Common.Constants.BadgeEnums;
 
 namespace BlazorRamp.CssClasses.Common.Utilities;
 
@@ -9,6 +8,11 @@ public static class Badge
     /// The base class, <c>br-button</c>. Always required.
     /// </summary>
     public const string Base = "br-badge";
+
+    /// <summary>
+    /// Removes the default section's base padding.
+    /// </summary>
+    public const string NoBorder = $"{Base}--no-border";
 
     /// <summary>
     /// Gets the class that sets the badges's size.

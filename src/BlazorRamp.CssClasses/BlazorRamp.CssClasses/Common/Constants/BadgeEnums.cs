@@ -1,8 +1,5 @@
 ﻿namespace BlazorRamp.CssClasses.Common.Constants;
 
-public class BadgeEnums
-{
-
     /// <summary>
     /// Sets the size of a <c>br-badge</c> element.
     /// </summary>
@@ -17,7 +14,7 @@ public class BadgeEnums
         /// </summary>
         Small = 1,
         /// <summary>
-        /// A larger badge, one step above small that matches the regular button size.
+        /// A medium badge, one step above small.
         /// </summary>
         Medium = 2,
         /// <summary>
@@ -133,4 +130,3 @@ public class BadgeEnums
         /// </summary>
         InfoDarker = 24
     }
-}
