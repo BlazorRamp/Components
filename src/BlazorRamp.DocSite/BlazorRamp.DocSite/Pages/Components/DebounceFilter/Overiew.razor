@@ -29,13 +29,13 @@
     </p>
     <DebounceFilter FilterLabelText="Filter Results" HintText="Results filtered on pause of typing" DebounceDelayMs="500" SvgIcon="--svg-filter-icon" OnDebounceFilterResult="HandleDebounce" />
     <p>
-        <pre>
+        
         @if(false == String.IsNullOrWhiteSpace(_debounceResult))
         {
             @_debounceResult
-        ;
+        
         }
-        </pre>
+       
     </p>
 </section>
 
