@@ -1,12 +1,36 @@
 ﻿@page "/"
 @using BlazorRamp.CssClasses
-@using BlazorRamp.CssClasses.Common.Constants
-@using BlazorRamp.CssClasses.Common.Utilities
+
 
 <PageTitle>Home</PageTitle>
 
 @rendermode @(new InteractiveServerRenderMode(false))
 
+
+<section class="@FlexContent.Base @Gap.SetGaps(UnitGapSize.Five)" >
+
+    <span class="@Badge.Base @Badge.Size(BadgeSize.Tiny) @Badge.Scheme(BadgeSolidScheme.Danger)">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Small)" style="--_svg-icon-source:var(--svg-food-icon);"></span>
+        <span>Tiny Badge</span>
+    </span>
+
+
+    <span class="@Badge.Base @Badge.Size(BadgeSize.Small) @Badge.Scheme(BadgeSolidScheme.DangerLighter)">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Small)" style="--_svg-icon-source:var(--svg-food-icon);"></span>
+        Small Badge
+        </span>
+    
+    
+    <span class="@Badge.Base @Badge.Size(BadgeSize.Medium)">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Regular)" style="--_svg-icon-source:var(--svg-settings-icon);"></span>
+        Medium Badge</span>
+    
+    
+    <span class="@Badge.Base @Badge.Size(BadgeSize.Large)">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Large)" style="--_svg-icon-source:var(--svg-settings-icon);"></span>
+        Larger Badge</span>
+
+</section>
 
 <section>
  
