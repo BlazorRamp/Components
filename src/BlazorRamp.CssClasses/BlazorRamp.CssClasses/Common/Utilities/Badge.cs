@@ -2,6 +2,7 @@
 
 namespace BlazorRamp.CssClasses.Common.Utilities;
 
+
 public static class Badge
 {
     /// <summary>
@@ -10,7 +11,7 @@ public static class Badge
     public const string Base = "br-badge";
 
     /// <summary>
-    /// Removes the default section's base padding.
+    /// Removes the border from the badge..
     /// </summary>
     public const string NoBorder = $"{Base}--no-border";
 
