@@ -4,6 +4,348 @@
 
 <h1>@GlobalValues.CSS_Name_Badge @GlobalValues.Common_Page_Title_Api_Usage</h1>
 
+
+<p>
+    Everything you need to work with the <span class="@CodeSpan.Base">br-badge</span> CSS class: the BEM classes it provides, the strongly-typed <span class="@CodeSpan.Base">Badge</span> C# object
+    used to apply them, supporting enums, and the CSS variables used for styling.
+</p>
+
+<h2 class="mobile-centred-heading">Overview</h2>
+
+<p>
+    <span class="@CodeSpan.Base">br-badge</span> is a small, static label - a status, a count, a category. It is <b>not interactive</b>: it has no hover, active or focus styling and does not look or behave like a control.
+    If you need something that can be clicked, use <span class="@CodeSpan.Base">Button</span> or <span class="@CodeSpan.Base">Link</span> instead.
+</p>
+<p>
+    With no modifiers, a badge is the small size, with a transparent background, a border and a fixed border radius of 3. <span class="@CodeSpan.Base">br-badge</span> is not part of a radius group and has its own
+    independent radius settings, so a theme change does not alter it - use <span class="@CodeSpan.Base">FixedRadius</span> to choose a different value. Every badge has a border so that badges with and without a scheme
+    stay the same size.
+</p>
+<p>
+    Colours are theme-reactive: they're built from the <span class="@CodeSpan.Base">--br-cls-*</span> variables described below, which in turn derive from the same <span class="@CodeSpan.Base">--br-unit-*</span> primitives used across every
+    Blazor Ramp component. Changing your theme updates <span class="@CodeSpan.Base">br-badge</span> automatically - no separate configuration needed.
+</p>
+<p>
+    To place an icon in a badge, add an <span class="@CodeSpan.Base">SvgIcon</span> element with <span class="@CodeSpan.Base">aria-hidden="true"</span>. The <span class="@CodeSpan.Base">Small</span> and <span class="@CodeSpan.Base">Regular</span> icon sizes fit within a badge's line height; the
+    <span class="@CodeSpan.Base">Large</span> and <span class="@CodeSpan.Base">ExtraLarge</span> sizes will make the badge taller. To change the space between an icon and the badge text, use the shared <span class="@CodeSpan.Base">Gap</span> utility classes.
+</p>
+<p>
+    A badge must never rely on colour alone to convey meaning - always include text. If the visible text is ambiguous without context (a bare "3", for example), add visually hidden text
+    such as "unread messages". Use visually hidden text rather than <span class="@CodeSpan.Base">aria-label</span> here, because a plain <span class="@CodeSpan.Base">&lt;span&gt;</span> has no role for an accessible name to be applied to, so
+    assistive technologies may ignore it.
+</p>
+
+<section>
+    <h2 id="c#-classes" class="mobile-centred-heading">C# API</h2>
+    <p>
+        <span class="@CodeSpan.Base">Badge</span> provides the BEM CSS classes for the br-badge block: an inline, static label that can hold text and an icon.
+    </p>
+    <section>
+        <h3 id="badge-class" class="mobile-centred-heading">Badge class</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="badge-class">
+                <thead>
+                    <tr>
+                        <th scope="col">Return</th>
+                        <th scope="col">Const/Static Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>string</td>
+                        <td>Badge.Base</td>
+                        <td>The base class, <span class="@CodeSpan.Base">br-badge</span>. Always required.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Badge.TransparentBorder</td>
+                        <td>Makes the border transparent (looks like its removed) so there is no size change.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Badge.Size(BadgeSize badgeSize)</td>
+                        <td>Gets the class that sets the badge's size.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Badge.Scheme(BadgeSolidScheme solidScheme)</td>
+                        <td>Gets the class that sets the badge's solid colour scheme: its background, border, and a contrasting text colour.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>Badge.FixedRadius(UnitRadius unitRadius)</td>
+                        <td>Gets the modifier class that sets the badge's border radius to a fixed unit value in place of the default.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2 class="mobile-centred-heading">Supporting enums</h2>
+    <section>
+        <h3 id="badge-size-enum" class="mobile-centred-heading">BadgeSize enum</h3>
+        <p>
+            Sets the size of a <span class="@CodeSpan.Base">br-badge</span> element.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="badge-size-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Tiny</td>
+                        <td>The smallest badge.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Small</td>
+                        <td>One step above tiny and the default badge size.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Medium</td>
+                        <td>A medium badge, one step above small.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Large</td>
+                        <td>The largest badge size available on this scale.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h3 id="badge-solid-scheme-enum" class="mobile-centred-heading">BadgeSolidScheme enum</h3>
+        <p>
+            Sets the solid colour scheme (background, border, and contrasting text colour) of a <span class="@CodeSpan.Base">br-badge</span> element.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="badge-solid-scheme-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>Inverted</td>
+                        <td>An inverted solid scheme, using the canvas colour and its inverted counterpart.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Neutral</td>
+                        <td>A neutral solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Primary</td>
+                        <td>A primary-hue solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Secondary</td>
+                        <td>A secondary-hue solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Accent</td>
+                        <td>An accent-hue solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Danger</td>
+                        <td>A danger (error/destructive) solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Warning</td>
+                        <td>A warning solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Success</td>
+                        <td>A success solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Info</td>
+                        <td>An informational solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>NeutralLighter</td>
+                        <td>A light neutral solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>SecondaryLighter</td>
+                        <td>A light secondary-hue solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>AccentLighter</td>
+                        <td>A light accent-hue solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>PrimaryLighter</td>
+                        <td>A light primary-hue solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>DangerLighter</td>
+                        <td>A light danger solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>WarningLighter</td>
+                        <td>A light warning solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>SuccessLighter</td>
+                        <td>A light success solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>InfoLighter</td>
+                        <td>A light informational solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>NeutralDarker</td>
+                        <td>A dark neutral solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td>SecondaryDarker</td>
+                        <td>A dark secondary-hue solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>AccentDarker</td>
+                        <td>A dark accent-hue solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>PrimaryDarker</td>
+                        <td>A dark primary-hue solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>21</td>
+                        <td>DangerDarker</td>
+                        <td>A dark danger solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>22</td>
+                        <td>WarningDarker</td>
+                        <td>A dark warning solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>23</td>
+                        <td>SuccessDarker</td>
+                        <td>A dark success solid scheme.</td>
+                    </tr>
+                    <tr>
+                        <td>24</td>
+                        <td>InfoDarker</td>
+                        <td>A dark informational solid scheme.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h3 id="unit-radius-enum" class="mobile-centred-heading">UnitRadius enum</h3>
+        <p>
+            Sets a fixed border radius from the <span class="@CodeSpan.Base">--br-unit-radius-*</span> primitive scale.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unit-radius-enum">
+                <thead>
+                    <tr>
+                        <th scope="col">Value</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>None</td>
+                        <td>No border radius. Maps to <span class="@CodeSpan.Base">--br-unit-radius-0</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>One</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-1</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Two</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-2</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Three</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-3</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Four</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-4</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Five</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-5</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Six</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-6</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Seven</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-7</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Eight</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-8</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Nine</td>
+                        <td>Maps to <span class="@CodeSpan.Base">--br-unit-radius-9</span>.</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Full</td>
+                        <td>Fully rounded. Maps to <span class="@CodeSpan.Base">--br-unit-radius-full</span>.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
 <section>
     <h2 class="mobile-centred-heading">Usage</h2>
     <p>
@@ -13,26 +355,31 @@
     <p>
         Below shows styling the badge using its default size of small without any scheme so the default styles are applied.
     </p>
-    <CodeBox CodeBlock="@CssClassesSnippets.Badge_Small_Default_Example" AriaLabel="Button styling code example" />
+    <CodeBox CodeBlock="@CssClassesSnippets.Badge_Small_Default_Example" AriaLabel="Badge default styling code example" />
     <p>
         <span class="@Badge.Base">Default Badge</span>
     </p>
     <p>
-        <strong>Note: </strong> all badges do have a border to keep sizes even, that can be removed. By default every badge size has a fixed border radius of 3 which
+        <strong>Note: </strong> all badges do have a border to keep sizes even, that can be removed (made transparent). By default every badge size has a fixed border radius of 3 which
         can be changed.
     </p>
     <h3>Default styling</h3>
-    <p>All badges are bordered with transparent background with a fixed border radius of 3 (that you can change).</p>
+    <p>
+        All badges are bordered with transparent a background with a fixed border radius of 3 unless changed.
+        In the examples below I changed the border radius of the large badge to 5, the large badge had its radius increased to 5, 
+        <span class="@CodeSpan.Base">class="@@Badge.Base @@Badge.Size(BadgeSize.Large) @@Badge.FixedRadius(UnitRadius.Five)"</span>
+    </p>
     <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five) @Margin.Block(UnitSpace.Five)">
         <span type="button" class="@Badge.Base @Badge.Size(BadgeSize.Tiny)">Tiny Badge</span>
         <span type="button" class="@Badge.Base @Badge.Size(BadgeSize.Small)">Small Badge</span>
         <span type="button" class="@Badge.Base @Badge.Size(BadgeSize.Medium)">Medium Badge</span>
-        <span type="button" class="@Badge.Base @Badge.Size(BadgeSize.Large)">Large Badge</span>
+        <span type="button" class="@Badge.Base @Badge.Size(BadgeSize.Large) @Badge.FixedRadius(UnitRadius.Five)">Large Badge</span>
     </div>
-   
+
     <h3>Fixed central unit colour value from each of the colour palettes</h3>
     <p>
         Excluding the inverted scheme, the colour of the text for these are set via the CSS <span class="@CodeSpan.Base">contrast-color</span> function.
+        To add a colour scheme you just the scheme you want, for example <span class="@CodeSpan.Base">class="@@Badge.Base @@Badge.Scheme(BadgeSolidScheme.Primary)"</span>
     </p>
     <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five) @Margin.Block(UnitSpace.Five)">
         <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.Primary)">Primary Badge</span>
@@ -49,50 +396,403 @@
     <h3>Uses the lighter shade with a darker text of the same colour from each colour palette</h3>
 
     <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five) @Margin.Block(UnitSpace.Five)">
-        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.PrimaryLighter)">Primary Lighter</span>
-        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.NeutralLighter)">Neutral Lighter</span>
-        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.SecondaryLighter)">Solid Secondary Lighter</span>
-        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.AccentLighter)">Accent Lighter</span>
-        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.DangerLighter)">Danger Lighter</span>
-        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.WarningLighter)">Warning Lighter</span>
-        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.SuccessLighter)">Success Lighter</span>
-        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.InfoLighter)">Info Lighter</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.PrimaryLighter)">Primary Lighter Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.NeutralLighter)">Neutral Lighter Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.SecondaryLighter)">Secondary Lighter Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.AccentLighter)">Accent Lighter Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.DangerLighter)">Danger Lighter Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.WarningLighter)">Warning Lighter Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.SuccessLighter)">Success Lighter Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.InfoLighter)">Info Lighter Badge</span>
 
     </div>
-    <h3>Uses the lighter shade with a darker text of the same colour from each colour palette with the border removed</h3>
-
+    <h3>Uses the lighter shade with a darker text of the same colour from each colour palette with the border made transparent</h3>
+    <p>
+        To make the badge look like it has not border we make it transparent for example 
+        <span class="@CodeSpan.Base">class="@@Badge.Base @@Badge.TransparentBorder @@Badge.Scheme(BadgeSolidScheme.PrimaryLighter)"</span>
+    </p>
     <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five) @Margin.Block(UnitSpace.Five)">
-        <span class="@Badge.Base @Badge.NoBorder @Badge.Scheme(BadgeSolidScheme.PrimaryLighter)">Primary Lighter</span>
-        <span class="@Badge.Base @Badge.NoBorder @Badge.Scheme(BadgeSolidScheme.NeutralLighter)">Neutral Lighter</span>
-        <span class="@Badge.Base @Badge.NoBorder @Badge.Scheme(BadgeSolidScheme.SecondaryLighter)">Solid Secondary Lighter</span>
-        <span class="@Badge.Base @Badge.NoBorder @Badge.Scheme(BadgeSolidScheme.AccentLighter)">Accent Lighter</span>
-        <span class="@Badge.Base @Badge.NoBorder @Badge.Scheme(BadgeSolidScheme.DangerLighter)">Danger Lighter</span>
-        <span class="@Badge.Base @Badge.NoBorder @Badge.Scheme(BadgeSolidScheme.WarningLighter)">Warning Lighter</span>
-        <span class="@Badge.Base @Badge.NoBorder @Badge.Scheme(BadgeSolidScheme.SuccessLighter)">Success Lighter</span>
-        <span class="@Badge.Base @Badge.NoBorder @Badge.Scheme(BadgeSolidScheme.InfoLighter)">Info Lighter</span>
+        <span class="@Badge.Base @Badge.TransparentBorder @Badge.Scheme(BadgeSolidScheme.PrimaryLighter)">Primary Lighter Badge</span>
+        <span class="@Badge.Base @Badge.TransparentBorder @Badge.Scheme(BadgeSolidScheme.NeutralLighter)">Neutral Lighter Badge</span>
+        <span class="@Badge.Base @Badge.TransparentBorder @Badge.Scheme(BadgeSolidScheme.SecondaryLighter)">Secondary Lighter Badge</span>
+        <span class="@Badge.Base @Badge.TransparentBorder @Badge.Scheme(BadgeSolidScheme.AccentLighter)">Accent Lighter Badge</span>
+        <span class="@Badge.Base @Badge.TransparentBorder @Badge.Scheme(BadgeSolidScheme.DangerLighter)">Danger Lighter Badge</span>
+        <span class="@Badge.Base @Badge.TransparentBorder @Badge.Scheme(BadgeSolidScheme.WarningLighter)">Warning Lighter Badge</span>
+        <span class="@Badge.Base @Badge.TransparentBorder @Badge.Scheme(BadgeSolidScheme.SuccessLighter)">Success Lighter Badge</span>
+        <span class="@Badge.Base @Badge.TransparentBorder @Badge.Scheme(BadgeSolidScheme.InfoLighter)">Info Lighter Badge</span>
 
     </div>
     <h3>Uses a darker shade with a lighter text of the same colour from each colour palette</h3>
 
     <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five) @Margin.Block(UnitSpace.Five)">
-        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.PrimaryDarker)">Primary Darker</span>
-        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.NeutralDarker)">Neutral Darker</span>
-        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.SecondaryDarker)">Secondary Darker</span>
-        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.AccentDarker)">Accent Darker</span>
-        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.DangerDarker)">Danger Darker</span>
-        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.WarningDarker)">Warning Darker</span>
-        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.SuccessDarker)">Success Darker</span>
-        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.InfoDarker)">Info Darker</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.PrimaryDarker)">Primary Darker Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.NeutralDarker)">Neutral Darker Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.SecondaryDarker)">Secondary Darker Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.AccentDarker)">Accent Darker Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.DangerDarker)">Danger Darker Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.WarningDarker)">Warning Darker Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.SuccessDarker)">Success Darker Badge</span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.InfoDarker)">Info Darker Badge</span>
     </div>
-    @* 
-    <h3>Fixed border radius that does not respond to the button border group</h3>
-
+    
+    <h3>
+        Adding icons to badges
+    </h3>
+    <p>
+        Just like the buttons you can add icons to badges with or without text, if you use icons ensure you add the appropriate ARIA attributes 
+        dependant on the context.
+    </p>
     <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetGaps(UnitGapSize.Five) @Margin.Block(UnitSpace.Five)">
-        <button class="@Button.Base @Button.FixedRadius(UnitRadius.Two)">Default Regular With a Fixed Radius of 2</button>
-        <button class="@Button.Base @Button.Scheme(ButtonSolidScheme.Neutral) @Button.FixedRadius(UnitRadius.Four)">Solid Neutral Large With a Fixed Radius of 4</button>
-    </div> *@
-
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.InfoDarker) @Badge.Size(BadgeSize.Tiny)">
+            <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Small)" style="--_svg-icon-source:var(--svg-nuget-icon)" aria-hidden="true"></span>
+            NuGet Badge
+        </span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.InfoDarker) @Badge.Size(BadgeSize.Small)">
+            <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Regular)" style="--_svg-icon-source:var(--svg-nuget-icon)" aria-hidden="true"></span>
+            NuGet Badge
+        </span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.InfoDarker) @Badge.Size(BadgeSize.Medium)">
+            <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Regular)" style="--_svg-icon-source:var(--svg-nuget-icon)" aria-hidden="true"></span>
+            NuGet Badge
+        </span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.InfoDarker) @Badge.Size(BadgeSize.Large)">
+            <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Regular)" style="--_svg-icon-source:var(--svg-nuget-icon)" aria-hidden="true"></span>
+            NuGet Badge
+        </span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.InfoDarker) @Badge.Size(BadgeSize.Large)" aria-label="NuGet badge">
+            <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Regular)" style="--_svg-icon-source:var(--svg-nuget-icon)" aria-hidden="true"></span>
+        </span>
+    </div>
+    <p>
+        Code for the above
+    </p>
+    <CodeBox CodeBlock="@CssClassesSnippets.Badge_Icons_Example" AriaLabel="Badge with icon code example." />
 </section>
+
+<section>
+    <h2 id="css-classes" class="mobile-centred-heading">CSS classes</h2>
+    <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+        <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="css-classes">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>br-badge</td>
+                    <td>Block</td>
+                    <td>The root badge element. Sets default padding, border, border radius, font, colour and background. Not interactive.</td>
+                </tr>
+                <tr>
+                    <td>br-badge--transparent-border</td>
+                    <td>Modifier</td>
+                    <td>Makes the badge border transparent so it looks removed.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-badge--tiny<br>
+                        br-badge--small<br>
+                        br-badge--medium<br>
+                        br-badge--large
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Sets the badge's size.</td>
+                </tr>
+                <tr>
+                    <td>br-badge--solid-inverted</td>
+                    <td>Modifier</td>
+                    <td>Solid inverted background and border, using the canvas colour and its inverted counterpart.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-badge--solid-neutral<br>
+                        br-badge--solid-neutral-lighter<br>
+                        br-badge--solid-neutral-darker
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Solid neutral background and border, and its light/dark variants.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-badge--solid-primary<br>
+                        br-badge--solid-primary-lighter<br>
+                        br-badge--solid-primary-darker
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Solid primary background and border, and its light/dark variants.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-badge--solid-secondary<br>
+                        br-badge--solid-secondary-lighter<br>
+                        br-badge--solid-secondary-darker
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Solid secondary background and border, and its light/dark variants.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-badge--solid-accent<br>
+                        br-badge--solid-accent-lighter<br>
+                        br-badge--solid-accent-darker
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Solid accent background and border, and its light/dark variants.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-badge--solid-danger<br>
+                        br-badge--solid-danger-lighter<br>
+                        br-badge--solid-danger-darker
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Solid danger background and border, and its light/dark variants.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-badge--solid-warning<br>
+                        br-badge--solid-warning-lighter<br>
+                        br-badge--solid-warning-darker
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Solid warning background and border, and its light/dark variants.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-badge--solid-success<br>
+                        br-badge--solid-success-lighter<br>
+                        br-badge--solid-success-darker
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Solid success background and border, and its light/dark variants.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-badge--solid-info<br>
+                        br-badge--solid-info-lighter<br>
+                        br-badge--solid-info-darker
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Solid info background and border, and its light/dark variants.</td>
+                </tr>
+                <tr>
+                    <td>
+                        br-badge--radius-none<br>
+                        br-badge--radius-one<br>
+                        br-badge--radius-two<br>
+                        br-badge--radius-three<br>
+                        br-badge--radius-four<br>
+                        br-badge--radius-five<br>
+                        br-badge--radius-six<br>
+                        br-badge--radius-seven<br>
+                        br-badge--radius-eight<br>
+                        br-badge--radius-nine<br>
+                        br-badge--radius-full
+                    </td>
+                    <td>Modifier(s)</td>
+                    <td>Sets the border radius to a fixed unit value in place of the default.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section>
+    <h2 class="mobile-centred-heading">CSS variables</h2>
+    <p>
+        The following variables can be overridden to alter the appearance of br-badge. Colour variables are consumed from the shared
+        <span class="@CodeSpan.Base">--br-cls-*</span> layer, so a theme change updates every badge on the page automatically -
+        you don't need to override anything to stay in sync with your chosen theme.
+    </p>
+
+    <section>
+        <h3 id="badge-base-variables" class="mobile-centred-heading">Badge base variables</h3>
+        <p>Private variables set on the element itself before any modifier is applied.</p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="badge-base-variables">
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Default Value</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--_badge-border-colour</td>
+                        <td>var(--br-comp-all-button-border-colour)</td>
+                        <td>The badge's border colour before any scheme modifier is applied.</td>
+                    </tr>
+                    <tr>
+                        <td>--_badge-background</td>
+                        <td>transparent</td>
+                        <td>The badge's background colour before any scheme modifier is applied.</td>
+                    </tr>
+                    <tr>
+                        <td>--_badge-text</td>
+                        <td>var(--br-comp-all-button-text)</td>
+                        <td>The badge's text colour before any scheme modifier is applied.</td>
+                    </tr>
+                    <tr>
+                        <td>--_badge-padding-block</td>
+                        <td>var(--br-unit-space-2)</td>
+                        <td>The badge's block-direction (top/bottom) padding before any size modifier is applied.</td>
+                    </tr>
+                    <tr>
+                        <td>--_badge-padding-inline</td>
+                        <td>var(--br-unit-space-3)</td>
+                        <td>The badge's inline-direction (left/right) padding before any size modifier is applied.</td>
+                    </tr>
+                    <tr>
+                        <td>--_badge-font-size</td>
+                        <td>var(--br-unit-font-size-sm-1)</td>
+                        <td>The badge's font size before any size modifier is applied.</td>
+                    </tr>
+                    <tr>
+                        <td>--_badge-border-radius</td>
+                        <td>var(--br-unit-radius-3)</td>
+                        <td>The badge's border radius before any fixed radius modifier is applied. Not part of a radius group, so a theme change does not affect it.</td>
+                    </tr>
+                    <tr>
+                        <td>--_badge-gap</td>
+                        <td>var(--br-unit-space-2)</td>
+                        <td>The gap between the badge's children, such as an icon and its text, before any size modifier is applied.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h3 id="badge-shared-variables" class="mobile-centred-heading">Shared variables consumed</h3>
+        <p>
+            <span class="@CodeSpan.Base">br-badge's</span> solid colour scheme modifiers read from these shared
+            <span class="@CodeSpan.Base">--br-cls-*</span> tokens.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="badge-shared-variables">
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            --br-cls-neutral<br>
+                            --br-cls-primary<br>
+                            --br-cls-secondary<br>
+                            --br-cls-accent<br>
+                            --br-cls-danger<br>
+                            --br-cls-warning<br>
+                            --br-cls-success<br>
+                            --br-cls-info
+                        </td>
+                        <td>
+                            Background and border colours used by the base solid scheme modifiers. Text colour for these is computed with <span class="@CodeSpan.Base">contrast-color()</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            --br-cls-neutral-lighter<br>
+                            --br-cls-primary-lighter<br>
+                            --br-cls-secondary-lighter<br>
+                            --br-cls-accent-lighter<br>
+                            --br-cls-danger-lighter<br>
+                            --br-cls-warning-lighter<br>
+                            --br-cls-success-lighter<br>
+                            --br-cls-info-lighter
+                        </td>
+                        <td>
+                            Background colours used by the <span class="@CodeSpan.Base">-lighter</span> solid scheme modifiers.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            --br-cls-neutral-text-dark<br>
+                            --br-cls-primary-text-dark<br>
+                            --br-cls-secondary-text-dark<br>
+                            --br-cls-accent-text-dark<br>
+                            --br-cls-danger-text-dark<br>
+                            --br-cls-warning-text-dark<br>
+                            --br-cls-success-text-dark<br>
+                            --br-cls-info-text-dark
+                        </td>
+                        <td>
+                            Text and border colours used by the <span class="@CodeSpan.Base">-lighter</span> solid scheme modifiers.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            --br-cls-neutral-darker<br>
+                            --br-cls-primary-darker<br>
+                            --br-cls-secondary-darker<br>
+                            --br-cls-accent-darker<br>
+                            --br-cls-danger-darker<br>
+                            --br-cls-warning-darker<br>
+                            --br-cls-success-darker<br>
+                            --br-cls-info-darker
+                        </td>
+                        <td>
+                            Background and border colours used by the <span class="@CodeSpan.Base">-darker</span> solid scheme modifiers.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            --br-cls-neutral-text-light<br>
+                            --br-cls-primary-text-light<br>
+                            --br-cls-secondary-text-light<br>
+                            --br-cls-accent-text-light<br>
+                            --br-cls-danger-text-light<br>
+                            --br-cls-warning-text-light<br>
+                            --br-cls-success-text-light<br>
+                            --br-cls-info-text-light
+                        </td>
+                        <td>
+                            Text colours used by the <span class="@CodeSpan.Base">-darker</span> solid scheme modifiers.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            --br-unit-colour-canvas-inverted<br>
+                            --br-unit-colour-canvas-text-inverted
+                        </td>
+                        <td>
+                            Background, border and text colours used by the <span class="@CodeSpan.Base">inverted</span> solid scheme modifier.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            --br-comp-all-button-border-colour<br>
+                            --br-comp-all-button-text
+                        </td>
+                        <td>
+                            The default border and text colours before any scheme modifier is applied.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
     <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_CSS_Classes}/{GlobalValues.Common_Page_Path_CSS_Variables}")">

@@ -78,9 +78,29 @@ public class CssClassesSnippets
         <button type="button" class="@Button.Base @Button.Size(ButtonSize.Regular)">Settings</button>
         """;
     public const string Badge_Small_Default_Example = """
-        <span class="@Badge.Base">Settings</span>
+        <span class="@Badge.Base">Default Badge</span>
         """;
-
+    public const string Badge_Icons_Example = """
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.InfoDarker) @Badge.Size(BadgeSize.Tiny)">
+            <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Small)" style="--_svg-icon-source:var(--svg-nuget-icon)" aria-hidden="true"></span>
+            NuGet Badge
+        </span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.InfoDarker) @Badge.Size(BadgeSize.Small)">
+            <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Regular)" style="--_svg-icon-source:var(--svg-nuget-icon)" aria-hidden="true"></span>
+            NuGet Badge
+        </span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.InfoDarker) @Badge.Size(BadgeSize.Medium)">
+            <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Regular)" style="--_svg-icon-source:var(--svg-nuget-icon)" aria-hidden="true"></span>
+            NuGet Badge
+        </span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.InfoDarker) @Badge.Size(BadgeSize.Large)">
+            <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Regular)" style="--_svg-icon-source:var(--svg-nuget-icon)" aria-hidden="true"></span>
+            NuGet Badge
+        </span>
+        <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.InfoDarker) @Badge.Size(BadgeSize.Large)" aria-label="NuGet badge">
+            <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.Regular)" style="--_svg-icon-source:var(--svg-nuget-icon)" aria-hidden="true"></span>
+        </span>
+        """;
     public const string Margin_Code_Example = """
         <div class="@Section.Base @Section.Bordered @Section.FixedRadius(UnitRadius.One) @Section.NoPadding">
             <button class="@Button.Base @Button.FixedRadius(UnitRadius.One) 

@@ -1,4 +1,5 @@
 ﻿@use "_configuration" as *;
+@use "sass:string";
 
 @mixin media-device-sm($width: min-width) {
     @media ($width:$device-sm-min-width ) {
@@ -56,7 +57,7 @@
 
 @mixin generate-grid-column-classes($breakpoint-map: $breakpoints, $number-of-columns: 12, $grid-container-class: "br-grid-row") {
 
-    $grid-container-class: unquote(".#{$grid-container-class}");
+    $grid-container-class: string.unquote(".#{$grid-container-class}");
 
     @each $key, $value in $breakpoint-map {
 

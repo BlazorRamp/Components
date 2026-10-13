@@ -1,17 +1,4 @@
 ﻿
-@mixin KbdSpanBase{
-    
-    &--font-size-label  {--_code-span-font-size:var(--br-unit-font-size-label);}
-    &--font-size-one    {--_code-span-font-size:var(--br-unit-font-size-1);}
-    &--font-size-two    {--_code-span-font-size:var(--br-unit-font-size-2);}
-    &--font-size-three  {--_code-span-font-size:var(--br-unit-font-size-3);}
-    &--font-size-four   {--_code-span-font-size:var(--br-unit-font-size-4);}
-    &--font-size-five   {--_code-span-font-size:var(--br-unit-font-size-5);}
-    &--font-size-six    {--_code-span-font-size:var(--br-unit-font-size-6);}
-
-
-}
-
 .br-code-span {
 
     --_code-span-font-size: var(--br-unit-font-size-1);

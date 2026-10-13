@@ -388,7 +388,7 @@
     border-width: 1px;
     border-color: var(--_badge-border-colour);
 
-    &--no-border{border:none;}
+   &--transparent-border { border-color: transparent; }
 
     &--radius-none  {--_badge-border-radius: var(--br-unit-radius-0);}
     &--radius-one   {--_badge-border-radius: var(--br-unit-radius-1);}

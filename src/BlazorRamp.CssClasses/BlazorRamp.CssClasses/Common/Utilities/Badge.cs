@@ -2,24 +2,28 @@
 
 namespace BlazorRamp.CssClasses.Common.Utilities;
 
-
+/// <summary>
+/// Provides the BEM CSS classes for the <c>br-badge</c> block: a small, static label for a status,
+/// count or category. A badge is not interactive - use <see cref="Button"/> or <see cref="Link"/>
+/// for anything that can be clicked.
+/// </summary>
 public static class Badge
 {
     /// <summary>
-    /// The base class, <c>br-button</c>. Always required.
+    /// The base class, <c>br-badge</c>. Always required.
     /// </summary>
     public const string Base = "br-badge";
 
     /// <summary>
-    /// Removes the border from the badge..
+    /// Makes the border transparent (looks like its removed) so there is no size change.
     /// </summary>
-    public const string NoBorder = $"{Base}--no-border";
+    public const string TransparentBorder = $"{Base}--transparent-border";
 
     /// <summary>
-    /// Gets the class that sets the badges's size.
+    /// Gets the class that sets the badge's size.
     /// </summary>
     /// <param name="badgeSize">The size to apply. See <see cref="BadgeSize"/>.</param>
-    /// <returns>The <c>br-button</c> modifier class for the given <paramref name="badgeSize"/>.</returns>
+    /// <returns>The <c>br-badge</c> modifier class for the given <paramref name="badgeSize"/>.</returns>
     public static string Size(BadgeSize badgeSize)
 
         => badgeSize switch
@@ -71,7 +75,8 @@ public static class Badge
 
 
     /// <summary>
-    /// Gets the class that sets the elements border radius to a fixed <c>--br-unit-radius-*</c>
+    /// Gets the class that sets the element's border radius to a fixed <c>--br-unit-radius-*</c>
+    /// value in place of the default. Badge is not part of a radius group.
     /// </summary>
     /// <param name="unitRadius">The fixed radius to apply. See <see cref="UnitRadius"/>.</param>
     /// <returns>The <c>br-badge</c> modifier class for the given <paramref name="unitRadius"/>.</returns>
