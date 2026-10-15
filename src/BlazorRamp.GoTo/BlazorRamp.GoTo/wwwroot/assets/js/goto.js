@@ -65,6 +65,13 @@ const showGoToViewer = (gotoViewerID) => {
     gotoViewerElement.showPopover();
     gotoViewerElement.focus();
 };
+const closeGoToViewer = (gotoViewerID) => {
+    const gotoViewerElement = document.getElementById(gotoViewerID);
+    if (!gotoViewerElement)
+        return;
+    if (gotoViewerElement.matches(":popover-open"))
+        gotoViewerElement.hidePopover();
+};
 const registerShortCutCallBack = (dotNetRef, callBackName) => {
     if (!dotNetRef || true === _shortCutCallBackRegistered)
         return;
@@ -76,5 +83,5 @@ const registerShortCutCallBack = (dotNetRef, callBackName) => {
     });
     _shortCutCallBackRegistered = true;
 };
-export { showGoTo, getGoToData, registerShortCutCallBack, scrollMarkerIntoView, showGoToViewer };
+export { showGoTo, getGoToData, registerShortCutCallBack, scrollMarkerIntoView, showGoToViewer, closeGoToViewer };
 //# sourceMappingURL=goto.js.map

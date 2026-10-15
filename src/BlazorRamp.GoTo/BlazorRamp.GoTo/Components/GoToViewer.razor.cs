@@ -9,7 +9,9 @@ namespace BlazorRamp.GoTo.Components;
 public partial class GoToViewer :IAsyncDisposable
 {
 
-    [Parameter] public string CloseButtonText { get; set; } = GlobalValues.GoTo_Close_Button_Text;
+    [Parameter] public string CloseButtonText   { get; set; } = GlobalValues.GoTo_Close_Button_Text;
+    [Parameter] public string NoGotoMarkersText { get; set; } = GlobalValues.GoTo_No_Markers_Text;
+    [Parameter] public string HeadingText       { get; set; } = GlobalValues.GoTo_Heading_Text;
 
     [Inject] IJSRuntime JSRuntime { get; set; }
 
@@ -18,11 +20,16 @@ public partial class GoToViewer :IAsyncDisposable
     private List<GoToData> _gotoList     = [];
     private string         _gotoViewerID = Guid.NewGuid().ToString();
 
-    private string _closeButtonText = GlobalValues.GoTo_Close_Button_Text;
+    private string _closeButtonText   = GlobalValues.GoTo_Close_Button_Text;
+    private string _noGoToMarkersText = GlobalValues.GoTo_No_Markers_Text;
+    private string _headingText       = GlobalValues.GoTo_Heading_Text;
+    private string _headingTextID    = Guid.NewGuid().ToString();
 
     protected override void OnParametersSet()
     {
-        _closeButtonText = String.IsNullOrWhiteSpace(CloseButtonText) ? GlobalValues.GoTo_Close_Button_Text : CloseButtonText.Trim();
+        _closeButtonText   = String.IsNullOrWhiteSpace(CloseButtonText)   ? GlobalValues.GoTo_Close_Button_Text : CloseButtonText.Trim();
+        _noGoToMarkersText = string.IsNullOrWhiteSpace(NoGotoMarkersText) ? GlobalValues.GoTo_No_Markers_Text   : NoGotoMarkersText.TrimEnd();
+        _headingText       = string.IsNullOrWhiteSpace(_headingText)      ? GlobalValues.GoTo_No_Markers_Text   : HeadingText.TrimEnd(); ;
     }
 
 
@@ -48,6 +55,11 @@ public partial class GoToViewer :IAsyncDisposable
     private async Task GoToMarker(GoToData gotoItem)
     {
         await _jSModule.InvokeVoidAsync(GlobalValues.JS_ShowPopover_Func, gotoItem.MarkerID, gotoItem.PopoverID);
+    }
+
+    private async Task CloseGotoViewer(string gotoViewID)
+    {
+        if (_jSModule is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Close_GoTo_Viewer_Func, gotoViewID);
     }
 
     [JSInvokable]

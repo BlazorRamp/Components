@@ -102,6 +102,17 @@ const showGoToViewer = (gotoViewerID: string,): void => {
 };
 
 
+const closeGoToViewer = (gotoViewerID: string,): void => {
+
+    const gotoViewerElement = document.getElementById(gotoViewerID);
+
+    if (!gotoViewerElement) return;
+
+    if (gotoViewerElement.matches(":popover-open")) gotoViewerElement.hidePopover();
+
+};
+
+
 const registerShortCutCallBack = ( dotNetRef:any, callBackName:string): void => {
 
     if (!dotNetRef || true === _shortCutCallBackRegistered) return;
@@ -113,8 +124,7 @@ const registerShortCutCallBack = ( dotNetRef:any, callBackName:string): void => 
             callBlazor(dotNetRef,callBackName);
         }
     });
-
     _shortCutCallBackRegistered = true;
 };
 
-export { showGoTo, getGoToData, registerShortCutCallBack, scrollMarkerIntoView, showGoToViewer };
+export { showGoTo, getGoToData, registerShortCutCallBack, scrollMarkerIntoView, showGoToViewer, closeGoToViewer };

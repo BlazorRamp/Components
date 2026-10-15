@@ -63,26 +63,26 @@
 }
 
 .br-goto-viewer {
+   
 
-    &__base {
-        background-color: var(--br-comp-goto-pane-base-background);
-        border-radius: var(--br-comp-goto-pane-base-border-radius);
-        border-width: var(--br-comp-goto-pane-base-border-width);
-        border-style: var(--br-comp-goto-pane-base-border-style);
-        border-color: var(--br-comp-goto-pane-base-border-colour);
-        min-width: var(--br-unit-wcag-reflow-2a);
-        max-width: 75vw;
-        overflow: hidden;
-        box-shadow: var(--br-comp-goto-box-shadow);
-        padding: 0;
+    background-color: var(--br-comp-goto-pane-base-background);
+    border-radius: var(--br-comp-goto-pane-base-border-radius);
+    border-width: var(--br-comp-goto-pane-base-border-width);
+    border-style: var(--br-comp-goto-pane-base-border-style);
+    border-color: var(--br-comp-goto-pane-base-border-colour);
+    min-width: calc(var(--br-unit-wcag-reflow-2a) * 1.5);
+    max-width: 75vw;
+    overflow: hidden;
+    box-shadow: var(--br-comp-goto-box-shadow);
+    padding: 0;
 
-        &:focus-visible {
-            outline-offset: var(--br-comp-goto-outline-offset);
-            outline-style: var(--br-comp-goto-outline-style);
-            outline-width: var(--br-comp-goto-outline-width);
-            outline-color: var(--br-comp-goto-outline-colour);
-        }
+    &:focus-visible {
+        outline-offset: var(--br-comp-goto-outline-offset);
+        outline-style: var(--br-comp-goto-outline-style);
+        outline-width: var(--br-comp-goto-outline-width);
+        outline-color: var(--br-comp-goto-outline-colour);
     }
+
 
     &__content-area {
         background-color: var(--br-comp-goto-pane-surface-background);
@@ -134,8 +134,6 @@
         line-height: var(--br-comp-goto-area-content-line-height);
         white-space: normal;
         outline: none;
-
-
     }
 
 
@@ -153,15 +151,10 @@
         grid-row: 3/4;
         min-height: calc(var(--br-unit-wcag-target-2a) + var(--br-unit-space-5));
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: var(--br-unit-space-5);
+        justify-content:end;
         align-items: center;
         padding-top: var(--br-unit-space-4);
 
-        &--reverse {
-            flex-direction: row-reverse;
-        }
     }
 
     &__footer-button {
@@ -182,7 +175,7 @@
         border-width: var(--br-comp-goto-button-border-width);
         border-style: var(--br-comp-goto-button-border-style);
         border-color: var(--br-comp-goto-button-border-colour);
-        min-width: calc((var(--br-unit-wcag-reflow-2a) / 3) + var(--br-unit-space-5));
+        min-width: calc((var(--br-unit-wcag-reflow-2a) / 3));
         white-space: normal;
         cursor: pointer;
 
