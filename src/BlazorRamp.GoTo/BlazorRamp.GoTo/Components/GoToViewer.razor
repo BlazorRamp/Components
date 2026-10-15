@@ -1,0 +1,15 @@
+﻿<div autofocus  id="@_gotoViewerID" class="@GlobalValues.GoTo_Viewer_Block_Class" popover="auto" role="dialog" aria-label="Goto Viewer">
+
+    <div>
+            @if(_gotoList.Count != 0)
+            {
+                <ul>
+                    @foreach(var gotoItem in _gotoList){
+                     <li>
+                        <button type="button" @onclick="(() => GoToMarker(gotoItem))" @onfocus="() => ScrollToMarker(gotoItem.MarkerID)">Go to: @gotoItem.GoToText</button>
+                     </li>
+                    }
+                </ul>
+            }
+    </div>
+</div>

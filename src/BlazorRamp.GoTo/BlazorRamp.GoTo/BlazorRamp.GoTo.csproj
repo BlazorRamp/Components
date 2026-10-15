@@ -63,7 +63,6 @@ bring up a list of these and then navigate to any of the listed markers.</Descri
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Components\" />
     <Folder Include="wwwroot\assets\js\" />
   </ItemGroup>
 
