@@ -18,5 +18,16 @@ internal class GlobalValues
 
     public const string GoTo_Viewer_Block_Class = "br-goto-viewer";
 
-    
+    public const string GoTo_Viewer_Base_Class = $"{GoTo_Viewer_Block_Class}__base";
+    public const string GoTo_Viewer_Header_Class = $"{GoTo_Viewer_Block_Class}__header";
+    public const string GoTo_Viewer_Content_Class = $"{GoTo_Viewer_Block_Class}__content";
+
+    public const string GoTo_Viewer_Footer_Class = $"{GoTo_Viewer_Block_Class}__footer";
+
+    public const string GoTo_Viewer_Footer_Button_Class = $"{GoTo_Viewer_Block_Class}__footer-button";
+
+
+    public const string GoTo_Close_Button_Text = "Close";
+
+
 }

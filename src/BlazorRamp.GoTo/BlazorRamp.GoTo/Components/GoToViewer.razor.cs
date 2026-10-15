@@ -9,12 +9,22 @@ namespace BlazorRamp.GoTo.Components;
 public partial class GoToViewer :IAsyncDisposable
 {
 
+    [Parameter] public string CloseButtonText { get; set; } = GlobalValues.GoTo_Close_Button_Text;
+
     [Inject] IJSRuntime JSRuntime { get; set; }
 
     private DotNetObjectReference<GoToViewer>? _dotNetObjectRef = default;
     private IJSObjectReference _jSModule = null;
     private List<GoToData> _gotoList     = [];
     private string         _gotoViewerID = Guid.NewGuid().ToString();
+
+    private string _closeButtonText = GlobalValues.GoTo_Close_Button_Text;
+
+    protected override void OnParametersSet()
+    {
+        _closeButtonText = String.IsNullOrWhiteSpace(CloseButtonText) ? GlobalValues.GoTo_Close_Button_Text : CloseButtonText.Trim();
+    }
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -43,6 +53,7 @@ public partial class GoToViewer :IAsyncDisposable
     [JSInvokable]
     public async Task HandleJSCallBack(GoToData[] goToData)
     {
+        _gotoList.Clear();
         _gotoList.AddRange(goToData);
         await InvokeAsync(StateHasChanged);
         await _jSModule.InvokeVoidAsync(GlobalValues.JS_Show_GoTo_Viewer_Func, _gotoViewerID);

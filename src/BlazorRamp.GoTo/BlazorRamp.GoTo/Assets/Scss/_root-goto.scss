@@ -1,20 +1,133 @@
-﻿:root {
-/*    --br-comp-goto-outline-style: var(--br-comp-all-outline-style);
+﻿
+:root {
+    /*
+        * component outline styles
+    */
+    --br-comp-goto-box-shadow: var(--br-unit-box-shadow-1);
+    --br-comp-goto-outline-style: var(--br-comp-all-outline-style);
     --br-comp-goto-outline-width: var(--br-comp-all-outline-width);
-    --br-comp-goto-outline-offset: var(--br-unit-outline-offset-0);
+    --br-comp-goto-outline-offset: 0px;
     --br-comp-goto-outline-colour: var(--br-comp-all-outline-colour);
-    --br-comp-goto-area-content-background: var(--br-unit-colour-canvas-inverted);
-    --br-comp-goto-area-content-text: var(--br-unit-colour-canvas-text-inverted);
-    --br-comp-goto-area-content-font-family: var(--br-comp-all-area-content-font-family);
-    --br-comp-goto-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
-    --br-comp-goto-area-content-font-size: var(--br-comp-all-area-content-font-size);
-    //
-    --br-comp-goto-pane-surface-background: var(--br-unit-colour-canvas-inverted);
+    /*
+        * pane base styles
+    */
+    --br-comp-goto-pane-base-background: var(--br-comp-all-pane-base-background);
+    --br-comp-goto-pane-base-border-style: var(--br-comp-all-pane-base-border-style);
+    --br-comp-goto-pane-base-border-colour: var(--br-comp-all-pane-base-border-colour);
+    --br-comp-goto-pane-base-border-width: var(--br-unit-border-1);
+    --br-comp-goto-pane-base-border-radius: var(--br-group-dialog-pane-base-border-radius);
+    /*
+        * pane panel styles
+    */
+    --br-comp-goto-pane-panel-background: var(--br-comp-all-pane-panel-background);
+    --br-comp-goto-pane-panel-border-style: var(--br-comp-all-pane-panel-border-style);
+    --br-comp-goto-pane-panel-border-colour: var(--br-comp-all-pane-panel-border-colour);
+    --br-comp-goto-pane-panel-border-width: var(--br-comp-all-pane-panel-border-width);
+    --br-comp-goto-pane-panel-border-radius: var(--br-group-dialog-pane-panel-border-radius);
+    /*
+        * pane surface styles
+    */
+    --br-comp-goto-pane-surface-background: var(--br-comp-all-pane-surface-background);
+    --br-comp-goto-pane-surface-text: var(--br-comp-all-pane-surface-text);
+    --br-comp-goto-pane-surface-font-family: var(--br-comp-all-pane-surface-font-family);
+    --br-comp-goto-pane-surface-font-size: var(--br-comp-all-pane-surface-font-size);
+    --br-comp-goto-pane-surface-font-weight: var(--br-comp-all-pane-surface-font-weight);
+    --br-comp-goto-pane-surface-line-height: var(--br-comp-all-pane-surface-line-height);
     --br-comp-goto-pane-surface-border-style: var(--br-comp-all-pane-surface-border-style);
-    --br-comp-goto-pane-surface-border-width: var(--br-comp-all-outline-offset);
-    --br-comp-goto-pane-surface-border-colour: var(--br-unit-colour-canvas);
-    --br-comp-goto-pane-surface-border-radius-top-right: var(--br-group-revealed-border-radius);
-    --br-comp-goto-pane-surface-border-radius-top-left: var(--br-group-revealed-border-radius);
-    --br-comp-goto-pane-surface-border-radius-bottom-right: var(--br-group-revealed-border-radius);
-    --br-comp-goto-pane-surface-border-radius-bottom-left: var(--br-group-revealed-border-radius);*/
+    --br-comp-goto-pane-surface-border-colour: var(--br-comp-all-pane-surface-border-colour);
+    --br-comp-goto-pane-surface-border-width: var(--br-comp-all-pane-surface-border-width);
+    --br-comp-goto-pane-surface-border-radius: var(--br-group-dialog-pane-surface-border-radius);
+    /*
+        * area header styles
+    */
+    --br-comp-goto-area-header-background: var(--br-comp-all-area-header-background);
+    --br-comp-goto-area-header-text: var(--br-comp-all-area-header-text);
+    --br-comp-goto-area-header-font-family: var(--br-comp-all-area-header-font-family);
+    --br-comp-goto-area-header-font-size: var(--br-comp-all-area-header-font-size);
+    --br-comp-goto-area-header-font-weight: var(--br-comp-all-area-header-font-weight);
+    --br-comp-goto-area-header-line-height: var(--br-comp-all-area-header-line-height);
+    --br-comp-goto-area-header-border-style: var(--br-comp-all-area-header-border-style);
+    --br-comp-goto-area-header-border-colour: var(--br-comp-all-area-header-border-colour);
+    --br-comp-goto-area-header-border-width: var(--br-comp-all-area-header-border-width);
+    --br-comp-goto-area-header-border-radius: var(--br-group-dialog-area-header-border-radius);
+    /*
+        * area content styles
+    */
+    --br-comp-goto-area-content-background: var(--br-comp-all-area-content-background);
+    --br-comp-goto-area-content-text: var(--br-comp-all-area-content-text);
+    --br-comp-goto-area-content-font-family: var(--br-comp-all-area-content-font-family);
+    --br-comp-goto-area-content-font-size: var(--br-unit-font-size-label);
+    --br-comp-goto-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
+    --br-comp-goto-area-content-line-height: var(--br-comp-all-area-content-line-height);
+    --br-comp-goto-area-content-border-style: var(--br-comp-all-area-content-border-style);
+    --br-comp-goto-area-content-border-colour: var(--br-comp-all-area-content-border-colour);
+    --br-comp-goto-area-content-border-width: var(--br-unit-border-2);
+    --br-comp-goto-area-content-border-radius: var(--br-group-dialog-area-content-border-radius);
+    /*
+        * area footer styles
+    */
+    --br-comp-goto-area-footer-background: var(--br-comp-all-area-footer-background);
+    --br-comp-goto-area-footer-text: var(--br-comp-all-area-footer-text);
+    --br-comp-goto-area-footer-font-family: var(--br-comp-all-area-footer-font-family);
+    --br-comp-goto-area-footer-font-size: var(--br-comp-all-area-footer-font-size);
+    --br-comp-goto-area-footer-font-weight: var(--br-comp-all-area-footer-font-weight);
+    --br-comp-goto-area-footer-line-height: var(--br-comp-all-area-footer-line-height);
+    --br-comp-goto-area-footer-border-style: var(--br-comp-all-area-footer-border-style);
+    --br-comp-goto-area-footer-border-colour: var(--br-comp-all-area-footer-border-colour);
+    --br-comp-goto-area-footer-border-width: var(--br-comp-all-area-footer-border-width);
+    --br-comp-goto-area-footer-border-radius: var(--br-group-dialog-area-footer-border-radius);
+    /*
+        * button styles
+    */
+    --br-comp-goto-button-background: var(--br-comp-all-button-background);
+    --br-comp-goto-button-text: var(--br-comp-all-button-text);
+    --br-comp-goto-button-font-family: var(--br-comp-all-button-font-family);
+    --br-comp-goto-button-font-size: var(--br-comp-all-button-font-size);
+    --br-comp-goto-button-font-weight: var(--br-comp-all-button-font-weight);
+    --br-comp-goto-button-line-height: var(--br-comp-all-button-line-height);
+    --br-comp-goto-button-border-style: var(--br-comp-all-button-border-style);
+    --br-comp-goto-button-border-colour: var(--br-comp-all-button-border-colour);
+    --br-comp-goto-button-border-width: var(--br-comp-all-button-border-width);
+    --br-comp-goto-button-border-radius: var(--br-group-button-border-radius);
+    --br-comp-goto-button-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-goto-button-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-goto-button-outline-offset: var(--br-comp-all-outline-offset);
+    --br-comp-goto-button-outline-colour: var(--br-comp-all-outline-colour);
+    --br-comp-goto-button-state-hover: var(--br-comp-all-button-state-hover);
+    --br-comp-goto-button-state-active-brightness: var(--br-comp-all-button-state-active-brightness);
+    --br-comp-goto-button-state-active-scale: var(--br-comp-all-button-state-active-scale);
+}
+
+:root:has(.br-goto-viewer:popover-open) .br-goto::before {
+    content: attr(data-br-goto-number);
+    content: attr(data-br-goto-number) / ""; // empty alt text; ignored where unsupported
+
+    display: grid;
+    place-items: center;
+    position: absolute;
+    inset-inline-start: 100%;
+    inset-block-start: 50%;
+    translate: 0 -50%;
+    z-index: 1;
+    min-inline-size: 2em;
+    aspect-ratio: 1;
+    box-sizing: border-box;
+    padding: var(--br-unit-space-5);
+    border-radius: 50%;
+    border-width: var(--br-unit-outline-offset-2);
+    border-style: solid;
+    border-color: var(--br-unit-colour-canvas);
+    background-color: var(--br-unit-colour-canvas-inverted);
+    color: var(--br-unit-colour-canvas-text-inverted);
+    font-weight: bold;
+    line-height: 1;
+    pointer-events: none;
+}
+
+// The marker belonging to the focused viewer button
+:root:has(.br-goto-viewer:popover-open) .br-goto[data-br-goto-current]::before {
+    outline-style: var(--br-comp-all-outline-style);
+    outline-color: var(--br-comp-all-outline-colour);
+    outline-width: calc(var(--br-comp-all-outline-width) * 2);
+    outline-offset: var(--br-unit-outline-offset-2);
 }

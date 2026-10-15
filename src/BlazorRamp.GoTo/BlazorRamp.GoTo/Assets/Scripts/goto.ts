@@ -1,8 +1,16 @@
-﻿interface GoToData { markerId: string, popoverId: string, gotoText: string, inactive: boolean };
+﻿interface GoToData { markerId: string, popoverId: string, gotoText: string, gotoNumber: string};
 
-const _dataAttribute = "data-br-goto-active";
+const _dataAttribute    = "data-br-goto";
+const _currentAttribute = "data-br-goto-current";
 
 let _shortCutCallBackRegistered = false;
+
+
+const clearCurrentMarker = (): void => {
+    for (const marker of document.querySelectorAll(`[${_currentAttribute}]`)) {
+        marker.removeAttribute(_currentAttribute);
+    }
+};
 
 const hidePopoverOnBlur = (e: FocusEvent): void => {
 
@@ -31,31 +39,44 @@ const showGoTo = (markerId: string, popoverId:string): void => {
 };
 
 const scrollMarkerIntoView = (markerId: string): void => {
+
+    clearCurrentMarker()
+
     const markerElement = document.getElementById(markerId);
 
-    if(markerElement) markerElement.scrollIntoView({ block: "start" });
+    if (!markerElement) return;
+
+    markerElement.setAttribute(_currentAttribute, "");
+    markerElement.scrollIntoView({ block: "start" });
    
 }; 
 
 const getGoToData = (): GoToData[] => {
 
+    clearCurrentMarker();
+
     const gotoData: GoToData[] = [];
 
     const markers = document.querySelectorAll<HTMLElement>(`[${_dataAttribute}]`);
 
-    markers.forEach(marker => {
+    for (const marker of markers) {
 
         const label = marker.querySelector<HTMLElement>("[popover]");
 
-        if (!marker.id || !label?.id) return;
+        if (!marker.id || !label?.id) continue;
+
+        const gotoNumber = String(gotoData.length + 1).padStart(2, "0");
+
+        marker.setAttribute("data-br-goto-number", gotoNumber);
+        label.setAttribute("data-br-goto-number", gotoNumber);
 
         gotoData.push({
             markerId: marker.id,
             popoverId: label.id,
             gotoText: label.textContent?.trim() ?? "",
-            inactive: marker.getAttribute(_dataAttribute)?.toLowerCase() !== "true"
+            gotoNumber
         });
-    });
+    }
 
     return gotoData;
 };
