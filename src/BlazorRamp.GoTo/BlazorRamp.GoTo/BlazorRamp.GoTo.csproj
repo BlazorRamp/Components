@@ -16,12 +16,13 @@ bring up a list of these and then navigate to any of the listed markers.</Descri
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>Blazor; Accessible Components; Accessibility; ARIA; Skip; Jump; GoTo; Navigate;</PackageReleaseNotes>
+    <PackageReleaseNotes>Initial release of the Blazor Ramp GoTo component</PackageReleaseNotes>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <FileVersion>1.0.0</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
+	  <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Skip; Jump; GoTo; Navigate;</PackageTags>
   </PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -42,7 +42,7 @@ const showGoTo = (markerId: string, popoverId:string): void => {
 
 const scrollMarkerIntoView = (markerId: string): void => {
 
-    clearCurrentMarker()
+    clearCurrentMarker();
 
     const markerElement = document.getElementById(markerId);
 
@@ -92,7 +92,7 @@ const callBlazor = (dotNetRef:any, callBackName:string): void => {
 
     const gotoData: GoToData[] = getGoToData();
 
-    dotNetRef.invokeMethodAsync(callBackName, gotoData);
+    dotNetRef.invokeMethodAsync(callBackName, gotoData).catch(() => { });
 };
 
 const showGoToViewer = (gotoViewerId: string,): void => {

@@ -58,7 +58,7 @@ const callBlazor = (dotNetRef, callBackName) => {
     if (!dotNetRef)
         return;
     const gotoData = getGoToData();
-    dotNetRef.invokeMethodAsync(callBackName, gotoData);
+    dotNetRef.invokeMethodAsync(callBackName, gotoData).catch(() => { });
 };
 const showGoToViewer = (gotoViewerId) => {
     const gotoViewerElement = document.getElementById(gotoViewerId);

@@ -6,21 +6,47 @@ using Microsoft.JSInterop;
 
 namespace BlazorRamp.GoTo.Components;
 
+/// <summary>
+/// The viewer that lists the <see cref="GoTo"/> markers on the current page and moves focus to the one
+/// the user chooses. It opens with <c>Ctrl+Shift+Y</c> or through a trigger button that is only visible
+/// while it has keyboard focus. Add it once, to a layout or router component, using an interactive render mode.
+/// </summary>
 public partial class GoToViewer :IAsyncDisposable
 {
-
+    /// <summary>
+    /// Gets or sets the text of the viewer's close button. If <see langword="null"/>, empty or whitespace,
+    /// the default text is used.
+    /// </summary>
     [Parameter] public string CloseButtonText   { get; set; } = GlobalValues.GoTo_Close_Button_Text;
+
+    /// <summary>
+    /// Gets or sets the message shown when the page has no markers. If <see langword="null"/>, empty or
+    /// whitespace, the default text is used.
+    /// </summary>
     [Parameter] public string NoGotoMarkersText { get; set; } = GlobalValues.GoTo_No_Markers_Text;
+
+    /// <summary>
+    /// Gets or sets the heading of the viewer, which also provides its accessible name. If <see langword="null"/>,
+    /// empty or whitespace, the default text is used.
+    /// </summary>
     [Parameter] public string HeadingText       { get; set; } = GlobalValues.GoTo_Heading_Text;
 
+    /// <summary>
+    /// Gets or sets the text of the trigger button. It should mention the keyboard shortcut. If <see langword="null"/>,
+    /// empty or whitespace, the default text is used.
+    /// </summary>
+    [Parameter] public string TriggerButtonText  { get; set; } = GlobalValues.GoTo_Trigger_Button_Text;
 
-    [Parameter] public string TriggerButtonText   { get; set; } = GlobalValues.GoTo_Trigger_Button_Text;
-    [Parameter] public bool ExcludeTriggerButton  { get; set; } = false;
+    /// <summary>
+    /// Gets or sets a value indicating whether the trigger button is left out. When <see langword="true"/>,
+    /// the viewer can only be opened with the keyboard shortcut. Defaults to <see langword="false"/>.
+    /// </summary>
+    [Parameter] public bool ExcludeTriggerButton { get; set; } = false;
 
-    [Inject] IJSRuntime JSRuntime { get; set; }
+    [Inject] IJSRuntime JSRuntime { get; set; } = default!;
 
     private DotNetObjectReference<GoToViewer>? _dotNetObjectRef = default;
-    private IJSObjectReference _jSModule = null;
+    private IJSObjectReference? _jSModule = null;
     private List<GoToData> _gotoList     = [];
     private string         _gotoViewerID = Guid.NewGuid().ToString();
 
@@ -30,15 +56,25 @@ public partial class GoToViewer :IAsyncDisposable
     private string _headingTextID     = Guid.NewGuid().ToString();
     private string _triggerButtonText = GlobalValues.GoTo_Trigger_Button_Text;
 
+
+    /// <summary>
+    /// Replaces any blank text parameters with their defaults and trims the others.
+    /// </summary>
     protected override void OnParametersSet()
     {
         _closeButtonText   = String.IsNullOrWhiteSpace(CloseButtonText)   ? GlobalValues.GoTo_Close_Button_Text : CloseButtonText.Trim();
-        _noGoToMarkersText = String.IsNullOrWhiteSpace(NoGotoMarkersText) ? GlobalValues.GoTo_No_Markers_Text   : NoGotoMarkersText.TrimEnd();
-        _headingText       = String.IsNullOrWhiteSpace(HeadingText)      ? GlobalValues.GoTo_Heading_Text   : HeadingText.TrimEnd(); 
+        _noGoToMarkersText = String.IsNullOrWhiteSpace(NoGotoMarkersText) ? GlobalValues.GoTo_No_Markers_Text   : NoGotoMarkersText.Trim();
+        _headingText       = String.IsNullOrWhiteSpace(HeadingText)      ? GlobalValues.GoTo_Heading_Text   : HeadingText.Trim(); 
         _triggerButtonText = String.IsNullOrWhiteSpace(TriggerButtonText) ? GlobalValues.GoTo_Trigger_Button_Text: TriggerButtonText.Trim();
     }
 
-
+    /// <summary>
+    /// On first render, loads the JavaScript module and registers the keyboard shortcut and the viewer's
+    /// arrow-key handling.
+    /// </summary>
+    /// <param name="firstRender">
+    /// <see langword="true"/> if this is the first time the component has rendered; otherwise <see langword="false"/>.
+    /// </param>
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (true == firstRender)
@@ -50,7 +86,11 @@ public partial class GoToViewer :IAsyncDisposable
 
         }
     }
-    
+
+    /// <summary>
+    /// Builds the list of markers currently on the page and shows the viewer. Called by the trigger button.
+    /// </summary>
+    /// <param name="gotoViewID">The id of the viewer element.</param>
     private async Task HandleOpenViewer(string gotoViewID)
     {
         if (_jSModule is not null)
@@ -59,37 +99,55 @@ public partial class GoToViewer :IAsyncDisposable
 
             var data = await _jSModule.InvokeAsync<GoToData[]>(GlobalValues.JS_Get_GoToData_Func);
            _gotoList.AddRange(data);
-
+            await InvokeAsync(StateHasChanged);
             await _jSModule.InvokeVoidAsync(GlobalValues.JS_Show_GoTo_Viewer_Func, gotoViewID);
         }
     }
+
+    /// <summary>
+    /// Scrolls the marker into view and marks it as the current one while its list button has focus.
+    /// </summary>
+    /// <param name="markerID">The id of the marker element.</param>
     private async Task ScrollToMarker(string markerID)
     {
         if (_jSModule is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Scroll_Marker_Func, markerID);
     }
-        
 
+    /// <summary>
+    /// Moves focus to the chosen marker and shows its label, which also closes the viewer.
+    /// </summary>
+    /// <param name="gotoItem">The list entry that was chosen.</param>
     private async Task GoToMarker(GoToData gotoItem)
     {
-        await _jSModule.InvokeVoidAsync(GlobalValues.JS_ShowPopover_Func, gotoItem.MarkerID, gotoItem.PopoverID);
+        if (_jSModule is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_ShowPopover_Func, gotoItem.MarkerID, gotoItem.PopoverID);
     }
 
+    /// <summary>
+    /// Closes the viewer.
+    /// </summary>
+    /// <param name="gotoViewID">The id of the viewer element.</param>
     private async Task CloseGotoViewer(string gotoViewID)
     {
         if (_jSModule is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Close_GoTo_Viewer_Func, gotoViewID);
     }
 
+    /// <summary>
+    /// Called from JavaScript when the keyboard shortcut is pressed. Replaces the list with the markers
+    /// found on the page, renders it and then shows the viewer.
+    /// </summary>
+    /// <param name="goToData">The markers found on the page, in document order.</param>
     [JSInvokable]
     public async Task HandleJSCallBack(GoToData[] goToData)
     {
         _gotoList.Clear();
         _gotoList.AddRange(goToData);
         await InvokeAsync(StateHasChanged);
-        await _jSModule.InvokeVoidAsync(GlobalValues.JS_Show_GoTo_Viewer_Func, _gotoViewerID);
+        if (_jSModule is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Show_GoTo_Viewer_Func, _gotoViewerID);
 
     }
+
     /// <summary>
-    /// Releases the JS module reference.
+    /// Releases the JavaScript module reference. Any exception, such as a disconnected circuit, is ignored.
     /// </summary>
     public async ValueTask DisposeAsync()
     {
@@ -98,6 +156,7 @@ public partial class GoToViewer :IAsyncDisposable
             try
             {
                 await _jSModule.DisposeAsync();
+                _dotNetObjectRef?.Dispose();
             }
             catch { }
         }

@@ -32,7 +32,7 @@ internal class GlobalValues
     public const string GoTo_Close_Button_Text = "Close";
     public const string GoTo_No_Markers_Text = "No go to markers defined for this page.";
 
-    public const string GoTo_Trigger_Button_Text = "Goto viewer (Control + Shift + J)";
+    public const string GoTo_Trigger_Button_Text = "Go to viewer (Control + Shift + Y)";
 
 
 }
