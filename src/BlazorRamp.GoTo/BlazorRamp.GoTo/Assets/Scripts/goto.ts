@@ -13,7 +13,7 @@ const clearCurrentMarker = (): void => {
     }
 };
 
-const hidePopoverOnBlur = (e: FocusEvent): void => {
+const hidePopoverOnFocusout = (e: FocusEvent): void => {
 
     const marker  = e.currentTarget as HTMLElement;
     const popover = marker.querySelector<HTMLDialogElement>("[popover]");
@@ -22,20 +22,7 @@ const hidePopoverOnBlur = (e: FocusEvent): void => {
 
 };
 
-// const hidePopoverOnBlur = (e: FocusEvent): void => {
 
-//     const marker = e.currentTarget as HTMLElement;
-
-//     window.setTimeout(() => {
-
-//         if (marker.contains(document.activeElement)) return;
-
-//         const popover = marker.querySelector<HTMLElement>("[popover]");
-
-//         if (popover?.matches(":popover-open")) popover.hidePopover();
-
-//     }, 0);
-//};
 const showGoTo = (markerId: string, popoverId:string): void => {
 
     const markerElement       = document.getElementById(markerId);
@@ -49,7 +36,7 @@ const showGoTo = (markerId: string, popoverId:string): void => {
 
     popoverLabelElement.showPopover({ source: markerElement });
 
-    markerElement.addEventListener("focusout", hidePopoverOnBlur, { once: true });//why blur not working
+    markerElement.addEventListener("focusout", hidePopoverOnFocusout, { once: true });
 
 };
 
@@ -75,6 +62,8 @@ const getGoToData = (): GoToData[] => {
     const markers = document.querySelectorAll<HTMLElement>(`[${_dataAttribute}]`);
 
     for (const marker of markers) {
+
+        if (!marker.checkVisibility({ visibilityProperty: true }) || marker.closest("[inert]")) continue;
 
         const label = marker.querySelector<HTMLElement>("[popover]");
 

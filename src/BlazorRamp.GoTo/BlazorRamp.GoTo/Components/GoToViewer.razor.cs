@@ -13,6 +13,10 @@ public partial class GoToViewer :IAsyncDisposable
     [Parameter] public string NoGotoMarkersText { get; set; } = GlobalValues.GoTo_No_Markers_Text;
     [Parameter] public string HeadingText       { get; set; } = GlobalValues.GoTo_Heading_Text;
 
+
+    [Parameter] public string TriggerButtonText   { get; set; } = GlobalValues.GoTo_Trigger_Button_Text;
+    [Parameter] public bool ExcludeTriggerButton  { get; set; } = false;
+
     [Inject] IJSRuntime JSRuntime { get; set; }
 
     private DotNetObjectReference<GoToViewer>? _dotNetObjectRef = default;
@@ -23,13 +27,15 @@ public partial class GoToViewer :IAsyncDisposable
     private string _closeButtonText   = GlobalValues.GoTo_Close_Button_Text;
     private string _noGoToMarkersText = GlobalValues.GoTo_No_Markers_Text;
     private string _headingText       = GlobalValues.GoTo_Heading_Text;
-    private string _headingTextID    = Guid.NewGuid().ToString();
+    private string _headingTextID     = Guid.NewGuid().ToString();
+    private string _triggerButtonText = GlobalValues.GoTo_Trigger_Button_Text;
 
     protected override void OnParametersSet()
     {
         _closeButtonText   = String.IsNullOrWhiteSpace(CloseButtonText)   ? GlobalValues.GoTo_Close_Button_Text : CloseButtonText.Trim();
-        _noGoToMarkersText = string.IsNullOrWhiteSpace(NoGotoMarkersText) ? GlobalValues.GoTo_No_Markers_Text   : NoGotoMarkersText.TrimEnd();
-        _headingText       = string.IsNullOrWhiteSpace(HeadingText)      ? GlobalValues.GoTo_Heading_Text   : HeadingText.TrimEnd(); ;
+        _noGoToMarkersText = String.IsNullOrWhiteSpace(NoGotoMarkersText) ? GlobalValues.GoTo_No_Markers_Text   : NoGotoMarkersText.TrimEnd();
+        _headingText       = String.IsNullOrWhiteSpace(HeadingText)      ? GlobalValues.GoTo_Heading_Text   : HeadingText.TrimEnd(); 
+        _triggerButtonText = String.IsNullOrWhiteSpace(TriggerButtonText) ? GlobalValues.GoTo_Trigger_Button_Text: TriggerButtonText.Trim();
     }
 
 
@@ -45,7 +51,18 @@ public partial class GoToViewer :IAsyncDisposable
         }
     }
     
+    private async Task HandleOpenViewer(string gotoViewID)
+    {
+        if (_jSModule is not null)
+        {
+            _gotoList.Clear();
 
+            var data = await _jSModule.InvokeAsync<GoToData[]>(GlobalValues.JS_Get_GoToData_Func);
+           _gotoList.AddRange(data);
+
+            await _jSModule.InvokeVoidAsync(GlobalValues.JS_Show_GoTo_Viewer_Func, gotoViewID);
+        }
+    }
     private async Task ScrollToMarker(string markerID)
     {
         if (_jSModule is not null) await _jSModule.InvokeVoidAsync(GlobalValues.JS_Scroll_Marker_Func, markerID);

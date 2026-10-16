@@ -1,4 +1,5 @@
-﻿<dialog id="@_gotoViewerID" class="@GlobalValues.GoTo_Viewer_Block_Class" popover="auto" aria-labelledby="@_headingTextID" tabindex="-1" autofocus>
+﻿
+<dialog id="@_gotoViewerID" class="@GlobalValues.GoTo_Viewer_Block_Class" popover="auto" aria-labelledby="@_headingTextID" tabindex="-1" autofocus>
 
     <div class="@GlobalValues.GoTo_Viewer_Content_Area_Class">
         <h2 id="@_headingTextID" class="@GlobalValues.GoTo_Viewer_Header_Class">@_headingText</h2>
@@ -34,4 +35,11 @@
 
 </dialog>
 
-
+@if(false == ExcludeTriggerButton)
+{
+    <button class="@GlobalValues.GoTo_Viewer_Trigger_Content_Class" type="button" @onclick="async () => await HandleOpenViewer(_gotoViewerID)">
+        <span class="@GlobalValues.GoTo_Viewer_Trigger_Content_Class">
+            @_triggerButtonText
+        </span>
+    </button>
+}

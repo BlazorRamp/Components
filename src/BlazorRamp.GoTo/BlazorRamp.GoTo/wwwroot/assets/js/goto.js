@@ -7,20 +7,12 @@ const clearCurrentMarker = () => {
         marker.removeAttribute(_currentAttribute);
     }
 };
-const hidePopoverOnBlur = (e) => {
+const hidePopoverOnFocusout = (e) => {
     const marker = e.currentTarget;
     const popover = marker.querySelector("[popover]");
     if (popover?.matches(":popover-open"))
         popover.hidePopover();
 };
-// const hidePopoverOnBlur = (e: FocusEvent): void => {
-//     const marker = e.currentTarget as HTMLElement;
-//     window.setTimeout(() => {
-//         if (marker.contains(document.activeElement)) return;
-//         const popover = marker.querySelector<HTMLElement>("[popover]");
-//         if (popover?.matches(":popover-open")) popover.hidePopover();
-//     }, 0);
-//};
 const showGoTo = (markerId, popoverId) => {
     const markerElement = document.getElementById(markerId);
     const popoverLabelElement = document.getElementById(popoverId);
@@ -30,7 +22,7 @@ const showGoTo = (markerId, popoverId) => {
     if (popoverLabelElement.matches(':popover-open'))
         return;
     popoverLabelElement.showPopover({ source: markerElement });
-    markerElement.addEventListener("focusout", hidePopoverOnBlur, { once: true }); //why blur not working
+    markerElement.addEventListener("focusout", hidePopoverOnFocusout, { once: true });
 };
 const scrollMarkerIntoView = (markerId) => {
     clearCurrentMarker();
@@ -45,6 +37,8 @@ const getGoToData = () => {
     const gotoData = [];
     const markers = document.querySelectorAll(`[${_dataAttribute}]`);
     for (const marker of markers) {
+        if (!marker.checkVisibility({ visibilityProperty: true }) || marker.closest("[inert]"))
+            continue;
         const label = marker.querySelector("[popover]");
         if (!marker.id || !label?.id)
             continue;

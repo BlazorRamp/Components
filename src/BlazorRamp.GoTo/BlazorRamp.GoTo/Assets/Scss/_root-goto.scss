@@ -96,6 +96,32 @@
     --br-comp-goto-button-state-hover: var(--br-comp-all-button-state-hover);
     --br-comp-goto-button-state-active-brightness: var(--br-comp-all-button-state-active-brightness);
     --br-comp-goto-button-state-active-scale: var(--br-comp-all-button-state-active-scale);
+    /*
+        * Trigger styles
+    */
+    --br-comp-goto-trigger-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-goto-trigger-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-goto-trigger-outline-offset: var(--br-unit-outline-offset-0);
+    --br-comp-goto-trigger-outline-colour: var(--br-comp-all-outline-colour);
+    --br-comp-goto-trigger-area-content-background: var(--br-unit-colour-canvas-inverted);
+    --br-comp-goto-trigger-area-content-text: var(--br-unit-colour-canvas-text-inverted);
+    --br-comp-goto-trigger-area-content-font-family: var(--br-comp-all-area-content-font-family);
+    --br-comp-goto-trigger-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
+    --br-comp-goto-trigger-area-content-font-size: var(--br-comp-all-area-content-font-size);
+    //
+    --br-comp-goto-trigger-pane-surface-background: var(--br-unit-colour-canvas-inverted);
+    --br-comp-goto-trigger-pane-surface-border-style: var(--br-comp-all-pane-surface-border-style);
+    --br-comp-goto-trigger-pane-surface-border-width: var(--br-comp-all-outline-offset);
+    --br-comp-goto-trigger-pane-surface-border-colour: var(--br-unit-colour-canvas);
+    --br-comp-goto-trigger-pane-surface-border-radius-top-right: var(--br-group-revealed-border-radius);
+    --br-comp-goto-trigger-pane-surface-border-radius-top-left: var(--br-group-revealed-border-radius);
+    --br-comp-goto-trigger-pane-surface-border-radius-bottom-right: var(--br-group-revealed-border-radius);
+    --br-comp-goto-trigger-pane-surface-border-radius-bottom-left: var(--br-group-revealed-border-radius);
+    //
+    --br-comp-goto-trigger-z-index: 999;
+    --br-comp-goto-trigger-margin: var(--br-unit-space-5);
+    //
+    --br-comp-goto-scroll-offset: 4rem;
 }
 
     :root:has(.br-goto-viewer:popover-open) .br-goto::before {

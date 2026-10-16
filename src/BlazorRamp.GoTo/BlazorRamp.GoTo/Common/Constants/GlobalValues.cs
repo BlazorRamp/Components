@@ -10,13 +10,10 @@ internal class GlobalValues
     public const string JS_Close_GoTo_Viewer_Func = "closeGoToViewer";
     public const string JS_Scroll_Marker_Func = "scrollMarkerIntoView";
     public const string GoTo_Label_Text_Exception_Message = "LabelText cannot be null, empty, or whitespace.";
+    
     public const string GoTo_Block_Class = "br-goto";
-
     public const string GoTo_Label_Class = $"{GoTo_Block_Class}__label";
-
     public const string GoTo_Viewer_Block_Class = "br-goto-viewer";
-
-    public const string GoTo_Viewer_Base_Class = $"{GoTo_Viewer_Block_Class}__base";
 
     public const string GoTo_Viewer_Content_Area_Class  = $"{GoTo_Viewer_Block_Class}__content-area";
     public const string GoTo_Viewer_Header_Class        = $"{GoTo_Viewer_Block_Class}__header";
@@ -28,9 +25,14 @@ internal class GlobalValues
     public const string GoTo_Viewer_Footer_Button_Class = $"{GoTo_Viewer_Block_Class}__footer-button";
 
 
+    public const string GoTo_Viewer_Trigger_Block_Class = "br-goto-trigger";
+    public const string GoTo_Viewer_Trigger_Content_Class = $"{GoTo_Viewer_Trigger_Block_Class}__content";
+
     public const string GoTo_Heading_Text = "Go to Markers";
     public const string GoTo_Close_Button_Text = "Close";
     public const string GoTo_No_Markers_Text = "No go to markers defined for this page.";
+
+    public const string GoTo_Trigger_Button_Text = "Goto viewer (Control + Shift + J)";
 
 
 }
