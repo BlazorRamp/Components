@@ -29,7 +29,7 @@ public partial class GoToViewer :IAsyncDisposable
     {
         _closeButtonText   = String.IsNullOrWhiteSpace(CloseButtonText)   ? GlobalValues.GoTo_Close_Button_Text : CloseButtonText.Trim();
         _noGoToMarkersText = string.IsNullOrWhiteSpace(NoGotoMarkersText) ? GlobalValues.GoTo_No_Markers_Text   : NoGotoMarkersText.TrimEnd();
-        _headingText       = string.IsNullOrWhiteSpace(_headingText)      ? GlobalValues.GoTo_No_Markers_Text   : HeadingText.TrimEnd(); ;
+        _headingText       = string.IsNullOrWhiteSpace(HeadingText)      ? GlobalValues.GoTo_Heading_Text   : HeadingText.TrimEnd(); ;
     }
 
 
@@ -40,7 +40,7 @@ public partial class GoToViewer :IAsyncDisposable
             _dotNetObjectRef = DotNetObjectReference.Create(this);
             _jSModule        = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Module_File_Path);
 
-            await _jSModule.InvokeVoidAsync(GlobalValues.JS_Register_ShortCut_CallBack_Func, _dotNetObjectRef, nameof(HandleJSCallBack));
+            await _jSModule.InvokeVoidAsync(GlobalValues.JS_Register_GoTo_Component_Func, _dotNetObjectRef, nameof(HandleJSCallBack), _gotoViewerID);
 
         }
     }

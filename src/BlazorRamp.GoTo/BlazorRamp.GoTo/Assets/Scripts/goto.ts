@@ -3,7 +3,8 @@
 const _dataAttribute    = "data-br-goto";
 const _currentAttribute = "data-br-goto-current";
 
-let _shortCutCallBackRegistered = false;
+let _gotoComponentRegistered = false;
+
 
 
 const clearCurrentMarker = (): void => {
@@ -15,12 +16,26 @@ const clearCurrentMarker = (): void => {
 const hidePopoverOnBlur = (e: FocusEvent): void => {
 
     const marker  = e.currentTarget as HTMLElement;
-    const popover = marker.querySelector<HTMLElement>("[popover]");
-
+    const popover = marker.querySelector<HTMLDialogElement>("[popover]");
     if (popover?.matches(":popover-open")) popover.hidePopover();
+
+
 };
 
+// const hidePopoverOnBlur = (e: FocusEvent): void => {
 
+//     const marker = e.currentTarget as HTMLElement;
+
+//     window.setTimeout(() => {
+
+//         if (marker.contains(document.activeElement)) return;
+
+//         const popover = marker.querySelector<HTMLElement>("[popover]");
+
+//         if (popover?.matches(":popover-open")) popover.hidePopover();
+
+//     }, 0);
+//};
 const showGoTo = (markerId: string, popoverId:string): void => {
 
     const markerElement       = document.getElementById(markerId);
@@ -34,7 +49,7 @@ const showGoTo = (markerId: string, popoverId:string): void => {
 
     popoverLabelElement.showPopover({ source: markerElement });
 
-    markerElement.addEventListener("blur", hidePopoverOnBlur, { once: true });
+    markerElement.addEventListener("focusout", hidePopoverOnBlur, { once: true });//why blur not working
 
 };
 
@@ -91,40 +106,75 @@ const callBlazor = (dotNetRef:any, callBackName:string): void => {
     dotNetRef.invokeMethodAsync(callBackName, gotoData);
 };
 
-const showGoToViewer = (gotoViewerID: string,): void => {
+const showGoToViewer = (gotoViewerId: string,): void => {
 
-    const gotoViewerElement = document.getElementById(gotoViewerID);
+    const gotoViewerElement = document.getElementById(gotoViewerId);
 
     if (!gotoViewerElement) return;
 
     gotoViewerElement.showPopover();
-    gotoViewerElement.focus();
+   
 };
 
 
-const closeGoToViewer = (gotoViewerID: string,): void => {
+const closeGoToViewer = (gotoViewerId: string,): void => {
 
-    const gotoViewerElement = document.getElementById(gotoViewerID);
+    const gotoViewerElement = document.getElementById(gotoViewerId);
 
     if (!gotoViewerElement) return;
 
-    if (gotoViewerElement.matches(":popover-open")) gotoViewerElement.hidePopover();
+   if (gotoViewerElement.matches(":popover-open")) gotoViewerElement.hidePopover();
 
 };
 
+const handleViewerKeyDown = (e: KeyboardEvent): void => {
 
-const registerShortCutCallBack = ( dotNetRef:any, callBackName:string): void => {
 
-    if (!dotNetRef || true === _shortCutCallBackRegistered) return;
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+
+    const viewer = e.currentTarget as HTMLElement;
+    const active = e.target as HTMLElement;
+    const list = viewer.querySelector("ul");
+
+    if (!list || (active !== viewer && !list.contains(active))) return;
+
+    const buttons = Array.from(list.querySelectorAll<HTMLButtonElement>("button"));
+
+    if (buttons.length === 0) return;
+
+    const index = buttons.indexOf(active as HTMLButtonElement);   // -1 when focus is on the dialog
+
+    let target: HTMLButtonElement | undefined;
+
+    switch (e.key) {
+        case "ArrowDown": target = buttons[Math.min(index + 1, buttons.length - 1)]; break;
+        case "ArrowUp": target = index > 0 ? buttons[index - 1] : undefined; break;
+        case "Home": target = buttons[0]; break;
+        case "End": target = buttons[buttons.length - 1]; break;
+        default: return;
+    }
+
+    e.preventDefault();
+    target?.focus();
+};
+
+
+const registerGotoComponent = (dotNetRef: any, callBackName: string, gotoViewerId: string): void => {
+
+    if (!dotNetRef || true === _gotoComponentRegistered) return;
+
+    document.getElementById(gotoViewerId)?.addEventListener("keydown", handleViewerKeyDown);
 
     document.addEventListener("keydown", (event) => {
 
         if (event.ctrlKey && event.shiftKey && event.key.toUpperCase() === "Y") {
             event.preventDefault();
-            callBlazor(dotNetRef,callBackName);
+            callBlazor(dotNetRef, callBackName);
         }
     });
-    _shortCutCallBackRegistered = true;
+
+    _gotoComponentRegistered = true;
 };
 
-export { showGoTo, getGoToData, registerShortCutCallBack, scrollMarkerIntoView, showGoToViewer, closeGoToViewer };
+
+export { showGoTo, getGoToData, registerGotoComponent, scrollMarkerIntoView, showGoToViewer, closeGoToViewer };

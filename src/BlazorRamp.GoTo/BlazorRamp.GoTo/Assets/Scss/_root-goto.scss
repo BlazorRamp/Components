@@ -98,36 +98,35 @@
     --br-comp-goto-button-state-active-scale: var(--br-comp-all-button-state-active-scale);
 }
 
-:root:has(.br-goto-viewer:popover-open) .br-goto::before {
-    content: attr(data-br-goto-number);
-    content: attr(data-br-goto-number) / ""; // empty alt text; ignored where unsupported
+    :root:has(.br-goto-viewer:popover-open) .br-goto::before {
+        content: attr(data-br-goto-number);
+        content: attr(data-br-goto-number) / ""; // empty alt text; ignored where unsupported
 
-    display: grid;
-    place-items: center;
-    position: absolute;
-    inset-inline-start: 100%;
-    inset-block-start: 50%;
-    translate: 0 -50%;
-    z-index: 1;
-    min-inline-size: 2em;
-    aspect-ratio: 1;
-    box-sizing: border-box;
-    padding: var(--br-unit-space-5);
-    border-radius: 50%;
-    border-width: var(--br-unit-outline-offset-2);
-    border-style: solid;
-    border-color: var(--br-unit-colour-canvas);
-    background-color: var(--br-unit-colour-canvas-inverted);
-    color: var(--br-unit-colour-canvas-text-inverted);
-    font-weight: bold;
-    line-height: 1;
-    pointer-events: none;
-}
+        display: grid;
+        place-items: center;
+        position: absolute;
+        inset-inline-start: 100%;
+        inset-block-start: 50%;
+        translate: 0 -50%;
+        z-index: 1;
+        min-inline-size: 2em;
+        aspect-ratio: 1;
+        box-sizing: border-box;
+        padding: var(--br-unit-space-5);
+        border-radius: 50%;
+        border-width: var(--br-unit-outline-offset-2);
+        border-style: solid;
+        border-color: var(--br-unit-colour-canvas);
+        background-color: var(--br-unit-colour-canvas-inverted);
+        color: var(--br-unit-colour-canvas-text-inverted);
+        font-weight: bold;
+        line-height: 1;
+        pointer-events: none;
+    }
 
 // The marker belonging to the focused viewer button
-:root:has(.br-goto-viewer:popover-open) .br-goto[data-br-goto-current]::before {
-    outline-style: var(--br-comp-all-outline-style);
-    outline-color: var(--br-comp-all-outline-colour);
-    outline-width: calc(var(--br-comp-all-outline-width) * 2);
-    outline-offset: var(--br-unit-outline-offset-2);
-}
+    :root:has(.br-goto-viewer:popover-open) .br-goto[data-br-goto-current]::before {
+        outline-style: var(--br-comp-all-outline-style);
+        outline-color: var(--br-comp-all-outline-colour);
+        outline-width: calc(var(--br-comp-all-outline-width) * 2);
+    }

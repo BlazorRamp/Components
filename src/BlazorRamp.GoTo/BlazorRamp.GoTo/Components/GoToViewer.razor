@@ -1,17 +1,20 @@
-﻿<dialog id="@_gotoViewerID" class="@GlobalValues.GoTo_Viewer_Block_Class" popover="auto" aria-labelledby="@_headingTextID" tabindex="-1">
+﻿<dialog id="@_gotoViewerID" class="@GlobalValues.GoTo_Viewer_Block_Class" popover="auto" aria-labelledby="@_headingTextID" tabindex="-1" autofocus>
 
     <div class="@GlobalValues.GoTo_Viewer_Content_Area_Class">
-        <h2 id="@_headingTextID" class="@GlobalValues.GoTo_Viewer_Header_Class">Goto Viewer</h2>
+        <h2 id="@_headingTextID" class="@GlobalValues.GoTo_Viewer_Header_Class">@_headingText</h2>
 
         <div class="@GlobalValues.GoTo_Viewer_Content_Class">
 
             @if (_gotoList.Count != 0)
             {
-                <ul>
+                <ul class="@GlobalValues.GoTo_Viewer_List_Class">
                     @foreach (var gotoItem in _gotoList)
                     {
-                        <li>
-                            <button type="button" @onclick="(() => GoToMarker(gotoItem))" @onfocus="() => ScrollToMarker(gotoItem.MarkerID)">@gotoItem.GoToNumber - @gotoItem.GoToText</button>
+                        <li class="@GlobalValues.GoTo_Viewer_List_Item_Class">
+                            <button type="button" 
+                                class="@GlobalValues.Goto_Viewer_List_Button"
+                                @onclick="(() => GoToMarker(gotoItem))" 
+                                @onfocus="() => ScrollToMarker(gotoItem.MarkerID)">@gotoItem.GoToNumber - @gotoItem.GoToText</button>
                         </li>
                     }
                 </ul>

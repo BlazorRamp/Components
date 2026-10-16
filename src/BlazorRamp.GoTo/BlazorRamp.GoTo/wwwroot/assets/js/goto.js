@@ -1,7 +1,7 @@
 ;
 const _dataAttribute = "data-br-goto";
 const _currentAttribute = "data-br-goto-current";
-let _shortCutCallBackRegistered = false;
+let _gotoComponentRegistered = false;
 const clearCurrentMarker = () => {
     for (const marker of document.querySelectorAll(`[${_currentAttribute}]`)) {
         marker.removeAttribute(_currentAttribute);
@@ -13,6 +13,14 @@ const hidePopoverOnBlur = (e) => {
     if (popover?.matches(":popover-open"))
         popover.hidePopover();
 };
+// const hidePopoverOnBlur = (e: FocusEvent): void => {
+//     const marker = e.currentTarget as HTMLElement;
+//     window.setTimeout(() => {
+//         if (marker.contains(document.activeElement)) return;
+//         const popover = marker.querySelector<HTMLElement>("[popover]");
+//         if (popover?.matches(":popover-open")) popover.hidePopover();
+//     }, 0);
+//};
 const showGoTo = (markerId, popoverId) => {
     const markerElement = document.getElementById(markerId);
     const popoverLabelElement = document.getElementById(popoverId);
@@ -22,7 +30,7 @@ const showGoTo = (markerId, popoverId) => {
     if (popoverLabelElement.matches(':popover-open'))
         return;
     popoverLabelElement.showPopover({ source: markerElement });
-    markerElement.addEventListener("blur", hidePopoverOnBlur, { once: true });
+    markerElement.addEventListener("focusout", hidePopoverOnBlur, { once: true }); //why blur not working
 };
 const scrollMarkerIntoView = (markerId) => {
     clearCurrentMarker();
@@ -58,30 +66,61 @@ const callBlazor = (dotNetRef, callBackName) => {
     const gotoData = getGoToData();
     dotNetRef.invokeMethodAsync(callBackName, gotoData);
 };
-const showGoToViewer = (gotoViewerID) => {
-    const gotoViewerElement = document.getElementById(gotoViewerID);
+const showGoToViewer = (gotoViewerId) => {
+    const gotoViewerElement = document.getElementById(gotoViewerId);
     if (!gotoViewerElement)
         return;
     gotoViewerElement.showPopover();
-    gotoViewerElement.focus();
 };
-const closeGoToViewer = (gotoViewerID) => {
-    const gotoViewerElement = document.getElementById(gotoViewerID);
+const closeGoToViewer = (gotoViewerId) => {
+    const gotoViewerElement = document.getElementById(gotoViewerId);
     if (!gotoViewerElement)
         return;
     if (gotoViewerElement.matches(":popover-open"))
         gotoViewerElement.hidePopover();
 };
-const registerShortCutCallBack = (dotNetRef, callBackName) => {
-    if (!dotNetRef || true === _shortCutCallBackRegistered)
+const handleViewerKeyDown = (e) => {
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey)
         return;
+    const viewer = e.currentTarget;
+    const active = e.target;
+    const list = viewer.querySelector("ul");
+    if (!list || (active !== viewer && !list.contains(active)))
+        return;
+    const buttons = Array.from(list.querySelectorAll("button"));
+    if (buttons.length === 0)
+        return;
+    const index = buttons.indexOf(active); // -1 when focus is on the dialog
+    let target;
+    switch (e.key) {
+        case "ArrowDown":
+            target = buttons[Math.min(index + 1, buttons.length - 1)];
+            break;
+        case "ArrowUp":
+            target = index > 0 ? buttons[index - 1] : undefined;
+            break;
+        case "Home":
+            target = buttons[0];
+            break;
+        case "End":
+            target = buttons[buttons.length - 1];
+            break;
+        default: return;
+    }
+    e.preventDefault();
+    target?.focus();
+};
+const registerGotoComponent = (dotNetRef, callBackName, gotoViewerId) => {
+    if (!dotNetRef || true === _gotoComponentRegistered)
+        return;
+    document.getElementById(gotoViewerId)?.addEventListener("keydown", handleViewerKeyDown);
     document.addEventListener("keydown", (event) => {
         if (event.ctrlKey && event.shiftKey && event.key.toUpperCase() === "Y") {
             event.preventDefault();
             callBlazor(dotNetRef, callBackName);
         }
     });
-    _shortCutCallBackRegistered = true;
+    _gotoComponentRegistered = true;
 };
-export { showGoTo, getGoToData, registerShortCutCallBack, scrollMarkerIntoView, showGoToViewer, closeGoToViewer };
+export { showGoTo, getGoToData, registerGotoComponent, scrollMarkerIntoView, showGoToViewer, closeGoToViewer };
 //# sourceMappingURL=goto.js.map
