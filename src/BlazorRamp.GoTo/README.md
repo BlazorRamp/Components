@@ -1,15 +1,8 @@
-﻿# Blazor Ramp - Busy Indicator
+﻿# Blazor Ramp - GoTo
 
 The Blazor Ramp project aims to provide a suite of modular, accessibility-first Blazor components. 
 
-The **Busy Indicator** component provides the ability to cover an entire page, or a specific section of a page, while an action is taking place. This indicator differs from 
-others in two ways:
-
-First, it makes everything beneath it (excluding the trigger button) inert, ensuring it is inaccessible to all users until the action is complete. 
-
-Second, it requires you to 
-provide text that is sent via a **Live Region Service** to hidden ARIA live regions. This allows assistive technologies, such as screen readers, to monitor and relay updates to 
-users.
+The **GoTo** component 
 
 ## Requirements
 It is a requirement that the Blazor Ramp Core script, Live Region Service, and associated Announcement History component are added alongside this component’s specific 
@@ -23,18 +16,18 @@ this package separately (but it can be if you only require the Live Regions Serv
 ## Installation
 
 
-1. Add the BlazorRamp.BusyIndicator nuget package to your project using the Nuget Package Manager or the dotnet CLI.
+1. Add the BlazorRamp.GoTo nuget package to your project using the Nuget Package Manager or the dotnet CLI.
 
 ```c#
-dotnet add package BlazorRamp.BusyIndicator
+dotnet add package BlazorRamp.GoTo
 ```
-2. Add the following Core and Busy Indicator stylesheet references to the `<head>` section of your application:
+2. Add the following Core and GoTo stylesheet references to the `<head>` section of your application:
 - Blazor Web App / Blazor Server → App.razor
 - Blazor WebAssembly → wwwroot/index.html
 ```html
 <head>
 	<link rel="stylesheet" href="_content/BlazorRamp.Core/assets/css/core.min.css" />
-	<link rel="stylesheet" href="_content/BlazorRamp.BusyIndicator/assets/css/busy-indicator.min.css" />
+	<link rel="stylesheet" href="_content/BlazorRamp.GoTo/assets/css/goto.min.css" />
 </head>
 ```
  
@@ -67,41 +60,11 @@ Title="Recent Announcements" TriggerVisible="true" TriggerText="Alerts" />
 <Router AppAssembly . . .
 ```
 
-## Using the Busy Indicator
+## Using the GoTo
 
-Add one or more Busy Indicators to each page where required. You can have multiple indicators running concurrently. Each indicator allows you to specify whether it should 
-cover the entire page or just a section of it, as well as the location of its spinner or hourglass and optional text.
 
-To cover just a portion of the screen it must be inside a container such as a div with its position set, such as relative.
 
-It is a requirement that text be provided for the indicator to relay via the Live Region Service to inform screen reader users when the underlying task has completed. 
-Optionally, you can also provide a starting announcement, but I do not recommend this unless you know the task is likely to take more than four or five seconds. I also advise 
-keeping any message short and to the point; for example, upon the completion and submission of edited data, an announcement such as "Saved successfully" is sufficient.
-
-The following example is taken from the test site https://blazorramp.uk where I created some simple tests for any user to try with their device setup.
-
-```
-<BusyIndicator AriaStartText="Dummy task has started, please wait." AriaEndText="Dummy task completed successfully." BusyText=". . .Processing please wait . . " ContentPosition="ContentPosition.Centre"
-               OverlayPosition="OverlayPosition.Screen"  IndicatorTrigger="Run Page Test button" ShowIndicator="@_showIndicator" />
-
-@code {
-    private bool _showIndicator = false;
-
-    private async Task RunTest()
-    {
-        _showIndicator = true;
-
-        await Task.Delay(8000);
-
-        _showIndicator = false;
-    }
-}
-```
-**Note:** In production, unlike the test you would use a variable for the `AriaEndText` and assign it with correct status dependant on success or failure.
-
-If the user has their system settings for reduced motion instead of a spinning circle they will see a static hour gloss.
-
-For the full description of all the component parameters and events, please see the documentation for the Busy Indicator: https://docs.blazorramp.uk/components/busy-indicator
+For the full description of all the component parameters and events, please see the documentation for the GoTo: https://docs.blazorramp.uk/components/goto
 
 
 ## Using the Live Region Service (directly)

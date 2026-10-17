@@ -116,7 +116,7 @@ public class GlobalValues
     public const string Component_Name_Data_Table         = "Data Table";
     public const string Component_Name_Debounce_Filter    = "Debounce Filter";
     public const string Component_Name_Disclosure         = "Disclosure";
-
+    public const string Component_Name_GoTo               = "GoTo";
     public const string Component_Name_Inputs             = "Inputs";
     public const string Component_Name_Text_Input         = "Text Input";
     public const string Component_Name_TextArea_Input     = "TextArea Input";
@@ -145,7 +145,8 @@ public class GlobalValues
     public const string Component_Path_Part_DataTable       = "data-table";
     public const string Component_Path_Part_DebounceFilter  = "debounce-filter";
 
-    public const string Component_Path_Part_Disclosure     = "disclosure";
+    public const string Component_Path_Part_Disclosure      = "disclosure";
+    public const string Component_Path_Part_GoTo            = "goto";
     public const string Component_Path_Part_Inputs          = "inputs";
     public const string Component_Path_Part_TextInput       = "text-input";
     public const string Component_Path_Part_TextAreaInput   = "textarea-input";

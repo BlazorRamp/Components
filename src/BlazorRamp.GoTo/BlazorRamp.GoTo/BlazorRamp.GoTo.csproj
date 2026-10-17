@@ -10,8 +10,8 @@
     <Title>BlazorRamp.GoTo</Title>
     <Version>1.0.0</Version>
     <Authors>Paul Kent</Authors>
-    <Description>Components that can be added to a page as a marker that allow a keyboard-only user to
-bring up a list of these and then navigate to any of the listed markers.</Description>
+    <Description>Components that can be added to a page as a marker that allows a keyboard-only user to
+bring up a list of markers which then can then go to.</Description>
     <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>

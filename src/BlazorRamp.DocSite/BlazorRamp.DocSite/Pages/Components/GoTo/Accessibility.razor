@@ -1,0 +1,59 @@
+﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_GoTo}/{GlobalValues.Common_Page_Path_Accessibility}")]
+
+<PageTitle>@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Accessibility</PageTitle>
+
+<h1 tabindex="-1" >@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Accessibility . . . In Progress . . .</h1>
+@* 
+
+<h2 id="goto-keyboard">Keyboard interaction</h2>
+<ul aria-labelledby="goto-keyboard" class="keyboard-list">
+    <li>
+        <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Tab</kbd> - places focus on the trigger button. When the content is expanded, focus then moves through any focusable elements inside it, or onto the content
+        itself if it scrolls and has nothing focusable inside.
+    </li>
+    <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Shift + Tab</kbd> reverses tab direction.</li>
+    <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Space or Enter</kbd> - when on the trigger, expands or collapses the content.</li>
+    <li>
+        <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Arrow keys</kbd> - <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Page Up, Page Down</kbd> - <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Home, End</kbd> - when a scrollable content region has focus, scroll it using the browser's standard behaviour.
+    </li>
+</ul>
+
+<h2 id="device-testing">Accessibility device testing</h2>
+
+<ul aria-labelledby="device-testing">
+    <li>JAWS, Narrator and NVDA on Windows were each paired with every one of the following browsers: Google Chrome, Microsoft Edge and Mozilla Firefox.</li>
+    <li>VoiceOver on macOS was paired with Apple's Safari.</li>
+    <li>VoiceOver on iPhone was paired with mobile Safari.</li>
+    <li>Talkback on Android was paired with mobile Google Chrome.</li>
+    <li>Voice access on Windows 11</li>
+</ul>
+
+<p>
+    <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were available at the time of testing (see release history on the installation page for approximate testing dates)
+</p>
+<h2 id="screen-reader-quirks">Screen reader quirks or known issues</h2>
+<ul aria-labelledby="screen-reader-quirks">
+    <li>
+        <b>Narrator</b> more often than not will not announce that the disclosure has been expanded after activation when
+        paired with either Edge or Chrome, but is fine when paired with Firefox.
+    </li>
+
+</ul>
+ *@
+
+<div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
+    <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_GoTo}/{GlobalValues.Common_Page_Path_Installation}")">
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>
+        <span>@GlobalValues.Component_Name_GoTo - @GlobalValues.Common_Page_Title_Installation</span>
+
+    </a>
+    <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_GoTo}/{GlobalValues.Common_Page_Path_Api}")">
+
+        <span>@GlobalValues.Component_Name_GoTo - @GlobalValues.Common_Page_Title_Api</span>
+        <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-right-arrow-circle-icon)"></span>
+    </a>
+</div>
+
+@code {
+
+}

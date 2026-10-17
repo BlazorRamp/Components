@@ -22,6 +22,9 @@ const showGoTo = (markerId, popoverId) => {
         return;
     // Already in view for keyboard users, so a no-op there; brings it into view otherwise
     markerElement.scrollIntoView({ block: "start" });
+    requestAnimationFrame(() => {
+        document.documentElement.scrollTop = 0;
+    });
     popoverLabelElement.showPopover({ source: markerElement });
     markerElement.addEventListener("focusout", hidePopoverOnFocusout, { once: true });
 };
@@ -32,6 +35,9 @@ const scrollMarkerIntoView = (markerId) => {
         return;
     markerElement.setAttribute(_currentAttribute, "");
     markerElement.scrollIntoView({ block: "start" });
+    requestAnimationFrame(() => {
+        document.documentElement.scrollTop = 0;
+    });
 };
 const getGoToData = () => {
     clearCurrentMarker();

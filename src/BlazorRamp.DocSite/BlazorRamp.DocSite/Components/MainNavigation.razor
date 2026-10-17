@@ -4,7 +4,7 @@
     <h2 id="getting-started" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_Getting_Started</h2>
     <NavGroup AriaLabelledBy="getting-started">
         <NavSeparator />
-        <NavGroupLink Href="@($"{GlobalValues.Root_Path}")" LinkText="@GlobalValues.Common_Page_Title_About" SvgIcon="--svg-about-icon" />
+        <NavGroupLink Href="@($"{GlobalValues.Root_Path}{GlobalValues.Common_Page_Path_About}")" LinkText="@GlobalValues.Common_Page_Title_About" SvgIcon="--svg-about-icon" />
         <NavGroupLink Href="@($"{GlobalValues.Root_Path}{GlobalValues.Common_Page_Path_Installation}")" LinkText="@GlobalValues.Common_Page_Title_Installation" SvgIcon="--svg-install-icon" />
         <NavGroupLink Href="@($"{GlobalValues.Root_Path}{GlobalValues.Common_Page_Path_Accessibility}")" LinkText="@GlobalValues.Common_Page_Title_Accessibility" SvgIcon="--svg-accessibility-icon" />
         <NavGroupLink Href="@($"{GlobalValues.Root_Path}{GlobalValues.Common_Page_Path_Roadmap}")" LinkText="@GlobalValues.Common_Page_Title_Roadmap" SvgIcon="--svg-roadmap-icon" />
@@ -12,6 +12,7 @@
         
     <h2 id="components-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_Components</h2>
     <NavGroup AriaLabelledBy="components-section">
+        <GoTo LabelText="Components menu section" />
         <NavSeparator />
         <NavSection Title="@GlobalValues.Component_Name_Accordion" Expanded="false">
             <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Accordion}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Accordion" LinkText="@GlobalValues.Common_Page_Title_Overview" SvgIcon="--svg-overview-icon" />
@@ -73,6 +74,13 @@
             <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Disclosure}/{GlobalValues.Common_Page_Path_Accessibility}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Disclosure" LinkText="@GlobalValues.Common_Page_Title_Accessibility" SvgIcon="--svg-accessibility-icon" />
             <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Disclosure}/{GlobalValues.Common_Page_Path_Api}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Disclosure" LinkText="@GlobalValues.Common_Page_Title_Api" SvgIcon="--svg-api-icon" />
             <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Disclosure}/{GlobalValues.Common_Page_Path_Usage}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Disclosure" LinkText="@GlobalValues.Common_Page_Title_Usage" SvgIcon="--svg-usage-icon" />
+        </NavSection>
+        <NavSection Title="@GlobalValues.Component_Name_GoTo">
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_GoTo}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_GoTo" LinkText="@GlobalValues.Common_Page_Title_Overview" SvgIcon="--svg-overview-icon" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_GoTo}/{GlobalValues.Common_Page_Path_Installation}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_GoTo" LinkText="@GlobalValues.Common_Page_Title_Installation" SvgIcon="--svg-install-icon" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_GoTo}/{GlobalValues.Common_Page_Path_Accessibility}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_GoTo" LinkText="@GlobalValues.Common_Page_Title_Accessibility" SvgIcon="--svg-accessibility-icon" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_GoTo}/{GlobalValues.Common_Page_Path_Api}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_GoTo" LinkText="@GlobalValues.Common_Page_Title_Api" SvgIcon="--svg-api-icon" />
+            <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_GoTo}/{GlobalValues.Common_Page_Path_Usage}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_GoTo" LinkText="@GlobalValues.Common_Page_Title_Usage" SvgIcon="--svg-usage-icon" />
         </NavSection>
         <NavSection Title="@GlobalValues.Component_Name_Inputs">
             <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Inputs" LinkText="@GlobalValues.Common_Page_Title_Overview" SvgIcon="--svg-overview-icon" />
@@ -198,6 +206,7 @@
 
     <h2 id="theming-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_Theming</h2>
     <NavGroup AriaLabelledBy="theming-section">
+        <GoTo LabelText="Theming menu section" />
         <NavSeparator />
         <NavGroupLink Href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Theming_Name" LinkText="@GlobalValues.Common_Page_Title_Overview" SvgIcon="--svg-overview-icon" />
         <NavGroupLink Href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Accessibility}")" VisuallyHiddenPrefix="@GlobalValues.Theming_Name" LinkText="@GlobalValues.Common_Page_Title_Accessibility" SvgIcon="--svg-accessibility-icon" />
