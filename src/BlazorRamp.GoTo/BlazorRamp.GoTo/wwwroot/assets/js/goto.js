@@ -18,11 +18,10 @@ const showGoTo = (markerId, popoverId) => {
     const popoverLabelElement = document.getElementById(popoverId);
     if (!markerElement || !popoverLabelElement)
         return;
-    //markerElement.focus();
     if (popoverLabelElement.matches(':popover-open'))
         return;
     popoverLabelElement.showPopover({ source: markerElement });
-    //markerElement.addEventListener("focusout", hidePopoverOnFocusout, { once: true });
+    markerElement.addEventListener("focusout", hidePopoverOnFocusout, { once: true });
 };
 const scrollMarkerIntoView = (markerId) => {
     clearCurrentMarker();

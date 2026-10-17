@@ -30,8 +30,6 @@ const showGoTo = (markerId: string, popoverId:string): void => {
 
     if (!markerElement || !popoverLabelElement) return;
 
-    markerElement.focus();
-
     if (popoverLabelElement.matches(':popover-open')) return;
 
     popoverLabelElement.showPopover({ source: markerElement });
