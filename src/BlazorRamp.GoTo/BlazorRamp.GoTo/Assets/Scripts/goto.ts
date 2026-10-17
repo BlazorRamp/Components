@@ -23,21 +23,22 @@ const hidePopoverOnFocusout = (e: FocusEvent): void => {
 };
 
 
-const showGoTo = (markerId: string, popoverId:string): void => {
+const showGoTo = (markerId: string, popoverId: string): void => {
 
-    const markerElement       = document.getElementById(markerId);
+    const markerElement = document.getElementById(markerId);
     const popoverLabelElement = document.getElementById(popoverId);
 
     if (!markerElement || !popoverLabelElement) return;
 
     if (popoverLabelElement.matches(':popover-open')) return;
 
+    // Already in view for keyboard users, so a no-op there; brings it into view otherwise
+    markerElement.scrollIntoView({ block: "start" });
+
     popoverLabelElement.showPopover({ source: markerElement });
 
     markerElement.addEventListener("focusout", hidePopoverOnFocusout, { once: true });
-
 };
-
 const scrollMarkerIntoView = (markerId: string): void => {
 
     clearCurrentMarker();
@@ -154,14 +155,18 @@ const registerGotoComponent = (dotNetRef: any, callBackName: string, gotoViewerI
 
     document.addEventListener("keydown", (event) => {
 
-        if (event.ctrlKey && event.shiftKey && event.key.toUpperCase() === "Y") {
-            event.preventDefault();
-            callBlazor(dotNetRef, callBackName);
-        }
+        if (!(event.ctrlKey && event.shiftKey && event.key.toUpperCase() === "Y")) return;
+
+        const gotoViewerElement = document.getElementById(gotoViewerId);
+
+        // No viewer, a modal dialog or fullscreen element is open, or the page is inert:
+        if (!gotoViewerElement || document.querySelector(":modal") || gotoViewerElement.closest("[inert]")) return;
+
+        event.preventDefault();
+        callBlazor(dotNetRef, callBackName);
     });
 
     _gotoComponentRegistered = true;
 };
-
 
 export { showGoTo, getGoToData, registerGotoComponent, scrollMarkerIntoView, showGoToViewer, closeGoToViewer };

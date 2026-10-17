@@ -7,6 +7,8 @@
 
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
 	<ItemGroup>
