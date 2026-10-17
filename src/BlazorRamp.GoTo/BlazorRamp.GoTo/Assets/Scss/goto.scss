@@ -9,12 +9,13 @@
     block-size: 0;
     margin: 0;
     padding: 0;
-    align-self: start; // ignored outside flex/grid
-    justify-self: start; // ignored outside flex/grid
+    align-self: start;
+    justify-self: start;
     scroll-margin-block-start: var(--br-comp-goto-scroll-offset);
 
     &__label {
         position-anchor: --goto-anchor;
+        position-visibility: always;
         position-try-order: most-space;
         padding: var(--br-unit-space-5);
         background-color: var(--br-unit-colour-canvas-inverted);
@@ -38,7 +39,6 @@
             content: attr(data-br-goto-number) " - ";
         }
     }
-
 }
 
 .br-goto-viewer {

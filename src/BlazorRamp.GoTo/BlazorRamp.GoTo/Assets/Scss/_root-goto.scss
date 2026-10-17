@@ -122,6 +122,7 @@
     --br-comp-goto-trigger-margin: var(--br-unit-space-5);
     //
     --br-comp-goto-scroll-offset: 4rem;
+    --br-comp-goto-badge-size: 3rem;
 }
 
     :root:has(.br-goto-viewer:popover-open) .br-goto::before {
@@ -135,11 +136,16 @@
         inset-block-start: 50%;
         translate: 0 -50%;
         z-index: 1;
-        min-inline-size: 2em;
-        aspect-ratio: 1;
-        box-sizing: border-box;
-        padding: var(--br-unit-space-5);
+        //
+        inline-size: var(--br-comp-goto-badge-size);
+        block-size: var(--br-comp-goto-badge-size);
+        padding: 0;
         border-radius: 50%;
+        white-space: nowrap;
+        font-size: var(--br-unit-font-size-label);
+        //
+        box-sizing: border-box;
+        border-radius: 999px;
         border-width: var(--br-unit-outline-offset-2);
         border-style: solid;
         border-color: var(--br-unit-colour-canvas);
