@@ -5,7 +5,7 @@ internal class GlobalValues
     public const string JS_Module_File_Path = "./_content/BlazorRamp.GoTo/assets/js/goto.js";
     public const string JS_ShowPopover_Func = "showGoTo";
     public const string JS_Get_GoToData_Func = "getGoToData";
-    public const string JS_Register_GoTo_Component_Func = "registerGotoComponent";
+    public const string JS_Register_GoTo_Component_Func = "registerGoToComponent";
     public const string JS_Show_GoTo_Viewer_Func = "showGoToViewer";
     public const string JS_Close_GoTo_Viewer_Func = "closeGoToViewer";
     public const string JS_Scroll_Marker_Func = "scrollMarkerIntoView";

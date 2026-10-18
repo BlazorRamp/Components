@@ -124,8 +124,24 @@ const closeGoToViewer = (gotoViewerId: string,): void => {
 
 };
 
+
 const handleViewerKeyDown = (e: KeyboardEvent): void => {
 
+    // Tabbing out of the viewer: close it now, so the browser carries on from where focus returns to
+    if (e.key === "Tab" && !e.altKey && !e.ctrlKey && !e.metaKey) {
+
+        const viewer = e.currentTarget as HTMLElement;
+        const active = e.target as HTMLElement;
+        const buttons = Array.from(viewer.querySelectorAll<HTMLButtonElement>("button"));
+
+        const leaving = e.shiftKey
+            ? active === viewer || active === buttons[0]
+            : active === buttons[buttons.length - 1];
+
+        if (leaving && viewer.matches(":popover-open")) viewer.hidePopover();
+
+        return;
+    }
 
     if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
 
@@ -139,7 +155,7 @@ const handleViewerKeyDown = (e: KeyboardEvent): void => {
 
     if (buttons.length === 0) return;
 
-    const index = buttons.indexOf(active as HTMLButtonElement);   // -1 when focus is on the dialog
+    const index = buttons.indexOf(active as HTMLButtonElement);
 
     let target: HTMLButtonElement | undefined;
 
@@ -154,13 +170,29 @@ const handleViewerKeyDown = (e: KeyboardEvent): void => {
     e.preventDefault();
     target?.focus();
 };
+const registerGoToVieweHandlers = (gotoViewerId:string): void => {
+
+    const viewerPopover = document.getElementById(gotoViewerId);
+
+    if (!viewerPopover) return;
+
+    const handler = (e: FocusEvent): void => {
+
+        if (viewerPopover.contains(e.relatedTarget as Node)) return;
+
+        if (viewerPopover.matches(":popover-open")) viewerPopover.hidePopover();
+    }
 
 
-const registerGotoComponent = (dotNetRef: any, callBackName: string, gotoViewerId: string): void => {
+    viewerPopover.addEventListener("keydown", handleViewerKeyDown);
+    viewerPopover.addEventListener("focusout", handler);
+};
+
+const registerGoToComponent = (dotNetRef: any, callBackName: string, gotoViewerId: string): void => {
 
     if (!dotNetRef || true === _gotoComponentRegistered) return;
 
-    document.getElementById(gotoViewerId)?.addEventListener("keydown", handleViewerKeyDown);
+    registerGoToVieweHandlers(gotoViewerId);
 
     document.addEventListener("keydown", (event) => {
 
@@ -178,4 +210,4 @@ const registerGotoComponent = (dotNetRef: any, callBackName: string, gotoViewerI
     _gotoComponentRegistered = true;
 };
 
-export { showGoTo, getGoToData, registerGotoComponent, scrollMarkerIntoView, showGoToViewer, closeGoToViewer };
+export { showGoTo, getGoToData, registerGoToComponent, scrollMarkerIntoView, showGoToViewer, closeGoToViewer };

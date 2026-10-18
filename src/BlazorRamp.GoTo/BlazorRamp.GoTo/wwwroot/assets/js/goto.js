@@ -81,6 +81,18 @@ const closeGoToViewer = (gotoViewerId) => {
         gotoViewerElement.hidePopover();
 };
 const handleViewerKeyDown = (e) => {
+    // Tabbing out of the viewer: close it now, so the browser carries on from where focus returns to
+    if (e.key === "Tab" && !e.altKey && !e.ctrlKey && !e.metaKey) {
+        const viewer = e.currentTarget;
+        const active = e.target;
+        const buttons = Array.from(viewer.querySelectorAll("button"));
+        const leaving = e.shiftKey
+            ? active === viewer || active === buttons[0]
+            : active === buttons[buttons.length - 1];
+        if (leaving && viewer.matches(":popover-open"))
+            viewer.hidePopover();
+        return;
+    }
     if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey)
         return;
     const viewer = e.currentTarget;
@@ -91,7 +103,7 @@ const handleViewerKeyDown = (e) => {
     const buttons = Array.from(list.querySelectorAll("button"));
     if (buttons.length === 0)
         return;
-    const index = buttons.indexOf(active); // -1 when focus is on the dialog
+    const index = buttons.indexOf(active);
     let target;
     switch (e.key) {
         case "ArrowDown":
@@ -111,10 +123,23 @@ const handleViewerKeyDown = (e) => {
     e.preventDefault();
     target?.focus();
 };
-const registerGotoComponent = (dotNetRef, callBackName, gotoViewerId) => {
+const registerGoToVieweHandlers = (gotoViewerId) => {
+    const viewerPopover = document.getElementById(gotoViewerId);
+    if (!viewerPopover)
+        return;
+    const handler = (e) => {
+        if (viewerPopover.contains(e.relatedTarget))
+            return;
+        if (viewerPopover.matches(":popover-open"))
+            viewerPopover.hidePopover();
+    };
+    viewerPopover.addEventListener("keydown", handleViewerKeyDown);
+    viewerPopover.addEventListener("focusout", handler);
+};
+const registerGoToComponent = (dotNetRef, callBackName, gotoViewerId) => {
     if (!dotNetRef || true === _gotoComponentRegistered)
         return;
-    document.getElementById(gotoViewerId)?.addEventListener("keydown", handleViewerKeyDown);
+    registerGoToVieweHandlers(gotoViewerId);
     document.addEventListener("keydown", (event) => {
         if (!(event.ctrlKey && event.shiftKey && event.key.toUpperCase() === "Y"))
             return;
@@ -127,5 +152,5 @@ const registerGotoComponent = (dotNetRef, callBackName, gotoViewerId) => {
     });
     _gotoComponentRegistered = true;
 };
-export { showGoTo, getGoToData, registerGotoComponent, scrollMarkerIntoView, showGoToViewer, closeGoToViewer };
+export { showGoTo, getGoToData, registerGoToComponent, scrollMarkerIntoView, showGoToViewer, closeGoToViewer };
 //# sourceMappingURL=goto.js.map
