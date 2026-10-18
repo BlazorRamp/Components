@@ -3,18 +3,59 @@
 <PageTitle>@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Accessibility</PageTitle>
 
 <h1 tabindex="-1" >@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Accessibility . . . In Progress . . .</h1>
-@* 
+
+<p>
+    There isn't an established W3C ARIA Authoring Practices Guide (APG) pattern for a page navigation list like this, so the component is built from native HTML elements wherever possible:
+    a <span class="@CodeSpan.Base">dialog</span>, a heading, a list of <span class="@CodeSpan.Base">button</span> elements and the HTML popover API. Relying on native elements means
+    that focus, activation and naming behave in the way users and assistive technologies already expect.
+</p>
+<p>
+    The viewer is a native <span class="@CodeSpan.Base">dialog</span> element shown as a non-modal popover. It is named by its heading through <span class="@CodeSpan.Base">aria-labelledby</span>, and the
+    <span class="@CodeSpan.Base">HeadingText</span> parameter sets that text. Because it is non-modal, the rest of the page isn't made inert and focus is never trapped. The viewer closes with
+    <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Escape</kbd>, when focus leaves it, or when a marker is chosen. When it opens, focus is placed on the dialog itself, so a screen reader announces
+    its name first and the user can then move on to the list.
+</p>
+<p>
+    The markers are listed in a native <span class="@CodeSpan.Base">ul</span> of native <span class="@CodeSpan.Base">button</span> elements. The accessible name of each button is its number followed by the
+    marker's label, for example "01 - Filters", which also gives voice control users something they can speak. The list is built each time the viewer opens, and markers that are hidden or inert are left out,
+    so every button leads somewhere that can be reached.
+</p>
+<p>
+    The trigger is a native <span class="@CodeSpan.Base">button</span>. It is visually hidden until it receives keyboard focus, using the same technique as a skip link, so it stays in the tab order at the
+    point where the viewer is added to your layout.
+</p>
+<p>
+    A marker is an empty, zero-size element with no role and no name, so there is nothing for a screen reader to find while the user reads the page. The label inside it is a popover that is hidden with
+    <span class="@CodeSpan.Base">display: none</span> until it is needed, which also keeps it out of the accessibility tree. When a user chooses a marker, the label is shown and receives focus. It is named by
+    its own text through <span class="@CodeSpan.Base">aria-labelledby</span>, so assistive technologies announce where the user has arrived. The label closes when focus moves away or when
+    <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Escape</kbd> is pressed, and <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Tab</kbd> continues from the marker's position on the page.
+</p>
+<p>
+    The numbered badges shown on the page while the viewer is open are a visual aid for sighted keyboard users. They are generated with CSS and given empty alternative text, so browsers that support this
+    don't announce them separately, as the number is already part of each button's name.
+</p>
 
 <h2 id="goto-keyboard">Keyboard interaction</h2>
 <ul aria-labelledby="goto-keyboard" class="keyboard-list">
     <li>
-        <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Tab</kbd> - places focus on the trigger button. When the content is expanded, focus then moves through any focusable elements inside it, or onto the content
-        itself if it scrolls and has nothing focusable inside.
+        <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Ctrl + Shift + Y</kbd> - opens the viewer from anywhere on the page and places focus on it. It has no effect while a modal dialog is open.
     </li>
-    <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Shift + Tab</kbd> reverses tab direction.</li>
-    <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Space or Enter</kbd> - when on the trigger, expands or collapses the content.</li>
     <li>
-        <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Arrow keys</kbd> - <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Page Up, Page Down</kbd> - <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Home, End</kbd> - when a scrollable content region has focus, scroll it using the browser's standard behaviour.
+        <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Tab</kbd> - places focus on the trigger button, which becomes visible while it has focus. Inside the viewer, it moves through the list buttons and then the close button.
+        Tabbing out of the viewer closes it, and focus continues to the next element after the one that had focus before the viewer opened.
+    </li>
+    <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Shift + Tab</kbd> reverses tab direction, including leaving the viewer backwards.</li>
+    <li>
+        <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Space or Enter</kbd> - on the trigger button, opens the viewer. On a list button, closes the viewer, moves to the marker and shows its label.
+    </li>
+    <li>
+        <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Down Arrow</kbd> - <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Up Arrow</kbd> - moves to the next or previous list button, stopping at the first and last.
+    </li>
+    <li>
+        <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Home</kbd> - <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">End</kbd> - moves to the first or last list button.
+    </li>
+    <li>
+        <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Escape</kbd> - closes the viewer and returns focus to where it was before the viewer opened. When a marker's label is showing, it closes the label.
     </li>
 </ul>
 
@@ -31,15 +72,15 @@
 <p>
     <strong>Note: </strong> Testing was performed with the latest browser and assistive technologies versions that were available at the time of testing (see release history on the installation page for approximate testing dates)
 </p>
-<h2 id="screen-reader-quirks">Screen reader quirks or known issues</h2>
+@* <h2 id="screen-reader-quirks">Screen reader quirks or known issues</h2>
 <ul aria-labelledby="screen-reader-quirks">
     <li>
         <b>Narrator</b> more often than not will not announce that the disclosure has been expanded after activation when
         paired with either Edge or Chrome, but is fine when paired with Firefox.
     </li>
 
-</ul>
- *@
+</ul> *@
+
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
     <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_GoTo}/{GlobalValues.Common_Page_Path_Installation}")">

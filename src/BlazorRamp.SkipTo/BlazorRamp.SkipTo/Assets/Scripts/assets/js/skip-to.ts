@@ -1,4 +1,10 @@
-﻿const scrollToView = (elementID: string) => {
+﻿const pageIsNotUserScrollable = (): boolean => {
+    const htmlOverflow = getComputedStyle(document.documentElement).overflowY;
+    const effective = htmlOverflow !== "visible" ? htmlOverflow : getComputedStyle(document.body).overflowY;
+    return effective === "hidden" || effective === "clip";
+};
+
+const scrollToView = (elementID: string) => {
 
     const element: HTMLElement = document.getElementById(elementID) as HTMLElement;
 
@@ -14,9 +20,11 @@
 
     element.focus({ preventScroll: true });
 
-    requestAnimationFrame(() => {
-        document.documentElement.scrollTop = 0;
-    });
-}
+    if (pageIsNotUserScrollable()) {
+        requestAnimationFrame(() => {
+            document.documentElement.scrollTop = 0;
+        });
+    }
+};
 
 export { scrollToView };

@@ -13,6 +13,18 @@ const hidePopoverOnFocusout = (e) => {
     if (popover?.matches(":popover-open"))
         popover.hidePopover();
 };
+const pageIsNotUserScrollable = () => {
+    const htmlOverflow = getComputedStyle(document.documentElement).overflowY;
+    const effective = htmlOverflow !== "visible" ? htmlOverflow : getComputedStyle(document.body).overflowY;
+    return effective === "hidden" || effective === "clip";
+};
+const scrollMarkerTo = (marker) => {
+    const root = document.documentElement;
+    const before = root.scrollTop;
+    marker.scrollIntoView({ block: "start" });
+    if (pageIsNotUserScrollable())
+        requestAnimationFrame(() => { root.scrollTop = before; });
+};
 const showGoTo = (markerId, popoverId) => {
     const markerElement = document.getElementById(markerId);
     const popoverLabelElement = document.getElementById(popoverId);
@@ -20,11 +32,7 @@ const showGoTo = (markerId, popoverId) => {
         return;
     if (popoverLabelElement.matches(':popover-open'))
         return;
-    // Already in view for keyboard users, so a no-op there; brings it into view otherwise
-    markerElement.scrollIntoView({ block: "start" });
-    requestAnimationFrame(() => {
-        document.documentElement.scrollTop = 0;
-    });
+    scrollMarkerTo(markerElement);
     popoverLabelElement.showPopover({ source: markerElement });
     markerElement.addEventListener("focusout", hidePopoverOnFocusout, { once: true });
 };
@@ -34,10 +42,7 @@ const scrollMarkerIntoView = (markerId) => {
     if (!markerElement)
         return;
     markerElement.setAttribute(_currentAttribute, "");
-    markerElement.scrollIntoView({ block: "start" });
-    requestAnimationFrame(() => {
-        document.documentElement.scrollTop = 0;
-    });
+    scrollMarkerTo(markerElement);
 };
 const getGoToData = () => {
     clearCurrentMarker();

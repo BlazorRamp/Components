@@ -1,3 +1,8 @@
+const pageIsNotUserScrollable = () => {
+    const htmlOverflow = getComputedStyle(document.documentElement).overflowY;
+    const effective = htmlOverflow !== "visible" ? htmlOverflow : getComputedStyle(document.body).overflowY;
+    return effective === "hidden" || effective === "clip";
+};
 const scrollToView = (elementID) => {
     const element = document.getElementById(elementID);
     if (!element)
@@ -9,9 +14,11 @@ const scrollToView = (elementID) => {
         inline: "nearest"
     });
     element.focus({ preventScroll: true });
-    requestAnimationFrame(() => {
-        document.documentElement.scrollTop = 0;
-    });
+    if (pageIsNotUserScrollable()) {
+        requestAnimationFrame(() => {
+            document.documentElement.scrollTop = 0;
+        });
+    }
 };
 export { scrollToView };
 //# sourceMappingURL=skip-to.js.map
