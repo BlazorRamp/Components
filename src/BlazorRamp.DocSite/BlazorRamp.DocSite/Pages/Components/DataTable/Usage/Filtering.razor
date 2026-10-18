@@ -18,6 +18,8 @@
     I have also, set the <span class="@CodeSpan.Base">FilterAlignment</span> and <span class="@CodeSpan.Base">TitleAlignment</span> to show the elements Start and Centre respectively.
 </p>
 
+<GoTo LabelText="Contact results table start" />
+
 <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule"
     FilterAlignment="FilterAlignment.Start" TitleAlignment="TitleAlignment.Centre">
     <Filter>
@@ -38,6 +40,8 @@
     </BottomPager>
 </DataTable>
 
+<GoTo LabelText="Contact results table end" />
+
 <p>
     <b>Note: </b> The <span class="@CodeSpan.Base">FilterAlignment</span> parameter if set to <span class="@CodeSpan.Base">FilterAlignment.None</span> can access the full width of the available area.
     The other settings create a 3 column grid within the area in order to position the filter. A container and media query are both used used so when the container or page starts to get too 
@@ -48,6 +52,8 @@
 </p>
 
 <CodeBox CodeBlock="@DataTableSnippets.Filtering_Usage_Example" AriaLabel="Filtering usage code example." />
+
+<GoTo LabelText="Data table filtering usage page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Sorting}")">

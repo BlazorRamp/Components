@@ -11,6 +11,7 @@
     </NavGroup>
         
     <h2 id="components-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_Components</h2>
+    <GoTo LabelText="Components section main menu" />
     <NavGroup AriaLabelledBy="components-section">
         <NavSeparator />
         <NavSection Title="@GlobalValues.Component_Name_Accordion" Expanded="false">
@@ -55,7 +56,6 @@
                 <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Usage}/{GlobalValues.Common_Page_Path_Filtering}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Data_Table" LinkText="@GlobalValues.Common_Page_Title_Filtering" />
                 <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Usage}/{GlobalValues.Common_Page_Path_Selecting}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Data_Table" LinkText="@GlobalValues.Common_Page_Title_Selecting" />
                 <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Usage}/{GlobalValues.Common_Page_Path_Styling}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Data_Table" LinkText="@GlobalValues.Common_Page_Title_Content_Styling" />
-                <GoTo LabelText="Before Data Table Templating" />
                 <NavGroupLink Href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Usage}/{GlobalValues.Common_Page_Path_Templating}")" VisuallyHiddenPrefix="@GlobalValues.Component_Name_Data_Table" LinkText="@GlobalValues.Common_Page_Title_Templating" />
             </NavSection>
         </NavSection>
@@ -204,6 +204,7 @@
     </NavGroup>
 
     <h2 id="theming-section" class="@GlobalValues.Main_Navigation_Heading_Class">@GlobalValues.Main_Nav_Heading_Theming</h2>
+    <GoTo LabelText="Themeing section main menu" />
     <NavGroup AriaLabelledBy="theming-section">
         <NavSeparator />
         <NavGroupLink Href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Overview}")" VisuallyHiddenPrefix="@GlobalValues.Theming_Name" LinkText="@GlobalValues.Common_Page_Title_Overview" SvgIcon="--svg-overview-icon" />

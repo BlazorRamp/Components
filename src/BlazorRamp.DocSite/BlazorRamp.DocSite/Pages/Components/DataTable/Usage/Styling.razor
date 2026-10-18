@@ -28,6 +28,8 @@
    See below for information on everything that has been applied as it may not be obvious on first glance.
 </p>
 
+<GoTo LabelText="Contact results table start" />
+
 <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule" RowStyleFunc=UKAvailability>
     <Filter>
         <DebounceFilter HintText="Filters across first name, surname and country" RegexPattern="^[A-Za-z ]*$" OnDebounceFilterResult="HandleOnDebounce"
@@ -51,6 +53,7 @@
     </BottomPager>
 </DataTable>
 
+<GoTo LabelText="Contact results table end" />
 
 <ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2" style="margin-top:var(--br-unit-space-9);">
     <BorderGroups>
@@ -89,6 +92,8 @@
     The code from the example above.
 </p>
 <CodeBox CodeBlock="@DataTableSnippets.Sorting_Usage_Example" AriaLabel="Styling usage code example." />
+
+<GoTo LabelText="Data table content styling usage page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Selecting}")">

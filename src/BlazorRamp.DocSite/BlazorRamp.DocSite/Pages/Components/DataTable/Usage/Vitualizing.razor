@@ -10,6 +10,8 @@
 <p>
     The following uses the same 100K rows as of the basic usage example.
 </p>
+<GoTo LabelText="Contact results table start" />
+
 <div style="min-height:0;max-height:700px;">
     <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" FilterRule="_filterRule">
         <Filter>
@@ -29,6 +31,7 @@
 @*
     Note that the DataTable is inside a container with a height specified. You adjust to suit you needs and the tables contents
 *@
+<GoTo LabelText="Contact results table end" />
 <ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2" style="margin-top:var(--br-unit-space-9);">
     <BorderGroups>
         <BorderGroup Title="Container borders">
@@ -54,6 +57,8 @@
     The code from the example above.
 </p>
 <CodeBox CodeBlock="@DataTableSnippets.Virtualize_Usage_Example" AriaLabel="Virtualized rows usage code example." />
+
+<GoTo LabelText="Data table virtualizing usage page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Basic_Usage}")">
