@@ -13,7 +13,7 @@ internal class GlobalValues
     public const string JS_Close_GoTo_Viewer_Func = "closeGoToViewer";
     public const string JS_Scroll_Marker_Func = "scrollMarkerIntoView";
 
-    public const string JS_Set_Shortcut_key_Func = "setGoToShortcut ";
+    public const string JS_Set_Shortcut_key_Func = "setGoToShortcut";
     public const string GoTo_Label_Text_Exception_Message = "LabelText cannot be null, empty, or whitespace.";
     
     public const string GoTo_Block_Class = "br-goto";

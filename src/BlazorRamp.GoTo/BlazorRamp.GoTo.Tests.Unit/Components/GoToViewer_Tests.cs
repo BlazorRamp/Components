@@ -27,7 +27,7 @@ public  class GoToViewer_Tests
         moduleInterop.SetupVoid(GlobalValues.JS_Close_GoTo_Viewer_Func, _ => true).SetVoidResult();
         moduleInterop.SetupVoid(GlobalValues.JS_ShowPopover_Func, _ => true).SetVoidResult();
         moduleInterop.SetupVoid(GlobalValues.JS_Scroll_Marker_Func, _ => true).SetVoidResult();
-
+        moduleInterop.SetupVoid(GlobalValues.JS_Set_Shortcut_key_Func, _ => true).SetVoidResult();
         // Stands in for the scan of the page that finds the markers.
         moduleInterop.Setup<GoToData[]>(GlobalValues.JS_Get_GoToData_Func, _ => true).SetResult(markersOnPage ?? []);
 
@@ -207,6 +207,93 @@ public  class GoToViewer_Tests
             component.Render(p => p.Add(x => x.HeadingText, "Second heading"));
 
             component.Find($".{GlobalValues.GoTo_Viewer_Header_Class}").TextContent.Should().Be("Second heading");
+        }
+        [Fact]
+        public async Task Should_use_the_default_shortcut_when_none_is_set()
+        {
+            await using var context = new BunitContext();
+
+            var (component, moduleInterop) = CreateGoToViewer(context);
+
+            component.WaitForAssertion(() =>
+                moduleInterop.VerifyInvoke(GlobalValues.JS_Register_GoTo_Component_Func).Arguments[3]
+                             .Should().Be(GlobalValues.GoTo_Default_Shortcut_Model));
+        }
+
+        [Fact]
+        public async Task Should_be_able_to_set_the_shortcut()
+        {
+            await using var context = new BunitContext();
+
+            var shortcut = new GoToShortcut("y", Ctrl: true, Shift: true);
+
+            var (component, moduleInterop) = CreateGoToViewer(context, p => p.Add(x => x.GoToShortcut, shortcut));
+
+            component.WaitForAssertion(() =>
+            {
+                using (new AssertionScope())
+                {
+                    moduleInterop.VerifyInvoke(GlobalValues.JS_Register_GoTo_Component_Func).Arguments[3].Should().Be(shortcut);
+                    component.Instance.GoToShortcut.Should().Be(shortcut);
+                }
+            });
+        }
+
+        [Theory]
+        [InlineData("g", false, false, false, false)]   // no modifier
+        [InlineData("g", false, false, true, false)]   // Shift alone isn't enough
+        [InlineData("gg", true, false, false, false)]   // more than one character
+        [InlineData("", true, false, false, false)]   // no key
+        [InlineData("!", true, false, false, false)]   // not a letter or digit
+        public async Task Should_ignore_an_invalid_shortcut_and_keep_the_default(string key, bool alt, bool ctrl, bool shift, bool meta)
+        {
+            await using var context = new BunitContext();
+
+            var (component, moduleInterop) = CreateGoToViewer(context, p => p.Add(x => x.GoToShortcut, new GoToShortcut(key, alt, ctrl, shift, meta)));
+
+            component.WaitForAssertion(() =>
+                moduleInterop.VerifyInvoke(GlobalValues.JS_Register_GoTo_Component_Func).Arguments[3]
+                             .Should().Be(GlobalValues.GoTo_Default_Shortcut_Model));
+        }
+
+        [Fact]
+        public async Task Should_ignore_a_null_shortcut_and_keep_the_default()
+        {
+            await using var context = new BunitContext();
+
+            var (component, moduleInterop) = CreateGoToViewer(context, p => p.Add(x => x.GoToShortcut, null!));
+
+            component.WaitForAssertion(() =>
+                moduleInterop.VerifyInvoke(GlobalValues.JS_Register_GoTo_Component_Func).Arguments[3]
+                             .Should().Be(GlobalValues.GoTo_Default_Shortcut_Model));
+        }
+
+        [Fact]
+        public async Task Should_send_a_changed_shortcut_to_the_javascript_module()
+        {
+            await using var context = new BunitContext();
+
+            var (component, moduleInterop) = CreateGoToViewer(context);
+
+            var shortcut = new GoToShortcut("y", Ctrl: true, Shift: true);
+
+            component.Render(p => p.Add(x => x.GoToShortcut, shortcut));
+
+            component.WaitForAssertion(() =>
+                moduleInterop.VerifyInvoke(GlobalValues.JS_Set_Shortcut_key_Func).Arguments[0].Should().Be(shortcut));
+        }
+
+        [Fact]
+        public async Task Should_not_send_the_shortcut_again_when_its_value_has_not_changed()
+        {
+            await using var context = new BunitContext();
+
+            var (component, moduleInterop) = CreateGoToViewer(context);
+
+            // A new instance, but equal by value to the default
+            component.Render(p => p.Add(x => x.GoToShortcut, new GoToShortcut("g", Alt: true)));
+
+            moduleInterop.VerifyNotInvoke(GlobalValues.JS_Set_Shortcut_key_Func);
         }
     }
 
