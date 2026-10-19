@@ -3,6 +3,7 @@ using BlazorRamp.GoTo.Common.Constants;
 using BlazorRamp.GoTo.Common.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System.Runtime.InteropServices;
 
 namespace BlazorRamp.GoTo.Components;
 
@@ -43,6 +44,18 @@ public partial class GoToViewer :IAsyncDisposable
     /// </summary>
     [Parameter] public bool ExcludeTriggerButton { get; set; } = false;
 
+
+    /// <summary>
+    /// Gets or sets the keyboard shortcut that opens the viewer. It must be a single letter or digit combined with at least one of
+    /// Alt, Ctrl or Meta, so that it isn't a character key shortcut under WCAG 2.1.4. If it is <see langword="null"/> or not valid,
+    /// it is ignored and the previous shortcut stays in place. Defaults to Alt+G (Option+G on macOS).
+    /// </summary>
+    /// <remarks>
+    /// The trigger button's text follows this value, but its text does not, so set
+    /// <see cref="TriggerButtonText"/> to match if you change the shortcut.
+    /// </remarks>
+    [Parameter] public GoToShortcut GoToShortcut { get; set; } = GlobalValues.GoTo_Default_Shortcut_Model;
+
     [Inject] IJSRuntime JSRuntime { get; set; } = default!;
 
     private DotNetObjectReference<GoToViewer>? _dotNetObjectRef = default;
@@ -56,16 +69,23 @@ public partial class GoToViewer :IAsyncDisposable
     private string _headingTextID     = Guid.NewGuid().ToString();
     private string _triggerButtonText = GlobalValues.GoTo_Trigger_Button_Text;
 
+    private GoToShortcut _goToShortcut = GlobalValues.GoTo_Default_Shortcut_Model;
+    private GoToShortcut _lastShortcut = GlobalValues.GoTo_Default_Shortcut_Model;
 
     /// <summary>
-    /// Replaces any blank text parameters with their defaults and trims the others.
+    /// Replaces any blank text parameters with their defaults, trims the others, and takes the shortcut if it is valid.
     /// </summary>
     protected override void OnParametersSet()
     {
         _closeButtonText   = String.IsNullOrWhiteSpace(CloseButtonText)   ? GlobalValues.GoTo_Close_Button_Text : CloseButtonText.Trim();
         _noGoToMarkersText = String.IsNullOrWhiteSpace(NoGotoMarkersText) ? GlobalValues.GoTo_No_Markers_Text   : NoGotoMarkersText.Trim();
-        _headingText       = String.IsNullOrWhiteSpace(HeadingText)      ? GlobalValues.GoTo_Heading_Text   : HeadingText.Trim(); 
+        _headingText       = String.IsNullOrWhiteSpace(HeadingText)       ? GlobalValues.GoTo_Heading_Text   : HeadingText.Trim(); 
         _triggerButtonText = String.IsNullOrWhiteSpace(TriggerButtonText) ? GlobalValues.GoTo_Trigger_Button_Text: TriggerButtonText.Trim();
+
+        if(GoToShortcut is not null && GoToShortcut.IsValid())
+        {
+            _goToShortcut = GoToShortcut with { Key = GoToShortcut.Key, Shift = GoToShortcut.Shift, Alt = GoToShortcut.Alt, Meta = GoToShortcut.Meta };
+        }
     }
 
     /// <summary>
@@ -82,8 +102,14 @@ public partial class GoToViewer :IAsyncDisposable
             _dotNetObjectRef = DotNetObjectReference.Create(this);
             _jSModule        = await JSRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Module_File_Path);
 
-            await _jSModule.InvokeVoidAsync(GlobalValues.JS_Register_GoTo_Component_Func, _dotNetObjectRef, nameof(HandleJSCallBack), _gotoViewerID);
+            await _jSModule.InvokeVoidAsync(GlobalValues.JS_Register_GoTo_Component_Func, _dotNetObjectRef, nameof(HandleJSCallBack), _gotoViewerID, _goToShortcut);
+            _lastShortcut = _goToShortcut;
+        }
 
+        if (_jSModule is not null && _goToShortcut != _lastShortcut)
+        {
+            _lastShortcut = _goToShortcut;
+            await _jSModule.InvokeVoidAsync(GlobalValues.JS_Set_Shortcut_key_Func, _goToShortcut);
         }
     }
 

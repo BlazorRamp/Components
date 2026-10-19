@@ -1,11 +1,28 @@
 ﻿interface GoToData { markerId: string, popoverId: string, gotoText: string, gotoNumber: string};
+interface GoToShortcut { key: string, alt: boolean, ctrl: boolean, shift: boolean, meta: boolean };
 
 const _dataAttribute    = "data-br-goto";
 const _currentAttribute = "data-br-goto-current";
 
 let _gotoComponentRegistered = false;
+let _shortcut: GoToShortcut | null = null;
 
 
+const matchesShortcut = (e: KeyboardEvent, s: GoToShortcut): boolean => {
+
+    // Exact modifier match, which also rules out AltGr (reported as Ctrl + Alt) when Ctrl isn't wanted
+    if (e.altKey !== s.alt || e.ctrlKey !== s.ctrl || e.shiftKey !== s.shift || e.metaKey !== s.meta) return false;
+
+    const key = s.key.toLowerCase();
+    const code = /^[a-z]$/.test(key) ? `Key${key.toUpperCase()}` : `Digit${key}`;
+
+    // event.code is the physical key, so it still matches when Option/Alt types a different character on a Mac
+    return e.code === code || e.key.toLowerCase() === key;
+};
+
+const setGoToShortcut = (shortcut: GoToShortcut): void => {
+    _shortcut = shortcut;
+};
 
 const clearCurrentMarker = (): void => {
     for (const marker of document.querySelectorAll(`[${_currentAttribute}]`)) {
@@ -193,15 +210,18 @@ const registerGoToVieweHandlers = (gotoViewerId:string): void => {
     viewerPopover.addEventListener("focusout", handler);
 };
 
-const registerGoToComponent = (dotNetRef: any, callBackName: string, gotoViewerId: string): void => {
+
+const registerGoToComponent = (dotNetRef: any, callBackName: string, gotoViewerId: string, shortcut: GoToShortcut): void => {
 
     if (!dotNetRef || true === _gotoComponentRegistered) return;
+
+    _shortcut = shortcut;
 
     registerGoToVieweHandlers(gotoViewerId);
 
     document.addEventListener("keydown", (event) => {
 
-        if (!(event.ctrlKey && event.shiftKey && event.key.toUpperCase() === "Y")) return;
+        if (!_shortcut || event.repeat || !matchesShortcut(event, _shortcut)) return;
 
         const gotoViewerElement = document.getElementById(gotoViewerId);
 
@@ -215,4 +235,4 @@ const registerGoToComponent = (dotNetRef: any, callBackName: string, gotoViewerI
     _gotoComponentRegistered = true;
 };
 
-export { showGoTo, getGoToData, registerGoToComponent, scrollMarkerIntoView, showGoToViewer, closeGoToViewer };
+export { showGoTo, getGoToData, registerGoToComponent, setGoToShortcut, scrollMarkerIntoView, showGoToViewer, closeGoToViewer };

@@ -1,4 +1,7 @@
-﻿namespace BlazorRamp.GoTo.Common.Constants;
+﻿using BlazorRamp.GoTo.Common.Models;
+using System.Reflection.Metadata;
+
+namespace BlazorRamp.GoTo.Common.Constants;
 
 internal class GlobalValues
 {
@@ -9,6 +12,8 @@ internal class GlobalValues
     public const string JS_Show_GoTo_Viewer_Func = "showGoToViewer";
     public const string JS_Close_GoTo_Viewer_Func = "closeGoToViewer";
     public const string JS_Scroll_Marker_Func = "scrollMarkerIntoView";
+
+    public const string JS_Set_Shortcut_key_Func = "setGoToShortcut ";
     public const string GoTo_Label_Text_Exception_Message = "LabelText cannot be null, empty, or whitespace.";
     
     public const string GoTo_Block_Class = "br-goto";
@@ -35,4 +40,6 @@ internal class GlobalValues
     public const string GoTo_Trigger_Button_Text = "Go to viewer (Control + Shift + Y)";
 
 
+
+    public static readonly GoToShortcut GoTo_Default_Shortcut_Model = new(Key:"g", Alt: true, Shift:false, Meta:false);
 }
