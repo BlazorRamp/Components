@@ -37,9 +37,9 @@ internal class GlobalValues
     public const string GoTo_Close_Button_Text = "Close";
     public const string GoTo_No_Markers_Text = "No go to markers defined for this page.";
 
-    public const string GoTo_Trigger_Button_Text = "Go to viewer (Control + Shift + Y)";
+    public const string GoTo_Trigger_Button_Text = "Go to viewer";
 
 
-
-    public static readonly GoToShortcut GoTo_Default_Shortcut_Model = new(Key:"g", Alt: true, Shift:false, Meta:false);
+    //public static readonly GoToShortcut GoTo_Default_Shortcut_Model = new(Key: "g", Alt: true, Ctrl: false, Shift: false, Meta: false);
+    public static readonly GoToShortcut GoTo_Default_Shortcut_Model = new(Key:"y", Alt: false, Ctrl:true, Shift:true, Meta:false);
 }

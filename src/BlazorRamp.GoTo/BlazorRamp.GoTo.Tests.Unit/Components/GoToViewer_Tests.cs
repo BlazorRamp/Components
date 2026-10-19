@@ -139,11 +139,13 @@ public  class GoToViewer_Tests
         }
 
         [Theory]
-        [InlineData("Custom trigger", "Custom trigger")]
+        [InlineData("Custom trigger", $"Custom trigger")]
         [InlineData("  Custom trigger  ", "Custom trigger")]
         public async Task Should_be_able_to_set_and_trim_the_trigger_button_text(string triggerButtonText, string expected)
         {
             await using var context = new BunitContext();
+
+            expected = $"{expected} ({GlobalValues.GoTo_Default_Shortcut_Model.ToAriaKeyShortcuts()})"; //code appends a short cut key text to the button text
 
             var (component, _) = CreateGoToViewer(context, p => p.Add(x => x.TriggerButtonText, triggerButtonText));
 
@@ -164,7 +166,9 @@ public  class GoToViewer_Tests
 
             var (component, _) = CreateGoToViewer(context, p => p.Add(x => x.TriggerButtonText, triggerButtonText));
 
-            component.Find($".{GlobalValues.GoTo_Viewer_Trigger_Content_Class}").TextContent.Trim().Should().Be(GlobalValues.GoTo_Trigger_Button_Text);
+            var defaultText = $"{GlobalValues.GoTo_Trigger_Button_Text} ({GlobalValues.GoTo_Default_Shortcut_Model.ToAriaKeyShortcuts()})";
+
+            component.Find($".{GlobalValues.GoTo_Viewer_Trigger_Content_Class}").TextContent.Trim().Should().Be(defaultText);
         }
 
         [Fact]
@@ -275,7 +279,11 @@ public  class GoToViewer_Tests
 
             var (component, moduleInterop) = CreateGoToViewer(context);
 
-            var shortcut = new GoToShortcut("y", Ctrl: true, Shift: true);
+            var shortcut = new GoToShortcut("k", Ctrl: false, Alt: true, Shift:true, Meta:false);
+
+            // Guard the arrange step, so a future change of default fails here with a clear reason
+            shortcut.IsValid().Should().BeTrue();
+            shortcut.Should().NotBe(GlobalValues.GoTo_Default_Shortcut_Model);
 
             component.Render(p => p.Add(x => x.GoToShortcut, shortcut));
 
@@ -291,7 +299,7 @@ public  class GoToViewer_Tests
             var (component, moduleInterop) = CreateGoToViewer(context);
 
             // A new instance, but equal by value to the default
-            component.Render(p => p.Add(x => x.GoToShortcut, new GoToShortcut("g", Alt: true)));
+            component.Render(p => p.Add(x => x.GoToShortcut, new GoToShortcut("y", Ctrl: true, Shift:true)));
 
             moduleInterop.VerifyNotInvoke(GlobalValues.JS_Set_Shortcut_key_Func);
         }

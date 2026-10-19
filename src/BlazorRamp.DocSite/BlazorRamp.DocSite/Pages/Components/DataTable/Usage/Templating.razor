@@ -184,6 +184,7 @@
 
 @implements IAsyncDisposable
 
+    [Inject] ILiveRegionService liveRegionService { get; set; } = default!;
     [Inject] IJSRuntime         JSRuntime         { get; set; } = default!;
     private DataTable<Contact>  DataTableRef      { get; set; } = default!;
 
@@ -208,6 +209,8 @@
         if(rowData is not null)
         {
             _dataRowDetails = rowData.ToString();
+            var message = $"View action output the row data for contact id {rowData.ContactID}";
+            await liveRegionService.MakeAnnouncement(new(message, AnnouncementType.Info, "view row action", LiveRegionType.Assertive), true);
             await InvokeAsync(StateHasChanged);//Actions popover uses Func not EventCallBack so you can chooses whether or not to render.
         }
     }        
@@ -219,8 +222,13 @@
         if (rowItem is null) return;
 
         var adjacentRow = DataTableRef.GetAdjacentDisplayedRow(rowItem);
-
+      
         _dataSource.Remove(rowItem);
+
+        var message = $"Deleted contact id {rowItem.ContactID}";
+
+        await liveRegionService.MakeAnnouncement(new(message, AnnouncementType.Info, "Delete row action", LiveRegionType.Assertive), true);
+
 
         await DataTableRef.Refresh();
 

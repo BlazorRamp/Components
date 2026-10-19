@@ -75,7 +75,7 @@ public class GoToShortcut_Tests
         using (new FluentAssertions.Execution.AssertionScope())
         {
             shortcut.IsValid().Should().BeTrue();
-            shortcut.ToAriaKeyShortcuts().Should().Be("Alt+G");
+            shortcut.ToAriaKeyShortcuts().Should().Be("Control+Shift+Y");
         }
     }
 }

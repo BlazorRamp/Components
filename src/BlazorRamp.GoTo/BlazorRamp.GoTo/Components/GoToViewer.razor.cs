@@ -80,12 +80,15 @@ public partial class GoToViewer :IAsyncDisposable
         _closeButtonText   = String.IsNullOrWhiteSpace(CloseButtonText)   ? GlobalValues.GoTo_Close_Button_Text : CloseButtonText.Trim();
         _noGoToMarkersText = String.IsNullOrWhiteSpace(NoGotoMarkersText) ? GlobalValues.GoTo_No_Markers_Text   : NoGotoMarkersText.Trim();
         _headingText       = String.IsNullOrWhiteSpace(HeadingText)       ? GlobalValues.GoTo_Heading_Text   : HeadingText.Trim(); 
-        _triggerButtonText = String.IsNullOrWhiteSpace(TriggerButtonText) ? GlobalValues.GoTo_Trigger_Button_Text: TriggerButtonText.Trim();
 
         if(GoToShortcut is not null && GoToShortcut.IsValid())
         {
             _goToShortcut = GoToShortcut with { Key = GoToShortcut.Key, Shift = GoToShortcut.Shift, Alt = GoToShortcut.Alt, Meta = GoToShortcut.Meta };
         }
+
+        _triggerButtonText = String.IsNullOrWhiteSpace(TriggerButtonText) ? GlobalValues.GoTo_Trigger_Button_Text : TriggerButtonText.Trim();
+
+        _triggerButtonText = $"{_triggerButtonText} ({_goToShortcut.ToAriaKeyShortcuts()})";
     }
 
     /// <summary>
