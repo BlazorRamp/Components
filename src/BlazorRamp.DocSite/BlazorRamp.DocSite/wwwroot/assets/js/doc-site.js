@@ -15,7 +15,7 @@ const registerDocumenEscapeKeyHandler = (menuButton, sideNavigation) => {
     if (!menuButton || !sideNavigation)
         return;
     document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && menuButton.getAttribute("aria-expanded") === "true" && (menuButton === document.activeElement || sideNavigation.contains(document.activeElement))) {
+        if (e.key === "Escape" && menuButton.getAttribute("aria-expanded") === "true" && (document.activeElement?.tagName !== "DIALOG") && (menuButton === document.activeElement || sideNavigation.contains(document.activeElement))) {
             menuButton.setAttribute("aria-expanded", "false");
             menuButton.focus();
         }

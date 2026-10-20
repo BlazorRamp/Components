@@ -18,7 +18,24 @@
     ensuring that in the <span class="@CodeSpan.Base">&lt;head&gt;</span> section you also add the GoTo stylesheet as follows:
 </p>
 <CodeBox CodeBlock="@GoToSnippets.Add_GoTo_Style_Sheet" AriaLabel="Add GoTo stylesheet code block" />
+<p>
+    The GoTo viewer and its triggering button are designed to be globally available using a single instance.
+    The simplest approach is to place this above the <span class="@CodeSpan.Base">Router</span> component which dependant on your project will either be inside the 
+    <span class="@CodeSpan.Base">App.razor</span> or <span class="@CodeSpan.Base">Routes.razor</span> file.
+</p>
+<p>
+    If you accept all the defaults then you can simply just place <span class="@CodeSpan.Base">&lt;GoToViewer /&gt;</span> in the file with the <span class="@CodeSpan.Base">Router</span> component.
+</p>
+<p>
+    Bwlow is the component with all the default values being used to set the parameters. This code along with the other components shown, is what is being used on this site.
+</p>
+<p>
+    <strong>Important</strong> This site is a global WebAssembly site so everything is interactive so no <span class="@CodeSpan.Base">rendermode</span> needs to be explicityly set. If you are usiing InteractiveAuto for both
+    Server and WebAssembly then add the rendermode to the component for example: <span class="@CodeSpan.Base">&ltGoToViewer @@rendermode="InteractiveAuto" /&gt;</span>.
+</p>
 
+
+<CodeBox CodeBlock="@GoToSnippets.Placement_On_Router_Page" AriaLabel="Component placement for global usage example" />
 
 <h2 id="release-history">Release history</h2>
 

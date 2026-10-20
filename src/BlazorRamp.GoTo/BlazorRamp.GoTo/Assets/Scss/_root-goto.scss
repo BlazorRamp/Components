@@ -123,6 +123,21 @@
     //
     --br-comp-goto-scroll-offset: 4rem;
     --br-comp-goto-badge-size: 3rem;
+    //GoTo Label
+
+
+    --br-comp-goto-label-text: var(--br-unit-colour-canvas);
+    --br-comp-goto-label-background-colour: var(--br-unit-colour-canvas-inverted);
+    --br-comp-goto-label-border-width: var(--br-unit-outline-offset-2);
+    --br-comp-goto-label-border-style: solid;
+    --br-comp-goto-label-border-colour: var(--br-unit-colour-canvas);
+    --br-comp-goto-label-border-radius: var(--br-group-revealed-border-radius);
+    --br-comp-goto-label-outline-offset: var(--br-unit-outline-offset-0);
+    --br-comp-goto-label-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-goto-label-outline-colour: var(--br-comp-all-outline-colour);
+    --br-comp-goto-label-outline-style: var(--br-comp-all-outline-style);
+
+    //
 }
 
     :root:has(.br-goto-viewer:popover-open) .br-goto::before {

@@ -18,16 +18,16 @@
         position-visibility: always;
         position-try-order: most-space;
         padding: var(--br-unit-space-5);
-        background-color: var(--br-unit-colour-canvas-inverted);
-        color: var(--br-unit-colour-canvas-text-inverted);
-        border-width: var(--br-unit-outline-offset-2);
-        border-style: solid;
-        border-color: var(--br-unit-colour-canvas);
-        border-radius: var(--br-group-revealed-border-radius);
-        outline-style: var(--br-comp-all-outline-style);
-        outline-color: var(--br-comp-all-outline-colour);
-        outline-offset: var(--br-unit-outline-offset-0);
-        outline-width: var(--br-comp-all-outline-width);
+        background-color: var(--br-comp-goto-label-background-colour);
+        color: var(--br-comp-goto-label-text);
+        border-width: var(--br-comp-goto-label-border-width);
+        border-style: var(--br-comp-goto-label-border-style);
+        border-color: var(--br-comp-goto-label-border-colour);
+        border-radius: var(--br-comp-goto-label-border-radius);
+        outline-style: var(--br-comp-goto-label-outline-style);
+        outline-color: var(--br-comp-goto-label-outline-colour);
+        outline-offset: var(--br-comp-goto-label-outline-offset);
+        outline-width: var(--br-comp-goto-label-outline-width);
 
 
         &[data-br-goto-position="centre-right"] {

@@ -2,18 +2,13 @@
 
 <PageTitle>@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Api</PageTitle>
 
-<h1>@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Api . . . In Progress . . .</h1>
+<h1>@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Api</h1>
 
 <GoTo LabelText="GoTo API page title" />
 
 <p>
     Everything you need to work with the GoTo component: parameters, methods, and CSS variables for styling.
 </p>
-
-
-
-
-
 
 
 <section>
@@ -77,7 +72,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>NoGotoMarkersText</td>
+                        <td>NoGoToMarkersText</td>
                         <td>string</td>
                         <td>
                             Gets or sets the message shown in the viewer when the page has no markers. Leading and trailing whitespace is trimmed. If <span class="@CodeSpan.Base">null</span>, empty or whitespace,
@@ -89,7 +84,7 @@
                         <td>string</td>
                         <td>
                             Gets or sets the text of the trigger button, which stays hidden until it receives keyboard focus. It should mention the keyboard shortcut. Leading and trailing whitespace is trimmed.
-                            If <span class="@CodeSpan.Base">null</span>, empty or whitespace, the default is used. Defaults to "Go to viewer (Control + Shift + Y)".
+                            If <span class="@CodeSpan.Base">null</span>, empty or whitespace, the default is used. Defaults to "Go to viewer" with the current keyboard shortcut text appended to it.
                         </td>
                     </tr>
                     <tr>
@@ -100,10 +95,59 @@
                             Defaults to <span class="@CodeSpan.Base">false</span>.
                         </td>
                     </tr>
+                    <tr>
+                        <td>GoToShortcut</td>
+                        <td>GoToShortcut</td>
+                        <td>
+                            Gets or sets the keyboard shortcut that opens the viewer. It must be a single letter or digit combined with at least one of
+                            Alt, Ctrl or Meta, so that it isn't a character key shortcut under WCAG 2.1.4. If it is null or not valid,
+                            it is ignored and the previous shortcut stays in place. Defaults to Alt+Z (Option+Z on macOS).
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </section>
+
+    <section>
+
+        <h3 id="gotoshortcut-class" class="mobile-centred-heading">GoToShortcut record class</h3>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="gotoshortcut-class">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Type/Return</th>
+                        <th scope="col">Property/Static Method</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>bool</td>
+                        <td>IsValid()</td>
+                        <td>Determines whether the shortcut can be used.</td>
+                    </tr>
+                    <tr>
+                        <td>string</td>
+                        <td>ToDisplayText()</td>
+                        <td>
+                            Formats the shortcut for display. Used in the trigger button text.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <b>Constructor: </b><br />
+                            new GoToShortcut(string Key, bool Alt = false, bool Ctrl = false, bool Shift = false, bool Meta = false)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+
 </section>
 
 <section>
@@ -145,7 +189,97 @@
     </section>
 
     <section>
-        <h3 id="goto-outline-variables" class="mobile-centred-heading">Viewer shadow and outline variables</h3>
+        <h3 id="goto-label-variables" class="mobile-centred-heading">GoTo marker label variables</h3>
+        <p>Styles applied to the label that replaces the marker on activation.</p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="goto-label-variables">
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Default Value</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--br-comp-goto-label-text</td>
+                        <td>var(--br-unit-colour-canvas);</td>
+                        <td>
+                            The text colour - uses a unit value directly.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-label-background-colour</td>
+                        <td>var(--br-unit-colour-canvas-inverted);</td>
+                        <td>
+                            The background colour -  uses a unit value directly.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-label-border-width</td>
+                        <td>var(--br-unit-outline-offset-2);</td>
+                        <td>
+                            The border width - uses a unit value directly.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-label-border-style</td>
+                        <td>solid;</td>
+                        <td>
+                            The border sytle - uses a css value directly.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-label-border-colour</td>
+                        <td>var(--br-unit-colour-canvas);</td>
+                        <td>
+                            The border colour - uses a unit value directly
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-label-border-radius</td>
+                        <td>var(--br-group-revealed-border-radius);</td>
+                        <td>
+                            The border radius applied to the label - uses the shared revealed border radius group.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-label-outline-offset</td>
+                        <td>var(--br-unit-outline-offset-0);</td>
+                        <td>
+                            The outline offset - uses a unit value directly.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-label-outline-width</td>
+                        <td>var(--br-comp-all-outline-width);</td>
+                        <td>
+                            The outline width - uses the shared component variable.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-label-outline-colour</td>
+                        <td>var(--br-comp-all-outline-colour);</td>
+                        <td>
+                            The outline colour - uses the shared component variable.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-label-outline-style</td>
+                        <td>var(--br-comp-all-outline-style);</td>
+                        <td>
+                            The outline style -uses the shared component variable.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+
+    <section>
+        <h3 id="goto-outline-variables" class="mobile-centred-heading">GoTo viewer shadow and outline variables</h3>
         <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
             <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="goto-outline-variables">
                 <thead>
@@ -156,19 +290,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>--br-comp-goto-box-shadow</td><td>var(--br-unit-box-shadow-1)</td><td>The shadow around the viewer.</td></tr>
-                    <tr><td>--br-comp-goto-outline-style</td><td>var(--br-comp-all-outline-style)</td><td>The viewer's outline style when it has keyboard focus - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-outline-width</td><td>var(--br-comp-all-outline-width)</td><td>The viewer's outline width when it has keyboard focus - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-outline-offset</td><td>0px</td><td>The viewer's outline offset when it has keyboard focus - <b>does not use the shared component variable.</b></td></tr>
-                    <tr><td>--br-comp-goto-outline-colour</td><td>var(--br-comp-all-outline-colour)</td><td>The viewer's outline colour when it has keyboard focus - uses the shared component variable.</td></tr>
+                    <tr>
+                        <td>--br-comp-goto-box-shadow</td>
+                        <td>var(--br-unit-box-shadow-1)</td>
+                        <td>The shadow around the viewer - uses a unit value directly.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-outline-style</td>
+                        <td>var(--br-comp-all-outline-style)</td>
+                        <td>The viewer's outline style when it has keyboard focus - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-outline-width</td>
+                        <td>var(--br-comp-all-outline-width)</td>
+                        <td>The viewer's outline width when it has keyboard focus - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-outline-offset</td>
+                        <td>0px</td>
+                        <td>The viewer's outline offset when it has keyboard focus - <b>does not use the shared component variable.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-outline-colour</td>
+                        <td>var(--br-comp-all-outline-colour)</td>
+                        <td>The viewer's outline colour when it has keyboard focus - uses the shared component variable.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </section>
 
     <section>
-        <h3 id="goto-pane-base-variables" class="mobile-centred-heading">Pane base variables</h3>
-        <p>The outermost layer of the viewer, which provides its background and border.</p>
+        <h3 id="goto-pane-base-variables" class="mobile-centred-heading">GoTo viewer pane base variables</h3>
         <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
             <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="goto-pane-base-variables">
                 <thead>
@@ -179,19 +332,39 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>--br-comp-goto-pane-base-background</td><td>var(--br-comp-all-pane-base-background)</td><td>The background colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-pane-base-border-style</td><td>var(--br-comp-all-pane-base-border-style)</td><td>The border style - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-pane-base-border-colour</td><td>var(--br-comp-all-pane-base-border-colour)</td><td>The border colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-pane-base-border-width</td><td>var(--br-unit-border-1)</td><td>The border width - <b>does not use the shared component variable.</b></td></tr>
-                    <tr><td>--br-comp-goto-pane-base-border-radius</td><td>var(--br-group-dialog-pane-base-border-radius)</td><td>The border radius - uses the shared dialog group variable.</td></tr>
+                    <tr>
+                        <td>--br-comp-goto-pane-base-background</td>
+                        <td>var(--br-comp-all-pane-base-background)</td>
+                        <td>The background colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-pane-base-border-style</td>
+                        <td>var(--br-comp-all-pane-base-border-style)</td>
+                        <td>The border style - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-pane-base-border-colour</td>
+                        <td>var(--br-comp-all-pane-base-border-colour)</td>
+                        <td>The border colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-pane-base-border-width</td>
+                        <td>var(--br-unit-border-1)</td>
+                        <td>The border width - <b>does not use the shared component variable.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-pane-base-border-radius</td>
+                        <td>var(--br-group-dialog-pane-base-border-radius)</td>
+                        <td>The border radius - uses the shared dialog group variable.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </section>
 
     <section>
-        <h3 id="goto-pane-surface-variables" class="mobile-centred-heading">Pane surface variables</h3>
-        <p>The layer inside the base that contains the header, the list of markers and the footer.</p>
+        <h3 id="goto-pane-surface-variables" class="mobile-centred-heading">GoTo viewer pane surface variables</h3>
+
         <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
             <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="goto-pane-surface-variables">
                 <thead>
@@ -202,23 +375,63 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>--br-comp-goto-pane-surface-background</td><td>var(--br-comp-all-pane-surface-background)</td><td>The background colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-pane-surface-text</td><td>var(--br-comp-all-pane-surface-text)</td><td>The text colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-pane-surface-font-family</td><td>var(--br-comp-all-pane-surface-font-family)</td><td>The font family - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-pane-surface-font-size</td><td>var(--br-comp-all-pane-surface-font-size)</td><td>The font size - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-pane-surface-font-weight</td><td>var(--br-comp-all-pane-surface-font-weight)</td><td>The font weight - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-pane-surface-line-height</td><td>var(--br-comp-all-pane-surface-line-height)</td><td>The line height - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-pane-surface-border-style</td><td>var(--br-comp-all-pane-surface-border-style)</td><td>The border style - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-pane-surface-border-colour</td><td>var(--br-comp-all-pane-surface-border-colour)</td><td>The border colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-pane-surface-border-width</td><td>var(--br-comp-all-pane-surface-border-width)</td><td>The border width - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-pane-surface-border-radius</td><td>var(--br-group-dialog-pane-surface-border-radius)</td><td>The border radius - uses the shared dialog group variable.</td></tr>
+                    <tr>
+                        <td>--br-comp-goto-pane-surface-background</td>
+                        <td>var(--br-comp-all-pane-surface-background)</td>
+                        <td>The background colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-pane-surface-text</td>
+                        <td>var(--br-comp-all-pane-surface-text)</td>
+                        <td>The text colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-pane-surface-font-family</td>
+                        <td>var(--br-comp-all-pane-surface-font-family)</td>
+                        <td>The font family - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-pane-surface-font-size</td>
+                        <td>var(--br-comp-all-pane-surface-font-size)</td>
+                        <td>The font size - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-pane-surface-font-weight</td>
+                        <td>var(--br-comp-all-pane-surface-font-weight)</td>
+                        <td>The font weight - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-pane-surface-line-height</td>
+                        <td>var(--br-comp-all-pane-surface-line-height)</td>
+                        <td>The line height - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-pane-surface-border-style</td>
+                        <td>var(--br-comp-all-pane-surface-border-style)</td>
+                        <td>The border style - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-pane-surface-border-colour</td>
+                        <td>var(--br-comp-all-pane-surface-border-colour)</td>
+                        <td>The border colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-pane-surface-border-width</td>
+                        <td>var(--br-comp-all-pane-surface-border-width)</td>
+                        <td>The border width - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-pane-surface-border-radius</td>
+                        <td>var(--br-group-dialog-pane-surface-border-radius)</td>
+                        <td>The border radius - uses the shared dialog group variable.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </section>
 
     <section>
-        <h3 id="goto-header-variables" class="mobile-centred-heading">Header area variables</h3>
+        <h3 id="goto-header-variables" class="mobile-centred-heading">GoTo viewer header area variables</h3>
         <p>The area containing the viewer's heading.</p>
         <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
             <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="goto-header-variables">
@@ -230,23 +443,63 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>--br-comp-goto-area-header-background</td><td>var(--br-comp-all-area-header-background)</td><td>The background colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-header-text</td><td>var(--br-comp-all-area-header-text)</td><td>The text colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-header-font-family</td><td>var(--br-comp-all-area-header-font-family)</td><td>The font family - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-header-font-size</td><td>var(--br-comp-all-area-header-font-size)</td><td>The font size - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-header-font-weight</td><td>var(--br-comp-all-area-header-font-weight)</td><td>The font weight - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-header-line-height</td><td>var(--br-comp-all-area-header-line-height)</td><td>The line height - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-header-border-style</td><td>var(--br-comp-all-area-header-border-style)</td><td>The border style - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-header-border-colour</td><td>var(--br-comp-all-area-header-border-colour)</td><td>The border colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-header-border-width</td><td>var(--br-comp-all-area-header-border-width)</td><td>The border width - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-header-border-radius</td><td>var(--br-group-dialog-area-header-border-radius)</td><td>The border radius - uses the shared dialog group variable.</td></tr>
+                    <tr>
+                        <td>--br-comp-goto-area-header-background</td>
+                        <td>var(--br-comp-all-area-header-background)</td>
+                        <td>The background colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-header-text</td>
+                        <td>var(--br-comp-all-area-header-text)</td>
+                        <td>The text colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-header-font-family</td>
+                        <td>var(--br-comp-all-area-header-font-family)</td>
+                        <td>The font family - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-header-font-size</td>
+                        <td>var(--br-comp-all-area-header-font-size)</td>
+                        <td>The font size - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-header-font-weight</td>
+                        <td>var(--br-comp-all-area-header-font-weight)</td>
+                        <td>The font weight - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-header-line-height</td>
+                        <td>var(--br-comp-all-area-header-line-height)</td>
+                        <td>The line height - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-header-border-style</td>
+                        <td>var(--br-comp-all-area-header-border-style)</td>
+                        <td>The border style - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-header-border-colour</td>
+                        <td>var(--br-comp-all-area-header-border-colour)</td>
+                        <td>The border colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-header-border-width</td>
+                        <td>var(--br-comp-all-area-header-border-width)</td>
+                        <td>The border width - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-header-border-radius</td>
+                        <td>var(--br-group-dialog-area-header-border-radius)</td>
+                        <td>The border radius - uses the shared dialog group variable.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </section>
 
     <section>
-        <h3 id="goto-content-variables" class="mobile-centred-heading">Content area variables</h3>
+        <h3 id="goto-content-variables" class="mobile-centred-heading">GoTo viewer content area variables</h3>
         <p>The area containing the list of markers, which scrolls when the list is long.</p>
         <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
             <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="goto-content-variables">
@@ -258,23 +511,63 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>--br-comp-goto-area-content-background</td><td>var(--br-comp-all-area-content-background)</td><td>The background colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-content-text</td><td>var(--br-comp-all-area-content-text)</td><td>The text colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-content-font-family</td><td>var(--br-comp-all-area-content-font-family)</td><td>The font family - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-content-font-size</td><td>var(--br-unit-font-size-label)</td><td>The font size - <b>does not use the shared component variable.</b></td></tr>
-                    <tr><td>--br-comp-goto-area-content-font-weight</td><td>var(--br-comp-all-area-content-font-weight)</td><td>The font weight - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-content-line-height</td><td>var(--br-comp-all-area-content-line-height)</td><td>The line height - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-content-border-style</td><td>var(--br-comp-all-area-content-border-style)</td><td>The border style - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-content-border-colour</td><td>var(--br-comp-all-area-content-border-colour)</td><td>The border colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-content-border-width</td><td>var(--br-unit-border-2)</td><td>The border width - <b>does not use the shared component variable.</b></td></tr>
-                    <tr><td>--br-comp-goto-area-content-border-radius</td><td>var(--br-group-dialog-area-content-border-radius)</td><td>The border radius - uses the shared dialog group variable.</td></tr>
+                    <tr>
+                        <td>--br-comp-goto-area-content-background</td>
+                        <td>var(--br-comp-all-area-content-background)</td>
+                        <td>The background colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-content-text</td>
+                        <td>var(--br-comp-all-area-content-text)</td>
+                        <td>The text colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-content-font-family</td>
+                        <td>var(--br-comp-all-area-content-font-family)</td>
+                        <td>The font family - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-content-font-size</td>
+                        <td>var(--br-unit-font-size-label)</td>
+                        <td>The font size - <b>does not use the shared component variable.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-content-font-weight</td>
+                        <td>var(--br-comp-all-area-content-font-weight)</td>
+                        <td>The font weight - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-content-line-height</td>
+                        <td>var(--br-comp-all-area-content-line-height)</td>
+                        <td>The line height - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-content-border-style</td>
+                        <td>var(--br-comp-all-area-content-border-style)</td>
+                        <td>The border style - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-content-border-colour</td>
+                        <td>var(--br-comp-all-area-content-border-colour)</td>
+                        <td>The border colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-content-border-width</td>
+                        <td>var(--br-unit-border-2)</td>
+                        <td>The border width - <b>does not use the shared component variable.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-content-border-radius</td>
+                        <td>var(--br-group-dialog-area-content-border-radius)</td>
+                        <td>The border radius - uses the shared dialog group variable.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </section>
 
     <section>
-        <h3 id="goto-footer-variables" class="mobile-centred-heading">Footer area variables</h3>
+        <h3 id="goto-footer-variables" class="mobile-centred-heading">GoTo viewer footer area variables</h3>
         <p>The area containing the close button.</p>
         <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
             <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="goto-footer-variables">
@@ -286,23 +579,63 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>--br-comp-goto-area-footer-background</td><td>var(--br-comp-all-area-footer-background)</td><td>The background colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-footer-text</td><td>var(--br-comp-all-area-footer-text)</td><td>The text colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-footer-font-family</td><td>var(--br-comp-all-area-footer-font-family)</td><td>The font family - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-footer-font-size</td><td>var(--br-comp-all-area-footer-font-size)</td><td>The font size - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-footer-font-weight</td><td>var(--br-comp-all-area-footer-font-weight)</td><td>The font weight - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-footer-line-height</td><td>var(--br-comp-all-area-footer-line-height)</td><td>The line height - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-footer-border-style</td><td>var(--br-comp-all-area-footer-border-style)</td><td>The border style - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-footer-border-colour</td><td>var(--br-comp-all-area-footer-border-colour)</td><td>The border colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-footer-border-width</td><td>var(--br-comp-all-area-footer-border-width)</td><td>The border width - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-area-footer-border-radius</td><td>var(--br-group-dialog-area-footer-border-radius)</td><td>The border radius - uses the shared dialog group variable.</td></tr>
+                    <tr>
+                        <td>--br-comp-goto-area-footer-background</td>
+                        <td>var(--br-comp-all-area-footer-background)</td>
+                        <td>The background colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-footer-text</td>
+                        <td>var(--br-comp-all-area-footer-text)</td>
+                        <td>The text colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-footer-font-family</td>
+                        <td>var(--br-comp-all-area-footer-font-family)</td>
+                        <td>The font family - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-footer-font-size</td>
+                        <td>var(--br-comp-all-area-footer-font-size)</td>
+                        <td>The font size - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-footer-font-weight</td>
+                        <td>var(--br-comp-all-area-footer-font-weight)</td>
+                        <td>The font weight - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-footer-line-height</td>
+                        <td>var(--br-comp-all-area-footer-line-height)</td>
+                        <td>The line height - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-footer-border-style</td>
+                        <td>var(--br-comp-all-area-footer-border-style)</td>
+                        <td>The border style - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-footer-border-colour</td>
+                        <td>var(--br-comp-all-area-footer-border-colour)</td>
+                        <td>The border colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-footer-border-width</td>
+                        <td>var(--br-comp-all-area-footer-border-width)</td>
+                        <td>The border width - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-area-footer-border-radius</td>
+                        <td>var(--br-group-dialog-area-footer-border-radius)</td>
+                        <td>The border radius - uses the shared dialog group variable.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </section>
 
     <section>
-        <h3 id="goto-button-variables" class="mobile-centred-heading">Button variables</h3>
+        <h3 id="goto-button-variables" class="mobile-centred-heading">GoTo viewer list button variables</h3>
         <p>Used by the buttons in the list of markers and by the close button.</p>
         <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
             <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="goto-button-variables">
@@ -314,31 +647,102 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>--br-comp-goto-button-background</td><td>var(--br-comp-all-button-background)</td><td>The background colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-button-text</td><td>var(--br-comp-all-button-text)</td><td>The text colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-button-font-family</td><td>var(--br-comp-all-button-font-family)</td><td>The font family - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-button-font-size</td><td>var(--br-comp-all-button-font-size)</td><td>The font size - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-button-font-weight</td><td>var(--br-comp-all-button-font-weight)</td><td>The font weight - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-button-line-height</td><td>var(--br-comp-all-button-line-height)</td><td>The line height - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-button-border-style</td><td>var(--br-comp-all-button-border-style)</td><td>The border style - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-button-border-colour</td><td>var(--br-comp-all-button-border-colour)</td><td>The border colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-button-border-width</td><td>var(--br-comp-all-button-border-width)</td><td>The border width - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-button-border-radius</td><td>var(--br-group-button-border-radius)</td><td>The border radius - uses the shared button group variable.</td></tr>
-                    <tr><td>--br-comp-goto-button-outline-style</td><td>var(--br-comp-all-outline-style)</td><td>The outline style when a button has keyboard focus - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-button-outline-width</td><td>var(--br-comp-all-outline-width)</td><td>The outline width when a button has keyboard focus - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-button-outline-offset</td><td>var(--br-comp-all-outline-offset)</td><td>The outline offset when a button has keyboard focus - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-button-outline-colour</td><td>var(--br-comp-all-outline-colour)</td><td>The outline colour when a button has keyboard focus - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-button-state-hover</td><td>var(--br-comp-all-button-state-hover)</td><td>The background colour while the pointer is over a button - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-button-state-active-brightness</td><td>var(--br-comp-all-button-state-active-brightness)</td><td>The brightness applied while a button is being pressed - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-button-state-active-scale</td><td>var(--br-comp-all-button-state-active-scale)</td><td>The scale applied while a button is being pressed - uses the shared component variable.</td></tr>
+                    <tr>
+                        <td>--br-comp-goto-button-background</td>
+                        <td>var(--br-comp-all-button-background)</td>
+                        <td>The background colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-button-text</td>
+                        <td>var(--br-comp-all-button-text)</td>
+                        <td>The text colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-button-font-family</td>
+                        <td>var(--br-comp-all-button-font-family)</td>
+                        <td>The font family - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-button-font-size</td>
+                        <td>var(--br-comp-all-button-font-size)</td>
+                        <td>The font size - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-button-font-weight</td>
+                        <td>var(--br-comp-all-button-font-weight)</td>
+                        <td>The font weight - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-button-line-height</td>
+                        <td>var(--br-comp-all-button-line-height)</td>
+                        <td>The line height - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-button-border-style</td>
+                        <td>var(--br-comp-all-button-border-style)</td>
+                        <td>The border style - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-button-border-colour</td>
+                        <td>var(--br-comp-all-button-border-colour)</td>
+                        <td>The border colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-button-border-width</td>
+                        <td>var(--br-comp-all-button-border-width)</td>
+                        <td>The border width - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-button-border-radius</td>
+                        <td>var(--br-group-button-border-radius)</td>
+                        <td>The border radius - uses the shared button group variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-button-outline-style</td>
+                        <td>var(--br-comp-all-outline-style)</td>
+                        <td>The outline style when a button has keyboard focus - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-button-outline-width</td>
+                        <td>var(--br-comp-all-outline-width)</td>
+                        <td>The outline width when a button has keyboard focus - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-button-outline-offset</td>
+                        <td>var(--br-comp-all-outline-offset)</td>
+                        <td>The outline offset when a button has keyboard focus - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-button-outline-colour</td>
+                        <td>var(--br-comp-all-outline-colour)</td>
+                        <td>The outline colour when a button has keyboard focus - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-button-state-hover</td>
+                        <td>var(--br-comp-all-button-state-hover)</td>
+                        <td>The background colour while the pointer is over a button - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-button-state-active-brightness</td>
+                        <td>var(--br-comp-all-button-state-active-brightness)</td>
+                        <td>The brightness applied while a button is being pressed - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-button-state-active-scale</td>
+                        <td>var(--br-comp-all-button-state-active-scale)</td>
+                        <td>The scale applied while a button is being pressed - uses the shared component variable.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </section>
 
     <section>
-        <h3 id="goto-trigger-variables" class="mobile-centred-heading">Trigger button variables</h3>
-        <p>The trigger button is hidden until it receives keyboard focus, so these variables describe how it looks while it is focused.</p>
+        <h3 id="goto-trigger-variables" class="mobile-centred-heading">GoTo trigger button variables</h3>
+        <p>
+            The trigger button is hidden until it receives keyboard focus, so these variables describe how it looks while it is focused.
+            Opens the GoTo viewer.
+        </p>
         <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
             <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="goto-trigger-variables">
                 <thead>
@@ -349,25 +753,215 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>--br-comp-goto-trigger-outline-style</td><td>var(--br-comp-all-outline-style)</td><td>The outline style - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-trigger-outline-width</td><td>var(--br-comp-all-outline-width)</td><td>The outline width - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-trigger-outline-offset</td><td>var(--br-unit-outline-offset-0)</td><td>The outline offset - <b>does not use the shared component variable.</b></td></tr>
-                    <tr><td>--br-comp-goto-trigger-outline-colour</td><td>var(--br-comp-all-outline-colour)</td><td>The outline colour - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-trigger-area-content-background</td><td>var(--br-unit-colour-canvas-inverted)</td><td>The background colour of the text area - <b>does not use the shared component variable.</b></td></tr>
-                    <tr><td>--br-comp-goto-trigger-area-content-text</td><td>var(--br-unit-colour-canvas-text-inverted)</td><td>The text colour - <b>does not use the shared component variable.</b></td></tr>
-                    <tr><td>--br-comp-goto-trigger-area-content-font-family</td><td>var(--br-comp-all-area-content-font-family)</td><td>The font family - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-trigger-area-content-font-weight</td><td>var(--br-comp-all-area-content-font-weight)</td><td>The font weight - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-trigger-area-content-font-size</td><td>var(--br-comp-all-area-content-font-size)</td><td>The font size - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-trigger-pane-surface-background</td><td>var(--br-unit-colour-canvas-inverted)</td><td>The background colour of the button - <b>does not use the shared component variable.</b></td></tr>
-                    <tr><td>--br-comp-goto-trigger-pane-surface-border-style</td><td>var(--br-comp-all-pane-surface-border-style)</td><td>The border style - uses the shared component variable.</td></tr>
-                    <tr><td>--br-comp-goto-trigger-pane-surface-border-width</td><td>var(--br-comp-all-outline-offset)</td><td>The border width - <b>does not use the shared component variable.</b></td></tr>
-                    <tr><td>--br-comp-goto-trigger-pane-surface-border-colour</td><td>var(--br-unit-colour-canvas)</td><td>The border colour - <b>does not use the shared component variable.</b></td></tr>
-                    <tr><td>--br-comp-goto-trigger-pane-surface-border-radius-top-right</td><td>var(--br-group-revealed-border-radius)</td><td>The top right border radius - uses the shared revealed group variable.</td></tr>
-                    <tr><td>--br-comp-goto-trigger-pane-surface-border-radius-top-left</td><td>var(--br-group-revealed-border-radius)</td><td>The top left border radius - uses the shared revealed group variable.</td></tr>
-                    <tr><td>--br-comp-goto-trigger-pane-surface-border-radius-bottom-right</td><td>var(--br-group-revealed-border-radius)</td><td>The bottom right border radius - uses the shared revealed group variable.</td></tr>
-                    <tr><td>--br-comp-goto-trigger-pane-surface-border-radius-bottom-left</td><td>var(--br-group-revealed-border-radius)</td><td>The bottom left border radius - uses the shared revealed group variable.</td></tr>
-                    <tr><td>--br-comp-goto-trigger-z-index</td><td>999</td><td>The stacking order of the trigger button while it is shown.</td></tr>
-                    <tr><td>--br-comp-goto-trigger-margin</td><td>var(--br-unit-space-5)</td><td>The space around the trigger button while it is shown.</td></tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-outline-style</td>
+                        <td>var(--br-comp-all-outline-style)</td>
+                        <td>The outline style - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-outline-width</td>
+                        <td>var(--br-comp-all-outline-width)</td>
+                        <td>The outline width - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-outline-offset</td>
+                        <td>var(--br-unit-outline-offset-0)</td>
+                        <td>The outline offset - <b>does not use the shared component variable.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-outline-colour</td>
+                        <td>var(--br-comp-all-outline-colour)</td>
+                        <td>The outline colour - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-area-content-background</td>
+                        <td>var(--br-unit-colour-canvas-inverted)</td>
+                        <td>The background colour of the text area - <b>does not use the shared component variable.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-area-content-text</td>
+                        <td>var(--br-unit-colour-canvas-text-inverted)</td>
+                        <td>The text colour - <b>does not use the shared component variable.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-area-content-font-family</td>
+                        <td>var(--br-comp-all-area-content-font-family)</td>
+                        <td>The font family - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-area-content-font-weight</td>
+                        <td>var(--br-comp-all-area-content-font-weight)</td>
+                        <td>The font weight - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-area-content-font-size</td>
+                        <td>var(--br-comp-all-area-content-font-size)</td>
+                        <td>The font size - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-pane-surface-background</td>
+                        <td>var(--br-unit-colour-canvas-inverted)</td>
+                        <td>The background colour of the button - <b>does not use the shared component variable.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-pane-surface-border-style</td>
+                        <td>var(--br-comp-all-pane-surface-border-style)</td>
+                        <td>The border style - uses the shared component variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-pane-surface-border-width</td>
+                        <td>var(--br-comp-all-outline-offset)</td>
+                        <td>The border width - <b>does not use the shared component variable.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-pane-surface-border-colour</td>
+                        <td>var(--br-unit-colour-canvas)</td>
+                        <td>The border colour - <b>does not use the shared component variable.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-pane-surface-border-radius-top-right</td>
+                        <td>var(--br-group-revealed-border-radius)</td>
+                        <td>The top right border radius - uses the shared revealed group variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-pane-surface-border-radius-top-left</td>
+                        <td>var(--br-group-revealed-border-radius)</td>
+                        <td>The top left border radius - uses the shared revealed group variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-pane-surface-border-radius-bottom-right</td>
+                        <td>var(--br-group-revealed-border-radius)</td>
+                        <td>The bottom right border radius - uses the shared revealed group variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-pane-surface-border-radius-bottom-left</td>
+                        <td>var(--br-group-revealed-border-radius)</td>
+                        <td>The bottom left border radius - uses the shared revealed group variable.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-z-index</td>
+                        <td>999</td>
+                        <td>The stacking order of the trigger button while it is shown - uses a value directly.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-margin</td>
+                        <td>var(--br-unit-space-5)</td>
+                        <td>The space around the trigger button while it is shown - uses a unit value directly.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section>
+
+        <h3 id="unmapped-variables" class="mobile-centred-heading">CSS variables from the above not mapped to the --br-comp-all variables.</h3>
+        <p>
+            The following table of unmapped variables are those that needed to deviate from the underlying values provided by
+            standard mappings to the <span class="@CodeSpan.Base">--br-comp-all</span> variables.
+        </p>
+        <div class="@Section.Base @Section.NoPadding @Section.OverflowX(UnitScroll.Auto) @Padding.Block(UnitSpace.Four)">
+            <table class="@Table.Base @Table.CodeTable" tabindex="0" aria-labelledby="unmapped-variables">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Variable Name</th>
+                        <th scope="col">Default Value</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>--br-comp-goto-label-text</td>
+                        <td>var(--br-unit-colour-canvas);</td>
+                        <td>
+                            The text colour - uses a unit value directly.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-label-background-colour</td>
+                        <td>var(--br-unit-colour-canvas-inverted);</td>
+                        <td>
+                            The background colour -  uses a unit value directly.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-label-border-width</td>
+                        <td>var(--br-unit-outline-offset-2);</td>
+                        <td>
+                            The border width - uses a unit value directly.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-label-border-style</td>
+                        <td>solid;</td>
+                        <td>
+                            The border sytle - uses a css value directly.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-label-border-colour</td>
+                        <td>var(--br-unit-colour-canvas);</td>
+                        <td>
+                            The border colour - uses a unit value directly
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-label-outline-offset</td>
+                        <td>var(--br-unit-outline-offset-0);</td>
+                        <td>
+                            The outline offset - uses a unit value directly.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-box-shadow</td>
+                        <td>var(--br-unit-box-shadow-1)</td>
+                        <td>The shadow around the viewer - uses a unit value directly.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-outline-offset</td>
+                        <td>0px</td>
+                        <td>The viewer's outline offset when it has keyboard focus - <b>does not use the shared component variable.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-pane-base-border-width</td>
+                        <td>var(--br-unit-border-1)</td>
+                        <td>The border width - <b>does not use the shared component variable.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-area-content-background</td>
+                        <td>var(--br-unit-colour-canvas-inverted)</td>
+                        <td>The background colour of the text area - <b>does not use the shared component variable.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-area-content-text</td>
+                        <td>var(--br-unit-colour-canvas-text-inverted)</td>
+                        <td>The text colour - <b>does not use the shared component variable.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-pane-surface-background</td>
+                        <td>var(--br-unit-colour-canvas-inverted)</td>
+                        <td>The background colour of the button - <b>does not use the shared component variable.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-pane-surface-border-width</td>
+                        <td>var(--br-comp-all-outline-offset)</td>
+                        <td>The border width - <b>does not use the shared component variable.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-pane-surface-border-colour</td>
+                        <td>var(--br-unit-colour-canvas)</td>
+                        <td>The border colour - <b>does not use the shared component variable.</b></td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-z-index</td>
+                        <td>999</td>
+                        <td>The stacking order of the trigger button while it is shown - uses a value directly.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-trigger-margin</td>
+                        <td>var(--br-unit-space-5)</td>
+                        <td>The space around the trigger button while it is shown - uses a unit value directly.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

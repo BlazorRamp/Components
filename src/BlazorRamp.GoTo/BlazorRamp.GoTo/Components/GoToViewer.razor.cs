@@ -3,7 +3,6 @@ using BlazorRamp.GoTo.Common.Constants;
 using BlazorRamp.GoTo.Common.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System.Runtime.InteropServices;
 
 namespace BlazorRamp.GoTo.Components;
 
@@ -24,7 +23,7 @@ public partial class GoToViewer :IAsyncDisposable
     /// Gets or sets the message shown when the page has no markers. If <see langword="null"/>, empty or
     /// whitespace, the default text is used.
     /// </summary>
-    [Parameter] public string NoGotoMarkersText { get; set; } = GlobalValues.GoTo_No_Markers_Text;
+    [Parameter] public string NoGoToMarkersText { get; set; } = GlobalValues.GoTo_No_Markers_Text;
 
     /// <summary>
     /// Gets or sets the heading of the viewer, which also provides its accessible name. If <see langword="null"/>,
@@ -50,10 +49,6 @@ public partial class GoToViewer :IAsyncDisposable
     /// Alt, Ctrl or Meta, so that it isn't a character key shortcut under WCAG 2.1.4. If it is <see langword="null"/> or not valid,
     /// it is ignored and the previous shortcut stays in place. Defaults to Alt+G (Option+G on macOS).
     /// </summary>
-    /// <remarks>
-    /// The trigger button's text follows this value, but its text does not, so set
-    /// <see cref="TriggerButtonText"/> to match if you change the shortcut.
-    /// </remarks>
     [Parameter] public GoToShortcut GoToShortcut { get; set; } = GlobalValues.GoTo_Default_Shortcut_Model;
 
     [Inject] IJSRuntime JSRuntime { get; set; } = default!;
@@ -78,7 +73,7 @@ public partial class GoToViewer :IAsyncDisposable
     protected override void OnParametersSet()
     {
         _closeButtonText   = String.IsNullOrWhiteSpace(CloseButtonText)   ? GlobalValues.GoTo_Close_Button_Text : CloseButtonText.Trim();
-        _noGoToMarkersText = String.IsNullOrWhiteSpace(NoGotoMarkersText) ? GlobalValues.GoTo_No_Markers_Text   : NoGotoMarkersText.Trim();
+        _noGoToMarkersText = String.IsNullOrWhiteSpace(NoGoToMarkersText) ? GlobalValues.GoTo_No_Markers_Text   : NoGoToMarkersText.Trim();
         _headingText       = String.IsNullOrWhiteSpace(HeadingText)       ? GlobalValues.GoTo_Heading_Text   : HeadingText.Trim(); 
 
         if(GoToShortcut is not null && GoToShortcut.IsValid())

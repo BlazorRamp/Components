@@ -115,13 +115,13 @@ public  class GoToViewer_Tests
         {
             await using var context = new BunitContext();
 
-            var (component, _) = CreateGoToViewer(context, p => p.Add(x => x.NoGotoMarkersText, noMarkersText));
+            var (component, _) = CreateGoToViewer(context, p => p.Add(x => x.NoGoToMarkersText, noMarkersText));
 
             using (new AssertionScope())
             {
                 // The message sits on its own line in the markup, so the raw text content includes whitespace.
                 component.Find($".{GlobalValues.GoTo_Viewer_Content_Class} > p").TextContent.Trim().Should().Be(expected);
-                component.Instance.NoGotoMarkersText.Should().Be(noMarkersText);
+                component.Instance.NoGoToMarkersText.Should().Be(noMarkersText);
             }
         }
 
@@ -133,7 +133,7 @@ public  class GoToViewer_Tests
         {
             await using var context = new BunitContext();
 
-            var (component, _) = CreateGoToViewer(context, p => p.Add(x => x.NoGotoMarkersText, noMarkersText));
+            var (component, _) = CreateGoToViewer(context, p => p.Add(x => x.NoGoToMarkersText, noMarkersText));
 
             component.Find($".{GlobalValues.GoTo_Viewer_Content_Class} > p").TextContent.Trim().Should().Be(GlobalValues.GoTo_No_Markers_Text);
         }
