@@ -145,7 +145,7 @@ public  class GoToViewer_Tests
         {
             await using var context = new BunitContext();
 
-            expected = $"{expected} ({GlobalValues.GoTo_Default_Shortcut_Model.ToAriaKeyShortcuts()})"; //code appends a short cut key text to the button text
+            expected = $"{expected} ({GlobalValues.GoTo_Default_Shortcut_Model.ToDisplayText()})"; //code appends a short cut key text to the button text
 
             var (component, _) = CreateGoToViewer(context, p => p.Add(x => x.TriggerButtonText, triggerButtonText));
 
@@ -166,7 +166,7 @@ public  class GoToViewer_Tests
 
             var (component, _) = CreateGoToViewer(context, p => p.Add(x => x.TriggerButtonText, triggerButtonText));
 
-            var defaultText = $"{GlobalValues.GoTo_Trigger_Button_Text} ({GlobalValues.GoTo_Default_Shortcut_Model.ToAriaKeyShortcuts()})";
+            var defaultText = $"{GlobalValues.GoTo_Trigger_Button_Text} ({GlobalValues.GoTo_Default_Shortcut_Model.ToDisplayText()})";
 
             component.Find($".{GlobalValues.GoTo_Viewer_Trigger_Content_Class}").TextContent.Trim().Should().Be(defaultText);
         }
@@ -299,7 +299,7 @@ public  class GoToViewer_Tests
             var (component, moduleInterop) = CreateGoToViewer(context);
 
             // A new instance, but equal by value to the default
-            component.Render(p => p.Add(x => x.GoToShortcut, new GoToShortcut("y", Ctrl: true, Shift:true)));
+            component.Render(p => p.Add(x => x.GoToShortcut, new GoToShortcut("z", Alt: true, Shift:false)));
 
             moduleInterop.VerifyNotInvoke(GlobalValues.JS_Set_Shortcut_key_Func);
         }

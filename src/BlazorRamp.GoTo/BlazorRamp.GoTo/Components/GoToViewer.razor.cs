@@ -88,7 +88,7 @@ public partial class GoToViewer :IAsyncDisposable
 
         _triggerButtonText = String.IsNullOrWhiteSpace(TriggerButtonText) ? GlobalValues.GoTo_Trigger_Button_Text : TriggerButtonText.Trim();
 
-        _triggerButtonText = $"{_triggerButtonText} ({_goToShortcut.ToAriaKeyShortcuts()})";
+        _triggerButtonText = $"{_triggerButtonText} ({_goToShortcut.ToDisplayText()})";
     }
 
     /// <summary>

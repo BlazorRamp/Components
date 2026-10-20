@@ -41,17 +41,17 @@ public record GoToShortcut(string Key, bool Alt = false, bool Ctrl = false, bool
     public bool IsValid() => Key is { Length: 1 } && char.IsAsciiLetterOrDigit(Key[0]) && (Alt || Ctrl || Meta);
 
     /// <summary>
-    /// Formats the shortcut for the <c>aria-keyshortcuts</c> attribute, for example <c>Alt+G</c> or <c>Control+Shift+Y</c>.
+    /// Formats the shortcut for the trigger button text.
     /// </summary>
     /// <returns>The modifier names followed by the upper case key, separated by plus signs.</returns>
-    public string ToAriaKeyShortcuts()
+    public string ToDisplayText()
     {
         var parts = new List<string>();
 
         if (Ctrl) parts.Add("Control");
-        if (Alt) parts.Add("Alt");
+        if (Alt) parts.Add("Alt/Option");
         if (Shift) parts.Add("Shift");
-        if (Meta) parts.Add("Meta");
+        if (Meta) parts.Add("Windows/Command");
 
         parts.Add(Key.ToUpperInvariant());
 

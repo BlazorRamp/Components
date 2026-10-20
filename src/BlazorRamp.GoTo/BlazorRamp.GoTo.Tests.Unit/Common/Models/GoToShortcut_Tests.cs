@@ -43,14 +43,14 @@ public class GoToShortcut_Tests
     }
 
     [Theory]
-    [InlineData("g", true, false, false, false, "Alt+G")]
+    [InlineData("g", true, false, false, false, "Alt/Option+G")]
     [InlineData("y", false, true, true, false, "Control+Shift+Y")]
-    [InlineData("7", false, false, false, true, "Meta+7")]
-    [InlineData("k", true, true, true, true, "Control+Alt+Shift+Meta+K")]
+    [InlineData("7", false, false, false, true, "Windows/Command+7")]
+    [InlineData("k", true, true, true, true, "Control+Alt/Option+Shift+Windows/Command+K")]
     public void Should_format_the_shortcut_for_aria_keyshortcuts(
         string key, bool alt, bool ctrl, bool shift, bool meta, string expected)
     {
-        new GoToShortcut(key, alt, ctrl, shift, meta).ToAriaKeyShortcuts().Should().Be(expected);
+        new GoToShortcut(key, alt, ctrl, shift, meta).ToDisplayText().Should().Be(expected);
     }
 
     [Fact]
@@ -68,14 +68,14 @@ public class GoToShortcut_Tests
     }
 
     [Fact]
-    public void Should_have_a_valid_default_shortcut_of_alt_and_g()
+    public void Should_have_a_valid_default_shortcut_of_alt_and_z()
     {
         var shortcut = GlobalValues.GoTo_Default_Shortcut_Model;
 
         using (new FluentAssertions.Execution.AssertionScope())
         {
             shortcut.IsValid().Should().BeTrue();
-            shortcut.ToAriaKeyShortcuts().Should().Be("Control+Shift+Y");
+            shortcut.ToDisplayText().Should().Be("Alt/Option+Z");
         }
     }
 }

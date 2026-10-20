@@ -40,6 +40,6 @@ internal class GlobalValues
     public const string GoTo_Trigger_Button_Text = "Go to viewer";
 
 
-    //public static readonly GoToShortcut GoTo_Default_Shortcut_Model = new(Key: "g", Alt: true, Ctrl: false, Shift: false, Meta: false);
-    public static readonly GoToShortcut GoTo_Default_Shortcut_Model = new(Key:"y", Alt: false, Ctrl:true, Shift:true, Meta:false);
+    public static readonly GoToShortcut GoTo_Default_Shortcut_Model = new(Key: "z", Alt: true, Ctrl: false, Shift: false, Meta: false);
+    //public static readonly GoToShortcut GoTo_Default_Shortcut_Model = new(Key:"y", Alt: false, Ctrl:true, Shift:true, Meta:false);
 }
