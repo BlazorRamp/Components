@@ -178,9 +178,10 @@ public partial class GoToViewer :IAsyncDisposable
         if (_jSModule is not null)
         {
             try
-            {
-                await _jSModule.DisposeAsync();
+            {   
                 _dotNetObjectRef?.Dispose();
+                await _jSModule.DisposeAsync();
+                
             }
             catch { }
         }

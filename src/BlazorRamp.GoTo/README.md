@@ -51,15 +51,15 @@ Add the following line to the service registration section:
 builder.Services.AddBlazorRampCore();
 ```
 
-5. Add both the `<AnnouncementHistory />` and the `<GoToViewer />`component with your preferred paameter values above the Router component contained in either:
+5. Add both the `<AnnouncementHistory />` and the `<GoToViewer />`component with your preferred parameter values above the Router component contained in either:
 - Blazor Web App / Blazor Server → Routes.razor
 - Blazor WebAssembly → App.razor
  
  **Note:** If you are using Global InteractiveServer or Global InteractiveWebAssembly then no `@rendermode` will need assigning to
- the `<GotoViewer />` component. 
+ the `<GoToViewer />` component. 
  
  If you are using per page with interactiveAuto, InteractiveServer and InteractiveWebAssembly then you will need to 
- add `@rendermode="InteractiveAuto"` to the GoTo Componnent. Note this is not needed for the the `<AnnouncementHistory />` component.
+ add `@rendermode="InteractiveAuto"` to the GoToViewer Component. Note this is not needed for the the `<AnnouncementHistory />` component.
 
 
 ```html

@@ -2,8 +2,13 @@
 ;
 const _dataAttribute = "data-br-goto";
 const _currentAttribute = "data-br-goto-current";
+const _handledViewers = new WeakSet();
 let _gotoComponentRegistered = false;
 let _shortcut = null;
+let _dotNetRef = null;
+let _callBackName = "";
+let _viewerId = "";
+let _keydownListenerAdded = false;
 const matchesShortcut = (e, s) => {
     // Exact modifier match, which also rules out AltGr (reported as Ctrl + Alt) when Ctrl isn't wanted
     if (e.altKey !== s.alt || e.ctrlKey !== s.ctrl || e.shiftKey !== s.shift || e.metaKey !== s.meta)
@@ -144,8 +149,9 @@ const handleViewerKeyDown = (e) => {
 };
 const registerGoToVieweHandlers = (gotoViewerId) => {
     const viewerPopover = document.getElementById(gotoViewerId);
-    if (!viewerPopover)
+    if (!viewerPopover || _handledViewers.has(viewerPopover))
         return;
+    _handledViewers.add(viewerPopover);
     const handler = (e) => {
         if (viewerPopover.contains(e.relatedTarget))
             return;
@@ -155,22 +161,28 @@ const registerGoToVieweHandlers = (gotoViewerId) => {
     viewerPopover.addEventListener("keydown", handleViewerKeyDown);
     viewerPopover.addEventListener("focusout", handler);
 };
-const registerGoToComponent = (dotNetRef, callBackName, gotoViewerId, shortcut) => {
-    if (!dotNetRef || true === _gotoComponentRegistered)
+const onDocumentKeyDown = (event) => {
+    if (!_dotNetRef || !_shortcut || event.repeat || !matchesShortcut(event, _shortcut))
         return;
+    const gotoViewerElement = document.getElementById(_viewerId);
+    // No viewer, a modal dialog or fullscreen element is open, or the page is inert:
+    if (!gotoViewerElement || document.querySelector(":modal") || gotoViewerElement.closest("[inert]"))
+        return;
+    event.preventDefault();
+    callBlazor(_dotNetRef, _callBackName);
+};
+const registerGoToComponent = (dotNetRef, callBackName, gotoViewerId, shortcut) => {
+    if (!dotNetRef)
+        return;
+    _dotNetRef = dotNetRef;
+    _callBackName = callBackName;
+    _viewerId = gotoViewerId;
     _shortcut = shortcut;
     registerGoToVieweHandlers(gotoViewerId);
-    document.addEventListener("keydown", (event) => {
-        if (!_shortcut || event.repeat || !matchesShortcut(event, _shortcut))
-            return;
-        const gotoViewerElement = document.getElementById(gotoViewerId);
-        // No viewer, a modal dialog or fullscreen element is open, or the page is inert:
-        if (!gotoViewerElement || document.querySelector(":modal") || gotoViewerElement.closest("[inert]"))
-            return;
-        event.preventDefault();
-        callBlazor(dotNetRef, callBackName);
-    });
-    _gotoComponentRegistered = true;
+    if (!_keydownListenerAdded) {
+        document.addEventListener("keydown", onDocumentKeyDown);
+        _keydownListenerAdded = true;
+    }
 };
 export { showGoTo, getGoToData, registerGoToComponent, setGoToShortcut, scrollMarkerIntoView, showGoToViewer, closeGoToViewer };
 //# sourceMappingURL=goto.js.map
