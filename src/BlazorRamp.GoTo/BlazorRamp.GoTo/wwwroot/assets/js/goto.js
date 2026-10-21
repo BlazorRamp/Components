@@ -3,7 +3,6 @@
 const _dataAttribute = "data-br-goto";
 const _currentAttribute = "data-br-goto-current";
 const _handledViewers = new WeakSet();
-let _gotoComponentRegistered = false;
 let _shortcut = null;
 let _dotNetRef = null;
 let _callBackName = "";
