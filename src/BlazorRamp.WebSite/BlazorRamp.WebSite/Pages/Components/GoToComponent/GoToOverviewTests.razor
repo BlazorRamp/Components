@@ -1,0 +1,128 @@
+﻿@attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_GoTo}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
+
+<PageTitle>@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
+
+<section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
+    <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Overview_Tests</h1>
+
+    <GoTo LabelText="Go to test page title" />
+
+    <p>
+        The GoTo component gives keyboard users a way to jump straight to the parts of a page that matter to them. Hidden <span class="@CodeSpan.Base">&lt;GoTo /&gt;</span> markers are placed on a page,
+        with a short label shich can then can become visible active element from which a keyboard-only user can tab from. Leaving or closing the marker/label completely hides it again from
+        users and assistive technologies.
+    </p>
+    <p>
+        Markers that can't currently be reached, such as those inside a collapsed panel or hidden element are not included in the GoTo Viewers list.
+    </p>
+    <p>
+        <b>Released: </b>Current version <b>v1.0.0</b> See the documentation site for more information: <a target="_blank" class="@GlobalValues.Link_Class" href="@GlobalValues.Site_Link_Docs_GoTo">GoTo documentation (opens in new window)</a>
+    </p>
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h2 class="@GlobalValues.Info_Box_Heading_Class">Information & instructions</h2>
+
+    <p>
+        <strong>Important</strong> Unlike the other components GoTo has not been tested with VoiceOver on the iPhone and as such is not supported.
+    </p>
+    <p>
+        Open the GoTo Viewer using the shortcut key <span class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Alt + Z (Option + Z on macOS)</span>  or alternatively tab until the triggering button becomes visible
+    </p>
+    <p>
+        Select and activate a button to set focus on the marker/label from where you can then tab from.
+    </p>
+    <h2 id="goto-keyboard" class="@GlobalValues.Info_Box_Heading_Class">Keyboard interaction</h2>
+    <ul aria-labelledby="goto-keyboard">
+        <li>
+            <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Alt/Option + Z</kbd> - opens the viewer from anywhere on the page and places focus on it. It has no effect while a modal dialog is open.
+        </li>
+        <li>
+            <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Tab</kbd> - places focus on the trigger button, which becomes visible while it has focus. Inside the viewer, it moves through the list buttons and then the close button.
+            Tabbing out of the viewer closes it, and focus continues to the next element after the one that had focus before the viewer opened.
+        </li>
+        <li><kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Shift + Tab</kbd> reverses tab direction, including leaving the viewer backwards.</li>
+        <li>
+            <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Space or Enter</kbd> - on the trigger button, opens the viewer. On a list button, closes the viewer, moves to the marker and shows its label.
+        </li>
+        <li>
+            <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Down Arrow</kbd> - <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Up Arrow</kbd> - moves to the next or previous list button, stopping at the first and last.
+        </li>
+        <li>
+            <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Home</kbd> - <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">End</kbd> - moves to the first or last list button.
+        </li>
+        <li>
+            <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Escape</kbd> - closes the viewer and returns focus to where it was before the viewer opened. When a marker's label is showing, it closes the label.
+        </li>
+    </ul>
+
+</section>
+
+<section class="@GlobalValues.Info_Box_Class">
+
+    <h3 class="@GlobalValues.Info_Box_Heading_Class">Expectations</h3>
+
+    <ul>
+        <li>
+            Selecting a button in the GoTo Viewer list should scroll its associated marker into view (on desktop devices) and highlight it with a pseudo focus ring.   
+        </li>
+        <li>
+           Activating a button should set focus on the markers, now visible label which becomes the active element from where you can tab from.
+        </li>
+        <li>
+            When the GoTo Viewer is open, pressing the <span class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Escape</span> key, tabbing away from or clicking outside of
+            the viewer closes it, as does opening another popover such as the Announcement History viewer.
+        </li>
+        <li>
+            When the GoTo label is open, pressing the <span class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Escape</span> key, tabbing away from or clicking outside of
+            the labels region closes it, as does opening another popover.
+        </li>
+        <li>
+            Voice control users should be able open, activate and navigat by using the visible accessible name with the appropriate commands, enter, tab, press, escape etc. 
+            You can activate the hidden button (instead of tabbing to find) by saying all or part of its accessible name: "Go to viewer (Alt/Option+Z)"
+        </li>
+        <li>
+            Once a marker/label is removed it should not be discoverable, focusable or cause a tab stop.
+        </li>
+    </ul>
+</section>
+
+<section class="section-box">
+    <h3>GoTo test</h3>
+    <GoTo LabelText="Go to marker test page, before the tab stops" />
+    <p>
+        Open the viewer and either jump over the list of tab stops or go to any other available marker.
+    </p>
+    <ul>
+        <li tabindex="0">Tab stop one.</li>
+        <li tabindex="0">Tab stop two.</li>
+        <li tabindex="0">Tab stop three.</li>
+        <li tabindex="0">Tab stop four.</li>
+        <li tabindex="0">Tab stop five.</li>
+        <li tabindex="0">Tab stop six.</li>
+        <li tabindex="0">Tab stop seven.</li>
+        <li tabindex="0">Tab stop eight.</li>
+        <li tabindex="0">Tab stop nine.</li>
+        <li tabindex="0">Tab stop ten.</li>
+    </ul>
+
+</section>
+
+<GoTo LabelText="Go to test page bottom navigation links" />
+
+<div class="flex-content justify-content-between">
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Disclosure}/{GlobalValues.Common_Page_Path_Overview_Tests}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_Disclosure - @GlobalValues.Common_Page_Title_Overview_Page_Tests</span>
+        <span aria-hidden="true"></span>
+    </a>
+    <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Right_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_GoTo}/{GlobalValues.Common_Page_Path_Quirks_Issues}")">
+        <span aria-hidden="true"></span>
+        <span>@GlobalValues.Component_Name_GoTo - @GlobalValues.Common_Page_Title_Quirks_Issues</span>
+        <span aria-hidden="true"></span>
+    </a>
+</div>
+@code {
+
+}

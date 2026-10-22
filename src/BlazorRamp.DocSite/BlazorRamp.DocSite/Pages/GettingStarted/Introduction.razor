@@ -4,9 +4,10 @@
 <PageTitle>Blazor Ramp - Accessible Blazor components</PageTitle>
 
 <div class="landing">
-
     <section class="landing__hero" aria-labelledby="hero-heading">
+        <GoTo LabelText="Intro page title" />
         <h1 id="hero-heading">Accessible Blazor components, built to WCAG from the start</h1>
+       
         <p class="landing__lead">
             Designed for keyboard and screen reader users first, with a live region service at its core and announcements you can review.
         </p>
@@ -73,8 +74,12 @@
     </section>
     <section class="landing__section" aria-labelledby="demo-heading">
         <h2 id="demo-heading">See it working - live examples</h2>
+        <p>
+            <span class="@Badge.Base @Badge.Scheme(BadgeSolidScheme.Info) @Badge.Size(BadgeSize.Small)">GoTo v1.0.0</span> (new) - just use the shortcut <kbd class="@Kbd.Base">Alt+Z</kbd> (Option+Z on macOS) on any page to view 
+            <b>GoTo</b> markers that may be present to help keyboard-only users better traverse busy pages.
+        </p>
         <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content) @Section.Background(SectionBackground.Transparent)" style="margin-top:var(--br-unit-space-7);">
-            <Disclosure SvgIcon="--svg-disclosure-icon" ContentMaxHeight="20vh" TriggerText="Disclosure component v1.0.0 - new" @bind-Expanded="@_expanded" style="margin-block-end:2rem;">
+            <Disclosure SvgIcon="--svg-disclosure-icon" ContentMaxHeight="20vh" TriggerText="Disclosure component" @bind-Expanded="@_expanded" style="margin-block-end:2rem;">
                 <div class="@FlexContent.Base @LayoutAlignment.AlignItems(UnitAlignItems.Centre) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @FlexContent.Wrap(UnitFlexWrap.Wrap)">
                     <span>
                         Overview
@@ -149,6 +154,8 @@
             </ToggleTip>
             </p>
 
+            <GoTo LabelText="Intro page example contact results table" />
+
             <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule"
                        FilterAlignment="FilterAlignment.Start" TitleAlignment="TitleAlignment.Start">
                 <Filter>
@@ -171,7 +178,7 @@
 
         </section>
     </section>
-
+    <GoTo LabelText="Intro page external page links" />
     <footer class="landing__footer">
         <a target="_blank" rel="noreferrer" href="@GlobalValues.Web_Site_Path_GitHub_Repo"
             class="@Link.Base @Padding.Inline(UnitSpace.Two)">

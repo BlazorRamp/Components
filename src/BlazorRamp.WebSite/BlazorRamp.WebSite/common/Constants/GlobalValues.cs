@@ -25,6 +25,8 @@ public static class GlobalValues
     public const string Main_Nav_Section_Heading_Overview = "Overview";
     public const string Main_Nav_Section_Heading_BusyIndicator = "Busy Indicator";
     public const string Main_Nav_Section_Heading_SkipTo = "Skip To";
+
+    public const string Main_Nav_Section_Heading_GoTo = "GoTo";
     public const string Main_Nav_Section_Heading_Switch = "Switch";
     public const string Main_Nav_Section_Heading_Modal_Dialog = "Modal Dialog";
     public const string Main_Nav_Section_Heading_Toggle_Tip = "Toggletip";
@@ -84,6 +86,7 @@ public static class GlobalValues
     public const string Component_Name_Disclosure      = "Disclosure";
     public const string Component_Name_Data_Table      = "Data Table";
 
+    public const string Component_Name_GoTo              = "GoTo";
     public const string Component_Name_Inputs            = "Inputs";
     public const string Component_Name_Text_Input        = "Text Input";
     public const string Component_Name_TextArea_Input    = "TextArea Input";
@@ -114,6 +117,9 @@ public static class GlobalValues
 
     public const string Component_Path_Part_Disclosure      = "disclosure";
     public const string Component_Path_Part_DataTable       = "data-table";
+
+    public const string Component_Path_Part_GoTo            = "goto";
+
     public const string Component_Path_Part_Inputs          = "inputs";
     public const string Component_Path_Part_TextInput       = "text-input";
     public const string Component_Path_Part_TextAreaInput   = "textarea-input";
@@ -177,6 +183,9 @@ public static class GlobalValues
     public const string Site_Link_Docs_Accordion       = "https://docs.blazorramp.uk/components/accordion/overview";
 
     public const string Site_Link_Docs_Disclosure      = "https://docs.blazorramp.uk/components/disclosure/overview";
+
+    public const string Site_Link_Docs_GoTo            = "https://docs.blazorramp.uk/components/goto/overview";
+
     public const string Site_Link_Docs_Actions_Popover = "https://docs.blazorramp.uk/components/actions-popover/overview";
     public const string Site_Link_Docs_Nav_Group       = "https://docs.blazorramp.uk/components/nav-group/overview";
 

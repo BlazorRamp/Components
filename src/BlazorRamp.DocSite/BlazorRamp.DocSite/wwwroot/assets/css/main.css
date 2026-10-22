@@ -724,10 +724,9 @@ dialog {
   color: var(--br-unit-colour-canvas-text);
 }
 
-html {
-  scroll-padding-top: 6rem;
-}
-
+/*html {
+    scroll-padding-top: 6rem;
+}*/
 body {
   min-height: 100vh;
   margin: 0;
