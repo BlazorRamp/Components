@@ -13,9 +13,9 @@
 }
 #app:has(#app__main.splash-screen):has(#theme-toggler[aria-checked=true]) {
   /*
-              & #theme-toggler{
-                  color:var(--br-unit-colour-canvas-text);
-              }*/
+  & #theme-toggler{
+      color:var(--br-unit-colour-canvas-text);
+  }*/
 }
 #app:has(#app__main.splash-screen):has(#theme-toggler[aria-checked=true]) .br-debounce-filter__state-icon[data-br-invalid-state=false] {
   color: var(--br-unit-colour-success-light);
@@ -724,9 +724,10 @@ dialog {
   color: var(--br-unit-colour-canvas-text);
 }
 
-/*html {
-    scroll-padding-top: 6rem;
-}*/
+html {
+  scroll-padding-top: 6rem;
+}
+
 body {
   min-height: 100vh;
   margin: 0;

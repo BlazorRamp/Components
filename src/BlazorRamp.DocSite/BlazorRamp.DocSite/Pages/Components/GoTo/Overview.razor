@@ -3,7 +3,7 @@
 <PageTitle>@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Overview</PageTitle>
 
 <h1>@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Overview</h1>
-
+<GoTo LabelText="GoTo overview page title" />
 <p>
     The GoTo component gives keyboard users a way to jump straight to the parts of a page that matter to them. You place a <span class="@CodeSpan.Base">&lt;GoTo /&gt;</span> marker,
     with a short label such as "Filters" or "Order summary", at each destination. A single <span class="@CodeSpan.Base">&lt;GoToViewer /&gt;</span>, added once to your layout, lists the markers
@@ -49,6 +49,7 @@
     see the <a class="@GlobalValues.Link_Class" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_SkipTo}/{GlobalValues.Common_Page_Path_Overview}")">@GlobalValues.Component_Name_SkipTo</a>
     component, which GoTo complements rather than replaces.
 </p>
+<GoTo LabelText="GoTo overview page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
     <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Disclosure}/{GlobalValues.Common_Page_Path_Usage}")">
