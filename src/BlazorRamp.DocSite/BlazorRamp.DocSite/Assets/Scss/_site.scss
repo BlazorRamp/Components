@@ -359,3 +359,7 @@ h2:focus-visible {
     overflow: visible;
     white-space: normal;
 }*/
+
+#app__main > .br-goto:first-child {
+    --br-comp-goto-badge-offset-block: 0.75rem;
+}

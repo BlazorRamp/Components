@@ -123,9 +123,9 @@
     //
     --br-comp-goto-scroll-offset: 4rem;
     --br-comp-goto-badge-size: 3rem;
+    --br-comp-goto-badge-offset-block: 0px;
+    --br-comp-goto-badge-offset-inline: 0px;
     //GoTo Label
-
-
     --br-comp-goto-label-text: var(--br-unit-colour-canvas);
     --br-comp-goto-label-background-colour: var(--br-unit-colour-canvas-inverted);
     --br-comp-goto-label-border-width: var(--br-unit-outline-offset-2);
@@ -136,7 +136,6 @@
     --br-comp-goto-label-outline-width: var(--br-comp-all-outline-width);
     --br-comp-goto-label-outline-colour: var(--br-comp-all-outline-colour);
     --br-comp-goto-label-outline-style: var(--br-comp-all-outline-style);
-
     //
 }
 
@@ -147,18 +146,16 @@
         display: grid;
         place-items: center;
         position: absolute;
-        inset-inline-start: 100%;
-        inset-block-start: 50%;
+        inset-inline-start: calc(100% + var(--br-comp-goto-badge-offset-inline));
+        inset-block-start: calc(50% + var(--br-comp-goto-badge-offset-block));
         translate: 0 -50%;
         z-index: 1;
         //
         inline-size: var(--br-comp-goto-badge-size);
         block-size: var(--br-comp-goto-badge-size);
         padding: 0;
-        border-radius: 50%;
         white-space: nowrap;
         font-size: var(--br-unit-font-size-label);
-        //
         box-sizing: border-box;
         border-radius: 999px;
         border-width: var(--br-unit-outline-offset-2);

@@ -1,7 +1,7 @@
 ﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Virtualizing}")]
 
 <PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Virtualizing</PageTitle>
-
+<GoTo LabelText="Data table virtualizing usage page title" />
 <h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Virtualizing</h1>
 <p>
     When using the Data Table, if you do not set the <span class="@CodeSpan.Base">PagerBinding</span> parameter, it will render the table rows using the Blazor Virtualize component.

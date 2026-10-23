@@ -1,10 +1,10 @@
 ﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_GoTo}/{GlobalValues.Common_Page_Path_Api}")]
 
 <PageTitle>@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Api</PageTitle>
+<GoTo LabelText="GoTo API page title" />
 
 <h1>@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Api</h1>
 
-<GoTo LabelText="GoTo API page title" />
 
 <p>
     Everything you need to work with the GoTo component: parameters, methods, and CSS variables for styling.
@@ -176,12 +176,33 @@
                         <td>
                             The space kept above a marker when it is scrolled into view, so that a fixed header is less likely to cover it. Set it to the height of your fixed header.
                             If your site already sets <span class="@CodeSpan.Base">scroll-padding</span> for the same header, the two values combine, so use one or the other.
+                            Uses a value directly.
                         </td>
                     </tr>
                     <tr>
                         <td>--br-comp-goto-badge-size</td>
                         <td>3rem</td>
-                        <td>The width and height of the numbered badge shown beside each marker while the viewer is open. The badge is always a circle.</td>
+                        <td>
+                            The width and height of the numbered badge shown beside each marker while the viewer is open. The badge is always a circle.
+                            Uses a value directly.    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-badge-offset-block</td>
+                         <td>0px</td>
+                        <td>
+                            Moves the numbered marker/badge along the block axis (down in horizontal writing modes). 
+                            A positive value moves it down, away from the marker’s top edge, which helps when the top of a badge 
+                            is clipped by a scrolling container.  Uses a value directly.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-badge-offset-inline</td>
+                        <td>0px</td>
+                        <td>
+                            Moves the badge along the inline axis. A positive value moves it towards the end of the line and a negative value towards the start, 
+                            which helps when a badge near the edge of a container is clipped at the side.  Uses a value directly.
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -961,6 +982,40 @@
                         <td>--br-comp-goto-trigger-margin</td>
                         <td>var(--br-unit-space-5)</td>
                         <td>The space around the trigger button while it is shown - uses a unit value directly.</td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-scroll-offset</td>
+                        <td>4rem</td>
+                        <td>
+                            The space kept above a marker when it is scrolled into view, so that a fixed header is less likely to cover it. Set it to the height of your fixed header.
+                            If your site already sets <span class="@CodeSpan.Base">scroll-padding</span> for the same header, the two values combine, so use one or the other.
+                            Uses a value directly.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-badge-size</td>
+                        <td>3rem</td>
+                        <td>
+                            The width and height of the numbered badge shown beside each marker while the viewer is open. The badge is always a circle.
+                            Uses a value directly.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-badge-offset-block</td>
+                        <td>0px</td>
+                        <td>
+                            Moves the numbered marker/badge along the block axis (down in horizontal writing modes).
+                            A positive value moves it down, away from the marker’s top edge, which helps when the top of a badge
+                            is clipped by a scrolling container.  Uses a value directly.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>--br-comp-goto-badge-offset-inline</td>
+                        <td>0px</td>
+                        <td>
+                            Moves the badge along the inline axis. A positive value moves it towards the end of the line and a negative value towards the start,
+                            which helps when a badge near the edge of a container is clipped at the side.  Uses a value directly.
+                        </td>
                     </tr>
                 </tbody>
             </table>
