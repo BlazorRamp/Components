@@ -2,6 +2,8 @@
 
 <PageTitle>@GlobalValues.Common_Page_Title_About</PageTitle>
 
+<GoTo LabelText="About us page heading" />
+
 <h1 class="@FlexContent.Base @LayoutAlignment.AlignItems(UnitAlignItems.Centre) @FlexContent.Wrap(UnitFlexWrap.Wrap) @Gap.SetColGap(UnitGapSize.Ten) @Gap.SetRowGap(UnitGapSize.Five)">
 @*     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1751 813" role="img" aria-labelledby="title" class="site-logo site-logo--large">
         <title id="title">Blazor Ramp logo</title>
@@ -68,6 +70,7 @@
 </p>
 
 
+<GoTo LabelText="About us page navigation" />
 
 <div class="flex-content flex-content justify-content-end">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_Path}{GlobalValues.Common_Page_Path_Installation}")">

@@ -5,6 +5,8 @@
 
 <section class="@Section.Base @Section.Radius(SectionRadius.Content) @Section.Background(SectionBackground.NeutralLighter) @Section.NoMarginBlock">
 
+    <GoTo LabelText="Roadmap page heading" />
+
     <h1>@GlobalValues.Common_Page_Title_Roadmap</h1>
 
     <p>
@@ -45,6 +47,9 @@
     </p>
 
 </section>
+
+<GoTo LabelText="Roadmap page navigation" />
+
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_Path}{GlobalValues.Common_Page_Path_Accessibility}")">
         <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>

@@ -3,6 +3,8 @@
 
 <PageTitle>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Accessibility</PageTitle>
 
+<GoTo LabelText="Theming accessibility page heading" />
+
 <h1>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Accessibility</h1>
 
 <p>
@@ -48,6 +50,9 @@
     css values (given the css colour functions), apply them to a canvas, convert them to hex/RGB for my colour contrast utility
     there may be slight rounding differences to other checkers by about 0.01 on some colours.
 </p>
+
+<GoTo LabelText="Theming accessibility page theme colour tool" />
+
 <ThemeColourTool OnColourChanged="HandleColourChanged" />
 <p>
     <strong>Note: </strong> Contrast ratios unlike the colours will only update on final selection.
@@ -505,7 +510,7 @@
 
 </section>
 
-
+<GoTo LabelText="Theming accessibility page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
     <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_Overview}")">

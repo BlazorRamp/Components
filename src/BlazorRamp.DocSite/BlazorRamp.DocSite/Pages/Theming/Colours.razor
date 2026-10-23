@@ -5,6 +5,8 @@
 
 <PageTitle>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Colours</PageTitle>
 
+<GoTo LabelText="Theming colours page heading" />
+
 <h1>@GlobalValues.Theming_Name @GlobalValues.Common_Page_Title_Colours</h1>
 
 <p>
@@ -52,6 +54,8 @@
     css values (given the css colour functions), apply them to a canvas, convert them to hex/RGB for my colour contrast utility
     there may be slight rounding differences to other checkers by about 0.01 on some colours.
 </p>
+
+<GoTo LabelText="Theming colours page theme colour tool" />
 
 <ThemeColourTool />
 
@@ -239,6 +243,7 @@
     </div>
 </section>
 
+<GoTo LabelText="Theming colours page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
     <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Theming}/{GlobalValues.Common_Page_Path_CSS_Variables}")">

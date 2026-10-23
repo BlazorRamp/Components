@@ -2,8 +2,9 @@
 
 <PageTitle>@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Overview</PageTitle>
 
-<h1>@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Overview</h1>
+<GoTo LabelText="Modal dialog framework overview page heading" />
 
+<h1>@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Overview</h1>
 
 <p>
     The <span class="@CodeSpan.Base">&lt;ModalDialogContainer /&gt;</span> component and the <span class="@CodeSpan.Base">ModalDialogService</span> together make up a modal dialog framework that allow you to have your content placed within a an HTML dialog element, with the framework
@@ -24,6 +25,9 @@
 <p>
     <strong>Note:</strong> For accessibility, if the user cancels any dialog via the escape key then the focus must be returned to the triggering element.
 </p>
+
+<GoTo LabelText="Modal dialog framework overview page navigation" />
+
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tooltip}/{GlobalValues.Common_Page_Path_Usage}")">
         <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>

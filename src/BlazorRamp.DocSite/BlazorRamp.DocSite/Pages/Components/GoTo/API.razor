@@ -16,6 +16,21 @@
     you may want to consider referencing the OddBird anchor positioning polyfill see: <a class="@GlobalValues.Link_Class" target="_blank" href="https://github.com/oddbird/css-anchor-positioning">https://github.com/oddbird/css-anchor-positioning (opens in new window)</a>
     to support older browser versions. Without CSS anchor positioning the GoTo label will be located at the top left of the page, but with all functionality intact.
 </p>
+<p>
+    While the viewer is open, each marker shows a numbered badge that is centred on the marker's top edge, so the upper half of the badge sits above the marker. If a marker is the first thing
+    in a scrolling container, such as at the very top of your main content area, that part of the badge can be clipped by the edge of the container. When that happens, use
+    <span class="@CodeSpan.Base">--br-comp-goto-badge-offset-block</span> to move the badge down, and <span class="@CodeSpan.Base">--br-comp-goto-badge-offset-inline</span> to move it along the line. Both
+    default to <span class="@CodeSpan.Base">0px</span>. A positive block value moves the badge down, and a positive inline value moves it towards the end of the line, so use a negative inline value to
+    move a badge that is clipped at the end of the line back towards the start. The offsets only move the badge. They do not change where the marker is, or where the page scrolls to. Set them on
+    <span class="@CodeSpan.Base">:root</span> to apply them to every badge, or set them on a single marker, for example with a selector such as
+    <span class="@CodeSpan.Base">.br-goto:first-child</span>, since each badge reads the values from its own marker. As a guide, a block offset of at least half the value of
+    <span class="@CodeSpan.Base">--br-comp-goto-badge-size</span> will clear the top edge.
+</p>
+<p>
+    On this site given I have a scrolling container for the main content in which I placed a GoTo marker above the first heading, due to the scroll container, the top of the marker was getting clipped so
+    I added an offset to target the first goto marker on every page:
+    <span class="@CodeSpan.Base @CodeSpan.Scheme(CodeSpanScheme.Primary)">#app__main &gt; .br-goto:first-child {--br-comp-goto-badge-offset-block: 0.75rem;}</span>
+</p>
 <section>
     <h2 class="mobile-centred-heading">Component parameters.</h2>
     <p>

@@ -4,6 +4,9 @@
 
 <PageTitle>@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
+
+<GoTo LabelText="Modal dialog framework usage page heading" />
+
 <h1>@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Usage</h1>
 
 
@@ -51,6 +54,9 @@
     for the demo. The initial popup form has had its options set so it has a maximum width of 70vh, positioned top center. The confirmation dialog has had it options set to have
     a maximum width of 50vh positioned centre centre (see the code below).
 </p>
+
+<GoTo LabelText="Modal dialog framework usage page example" />
+
 <section class="@Section.Base @Section.Radius(SectionRadius.Content) @Section.Bordered @Section.ColumnCentred">
     <button @ref="ButtonRef" class="@Button.Base" @onclick="ShowDialog">Show the Popup Form</button>
 
@@ -61,6 +67,9 @@
         </p>
     }
 </section>
+
+<GoTo LabelText="Modal dialog framework usage page theme border controls" />
+
 <ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2" style="margin-top:var(--br-unit-space-9);">
     <BorderGroups>
         <BorderGroup Title="Dialog borders">
@@ -100,6 +109,8 @@
 </p>
 
 <CodeBox CodeBlock="@ModalSnippets.Modal_Dialog_Confirmation_Form" AriaLabel="Code for the confirmation dialog" />
+
+<GoTo LabelText="Modal dialog framework usage page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Frameworks}/{GlobalValues.Framework_Path_Part_Modal}/{GlobalValues.Common_Page_Path_Api}")">
