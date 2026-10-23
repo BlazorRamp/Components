@@ -5,6 +5,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_Errors_Summary @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
 
+<GoTo LabelText="Input errors summary overview and tests page heading" />
+
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
     <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Errors_Summary @GlobalValues.Common_Page_Title_Overview_Tests</h1>
 
@@ -59,6 +61,9 @@
         </li>
     </ul>
 </section>
+
+<GoTo LabelText="Input errors summary overview and tests page summary with field validation" />
+
 <section class="section-box">
     <h2>Input error summary example one</h2>
 
@@ -100,6 +105,8 @@
     The next form is identical to the first one, but this time no field validation will take place until the form has tried to be submitted, after which field level
     will take place as of the first example.
 </p>
+<GoTo LabelText="Input errors summary overview and tests page summary without field validation until submit" />
+
 <section class="section-box">
     <h2>Input error summary example two (no validation until submit)</h2>
 
@@ -136,6 +143,8 @@
     </EditForm>
 
 </section>
+
+<GoTo LabelText="Input errors summary overview and tests page navigation" />
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TimeInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")">

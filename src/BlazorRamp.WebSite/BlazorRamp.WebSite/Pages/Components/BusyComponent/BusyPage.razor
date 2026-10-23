@@ -2,6 +2,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_Busy @GlobalValues.Common_Page_Title_Overview_Page_Tests</PageTitle>
 
+<GoTo LabelText="Busy indicator overview and page tests page heading" />
+
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
     <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Busy @GlobalValues.Common_Page_Title_Overview_Page_Tests</h1>
     <p>
@@ -80,6 +82,7 @@
     </ul>
 </section>
 
+<GoTo LabelText="Busy indicator overview and page tests page indicator test" />
 
 <BusyIndicator AriaStartText="Dummy task has started, please wait." AriaEndText="Dummy task completed successfully." BusyText=". . .Processing please wait . . " ContentPosition="ContentPosition.Centre"
                OverlayPosition="OverlayPosition.Screen"  IndicatorTrigger="Run Page Test button" ShowIndicator="@_showIndicator" />
@@ -88,7 +91,7 @@
     <button class="@GlobalValues.Button_Test_Class" @onclick="RunTest" type="button">Run Page Test</button>
 </section>
 
-
+<GoTo LabelText="Busy indicator overview and page tests page navigation" />
 
 <div class="flex-content justify-content-between flex-content--wrap">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_ActionsPopover}/{GlobalValues.Common_Page_Path_Overview_Tests}")">

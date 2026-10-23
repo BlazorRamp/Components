@@ -2,6 +2,8 @@
 
 <PageTitle>@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
 
+<GoTo LabelText="Modal dialog framework overview and tests page heading" />
+
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
     <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Framework_Name_Modal @GlobalValues.Common_Page_Title_Overview_Tests</h1>
     <p>
@@ -56,19 +58,20 @@
             If the form is dirty (has data) then pressing the <kbd>Escape</kbd> key in this instance, as the behaviour has been overriden, should open a modal confirmation dialog.
         </li>
         <li>
-            Whilst the confiramtion dialog is shown, pressing either the <kbd>Escape</kbd> key or the "No, do not continue" button will close the confirmation dialog with focus returning to the
+            Whilst the confirmation dialog is shown, pressing either the <kbd>Escape</kbd> key or the "No, do not continue" button will close the confirmation dialog with focus returning to the
             "Cancel" button on the modal dialog form. Pressing the "Yes, I would like to continue" button will close the confirmation dialog, and the form returning focus to the "Run Modal Test" button.
         </li>
         <li>               
-            At any point during the test process, despite each modal dialog making its background inert, the Announcement History non-modal dialog should be avaialbe either using the keyboard shortcut <span class="br-visually-hidden">Control plus Shift plus the H key</span>
+            At any point during the test process, despite each modal dialog making its background inert, the Announcement History non-modal dialog should be available either using the keyboard shortcut <span class="br-visually-hidden">Control plus Shift plus the H key</span>
             <span aria-hidden="true"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd></span> or by pressing the <b>Alerts button</b> located at the bottom-right. Pressing the <kbd>Escape</kbd> key when the Announcement History dialog is open should only close
-            the Announcment History dialog. Clikcing, <b>not</b> tabbing outside of the Announcement History dialog will close it, so it will close if open when any modal dialog button is clicked.
+            the Announcement History dialog. Clikcing, <b>not</b> tabbing outside of the Announcement History dialog will close it, so it will close if open when any modal dialog button is clicked.
         </li>
         <li>
             When either of the modal dialogs is opened the focus is set to the dialog and the dialog is labelled using the heading text in the dialog. The heading text in the form was set to "Fake Form" and confirmation dailog heading set to "Your confirmation is required"
         </li>
     </ul>
 </section>
+<GoTo LabelText="Modal dialog framework overview and tests modal test" />
 
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Container_Test_Modifier">
     <button @ref="ButtonRef" class="@GlobalValues.Button_Test_Class" @onclick="RunTest" type="button">Run Modal Test</button>
@@ -79,6 +82,8 @@
         </p>
     }
 </section>
+
+<GoTo LabelText="Modal dialog framework overview and tests page navigation" />
 
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Tooltip}/{GlobalValues.Common_Page_Path_Overview_Tests}")">

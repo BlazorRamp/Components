@@ -63,9 +63,9 @@ public static class GlobalValues
     public const string Common_Page_Title_Introduction        = "Introduction";
     public const string Common_Page_Title_About               = "About Blazor Ramp";
     public const string Common_Page_Title_Overview            = "Overview";
-    public const string Common_Page_Title_Overview_Tests      = "Overview & Tests";
-    public const string Common_Page_Title_Overview_Page_Tests = "Overview & Page Tests";
-    public const string Common_Page_Title_Quirks_Issues       = "Quirks & Issues";
+    public const string Common_Page_Title_Overview_Tests      = "Overview and Tests";
+    public const string Common_Page_Title_Overview_Page_Tests = "Overview and Page Tests";
+    public const string Common_Page_Title_Quirks_Issues       = "Quirks and Issues";
     public const string Common_Page_Title_Final_Words         = "Final Words";
 
     public const string Common_Page_Title_Modal_Page_Test  = "Modal Page Test";

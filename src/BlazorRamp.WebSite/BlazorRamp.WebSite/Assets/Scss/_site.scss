@@ -276,3 +276,7 @@ body {
         fill: CanvasText;
     }
 }
+
+#app__main > .br-goto:first-child {
+    --br-comp-goto-badge-offset-block: 0.75rem;
+}

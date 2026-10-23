@@ -2,6 +2,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_Tabs @GlobalValues.Common_Page_Title_Overview_Tests</PageTitle>
 
+<GoTo LabelText="Tabs overview and tests page heading" />
+
 <section class="@GlobalValues.Info_Box_Class @GlobalValues.Info_Box_Coloured_Modifier">
     <h1 class="@GlobalValues.Info_Box_Heading_Class">@GlobalValues.Component_Name_Tabs @GlobalValues.Common_Page_Title_Overview_Tests</h1>
 
@@ -9,7 +11,7 @@
         The Tabs component is used to group different but related content, allowing users to navigate between views (tab panels) without leaving the page.
     </p>
     <p>
-        The componnet is made up of three parts, the Tab List, the Tabs and the Tab Panel. The Tab List holds the Tabs, and the Tabs are used to activate the Tab Panel to show its content. 
+        The component is made up of three parts, the Tab List, the Tabs and the Tab Panel. The Tab List holds the Tabs, and the Tabs are used to activate the Tab Panel to show its content. 
     </p>
     <p>
         Activation of a Tab Panel can be either automatic, whereby the content is displayed when the Tab receives focus, or via manual activation requiring the user to press the <kbd>Enter or Space</kbd> key
@@ -19,7 +21,7 @@
         There are two Tabs Components below, one set to use automatic activation the other to manual.
     </p>
     <p>
-        <b>Released: </b>Current version <b>v1.0.2</b> See the documentation site for more information: <a target="_blank" class="@GlobalValues.Link_Class" href="@GlobalValues.Site_Link_Docs_Tabs">Toggletip documentation (opens in new window)</a>
+        <b>Released: </b>Current version <b>v1.0.2</b> See the documentation site for more information: <a target="_blank" class="@GlobalValues.Link_Class" href="@GlobalValues.Site_Link_Docs_Tabs">Tabs documentation (opens in new window)</a>
     </p>
 </section>
 
@@ -76,6 +78,9 @@
         </li>
     </ul>
 </section>
+
+<GoTo LabelText="Tabs overview and tests page automatic tab activation test" />
+
 <section class="section-box">
     <h3>Tabs test automatic activation</h3>
     <Tabs @bind-ActiveTabIndex="_tabAutoindex" AriaLabel="Automatic Activation" AutoActivatePanel="true">
@@ -116,6 +121,9 @@
     </Tab>
 </Tabs>
 </section>
+
+<GoTo LabelText="Tabs overview and tests page manual tab activation test" />
+
 <section class="section-box">
     <h3>Tabs test manual activation</h3>
     <Tabs @bind-ActiveTabIndex="_tabManualindex" AriaLabel="Manual Activation" AutoActivatePanel="false" TabIconPosition="TabIconPosition.Top">
@@ -156,6 +164,9 @@
         </Tab>
     </Tabs>
 </section>
+
+<GoTo LabelText="Tabs overview and tests page navigation" />
+
 <div class="flex-content justify-content-between">
     <a class="@GlobalValues.Link_Button_Class @GlobalValues.Link_Button_Left_Arrow_Modifier" href="@($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Switch}/{GlobalValues.Common_Page_Path_Quirks_Issues}")">
         <span aria-hidden="true"></span>
