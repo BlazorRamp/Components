@@ -2,6 +2,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_Toggletip @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
+<GoTo LabelText="Toggletip usage page heading" />
+
 <h1>@GlobalValues.Component_Name_Toggletip @GlobalValues.Common_Page_Title_Usage</h1>
 <p>
     Practical examples showing the Toggletip component configured with various parameters.
@@ -12,9 +14,12 @@
 
 <CodeBox CodeBlock="@ToggletipSnippets.Usage_Example" AriaLabel="Tabs setting parameters code example" />
 
+<GoTo LabelText="Toggletip usage page example" />
 <p>
     Set focus on and press enter or use your mouse to open the Keyboard Info Toggletip below:
 </p>
+
+
 <ToggleTip CloseText="Close Keyboard Info." Label="Keyboard info:" ShowClose="true" ShowLabel="true" ToggleTipLabelOrder="ToggleTipLabelOrder.LabelFirst" ToggleTipSize="ToggleTipSize.Small">
     <h2 id="toggletip-demo">Keyboard interaction</h2>
     <ul aria-labelledby="toggletip-demo">
@@ -38,6 +43,9 @@
         nec sem sagittis, at efficitur urna rutrum. Nunc et.
     </p>
 </ToggleTip>
+
+<GoTo LabelText="Toggletip usage page theme border controls" />
+
 <ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2" style="margin-top:var(--br-unit-space-9);">
     <BorderGroups>
         <BorderGroup Title="Dialog borders">
@@ -49,6 +57,9 @@
         </BorderGroup>
     </BorderGroups>
 </ThemeBorderTool>
+
+
+<GoTo LabelText="Toggletip usage page navigation" />
 
 <div class="flex-content justify-content-between" style="margin-top:2rem;">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Toggletip}/{GlobalValues.Common_Page_Path_Api}")">

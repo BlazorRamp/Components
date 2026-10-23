@@ -2,6 +2,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_Inputs @GlobalValues.Common_Page_Title_Accessibility</PageTitle>
 
+<GoTo LabelText="Inputs accessibility page heading" />
+
 <h1>@GlobalValues.Component_Name_Inputs @GlobalValues.Common_Page_Title_Accessibility</h1>
 <p>
     All BlazorRamp input components share a consistent accessibility foundation, ensuring a predictable and inclusive experience across your forms regardless of which input type you use
@@ -160,6 +162,9 @@ I recommend prioritising form-level validation over field-level validation. Ensu
     <strong>Note: </strong>If using the Blazor Ramp Inputs you can also use the <span class="@CodeSpan.Base">&lt;InputErrorsSummary /&gt;</span> that on form submission, if errors are present, will be displayed with links to the erroneous fields. No live regions announcements
     are needed given the focusing and <span class="@CodeSpan.Base">aria-labelledby</span> attribute used.
 </p>
+
+<GoTo LabelText="Inputs accessibility page navigation" />
+
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Common_Page_Path_Installation}")">
         <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>

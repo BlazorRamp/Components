@@ -1,7 +1,9 @@
 ﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Styling}")]
 
 <PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Content_Styling</PageTitle>
-<GoTo LabelText="Data styling usage page title" />
+
+<GoTo LabelText="Data styling usage page heading" />
+
 <h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Content_Styling</h1>
 <p>
     There are numerous ways to apply styling and they can be used individually or combined. You can if you wish use both CellStyleFunc and CellStyle on the same cell.
@@ -93,7 +95,7 @@
 </p>
 <CodeBox CodeBlock="@DataTableSnippets.Sorting_Usage_Example" AriaLabel="Styling usage code example." />
 
-<GoTo LabelText="Data table content styling usage page navigation" />
+<GoTo LabelText="Data table styling styling usage page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Selecting}")">

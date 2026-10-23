@@ -2,8 +2,9 @@
 
 <PageTitle>@GlobalValues.Component_Name_NavGroup @GlobalValues.Common_Page_Title_Overview</PageTitle>
 
-<h1>@GlobalValues.Component_Name_NavGroup @GlobalValues.Common_Page_Title_Overview</h1>
+<GoTo LabelText="NavGroup overivew page heading" />
 
+<h1>@GlobalValues.Component_Name_NavGroup @GlobalValues.Common_Page_Title_Overview</h1>
 
 <p>
     The Nav Group component is designed to be used within an HTML<span class="@CodeSpan.Base">nav</span> element and uses what is known as a "disclosure" pattern to show or hide content, which is
@@ -38,6 +39,8 @@
 <p>
     The NavGroup has been coded so that if the current page matches a link within a closed NavSection, that all sections will open so the link is visible.
 </p>
+
+<GoTo LabelText="NavGroup overview page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_InputErrors}/{GlobalValues.Common_Page_Path_Usage}")">

@@ -3,6 +3,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_Text_Input @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
+<GoTo LabelText="Text input usage page heading" />
+
 <h1>@GlobalValues.Component_Name_Text_Input @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
@@ -24,6 +26,9 @@
     <strong>Note: </strong>As you may not want to use this valdiation framework, and/or have differing options, there is also a <span class="@CodeSpan.Base">TrimOnBlur</span> parameter option on the text input, that when set to true
     trims the string value on lost focus.
 </p>
+
+<GoTo LabelText="Text input usage page example" />
+
 <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
     <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.SecondaryDark)">Text inputs example</h2>
 
@@ -45,6 +50,9 @@
 
 
 </section>
+
+<GoTo LabelText="Text input usage page theme border controls" />
+
 <ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
     <BorderGroups>
         <BorderGroup Title="Input borders">
@@ -68,6 +76,8 @@
 <p>
     Please ensure dependant on the context that you add the appropriate <span class="code-block">autocomplete</span> attribute to meet WCAG requirements, although there is no harm in just adding them regardless.
 </p>
+
+<GoTo LabelText="Text input usage page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TextInput}/{GlobalValues.Common_Page_Path_Api}")">

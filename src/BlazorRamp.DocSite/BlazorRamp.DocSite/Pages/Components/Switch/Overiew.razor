@@ -2,6 +2,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_Switch @GlobalValues.Common_Page_Title_Overview</PageTitle>
 
+<GoTo LabelText="Switch overview page heading" />
+
 <h1>@GlobalValues.Component_Name_Switch @GlobalValues.Common_Page_Title_Overview</h1>
 
 
@@ -35,12 +37,17 @@
     switch has the html <span class="@CodeSpan.Base">disabled</span> attribute so it is removed from the Accessibility Tree and will not receive focus.
 </p>
 
+<GoTo LabelText="Switch overview page example" />
+
 <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)" style="max-width:320px">
 
     <Switch @bind-SwitchState="@_airplaneSwitchState" Label="Airplane mode:" AriaDisabled="false" SpaceBetween="false" style="margin-block:1rem;" />
     <Switch @bind-SwitchState="@_bluetoothSwitchState" Label="Bluetooth:" AriaDisabled="true" SpaceBetween="true" style="margin-block:1rem;" />
     <Switch @bind-SwitchState="@_wifiSwitchState" Label="WiFi:" AriaDisabled="false" SpaceBetween="true" style="margin-block:1rem;" disabled />
 </section>
+
+
+<GoTo LabelText="Switch overview page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_SkipTo}/{GlobalValues.Common_Page_Path_Usage}")">

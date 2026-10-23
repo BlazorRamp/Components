@@ -1,7 +1,9 @@
 ﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Paging}")]
 
 <PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Paging</PageTitle>
-<GoTo LabelText="Data table paging usage page title" />
+
+<GoTo LabelText="Data table paging usage page heading" />
+
 <h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Paging</h1>
 
 <p>
@@ -19,6 +21,7 @@
     I could have set <span class="@CodeSpan.Base">TableHeight</span> to a much larger value, knowing it would not occupy that space unless necessary; however, I deliberately left it as is so you could see the scrollbar in action alongside pagination, which would not normally be the case.
 </p>
 <GoTo LabelText="Data table paging usage page contact results table" />
+
 <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding">
     <TopPager>
         <Pager @bind-CurrentPage="@_pagerBinding.CurrentPage" AriaLabel="Contacts top pager" TotalItemCount="@_pagerBinding.TotalItemCount" CurrentItemCount="@_pagerBinding.CurrentItemCount"

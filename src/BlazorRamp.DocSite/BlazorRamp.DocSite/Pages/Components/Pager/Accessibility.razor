@@ -2,7 +2,10 @@
 
 <PageTitle>@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Accessibility</PageTitle>
 
+<GoTo LabelText="Pager accessibility page heading" />
+
 <h1>@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Accessibility</h1>
+
 <p>
     The structure of the component is simply a <span class="@CodeSpan.Base">nav</span> element that contains either buttons or links dependant on the components configuration options.
     The  <span class="@CodeSpan.Base">nav</span> element has the <span class="@CodeSpan.Base">aria-labelledby</span> attribute that uses two identifiers. The first part is
@@ -69,6 +72,9 @@
         </p>
     </li>
 </ul>
+
+<GoTo LabelText="Pager accessibility page navigation" />
+
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Pager}/{GlobalValues.Common_Page_Path_Installation}")">
         <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>

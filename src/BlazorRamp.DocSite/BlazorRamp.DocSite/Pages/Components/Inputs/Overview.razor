@@ -8,6 +8,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_Inputs @GlobalValues.Common_Page_Title_Overview</PageTitle>
 
+<GoTo LabelText="Inputs overview page heading" />
+
 <h1>@GlobalValues.Component_Name_Inputs @GlobalValues.Common_Page_Title_Overview</h1>
 
 <p>
@@ -33,6 +35,8 @@
     You would need to try this with a screen reader to understand the difference if its unclear, but if you use you tab key the First name errors region has a tab stop when the error is present. The element has also been promoted to
     a landmark with the accessible name of "First name errors", the combination of the <span class="@CodeSpan.Base">LabelText</span> and the <span class="@CodeSpan.Base">ErrorsLabel</span> parameters.
 </p>
+
+<GoTo LabelText="Inputs overview page example" />
 
 <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
     <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.SecondaryDark)">Inputs example</h2>
@@ -84,6 +88,8 @@
     As seen in the code above, a <span class="@CodeSpan.Base">&lt;div class=".br-input-row"&gt;</span> was added for a row and then the appropriate classes were added on the
     input directly, in this instance they were <span class="@CodeSpan.Base">&lt;NumericInput class="br-col-xs-12 br-col-sm-6"&gt;</span>. 
 </p>
+
+<GoTo LabelText="Inputs overview page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_GoTo}/{GlobalValues.Common_Page_Path_Usage}")">

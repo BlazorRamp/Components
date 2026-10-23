@@ -2,6 +2,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
+<GoTo LabelText="Actions popover usage page heading" />
+
 <h1>@GlobalValues.Component_Name_Actions_Popover @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
@@ -24,6 +26,8 @@
     the replayable option to true so the output is added to the rolling announcement log, viewable by using the announcement history dialog, shortcut keys <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Ctrl + Shift + H</kbd>
     or activate the alerts button, button right of the screen.
 </p>
+
+<GoTo LabelText="Actions popover usage page contact results table" />
 
 <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
 
@@ -64,6 +68,9 @@
         <p> @_output</p>
     </div>
 </section>
+
+<GoTo LabelText="Actions  popover usage page theme border controls" />
+
 <ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
     <BorderGroups>
         <BorderGroup Title="Container borders">
@@ -83,6 +90,7 @@
 </h2>
 <CodeBox CodeBlock="@ActionsPopoverSnippets.Usage_Example_Row_Actions" AriaLabel="Actions Popover usage code block" />
 
+<GoTo LabelText="Actions popover usage page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_ActionsPopover}/{GlobalValues.Common_Page_Path_Api}")">

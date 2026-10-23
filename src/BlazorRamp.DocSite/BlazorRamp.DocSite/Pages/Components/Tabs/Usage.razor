@@ -2,6 +2,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_Tabs @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
+<GoTo LabelText="Tabs usage page heading" />
+
 <h1>@GlobalValues.Component_Name_Tabs @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
@@ -21,6 +23,8 @@
 <p>
     The result of the parameter settings. The Tabs component is inside a section, the tabs component itself does not have border, the border is from the section element.
 </p>
+
+<GoTo LabelText="Tabs usage page example" />
 
 <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)" style="margin-top:var(--br-unit-space-7);">
     <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.SecondaryDark)" id="lifestyle-tabs">Lifestyle Tabs</h2>
@@ -66,6 +70,9 @@
     <strong>Note: </strong>If you know that the panel content contains any focusable elements then you should set the <span class="@CodeSpan.Base">PersistContent</span> parameter to false so if the user presses the 
     <kbd class="@Kbd.Base @Kbd.Scheme(KbdScheme.Neutral)">Tab</kbd> key focus is moved to the first focusable element.
 </p>
+
+<GoTo LabelText="Tabs usage page theme border controls" />
+
 <ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2" style="margin-top:var(--br-unit-space-9);">
     <BorderGroups>
         <BorderGroup Title="Container borders">
@@ -74,6 +81,8 @@
         </BorderGroup>
     </BorderGroups>
 </ThemeBorderTool>
+
+<GoTo LabelText="Tabs usage page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tabs}/{GlobalValues.Common_Page_Path_Api}")">

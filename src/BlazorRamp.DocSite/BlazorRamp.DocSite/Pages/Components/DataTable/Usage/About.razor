@@ -2,6 +2,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Usage_About</PageTitle>
 
+<GoTo LabelText="Data table about usage page heading" />
+
 <h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Usage_About</h1>
 <p>
     The following pages are intended to highlight the various features of the Data Table, as well as to give you simple how-to examples. Pages such as Templating also highlight some important accessibility 
@@ -57,6 +59,9 @@
     Related issues logged:  <a class="@GlobalValues.Link_Class" target="_blank" href="@GlobalValues.JAWS_Issues_Link_Blazor">Issue logged against Blazor #68157 (opens in new window)</a> and 
     <a class="@GlobalValues.Link_Class" target="_blank" href="@GlobalValues.JAWS_Issues_Link_FS">Issue logged against JAWS #959</a>.
 </p>
+
+<GoTo LabelText="Data table about usage page navigation" />
+
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Common_Page_Path_Api}")">
         <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>

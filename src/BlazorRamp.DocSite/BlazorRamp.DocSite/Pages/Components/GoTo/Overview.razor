@@ -2,8 +2,10 @@
 
 <PageTitle>@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Overview</PageTitle>
 
+<GoTo LabelText="GoTo overview page heading" />
+
 <h1>@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Overview</h1>
-<GoTo LabelText="GoTo overview page title" />
+
 <p>
     The GoTo component gives keyboard users a way to jump straight to the parts of a page that matter to them. You place a <span class="@CodeSpan.Base">&lt;GoTo /&gt;</span> marker,
     with a short label such as "Filters" or "Order summary", at each destination. A single <span class="@CodeSpan.Base">&lt;GoToViewer /&gt;</span>, added once to your layout, lists the markers
@@ -42,6 +44,11 @@
 <p>
     The heading, the button text and the message shown when a page has no markers can all be changed, which also makes them easy to localise. The trigger button can be left out if you would rather rely
     on the keyboard shortcut alone. Markers scroll into view with a small offset from the top of the screen, so a fixed header is less likely to cover them, and the offset can be changed with a CSS variable.
+</p>
+<p>
+    <strong>Important: </strong>The GoTo component uses CSS anchor positioning for the labels which was only baseline at the start of the year 2026. Dependant on your target audience and supported browser versions,
+    you may want to consider referencing the OddBird anchor positioning polyfill see: <a class="@GlobalValues.Link_Class" target="_blank" href="https://github.com/oddbird/css-anchor-positioning">https://github.com/oddbird/css-anchor-positioning (opens in new window)</a>
+    to support older browser versions. Without CSS anchor positioning the GoTo label will be located at the top left of the page, but with all functionality intact.
 </p>
 
 <p>

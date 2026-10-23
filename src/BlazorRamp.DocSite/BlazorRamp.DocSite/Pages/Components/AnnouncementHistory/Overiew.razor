@@ -2,6 +2,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_Announcement @GlobalValues.Common_Page_Title_Overview</PageTitle>
 
+<GoTo LabelText="Announcement history overview page heading" />
+
 <h1>@GlobalValues.Component_Name_Announcement @GlobalValues.Common_Page_Title_Overview</h1>
 
 <p>
@@ -28,6 +30,8 @@
     The theme switch at the top right of the page, as well as the busy indicator component makes use of the live region service to make announcements via live regions (elements part of the component) and as such as an example, 
     if you toggle the site theme and/or test the busy indicator (from its overview page) announcements will be logged and available for review using the announcement history viewer.
 </p>
+
+<GoTo LabelText="Announcement history overview page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_ActionsPopover}/{GlobalValues.Common_Page_Path_Usage}")">

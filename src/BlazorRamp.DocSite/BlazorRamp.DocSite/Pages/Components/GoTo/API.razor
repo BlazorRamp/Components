@@ -1,7 +1,8 @@
 ﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_GoTo}/{GlobalValues.Common_Page_Path_Api}")]
 
 <PageTitle>@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Api</PageTitle>
-<GoTo LabelText="GoTo API page title" />
+
+<GoTo LabelText="GoTo API page heading" />
 
 <h1>@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Api</h1>
 
@@ -10,7 +11,11 @@
     Everything you need to work with the GoTo component: parameters, methods, and CSS variables for styling.
 </p>
 
-
+<p>
+    <strong>Important: </strong>The GoTo component uses CSS anchor positioning for the labels which was only baseline at the start of the year 2026. Dependant on your target audience and supported browser versions,
+    you may want to consider referencing the OddBird anchor positioning polyfill see: <a class="@GlobalValues.Link_Class" target="_blank" href="https://github.com/oddbird/css-anchor-positioning">https://github.com/oddbird/css-anchor-positioning (opens in new window)</a>
+    to support older browser versions. Without CSS anchor positioning the GoTo label will be located at the top left of the page, but with all functionality intact.
+</p>
 <section>
     <h2 class="mobile-centred-heading">Component parameters.</h2>
     <p>

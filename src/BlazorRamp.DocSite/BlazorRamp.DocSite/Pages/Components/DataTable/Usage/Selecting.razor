@@ -1,7 +1,9 @@
 ﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Selecting}")]
 
 <PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Selecting</PageTitle>
-<GoTo LabelText="Data table selecting usage page title" />
+
+<GoTo LabelText="Data table selecting usage page heading" />
+
 <h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Selecting</h1>
 
 <p>
@@ -14,7 +16,7 @@
     output which rows are currently selected. This single event covers both selection modes, with the payload being either an empty list for no selections, or a list containing the selected items.
 </p>
 
-<GoTo LabelText="Data table basic usage page selecting contact results table" />
+<GoTo LabelText="Data table selecting usage page contact results table" />
 
 <DataTable TData="Contact" DataSource="@_dataSource" Title="Contact Results" PagerBinding="@_pagerBinding" FilterRule="_filterRule" 
            RowSelectionMode="RowSelectionMode.Multiple" RowSelectHeading="Pick" SelectedRowsChanged="HandleSectionChanged" RowIdentifierFunc="@_checkboxLabel">

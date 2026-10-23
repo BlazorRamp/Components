@@ -2,6 +2,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_Date_Input @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
+<GoTo LabelText="Date input usage page heading" />
+
 <h1>@GlobalValues.Component_Name_Date_Input @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
@@ -25,6 +27,8 @@
     <b>Note: </b>I have used my open source Validation framework and its Blazor NuGet package <a class="@GlobalValues.Link_Class" href="@GlobalValues.Validated_Blazor_Repo_Site" target="_blank">Validated.Blazor (opens in new window)</a>.
     but you can use any validators that work with Blazors <span class="@CodeSpan.Base">EditContext</span>. 
 </p>
+
+<GoTo LabelText="Date input usage page example" />
 
 <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
     <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.Text(SectionHeadingText.SecondaryDark)">Date input example</h2>
@@ -60,6 +64,7 @@
 
 </section>
 
+<GoTo LabelText="Date input usage page theme border controls" />
 
 <ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
     <BorderGroups>
@@ -92,6 +97,8 @@
        onclick="setTimeout(() => document.getElementById('screen-reader-quirks')?.focus(), 100);">Screen reader quirks or known issues section (inputs accessibility page)</a>
     to help choose the optimal settings for your target audience.
 </p>
+
+<GoTo LabelText="Date input usage page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_DateInput}/{GlobalValues.Common_Page_Path_Api}")">

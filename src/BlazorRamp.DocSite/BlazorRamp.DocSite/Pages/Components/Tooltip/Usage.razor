@@ -2,7 +2,10 @@
 
 <PageTitle>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
+<GoTo LabelText="Tooltip usage page heading" />
+
 <h1>@GlobalValues.Component_Name_Tooltip @GlobalValues.Common_Page_Title_Usage</h1>
+
 <p>
     Practical examples showing the Tooltip component configured with various parameters.
 </p>
@@ -18,6 +21,9 @@
     The third tooltip instead of using both <span class="@CodeSpan.Base">aria-label</span> and <span class="@CodeSpan.Base">aria-describedby</span> only uses <span class="@CodeSpan.Base">aria-labelledby</span> as it uses
     the tooltip text for the buttons accessible name.
 </p>
+
+<GoTo LabelText="Tooltip usage page examples" />
+
 <div class="@FlexContent.Base @Gap.SetGaps(UnitGapSize.Five)">
     <Tooltip TooltipID="save-button-tooltip-id" TooltipText="Saves the current item to disk" TooltipPosition="TooltipPosition.TopLeft">
         <button aria-label="Save" type="button" aria-describedby="save-button-tooltip-id" class="@Button.Base @Button.Scheme(ButtonSolidScheme.SuccessLighter) 
@@ -49,6 +55,8 @@
 
 <CodeBox CodeBlock="@TooltipSnippets.Icon_Button_Example" AriaLabel="Tooltip code example." />
 
+<GoTo LabelText="Tooltip usage page theme border controls" />
+
 <ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2" style="margin-top:var(--br-unit-space-9);">
     <BorderGroups>
         <BorderGroup Title="Container borders">
@@ -57,6 +65,8 @@
         </BorderGroup>
     </BorderGroups>
 </ThemeBorderTool>
+
+<GoTo LabelText="Tooltip usage page navigation" />
 
 <div class="flex-content justify-content-between" style="margin-top:2rem;">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Tooltip}/{GlobalValues.Common_Page_Path_Api}")">

@@ -4,6 +4,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Overview</PageTitle>
 
+<GoTo LabelText="Pager overview page heading" />
+
 <h1>@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Overview</h1>
 <p>
     The Pager has two modes of operation: one that uses buttons for paging, typically used with data tables, and the other that uses links, typically used on product listing pages.
@@ -40,6 +42,8 @@
     If you want to see the page numbers in the url, just right click on the link example and open in a new windows, code in the OnInitialized event reads the page number
     and assigns it to the current page param.
 </p>
+
+<GoTo LabelText="Pager overview page examples" />
 
 <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
     <h2 class="@Section.Heading.Base @Section.Heading.MobileCentred @Section.Heading.FontSize(UnitFontSize.Two) @Margin.BlockEnd(UnitSpace.Five)">
@@ -102,6 +106,9 @@
     Below is the code used in the examples.
 </p>
 <CodeBox CodeBlock="@PagerSnippets.Overview_Code_Example" AriaLabel="Pager overview code" />
+
+<GoTo LabelText="Pager overview page navigation" />
+
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_NavGroup}/{GlobalValues.Common_Page_Path_Usage}")">
         <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>

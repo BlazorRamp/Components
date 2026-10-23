@@ -2,6 +2,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_NavGroup @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
+<GoTo LabelText="NavGroup usage page heading" />
+
 <h1>@GlobalValues.Component_Name_NavGroup @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
@@ -12,6 +14,9 @@
     I have given both the nested NavSection components and the single NavGroupLink component icons and set the initial <span class="@CodeSpan.Base">Expanded</span> parameter
     to true.
 </p>
+
+<GoTo LabelText="NavGroup usage page example" />
+
 <nav aria-label="navigation example">
     <NavGroup>
         <NavSection SvgIcon="--svg-component-icon" Title="Components" Expanded="true">
@@ -21,6 +26,9 @@
         </NavSection>
     </NavGroup>
 </nav>
+
+<GoTo LabelText="NavGroup usage page theme border controls" />
+
 <ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
     <BorderGroups>
         <BorderGroup Title="Menu borders">
@@ -44,6 +52,9 @@
 <p>
     <strong>Note: </strong>The NavGroup component is designed to be used on an interactive page.
 </p>
+
+<GoTo LabelText="NavGroup usage page navigation" />
+
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_NavGroup}/{GlobalValues.Common_Page_Path_Api}")">
         <span class="@SvgIcon.Base @SvgIcon.Size(UnitIconSize.ExtraLarge)" aria-hidden="true" style="--_svg-icon-source:var(--svg-left-arrow-circle-icon)"></span>

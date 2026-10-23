@@ -3,7 +3,8 @@
 <PageTitle>@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Installation</PageTitle>
 
 <h1>@GlobalValues.Component_Name_GoTo @GlobalValues.Common_Page_Title_Installation</h1>
-<GoTo LabelText="GoTo installation page title" />
+
+<GoTo LabelText="GoTo installation page heading" />
 <p>
     <strong>Note: </strong> It is a requirement that the Blazor Ramp Core <span class="@CodeSpan.Base">core-live-region.js</span> script, <span class="@CodeSpan.Base">LiveRegionService</span>, and
     associated <span class="@CodeSpan.Base">&lt;AnnouncementHistory /&gt;</span> component are added alongside this component’s specific
@@ -30,7 +31,7 @@
     Bwlow is the component with all the default values being used to set the parameters. This code along with the other components shown, is what is being used on this site.
 </p>
 <p>
-    <strong>Important</strong> This site is a global WebAssembly site so everything is interactive so no <span class="@CodeSpan.Base">rendermode</span> needs to be explicityly set. If you are usiing InteractiveAuto for both
+    <strong>Important</strong> This site is a global WebAssembly site so everything is interactive so no <span class="@CodeSpan.Base">rendermode</span> needs to be explicitly set. If you are using InteractiveAuto for both
     Server and WebAssembly then add the rendermode to the component for example: <span class="@CodeSpan.Base">&ltGoToViewer @@rendermode="InteractiveAuto" /&gt;</span>.
 </p>
 
@@ -40,6 +41,17 @@
 <h2 id="release-history">Release history</h2>
 
 <ol reversed class="history-list">
+@*     <li>
+        <h3>
+            Version 1.0.1 — <time datetime="2026-10-23">October 23, 2026</time>
+        </h3>
+        <ul>
+            <li>
+                Added two css variables that can be used to control the marker offset (block and inline) to help prevent
+                any clipping that may occur if the badge is at the edge of a scrolling container.
+            </li>
+        </ul>
+    </li> *@
     <li>
         <h3>
             Version 1.0.0 — <time datetime="2026-10-21">October 21, 2026</time>

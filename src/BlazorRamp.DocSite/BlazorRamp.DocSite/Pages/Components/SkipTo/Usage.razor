@@ -2,6 +2,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_SkipTo @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
+<GoTo LabelText="Skip to usage page heading" />
+
 <h1>@GlobalValues.Component_Name_SkipTo @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
@@ -22,6 +24,8 @@
 
 <CodeBox CodeBlock="@SkipToSnippets.Skip_To_Section_Example" AriaLabel="Skip to section example code block" />
 
+<GoTo LabelText="Skip to usage page example" />
+
 <div class="@Section.Base @Section.Radius(SectionRadius.Content) @Section.Bordered @Section.ColumnCentred" style="align-items:start;margin-block:var(--br-unit-space-5);">
     <SkipTo IconVisible="true" SkipToText="Skip to section content" SkipToType="SkipToType.Section" TargetID="section-one" />
     <p class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
@@ -35,6 +39,8 @@
     </p>
 </div>
 
+<GoTo LabelText="Skip to usage page theme border controls" />
+
 <ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2">
     <BorderGroups>
         <BorderGroup Title="Revealed borders">
@@ -43,6 +49,7 @@
     </BorderGroups>
 </ThemeBorderTool>
 
+<GoTo LabelText="Skip to usage page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_SkipTo}/{GlobalValues.Common_Page_Path_Api}")">

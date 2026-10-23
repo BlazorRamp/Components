@@ -2,6 +2,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
+<GoTo LabelText="Pager usage page heading" />
+
 <h1>@GlobalValues.Component_Name_Pager @GlobalValues.Common_Page_Title_Usage</h1>
 
 <p>
@@ -11,6 +13,8 @@
     For this demo I basically put the Debounce Filter component with 250ms delay above the Blazor Weather Table and the Pager component below it. I generated 100 rows of data and set the
     items per page to 10. Ideally you should view this with a screen reader so you can see/hear how it all fits together.
 </p>
+
+<GoTo LabelText="Pager usage page weather table" />
 
 <section class="@Section.Base @Section.Bordered @Section.Radius(SectionRadius.Content)">
 
@@ -51,6 +55,8 @@
            PagerSelectorType="PagerSelectorType.Button" ShowFirstLast="true" PageAlignment="PageAlignment.End" />
 </section>
 
+<GoTo LabelText="Pager usage page theme border controls" />
+
 <ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2" style="margin-top:var(--br-unit-space-9);">
     <BorderGroups>
         <BorderGroup Title="Container borders">
@@ -69,6 +75,8 @@
     Code from the example
 </h2>
 <CodeBox CodeBlock="@PagerSnippets.Usage_Code_Example" AriaLabel="Pager usage code" />
+
+<GoTo LabelText="Pager usage page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Pager}/{GlobalValues.Common_Page_Path_Api}")">

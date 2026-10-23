@@ -1,7 +1,9 @@
 ﻿@attribute [Route($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_DataTable}/{GlobalValues.Component_Path_Part_Usage}/{GlobalValues.Common_Page_Path_Filtering}")]
 
 <PageTitle>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Filtering</PageTitle>
-<GoTo LabelText="Data table filtering usage page title" />
+
+<GoTo LabelText="Data table filtering usage page heading" />
+
 <h1>@GlobalValues.Component_Name_Data_Table @GlobalValues.Common_Page_Title_Filtering</h1>
 
 <p>
@@ -40,7 +42,7 @@
     </BottomPager>
 </DataTable>
 
-<GoTo LabelText="Data table basic usage page theme border tools" />
+<GoTo LabelText="Data table filtering usage page theme border tools" />
 
 <p>
     <b>Note: </b> The <span class="@CodeSpan.Base">FilterAlignment</span> parameter if set to <span class="@CodeSpan.Base">FilterAlignment.None</span> can access the full width of the available area.

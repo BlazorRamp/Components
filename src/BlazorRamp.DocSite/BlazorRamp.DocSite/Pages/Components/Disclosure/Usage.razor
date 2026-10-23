@@ -3,6 +3,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_Disclosure @GlobalValues.Common_Page_Title_Usage</PageTitle>
 
+<GoTo LabelText="Disclosure usage page heading" />
+
 <h1>@GlobalValues.Component_Name_Disclosure @GlobalValues.Common_Page_Title_Usage</h1>
 <p>
     Practical examples showing the Disclosure component configured with various parameters.
@@ -14,6 +16,8 @@
     attribute is added (if no existing role defined). A <span>tabindex="0"</span> is also added along with the <span class="@CodeSpan.Base">aria-labelledby</span>, 
     so the trigger text is used for the groups accessible name. These attributes are removed if the page is sized as such to not need a scrollbar.
 </p>
+
+<GoTo LabelText="Disclosure usage page examples" />
 
 <Disclosure TriggerText="Lorem ipsum text in a disclosure" ContentMaxHeight="40vh">
     <p style="margin:0">
@@ -104,6 +108,8 @@
 
 <CodeBox CodeBlock="@DisclosureSnippets.Disclosure_Binding_Example" AriaLabel="Disclosure using two-way binding code example." />
 
+<GoTo LabelText="Disclosure usage page theme border controls" />
+
 <ThemeBorderTool Title="Applicable theme border tools" ThemeToolHeadingLevel="ThemeToolHeadingLevel.H2" style="margin-top:var(--br-unit-space-9);">
     <BorderGroups>
         <BorderGroup Title="Container borders">
@@ -115,6 +121,8 @@
         </BorderGroup>
     </BorderGroups>
 </ThemeBorderTool>
+
+<GoTo LabelText="Disclosure usage page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
     <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Disclosure}/{GlobalValues.Common_Page_Path_Api}")">

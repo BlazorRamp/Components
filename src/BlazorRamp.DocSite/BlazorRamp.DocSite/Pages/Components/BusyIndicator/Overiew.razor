@@ -3,6 +3,8 @@
 
 <PageTitle>@GlobalValues.Component_Name_Busy @GlobalValues.Common_Page_Title_Overview</PageTitle>
 
+<GoTo LabelText="Busy indicator overview page heading" />
+
 <h1>@GlobalValues.Component_Name_Busy @GlobalValues.Common_Page_Title_Overview</h1>
 
 
@@ -45,6 +47,8 @@
         <button class="@Button.Base @Button.Size(ButtonSize.ExtraLarge)" type="button" @onclick="RunDummyTask">Test Busy Indicator</button>
     </BusyIndicator>
 </section>
+
+<GoTo LabelText="Busy indicator overview page navigation" />
 
 <div class="@FlexContent.Base @FlexContent.Wrap(UnitFlexWrap.Wrap) @LayoutAlignment.JustifyContent(UnitJustifyContent.SpaceBetween) @LayoutAlignment.AlignItems(UnitAlignItems.Centre)">
         <a class="@Button.Base @Button.LinkStyle @Gap.SetColGap(UnitGapSize.Four)" href="@($"{GlobalValues.Root_path_Components}/{GlobalValues.Component_Path_Part_Announcement}/{GlobalValues.Common_Page_Path_Usage}")">
