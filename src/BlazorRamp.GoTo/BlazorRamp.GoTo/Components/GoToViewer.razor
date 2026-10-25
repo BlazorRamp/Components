@@ -37,7 +37,7 @@
 
 @if(false == ExcludeTriggerButton)
 {
-    <button class="@GlobalValues.GoTo_Viewer_Trigger_Block_Class" type="button" @onclick="async () => await HandleOpenViewer(_gotoViewerID)" aria-haspopup="dialog">
+    <button class="@GlobalValues.GoTo_Viewer_Trigger_Block_Class" type="button" @onclick="async () => await HandleOpenViewer(_gotoViewerID)">
         <span class="@GlobalValues.GoTo_Viewer_Trigger_Content_Class">
             @_triggerButtonText
         </span>

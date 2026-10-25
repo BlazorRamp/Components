@@ -16,7 +16,7 @@ bring up a list of markers which then can then go to.</Description>
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>Fix: added role="list" to the viewer’s marker list to ensure Safari with VoiceOver reliably exposes it as a list given the list styling.</PackageReleaseNotes>
+    <PackageReleaseNotes>Re-release: fix to the trigger button’s accessibility attributes. Removed aria-haspopup="dialog", which could prevent Narrator in scan mode from activating the button.</PackageReleaseNotes>
     <AssemblyVersion>1.0.2</AssemblyVersion>
     <FileVersion>1.0.2</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
