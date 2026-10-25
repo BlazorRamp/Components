@@ -8,7 +8,7 @@
 
             @if (_gotoList.Count != 0)
             {
-                <ul class="@GlobalValues.GoTo_Viewer_List_Class">
+                <ul class="@GlobalValues.GoTo_Viewer_List_Class" role="list">
                     @foreach (var gotoItem in _gotoList)
                     {
                         <li class="@GlobalValues.GoTo_Viewer_List_Item_Class">
@@ -37,7 +37,7 @@
 
 @if(false == ExcludeTriggerButton)
 {
-    <button class="@GlobalValues.GoTo_Viewer_Trigger_Block_Class" type="button" @onclick="async () => await HandleOpenViewer(_gotoViewerID)">
+    <button class="@GlobalValues.GoTo_Viewer_Trigger_Block_Class" type="button" @onclick="async () => await HandleOpenViewer(_gotoViewerID)" aria-haspopup="dialog">
         <span class="@GlobalValues.GoTo_Viewer_Trigger_Content_Class">
             @_triggerButtonText
         </span>

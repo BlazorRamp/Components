@@ -8,7 +8,7 @@ namespace BlazorRamp.GoTo.Components;
 
 /// <summary>
 /// The viewer that lists the <see cref="GoTo"/> markers on the current page and moves focus to the one
-/// the user chooses. It opens with <c>Ctrl+Shift+Y</c> or through a trigger button that is only visible
+/// the user chooses. It opens with <c>Alt + Z</c> or through a trigger button that is only visible
 /// while it has keyboard focus. Add it once, to a layout or router component, using an interactive render mode.
 /// </summary>
 public partial class GoToViewer :IAsyncDisposable
@@ -47,7 +47,7 @@ public partial class GoToViewer :IAsyncDisposable
     /// <summary>
     /// Gets or sets the keyboard shortcut that opens the viewer. It must be a single letter or digit combined with at least one of
     /// Alt, Ctrl or Meta, so that it isn't a character key shortcut under WCAG 2.1.4. If it is <see langword="null"/> or not valid,
-    /// it is ignored and the previous shortcut stays in place. Defaults to Alt+G (Option+G on macOS).
+    /// it is ignored and the previous shortcut stays in place. Defaults to Alt+Z (Option+Z on macOS).
     /// </summary>
     [Parameter] public GoToShortcut GoToShortcut { get; set; } = GlobalValues.GoTo_Default_Shortcut_Model;
 

@@ -8,7 +8,7 @@
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\assets\BlazorRampKey.snk</AssemblyOriginatorKeyFile>
     <Title>BlazorRamp.GoTo</Title>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>Paul Kent</Authors>
     <Description>Components that can be added to a page as a marker that allows a keyboard-only user to
 bring up a list of markers which then can then go to.</Description>
@@ -16,10 +16,9 @@ bring up a list of markers which then can then go to.</Description>
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>Added two css variables that can be used  to control the marker offset (block and inline) to help prevent
-any clipping that may occur if the badge is at the edge of a scrolling container.</PackageReleaseNotes>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>
+    <PackageReleaseNotes>Fix: added role="list" to the viewer’s marker list to ensure Safari with VoiceOver reliably exposes it as a list given the list styling.</PackageReleaseNotes>
+    <AssemblyVersion>1.0.2</AssemblyVersion>
+    <FileVersion>1.0.2</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
