@@ -13,7 +13,6 @@
 
             <button id="@_buttonID" class="@GlobalValues.Nav_Group_Trigger_Class"
             aria-expanded="@(_expanded ? "true" : "false")" 
-            aria-controls="@_contentID" 
             @onclick="() => SetExpandedState(!_expanded)">
                 
                 @if(_sectionSvgIcon is not null)
