@@ -3,7 +3,6 @@
 
     <button id="@_triggerID" type="button" class="@GetTriggerContentClasses(RemoveTriggerBorderPadding, true)"
             @onclick="async () => await ToggleExpandedState()"
-            aria-controls="@_contentID"
             aria-expanded="@_isExpanded.ToString().ToLower()">
                 
         <span class="@GlobalValues.Disclosure_Trigger_Content_Class">

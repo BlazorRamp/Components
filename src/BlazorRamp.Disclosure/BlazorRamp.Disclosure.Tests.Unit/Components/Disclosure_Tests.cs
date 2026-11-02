@@ -399,23 +399,6 @@ public  class Disclosure_Tests
             component.Find($".{GlobalValues.Disclosure_Content_Class}").TextContent.Should().Contain(_contentText);
         }
 
-        [Fact]
-        public async Task Should_always_render_the_content_element_so_aria_controls_has_a_target()
-        {
-            await using var context = new BunitContext();
-
-            var component = CreateDisclosure(context, p => p.Add(x => x.TriggerText, _triggerText)
-                                                            .Add(x => x.PersistContent, false)
-                                                            .AddChildContent(_contentText));
-
-            var contentId = component.Find($".{GlobalValues.Disclosure_Content_Class}").Id;
-
-            using (new AssertionScope())
-            {
-                contentId.Should().NotBeNullOrWhiteSpace();
-                component.Find("button").GetAttribute("aria-controls").Should().Be(contentId);
-            }
-        }
 
         [Fact]
         public async Task Should_remove_the_collapsed_content_when_persist_content_is_later_turned_off()
