@@ -25,7 +25,6 @@ role="@(PanelIsRegion ? "region" : null)" data-br-panel-expanded="@IsExpanded.To
     {
         <button @ref="AccordionButtonRef" id="@AccordionButtonID" type="button" class="@GetTriggerClasses(_codeFocused)"
                 aria-expanded="@IsExpanded.ToString().ToLower()"
-                aria-controls="@AccordionPanelID"
                 data-br-accordion-trigger
                 @onclick="() => RaiseHeadingClicked()" 
                 @onfocusin="HandleHeaderFocusIn"
