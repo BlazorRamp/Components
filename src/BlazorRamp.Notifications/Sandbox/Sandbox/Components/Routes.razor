@@ -1,5 +1,8 @@
-﻿<AnnouncementHistory RefreshText="Refresh" ClearCloseText="Clear & Close" CloseText="Close" 
+﻿@using BlazorRamp.Notifications.Components
+<AnnouncementHistory RefreshText="Refresh" ClearCloseText="Clear & Close" CloseText="Close" 
 NoDataText="No announcements" Title="Recent Announcements" TriggerVisible="true" TriggerText="Alerts" />
+
+<NotificationCentre @rendermode="InteractiveAuto"></NotificationCentre>
 
 <Router AppAssembly="typeof(Program).Assembly" AdditionalAssemblies="new[] { typeof(Client._Imports).Assembly }" NotFoundPage="typeof(Pages.NotFound)">
     <Found Context="routeData">
@@ -7,3 +10,4 @@ NoDataText="No announcements" Title="Recent Announcements" TriggerVisible="true"
         <FocusOnNavigate RouteData="routeData" Selector="h1" />
     </Found>
 </Router>
+
