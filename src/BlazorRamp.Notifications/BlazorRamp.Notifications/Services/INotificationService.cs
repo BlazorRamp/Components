@@ -1,9 +1,5 @@
-﻿using BlazorRamp.Notifications.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BlazorRamp.Notifications.Common.Constants;
+using BlazorRamp.Notifications.Common.Models;
 
 namespace BlazorRamp.Notifications.Services;
 
@@ -12,7 +8,10 @@ public interface INotificationService
 
     string ServiceID { get; }
 
-    //IReadOnlyList<NotificationItem> Notifications { get; }
+    Task AddNotificationItem(NotificationItem notificationItem);
+
+    Task<NotificationItem[]> GetNotifications(NotificationFilter filter = NotificationFilter.Active);
+
     //event Action? NotificationsChanged;
 
     //Task InitialiseAsync(string? userStoreKey, IEnumerable<NotificationItem>? notifications = null);

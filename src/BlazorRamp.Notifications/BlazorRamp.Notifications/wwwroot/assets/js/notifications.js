@@ -7,8 +7,9 @@ const MAX_NOTIFICATIONS = 50;
 let _userStoreKey = ""; // empty means memory only, nothing is saved to session storage
 let _notificationItems = [];
 let _registeredServices = [];
-const getAllNotifications = () => {
-    return [..._notificationItems].sort((firstItem, secondItem) => Date.parse(secondItem.createdAt) - Date.parse(firstItem.createdAt));
+const getAllNotifications = (filter = "Active") => {
+    const filtered = _notificationItems.filter(item => filter === "All" ? true : filter === "Deleted" ? item.isDeleted : !item.isDeleted);
+    return filtered.sort((firstItem, secondItem) => Date.parse(secondItem.createdAt) - Date.parse(firstItem.createdAt));
 };
 const saveNotificationsToSessionStorage = () => {
     if (!_userStoreKey)

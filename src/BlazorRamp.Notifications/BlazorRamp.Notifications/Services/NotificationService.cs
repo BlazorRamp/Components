@@ -16,15 +16,14 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
     private bool                _isDisposed   = false;
     private bool                _isRegistered = false;
 
-    private Action<IReadOnlyList<NotificationItem>>? _onNotificationsChanged;
+    private Action<NotificationItem[]>? _onNotificationsChanged;
 
-    public event Action<IReadOnlyList<NotificationItem>> OnNotificationsChanged
+    public event Action<NotificationItem[]> OnNotificationsChanged
     {
         add    { _onNotificationsChanged += value; RegisterService().AwaitTask(_ => { }); }
         remove { _onNotificationsChanged -= value; }
     }
 
-    public IReadOnlyList<NotificationItem> Notifications { get; private set; } = [];
 
     public string ServiceID => _serviceID;
 
@@ -58,10 +57,23 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
         finally { _registerLock.Release(); }
     }
 
+
+    public async Task<NotificationItem[]> GetNotifications(NotificationFilter filter = NotificationFilter.Active)
+    {
+        var module = await GetModuleAsync();
+        return await module.InvokeAsync<NotificationItem[]>(GlobalValues.JS_Get_All_Notifications_Func, filter.ToString());
+    }
+
+    public async Task AddNotificationItem(NotificationItem notificationItem)
+    {
+        var module = await GetModuleAsync();
+
+        await module.InvokeVoidAsync(GlobalValues.JS_Add_Notification_Func, notificationItem);
+    }
+
     [JSInvokable]
     public Task NotificationsChanged(NotificationItem[] notifications)
     {
-        Notifications = notifications;
         _onNotificationsChanged?.Invoke(notifications);
 
         return Task.CompletedTask;
@@ -93,4 +105,6 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
             _registerLock.Dispose();
         }
     }
+
+
 }

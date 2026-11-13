@@ -1,4 +1,6 @@
 ﻿@page "/"
+@using BlazorRamp.Notifications.Common.Models
+
 
 @rendermode InteractiveServer
 
@@ -12,9 +14,21 @@ Welcome to your new app.
 
 <p>Service ID: @_notificationService.ServiceID</p>
 
+<button @onclick="Test" >Test</button>
 @code{
 
-private string _location = "Server";
+    private string _location = "Server";
+
+
+    private async Task Test()
+    {
+        var notification = new NotificationItem { Title = "Test Message", Message = "Some message" };
+
+        await _notificationService.AddNotificationItem(notification);
+
+        var all = await _notificationService.GetNotifications();
+
+    }
 
 protected override void OnInitialized()
 {

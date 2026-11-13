@@ -17,11 +17,14 @@ interface StoredNotifications {
     userStoreKey: string;
     notificationItems: NotificationItem[];
 }
+
 interface RegisteredService {
     serviceId: string;
     dotNetObjectReference: any;
     callbackName: string;
 }
+
+type NotificationFilter = "Active" | "Deleted" | "All";
 
 const SESSION_STORAGE_KEY = "br-notifications";
 const MAX_NOTIFICATIONS = 50;
@@ -30,9 +33,11 @@ let _userStoreKey = "";   // empty means memory only, nothing is saved to sessio
 let _notificationItems: NotificationItem[]   = [];
 let _registeredServices: RegisteredService[] = [];
 
-const getAllNotifications = (): NotificationItem[] => {
 
-    return [..._notificationItems].sort((firstItem, secondItem) => Date.parse(secondItem.createdAt) - Date.parse(firstItem.createdAt));
+const getAllNotifications = (filter: NotificationFilter = "Active"): NotificationItem[] => {
+    const filtered = _notificationItems.filter(item => filter === "All" ? true : filter === "Deleted" ? item.isDeleted : !item.isDeleted);
+    
+    return filtered.sort((firstItem, secondItem) => Date.parse(secondItem.createdAt) - Date.parse(firstItem.createdAt));
 }
 
 const saveNotificationsToSessionStorage = (): void => {

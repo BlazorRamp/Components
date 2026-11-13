@@ -16,3 +16,13 @@ public enum NotificationType : int
     /// </summary>
     Info = 0,
 }
+
+
+public enum NotificationFilter : int
+{
+    Active = 0,
+    Deleted = 1,
+
+    All = 3
+    
+}
