@@ -105,6 +105,7 @@ const initialiseNotificationStore = (userStoreKey, notificationItems) => {
         saveAndNotifyServices();
 };
 const registerNotificationService = (serviceId, dotNetObjectReference, callbackName) => {
+    console.log(serviceId);
     _registeredServices = _registeredServices.filter(registeredService => registeredService.serviceId !== serviceId);
     const newService = { serviceId, dotNetObjectReference, callbackName };
     _registeredServices.push(newService);

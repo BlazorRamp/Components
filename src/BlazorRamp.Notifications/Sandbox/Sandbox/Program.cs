@@ -1,5 +1,5 @@
 using BlazorRamp.Core.Common.Extensions;
-using Sandbox.Client.Pages;
+using BlazorRamp.Notifications.Common.Extensions;
 using Sandbox.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +12,8 @@ builder.Services.AddRazorComponents()
             configure.DetailedErrors = true;
         })
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddBlazorRampNotifications();
 
 builder.Services.AddBlazorRampCore();
 

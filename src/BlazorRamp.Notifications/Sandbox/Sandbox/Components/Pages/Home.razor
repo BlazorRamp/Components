@@ -1,7 +1,24 @@
 ﻿@page "/"
 
+@rendermode InteractiveServer
+
+@inject INotificationService _notificationService;
+
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Hello, world! - @_location</h1>
 
 Welcome to your new app.
+
+<p>Service ID: @_notificationService.ServiceID</p>
+
+@code{
+
+private string _location = "Server";
+
+protected override void OnInitialized()
+{
+    _location = OperatingSystem.IsBrowser() ? "Wasm" : "Server";
+}
+
+}

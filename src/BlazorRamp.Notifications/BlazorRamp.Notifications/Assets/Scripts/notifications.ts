@@ -168,6 +168,9 @@ const initialiseNotificationStore = (userStoreKey: string | null, notificationIt
 
 const registerNotificationService = (serviceId: string, dotNetObjectReference: any, callbackName: string): void => {
 
+
+    console.log(serviceId);
+
     _registeredServices = _registeredServices.filter(registeredService => registeredService.serviceId !== serviceId);
 
     const newService: RegisteredService = { serviceId, dotNetObjectReference, callbackName };
