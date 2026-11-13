@@ -32,4 +32,7 @@ public sealed record NotificationItem
 
     [JsonPropertyName("createdAt")]
     public DateTimeOffset CreatedAt { get; init; } = DateTimeOffset.UtcNow;
+
+    [JsonPropertyName("isDeleted")]
+    public bool IsDeleted { get; init; } = false;
 }

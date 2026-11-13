@@ -1,1 +1,32 @@
 ﻿@use "_root-notifications";
+
+
+.br-notification-centre {
+    background-color: var(--br-comp-notification-centre-pane-base-background);
+    border-radius: var(--br-comp-notification-centre-pane-base-border-radius);
+    border-width: var(--br-comp-notification-centre-pane-base-border-width);
+    border-style: var(--br-comp-notification-centre-pane-base-border-style);
+    border-color: var(--br-comp-notification-centre-pane-base-border-colour);
+
+    box-sizing: border-box;
+    max-width: 75vw;
+    min-width: var(--br-unit-wcag-reflow-2a);
+    overflow: hidden;
+    box-shadow: var(--br-comp-notification-centre-box-shadow);
+    margin: auto;
+    min-height: var(--br-unit-wcag-reflow-2a);
+
+
+    &__content-area {
+    }
+}
+
+
+.br-notification-trigger {
+    box-sizing: border-box;
+}
+
+
+.br-notification-item {
+    box-sizing: border-box;
+}

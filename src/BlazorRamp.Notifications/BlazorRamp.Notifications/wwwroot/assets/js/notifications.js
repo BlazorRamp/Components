@@ -67,9 +67,14 @@ const addNotificationItems = (notificationItems) => {
 };
 const addNotificationItem = (notificationItem) => addNotificationItems([notificationItem]);
 const removeNotificationItem = (notificationId) => {
-    if (!_notificationItems.some(existingItem => existingItem.id === notificationId))
+    const existingItem = _notificationItems.find(item => item.id === notificationId);
+    if (!existingItem)
         return;
-    _notificationItems = _notificationItems.filter(existingItem => existingItem.id !== notificationId);
+    existingItem.isDeleted = true;
+    existingItem.title = "";
+    existingItem.message = "";
+    existingItem.actionUrl = null;
+    existingItem.actionText = null;
     saveAndNotifyServices();
 };
 const clearNotifications = () => {

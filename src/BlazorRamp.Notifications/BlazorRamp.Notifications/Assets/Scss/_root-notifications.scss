@@ -1,2 +1,20 @@
-﻿body {
+﻿:root {
+    --br-comp-notification-centre-box-shadow: var(--br-unit-box-shadow-1);
+    /*
+        * Centre outline styles
+    */
+
+    --br-comp-notification-centre-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-notification-centre-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-notification-centre-outline-offset: 0px;
+    --br-comp-notification-centre-outline-colour: var(--br-comp-all-outline-colour);
+    /*
+        * pane base styles
+    */
+    --br-comp-notification-centre-pane-base-background: var(--br-comp-all-pane-base-background);
+    --br-comp-notification-centre-pane-base-border-style: var(--br-comp-all-pane-base-border-style);
+    --br-comp-notification-centre-pane-base-border-colour: var(--br-comp-all-pane-base-border-colour);
+    --br-comp-notification-centre-pane-base-border-width: var(--br-unit-border-1);
+    --br-comp-notification-centre-pane-base-border-radius: var(--br-group-dialog-pane-base-border-radius);
+    //
 }

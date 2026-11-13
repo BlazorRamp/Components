@@ -8,61 +8,78 @@ namespace BlazorRamp.Notifications.Services;
 internal sealed class NotificationService : INotificationService, IAsyncDisposable
 {
     private readonly DotNetObjectReference<NotificationService>? _serviceReference = null;
-    private readonly Lazy<Task<IJSObjectReference>> _moduleTask;
     private readonly IJSRuntime _jsRuntime;
     private readonly string     _serviceID;
+    private readonly SemaphoreSlim _moduleLock   = new(1, 1);
+    private readonly SemaphoreSlim _registerLock = new(1, 1);
+    private IJSObjectReference? _module;
     private bool                _isDisposed   = false;
     private bool                _isRegistered = false;
 
-    public event Action<NotificationItem[]> OnNotificationsChanged  = delegate { };
+    private Action<IReadOnlyList<NotificationItem>>? _onNotificationsChanged;
 
-    public string ServiceID => _serviceID; 
+    public event Action<IReadOnlyList<NotificationItem>> OnNotificationsChanged
+    {
+        add    { _onNotificationsChanged += value; RegisterService().AwaitTask(_ => { }); }
+        remove { _onNotificationsChanged -= value; }
+    }
+
+    public IReadOnlyList<NotificationItem> Notifications { get; private set; } = [];
+
+    public string ServiceID => _serviceID;
 
     public NotificationService(IJSRuntime jsRuntime)
     {
         _serviceReference = DotNetObjectReference.Create(this);
         _jsRuntime        = jsRuntime;
         _serviceID        = Guid.NewGuid().ToString();
+    }
 
-        _moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Module_File_Path).AsTask());
-
-        if (OperatingSystem.IsBrowser()) RegisterService().AwaitTask(_ => { });
-
+    private async Task<IJSObjectReference> GetModuleAsync()
+    {
+        await _moduleLock.WaitAsync();
+        try { return _module ??= await _jsRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Module_File_Path); }
+        finally { _moduleLock.Release(); }
     }
 
     public async Task RegisterService()
     {
-        if (_isRegistered) return;
+        var notificationModule = await GetModuleAsync();   // before the register lock, so the two locks never nest
 
-        var notificationModule = await _moduleTask.Value;
+        await _registerLock.WaitAsync();
+        try
+        {
+            if (_isRegistered || _isDisposed) return;
 
-        await notificationModule.InvokeVoidAsync(GlobalValues.JS_Register_Service_Func, _serviceID, _serviceReference, nameof(NotificationsChanged));
+            await notificationModule.InvokeVoidAsync(GlobalValues.JS_Register_Service_Func, _serviceID, _serviceReference, nameof(NotificationsChanged));
 
-        _isRegistered = true;
+            _isRegistered = true;   // only after success, so a failure can retry
+        }
+        finally { _registerLock.Release(); }
     }
 
     [JSInvokable]
-    public async Task NotificationsChanged(NotificationItem[] notifications)
+    public Task NotificationsChanged(NotificationItem[] notifications)
     {
-        if (OnNotificationsChanged.GetInvocationList().Length > 1) OnNotificationsChanged.Invoke(notifications);
+        Notifications = notifications;
+        _onNotificationsChanged?.Invoke(notifications);
 
-        await Task.CompletedTask;
+        return Task.CompletedTask;
     }
+
     public async ValueTask DisposeAsync()
     {
-        if (true == _isDisposed) return;
-        
+        if (_isDisposed) return;
+
         _isDisposed = true;
 
         try
         {
-            if (_moduleTask.IsValueCreated)
+            if (_module is not null)
             {
-                var notificationModule = await _moduleTask.Value;
+                if (_isRegistered) await _module.InvokeVoidAsync(GlobalValues.JS_Unregister_Service_Func, _serviceID);
 
-                if (true == _isRegistered) await notificationModule.InvokeVoidAsync(GlobalValues.JS_Unregister_Service_Func, _serviceID);
-
-                await notificationModule.DisposeAsync();
+                await _module.DisposeAsync();
             }
         }
         catch (Exception exception) when (exception is JSDisconnectedException or InvalidOperationException)
@@ -72,6 +89,8 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
         finally
         {
             _serviceReference?.Dispose();
+            _moduleLock.Dispose();
+            _registerLock.Dispose();
         }
     }
 }

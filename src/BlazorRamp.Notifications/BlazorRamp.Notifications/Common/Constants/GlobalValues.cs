@@ -22,4 +22,16 @@ internal class GlobalValues
     public const string JS_Get_All_Notifications_Func    = "getAllNotifications";
     public const string JS_Clear_Notification_Store      = "clearNotificationStore";
     public const string JS_Initialise_Notification_Store = "initialiseNotificationStore";
+
+    public const string Blazor_Ramp_ID = "blazor-ramp";
+
+    public const string Notification_Centre_Dialog_ID = $"{Blazor_Ramp_ID}-notification-centre";
+
+
+    public const string Notification_Centre_Class              = "br-notification-centre";
+    public const string Notification_Centre_Content_Area_Class = $"{Notification_Centre_Class}__content-area";
+
+
+
+    //public const string Notification_Dialog_ID = 
 }

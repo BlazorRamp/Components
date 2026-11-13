@@ -10,6 +10,7 @@ interface NotificationItem {
     actionUrl?: string | null;
     actionText?: string | null;
     createdAt: string;
+    isDeleted: boolean;
 }
 
 interface StoredNotifications {
@@ -113,12 +114,17 @@ const addNotificationItem = (notificationItem: NotificationItem): void => addNot
 
 const removeNotificationItem = (notificationId: string): void => {
 
-    if (!_notificationItems.some(existingItem => existingItem.id === notificationId)) return;
+    const existingItem = _notificationItems.find(item => item.id === notificationId);
+    if (!existingItem) return;
 
-    _notificationItems = _notificationItems.filter(existingItem => existingItem.id !== notificationId);
+    existingItem.isDeleted = true;
+    existingItem.title = "";
+    existingItem.message = "";
+    existingItem.actionUrl = null;
+    existingItem.actionText = null;
 
     saveAndNotifyServices();
-}
+};
 
 const clearNotifications = (): void => {
 
