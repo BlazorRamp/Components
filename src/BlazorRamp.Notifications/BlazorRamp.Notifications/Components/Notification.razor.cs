@@ -17,6 +17,6 @@ public partial class Notification
 
     protected override async Task OnParametersSetAsync()
     {
-        _displayTime = await ((NotificationService)NotificationService).FormatDisplayTime(NotificationItem.CreatedAt);
+        
     }
 }

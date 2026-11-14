@@ -1,3 +1,4 @@
+using BlazorRamp.Notifications.Common.Constants;
 using BlazorRamp.Notifications.Common.Models;
 using BlazorRamp.Notifications.Services;
 using Microsoft.AspNetCore.Components;
@@ -5,18 +6,23 @@ using System.Diagnostics;
 
 namespace BlazorRamp.Notifications.Components;
 
-public partial class NotificationCentre : IDisposable
+public partial class NotificationCentre : IAsyncDisposable
 {
-
+    /// <summary>
+    /// Gets or sets the heading of the viewer, which also provides its accessible name. If <see langword="null"/>,
+    /// empty or whitespace, the default text is used.
+    /// </summary>
+    [Parameter] public string HeadingText { get; set; } = GlobalValues.Notification_Centre_Heading_Text;
     [Inject] private INotificationService NotificationService { get; set; }
 
     private List<NotificationItem> _notificationItems = [];
     private bool _disposed = false;
 
+    private string _headingText = GlobalValues.Notification_Centre_Heading_Text;
 
-    protected override Task OnParametersSetAsync()
+    protected override void OnParametersSet()
     {
-        return base.OnParametersSetAsync();
+        _headingText = String.IsNullOrWhiteSpace(HeadingText) ? GlobalValues.Notification_Centre_Heading_Text : HeadingText.Trim();
     }
     protected override Task OnInitializedAsync()
     {
@@ -27,7 +33,7 @@ public partial class NotificationCentre : IDisposable
         if(true == firstRender)
         {
             await ((NotificationService)NotificationService).RegisterService();
-
+            await ((NotificationService)NotificationService).RegisterNotificationCentreHandlers(@GlobalValues.Notification_Centre_Dialog_ID);
             ((NotificationService)NotificationService).OnNotificationsChanged += NotificationCentre_OnNotificationsChanged;
         }
 
@@ -40,15 +46,14 @@ public partial class NotificationCentre : IDisposable
         StateHasChanged();
     }
 
-    public void Dispose()
+    public async ValueTask DisposeAsync()
     {
-        Debug.WriteLine("Dispose");
-
         if (true == _disposed) return;
 
         try
         {
             ((NotificationService)NotificationService).OnNotificationsChanged -= NotificationCentre_OnNotificationsChanged;
+            await((NotificationService)NotificationService).RegisterNotificationCentreHandlers(@GlobalValues.Notification_Centre_Dialog_ID);
             _disposed = true;
         }
         catch { }

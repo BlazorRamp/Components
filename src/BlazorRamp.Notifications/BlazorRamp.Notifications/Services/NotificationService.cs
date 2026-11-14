@@ -82,12 +82,17 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
     }
 
 
-    public async Task<string> FormatDisplayTime(DateTimeOffset dateTimeOffset)
+    public async Task RegisterNotificationCentreHandlers(string notificationCentreID)
     {
         var module = await GetModuleAsync();
-
-        return await module.InvokeAsync<string>(GlobalValues.JS_Format_Display_Time_Func, dateTimeOffset);
+        await module.InvokeVoidAsync(GlobalValues.JS_Register_Centre_Handlers, notificationCentreID);
     }
+    public async Task UnRegisterNotificationCentreHandlers(string notificationCentreID)
+    {
+        var module = await GetModuleAsync();
+        await module.InvokeVoidAsync(GlobalValues.JS_Unregister_Centre_Handlers, notificationCentreID);
+    }
+
     [JSInvokable]
     public Task NotificationsChanged(NotificationItem[] notifications)
     {

@@ -1,4 +1,8 @@
 ﻿:root {
+    --br-svg-remove-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M7.616 20q-.672 0-1.144-.472T6 18.385V6H5V5h4v-.77h6V5h4v1h-1v12.385q0 .69-.462 1.153T16.384 20zM17 6H7v12.385q0 .269.173.442t.443.173h8.769q.23 0 .423-.192t.192-.424zM9.808 17h1V8h-1zm3.384 0h1V8h-1zM7 6v13z'/%3E%3C/svg%3E");
+    /*
+        * Notification Centre root variables
+    */
     --br-comp-notification-centre-box-shadow: var(--br-unit-box-shadow-1);
     /*
         * Centre outline styles
@@ -16,5 +20,102 @@
     --br-comp-notification-centre-pane-base-border-colour: var(--br-comp-all-pane-base-border-colour);
     --br-comp-notification-centre-pane-base-border-width: var(--br-unit-border-1);
     --br-comp-notification-centre-pane-base-border-radius: var(--br-group-dialog-pane-base-border-radius);
+    /*
+        * pane surface styles
+    */
+    --br-comp-notification-centre-pane-surface-background: var(--br-comp-all-pane-surface-background);
+    --br-comp-notification-centre-pane-surface-text: var(--br-comp-all-pane-surface-text);
+    --br-comp-notification-centre-pane-surface-font-family: var(--br-comp-all-pane-surface-font-family);
+    --br-comp-notification-centre-pane-surface-font-size: var(--br-comp-all-pane-surface-font-size);
+    --br-comp-notification-centre-pane-surface-font-weight: var(--br-comp-all-pane-surface-font-weight);
+    --br-comp-notification-centre-pane-surface-line-height: var(--br-comp-all-pane-surface-line-height);
+    --br-comp-notification-centre-pane-surface-border-style: var(--br-comp-all-pane-surface-border-style);
+    --br-comp-notification-centre-pane-surface-border-colour: var(--br-comp-all-pane-surface-border-colour);
+    --br-comp-notification-centre-pane-surface-border-width: var(--br-comp-all-pane-surface-border-width);
+    --br-comp-notification-centre-pane-surface-border-radius: var(--br-group-dialog-pane-surface-border-radius);
+    /*
+        * area header styles
+    */
+    --br-comp-notification-centre-area-header-background: var(--br-comp-all-area-header-background);
+    --br-comp-notification-centre-area-header-text: var(--br-comp-all-area-header-text);
+    --br-comp-notification-centre-area-header-font-family: var(--br-comp-all-area-header-font-family);
+    --br-comp-notification-centre-area-header-font-size: var(--br-comp-all-area-header-font-size);
+    --br-comp-notification-centre-area-header-font-weight: var(--br-comp-all-area-header-font-weight);
+    --br-comp-notification-centre-area-header-line-height: var(--br-comp-all-area-header-line-height);
+    --br-comp-notification-centre-area-header-border-style: var(--br-comp-all-area-header-border-style);
+    --br-comp-notification-centre-area-header-border-colour: var(--br-comp-all-area-header-border-colour);
+    --br-comp-notification-centre-area-header-border-width: var(--br-comp-all-area-header-border-width);
+    --br-comp-notification-centre-area-header-border-radius: var(--br-group-dialog-area-header-border-radius);
+    /*
+        * area content styles
+    */
+    --br-comp-notification-centre-area-content-background: var(--br-comp-all-area-content-background);
+    --br-comp-notification-centre-area-content-text: var(--br-comp-all-area-content-text);
+    --br-comp-notification-centre-area-content-font-family: var(--br-comp-all-area-content-font-family);
+    --br-comp-notification-centre-area-content-font-size: var(--br-unit-font-size-label);
+    --br-comp-notification-centre-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
+    --br-comp-notification-centre-area-content-line-height: var(--br-comp-all-area-content-line-height);
+    --br-comp-notification-centre-area-content-border-style: var(--br-comp-all-area-content-border-style);
+    --br-comp-notification-centre-area-content-border-colour: var(--br-comp-all-area-content-border-colour);
+    --br-comp-notification-centre-area-content-border-width: var(--br-unit-border-2);
+    --br-comp-notification-centre-area-content-border-radius: var(--br-group-dialog-area-content-border-radius);
+    /*
+        * area footer styles
+    */
+    --br-comp-notification-centre-area-footer-background: var(--br-comp-all-area-footer-background);
+    --br-comp-notification-centre-area-footer-text: var(--br-comp-all-area-footer-text);
+    --br-comp-notification-centre-area-footer-font-family: var(--br-comp-all-area-footer-font-family);
+    --br-comp-notification-centre-area-footer-font-size: var(--br-comp-all-area-footer-font-size);
+    --br-comp-notification-centre-area-footer-font-weight: var(--br-comp-all-area-footer-font-weight);
+    --br-comp-notification-centre-area-footer-line-height: var(--br-comp-all-area-footer-line-height);
+    --br-comp-notification-centre-area-footer-border-style: var(--br-comp-all-area-footer-border-style);
+    --br-comp-notification-centre-area-footer-border-colour: var(--br-comp-all-area-footer-border-colour);
+    --br-comp-notification-centre-area-footer-border-width: var(--br-comp-all-area-footer-border-width);
+    --br-comp-notification-centre-area-footer-border-radius: var(--br-group-dialog-area-footer-border-radius);
     //
+    /*
+        * Notification Trigger root variables
+    */
+    /*
+        * Notification Item root variables
+    */
+    --br-comp-notification-item-box-shadow: var(--br-unit-box-shadow-1);
+    //
+    --br-comp-notification-item-pane-base-background: var(--br-comp-all-pane-base-background);
+    --br-comp-notification-item-pane-base-border-style: var(--br-comp-all-pane-base-border-style);
+    --br-comp-notification-item-pane-base-border-colour: var(--br-comp-all-pane-base-border-colour);
+    --br-comp-notification-item-pane-base-border-width: var(--br-unit-border-1);
+    --br-comp-notification-item-pane-base-border-radius: var(--br-group-dialog-area-content-border-radius);
+    //
+    --br-comp-notification-item-area-header-background: transparent;
+    --br-comp-notification-item-area-header-text: var(--br-comp-all-area-header-text);
+    --br-comp-notification-item-area-header-font-family: var(--br-comp-all-area-header-font-family);
+    --br-comp-notification-item-area-header-font-size: var(--br-unit-font-size-1);
+    --br-comp-notification-item-area-header-font-weight: var(--br-comp-all-area-header-font-weight);
+    --br-comp-notification-item-area-header-line-height: var(--br-comp-all-area-header-line-height);
+    //
+    --br-comp-notification-item-area-content-background: transparent;
+    --br-comp-notification-item-area-content-text: var(--br-comp-all-area-content-text);
+    --br-comp-notification-item-area-content-font-family: var(--br-comp-all-area-content-font-family);
+    --br-comp-notification-item-area-content-font-size: var(--br-unit-font-size-label);
+    --br-comp-notification-item-area-content-font-weight: var(--br-comp-all-area-content-font-weight);
+    --br-comp-notification-item-area-content-line-height: var(--br-comp-all-area-content-line-height);
+    //
+    --br-comp-notification-item-button-background: var(--br-comp-all-button-background);
+    --br-comp-notification-item-button-text: var(--br-comp-all-button-text);
+    --br-comp-notification-item-button-font-family: var(--br-comp-all-button-font-family);
+    --br-comp-notification-item-button-font-size: var(--br-comp-all-button-font-size);
+    --br-comp-notification-item-button-font-weight: var(--br-comp-all-button-font-weight);
+    --br-comp-notification-item-button-line-height: var(--br-comp-all-button-line-height);
+    --br-comp-notification-item-button-border-style: var(--br-comp-all-button-border-style);
+    --br-comp-notification-item-button-border-colour: var(--br-comp-all-button-border-colour);
+    --br-comp-notification-item-button-border-width: var(--br-comp-all-button-border-width);
+    --br-comp-notification-item-button-border-radius: var(--br-group-button-border-radius);
+    --br-comp-notification-item-button-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-notification-item-button-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-notification-item-button-outline-offset: var(--br-comp-all-outline-offset);
+    --br-comp-notification-item-button-outline-colour: var(--br-comp-all-outline-colour);
+    --br-comp-notification-item-button-state-hover: var(--br-comp-all-button-state-hover);
+    --br-comp-notification-item-button-state-active-brightness: var(--br-comp-all-button-state-active-brightness);
+    --br-comp-notification-item-button-state-active-scale: var(--br-comp-all-button-state-active-scale);
 }

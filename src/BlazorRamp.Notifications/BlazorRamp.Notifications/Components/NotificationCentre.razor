@@ -1,16 +1,29 @@
 ﻿
 <dialog id="@GlobalValues.Notification_Centre_Dialog_ID" class="@GlobalValues.Notification_Centre_Class" popover="auto">
+
     <div class="@GlobalValues.Notification_Centre_Content_Area_Class">
-        @if(_notificationItems.Count > 0)
-        {
-            <ul>
-                @foreach (var notificationItem in _notificationItems)
-                {
-                    <Notification NotificationItem="notificationItem" />
-                }
-            </ul>
-        }
+        <h2 class="@GlobalValues.Notification_Centre_Header_Class">
+            @_headingText
+        </h2>
+
+        <div class="@GlobalValues.Notification_Centre_Content_Class">
+            @if(_notificationItems.Count > 0)
+            {
+                <ul role="list">
+                    @foreach (var notificationItem in _notificationItems)
+                    {
+                        <Notification NotificationItem="notificationItem" />
+                    }
+                </ul>
+            }
+        </div>
+
+        <div class="@GlobalValues.Notification_Centre_Footer_Class">
+
+        </div>
+
     </div>
+
 </dialog>
 
 

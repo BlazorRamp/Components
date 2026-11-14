@@ -68,18 +68,14 @@ const formatDisplayTime = (createdAt: string, locale: string = LOCALE): string =
     return rtf.format(-diffYears, 'year');
 };
 
+const refreshActiveDisplayTimes = (): void => {
+    for (const item of _notificationItems.filter(item => !item.isDeleted)) {
+        item.displayTime = formatDisplayTime(item.createdAt);
+    }
+};
 
 const getAllNotifications = (filter: NotificationFilter = "Active"): NotificationItem[] => {
     const filtered = _notificationItems.filter(item => filter === "All" ? true : filter === "Deleted" ? item.isDeleted : !item.isDeleted);
-
-    // if (filter !== "Deleted") {
-
-    //     for (const notificationItem of filtered)
-    //     {
-    //         notificationItem.displayTime = formatDisplayTime(notificationItem.createdAt);
-    //     }
-    // }
-
     return filtered.sort((firstItem, secondItem) => Date.parse(secondItem.createdAt) - Date.parse(firstItem.createdAt));
 }
 
@@ -220,8 +216,35 @@ const initialiseNotificationStore = (userStoreKey: string | null, notificationIt
 };
 
 
-const registerNotificationService = (serviceId: string, dotNetObjectReference: any, callbackName: string): void => {
 
+const handleNotificationCentreToggleState = (event: Event): void => {
+
+    if ((event as ToggleEvent).newState !== "open") return;
+
+    refreshActiveDisplayTimes();
+    sendNotificationsToServices();
+};
+
+const registerNotificationCentreHandlers = (dialogElementId: string): void => {
+
+    const dialogElement = document.getElementById(dialogElementId);
+    if (!dialogElement) return;
+
+    dialogElement.removeEventListener("toggle", handleNotificationCentreToggleState);
+    dialogElement.addEventListener("toggle", handleNotificationCentreToggleState);
+};
+
+
+
+const unregisterNotificationCentreHandlers = (dialogElementId: string): void => {
+    const dialogElement = document.getElementById(dialogElementId);
+
+    if (!dialogElement) return;
+
+    dialogElement.removeEventListener("toggle", handleNotificationCentreToggleState);
+}
+
+const registerNotificationService = (serviceId: string, dotNetObjectReference: any, callbackName: string): void => {
 
     console.log(serviceId);
 
@@ -238,6 +261,6 @@ const unregisterNotificationService = (serviceId: string): void => {
 };
 
 export {
-    registerNotificationService, unregisterNotificationService, initialiseNotificationStore, addNotificationItem, removeNotificationItem,
-    clearNotifications, addNotificationItems, getAllNotifications, clearNotificationStore, formatDisplayTime
-}
+    registerNotificationService, unregisterNotificationService, registerNotificationCentreHandlers, unregisterNotificationCentreHandlers,
+    initialiseNotificationStore, addNotificationItem, removeNotificationItem, clearNotifications, addNotificationItems, getAllNotifications, clearNotificationStore
+};

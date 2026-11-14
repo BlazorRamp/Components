@@ -1,4 +1,22 @@
 ﻿<div class="@GlobalValues.Notification_Item_Class">
-    <p>@NotificationItem.Title - @_displayTime</p>
-    <button type="button" @onclick="() => HandleRemoveNotification(NotificationItem.ID)">Remove</button>
+    
+    <div class="@GlobalValues.Notification_Item_Title_Area_Class">
+        <span class="@GlobalValues.Notification_Item_Title_Class">@NotificationItem.Title</span>
+        <span class="@GlobalValues.Notification_Item_Time_Class">@NotificationItem.DisplayTime</span>
+    </div>
+
+    <div class="@GlobalValues.Notification_Item_Content_Class">
+        @NotificationItem.Message
+    </div>
+    <div class="@GlobalValues.Notification_Item_Footer_Area_Class">
+        <button class="@GlobalValues.Notification_Item_Button_Class" aria-label="Remove" type="button" @onclick="() => HandleRemoveNotification(NotificationItem.ID)">
+            <span class="@GlobalValues.Notification_Item_Remove_Icon_Class"  aria-hidden="true"></span>
+       </button>
+    </div>
+
+
+
+
+
+
 </div>
