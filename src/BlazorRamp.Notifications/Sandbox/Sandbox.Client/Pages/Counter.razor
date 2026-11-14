@@ -1,7 +1,8 @@
 ﻿@page "/counter"
 
 
-@rendermode InteractiveWebAssembly
+@rendermode @(new InteractiveWebAssemblyRenderMode(false))
+
 @inject INotificationService _notificationService;
 
 <PageTitle>Counter</PageTitle>

@@ -1,11 +1,5 @@
-﻿using BlazorRamp.Core.Common.Constants;
-using BlazorRamp.Notifications.Common.Constants;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using BlazorRamp.Notifications.Common.Constants;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace BlazorRamp.Notifications.Common.Models;
 
@@ -33,6 +27,11 @@ public sealed record NotificationItem
     [JsonPropertyName("createdAt")]
     public DateTimeOffset CreatedAt { get; init; } = DateTimeOffset.UtcNow;
 
+    [JsonPropertyName("displayTime")]
+    public string DisplayTime { get; init; } = "";
+
     [JsonPropertyName("isDeleted")]
     public bool IsDeleted { get; init; } = false;
+
+
 }

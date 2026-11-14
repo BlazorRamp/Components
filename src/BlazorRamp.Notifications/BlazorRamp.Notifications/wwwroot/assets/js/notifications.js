@@ -4,11 +4,43 @@ var NotificationType;
 })(NotificationType || (NotificationType = {}));
 const SESSION_STORAGE_KEY = "br-notifications";
 const MAX_NOTIFICATIONS = 50;
+const LOCALE = navigator.language || "en-GB";
 let _userStoreKey = ""; // empty means memory only, nothing is saved to session storage
 let _notificationItems = [];
 let _registeredServices = [];
+const formatDisplayTime = (createdAt, locale = LOCALE) => {
+    const timeStamp = new Date(createdAt);
+    const timeNow = new Date();
+    const diffMs = timeNow.getTime() - timeStamp.getTime();
+    const diffSeconds = Math.round(diffMs / 1000); // Use round for better precision
+    // Initialize the RelativeTimeFormat object
+    const rtf = new Intl.RelativeTimeFormat(locale, { numeric: 'auto', style: 'long' });
+    const diffMinutes = Math.floor(diffSeconds / 60);
+    const diffHours = Math.floor(diffMinutes / 60);
+    const diffDays = Math.floor(diffHours / 24);
+    const diffMonths = Math.floor(diffDays / 30);
+    const diffYears = Math.floor(diffDays / 365);
+    // Note: We pass a NEGATIVE value to RTF to indicate time in the PAST ("ago")
+    if (diffSeconds < 60)
+        return rtf.format(-diffSeconds, 'second');
+    if (diffMinutes < 60)
+        return rtf.format(-diffMinutes, 'minute');
+    if (diffHours < 24)
+        return rtf.format(-diffHours, 'hour');
+    if (diffDays < 30)
+        return rtf.format(-diffDays, 'day');
+    if (diffMonths < 12)
+        return rtf.format(-diffMonths, 'month');
+    return rtf.format(-diffYears, 'year');
+};
 const getAllNotifications = (filter = "Active") => {
     const filtered = _notificationItems.filter(item => filter === "All" ? true : filter === "Deleted" ? item.isDeleted : !item.isDeleted);
+    // if (filter !== "Deleted") {
+    //     for (const notificationItem of filtered)
+    //     {
+    //         notificationItem.displayTime = formatDisplayTime(notificationItem.createdAt);
+    //     }
+    // }
     return filtered.sort((firstItem, secondItem) => Date.parse(secondItem.createdAt) - Date.parse(firstItem.createdAt));
 };
 const saveNotificationsToSessionStorage = () => {
@@ -67,8 +99,8 @@ const addNotificationItems = (notificationItems) => {
         saveAndNotifyServices();
 };
 const addNotificationItem = (notificationItem) => addNotificationItems([notificationItem]);
-const removeNotificationItem = (notificationId) => {
-    const existingItem = _notificationItems.find(item => item.id === notificationId);
+const removeNotificationItem = (notificationItemId) => {
+    const existingItem = _notificationItems.find(item => item.id === notificationItemId);
     if (!existingItem)
         return;
     existingItem.isDeleted = true;
@@ -76,6 +108,7 @@ const removeNotificationItem = (notificationId) => {
     existingItem.message = "";
     existingItem.actionUrl = null;
     existingItem.actionText = null;
+    existingItem.displayTime = "";
     saveAndNotifyServices();
 };
 const clearNotifications = () => {
@@ -120,5 +153,5 @@ const registerNotificationService = (serviceId, dotNetObjectReference, callbackN
 const unregisterNotificationService = (serviceId) => {
     _registeredServices = _registeredServices.filter(registeredService => registeredService.serviceId !== serviceId);
 };
-export { registerNotificationService, unregisterNotificationService, initialiseNotificationStore, addNotificationItem, removeNotificationItem, clearNotifications, addNotificationItems, getAllNotifications, clearNotificationStore };
+export { registerNotificationService, unregisterNotificationService, initialiseNotificationStore, addNotificationItem, removeNotificationItem, clearNotifications, addNotificationItems, getAllNotifications, clearNotificationStore, formatDisplayTime };
 //# sourceMappingURL=notifications.js.map

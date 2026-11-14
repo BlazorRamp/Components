@@ -2,6 +2,7 @@
 using BlazorRamp.Notifications.Common.Extensions;
 using BlazorRamp.Notifications.Common.Models;
 using Microsoft.JSInterop;
+using Microsoft.VisualBasic;
 
 namespace BlazorRamp.Notifications.Services;
 
@@ -71,6 +72,22 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
         await module.InvokeVoidAsync(GlobalValues.JS_Add_Notification_Func, notificationItem);
     }
 
+
+
+    public async Task RemoveNotification(string notificationItemID)
+    {
+        var module = await GetModuleAsync();
+
+        await module.InvokeVoidAsync(GlobalValues.JS_Remove_Notification_Func, notificationItemID);
+    }
+
+
+    public async Task<string> FormatDisplayTime(DateTimeOffset dateTimeOffset)
+    {
+        var module = await GetModuleAsync();
+
+        return await module.InvokeAsync<string>(GlobalValues.JS_Format_Display_Time_Func, dateTimeOffset);
+    }
     [JSInvokable]
     public Task NotificationsChanged(NotificationItem[] notifications)
     {
@@ -78,7 +95,6 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
 
         return Task.CompletedTask;
     }
-
     public async ValueTask DisposeAsync()
     {
         if (_isDisposed) return;

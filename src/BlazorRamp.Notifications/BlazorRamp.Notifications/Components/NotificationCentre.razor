@@ -1,22 +1,15 @@
 ﻿
 <dialog id="@GlobalValues.Notification_Centre_Dialog_ID" class="@GlobalValues.Notification_Centre_Class" popover="auto">
     <div class="@GlobalValues.Notification_Centre_Content_Area_Class">
-
-        @{
-            string s = "stop";
-        }
-        <p>Paul</p>
         @if(_notificationItems.Count > 0)
         {
             <ul>
                 @foreach (var notificationItem in _notificationItems)
                 {
-                    <p>@notificationItem.Title</p>
+                    <Notification NotificationItem="notificationItem" />
                 }
             </ul>
         }
-
-
     </div>
 </dialog>
 

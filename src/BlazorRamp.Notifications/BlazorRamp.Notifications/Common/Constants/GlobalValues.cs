@@ -17,12 +17,12 @@ internal class GlobalValues
     public const string JS_Unregister_Service_Func       = "unregisterNotificationService"; // (serviceId: string)
     public const string JS_Add_Notification_Func         = "addNotificationItem"; //(notificationItem: NotificationItem)
     public const string JS_Add_Notifications_Func        = "addNotificationItems"; //(notificationItems: NotificationItem[])
-    public const string JS_Remove_Notification_Func      = "removeNotificationItem";//(notificationId: string)
+    public const string JS_Remove_Notification_Func      = "removeNotificationItem";//(notificationItemId: string)
     public const string JS_Clear_Notifications_Func      = "clearNotifications";
     public const string JS_Get_All_Notifications_Func    = "getAllNotifications";
     public const string JS_Clear_Notification_Store      = "clearNotificationStore";
     public const string JS_Initialise_Notification_Store = "initialiseNotificationStore";
-
+    public const string JS_Format_Display_Time_Func      = "formatDisplayTime";
     public const string Blazor_Ramp_ID = "blazor-ramp";
 
     public const string Notification_Centre_Dialog_ID = $"{Blazor_Ramp_ID}-notification-centre";
@@ -31,7 +31,7 @@ internal class GlobalValues
     public const string Notification_Centre_Class              = "br-notification-centre";
     public const string Notification_Centre_Content_Area_Class = $"{Notification_Centre_Class}__content-area";
 
-
+    public const string Notification_Item_Class = "br-notification-item";
 
     //public const string Notification_Dialog_ID = 
 }

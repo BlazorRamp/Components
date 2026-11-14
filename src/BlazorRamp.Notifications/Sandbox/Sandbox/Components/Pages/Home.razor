@@ -2,7 +2,7 @@
 @using BlazorRamp.Notifications.Common.Models
 
 
-@rendermode InteractiveServer
+@rendermode @(new InteractiveServerRenderMode(false))
 
 @inject INotificationService _notificationService;
 
