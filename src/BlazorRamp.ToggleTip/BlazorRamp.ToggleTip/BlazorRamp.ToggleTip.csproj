@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-	<TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+	  <TargetFrameworks>net8.0;net9.0;net10.0;.net11.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <SignAssembly>True</SignAssembly>
@@ -12,13 +12,13 @@
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; ToggleTip; Information; Dialog</PackageTags>
-    <PackageReleaseNotes>Amended CSS border radius variables so the component border radius could be changed with others in the same grouping.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added support for .NET 11.0. Existing .NET 8.0, 9.0 and 10.0 targets are unchanged.</PackageReleaseNotes>
     <Description>A ToggleTip component for the Blazor Ramp ecosystem. Technically, this is a non-modal dialog
 for displaying supplimental information, activated by click, keyobard, touch or voice.
 </Description>
-    <AssemblyVersion>1.0.3</AssemblyVersion>
-    <FileVersion>1.0.3</FileVersion>
-	  <Version>1.0.3</Version>
+    <AssemblyVersion>1.1.0</AssemblyVersion>
+    <FileVersion>1.1.0</FileVersion>
+	  <Version>1.1.0</Version>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
 	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
@@ -49,8 +49,8 @@ for displaying supplimental information, activated by click, keyobard, touch or 
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
-    <PackageReference Include="BlazorRamp.Core" Version="1.1.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.29" />
+    <PackageReference Include="BlazorRamp.Core" Version="1.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.34" />
   </ItemGroup>
 
   <ItemGroup>
