@@ -238,19 +238,19 @@
         }
 
         &--next {
-            mask-image: var(--svg-pager-next-icon);
+            mask-image: var(--br-svg-pager-next-icon);
         }
 
         &--prev {
-            mask-image: var(--svg-pager-prev-icon);
+            mask-image: var(--br-svg-pager-prev-icon);
         }
 
         &--first {
-            mask-image: var(--svg-pager-first-icon);
+            mask-image: var(--br-svg-pager-first-icon);
         }
 
         &--last {
-            mask-image: var(--svg-pager-last-icon);
+            mask-image: var(--br-svg-pager-last-icon);
         }
     }
 
