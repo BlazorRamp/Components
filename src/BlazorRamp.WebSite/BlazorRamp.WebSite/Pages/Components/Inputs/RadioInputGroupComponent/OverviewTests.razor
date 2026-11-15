@@ -207,7 +207,7 @@
     
     private async Task HandleSubmitOne()
     {
-        _editContextOne.Validate();
+        await _editContextOne.ValidateAsync();
         var announcement = new Announcement("Validation invoked on example one form fields", AnnouncementType.Info, "Submit One Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
@@ -215,14 +215,14 @@
     }
     private async Task HandleSubmitTwo()
     {
-        _editContextTwo.Validate();
+        await _editContextTwo.ValidateAsync();
         var announcement = new Announcement("Validation invoked on example two form fields", AnnouncementType.Info, "Submit Two Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
     }
     private async Task HandleSubmitThree()
     {
-        _editContextThree.Validate();
+        await _editContextThree.ValidateAsync();
         var announcement = new Announcement("Validation invoked on example three form fields", AnnouncementType.Info, "Submit Three Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);

@@ -1,6 +1,4 @@
-﻿@using System.Text.RegularExpressions
-@using Validated.Core.Types
-
+﻿
 @attribute [Route($"{GlobalValues.Root_Path_Components}/{GlobalValues.Component_Path_Part_Inputs}/{GlobalValues.Component_Path_Part_TimeInput}/{GlobalValues.Common_Page_Path_Overview_Tests}")]
 
 @inject ILiveRegionService _liveRegionService
@@ -290,7 +288,7 @@
 
     private async Task HandleSubmitOne()
     {
-        _editContextOne.Validate();
+        await _editContextOne.ValidateAsync();
         var announcement = new Announcement("Validation invoked on example one form fields", AnnouncementType.Info, "Submit One Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
@@ -298,21 +296,21 @@
     }
     private async Task HandleSubmitTwo()
     {
-        _editContextTwo.Validate();
+        await _editContextTwo.ValidateAsync();
         var announcement = new Announcement("Validation invoked on example two form fields", AnnouncementType.Info, "Submit Two Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
     }
     private async Task HandleSubmitThree()
     {
-        _editContextThree.Validate();
+        await _editContextThree.ValidateAsync();
         var announcement = new Announcement("Validation invoked on example three form fields", AnnouncementType.Info, "Submit Three Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
     }
     private async Task HandleSubmitFour()
     {
-        _editContextFour.Validate();
+        await _editContextFour.ValidateAsync();
         var announcement = new Announcement("Validation invoked on example four form fields", AnnouncementType.Info, "Submit Four Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
@@ -320,14 +318,14 @@
     }
     private async Task HandleSubmitFive()
     {
-        _editContextFive.Validate();
+        await _editContextFive.ValidateAsync();
         var announcement = new Announcement("Validation invoked on example five form fields", AnnouncementType.Info, "Submit Five Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
     }
     private async Task HandleSubmitSix()
     {
-        _editContextSix.Validate();
+        await _editContextSix.ValidateAsync();
         var announcement = new Announcement("Validation invoked on example six form fields", AnnouncementType.Info, "Submit Six Button");
 
         await _liveRegionService.MakeAnnouncement(announcement);
