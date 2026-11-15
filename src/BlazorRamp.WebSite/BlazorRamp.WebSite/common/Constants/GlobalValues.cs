@@ -179,6 +179,7 @@ public static class GlobalValues
     public const string Site_Link_Docs_Pager           = "https://docs.blazorramp.uk/components/pager/overview";
     public const string Site_Link_Docs_Modal_Dialog    = "https://docs.blazorramp.uk/frameworks/modal-dialog/overview";
     public const string Site_Link_Docs_ToggleTip       = "https://docs.blazorramp.uk/components/toggletip/overview";
+    public const string Site_Link_Docs_ToolTip         = "https://docs.blazorramp.uk/components/tooltip/overview";
     public const string Site_Link_Docs_Tabs            = "https://docs.blazorramp.uk/components/tabs/overview";
     public const string Site_Link_Docs_Accordion       = "https://docs.blazorramp.uk/components/accordion/overview";
 
