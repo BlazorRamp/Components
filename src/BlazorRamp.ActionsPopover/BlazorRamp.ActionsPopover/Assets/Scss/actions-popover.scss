@@ -3,7 +3,7 @@
 @mixin chevron-down-icon {
     display: inline-block;
     background-color: currentColor;
-    mask-image: var(--svg-chevron-down-icon);
+    mask-image: var(--br-svg-chevron-down-icon);
     mask-repeat: no-repeat;
     mask-size: 100% 100%;
 
