@@ -12,10 +12,10 @@
     <Description>DataTable -  an accessible, sortable, filterable table component for an in-memory list of items. </Description>
     <Copyright>Copyright (c) 2026 Paul Kent and BlazorRamp Contributors</Copyright>
     <PackageTags>Blazor; Accessible Components; Accessibility; Data Table; ARIA; </PackageTags>
-    <PackageReleaseNotes>Amended CSS border radius variables so the component border radius could be changed with others in the same grouping.</PackageReleaseNotes>
-    <FileVersion>1.0.2</FileVersion>
-    <AssemblyVersion>1.0.2</AssemblyVersion>
-    <Version>1.0.2</Version>
+    <PackageReleaseNotes>Added support for .NET 11.0. Existing .NET 8.0, 9.0 and 10.0 targets are unchanged.</PackageReleaseNotes>
+    <FileVersion>1.1.0</FileVersion>
+    <AssemblyVersion>1.1.0</AssemblyVersion>
+    <Version>1.1.0</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	 <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
