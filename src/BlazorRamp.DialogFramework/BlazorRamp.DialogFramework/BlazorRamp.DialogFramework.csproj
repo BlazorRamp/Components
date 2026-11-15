@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-	<TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+	  <TargetFrameworks>net8.0;net9.0;net10.0;.net11.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <SignAssembly>True</SignAssembly>
@@ -13,11 +13,11 @@
     <RepositoryUrl>https://github.com/BlazorRamp/Components</RepositoryUrl>
     <PackageProjectUrl>https://github.com/BlazorRamp/Components</PackageProjectUrl>
     <PackageTags>Blazor; Accessible Components; Accessibility; ARIA; Modal dialog; Modal; Dialog;</PackageTags>
-    <PackageReleaseNotes>Amended CSS border radius variables so the component border radius could be changed with others in the same grouping.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added support for .NET 11.0. Existing .NET 8.0, 9.0 and 10.0 targets are unchanged.</PackageReleaseNotes>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <AssemblyVersion>1.0.3</AssemblyVersion>
-    <FileVersion>1.0.3</FileVersion>
-	<Version>1.0.3</Version>
+    <AssemblyVersion>1.1.0</AssemblyVersion>
+    <FileVersion>1.1.0</FileVersion>
+	<Version>1.1.0</Version>
 	  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	  <Deterministic>true</Deterministic>
 	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -43,12 +43,12 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="BlazorRamp.Core" Version="1.1.4" />
+		<PackageReference Include="BlazorRamp.Core" Version="1.2.0" />
 		<PackageReference Include="BuildWebCompiler2022" Version="1.14.15">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.29" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.34" />
 		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="7.0.1">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
