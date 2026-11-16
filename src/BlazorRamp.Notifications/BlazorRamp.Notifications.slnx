@@ -3,8 +3,8 @@
     <Project Path="BlazorRamp.Notifications/BlazorRamp.Notifications.csproj" />
   </Folder>
   <Folder Name="/02 - Sandbox/">
-    <Project Path="Sandbox/Sandbox.Client/Sandbox.Client.csproj" />
-    <Project Path="Sandbox/Sandbox/Sandbox.csproj" />
+    <Project Path="Sandbox/Sandbox.Client/Sandbox.Client.csproj" Id="f86dd513-3fbf-4791-8060-e7f1f6889510" />
+    <Project Path="Sandbox/Sandbox/Sandbox.csproj" Id="e6819d2c-892e-4250-a295-34341e6eac37" />
   </Folder>
   <Folder Name="/03 - Tests/">
     <Project Path="BlazorRamp.Notifications.Tests.Unit/BlazorRamp.Notifications.Tests.Unit.csproj" />

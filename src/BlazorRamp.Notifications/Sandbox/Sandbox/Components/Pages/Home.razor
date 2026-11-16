@@ -1,5 +1,4 @@
 ﻿@page "/"
-@using BlazorRamp.Notifications.Common.Models
 
 
 @rendermode @(new InteractiveServerRenderMode(false))
@@ -14,8 +13,8 @@ Welcome to your new app.
 
 <p>Service ID: @_notificationService.ServiceID</p>
 
-<button @onclick="Test" >Test</button>
-@code{
+<button @onclick="Test">Test</button>
+@code {
 
     private string _location = "Server";
 
@@ -30,9 +29,9 @@ Welcome to your new app.
 
     }
 
-protected override void OnInitialized()
-{
-    _location = OperatingSystem.IsBrowser() ? "Wasm" : "Server";
-}
+    protected override void OnInitialized()
+    {
+        _location = OperatingSystem.IsBrowser() ? "Wasm" : "Server";
+    }
 
 }

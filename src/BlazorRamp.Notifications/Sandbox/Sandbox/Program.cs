@@ -1,30 +1,21 @@
 using BlazorRamp.Core.Common.Extensions;
 using BlazorRamp.Notifications.Common.Extensions;
+using Sandbox.Client.Pages;
 using Sandbox.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
-
     .AddInteractiveServerComponents()
-        .AddCircuitOptions(configure => {
-            configure.DetailedErrors = true;
-        })
     .AddInteractiveWebAssemblyComponents();
-
 builder.Services.AddBlazorRampNotifications();
-
 builder.Services.AddBlazorRampCore();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseWebAssemblyDebugging();
-}
-else
+if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
@@ -32,8 +23,6 @@ else
 }
 app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
 app.UseHttpsRedirection();
-
-app.UseAntiforgery();
 
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
