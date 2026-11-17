@@ -72,8 +72,6 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
         await module.InvokeVoidAsync(GlobalValues.JS_Add_Notification_Func, notificationItem);
     }
 
-
-
     public async Task RemoveNotification(string notificationItemID)
     {
         var module = await GetModuleAsync();
@@ -81,6 +79,17 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
         await module.InvokeVoidAsync(GlobalValues.JS_Remove_Notification_Func, notificationItemID);
     }
 
+    public async Task RemoveNotifications()
+    {
+        var module = await GetModuleAsync();
+        await module.InvokeVoidAsync(GlobalValues.JS_Remove_Notifications_Func);
+    }
+
+    public async Task CloseNotificationCentre(string dialogElementID)
+    {
+        var module = await GetModuleAsync();
+        await module.InvokeVoidAsync(GlobalValues.JS_Close_Notification_Centre,dialogElementID);
+    }
 
     public async Task RegisterNotificationCentreHandlers(string notificationCentreID)
     {

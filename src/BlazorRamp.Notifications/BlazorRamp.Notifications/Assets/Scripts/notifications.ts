@@ -225,6 +225,16 @@ const handleNotificationCentreToggleState = (event: Event): void => {
     sendNotificationsToServices();
 };
 
+const closeNotificationCentre = (dialogElementId: string,): void => {
+
+    const dialogElement = document.getElementById(dialogElementId);
+
+    if (!dialogElement) return;
+
+    if (dialogElement.matches(":popover-open")) dialogElement.hidePopover();
+
+};
+
 const registerNotificationCentreHandlers = (dialogElementId: string): void => {
 
     const dialogElement = document.getElementById(dialogElementId);
@@ -261,6 +271,6 @@ const unregisterNotificationService = (serviceId: string): void => {
 };
 
 export {
-    registerNotificationService, unregisterNotificationService, registerNotificationCentreHandlers, unregisterNotificationCentreHandlers,
+    registerNotificationService, unregisterNotificationService, registerNotificationCentreHandlers, unregisterNotificationCentreHandlers, closeNotificationCentre,
     initialiseNotificationStore, addNotificationItem, removeNotificationItem, clearNotifications, addNotificationItems, getAllNotifications, clearNotificationStore
 };

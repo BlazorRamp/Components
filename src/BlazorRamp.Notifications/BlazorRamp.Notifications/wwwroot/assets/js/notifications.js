@@ -148,6 +148,13 @@ const handleNotificationCentreToggleState = (event) => {
     refreshActiveDisplayTimes();
     sendNotificationsToServices();
 };
+const closeNotificationCentre = (dialogElementId) => {
+    const dialogElement = document.getElementById(dialogElementId);
+    if (!dialogElement)
+        return;
+    if (dialogElement.matches(":popover-open"))
+        dialogElement.hidePopover();
+};
 const registerNotificationCentreHandlers = (dialogElementId) => {
     const dialogElement = document.getElementById(dialogElementId);
     if (!dialogElement)
@@ -171,5 +178,5 @@ const registerNotificationService = (serviceId, dotNetObjectReference, callbackN
 const unregisterNotificationService = (serviceId) => {
     _registeredServices = _registeredServices.filter(registeredService => registeredService.serviceId !== serviceId);
 };
-export { registerNotificationService, unregisterNotificationService, registerNotificationCentreHandlers, unregisterNotificationCentreHandlers, initialiseNotificationStore, addNotificationItem, removeNotificationItem, clearNotifications, addNotificationItems, getAllNotifications, clearNotificationStore };
+export { registerNotificationService, unregisterNotificationService, registerNotificationCentreHandlers, unregisterNotificationCentreHandlers, closeNotificationCentre, initialiseNotificationStore, addNotificationItem, removeNotificationItem, clearNotifications, addNotificationItems, getAllNotifications, clearNotificationStore };
 //# sourceMappingURL=notifications.js.map

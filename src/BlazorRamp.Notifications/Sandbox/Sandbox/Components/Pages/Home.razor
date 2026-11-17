@@ -21,7 +21,7 @@ Welcome to your new app.
 
     private async Task Test()
     {
-        var notification = new NotificationItem { Title = "Test Message", Message = "Some message" };
+        var notification = new NotificationItem { Title = "Test Message", Message = "Some message", ActionText="View this message", ActionUrl="/" };
 
         await _notificationService.AddNotificationItem(notification);
 

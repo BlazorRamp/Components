@@ -1,6 +1,20 @@
 ﻿@use "_root-notifications";
 
 
+@mixin remove-icon {
+    display: inline-block;
+    background-color: currentColor;
+    mask-image: var(--br-svg-remove-notification-icon);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    color: var(--br-unit-colour-danger);
+
+    @media (forced-colors: active) {
+        background-color: CanvasText;
+        color: Canvas;
+    }
+}
+
 .br-notification-centre {
     margin: auto;
     padding: 0;
@@ -27,7 +41,8 @@
         background-color: var(--br-comp-notification-centre-pane-surface-background);
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr auto;
+        grid-template-rows: auto auto 1fr auto;
+        gap: var(--br-unit-space-5);
         padding: var(--br-unit-space-5);
         padding-top: var(--br-unit-space-4);
         border-radius: var(--br-comp-notification-centre-pane-surface-border-radius);
@@ -47,7 +62,6 @@
         border-width: var(--br-comp-notification-centre-area-header-border-width);
         grid-row: 1/2;
         text-align: center;
-        padding-bottom: var(--br-unit-space-5);
         font-size: var(--br-comp-notification-centre-area-header-font-size);
         font-weight: var(--br-comp-notification-centre-area-header-font-weight);
         font-family: var(--br-comp-notification-centre-area-header-font-family);
@@ -55,8 +69,14 @@
         background-color: var(--br-comp-notification-centre-area-header-background);
     }
 
-    &__content {
+    &__dialog-actions {
         grid-row: 2/3;
+        display: flex;
+        justify-content: end;
+    }
+
+    &__content {
+        grid-row: 3/4;
         overflow-y: auto;
         overflow-x: hidden;
         background-color: var(--br-comp-notification-centre-area-content-background);
@@ -86,22 +106,61 @@
     }
 
     &__footer {
-        background-color: var(--br-comp-notification-centre-area-footer-background);
-        color: var(--br-comp-notification-centre-area-footer-text);
-        border-width: var(--br-comp-notification-centre-area-footer-border-width);
-        border-style: var(--br-comp-notification-centre-area-footer-border-style);
-        border-radius: var(--br-comp-notification-centre-area-footer-border-radius);
-        border-color: var(--br-comp-notification-centre-area-footer-border-colour);
-        font-family: var(--br-comp-notification-centre-area-footer-font-family);
-        font-size: var(--br-comp-notification-centre-area-footer-font-size);
-        font-weight: var(--br-comp-notification-centre-area-footer-font-weight);
-        line-height: var(--br-comp-notification-centre-area-footer-line-height);
-        grid-row: 3/4;
-        min-height: calc(var(--br-unit-wcag-target-2a) + var(--br-unit-space-5));
         display: flex;
         justify-content: end;
+        & button{
+            justify-content:center;
+        }
+    }
+
+    &__button {
+        appearance: none;
+        display: flex;
+        gap: 0 var(--br-unit-space-3);
+        justify-content: start;
         align-items: center;
-        padding-top: var(--br-unit-space-4);
+        background-color: var(--br-comp-notification-centre-button-background);
+        color: var(--br-comp-notification-centre-button-text);
+        font-family: var(--br-comp-notification-centre-button-font-family);
+        font-size: var(--br-comp-notification-centre-button-font-size);
+        font-weight: var(--br-comp-notification-centre-button-font-weight);
+        line-height: var(--br-comp-notification-centre-button-line-height);
+        padding-block: var(--br-unit-space-2);
+        padding-inline: var(--br-unit-space-4);
+        position: relative;
+        overflow: hidden;
+        min-height: var(--br-unit-wcag-target-2a);
+        min-width: calc((var(--br-unit-wcag-reflow-2a) / 3));
+        border-radius: var(--br-comp-notification-centre-button-border-radius);
+        border-width: var(--br-comp-notification-centre-button-border-width);
+        border-style: var(--br-comp-notification-centre-button-border-style);
+        border-color: var(--br-comp-notification-centre-button-border-colour);
+        white-space: normal;
+        cursor: pointer;
+
+
+        &:active {
+            transform: scale(var(--br-comp-notification-centre-button-state-active-scale));
+            filter: brightness(var(--br-comp-notification-centre-button-state-active-brightness));
+            outline: none;
+        }
+
+        &:focus-visible {
+            outline-offset: var(--br-comp-notification-centre-button-outline-offset);
+            outline-width: var(--br-comp-notification-centre-button-outline-width);
+            outline-style: var(--br-comp-notification-centre-button-outline-style);
+            outline-color: var(--br-comp-notification-centre-button-outline-colour);
+        }
+
+        &:hover {
+            background-color: var(--br-comp-notification-centre-button-state-hover);
+        }
+    }
+
+    &__remove-icon {
+        @include remove-icon;
+        aspect-ratio: 1/1;
+        height: 1.5rem;
     }
 }
 
@@ -156,12 +215,14 @@
         line-height: var(--br-comp-notification-item-area-content-line-height);
     }
 
-    &__actions {
-    }
-
     &__footer-area {
         display: flex;
-        justify-content: end;
+        justify-content: space-between;
+        align-items:center;
+        gap:var(--br-unit-space-3);
+    }
+
+    &__link {
     }
 
     &__button {
@@ -208,18 +269,8 @@
     }
 
     &__remove-icon {
-        display: inline-block;
-        background-color: currentColor;
-        mask-image: var(--br-svg-remove-icon);
-        mask-repeat: no-repeat;
-        mask-size: 100% 100%;
+        @include remove-icon;
         aspect-ratio: 1/1;
         height: 1.5rem;
-        color: var(--br-unit-colour-danger);
-
-        @media (forced-colors: active) {
-            background-color: CanvasText;
-            color: Canvas;
-        }
     }
 }
