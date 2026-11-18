@@ -68,11 +68,11 @@ public partial class NotificationCentre : IAsyncDisposable
         _notificationItems = notificationItems.ToList();
  
         StateHasChanged();
-        if (_notificationItems.Count == 0)
-        {
-            await Task.Delay(400);
-            await ((NotificationService)NotificationService).SetFocus(_noNotificationsID);
-        }
+        //if (_notificationItems.Count == 0)
+        //{
+        //    await Task.Delay(400);
+        //    await ((NotificationService)NotificationService).SetFocus(_noNotificationsID);
+        //}
     }
 
     private async Task RemoveNotifications()
@@ -90,7 +90,7 @@ public partial class NotificationCentre : IAsyncDisposable
         try
         {
             ((NotificationService)NotificationService).OnNotificationsChanged -= NotificationCentre_OnNotificationsChanged;
-            await((NotificationService)NotificationService).RegisterNotificationCentreHandlers(@GlobalValues.Notification_Centre_Dialog_ID);
+            await((NotificationService)NotificationService).UnRegisterNotificationCentreHandlers(@GlobalValues.Notification_Centre_Dialog_ID);
             _disposed = true;
         }
         catch { }

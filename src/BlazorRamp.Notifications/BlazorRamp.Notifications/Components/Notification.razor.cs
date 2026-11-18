@@ -4,6 +4,7 @@ using BlazorRamp.Notifications.Common.Constants;
 using BlazorRamp.Notifications.Common.Models;
 using BlazorRamp.Notifications.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace BlazorRamp.Notifications.Components;
 
@@ -39,11 +40,12 @@ public partial class Notification
         await NotificationService.RemoveNotification(notificationItemID);
        
     }
+    private async Task HandleActionClick(MouseEventArgs mouseEventArgs)
+    {
+        if (mouseEventArgs.CtrlKey || mouseEventArgs.MetaKey || mouseEventArgs.ShiftKey) return;
 
-
-    private async Task CloseNotificationCentre()
-
-        => await NotificationService.CloseNotificationCentre(GlobalValues.Notification_Centre_Dialog_ID);
+        await NotificationService.CloseNotificationCentre(GlobalValues.Notification_Centre_Dialog_ID,true);
+    }
 
 
     private async Task MakeAnnouncement(string message)

@@ -149,12 +149,14 @@ const handleNotificationCentreToggleState = (event) => {
     refreshActiveDisplayTimes();
     sendNotificationsToServices();
 };
-const closeNotificationCentre = (dialogElementId) => {
+const closeNotificationCentre = (dialogElementId, blurActiveElementFirst = false) => {
+    //if (blurActiveElementFirst) (document.activeElement as HTMLElement | null)?.blur();
+    //console.log("Do blur: " + blurActiveElementFirst);
     const dialogElement = document.getElementById(dialogElementId);
     if (!dialogElement)
         return;
-    if (dialogElement.matches(":popover-open"))
-        dialogElement.hidePopover();
+    //if (dialogElement.matches(":popover-open"))
+    dialogElement.hidePopover();
 };
 const setFocus = (elementId) => {
     const elementToFocus = document.getElementById(elementId);
@@ -175,7 +177,6 @@ const unregisterNotificationCentreHandlers = (dialogElementId) => {
     dialogElement.removeEventListener("toggle", handleNotificationCentreToggleState);
 };
 const registerNotificationService = (serviceId, dotNetObjectReference, callbackName) => {
-    console.log(serviceId);
     _registeredServices = _registeredServices.filter(registeredService => registeredService.serviceId !== serviceId);
     const newService = { serviceId, dotNetObjectReference, callbackName };
     _registeredServices.push(newService);

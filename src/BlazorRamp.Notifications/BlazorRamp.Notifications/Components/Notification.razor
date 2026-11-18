@@ -13,7 +13,7 @@
         <span>
             @if(true == _displayActions)
             {
-                <a class="@GlobalValues.Notification_Item_Link_Class" href="@NotificationItem.ActionUrl" @onclick="CloseNotificationCentre" >@NotificationItem.ActionText</a>
+                <a class="@GlobalValues.Notification_Item_Link_Class" href="@NotificationItem.ActionUrl" @onclick="@HandleActionClick">@NotificationItem.ActionText</a>
             }
         </span>
      

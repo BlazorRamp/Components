@@ -16,7 +16,7 @@ public interface INotificationService
 
     Task RemoveNotifications();
 
-    Task CloseNotificationCentre(string dialogElementID);
+    Task CloseNotificationCentre(string dialogElementID, bool blurFirst = false);
 
     //event Action? NotificationsChanged;
 

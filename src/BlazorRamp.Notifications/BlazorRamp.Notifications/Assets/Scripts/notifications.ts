@@ -226,13 +226,18 @@ const handleNotificationCentreToggleState = (event: Event): void => {
     sendNotificationsToServices();
 };
 
-const closeNotificationCentre = (dialogElementId: string,): void => {
+const closeNotificationCentre = (dialogElementId: string, blurActiveElementFirst: boolean = false): void => {
+
+    //if (blurActiveElementFirst) (document.activeElement as HTMLElement | null)?.blur();
+
+    //console.log("Do blur: " + blurActiveElementFirst);
 
     const dialogElement = document.getElementById(dialogElementId);
 
     if (!dialogElement) return;
 
-    if (dialogElement.matches(":popover-open")) dialogElement.hidePopover();
+    //if (dialogElement.matches(":popover-open"))
+    dialogElement.hidePopover();
 
 };
 
@@ -263,8 +268,6 @@ const unregisterNotificationCentreHandlers = (dialogElementId: string): void => 
 }
 
 const registerNotificationService = (serviceId: string, dotNetObjectReference: any, callbackName: string): void => {
-
-    console.log(serviceId);
 
     _registeredServices = _registeredServices.filter(registeredService => registeredService.serviceId !== serviceId);
 
