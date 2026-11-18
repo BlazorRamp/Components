@@ -1,25 +1,36 @@
 ﻿
-<dialog id="@GlobalValues.Notification_Centre_Dialog_ID" class="@GlobalValues.Notification_Centre_Class" popover="auto">
+<dialog id="@GlobalValues.Notification_Centre_Dialog_ID" class="@GlobalValues.Notification_Centre_Class" popover="auto" aria-modal="false">
 
     <div class="@GlobalValues.Notification_Centre_Content_Area_Class">
         <h2 class="@GlobalValues.Notification_Centre_Header_Class">
             @_headingText
         </h2>
-        <div class="@GlobalValues.Notification_Centre_Dialog_Actions_Class">
-            <button class="@GlobalValues.Notification_Centre_Button_Class"  type="button" @onclick="RemoveNotifications">
-                <span class="@GlobalValues.Notification_Centre_Remove_Icon_Class"></span>
-                <span>@_removeAllText</span>    
-            </button>
-        </div>
+        @if (_notificationItems.Count > 0)
+        {
+            <div class="@GlobalValues.Notification_Centre_Dialog_Actions_Class">
+                <button class="@GlobalValues.Notification_Centre_Button_Class" type="button" @onclick="RemoveNotifications">
+                    <span class="@GlobalValues.Notification_Centre_Remove_Icon_Class"></span>
+                    <span>@_removeAllText</span>
+                </button>
+            </div>
+        }
+        
         <div class="@GlobalValues.Notification_Centre_Content_Class">
             @if(_notificationItems.Count > 0)
             {
                 <ul role="list">
                     @foreach (var notificationItem in _notificationItems)
                     {
-                        <Notification NotificationItem="notificationItem" RemoveText="@_removeText" />
+                        <li @key="notificationItem.ID" id="@notificationItem.ID" tabindex="-1">
+                            <Notification NotificationItem="notificationItem" RemoveText="@_removeText" RemovedText="@_removedText" />
+                        </li>
+                       
                     }
                 </ul>
+            }
+            else
+            {
+                <p id="@_noNotificationsID" tabindex="-1" class="@GlobalValues.Notification_Centre_No_Items_Class">@_noNotificationsText</p>
             }
         </div>
 

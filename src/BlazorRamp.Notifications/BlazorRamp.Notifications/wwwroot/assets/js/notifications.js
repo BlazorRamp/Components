@@ -78,6 +78,7 @@ const sendNotificationsToServices = (singleService) => {
     }
 };
 const saveAndNotifyServices = () => {
+    refreshActiveDisplayTimes();
     saveNotificationsToSessionStorage();
     sendNotificationsToServices();
 };
@@ -155,6 +156,11 @@ const closeNotificationCentre = (dialogElementId) => {
     if (dialogElement.matches(":popover-open"))
         dialogElement.hidePopover();
 };
+const setFocus = (elementId) => {
+    const elementToFocus = document.getElementById(elementId);
+    if (elementToFocus)
+        elementToFocus.focus();
+};
 const registerNotificationCentreHandlers = (dialogElementId) => {
     const dialogElement = document.getElementById(dialogElementId);
     if (!dialogElement)
@@ -178,5 +184,5 @@ const registerNotificationService = (serviceId, dotNetObjectReference, callbackN
 const unregisterNotificationService = (serviceId) => {
     _registeredServices = _registeredServices.filter(registeredService => registeredService.serviceId !== serviceId);
 };
-export { registerNotificationService, unregisterNotificationService, registerNotificationCentreHandlers, unregisterNotificationCentreHandlers, closeNotificationCentre, initialiseNotificationStore, addNotificationItem, removeNotificationItem, clearNotifications, addNotificationItems, getAllNotifications, clearNotificationStore };
+export { registerNotificationService, unregisterNotificationService, registerNotificationCentreHandlers, unregisterNotificationCentreHandlers, closeNotificationCentre, initialiseNotificationStore, addNotificationItem, removeNotificationItem, clearNotifications, addNotificationItems, getAllNotifications, clearNotificationStore, setFocus };
 //# sourceMappingURL=notifications.js.map

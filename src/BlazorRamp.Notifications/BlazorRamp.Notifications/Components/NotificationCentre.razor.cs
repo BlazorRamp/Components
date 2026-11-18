@@ -13,10 +13,12 @@ public partial class NotificationCentre : IAsyncDisposable
     /// Gets or sets the heading of the viewer, which also provides its accessible name. If <see langword="null"/>,
     /// empty or whitespace, the default text is used.
     /// </summary>
-    [Parameter] public string HeadingText   { get; set; }  = GlobalValues.Notification_Centre_Heading_Text;
-    [Parameter] public string RemoveAllText { get; set; } = GlobalValues.Notification_Centre_Remove_All_Text;
-    [Parameter] public string RemoveText    { get; set; } = GlobalValues.Notification_Item_Remove_Text;
-    [Parameter] public string CloseText     { get; set; } = GlobalValues.Notification_Centre_Close_Text;
+    [Parameter] public string HeadingText         { get; set; }  = GlobalValues.Notification_Centre_Heading_Text;
+    [Parameter] public string RemoveAllText       { get; set; } = GlobalValues.Notification_Centre_Remove_All_Text;
+    [Parameter] public string RemoveText          { get; set; } = GlobalValues.Notification_Item_Remove_Text;
+    [Parameter] public string RemovedText         { get; set; } = GlobalValues.Notification_Item_Removed_Text;
+    [Parameter] public string CloseText           { get; set; } = GlobalValues.Notification_Centre_Close_Text;
+    [Parameter] public string NoNotificationsText { get; set; } = GlobalValues.Notification_Centre_No_Notificationc_Text;
 
     [Inject] private INotificationService NotificationService { get; set; } = default!;
     [Inject] private ILiveRegionService   LiveRegionService   { get; set; } = default!;
@@ -24,17 +26,25 @@ public partial class NotificationCentre : IAsyncDisposable
     private List<NotificationItem> _notificationItems = [];
     private bool _disposed = false;
 
-    private string _headingText   = GlobalValues.Notification_Centre_Heading_Text;
-    private string _removeAllText = GlobalValues.Notification_Centre_Remove_All_Text;
-    private string _removeText    = GlobalValues.Notification_Item_Remove_Text;
-    private string _closeText    = GlobalValues.Notification_Centre_Close_Text;
+    private string _headingText         = GlobalValues.Notification_Centre_Heading_Text;
+    private string _removeAllText       = GlobalValues.Notification_Centre_Remove_All_Text;
+    private string _removeText          = GlobalValues.Notification_Item_Remove_Text;
+    private string _removedText         = GlobalValues.Notification_Item_Removed_Text;
+    private string _closeText           = GlobalValues.Notification_Centre_Close_Text;
+    private string _noNotificationsText = GlobalValues.Notification_Centre_No_Notificationc_Text;
+
+    private string _noNotificationsID = Guid.NewGuid().ToString();
+
+    private bool _removeCalled = false;
 
     protected override void OnParametersSet()
     {
-        _headingText   = String.IsNullOrWhiteSpace(HeadingText)   ? GlobalValues.Notification_Centre_Heading_Text    : HeadingText.Trim();
-        _removeAllText = String.IsNullOrWhiteSpace(RemoveAllText) ? GlobalValues.Notification_Centre_Remove_All_Text : RemoveAllText.Trim();
-        _removeText    = String.IsNullOrWhiteSpace(RemoveText)    ? GlobalValues.Notification_Item_Remove_Text       : RemoveText.Trim();
-        _closeText     = String.IsNullOrWhiteSpace(CloseText)     ? GlobalValues.Notification_Centre_Close_Text      : CloseText.Trim();
+        _headingText         = String.IsNullOrWhiteSpace(HeadingText)         ? GlobalValues.Notification_Centre_Heading_Text          : HeadingText.Trim();
+        _removeAllText       = String.IsNullOrWhiteSpace(RemoveAllText)       ? GlobalValues.Notification_Centre_Remove_All_Text       : RemoveAllText.Trim();
+        _removeText          = String.IsNullOrWhiteSpace(RemoveText)          ? GlobalValues.Notification_Item_Remove_Text             : RemoveText.Trim();
+        _removeText          = String.IsNullOrWhiteSpace(RemovedText)         ? GlobalValues.Notification_Item_Removed_Text            : RemovedText.Trim();
+        _closeText           = String.IsNullOrWhiteSpace(CloseText)           ? GlobalValues.Notification_Centre_Close_Text            : CloseText.Trim();
+        _noNotificationsText = String.IsNullOrWhiteSpace(NoNotificationsText) ? GlobalValues.Notification_Centre_No_Notificationc_Text : NoNotificationsText.Trim();
 
     }
     protected override Task OnInitializedAsync()
@@ -52,17 +62,23 @@ public partial class NotificationCentre : IAsyncDisposable
 
     }
 
-    private void NotificationCentre_OnNotificationsChanged(NotificationItem[] notificationItems)
+    private async void NotificationCentre_OnNotificationsChanged(NotificationItem[] notificationItems)
     {
         _notificationItems.Clear();
         _notificationItems = notificationItems.ToList();
+ 
         StateHasChanged();
+        if (_notificationItems.Count == 0)
+        {
+            await Task.Delay(400);
+            await ((NotificationService)NotificationService).SetFocus(_noNotificationsID);
+        }
     }
 
     private async Task RemoveNotifications()
-    
-        => await NotificationService.RemoveNotifications();
-
+    {
+        await NotificationService.RemoveNotifications();
+    }
     private async Task CloseCentre()
 
         => await NotificationService.CloseNotificationCentre(@GlobalValues.Notification_Centre_Dialog_ID);

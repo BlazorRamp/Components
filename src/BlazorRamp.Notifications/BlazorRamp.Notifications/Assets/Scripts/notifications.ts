@@ -128,6 +128,7 @@ const sendNotificationsToServices = (singleService?: RegisteredService): void =>
 };
 
 const saveAndNotifyServices = (): void => {
+    refreshActiveDisplayTimes();
     saveNotificationsToSessionStorage();
     sendNotificationsToServices();
 };
@@ -235,6 +236,13 @@ const closeNotificationCentre = (dialogElementId: string,): void => {
 
 };
 
+const setFocus = (elementId: string): void => {
+
+    const elementToFocus = document.getElementById(elementId);
+
+    if (elementToFocus) elementToFocus.focus();
+}
+
 const registerNotificationCentreHandlers = (dialogElementId: string): void => {
 
     const dialogElement = document.getElementById(dialogElementId);
@@ -272,5 +280,5 @@ const unregisterNotificationService = (serviceId: string): void => {
 
 export {
     registerNotificationService, unregisterNotificationService, registerNotificationCentreHandlers, unregisterNotificationCentreHandlers, closeNotificationCentre,
-    initialiseNotificationStore, addNotificationItem, removeNotificationItem, clearNotifications, addNotificationItems, getAllNotifications, clearNotificationStore
+    initialiseNotificationStore, addNotificationItem, removeNotificationItem, clearNotifications, addNotificationItems, getAllNotifications, clearNotificationStore, setFocus
 };

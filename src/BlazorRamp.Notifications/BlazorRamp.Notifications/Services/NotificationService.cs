@@ -1,6 +1,7 @@
 ﻿using BlazorRamp.Notifications.Common.Constants;
 using BlazorRamp.Notifications.Common.Extensions;
 using BlazorRamp.Notifications.Common.Models;
+using BlazorRamp.Notifications.Components;
 using Microsoft.JSInterop;
 using Microsoft.VisualBasic;
 
@@ -101,7 +102,11 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
         var module = await GetModuleAsync();
         await module.InvokeVoidAsync(GlobalValues.JS_Unregister_Centre_Handlers, notificationCentreID);
     }
-
+    public async Task SetFocus(string elementID)
+    {
+        var module = await GetModuleAsync();
+        await module.InvokeVoidAsync(GlobalValues.JS_Set_Focus_Func, elementID);
+    }
     [JSInvokable]
     public Task NotificationsChanged(NotificationItem[] notifications)
     {

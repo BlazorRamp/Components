@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using System.Timers
 
 
 @rendermode @(new InteractiveServerRenderMode(false))
@@ -14,15 +15,32 @@ Welcome to your new app.
 <p>Service ID: @_notificationService.ServiceID</p>
 
 <button @onclick="Test">Test</button>
+<button @onclick="StartTimer">Start Timeer</button>
 @code {
 
     private string _location = "Server";
 
+    private System.Timers.Timer timer = new System.Timers.Timer();
+
+    private int counter = 1;
+
+    private void StartTimer()
+    {
+        timer.Interval = 5000;
+        timer.Start();
+    }
+
+
+    private async void OnTimedEvent(Object source, ElapsedEventArgs e)
+    {
+        await Test();
+    }
+
 
     private async Task Test()
     {
-        var notification = new NotificationItem { Title = "Test Message", Message = "Some message", ActionText="View this message", ActionUrl="/" };
-
+        var notification = new NotificationItem { Title = $"Test Message {counter}; ", Message = "Some message", ActionText="View this message", ActionUrl="/counter" };
+        counter++;
         await _notificationService.AddNotificationItem(notification);
 
         var all = await _notificationService.GetNotifications();
@@ -32,6 +50,7 @@ Welcome to your new app.
     protected override void OnInitialized()
     {
         _location = OperatingSystem.IsBrowser() ? "Wasm" : "Server";
+        timer.Elapsed += OnTimedEvent;
     }
 
 }

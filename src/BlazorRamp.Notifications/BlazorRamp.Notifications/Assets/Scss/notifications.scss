@@ -94,7 +94,8 @@
         white-space: normal;
         outline: none;
         min-height: 50vh;
-
+        display:flex;
+        flex-direction:column;
         & ul {
             margin: 0;
             padding: 0;
@@ -105,7 +106,17 @@
         }
     }
 
+    &__no-items{
+        margin-block:auto;
+        margin-inline:auto;
+
+        &:focus{
+            border:1px solid red;
+        }
+    }
+
     &__footer {
+        grid-row:4/5;
         display: flex;
         justify-content: end;
         & button{

@@ -26,6 +26,8 @@ internal class GlobalValues
     public const string JS_Initialise_Notification_Store = "initialiseNotificationStore";
     public const string JS_Register_Centre_Handlers      = "registerNotificationCentreHandlers";
     public const string JS_Unregister_Centre_Handlers    = "unregisterNotificationCentreHandlers";
+
+    public const string JS_Set_Focus_Func               = "setFocus";//elementId
     public const string Blazor_Ramp_ID = "blazor-ramp";
 
     public const string Notification_Centre_Dialog_ID = $"{Blazor_Ramp_ID}-notification-centre";
@@ -34,6 +36,9 @@ internal class GlobalValues
     public const string Notification_Centre_Remove_All_Text = "Remove all";
     public const string Notification_Centre_Close_Text      = "Close";
     public const string Notification_Item_Remove_Text       = "Remove";
+    public const string Notification_Item_Removed_Text      = "Notification removed";
+
+    public const string Notification_Centre_No_Notificationc_Text = "No notifications";
 
     public const string Notification_Centre_Class              = "br-notification-centre";
 
@@ -42,6 +47,8 @@ internal class GlobalValues
 
     public const String Notification_Centre_Dialog_Actions_Class = $"{Notification_Centre_Class}__dialog-actions";
     public const string Notification_Centre_Content_Class = $"{Notification_Centre_Class}__content";
+
+    public const string Notification_Centre_No_Items_Class = $"{Notification_Centre_Class}__no-items";
     public const string Notification_Centre_Footer_Class = $"{Notification_Centre_Class}__footer";
     public const string Notification_Centre_Button_Class = $"{Notification_Centre_Class}__button";
     public const string Notification_Centre_Remove_Icon_Class = $"{Notification_Centre_Class}__remove-icon";
