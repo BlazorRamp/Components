@@ -12,10 +12,12 @@
                     @foreach (var gotoItem in _gotoList)
                     {
                         <li class="@GlobalValues.GoTo_Viewer_List_Item_Class">
-                            <button type="button" 
-                                class="@GlobalValues.Goto_Viewer_List_Button"
-                                @onclick="(() => GoToMarker(gotoItem))" 
-                                @onfocus="() => ScrollToMarker(gotoItem.MarkerID)">@gotoItem.GoToNumber - @gotoItem.GoToText</button>
+                            <button type="button"
+                                    class="@GlobalValues.Goto_Viewer_List_Button"
+                                    @onclick="(() => GoToMarker(gotoItem))"
+                                    @onfocus="() => ScrollToMarker(gotoItem.MarkerID)">
+                                @gotoItem.GoToNumber - @gotoItem.GoToText
+                            </button>
                         </li>
                     }
                 </ul>
@@ -35,9 +37,9 @@
 
 </dialog>
 
-@if(false == ExcludeTriggerButton)
+@if (false == ExcludeTriggerButton)
 {
-    <button class="@GlobalValues.GoTo_Viewer_Trigger_Block_Class" type="button" @onclick="async () => await HandleOpenViewer(_gotoViewerID)" @onclick:preventDefault popovertarget="@_gotoViewerID" aria-haspopup="dialog">
+    <button class="@GlobalValues.GoTo_Viewer_Trigger_Block_Class" type="button" @onclick="async () => await HandleOpenViewer(_gotoViewerID)">
         <span class="@GlobalValues.GoTo_Viewer_Trigger_Content_Class">
             @_triggerButtonText
         </span>

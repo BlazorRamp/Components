@@ -1,5 +1,5 @@
 ﻿@page "/counter"
-@rendermode InteractiveAuto
+@rendermode InteractiveWebAssembly
 
 <PageTitle>Counter</PageTitle>
 
@@ -9,11 +9,19 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<p>@location</p>
+
 @code {
     private int currentCount = 0;
+    private string location = "Server";
 
     private void IncrementCount()
     {
         currentCount++;
+    }
+
+    protected override void OnInitialized()
+    {
+        location = OperatingSystem.IsBrowser() ? "Wasm" : "Server";
     }
 }
