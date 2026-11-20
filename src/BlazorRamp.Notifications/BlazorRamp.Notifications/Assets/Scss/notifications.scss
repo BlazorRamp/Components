@@ -182,6 +182,9 @@
 
 
 .br-notification-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--br-unit-space-3);
     box-sizing: border-box;
     box-shadow: var(--br-comp-notification-item-box-shadow);
     padding: var(--br-unit-space-5);
@@ -192,7 +195,6 @@
     border-color: var(--br-comp-notification-item-pane-base-border-colour);
 
     &__title-area {
-        margin-block-end: var(--br-unit-space-3);
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -227,13 +229,16 @@
     }
 
     &__footer-area {
+        margin:0;
         display: flex;
         justify-content: space-between;
-        align-items:center;
-        gap:var(--br-unit-space-3);
+        align-items: center;
+        gap: var(--br-unit-space-3);
     }
 
-    &__link {
+    &__link  {
+        margin: 0;
+        padding: 0;
     }
 
     &__button {
@@ -260,6 +265,7 @@
         cursor: pointer;
         aspect-ratio: 1/1;
         min-height: var(--br-unit-wcag-target-2a);
+        margin-inline-start: auto;
 
         &:active {
             transform: scale(var(--br-comp-notification-item-button-state-active-scale));

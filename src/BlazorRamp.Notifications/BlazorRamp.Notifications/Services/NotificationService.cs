@@ -18,9 +18,9 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
     private bool                _isDisposed   = false;
     private bool                _isRegistered = false;
 
-    private Action<NotificationItem[]>? _onNotificationsChanged;
+    private Action<NotificationItem[],string?>? _onNotificationsChanged;
 
-    public event Action<NotificationItem[]> OnNotificationsChanged
+    public event Action<NotificationItem[], string?> OnNotificationsChanged
     {
         add    { _onNotificationsChanged += value; RegisterService().AwaitTask(_ => { }); }
         remove { _onNotificationsChanged -= value; }
@@ -108,9 +108,9 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
         await module.InvokeVoidAsync(GlobalValues.JS_Set_Focus_Func, elementID);
     }
     [JSInvokable]
-    public Task NotificationsChanged(NotificationItem[] notifications)
+    public Task NotificationsChanged(NotificationItem[] notifications, string? focusID = null)
     {
-        _onNotificationsChanged?.Invoke(notifications);
+        _onNotificationsChanged?.Invoke(notifications, focusID);
 
         return Task.CompletedTask;
     }

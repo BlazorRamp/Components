@@ -9,13 +9,11 @@
         @NotificationItem.Message
     </div>
     <div class="@GlobalValues.Notification_Item_Footer_Area_Class">
-        
-        <span>
-            @if(true == _displayActions)
-            {
-                <a class="@GlobalValues.Notification_Item_Link_Class" href="@NotificationItem.ActionUrl" @onclick="@HandleActionClick">@NotificationItem.ActionText</a>
-            }
-        </span>
+
+        @if(true == _displayActions)
+        {
+            <a class="@GlobalValues.Notification_Item_Link_Class" href="@NotificationItem.ActionUrl" @onclick="@HandleActionClick">@NotificationItem.ActionText</a>
+        }
      
         <button class="@GlobalValues.Notification_Item_Button_Class" aria-label="@_removeText" type="button" @onclick="() => HandleRemoveNotification(NotificationItem.ID)">
             <span class="@GlobalValues.Notification_Item_Remove_Icon_Class"  aria-hidden="true"></span>

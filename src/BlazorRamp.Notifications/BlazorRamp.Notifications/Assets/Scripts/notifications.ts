@@ -111,15 +111,13 @@ const loadNotificationsFromSessionStorage = (): NotificationItem[] => {
 };
 
 
-
-
-const sendNotificationsToServices = (singleService?: RegisteredService): void => {
+const sendNotificationsToServices = (singleService?: RegisteredService, focusId: string | null = null): void => {
 
     const currentNotifications = getAllNotifications();
     const servicesToNotify     = singleService ? [singleService] : [..._registeredServices];
 
     for (const service of servicesToNotify) {
-        service.dotNetObjectReference.invokeMethodAsync(service.callbackName, currentNotifications)
+        service.dotNetObjectReference.invokeMethodAsync(service.callbackName, currentNotifications, focusId)
             .catch(() => {
                 // The service is gone, for example the Server circuit ended, so stop calling it.
                 _registeredServices = _registeredServices.filter(registeredService => registeredService !== service);
@@ -127,10 +125,10 @@ const sendNotificationsToServices = (singleService?: RegisteredService): void =>
     }
 };
 
-const saveAndNotifyServices = (): void => {
+const saveAndNotifyServices = (focusId: string | null = null): void => {
     refreshActiveDisplayTimes();
     saveNotificationsToSessionStorage();
-    sendNotificationsToServices();
+    sendNotificationsToServices(undefined, focusId);
 };
 
 
@@ -168,7 +166,32 @@ const removeNotificationItem = (notificationItemId: string): void => {
     existingItem.actionUrl = null;
     existingItem.actionText = null;
     existingItem.displayTime = "";
-    saveAndNotifyServices();
+
+    const itemCount: number = _notificationItems.length;
+
+    let focusId:string | null = null;
+
+    const itemIndex = _notificationItems.indexOf(existingItem);
+
+    for (let index = itemIndex; index >= 0; index--) {
+        const currentItem = _notificationItems[index];
+        if (false === currentItem.isDeleted){
+            focusId = currentItem.id;
+            break;
+        }
+    }
+
+    if (focusId === null) {
+        for (let index = itemIndex; index < itemCount; index++) {
+            const currentItem = _notificationItems[index];
+            if (false === currentItem.isDeleted) {
+                focusId = currentItem.id;
+                break;
+            }
+        }
+    }
+  
+    saveAndNotifyServices(focusId);
 };
 
 const clearNotifications = (): void => {
@@ -228,7 +251,7 @@ const handleNotificationCentreToggleState = (event: Event): void => {
 
 const closeNotificationCentre = (dialogElementId: string, blurActiveElementFirst: boolean = false): void => {
 
-    //if (blurActiveElementFirst) (document.activeElement as HTMLElement | null)?.blur();
+    if (blurActiveElementFirst) (document.activeElement as HTMLElement | null)?.blur();
 
     //console.log("Do blur: " + blurActiveElementFirst);
 
@@ -236,8 +259,8 @@ const closeNotificationCentre = (dialogElementId: string, blurActiveElementFirst
 
     if (!dialogElement) return;
 
-    //if (dialogElement.matches(":popover-open"))
-    dialogElement.hidePopover();
+    if (dialogElement.matches(":popover-open")) dialogElement.hidePopover();
+   
 
 };
 

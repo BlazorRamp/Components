@@ -3,11 +3,17 @@
 
 <PageTitle>Counter</PageTitle>
 
-<h1>Counter</h1>
+<style>
+    h1:focus{
+        border: 2px solid red;
+    }
+</style>
+
+<h1 tabindex="0">Counter</h1>
 
 <p role="status">Current count: @currentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button id="count-button" class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 <p>@location</p>
 

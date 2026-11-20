@@ -1,5 +1,5 @@
 ﻿
-<dialog id="@GlobalValues.Notification_Centre_Dialog_ID" class="@GlobalValues.Notification_Centre_Class" popover="auto" autofocus>
+<div role="dialog" aria-modal="false" id="@GlobalValues.Notification_Centre_Dialog_ID" class="@GlobalValues.Notification_Centre_Class" popover="auto" autofocus>
 
     <div class="@GlobalValues.Notification_Centre_Content_Area_Class">
         <h2 class="@GlobalValues.Notification_Centre_Header_Class">
@@ -30,18 +30,18 @@
             }
             else
             {
-                <p id="@_noNotificationsID" tabindex="-1" class="@GlobalValues.Notification_Centre_No_Items_Class">@_noNotificationsText</p>
+                <p class="@GlobalValues.Notification_Centre_No_Items_Class">@_noNotificationsText</p>
             }
         </div>
 
         <div class="@GlobalValues.Notification_Centre_Footer_Class">
-            <button class="@GlobalValues.Notification_Centre_Button_Class" type="button" @onclick="CloseCentre">
+            <button id="@_closeButtonID" class="@GlobalValues.Notification_Centre_Button_Class" type="button" @onclick="CloseCentre">
                 @_closeText
             </button>
         </div>
 
     </div>
 
-</dialog>
+</div>
 
 

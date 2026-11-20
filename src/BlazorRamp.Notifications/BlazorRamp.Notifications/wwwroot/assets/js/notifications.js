@@ -66,21 +66,21 @@ const loadNotificationsFromSessionStorage = () => {
         return [];
     }
 };
-const sendNotificationsToServices = (singleService) => {
+const sendNotificationsToServices = (singleService, focusId = null) => {
     const currentNotifications = getAllNotifications();
     const servicesToNotify = singleService ? [singleService] : [..._registeredServices];
     for (const service of servicesToNotify) {
-        service.dotNetObjectReference.invokeMethodAsync(service.callbackName, currentNotifications)
+        service.dotNetObjectReference.invokeMethodAsync(service.callbackName, currentNotifications, focusId)
             .catch(() => {
             // The service is gone, for example the Server circuit ended, so stop calling it.
             _registeredServices = _registeredServices.filter(registeredService => registeredService !== service);
         });
     }
 };
-const saveAndNotifyServices = () => {
+const saveAndNotifyServices = (focusId = null) => {
     refreshActiveDisplayTimes();
     saveNotificationsToSessionStorage();
-    sendNotificationsToServices();
+    sendNotificationsToServices(undefined, focusId);
 };
 const addNotificationItemsToMemory = (notificationItems) => {
     let itemsAdded = false;
@@ -109,7 +109,26 @@ const removeNotificationItem = (notificationItemId) => {
     existingItem.actionUrl = null;
     existingItem.actionText = null;
     existingItem.displayTime = "";
-    saveAndNotifyServices();
+    const itemCount = _notificationItems.length;
+    let focusId = null;
+    const itemIndex = _notificationItems.indexOf(existingItem);
+    for (let index = itemIndex; index >= 0; index--) {
+        const currentItem = _notificationItems[index];
+        if (false === currentItem.isDeleted) {
+            focusId = currentItem.id;
+            break;
+        }
+    }
+    if (focusId === null) {
+        for (let index = itemIndex; index < itemCount; index++) {
+            const currentItem = _notificationItems[index];
+            if (false === currentItem.isDeleted) {
+                focusId = currentItem.id;
+                break;
+            }
+        }
+    }
+    saveAndNotifyServices(focusId);
 };
 const clearNotifications = () => {
     if (_notificationItems.length === 0)
@@ -150,13 +169,14 @@ const handleNotificationCentreToggleState = (event) => {
     sendNotificationsToServices();
 };
 const closeNotificationCentre = (dialogElementId, blurActiveElementFirst = false) => {
-    //if (blurActiveElementFirst) (document.activeElement as HTMLElement | null)?.blur();
+    if (blurActiveElementFirst)
+        document.activeElement?.blur();
     //console.log("Do blur: " + blurActiveElementFirst);
     const dialogElement = document.getElementById(dialogElementId);
     if (!dialogElement)
         return;
-    //if (dialogElement.matches(":popover-open"))
-    dialogElement.hidePopover();
+    if (dialogElement.matches(":popover-open"))
+        dialogElement.hidePopover();
 };
 const setFocus = (elementId) => {
     const elementToFocus = document.getElementById(elementId);
