@@ -108,27 +108,12 @@ const removeNotificationItem = (notificationItemId) => {
     existingItem.message = "";
     existingItem.actionUrl = null;
     existingItem.actionText = null;
+    existingItem.actionFocusId = null;
     existingItem.displayTime = "";
-    const itemCount = _notificationItems.length;
-    let focusId = null;
     const itemIndex = _notificationItems.indexOf(existingItem);
-    for (let index = itemIndex; index >= 0; index--) {
-        const currentItem = _notificationItems[index];
-        if (false === currentItem.isDeleted) {
-            focusId = currentItem.id;
-            break;
-        }
-    }
-    if (focusId === null) {
-        for (let index = itemIndex; index < itemCount; index++) {
-            const currentItem = _notificationItems[index];
-            if (false === currentItem.isDeleted) {
-                focusId = currentItem.id;
-                break;
-            }
-        }
-    }
-    saveAndNotifyServices(focusId);
+    const itemToFocus = _notificationItems.slice(0, itemIndex).reverse().find(item => !item.isDeleted) ?? // nearest earlier item
+        _notificationItems.slice(itemIndex + 1).find(item => !item.isDeleted); // otherwise nearest later item
+    saveAndNotifyServices(itemToFocus?.id ?? null);
 };
 const clearNotifications = () => {
     if (_notificationItems.length === 0)
@@ -169,19 +154,44 @@ const handleNotificationCentreToggleState = (event) => {
     sendNotificationsToServices();
 };
 const closeNotificationCentre = (dialogElementId, blurActiveElementFirst = false) => {
-    if (blurActiveElementFirst)
-        document.activeElement?.blur();
-    //console.log("Do blur: " + blurActiveElementFirst);
     const dialogElement = document.getElementById(dialogElementId);
     if (!dialogElement)
         return;
+    const activeElement = document.activeElement;
+    if (blurActiveElementFirst && activeElement && dialogElement.contains(activeElement))
+        activeElement.blur();
     if (dialogElement.matches(":popover-open"))
         dialogElement.hidePopover();
 };
-const setFocus = (elementId) => {
-    const elementToFocus = document.getElementById(elementId);
-    if (elementToFocus)
+const setFocus = (elementId, timeoutMs = 3000) => {
+    const tryFocus = () => {
+        const elementToFocus = document.getElementById(elementId);
+        if (!elementToFocus)
+            return false;
         elementToFocus.focus();
+        return true;
+    };
+    if (tryFocus())
+        return;
+    const observer = new MutationObserver(() => { if (tryFocus())
+        observer.disconnect(); });
+    observer.observe(document.body, { childList: true, subtree: true });
+    window.setTimeout(() => observer.disconnect(), timeoutMs);
+};
+const setFocusWhenAvailable = (elementId, timeoutMs = 3000) => {
+    const tryFocus = () => {
+        const elementToFocus = document.getElementById(elementId);
+        if (!elementToFocus)
+            return false;
+        elementToFocus.focus();
+        return true;
+    };
+    if (tryFocus())
+        return;
+    const observer = new MutationObserver(() => { if (tryFocus())
+        observer.disconnect(); });
+    observer.observe(document.body, { childList: true, subtree: true });
+    window.setTimeout(() => observer.disconnect(), timeoutMs);
 };
 const registerNotificationCentreHandlers = (dialogElementId) => {
     const dialogElement = document.getElementById(dialogElementId);

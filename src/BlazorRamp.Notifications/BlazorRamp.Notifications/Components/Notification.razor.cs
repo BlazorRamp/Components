@@ -16,7 +16,6 @@ public partial class Notification
 
     [Parameter] public string RemovedText { get; set; } = GlobalValues.Notification_Item_Remove_Text;
 
-
     [Inject] private INotificationService NotificationService { get; set; } = default!;
     [Inject] private ILiveRegionService LiveRegionService     { get; set; } = default!;
 
@@ -24,6 +23,7 @@ public partial class Notification
     private string _removeText = GlobalValues.Notification_Item_Remove_Text;
     private string _removedText = GlobalValues.Notification_Item_Removed_Text;
 
+    private bool _actionCalled = false;
 
     protected override void OnParametersSet()
     {
@@ -36,7 +36,7 @@ public partial class Notification
     private async Task HandleRemoveNotification(string notificationItemID)
     {
         await MakeAnnouncement(_removedText);
-
+        await Task.Delay(400);
         await NotificationService.RemoveNotification(notificationItemID);
        
     }
@@ -45,11 +45,15 @@ public partial class Notification
         if (mouseEventArgs.CtrlKey || mouseEventArgs.MetaKey || mouseEventArgs.ShiftKey) return;
 
         await NotificationService.CloseNotificationCentre(GlobalValues.Notification_Centre_Dialog_ID,true);
+        
+        if (false == String.IsNullOrWhiteSpace(NotificationItem.ActionFocusID)) await ((NotificationService)NotificationService).SetFocus(NotificationItem.ActionFocusID);
+
     }
 
 
     private async Task MakeAnnouncement(string message)
 
         => await LiveRegionService.MakeAnnouncement(new(message, AnnouncementType.Info, "Remove button", LiveRegionType.Assertive),false);
-    
+
+
 }

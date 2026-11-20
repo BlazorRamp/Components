@@ -5,7 +5,6 @@ using BlazorRamp.Notifications.Common.Constants;
 using BlazorRamp.Notifications.Common.Models;
 using BlazorRamp.Notifications.Services;
 using Microsoft.AspNetCore.Components;
-using System.Diagnostics;
 
 namespace BlazorRamp.Notifications.Components;
 
@@ -26,7 +25,7 @@ public partial class NotificationCentre : IAsyncDisposable
     [Inject] private INotificationService NotificationService { get; set; } = default!;
     [Inject] private ILiveRegionService   LiveRegionService   { get; set; } = default!;
 
-    [Inject] private NavigationManager NavigationManager { get; set; } = default!;
+    //[Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     private List<NotificationItem> _notificationItems = [];
     private bool _disposed = false;
@@ -46,7 +45,7 @@ public partial class NotificationCentre : IAsyncDisposable
     {
         _headingText         = String.IsNullOrWhiteSpace(HeadingText)         ? GlobalValues.Notification_Centre_Heading_Text          : HeadingText.Trim();
         _removeAllText       = String.IsNullOrWhiteSpace(RemoveAllText)       ? GlobalValues.Notification_Centre_Remove_All_Text       : RemoveAllText.Trim();
-        _removeAllText       = String.IsNullOrWhiteSpace(RemovedAllText)      ? GlobalValues.Notification_Centre_Removed_All_Text      : RemovedAllText.Trim();
+        _removedAllText      = String.IsNullOrWhiteSpace(RemovedAllText)      ? GlobalValues.Notification_Centre_Removed_All_Text      : RemovedAllText.Trim();
         _removeText          = String.IsNullOrWhiteSpace(RemoveText)          ? GlobalValues.Notification_Item_Remove_Text             : RemoveText.Trim();
         _removedText         = String.IsNullOrWhiteSpace(RemovedText)         ? GlobalValues.Notification_Item_Removed_Text            : RemovedText.Trim();
         _closeText           = String.IsNullOrWhiteSpace(CloseText)           ? GlobalValues.Notification_Centre_Close_Text            : CloseText.Trim();
@@ -64,16 +63,11 @@ public partial class NotificationCentre : IAsyncDisposable
             await ((NotificationService)NotificationService).RegisterService();
             await ((NotificationService)NotificationService).RegisterNotificationCentreHandlers(@GlobalValues.Notification_Centre_Dialog_ID);
             ((NotificationService)NotificationService).OnNotificationsChanged += NotificationCentre_OnNotificationsChanged;
-
-            NavigationManager.LocationChanged += NavigationManager_LocationChanged;
         }
 
     }
 
-    private void NavigationManager_LocationChanged(object? sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
-    {
-        
-    }
+
 
     private async void NotificationCentre_OnNotificationsChanged(NotificationItem[] notificationItems, string? focusID = null)
     {
@@ -82,7 +76,7 @@ public partial class NotificationCentre : IAsyncDisposable
 
         if (focusID is not null) await ((NotificationService)NotificationService).SetFocus(focusID);
 
-        if (_notificationItems.Count == 0) await ((NotificationService)NotificationService).SetFocus(_closeButtonID);
+        if (_notificationItems.Count == 0)  await ((NotificationService)NotificationService).SetFocus(GlobalValues.Notification_Centre_Dialog_ID);
 
         await InvokeAsync(StateHasChanged);
     }
@@ -93,10 +87,10 @@ public partial class NotificationCentre : IAsyncDisposable
         if (true == _removeAllCalled) return;
         
         _removeAllCalled = true;
-
+        
         await LiveRegionService.MakeAnnouncement(new Announcement(_removedAllText, AnnouncementType.Info, $"{_removeAllText} button", LiveRegionType.Assertive), true);
-        await Task.Delay(450);
         await NotificationService.RemoveNotifications();
+      
         
         _removeAllCalled = false;
     }
@@ -115,7 +109,6 @@ public partial class NotificationCentre : IAsyncDisposable
         {
             ((NotificationService)NotificationService).OnNotificationsChanged -= NotificationCentre_OnNotificationsChanged;
             await((NotificationService)NotificationService).UnRegisterNotificationCentreHandlers(@GlobalValues.Notification_Centre_Dialog_ID);
-            NavigationManager.LocationChanged -= NavigationManager_LocationChanged;
             _disposed = true;
         }
         catch { }

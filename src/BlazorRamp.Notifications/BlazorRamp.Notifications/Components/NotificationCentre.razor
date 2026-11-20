@@ -1,8 +1,8 @@
 ﻿
-<div role="dialog" aria-modal="false" id="@GlobalValues.Notification_Centre_Dialog_ID" class="@GlobalValues.Notification_Centre_Class" popover="auto" autofocus>
+<dialog id="@GlobalValues.Notification_Centre_Dialog_ID" aria-modal="false" aria-labelledby="@_headingTextID" class="@GlobalValues.Notification_Centre_Class" popover="auto" autofocus tabindex="-1">
 
     <div class="@GlobalValues.Notification_Centre_Content_Area_Class">
-        <h2 class="@GlobalValues.Notification_Centre_Header_Class">
+        <h2 id="@_headingTextID" class="@GlobalValues.Notification_Centre_Header_Class">
             @_headingText
         </h2>
         @if (_notificationItems.Count > 0)
@@ -42,6 +42,6 @@
 
     </div>
 
-</div>
+</dialog>
 
 

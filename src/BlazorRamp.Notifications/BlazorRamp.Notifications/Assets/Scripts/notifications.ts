@@ -9,6 +9,7 @@ interface NotificationItem {
     category: NotificationType;
     actionUrl?: string | null;
     actionText?: string | null;
+    actionFocusId?: string | null;
     createdAt: string;
     displayTime: string;
     isDeleted: boolean;
@@ -165,33 +166,16 @@ const removeNotificationItem = (notificationItemId: string): void => {
     existingItem.message = "";
     existingItem.actionUrl = null;
     existingItem.actionText = null;
+    existingItem.actionFocusId = null;
     existingItem.displayTime = "";
-
-    const itemCount: number = _notificationItems.length;
-
-    let focusId:string | null = null;
 
     const itemIndex = _notificationItems.indexOf(existingItem);
 
-    for (let index = itemIndex; index >= 0; index--) {
-        const currentItem = _notificationItems[index];
-        if (false === currentItem.isDeleted){
-            focusId = currentItem.id;
-            break;
-        }
-    }
+    const itemToFocus =
+        _notificationItems.slice(0, itemIndex).reverse().find(item => !item.isDeleted) ??   // nearest earlier item
+        _notificationItems.slice(itemIndex + 1).find(item => !item.isDeleted);              // otherwise nearest later item
 
-    if (focusId === null) {
-        for (let index = itemIndex; index < itemCount; index++) {
-            const currentItem = _notificationItems[index];
-            if (false === currentItem.isDeleted) {
-                focusId = currentItem.id;
-                break;
-            }
-        }
-    }
-  
-    saveAndNotifyServices(focusId);
+    saveAndNotifyServices(itemToFocus?.id ?? null);
 };
 
 const clearNotifications = (): void => {
@@ -251,25 +235,59 @@ const handleNotificationCentreToggleState = (event: Event): void => {
 
 const closeNotificationCentre = (dialogElementId: string, blurActiveElementFirst: boolean = false): void => {
 
-    if (blurActiveElementFirst) (document.activeElement as HTMLElement | null)?.blur();
-
-    //console.log("Do blur: " + blurActiveElementFirst);
-
     const dialogElement = document.getElementById(dialogElementId);
 
     if (!dialogElement) return;
 
-    if (dialogElement.matches(":popover-open")) dialogElement.hidePopover();
-   
+    const activeElement = document.activeElement as HTMLElement | null;
 
+    if (blurActiveElementFirst && activeElement && dialogElement.contains(activeElement)) activeElement.blur();
+
+    if (dialogElement.matches(":popover-open")) dialogElement.hidePopover();
 };
 
-const setFocus = (elementId: string): void => {
 
-    const elementToFocus = document.getElementById(elementId);
+const setFocus = (elementId: string, timeoutMs: number = 3000): void => {
 
-    if (elementToFocus) elementToFocus.focus();
-}
+    const tryFocus = (): boolean => {
+
+        const elementToFocus = document.getElementById(elementId);
+
+        if (!elementToFocus) return false;
+
+        elementToFocus.focus();
+        return true;
+    };
+
+    if (tryFocus()) return;
+
+    const observer = new MutationObserver(() => { if (tryFocus()) observer.disconnect(); });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    window.setTimeout(() => observer.disconnect(), timeoutMs);
+};
+
+const setFocusWhenAvailable = (elementId: string, timeoutMs: number = 3000): void => {
+
+    const tryFocus = (): boolean => {
+
+        const elementToFocus = document.getElementById(elementId);
+
+        if (!elementToFocus) return false;
+
+        elementToFocus.focus();
+        return true;
+    };
+
+    if (tryFocus()) return;
+
+    const observer = new MutationObserver(() => { if (tryFocus()) observer.disconnect(); });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    window.setTimeout(() => observer.disconnect(), timeoutMs);
+};
 
 const registerNotificationCentreHandlers = (dialogElementId: string): void => {
 

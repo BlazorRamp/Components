@@ -24,6 +24,9 @@ public sealed record NotificationItem
     [JsonPropertyName("actionText")]
     public string? ActionText { get; init; }
 
+    [JsonPropertyName("actionFocusId")]
+    public string? ActionFocusID { get; init; }
+
     [JsonPropertyName("createdAt")]
     public DateTimeOffset CreatedAt { get; init; } = DateTimeOffset.UtcNow;
 
