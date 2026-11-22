@@ -32,6 +32,9 @@ internal class GlobalValues
 
     public const string Notification_Centre_Dialog_ID = $"{Blazor_Ramp_ID}-notification-centre";
 
+    public const string Notification_Trigger_Name     = $"{Blazor_Ramp_ID}-notification-centre-trigger";
+
+
     public const string Notification_Centre_Heading_Text     = "Notifications";
     public const string Notification_Centre_Remove_All_Text  = "Remove all";
     public const string Notification_Centre_Removed_All_Text = "All notifications removed";
@@ -67,6 +70,8 @@ internal class GlobalValues
     public const string Notification_Item_Button_Class       = $"{Notification_Item_Class}__button";
 
     public const string Notification_Item_Remove_Icon_Class = $"{Notification_Item_Class}__remove-icon";
+
+    public const string Notification_Item_Modifier_Class = $"{Notification_Item_Class}--removing";
 
     //public const string Notification_Dialog_ID = 
 }

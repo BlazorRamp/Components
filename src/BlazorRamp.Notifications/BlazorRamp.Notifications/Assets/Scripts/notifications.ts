@@ -37,6 +37,8 @@ let _userStoreKey = "";   // empty means memory only, nothing is saved to sessio
 let _notificationItems: NotificationItem[]   = [];
 let _registeredServices: RegisteredService[] = [];
 
+
+
 const formatDisplayTime = (createdAt: string, locale: string = LOCALE): string => {
 
     const timeStamp = new Date(createdAt);
@@ -248,27 +250,6 @@ const closeNotificationCentre = (dialogElementId: string, blurActiveElementFirst
 
 
 const setFocus = (elementId: string, timeoutMs: number = 3000): void => {
-
-    const tryFocus = (): boolean => {
-
-        const elementToFocus = document.getElementById(elementId);
-
-        if (!elementToFocus) return false;
-
-        elementToFocus.focus();
-        return true;
-    };
-
-    if (tryFocus()) return;
-
-    const observer = new MutationObserver(() => { if (tryFocus()) observer.disconnect(); });
-
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    window.setTimeout(() => observer.disconnect(), timeoutMs);
-};
-
-const setFocusWhenAvailable = (elementId: string, timeoutMs: number = 3000): void => {
 
     const tryFocus = (): boolean => {
 

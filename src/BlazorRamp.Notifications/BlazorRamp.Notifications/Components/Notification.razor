@@ -1,4 +1,4 @@
-﻿<div class="@GlobalValues.Notification_Item_Class">
+﻿<div class="@GetItemClasses()">
     
     <div class="@GlobalValues.Notification_Item_Title_Area_Class">
         <span class="@GlobalValues.Notification_Item_Title_Class">@NotificationItem.Title</span>
@@ -12,11 +12,7 @@
 
         @if(true == _displayActions)
         {
-            <a class="@GlobalValues.Notification_Item_Link_Class" href="@NotificationItem.ActionUrl"
-            @onclick="@HandleActionClick" 
-@*             @onclick:stopPropagation="true"
-            @onclick:preventDefault *@
-            >@NotificationItem.ActionText</a>
+            <a class="@GlobalValues.Notification_Item_Link_Class" href="@NotificationItem.ActionUrl" @onclick="@HandleActionClick">@NotificationItem.ActionText</a>
         }
      
         <button class="@GlobalValues.Notification_Item_Button_Class" aria-label="@_removeText" type="button" @onclick="() => HandleRemoveNotification(NotificationItem.ID)">

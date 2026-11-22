@@ -1,0 +1,14 @@
+﻿
+@mixin remove-icon {
+    display: inline-block;
+    background-color: currentColor;
+    mask-image: var(--br-svg-remove-notification-icon);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    color: var(--br-unit-colour-danger);
+
+    @media (forced-colors: active) {
+        background-color: CanvasText;
+        color: Canvas;
+    }
+}

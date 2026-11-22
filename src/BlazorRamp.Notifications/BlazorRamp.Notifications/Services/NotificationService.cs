@@ -36,9 +36,19 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
 
     private async Task<IJSObjectReference> GetModuleAsync()
     {
-        await _moduleLock.WaitAsync();
-        try { return _module ??= await _jsRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Module_File_Path); }
-        finally { _moduleLock.Release(); }
+            await _moduleLock.WaitAsync();
+
+            try 
+            { 
+
+                return _module ??= await _jsRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Module_File_Path); 
+            }
+            finally 
+            { 
+                _moduleLock.Release(); 
+            }
+
+
     }
 
     public async Task RegisterService()

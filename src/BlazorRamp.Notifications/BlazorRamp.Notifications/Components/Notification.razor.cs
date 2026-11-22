@@ -23,18 +23,27 @@ public partial class Notification
     private string _removeText = GlobalValues.Notification_Item_Remove_Text;
     private string _removedText = GlobalValues.Notification_Item_Removed_Text;
 
-    private bool _actionCalled = false;
+    private bool _removing = false;
 
+    private string GetItemClasses()
+        => _removing ? $"{GlobalValues.Notification_Item_Class} {GlobalValues.Notification_Item_Modifier_Class}" : GlobalValues.Notification_Item_Class;
+    
     protected override void OnParametersSet()
     {
         _removeText     = String.IsNullOrWhiteSpace(RemoveText) ? GlobalValues.Notification_Item_Remove_Text : RemoveText.Trim();
-        _removedText    = String.IsNullOrWhiteSpace(RemoveText) ? GlobalValues.Notification_Item_Removed_Text : RemovedText.Trim();
+        _removedText    = String.IsNullOrWhiteSpace(RemovedText) ? GlobalValues.Notification_Item_Removed_Text : RemovedText.Trim();
         _displayActions = (NotificationItem is null || String.IsNullOrWhiteSpace(NotificationItem.ActionText) || String.IsNullOrWhiteSpace(NotificationItem.ActionUrl)) ? false : true;
     }
 
 
     private async Task HandleRemoveNotification(string notificationItemID)
     {
+        if (_removing) return;
+
+        _removing = true;
+
+        StateHasChanged();
+
         await MakeAnnouncement(_removedText);
         await Task.Delay(400);
         await NotificationService.RemoveNotification(notificationItemID);

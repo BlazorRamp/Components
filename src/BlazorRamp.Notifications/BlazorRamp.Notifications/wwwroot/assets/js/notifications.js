@@ -178,21 +178,6 @@ const setFocus = (elementId, timeoutMs = 3000) => {
     observer.observe(document.body, { childList: true, subtree: true });
     window.setTimeout(() => observer.disconnect(), timeoutMs);
 };
-const setFocusWhenAvailable = (elementId, timeoutMs = 3000) => {
-    const tryFocus = () => {
-        const elementToFocus = document.getElementById(elementId);
-        if (!elementToFocus)
-            return false;
-        elementToFocus.focus();
-        return true;
-    };
-    if (tryFocus())
-        return;
-    const observer = new MutationObserver(() => { if (tryFocus())
-        observer.disconnect(); });
-    observer.observe(document.body, { childList: true, subtree: true });
-    window.setTimeout(() => observer.disconnect(), timeoutMs);
-};
 const registerNotificationCentreHandlers = (dialogElementId) => {
     const dialogElement = document.getElementById(dialogElementId);
     if (!dialogElement)
