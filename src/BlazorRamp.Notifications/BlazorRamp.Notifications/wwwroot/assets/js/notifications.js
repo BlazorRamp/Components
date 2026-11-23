@@ -147,12 +147,6 @@ const initialiseNotificationStore = (userStoreKey, notificationItems) => {
     if (userStoreKeyChanged || notificationItemsAdded)
         saveAndNotifyServices();
 };
-const handleNotificationCentreToggleState = (event) => {
-    if (event.newState !== "open")
-        return;
-    refreshActiveDisplayTimes();
-    sendNotificationsToServices();
-};
 const closeNotificationCentre = (dialogElementId, blurActiveElementFirst = false) => {
     const dialogElement = document.getElementById(dialogElementId);
     if (!dialogElement)
@@ -160,8 +154,8 @@ const closeNotificationCentre = (dialogElementId, blurActiveElementFirst = false
     const activeElement = document.activeElement;
     if (blurActiveElementFirst && activeElement && dialogElement.contains(activeElement))
         activeElement.blur();
-    if (dialogElement.matches(":popover-open"))
-        dialogElement.hidePopover();
+    if (dialogElement.open)
+        dialogElement.close();
 };
 const setFocus = (elementId, timeoutMs = 3000) => {
     const tryFocus = () => {
@@ -178,18 +172,12 @@ const setFocus = (elementId, timeoutMs = 3000) => {
     observer.observe(document.body, { childList: true, subtree: true });
     window.setTimeout(() => observer.disconnect(), timeoutMs);
 };
-const registerNotificationCentreHandlers = (dialogElementId) => {
+const showNotificationCentre = (dialogElementId) => {
     const dialogElement = document.getElementById(dialogElementId);
-    if (!dialogElement)
-        return;
-    dialogElement.removeEventListener("toggle", handleNotificationCentreToggleState);
-    dialogElement.addEventListener("toggle", handleNotificationCentreToggleState);
-};
-const unregisterNotificationCentreHandlers = (dialogElementId) => {
-    const dialogElement = document.getElementById(dialogElementId);
-    if (!dialogElement)
-        return;
-    dialogElement.removeEventListener("toggle", handleNotificationCentreToggleState);
+    if (dialogElement)
+        dialogElement.showModal();
+    refreshActiveDisplayTimes();
+    sendNotificationsToServices();
 };
 const registerNotificationService = (serviceId, dotNetObjectReference, callbackName) => {
     _registeredServices = _registeredServices.filter(registeredService => registeredService.serviceId !== serviceId);
@@ -200,5 +188,5 @@ const registerNotificationService = (serviceId, dotNetObjectReference, callbackN
 const unregisterNotificationService = (serviceId) => {
     _registeredServices = _registeredServices.filter(registeredService => registeredService.serviceId !== serviceId);
 };
-export { registerNotificationService, unregisterNotificationService, registerNotificationCentreHandlers, unregisterNotificationCentreHandlers, closeNotificationCentre, initialiseNotificationStore, addNotificationItem, removeNotificationItem, clearNotifications, addNotificationItems, getAllNotifications, clearNotificationStore, setFocus };
+export { registerNotificationService, unregisterNotificationService, showNotificationCentre, closeNotificationCentre, initialiseNotificationStore, addNotificationItem, removeNotificationItem, clearNotifications, addNotificationItems, getAllNotifications, clearNotificationStore, setFocus };
 //# sourceMappingURL=notifications.js.map

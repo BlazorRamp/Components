@@ -226,18 +226,9 @@ const initialiseNotificationStore = (userStoreKey: string | null, notificationIt
 };
 
 
-
-const handleNotificationCentreToggleState = (event: Event): void => {
-
-    if ((event as ToggleEvent).newState !== "open") return;
-
-    refreshActiveDisplayTimes();
-    sendNotificationsToServices();
-};
-
 const closeNotificationCentre = (dialogElementId: string, blurActiveElementFirst: boolean = false): void => {
 
-    const dialogElement = document.getElementById(dialogElementId);
+    const dialogElement = document.getElementById(dialogElementId) as HTMLDialogElement;
 
     if (!dialogElement) return;
 
@@ -245,7 +236,7 @@ const closeNotificationCentre = (dialogElementId: string, blurActiveElementFirst
 
     if (blurActiveElementFirst && activeElement && dialogElement.contains(activeElement)) activeElement.blur();
 
-    if (dialogElement.matches(":popover-open")) dialogElement.hidePopover();
+    if (dialogElement.open) dialogElement.close();
 };
 
 
@@ -270,24 +261,16 @@ const setFocus = (elementId: string, timeoutMs: number = 3000): void => {
     window.setTimeout(() => observer.disconnect(), timeoutMs);
 };
 
-const registerNotificationCentreHandlers = (dialogElementId: string): void => {
+const showNotificationCentre = (dialogElementId: string): void => {
 
-    const dialogElement = document.getElementById(dialogElementId);
-    if (!dialogElement) return;
+    const dialogElement = document.getElementById(dialogElementId) as HTMLDialogElement;
 
-    dialogElement.removeEventListener("toggle", handleNotificationCentreToggleState);
-    dialogElement.addEventListener("toggle", handleNotificationCentreToggleState);
+    if (dialogElement) dialogElement.showModal();
+    refreshActiveDisplayTimes();
+    sendNotificationsToServices();
 };
 
 
-
-const unregisterNotificationCentreHandlers = (dialogElementId: string): void => {
-    const dialogElement = document.getElementById(dialogElementId);
-
-    if (!dialogElement) return;
-
-    dialogElement.removeEventListener("toggle", handleNotificationCentreToggleState);
-}
 
 const registerNotificationService = (serviceId: string, dotNetObjectReference: any, callbackName: string): void => {
 
@@ -304,6 +287,7 @@ const unregisterNotificationService = (serviceId: string): void => {
 };
 
 export {
-    registerNotificationService, unregisterNotificationService, registerNotificationCentreHandlers, unregisterNotificationCentreHandlers, closeNotificationCentre,
-    initialiseNotificationStore, addNotificationItem, removeNotificationItem, clearNotifications, addNotificationItems, getAllNotifications, clearNotificationStore, setFocus
+    registerNotificationService, unregisterNotificationService, showNotificationCentre, closeNotificationCentre, 
+    initialiseNotificationStore, addNotificationItem, removeNotificationItem, clearNotifications, addNotificationItems,
+    getAllNotifications, clearNotificationStore, setFocus
 };

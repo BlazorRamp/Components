@@ -14,6 +14,9 @@
     overflow: hidden;
     box-shadow: var(--br-comp-notification-centre-box-shadow);
 
+    &::backdrop {
+        background-color: var(--br-comp-notification-centre-overlay-colour);
+    }
 
     &:focus-visible {
         outline-offset: var(--br-comp-notification-centre-outline-offset);

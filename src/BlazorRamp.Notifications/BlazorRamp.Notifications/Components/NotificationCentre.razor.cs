@@ -61,7 +61,6 @@ public partial class NotificationCentre : IAsyncDisposable
         if(true == firstRender)
         {
             await ((NotificationService)NotificationService).RegisterService();
-            await ((NotificationService)NotificationService).RegisterNotificationCentreHandlers(@GlobalValues.Notification_Centre_Dialog_ID);
             ((NotificationService)NotificationService).OnNotificationsChanged += NotificationCentre_OnNotificationsChanged;
         }
 
@@ -108,7 +107,6 @@ public partial class NotificationCentre : IAsyncDisposable
         try
         {
             ((NotificationService)NotificationService).OnNotificationsChanged -= NotificationCentre_OnNotificationsChanged;
-            await((NotificationService)NotificationService).UnRegisterNotificationCentreHandlers(@GlobalValues.Notification_Centre_Dialog_ID);
             _disposed = true;
         }
         catch { }

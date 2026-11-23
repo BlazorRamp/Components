@@ -58,19 +58,15 @@
     &__link {
         margin: 0;
         padding: 0;
-        border-radius: var(--br-comp-notification-item-button-border-radius);
         color: var(--br-comp-notification-item-button-text);
+        border-radius: var(--br-comp-notification-item-link-border-radius);
 
-        &:focus-visible {
+        &:focus-visible, &:hover {
             text-decoration: none;
-            outline-offset: var(--br-comp-notification-item-button-outline-offset);
-            outline-width: var(--br-comp-notification-item-button-outline-width);
-            outline-style: var(--br-comp-notification-item-button-outline-style);
-            outline-color: var(--br-comp-notification-item-button-outline-colour);
-        }
-
-        &:hover {
-            text-decoration: none;
+            outline-offset: var(--br-comp-notification-item-link-outline-offset);
+            outline-width: var(--br-comp-notification-item-link-outline-width);
+            outline-style: var(--br-comp-notification-item-link-outline-style);
+            outline-color: var(--br-comp-notification-item-link-outline-colour);
         }
     }
 

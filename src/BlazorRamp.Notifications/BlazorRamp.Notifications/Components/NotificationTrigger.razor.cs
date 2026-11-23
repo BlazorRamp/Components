@@ -31,6 +31,12 @@ public partial class NotificationTrigger: IDisposable
         await InvokeAsync(StateHasChanged);
     }
 
+    private async Task ShowNotificaitonCentre()
+
+        => await ((NotificationService)NotificationService).ShowNotificationCentre(GlobalValues.Notification_Centre_Dialog_ID);
+
+
+
     public void Dispose()
     {
         if (true == _disposed) return;

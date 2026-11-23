@@ -100,16 +100,12 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
         await module.InvokeVoidAsync(GlobalValues.JS_Close_Notification_Centre,dialogElementID, blurFirst);
     }
 
-    public async Task RegisterNotificationCentreHandlers(string notificationCentreID)
+    public async Task ShowNotificationCentre(string dialogElmentID)
     {
         var module = await GetModuleAsync();
-        await module.InvokeVoidAsync(GlobalValues.JS_Register_Centre_Handlers, notificationCentreID);
+        await module.InvokeVoidAsync(GlobalValues.JS_Show_Notification_Centre, dialogElmentID);
     }
-    public async Task UnRegisterNotificationCentreHandlers(string notificationCentreID)
-    {
-        var module = await GetModuleAsync();
-        await module.InvokeVoidAsync(GlobalValues.JS_Unregister_Centre_Handlers, notificationCentreID);
-    }
+
     public async Task SetFocus(string elementID)
     {
         var module = await GetModuleAsync();

@@ -6,6 +6,7 @@
         * Notification Centre root variables
     */
     --br-comp-notification-centre-box-shadow: var(--br-unit-box-shadow-1);
+    --br-comp-notification-centre-overlay-colour: var(--br-comp-all-overlay-colour);
     /*
         * Centre outline styles
     */
@@ -140,4 +141,10 @@
     --br-comp-notification-item-button-state-hover: var(--br-comp-all-button-state-hover);
     --br-comp-notification-item-button-state-active-brightness: var(--br-comp-all-button-state-active-brightness);
     --br-comp-notification-item-button-state-active-scale: var(--br-comp-all-button-state-active-scale);
+    //
+    --br-comp-notification-centre-item-link-border-radius: var(--br-group-button-border-radius);
+    --br-comp-notification-centre-item-link-outline-style: var(--br-comp-all-outline-style);
+    --br-comp-notification-centre-item-link-outline-width: var(--br-comp-all-outline-width);
+    --br-comp-notification-centre-item-link-outline-offset: var(--br-unit-radius-3);
+    --br-comp-notification-centre-item-link-outline-colour: var(--br-comp-all-outline-colour);
 }

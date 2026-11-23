@@ -1,6 +1,6 @@
 ﻿@page "/"
 @using System.Timers
-
+@implements IDisposable
 
 @rendermode @(new InteractiveServerRenderMode(false))
 
@@ -15,17 +15,21 @@ Welcome to your new app.
 <p>Service ID: @_notificationService.ServiceID</p>
 
 <button @onclick="Test">Test</button>
-
+<button @onclick="StartTimer">Start Timer</button>
 @code {
 
     private string _location = "Server";
 
+    private Timer _timer = new System.Timers.Timer(5000);
 
 
     private int counter = 1;
 
 
-
+    private void StartTimer()
+    {
+        _timer.Start();
+    }
 
     private async void OnTimedEvent(Object source, ElapsedEventArgs e)
     {
@@ -47,6 +51,12 @@ Welcome to your new app.
     {
         _location = OperatingSystem.IsBrowser() ? "Wasm" : "Server";
 
+        _timer.Elapsed += OnTimedEvent;
+    }
+
+    public void Dispose()
+    {
+        _timer.Elapsed -= OnTimedEvent;
     }
 
 }
