@@ -237,6 +237,7 @@ const closeNotificationCentre = (dialogElementId: string, blurActiveElementFirst
     if (blurActiveElementFirst && activeElement && dialogElement.contains(activeElement)) activeElement.blur();
 
     if (dialogElement.open) dialogElement.close();
+
 };
 
 
@@ -268,6 +269,7 @@ const showNotificationCentre = (dialogElementId: string): void => {
     if (dialogElement) dialogElement.showModal();
     refreshActiveDisplayTimes();
     sendNotificationsToServices();
+
 };
 
 

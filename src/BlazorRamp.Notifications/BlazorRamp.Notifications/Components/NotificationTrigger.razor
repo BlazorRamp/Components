@@ -1,9 +1,6 @@
 ﻿
-<button type="button" @onclick="ShowNotificaitonCentre">
-    Notifications: @_notificationCount 
+<button class="@GlobalValues.Notification_Trigger_Class" type="button" @onclick="ShowNotificaitonCentre"> 
+    <span class="@GlobalValues.Notification_Trigger_Icon_Class" data-br-notification-count="@_notificationCount"></span>
+    @_triggerText @_notificationCount 
 </button>
 
-@* <button name="@GlobalValues.Notification_Trigger_Name" type="button" aria-expanded="false"
-        onclick="@($"document.getElementById('{GlobalValues.Notification_Centre_Dialog_ID}').showPopover()")">
-    Notifications: @_notificationCount
-</button> *@

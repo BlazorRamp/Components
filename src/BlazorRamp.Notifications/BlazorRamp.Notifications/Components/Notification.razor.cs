@@ -32,6 +32,10 @@ public partial class Notification
     {
         _removeText     = String.IsNullOrWhiteSpace(RemoveText) ? GlobalValues.Notification_Item_Remove_Text : RemoveText.Trim();
         _removedText    = String.IsNullOrWhiteSpace(RemovedText) ? GlobalValues.Notification_Item_Removed_Text : RemovedText.Trim();
+
+        _removeText = _removeText.Replace("{title}", NotificationItem.Title ?? "");
+        _removedText = _removedText.Replace("{title}", NotificationItem.Title ?? "");
+
         _displayActions = (NotificationItem is null || String.IsNullOrWhiteSpace(NotificationItem.ActionText) || String.IsNullOrWhiteSpace(NotificationItem.ActionUrl)) ? false : true;
     }
 

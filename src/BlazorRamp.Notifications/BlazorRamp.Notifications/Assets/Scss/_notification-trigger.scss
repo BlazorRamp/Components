@@ -1,3 +1,26 @@
-﻿.br-notification-trigger {
+﻿@use "_notification-mixins" as *;
+
+.br-notification-trigger {
+    appearance: none;
     box-sizing: border-box;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 0 var(--br-unit-space-2);
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: var(--br-unit-font-size-label);
+
+    &__icon {
+        aspect-ratio: 1/1;
+        height: 1.5em;
+        color: var(--br-unit-colour-warning);
+        @include notification-solid-icon;
+
+        &[data-br-notification-count="0"] {
+            color: currentColor;
+            @include notification-icon;
+        }
+    }
 }

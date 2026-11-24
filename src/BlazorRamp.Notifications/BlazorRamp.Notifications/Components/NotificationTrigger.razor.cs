@@ -8,14 +8,19 @@ namespace BlazorRamp.Notifications.Components;
 
 public partial class NotificationTrigger: IDisposable
 {
+
+    [Parameter] public string ButtonText { get; set; } = GlobalValues.Notification_Trigger_Text;
     [Inject] private INotificationService NotificationService { get; set; } = default!;
 
     private bool _disposed = false;
-    private int _notificationCount = 0;
+    private int  _notificationCount = 0;
 
-    protected override Task OnInitializedAsync()
+    private bool _expanded = false;
+
+    private string _triggerText = GlobalValues.Notification_Trigger_Text;
+    protected override void OnParametersSet()
     {
-        return base.OnInitializedAsync();
+        _triggerText = String.IsNullOrWhiteSpace(ButtonText) ? GlobalValues.Notification_Trigger_Text : ButtonText.Trim();
     }
 
     protected override void OnAfterRender(bool firstRender)
