@@ -94,10 +94,10 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
         await module.InvokeVoidAsync(GlobalValues.JS_Remove_Notifications_Func);
     }
 
-    public async Task CloseNotificationCentre(string dialogElementID, bool blurFirst = false)
+    public async Task CloseNotificationCentre(string dialogElementID)
     {
         var module = await GetModuleAsync();
-        await module.InvokeVoidAsync(GlobalValues.JS_Close_Notification_Centre,dialogElementID, blurFirst);
+        await module.InvokeVoidAsync(GlobalValues.JS_Close_Notification_Centre,dialogElementID);
     }
 
     public async Task ShowNotificationCentre(string dialogElmentID)

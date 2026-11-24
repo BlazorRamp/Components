@@ -226,15 +226,11 @@ const initialiseNotificationStore = (userStoreKey: string | null, notificationIt
 };
 
 
-const closeNotificationCentre = (dialogElementId: string, blurActiveElementFirst: boolean = false): void => {
+const closeNotificationCentre = (dialogElementId: string): void => {
 
     const dialogElement = document.getElementById(dialogElementId) as HTMLDialogElement;
 
     if (!dialogElement) return;
-
-    const activeElement = document.activeElement as HTMLElement | null;
-
-    if (blurActiveElementFirst && activeElement && dialogElement.contains(activeElement)) activeElement.blur();
 
     if (dialogElement.open) dialogElement.close();
 

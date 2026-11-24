@@ -63,7 +63,7 @@
 
         &:focus-visible, &:hover {
             text-decoration: none;
-            outline-offset: var(--br-comp-notification-item-link-outline-offset);
+            outline-offset:var(--br-comp-notification-item-link-outline-offset);
             outline-width: var(--br-comp-notification-item-link-outline-width);
             outline-style: var(--br-comp-notification-item-link-outline-style);
             outline-color: var(--br-comp-notification-item-link-outline-colour);

@@ -9,7 +9,8 @@ namespace BlazorRamp.Notifications.Components;
 public partial class NotificationTrigger: IDisposable
 {
 
-    [Parameter] public string ButtonText { get; set; } = GlobalValues.Notification_Trigger_Text;
+    [Parameter] public string AriaLabelText { get; set; } = GlobalValues.Notification_Trigger_Text;
+    [Parameter] public string HasPopupText   { get; set; }
     [Inject] private INotificationService NotificationService { get; set; } = default!;
 
     private bool _disposed = false;
@@ -17,10 +18,16 @@ public partial class NotificationTrigger: IDisposable
 
     private bool _expanded = false;
 
-    private string _triggerText = GlobalValues.Notification_Trigger_Text;
+    private string _ariaLabelText      = GlobalValues.Notification_Trigger_Text;
+    private string _ariaLabelCountText = GlobalValues.Notification_Trigger_Text;
+    private string _ariaDescribedText = GlobalValues.Notification_Trigger_Popup_Text;
+
+    private string _describedByID = Guid.NewGuid().ToString();
+
     protected override void OnParametersSet()
     {
-        _triggerText = String.IsNullOrWhiteSpace(ButtonText) ? GlobalValues.Notification_Trigger_Text : ButtonText.Trim();
+        _ariaLabelText      = String.IsNullOrWhiteSpace(AriaLabelText) ? GlobalValues.Notification_Trigger_Text : AriaLabelText.Trim();
+        _ariaLabelCountText = _ariaLabelText.Replace("{count}", _notificationCount.ToString());
     }
 
     protected override void OnAfterRender(bool firstRender)
@@ -33,6 +40,8 @@ public partial class NotificationTrigger: IDisposable
     private async void NotificationCentre_OnNotificationsChanged(NotificationItem[] notificationItems, string? focusID = null)
     {
         _notificationCount = notificationItems.Count();
+        _ariaLabelCountText = _ariaLabelText.Replace("{count}", _notificationCount.ToString());
+
         await InvokeAsync(StateHasChanged);
     }
 

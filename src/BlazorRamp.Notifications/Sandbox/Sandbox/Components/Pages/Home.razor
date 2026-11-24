@@ -39,7 +39,7 @@ Welcome to your new app.
 
     private async Task Test()
     {
-        var notification = new NotificationItem { Title = $"Test Message {counter}; ", Message = "Some message", ActionText = "View this message", ActionUrl = "/counter", ActionFocusID="count-button" };
+        var notification = new NotificationItem { Title = $"Test Message {counter}; ", Message = "Some message", ActionText = "View this message", ActionUrl = "/counter"};
         counter++;
         await _notificationService.AddNotificationItem(notification);
 

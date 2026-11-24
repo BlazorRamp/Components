@@ -14,7 +14,7 @@ public partial class Notification
 
     [Parameter] public string RemoveText { get; set; } = GlobalValues.Notification_Item_Remove_Text;
 
-    [Parameter] public string RemovedText { get; set; } = GlobalValues.Notification_Item_Remove_Text;
+    [Parameter] public string RemovedText { get; set; } = GlobalValues.Notification_Item_Removed_Text;
 
     [Inject] private INotificationService NotificationService { get; set; } = default!;
     [Inject] private ILiveRegionService LiveRegionService     { get; set; } = default!;
@@ -57,7 +57,7 @@ public partial class Notification
     {
         if (mouseEventArgs.CtrlKey || mouseEventArgs.MetaKey || mouseEventArgs.ShiftKey) return;
 
-        await NotificationService.CloseNotificationCentre(GlobalValues.Notification_Centre_Dialog_ID,true);
+        await NotificationService.CloseNotificationCentre(GlobalValues.Notification_Centre_Dialog_ID);
         
         if (false == String.IsNullOrWhiteSpace(NotificationItem.ActionFocusID)) await ((NotificationService)NotificationService).SetFocus(NotificationItem.ActionFocusID);
 

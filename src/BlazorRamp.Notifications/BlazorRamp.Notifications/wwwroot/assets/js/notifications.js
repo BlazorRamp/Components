@@ -147,13 +147,10 @@ const initialiseNotificationStore = (userStoreKey, notificationItems) => {
     if (userStoreKeyChanged || notificationItemsAdded)
         saveAndNotifyServices();
 };
-const closeNotificationCentre = (dialogElementId, blurActiveElementFirst = false) => {
+const closeNotificationCentre = (dialogElementId) => {
     const dialogElement = document.getElementById(dialogElementId);
     if (!dialogElement)
         return;
-    const activeElement = document.activeElement;
-    if (blurActiveElementFirst && activeElement && dialogElement.contains(activeElement))
-        activeElement.blur();
     if (dialogElement.open)
         dialogElement.close();
 };

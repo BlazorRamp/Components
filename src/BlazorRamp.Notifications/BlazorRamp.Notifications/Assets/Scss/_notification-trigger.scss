@@ -2,25 +2,61 @@
 
 .br-notification-trigger {
     appearance: none;
+    position: relative;
     box-sizing: border-box;
     display: flex;
     justify-content: start;
     align-items: center;
-    gap: 0 var(--br-unit-space-2);
-    cursor: pointer;
+    background-color: var(--br-comp-notification-trigger-button-background);
+    color: var(--br-comp-notification-trigger-button-text);
+    font-family: var(--br-comp-notification-trigger-button-font-family);
+    font-size: var(--br-comp-notification-trigger-button-font-size);
+    font-weight: var(--br-comp-notification-trigger-button-font-weight);
+    line-height: var(--br-comp-notification-trigger-button-line-height);
+    position: relative;
+    aspect-ratio: 1/1;
     border: none;
-    background-color: transparent;
-    font-size: var(--br-unit-font-size-label);
+    border-radius: var(--br-comp-notification-trigger-button-border-radius);
+    cursor: pointer;
+
+
+    &:active {
+        transform: scale(var(--br-comp-notification-trigger-button-state-active-scale));
+        filter: brightness(var(--br-comp-notification-trigger-button-state-active-brightness));
+        outline: none;
+    }
+
+    &:focus-visible {
+        outline-offset: var(--br-comp-notification-trigger-button-outline-offset);
+        outline-width: var(--br-comp-notification-trigger-button-outline-width);
+        outline-style: var(--br-comp-notification-trigger-button-outline-style);
+        outline-color: var(--br-comp-notification-trigger-button-outline-colour);
+    }
+
+    &:hover {
+        background-color: var(--br-comp-notification-trigger-button-state-hover);
+    }
+
 
     &__icon {
         aspect-ratio: 1/1;
-        height: 1.5em;
-        color: var(--br-unit-colour-warning);
-        @include notification-solid-icon;
+        height: 2em;
+        @include notification-icon;
+    }
 
-        &[data-br-notification-count="0"] {
-            color: currentColor;
-            @include notification-icon;
-        }
+    &__counter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--br-unit-colour-canvas-inverted);
+        color: var(--br-unit-colour-canvas-text-inverted);
+        border-radius: 100%;
+        aspect-ratio: 1/1;
+        font-size: 0.75em;
+        font-weight: bold;
+        width: 2em;
+        position: absolute;
+        left: 1.75em;
+        top: 0.5em;
     }
 }
