@@ -1,6 +1,8 @@
 ﻿@page "/counter"
 @rendermode @(new InteractiveWebAssemblyRenderMode(false))
 
+@inject INotificationService _notificationService;
+
 <PageTitle>Counter</PageTitle>
 
 <style>
@@ -16,11 +18,11 @@
 <button id="count-button" class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 <p>@location</p>
-
+<button @onclick="Test">Test</button>
 @code {
     private int currentCount = 0;
     private string location = "Server";
-
+    private int counter = 1000;
     private void IncrementCount()
     {
         currentCount++;
@@ -29,5 +31,15 @@
     protected override void OnInitialized()
     {
         location = OperatingSystem.IsBrowser() ? "Wasm" : "Server";
+    }
+
+    private async Task Test()
+    {
+        var notification = new NotificationItem { Title = $"Test Message {counter}; ", Message = "Some message", ActionText = "View this message", ActionUrl = "/counter" };
+        counter++;
+        await _notificationService.AddNotificationItem(notification);
+
+        var all = await _notificationService.GetNotifications();
+
     }
 }

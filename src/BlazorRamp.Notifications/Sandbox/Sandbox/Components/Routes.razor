@@ -3,7 +3,7 @@
 <AnnouncementHistory RefreshText="Refresh" ClearCloseText="Clear & Close" CloseText="Close" 
 NoDataText="No announcements" Title="Recent Announcements" TriggerVisible="true" TriggerText="Alerts" />
 
-<NotificationCentre @rendermode="InteractiveAuto" RemoveText="Remove {title}" RemovedText="{title} Removed."></NotificationCentre>
+<NotificationCentre @rendermode="new InteractiveAutoRenderMode(false)" RemoveText="Remove {title}" RemovedText="{title} Removed."></NotificationCentre>
 
 <Router AppAssembly="typeof(Program).Assembly" AdditionalAssemblies="new[] { typeof(Client._Imports).Assembly }" NotFoundPage="typeof(Pages.NotFound)">
     <Found Context="routeData">

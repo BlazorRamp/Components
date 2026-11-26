@@ -57,7 +57,7 @@ public partial class Notification
     {
         if (mouseEventArgs.CtrlKey || mouseEventArgs.MetaKey || mouseEventArgs.ShiftKey) return;
 
-        await NotificationService.CloseNotificationCentre(GlobalValues.Notification_Centre_Dialog_ID);
+        await NotificationService.CloseNotificationCentre();
         
         if (false == String.IsNullOrWhiteSpace(NotificationItem.ActionFocusID)) await ((NotificationService)NotificationService).SetFocus(NotificationItem.ActionFocusID);
 

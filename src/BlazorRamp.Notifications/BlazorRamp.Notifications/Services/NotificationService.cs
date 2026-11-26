@@ -9,18 +9,18 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
 {
     private readonly DotNetObjectReference<NotificationService>? _serviceReference = null;
     private readonly IJSRuntime _jsRuntime;
-    private readonly string     _serviceID;
-    private readonly SemaphoreSlim _moduleLock   = new(1, 1);
+    private readonly string _serviceID;
+    private readonly SemaphoreSlim _moduleLock = new(1, 1);
     private readonly SemaphoreSlim _registerLock = new(1, 1);
     private IJSObjectReference? _module;
-    private bool                _isDisposed   = false;
-    private bool                _isRegistered = false;
+    private bool _isDisposed = false;
+    private bool _isRegistered = false;
 
-    private Action<NotificationItem[],string?>? _onNotificationsChanged;
+    private Action<NotificationItem[], string?>? _onNotificationsChanged;
 
     public event Action<NotificationItem[], string?> OnNotificationsChanged
     {
-        add    { _onNotificationsChanged += value; RegisterService().AwaitTask(_ => { }); }
+        add { _onNotificationsChanged += value; RegisterService().AwaitTask(_ => { }); }
         remove { _onNotificationsChanged -= value; }
     }
 
@@ -30,23 +30,23 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
     public NotificationService(IJSRuntime jsRuntime)
     {
         _serviceReference = DotNetObjectReference.Create(this);
-        _jsRuntime        = jsRuntime;
-        _serviceID        = Guid.NewGuid().ToString();
+        _jsRuntime = jsRuntime;
+        _serviceID = Guid.NewGuid().ToString();
     }
 
     private async Task<IJSObjectReference> GetModuleAsync()
     {
-            await _moduleLock.WaitAsync();
+        await _moduleLock.WaitAsync();
 
-            try 
-            { 
+        try
+        {
 
-                return _module ??= await _jsRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Module_File_Path); 
-            }
-            finally 
-            { 
-                _moduleLock.Release(); 
-            }
+            return _module ??= await _jsRuntime.InvokeAsync<IJSObjectReference>("import", GlobalValues.JS_Module_File_Path);
+        }
+        finally
+        {
+            _moduleLock.Release();
+        }
 
 
     }
@@ -74,6 +74,13 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
         return await module.InvokeAsync<NotificationItem[]>(GlobalValues.JS_Get_All_Notifications_Func, filter.ToString());
     }
 
+    public async Task AddNotificationItems(NotificationItem[] notificationItems)
+    {
+        var module = await GetModuleAsync();
+
+        await module.InvokeVoidAsync(GlobalValues.JS_Add_Notifications_Func, notificationItems);
+    }
+
     public async Task AddNotificationItem(NotificationItem notificationItem)
     {
         var module = await GetModuleAsync();
@@ -94,16 +101,16 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
         await module.InvokeVoidAsync(GlobalValues.JS_Remove_Notifications_Func);
     }
 
-    public async Task CloseNotificationCentre(string dialogElementID)
+    public async Task CloseNotificationCentre()
     {
         var module = await GetModuleAsync();
-        await module.InvokeVoidAsync(GlobalValues.JS_Close_Notification_Centre,dialogElementID);
+        await module.InvokeVoidAsync(GlobalValues.JS_Close_Notification_Centre, GlobalValues.Notification_Centre_Dialog_ID);
     }
 
-    public async Task ShowNotificationCentre(string dialogElmentID)
+    public async Task ShowNotificationCentre()
     {
         var module = await GetModuleAsync();
-        await module.InvokeVoidAsync(GlobalValues.JS_Show_Notification_Centre, dialogElmentID);
+        await module.InvokeVoidAsync(GlobalValues.JS_Show_Notification_Centre, GlobalValues.Notification_Centre_Dialog_ID);
     }
 
     public async Task SetFocus(string elementID)

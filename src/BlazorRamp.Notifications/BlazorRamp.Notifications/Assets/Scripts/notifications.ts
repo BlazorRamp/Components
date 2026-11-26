@@ -29,7 +29,7 @@ interface RegisteredService {
 type NotificationFilter = "Active" | "Deleted" | "All";
 
 const SESSION_STORAGE_KEY = "br-notifications";
-const MAX_NOTIFICATIONS = 50;
+const MAX_NOTIFICATIONS = 99;
 
 const LOCALE = navigator.language || "en-GB";
 
@@ -180,7 +180,7 @@ const removeNotificationItem = (notificationItemId: string): void => {
     saveAndNotifyServices(itemToFocus?.id ?? null);
 };
 
-const clearNotifications = (): void => {
+const removeNotificationItems = (): void => {
 
     if (_notificationItems.length === 0) return;
 
@@ -286,6 +286,6 @@ const unregisterNotificationService = (serviceId: string): void => {
 
 export {
     registerNotificationService, unregisterNotificationService, showNotificationCentre, closeNotificationCentre, 
-    initialiseNotificationStore, addNotificationItem, removeNotificationItem, clearNotifications, addNotificationItems,
+    initialiseNotificationStore, addNotificationItem, removeNotificationItem, removeNotificationItems, addNotificationItems,
     getAllNotifications, clearNotificationStore, setFocus
 };

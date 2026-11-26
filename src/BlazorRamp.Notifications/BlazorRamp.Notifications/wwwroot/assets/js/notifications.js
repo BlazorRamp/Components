@@ -3,7 +3,7 @@ var NotificationType;
     NotificationType["Info"] = "Info";
 })(NotificationType || (NotificationType = {}));
 const SESSION_STORAGE_KEY = "br-notifications";
-const MAX_NOTIFICATIONS = 50;
+const MAX_NOTIFICATIONS = 99;
 const LOCALE = navigator.language || "en-GB";
 let _userStoreKey = ""; // empty means memory only, nothing is saved to session storage
 let _notificationItems = [];
@@ -115,7 +115,7 @@ const removeNotificationItem = (notificationItemId) => {
         _notificationItems.slice(itemIndex + 1).find(item => !item.isDeleted); // otherwise nearest later item
     saveAndNotifyServices(itemToFocus?.id ?? null);
 };
-const clearNotifications = () => {
+const removeNotificationItems = () => {
     if (_notificationItems.length === 0)
         return;
     _notificationItems = [];
@@ -185,5 +185,5 @@ const registerNotificationService = (serviceId, dotNetObjectReference, callbackN
 const unregisterNotificationService = (serviceId) => {
     _registeredServices = _registeredServices.filter(registeredService => registeredService.serviceId !== serviceId);
 };
-export { registerNotificationService, unregisterNotificationService, showNotificationCentre, closeNotificationCentre, initialiseNotificationStore, addNotificationItem, removeNotificationItem, clearNotifications, addNotificationItems, getAllNotifications, clearNotificationStore, setFocus };
+export { registerNotificationService, unregisterNotificationService, showNotificationCentre, closeNotificationCentre, initialiseNotificationStore, addNotificationItem, removeNotificationItem, removeNotificationItems, addNotificationItems, getAllNotifications, clearNotificationStore, setFocus };
 //# sourceMappingURL=notifications.js.map

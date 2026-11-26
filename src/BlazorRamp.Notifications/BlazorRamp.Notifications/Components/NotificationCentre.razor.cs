@@ -95,11 +95,10 @@ public partial class NotificationCentre : IAsyncDisposable
     }
 
 
-    
+
     private async Task CloseCentre()
 
-        => await NotificationService.CloseNotificationCentre(@GlobalValues.Notification_Centre_Dialog_ID);
-
+        => await NotificationService.CloseNotificationCentre();
     public async ValueTask DisposeAsync()
     {
         if (true == _disposed) return;

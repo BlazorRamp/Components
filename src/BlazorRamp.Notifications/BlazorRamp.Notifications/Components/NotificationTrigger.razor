@@ -1,10 +1,10 @@
 ﻿
-<button class="@GlobalValues.Notification_Trigger_Class" type="button" @onclick="ShowNotificaitonCentre" aria-label=" @_ariaLabelCountText" aria-describedby="@_describedByID">
+<button class="@GlobalValues.Notification_Trigger_Class" type="button" @onclick="ShowNotificaitonCentre" aria-label=" @_ariaLabelText" aria-describedby="@_describedByID">
     <span class="@GlobalValues.Notification_Trigger_Icon_Class" data-br-notification-count="@_notificationCount" aria-hidden="true"></span>
    
     @if(_notificationCount > 0)
     {
-        <span class="@GlobalValues.Notification_Trigger_Counter_Class">@_notificationCount</span>
+        <span class="@GlobalValues.Notification_Trigger_Counter_Class" aria-hidden="true">@_notificationCount</span>
     }
     <span id="@_describedByID" hidden>@_ariaDescribedText</span>
 </button>

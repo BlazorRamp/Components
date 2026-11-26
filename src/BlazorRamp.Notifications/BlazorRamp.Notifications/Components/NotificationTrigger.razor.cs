@@ -10,7 +10,7 @@ public partial class NotificationTrigger: IDisposable
 {
 
     [Parameter] public string AriaLabelText { get; set; } = GlobalValues.Notification_Trigger_Text;
-    [Parameter] public string HasPopupText   { get; set; }
+    [Parameter] public string HasPopupText   { get; set; } = GlobalValues.Notification_Trigger_Popup_Text;
     [Inject] private INotificationService NotificationService { get; set; } = default!;
 
     private bool _disposed = false;
@@ -18,16 +18,17 @@ public partial class NotificationTrigger: IDisposable
 
     private bool _expanded = false;
 
-    private string _ariaLabelText      = GlobalValues.Notification_Trigger_Text;
-    private string _ariaLabelCountText = GlobalValues.Notification_Trigger_Text;
-    private string _ariaDescribedText = GlobalValues.Notification_Trigger_Popup_Text;
+    private string _ariaLabelTemplateText = GlobalValues.Notification_Trigger_Text;
+    private string _ariaLabelText        = GlobalValues.Notification_Trigger_Text;
+    private string _ariaDescribedText    = GlobalValues.Notification_Trigger_Popup_Text;
 
     private string _describedByID = Guid.NewGuid().ToString();
 
     protected override void OnParametersSet()
     {
-        _ariaLabelText      = String.IsNullOrWhiteSpace(AriaLabelText) ? GlobalValues.Notification_Trigger_Text : AriaLabelText.Trim();
-        _ariaLabelCountText = _ariaLabelText.Replace("{count}", _notificationCount.ToString());
+        _ariaLabelTemplateText  = String.IsNullOrWhiteSpace(AriaLabelText) ? GlobalValues.Notification_Trigger_Text : AriaLabelText.Trim();
+        _ariaLabelText          = _ariaLabelTemplateText.Replace("{count}", _notificationCount.ToString());
+        _ariaDescribedText      = String.IsNullOrWhiteSpace(HasPopupText) ? GlobalValues.Notification_Trigger_Popup_Text : HasPopupText.Trim();
     }
 
     protected override void OnAfterRender(bool firstRender)
@@ -40,14 +41,14 @@ public partial class NotificationTrigger: IDisposable
     private async void NotificationCentre_OnNotificationsChanged(NotificationItem[] notificationItems, string? focusID = null)
     {
         _notificationCount = notificationItems.Count();
-        _ariaLabelCountText = _ariaLabelText.Replace("{count}", _notificationCount.ToString());
+        _ariaLabelText = _ariaLabelTemplateText.Replace("{count}", _notificationCount.ToString());
 
         await InvokeAsync(StateHasChanged);
     }
 
     private async Task ShowNotificaitonCentre()
 
-        => await ((NotificationService)NotificationService).ShowNotificationCentre(GlobalValues.Notification_Centre_Dialog_ID);
+        => await ((NotificationService)NotificationService).ShowNotificationCentre();
 
 
 

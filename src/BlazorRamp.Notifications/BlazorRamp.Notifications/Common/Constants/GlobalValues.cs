@@ -18,7 +18,7 @@ internal class GlobalValues
     public const string JS_Add_Notification_Func         = "addNotificationItem"; //(notificationItem: NotificationItem)
     public const string JS_Add_Notifications_Func        = "addNotificationItems"; //(notificationItems: NotificationItem[])
     public const string JS_Remove_Notification_Func      = "removeNotificationItem";//(notificationItemId: string)
-    public const string JS_Remove_Notifications_Func     = "clearNotifications";
+    public const string JS_Remove_Notifications_Func     = "removeNotificationItems";
     public const string JS_Get_All_Notifications_Func    = "getAllNotifications";
     public const string JS_Clear_Notification_Store      = "clearNotificationStore";
 
