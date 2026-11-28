@@ -12,7 +12,6 @@
 
 Welcome to your new app.
 
-<p>Service ID: @_notificationService.ServiceID</p>
 
 <button @onclick="Test">Test</button>
 <button @onclick="StartTimer">Start Timer</button>
@@ -41,9 +40,9 @@ Welcome to your new app.
     {
         var notification = new NotificationItem { Title = $"Test Message {counter}; ", Message = "Some message", ActionText = "View this message", ActionUrl = "/counter"};
         counter++;
-        await _notificationService.AddNotificationItem(notification);
+        await _notificationService.AddNotificationItem(notification, $"New Notification. {notification.Title}");
 
-        var all = await _notificationService.GetNotifications();
+       
 
     }
 

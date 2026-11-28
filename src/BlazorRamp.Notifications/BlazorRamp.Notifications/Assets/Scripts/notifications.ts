@@ -28,6 +28,8 @@ interface RegisteredService {
 
 type NotificationFilter = "Active" | "Deleted" | "All";
 
+const TRIGGER_ICON_SELECTOR = ".br-notification-trigger__icon";
+const RING_CLASS = "br-notification-trigger__icon--ring";
 const SESSION_STORAGE_KEY = "br-notifications";
 const MAX_NOTIFICATIONS = 99;
 
@@ -38,6 +40,17 @@ let _notificationItems: NotificationItem[]   = [];
 let _registeredServices: RegisteredService[] = [];
 
 
+const ringNotificationTrigger = (): void => {
+
+    document.querySelectorAll<HTMLElement>(TRIGGER_ICON_SELECTOR).forEach(icon => {
+
+        icon.classList.remove(RING_CLASS);
+        void icon.offsetWidth;                  // force reflow so the animation restarts
+        icon.classList.add(RING_CLASS);
+
+        icon.addEventListener("animationend", () => icon.classList.remove(RING_CLASS), { once: true });
+    });
+};
 
 const formatDisplayTime = (createdAt: string, locale: string = LOCALE): string => {
 
@@ -146,30 +159,40 @@ const addNotificationItemsToMemory = (notificationItems: NotificationItem[]): bo
         itemsAdded = true;
     }
 
-    if (itemsAdded) _notificationItems = getAllNotifications().slice(0, MAX_NOTIFICATIONS);
+    if (itemsAdded) _notificationItems = getAllNotifications("All").slice(0, MAX_NOTIFICATIONS);
 
     return itemsAdded;
 };
 
 const addNotificationItems = (notificationItems: NotificationItem[]): void => {
 
-    if (true === addNotificationItemsToMemory(notificationItems)) saveAndNotifyServices();
+    if (false === addNotificationItemsToMemory(notificationItems)) return;
+    ;
+    saveAndNotifyServices();
+    ringNotificationTrigger()
 };
 
 const addNotificationItem = (notificationItem: NotificationItem): void => addNotificationItems([notificationItem]);
 
+const markNotificationItemAsDeleted = (notificationItem: NotificationItem):void => {
+
+    notificationItem.isDeleted = true;
+    notificationItem.title = "";
+    notificationItem.message = "";
+    notificationItem.actionUrl = null;
+    notificationItem.actionText = null;
+    notificationItem.actionFocusId = null;
+    notificationItem.displayTime = "";
+
+};
+
 const removeNotificationItem = (notificationItemId: string): void => {
 
-    const existingItem = _notificationItems.find(item => item.id === notificationItemId);
-    if (!existingItem) return;
+    let existingItem = _notificationItems.find(item => item.id === notificationItemId);
 
-    existingItem.isDeleted = true;
-    existingItem.title = "";
-    existingItem.message = "";
-    existingItem.actionUrl = null;
-    existingItem.actionText = null;
-    existingItem.actionFocusId = null;
-    existingItem.displayTime = "";
+    if (!existingItem || existingItem.isDeleted) return;
+
+    markNotificationItemAsDeleted(existingItem);
 
     const itemIndex = _notificationItems.indexOf(existingItem);
 
@@ -182,10 +205,9 @@ const removeNotificationItem = (notificationItemId: string): void => {
 
 const removeNotificationItems = (): void => {
 
-    if (_notificationItems.length === 0) return;
+    if(!_notificationItems.some(item => !item.isDeleted)) return;
 
-    _notificationItems = [];
-
+    _notificationItems.forEach(markNotificationItemAsDeleted);
     saveAndNotifyServices();
 };
 

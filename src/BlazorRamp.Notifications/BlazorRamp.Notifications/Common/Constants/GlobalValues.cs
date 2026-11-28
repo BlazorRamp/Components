@@ -38,9 +38,11 @@ internal class GlobalValues
     public const string Notification_Centre_Remove_All_Text  = "Remove all";
     public const string Notification_Centre_Removed_All_Text = "All notifications removed";
     public const string Notification_Centre_Close_Text      = "Close";
-    public const string Notification_Item_Remove_Text       = "Remove";
+    public const string Notification_Item_Remove_Text       = "Remove {title}";
     public const string Notification_Item_Removed_Text      = "Notification removed";
     public const string Notification_Centre_No_Notifications_Text = "No notifications";
+
+    public const string Notification_Item_New_Default_Text = "New notification";
 
     public const string Notification_Trigger_Text = "Notifications {count}";
     public const string Notification_Trigger_Popup_Text = "Open dialog";
@@ -75,6 +77,8 @@ internal class GlobalValues
 
     public const string Notification_Trigger_Class      = "br-notification-trigger";
     public const string Notification_Trigger_Icon_Class = $"{Notification_Trigger_Class}__icon";
+
+    public const string Notification_Trigger_Icon_Modifier_Class = $"{Notification_Trigger_Icon_Class}--ring";
 
     public const string Notification_Trigger_Counter_Class = $"{Notification_Trigger_Class}__counter";
 

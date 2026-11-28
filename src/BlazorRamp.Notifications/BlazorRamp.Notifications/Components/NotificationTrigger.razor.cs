@@ -2,7 +2,6 @@ using BlazorRamp.Notifications.Common.Constants;
 using BlazorRamp.Notifications.Common.Models;
 using BlazorRamp.Notifications.Services;
 using Microsoft.AspNetCore.Components;
-using System.Runtime.CompilerServices;
 
 namespace BlazorRamp.Notifications.Components;
 
@@ -15,8 +14,6 @@ public partial class NotificationTrigger: IDisposable
 
     private bool _disposed = false;
     private int  _notificationCount = 0;
-
-    private bool _expanded = false;
 
     private string _ariaLabelTemplateText = GlobalValues.Notification_Trigger_Text;
     private string _ariaLabelText        = GlobalValues.Notification_Trigger_Text;

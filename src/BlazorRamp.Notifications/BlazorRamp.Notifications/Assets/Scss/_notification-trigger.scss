@@ -41,15 +41,25 @@
     &__icon {
         aspect-ratio: 1/1;
         height: 2em;
+        transform-origin: 50% 10%;
+
         @include notification-icon;
+
+        &--ring {
+            animation: br-notification-ring 0.8s ease-in-out 1;
+
+            @media (prefers-reduced-motion: reduce) {
+                animation: none;
+            }
+        }
     }
 
     &__counter {
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: var(--br-unit-colour-canvas-inverted);
-        color: var(--br-unit-colour-canvas-text-inverted);
+        background-color: var(--br-comp-notification-trigger-counter-background);
+        color: var(--br-comp-notification-trigger-counter-text);
         border-radius: 100%;
         aspect-ratio: 1/1;
         font-size: 0.75em;
@@ -58,5 +68,14 @@
         position: absolute;
         left: 1.75em;
         top: 0.5em;
+        forced-color-adjust: none;
     }
+}
+@keyframes br-notification-ring {
+    0%   { transform: rotate(0deg); }
+    20%  { transform: rotate(-14deg); }
+    40%  { transform: rotate(12deg); }
+    60%  { transform: rotate(-8deg); }
+    80%  { transform: rotate(4deg); }
+    100% { transform: rotate(0deg); }
 }

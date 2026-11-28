@@ -1,4 +1,7 @@
-﻿using BlazorRamp.Notifications.Common.Constants;
+﻿using BlazorRamp.Core.Common.Constants;
+using BlazorRamp.Core.Common.Models;
+using BlazorRamp.Core.Services;
+using BlazorRamp.Notifications.Common.Constants;
 using BlazorRamp.Notifications.Common.Extensions;
 using BlazorRamp.Notifications.Common.Models;
 using Microsoft.JSInterop;
@@ -8,13 +11,14 @@ namespace BlazorRamp.Notifications.Services;
 internal sealed class NotificationService : INotificationService, IAsyncDisposable
 {
     private readonly DotNetObjectReference<NotificationService>? _serviceReference = null;
-    private readonly IJSRuntime _jsRuntime;
-    private readonly string _serviceID;
-    private readonly SemaphoreSlim _moduleLock = new(1, 1);
-    private readonly SemaphoreSlim _registerLock = new(1, 1);
+    private readonly IJSRuntime         _jsRuntime;
+    private readonly ILiveRegionService _liveRegionService;
+    private readonly SemaphoreSlim      _moduleLock =  new(1, 1);
+    private readonly SemaphoreSlim       _registerLock = new(1, 1);
     private IJSObjectReference? _module;
-    private bool _isDisposed = false;
+    private bool _isDisposed   = false;
     private bool _isRegistered = false;
+    private string _serviceID = Guid.NewGuid().ToString();
 
     private Action<NotificationItem[], string?>? _onNotificationsChanged;
 
@@ -24,14 +28,12 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
         remove { _onNotificationsChanged -= value; }
     }
 
-
-    public string ServiceID => _serviceID;
-
-    public NotificationService(IJSRuntime jsRuntime)
+    public NotificationService(IJSRuntime jsRuntime, ILiveRegionService liveRegionService)
     {
-        _serviceReference = DotNetObjectReference.Create(this);
-        _jsRuntime = jsRuntime;
-        _serviceID = Guid.NewGuid().ToString();
+        _serviceReference  = DotNetObjectReference.Create(this);
+        _jsRuntime         = jsRuntime;
+        _liveRegionService = liveRegionService;
+
     }
 
     private async Task<IJSObjectReference> GetModuleAsync()
@@ -81,23 +83,28 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
         await module.InvokeVoidAsync(GlobalValues.JS_Add_Notifications_Func, notificationItems);
     }
 
-    public async Task AddNotificationItem(NotificationItem notificationItem)
+    public async Task AddNotificationItem(NotificationItem notificationItem, string announcementText = GlobalValues.Notification_Item_New_Default_Text)
     {
         var module = await GetModuleAsync();
 
         await module.InvokeVoidAsync(GlobalValues.JS_Add_Notification_Func, notificationItem);
+
+        await _liveRegionService.MakeAnnouncement(new Announcement(announcementText, AnnouncementType.Info), true);
     }
 
-    public async Task RemoveNotification(string notificationItemID)
+    public async Task RemoveNotification(string notificationItemID, string removeText)
     {
         var module = await GetModuleAsync();
 
+        await _liveRegionService.MakeAnnouncement(new Announcement(removeText, AnnouncementType.Info, "", LiveRegionType.Assertive), false);
+        await Task.Delay(400);
         await module.InvokeVoidAsync(GlobalValues.JS_Remove_Notification_Func, notificationItemID);
     }
 
     public async Task RemoveNotifications()
     {
         var module = await GetModuleAsync();
+
         await module.InvokeVoidAsync(GlobalValues.JS_Remove_Notifications_Func);
     }
 
@@ -117,6 +124,13 @@ internal sealed class NotificationService : INotificationService, IAsyncDisposab
     {
         var module = await GetModuleAsync();
         await module.InvokeVoidAsync(GlobalValues.JS_Set_Focus_Func, elementID);
+    }
+
+    public async Task InitialiseSessionStore(string userStoreKey = "", NotificationItem[]? notificationItems = null)
+    {
+        var module = await GetModuleAsync();
+        await module.InvokeVoidAsync(GlobalValues.JS_Initialise_Notification_Store, userStoreKey, notificationItems);
+
     }
 
     [JSInvokable]

@@ -87,7 +87,7 @@ public partial class NotificationCentre : IAsyncDisposable
         
         _removeAllCalled = true;
         
-        await LiveRegionService.MakeAnnouncement(new Announcement(_removedAllText, AnnouncementType.Info, $"{_removeAllText} button", LiveRegionType.Assertive), true);
+        await LiveRegionService.MakeAnnouncement(new Announcement(_removedAllText, AnnouncementType.Info, $"{_removeAllText} button", LiveRegionType.Assertive), false);
         await NotificationService.RemoveNotifications();
       
         

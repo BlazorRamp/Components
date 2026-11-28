@@ -18,9 +18,9 @@ this package separately (but it can be if you only require the Live Regions Serv
 1. Add the BlazorRamp.Notifications nuget package to your project using the Nuget Package Manager or the dotnet CLI.
 
 ```c#
-dotnet add package BlazorRamp.GoTo
+dotnet add package BlazorRamp.Notifications
 ```
-2. Add the following Core and GoTo stylesheet references to the `<head>` section of your application:
+2. Add the following Core and Notifications stylesheet references to the `<head>` section of your application:
 - Blazor Web App / Blazor Server → App.razor
 - Blazor WebAssembly → wwwroot/index.html
 ```html

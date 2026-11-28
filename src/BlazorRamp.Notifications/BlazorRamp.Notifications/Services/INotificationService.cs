@@ -6,19 +6,21 @@ namespace BlazorRamp.Notifications.Services;
 public interface INotificationService
 {
 
-    string ServiceID { get; }
-
-    Task AddNotificationItem(NotificationItem notificationItem);
+    Task AddNotificationItem(NotificationItem notificationItem, string announcmentText = GlobalValues.Notification_Item_New_Default_Text);
     Task AddNotificationItems(NotificationItem[] notificationItems);
 
     Task<NotificationItem[]> GetNotifications(NotificationFilter filter = NotificationFilter.Active);
 
-    Task RemoveNotification(string notificationItemID);
+    Task RemoveNotification(string notificationItemID, string removeText);
 
     Task RemoveNotifications();
 
     Task CloseNotificationCentre();
     Task ShowNotificationCentre();
+
+
+    Task InitialiseSessionStore(string userStoreKey = "", NotificationItem[]? notificationItems = null);
+
     event Action<NotificationItem[], string?> OnNotificationsChanged;
 
 

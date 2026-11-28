@@ -33,8 +33,7 @@ public partial class Notification
         _removeText     = String.IsNullOrWhiteSpace(RemoveText) ? GlobalValues.Notification_Item_Remove_Text : RemoveText.Trim();
         _removedText    = String.IsNullOrWhiteSpace(RemovedText) ? GlobalValues.Notification_Item_Removed_Text : RemovedText.Trim();
 
-        _removeText = _removeText.Replace("{title}", NotificationItem.Title ?? "");
-        _removedText = _removedText.Replace("{title}", NotificationItem.Title ?? "");
+        _removeText    = _removeText.Replace("{title}", NotificationItem.Title ?? "");
 
         _displayActions = (NotificationItem is null || String.IsNullOrWhiteSpace(NotificationItem.ActionText) || String.IsNullOrWhiteSpace(NotificationItem.ActionUrl)) ? false : true;
     }
@@ -48,9 +47,7 @@ public partial class Notification
 
         StateHasChanged();
 
-        await MakeAnnouncement(_removedText);
-        await Task.Delay(400);
-        await NotificationService.RemoveNotification(notificationItemID);
+        await NotificationService.RemoveNotification(notificationItemID, _removedText);
        
     }
     private async Task HandleActionClick(MouseEventArgs mouseEventArgs)
@@ -62,11 +59,5 @@ public partial class Notification
         if (false == String.IsNullOrWhiteSpace(NotificationItem.ActionFocusID)) await ((NotificationService)NotificationService).SetFocus(NotificationItem.ActionFocusID);
 
     }
-
-
-    private async Task MakeAnnouncement(string message)
-
-        => await LiveRegionService.MakeAnnouncement(new(message, AnnouncementType.Info, "Remove button", LiveRegionType.Assertive),false);
-
 
 }
